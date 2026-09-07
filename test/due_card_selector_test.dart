@@ -1,5 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fiveminutekanji/core/models/card_schedule.dart';
+import 'package:fiveminutekanji/core/models/kanji_card.dart';
+import 'package:fiveminutekanji/data/hardcoded_kanji_data.dart';
 import 'package:fiveminutekanji/services/due_card_selector.dart';
 import 'package:fiveminutekanji/services/session_new_card_budget.dart';
 import 'package:fiveminutekanji/services/srs_engine.dart';
@@ -315,4 +317,51 @@ void main() {
       expect(reviewCount, greaterThanOrEqualTo(7));
     },
   );
+
+  test('new kanji follow JLPT n5 then n4, then lowest id', () {
+    final n5 = testCard('n5-080', jlptLevel: JlptLevel.n5);
+    final n4First = testCard(
+      'n4-001',
+      keyword: 'same',
+      jlptLevel: JlptLevel.n4,
+    );
+    final n5LowerId = testCard('n5-001', jlptLevel: JlptLevel.n5);
+    final n3 = testCard('n3-001', jlptLevel: JlptLevel.n3);
+    final selected = selector.select(
+      cards: [n4First, n3, n5, n5LowerId],
+      schedules: const {},
+      now: now,
+      limit: 4,
+      maxNewCards: 4,
+    );
+
+    expect(selected.map((card) => card.id), [
+      'n5-001',
+      'n5-080',
+      'n4-001',
+      'n3-001',
+    ]);
+  });
+
+  test('hardcoded deck picks remaining n5 before n4-001 same', () {
+    final learnedN5 = hardcodedKanjiCards
+        .where((card) => card.jlptLevel == JlptLevel.n5)
+        .take(20)
+        .toList();
+    final schedules = {
+      for (final card in learnedN5)
+        card.id: schedule(card.id, CardLearningState.review, dueAt: now),
+    };
+    final selected = selector.select(
+      cards: hardcodedKanjiCards,
+      schedules: schedules,
+      now: now,
+      limit: 1,
+      maxNewCards: 1,
+    );
+
+    expect(selected, isNotEmpty);
+    expect(selected.first.jlptLevel, JlptLevel.n5);
+    expect(selected.first.id, isNot('n4-001'));
+  });
 }

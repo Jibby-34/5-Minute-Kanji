@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:io';
+
 import '../core/models/card_schedule.dart';
 import '../core/models/kanji_card.dart';
 import '../core/models/progress.dart';
@@ -57,9 +60,62 @@ class DueCardSelector {
       }
     }
 
+    // #region agent log
+    final n5News = [
+      for (final card in news)
+        if (card.jlptLevel == JlptLevel.n5) card,
+    ];
+    final n4News = [
+      for (final card in news)
+        if (card.jlptLevel == JlptLevel.n4) card,
+    ];
+    final n5Ids = [for (final card in n5News) card.id]..sort();
+    final listOrderFirstNew = news.isEmpty
+        ? null
+        : {'id': news.first.id, 'jlpt': news.first.jlptLevel.name};
+    _agentLog(
+      'H2,H3,H5',
+      'due_card_selector.dart:select:beforeSort',
+      'unknown new cards before id sort',
+      {
+        'newCount': news.length,
+        'n5NewCount': n5News.length,
+        'n4NewCount': n4News.length,
+        'lowestN5Id': n5Ids.isEmpty ? null : n5Ids.first,
+        'lowestN5Jlpt': n5News.isEmpty ? null : n5News.first.jlptLevel.name,
+        'listOrderFirstNew': listOrderFirstNew,
+        'n5IdSample': n5Ids.take(5).toList(),
+        'n5PrefixWrongJlpt': [
+          for (final card in news)
+            if (card.id.startsWith('n5-') && card.jlptLevel != JlptLevel.n5)
+              {'id': card.id, 'jlpt': card.jlptLevel.name},
+        ],
+      },
+    );
+    // #endregion
+
     _sortByDueThenId(learningDue, schedules, now);
     _sortByDueThenId(reviewDue, schedules, now);
-    news.sort((a, b) => a.id.compareTo(b.id));
+    news.sort(_compareNewLearnOrder);
+
+    // #region agent log
+    _agentLog(
+      'H1',
+      'due_card_selector.dart:select:afterIdSort',
+      'unknown new cards after raw id sort',
+      {
+        'firstNewId': news.isEmpty ? null : news.first.id,
+        'firstNewKeyword': news.isEmpty ? null : news.first.keyword,
+        'firstNewJlpt': news.isEmpty ? null : news.first.jlptLevel.name,
+        'sortedNewSample': [
+          for (final card in news.take(8))
+            {'id': card.id, 'jlpt': card.jlptLevel.name, 'kw': card.keyword},
+        ],
+        'n4vsN5Compare': 'n4-001'.compareTo('n5-001'),
+        'n5Remain': n5News.isNotEmpty,
+      },
+    );
+    // #endregion
 
     final existingAvailable = learningDue.length + reviewDue.length;
     final int newTakeCount;
@@ -87,7 +143,35 @@ class DueCardSelector {
       ...reviewDue,
     ].take(existingTakeCount).toList();
 
-    return _interleaveNew(existing: existing, news: newTake);
+    final selected = _interleaveNew(existing: existing, news: newTake);
+
+    // #region agent log
+    KanjiCard? firstLearnInSession;
+    for (final card in selected) {
+      if (isNew(schedules[card.id])) {
+        firstLearnInSession = card;
+        break;
+      }
+    }
+    _agentLog(
+      'H1,H4',
+      'due_card_selector.dart:select:result',
+      'session queue after interleave',
+      {
+        'maxNewCards': maxNewCards,
+        'newTakeCount': newTakeCount,
+        'newTakeIds': [for (final card in newTake) card.id],
+        'selectedIds': [for (final card in selected) card.id],
+        'firstSelectedId': selected.isEmpty ? null : selected.first.id,
+        'firstLearnId': firstLearnInSession?.id,
+        'firstLearnKeyword': firstLearnInSession?.keyword,
+        'firstLearnJlpt': firstLearnInSession?.jlptLevel.name,
+        'n5StillUnknown': n5News.isNotEmpty,
+      },
+    );
+    // #endregion
+
+    return selected;
   }
 
   int countDue({
@@ -131,6 +215,14 @@ class DueCardSelector {
       }
     }
     return next;
+  }
+
+  int _compareNewLearnOrder(KanjiCard a, KanjiCard b) {
+    final aLevel = JlptLevel.sectionOrder.indexOf(a.jlptLevel);
+    final bLevel = JlptLevel.sectionOrder.indexOf(b.jlptLevel);
+    final levelCompare = aLevel.compareTo(bLevel);
+    if (levelCompare != 0) return levelCompare;
+    return a.id.compareTo(b.id);
   }
 
   void _sortByDueThenId(
@@ -195,3 +287,52 @@ class DueCardSelector {
     return result;
   }
 }
+
+// #region agent log
+void _agentLog(
+  String hypothesisId,
+  String location,
+  String message,
+  Map<String, Object?> data,
+) {
+  try {
+    final payload = jsonEncode({
+      'sessionId': 'f5542b',
+      'runId': 'post-fix',
+      'hypothesisId': hypothesisId,
+      'location': location,
+      'message': message,
+      'data': data,
+      'timestamp': DateTime.now().millisecondsSinceEpoch,
+    });
+    try {
+      File(
+        r'c:\Users\gdegr\Documents\GitHub\5-Minute-Kanji\debug-f5542b.log',
+      ).writeAsStringSync('$payload\n', mode: FileMode.append);
+    } catch (_) {}
+    print('DEBUG_LOG $payload');
+    Future<void>(() async {
+      for (final host in ['127.0.0.1', '10.0.2.2']) {
+        HttpClient? client;
+        try {
+          client = HttpClient()
+            ..connectionTimeout = const Duration(milliseconds: 400);
+          final req = await client.postUrl(
+            Uri.parse(
+              'http://$host:7457/ingest/ef2d480b-c1db-45a8-82b8-a737609db768',
+            ),
+          );
+          req.headers.set('Content-Type', 'application/json');
+          req.headers.set('X-Debug-Session-Id', 'f5542b');
+          req.add(utf8.encode(payload));
+          await req.close().timeout(const Duration(milliseconds: 400));
+        } catch (_) {
+        } finally {
+          client?.close(force: true);
+        }
+      }
+    });
+  } catch (_) {}
+}
+// #endregion
+
