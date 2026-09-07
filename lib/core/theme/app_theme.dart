@@ -87,13 +87,6 @@ class AppTheme {
           ? NoSplash.splashFactory
           : InkRipple.splashFactory,
       highlightColor: cupertino ? muted.withValues(alpha: 0.12) : null,
-      pageTransitionsTheme: const PageTransitionsTheme(
-        builders: {
-          TargetPlatform.android: ZoomPageTransitionsBuilder(),
-          TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
-          TargetPlatform.macOS: CupertinoPageTransitionsBuilder(),
-        },
-      ),
       appBarTheme: AppBarTheme(
         backgroundColor: background,
         foregroundColor: text,
