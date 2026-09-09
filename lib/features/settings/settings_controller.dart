@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 
 import '../../core/models/progress.dart';
+import '../../core/models/start_of_day.dart';
 import '../../repositories/progress_repository.dart';
 import '../../services/daily_workload_estimator.dart';
 
@@ -21,6 +22,8 @@ class SettingsController extends ChangeNotifier {
   );
 
   int get newKanjiPerDay => settings.newKanjiPerDay;
+
+  StartOfDay get startOfDay => settings.startOfDay;
 
   Future<void> load() async {
     loading = true;
@@ -48,6 +51,15 @@ class SettingsController extends ChangeNotifier {
 
     settings = settings.copyWith(newKanjiPerDay: clamped);
     _refreshEstimate();
+    notifyListeners();
+    await progressRepository.saveSettings(settings);
+  }
+
+  Future<void> setStartOfDay(StartOfDay value) async {
+    final next = StartOfDay.normalize(hour: value.hour, minute: value.minute);
+    if (next == settings.startOfDay && !loading) return;
+
+    settings = settings.copyWith(startOfDay: next);
     notifyListeners();
     await progressRepository.saveSettings(settings);
   }

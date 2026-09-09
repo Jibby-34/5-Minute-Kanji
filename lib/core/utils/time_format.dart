@@ -1,3 +1,5 @@
+import '../models/start_of_day.dart';
+
 String greetingFor(DateTime now) {
   final hour = now.hour;
   if (hour >= 5 && hour < 12) return 'Good morning';
@@ -11,7 +13,18 @@ String formatSessionDuration(Duration duration) {
   return '${minutes}m ${seconds.toString().padLeft(2, '0')}s';
 }
 
-String formatNextReview(DateTime? due, DateTime now) {
+String formatStartOfDay(StartOfDay startOfDay) {
+  final hour12 = startOfDay.hour % 12 == 0 ? 12 : startOfDay.hour % 12;
+  final minute = startOfDay.minute.toString().padLeft(2, '0');
+  final period = startOfDay.hour < 12 ? 'AM' : 'PM';
+  return '$hour12:$minute $period';
+}
+
+String formatNextReview(
+  DateTime? due,
+  DateTime now, {
+  StartOfDay startOfDay = StartOfDay.defaults,
+}) {
   if (due == null) return 'soon';
   if (!due.isAfter(now)) return 'now';
 
@@ -19,14 +32,14 @@ String formatNextReview(DateTime? due, DateTime now) {
   if (diff.inMinutes < 1) return 'in a moment';
   if (diff.inMinutes < 60) return 'in ${diff.inMinutes} min';
 
-  final today = DateTime(now.year, now.month, now.day);
-  final dueDay = DateTime(due.year, due.month, due.day);
+  final today = startOfDay.studyDate(now);
+  final dueDay = startOfDay.studyDate(due);
   final tomorrow = today.add(const Duration(days: 1));
 
   if (dueDay == today) return 'later today';
   if (dueDay == tomorrow) return 'tomorrow';
 
-  return '${due.month}/${due.day}';
+  return '${dueDay.month}/${dueDay.day}';
 }
 
 int estimateReviewMinutes({

@@ -368,6 +368,15 @@ void main() {
     expect(find.text('New kanji per day'), findsOneWidget);
     expect(find.text('5'), findsWidgets);
     expect(find.textContaining('Estimated daily study time:'), findsOneWidget);
+    expect(find.text('Start of day'), findsOneWidget);
+    expect(find.text('4:00 AM'), findsOneWidget);
+
+    await tester.ensureVisible(find.text('4:00 AM'));
+    await tester.tap(find.text('4:00 AM'));
+    await tester.pumpAndSettle();
+    expect(find.byType(TimePickerDialog), findsOneWidget);
+    await tester.tap(find.text('Cancel'));
+    await tester.pumpAndSettle();
 
     await tester.tap(find.byTooltip('Back'));
     await tester.pumpAndSettle();

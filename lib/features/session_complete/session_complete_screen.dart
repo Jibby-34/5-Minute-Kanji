@@ -1,15 +1,21 @@
 import 'package:flutter/material.dart';
 
 import '../../core/models/review.dart';
+import '../../core/models/start_of_day.dart';
 import '../../core/theme/app_theme.dart';
 import '../../core/utils/time_format.dart';
 import '../../widgets/bottom_action_inset.dart';
 import '../../widgets/primary_button.dart';
 
 class SessionCompleteScreen extends StatelessWidget {
-  const SessionCompleteScreen({super.key, required this.summary});
+  const SessionCompleteScreen({
+    super.key,
+    required this.summary,
+    this.startOfDay = StartOfDay.defaults,
+  });
 
   final SessionSummary summary;
+  final StartOfDay startOfDay;
 
   @override
   Widget build(BuildContext context) {
@@ -81,7 +87,7 @@ class SessionCompleteScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 28),
                     Text(
-                      'Next review: ${formatNextReview(summary.nextReviewAt, now)}',
+                      'Next review: ${formatNextReview(summary.nextReviewAt, now, startOfDay: startOfDay)}',
                       style: theme.textTheme.bodyLarge,
                     ),
                   ],

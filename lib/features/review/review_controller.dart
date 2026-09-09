@@ -4,6 +4,7 @@ import '../../core/models/card_schedule.dart';
 import '../../core/models/handwriting.dart';
 import '../../core/models/kanji_card.dart';
 import '../../core/models/progress.dart';
+import '../../core/models/start_of_day.dart';
 import '../../core/models/review.dart';
 import '../../core/models/study_phase.dart';
 import '../../core/utils/clock.dart';
@@ -76,10 +77,13 @@ class ReviewController extends ChangeNotifier {
   Map<String, CardSchedule> _schedules = {};
   int padGeneration = 0;
   bool _disposed = false;
+  StartOfDay _startOfDay = StartOfDay.defaults;
 
   KanjiCard? get current => session.current ?? _visibleCard;
 
   bool get isComplete => session.isComplete;
+
+  StartOfDay get startOfDay => _startOfDay;
 
   /// Cards still left to draw: queued items, plus the first retrieval each
   /// unlearned card will add later in the sitting.
@@ -99,11 +103,19 @@ class ReviewController extends ChangeNotifier {
   Future<void> hydrate() async {
     if (ready || _disposed) return;
     final schedules = await progressRepository.getSchedules();
+    final settings = await progressRepository.getSettings();
     if (_disposed || ready) return;
     _schedules = Map<String, CardSchedule>.from(schedules);
+    _startOfDay = settings.startOfDay;
     _applyPhaseForCurrent();
     ready = true;
     notifyListeners();
+  }
+
+  Future<StartOfDay> _loadStartOfDay() async {
+    final settings = await progressRepository.getSettings();
+    _startOfDay = settings.startOfDay;
+    return _startOfDay;
   }
 
   @override
@@ -150,6 +162,7 @@ class ReviewController extends ChangeNotifier {
 
     final now = clock();
     try {
+      final dayBoundary = await _loadStartOfDay();
       final existing =
           await progressRepository.getSchedule(card.id) ??
           CardSchedule.fresh(card.id, now);
@@ -157,7 +170,10 @@ class ReviewController extends ChangeNotifier {
       await progressRepository.saveSchedule(updated);
       _schedules[card.id] = updated;
       if (existing.state == CardLearningState.newCard) {
-        final daily = (await progressRepository.getDailyNewKanji()).forDay(now);
+        final daily = (await progressRepository.getDailyNewKanji()).forDay(
+          now,
+          startOfDay: dayBoundary,
+        );
         await progressRepository.saveDailyNewKanji(daily.increment());
       }
 
@@ -168,7 +184,7 @@ class ReviewController extends ChangeNotifier {
       if (session.isComplete) {
         final streak = await progressRepository.getStreak();
         await progressRepository.saveStreak(
-          streakService.recordCompletion(streak, now),
+          streakService.recordCompletion(streak, now, startOfDay: dayBoundary),
         );
         summary = session.toSummary(
           now: now,
@@ -195,6 +211,7 @@ class ReviewController extends ChangeNotifier {
 
     final now = clock();
     try {
+      final dayBoundary = await _loadStartOfDay();
       final updated = await markAsKnown.markKanjiAsKnown(card.id, now: now);
       if (updated != null) {
         _schedules[card.id] = updated;
@@ -207,7 +224,7 @@ class ReviewController extends ChangeNotifier {
       if (session.isComplete) {
         final streak = await progressRepository.getStreak();
         await progressRepository.saveStreak(
-          streakService.recordCompletion(streak, now),
+          streakService.recordCompletion(streak, now, startOfDay: dayBoundary),
         );
         summary = session.toSummary(
           now: now,
@@ -251,6 +268,7 @@ class ReviewController extends ChangeNotifier {
     final timeOnCard = now.difference(_cardShownAt);
 
     try {
+      final dayBoundary = await _loadStartOfDay();
       if (!isPractice) {
         final existing =
             await progressRepository.getSchedule(card.id) ??
@@ -283,7 +301,7 @@ class ReviewController extends ChangeNotifier {
       if (session.isComplete) {
         final streak = await progressRepository.getStreak();
         await progressRepository.saveStreak(
-          streakService.recordCompletion(streak, now),
+          streakService.recordCompletion(streak, now, startOfDay: dayBoundary),
         );
         summary = session.toSummary(
           now: now,
@@ -316,6 +334,7 @@ class ReviewController extends ChangeNotifier {
       now: now,
       limit: session.pool.length,
       maxNewCards: 0,
+      startOfDay: _startOfDay,
     );
     session.offerDue(due);
   }

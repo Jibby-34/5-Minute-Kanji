@@ -1,6 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fiveminutekanji/core/models/card_schedule.dart';
 import 'package:fiveminutekanji/core/models/kanji_card.dart';
+import 'package:fiveminutekanji/core/models/start_of_day.dart';
 import 'package:fiveminutekanji/data/hardcoded_kanji_data.dart';
 import 'package:fiveminutekanji/services/due_card_selector.dart';
 import 'package:fiveminutekanji/services/session_new_card_budget.dart';
@@ -363,5 +364,90 @@ void main() {
     expect(selected, isNotEmpty);
     expect(selected.first.jlptLevel, JlptLevel.n5);
     expect(selected.first.id, isNot('n4-001'));
+  });
+
+  test('cards due before start of day stay in today\'s window', () {
+    const start = StartOfDay(hour: 4);
+    final beforeBoundary = DateTime(2026, 9, 3, 3, 59);
+    final atBoundary = DateTime(2026, 9, 3, 4);
+    final dueCards = [testCard('before'), testCard('at')];
+    final schedules = {
+      'before': schedule(
+        'before',
+        CardLearningState.review,
+        dueAt: beforeBoundary,
+      ),
+      'at': schedule('at', CardLearningState.review, dueAt: atBoundary),
+    };
+
+    expect(
+      selector.isAvailableToday(schedules['before']!, now, startOfDay: start),
+      isTrue,
+    );
+    expect(
+      selector.isAvailableToday(schedules['at']!, now, startOfDay: start),
+      isFalse,
+    );
+    expect(
+      selector
+          .select(
+            cards: dueCards,
+            schedules: schedules,
+            now: now,
+            limit: 10,
+            startOfDay: start,
+          )
+          .map((card) => card.id),
+      ['before'],
+    );
+    expect(
+      selector.countDue(
+        cards: dueCards,
+        schedules: schedules,
+        now: now,
+        startOfDay: start,
+      ),
+      1,
+    );
+    expect(
+      selector.nextFutureDue(
+        cards: dueCards,
+        schedules: schedules,
+        now: now,
+        startOfDay: start,
+      ),
+      atBoundary,
+    );
+  });
+
+  test('3:59 AM is still yesterday\'s review window', () {
+    const start = StartOfDay(hour: 4);
+    final lateNight = DateTime(2026, 9, 3, 3, 59);
+    final dueAtBoundary = DateTime(2026, 9, 3, 4);
+    final card = testCard('boundary');
+    final schedules = {
+      'boundary': schedule(
+        'boundary',
+        CardLearningState.review,
+        dueAt: dueAtBoundary,
+      ),
+    };
+
+    expect(
+      selector.isAvailableToday(
+        schedules['boundary']!,
+        lateNight,
+        startOfDay: start,
+      ),
+      isFalse,
+    );
+    expect(
+      selector.isAvailableToday(
+        schedules['boundary']!,
+        dueAtBoundary,
+        startOfDay: start,
+      ),
+      isTrue,
+    );
   });
 }

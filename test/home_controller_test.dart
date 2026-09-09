@@ -2,6 +2,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:fiveminutekanji/core/models/card_schedule.dart';
 import 'package:fiveminutekanji/core/models/progress.dart';
 import 'package:fiveminutekanji/core/models/review.dart';
+import 'package:fiveminutekanji/core/models/start_of_day.dart';
 import 'package:fiveminutekanji/core/models/study_phase.dart';
 import 'package:fiveminutekanji/features/home/home_controller.dart';
 import 'package:fiveminutekanji/features/review/review_controller.dart';
@@ -258,4 +259,150 @@ void main() {
     expect(session.where((card) => card.id.startsWith('r')).length, 5);
     expect(session.first.id.startsWith('n'), isFalse);
   });
+
+  test('cards due before 4:00 AM count as today\'s workload', () async {
+    final morning = DateTime(2026, 9, 2, 8);
+    final beforeBoundary = DateTime(2026, 9, 3, 3, 59);
+    final atBoundary = DateTime(2026, 9, 3, 4);
+    final progress = MemoryProgressRepository(
+      schedules: {
+        'a': CardSchedule(
+          cardId: 'a',
+          state: CardLearningState.review,
+          reviewCount: 1,
+          correctCount: 1,
+          incorrectCount: 0,
+          dueAt: beforeBoundary,
+          interval: const Duration(hours: 6),
+          ease: 2.5,
+          lastReviewedAt: morning,
+        ),
+        'b': CardSchedule(
+          cardId: 'b',
+          state: CardLearningState.review,
+          reviewCount: 1,
+          correctCount: 1,
+          incorrectCount: 0,
+          dueAt: atBoundary,
+          interval: const Duration(days: 1),
+          ease: 2.5,
+          lastReviewedAt: morning,
+        ),
+      },
+    );
+    final controller = HomeController(
+      kanjiRepository: FakeKanjiRepository(cards),
+      progressRepository: progress,
+      config: const ReviewSessionConfig(
+        duration: Duration(minutes: 5),
+        maxCards: 25,
+        averageSecondsPerCard: 12,
+      ),
+      clock: () => morning,
+    );
+    await controller.load();
+
+    expect(controller.dueCount, 1);
+    expect((await controller.cardsForSession(practice: false)).single.id, 'a');
+    expect(controller.nextReviewAt, morning);
+  });
+
+  test('changing start of day immediately rewrites today\'s window', () async {
+    final lateNight = DateTime(2026, 9, 9, 3);
+    final progress = MemoryProgressRepository(
+      settings: const AppSettings(startOfDay: StartOfDay(hour: 4)),
+      dailyNewKanji: DailyNewKanjiProgress(
+        date: DateTime(2026, 9, 8),
+        count: 5,
+      ),
+      schedules: {
+        'a': CardSchedule(
+          cardId: 'a',
+          state: CardLearningState.review,
+          reviewCount: 1,
+          correctCount: 1,
+          incorrectCount: 0,
+          dueAt: DateTime(2026, 9, 9, 2),
+          interval: const Duration(hours: 6),
+          ease: 2.5,
+          lastReviewedAt: DateTime(2026, 9, 8, 20),
+        ),
+        'b': CardSchedule.fresh('b', lateNight),
+      },
+    );
+    final controller = HomeController(
+      kanjiRepository: FakeKanjiRepository(cards),
+      progressRepository: progress,
+      config: const ReviewSessionConfig(
+        duration: Duration(minutes: 5),
+        maxCards: 25,
+        averageSecondsPerCard: 12,
+      ),
+      clock: () => lateNight,
+    );
+
+    await controller.load();
+    expect(controller.dueCount, 1);
+    expect(controller.newRemainingToday, 0);
+
+    await progress.saveSettings(
+      const AppSettings(startOfDay: StartOfDay(hour: 2)),
+    );
+    await controller.load();
+    expect(controller.newRemainingToday, 1);
+  });
+
+  test(
+    'an earlier start of day can move a late due card to tomorrow',
+    () async {
+      final evening = DateTime(2026, 9, 8, 20);
+      final dueAt = DateTime(2026, 9, 9, 3, 30);
+      final progress = MemoryProgressRepository(
+        settings: const AppSettings(startOfDay: StartOfDay(hour: 4)),
+        schedules: {
+          'a': CardSchedule(
+            cardId: 'a',
+            state: CardLearningState.review,
+            reviewCount: 1,
+            correctCount: 1,
+            incorrectCount: 0,
+            dueAt: dueAt,
+            interval: const Duration(hours: 6),
+            ease: 2.5,
+            lastReviewedAt: evening,
+          ),
+          'b': CardSchedule(
+            cardId: 'b',
+            state: CardLearningState.review,
+            reviewCount: 1,
+            correctCount: 1,
+            incorrectCount: 0,
+            dueAt: DateTime(2026, 9, 10, 8),
+            interval: const Duration(days: 1),
+            ease: 2.5,
+            lastReviewedAt: evening,
+          ),
+        },
+      );
+      final controller = HomeController(
+        kanjiRepository: FakeKanjiRepository(cards),
+        progressRepository: progress,
+        config: const ReviewSessionConfig(
+          duration: Duration(minutes: 5),
+          maxCards: 25,
+          averageSecondsPerCard: 12,
+        ),
+        clock: () => evening,
+      );
+
+      await controller.load();
+      expect(controller.dueCount, 1);
+
+      await progress.saveSettings(
+        const AppSettings(startOfDay: StartOfDay(hour: 3)),
+      );
+      await controller.load();
+      expect(controller.dueCount, 0);
+    },
+  );
 }

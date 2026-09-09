@@ -1,18 +1,23 @@
 import '../core/models/progress.dart';
+import '../core/models/start_of_day.dart';
 
 class StreakService {
   const StreakService();
 
-  /// A day counts if the user completes at least one session. Calendar-local.
-  StreakInfo recordCompletion(StreakInfo current, DateTime now) {
-    final today = DateTime(now.year, now.month, now.day);
+  /// A day counts if the user completes at least one session. Study-day local.
+  StreakInfo recordCompletion(
+    StreakInfo current,
+    DateTime now, {
+    StartOfDay startOfDay = StartOfDay.defaults,
+  }) {
+    final today = startOfDay.studyDate(now);
     final last = current.lastStudyDate;
 
     if (last == null) {
       return StreakInfo(current: 1, lastStudyDate: today);
     }
 
-    final lastDay = DateTime(last.year, last.month, last.day);
+    final lastDay = calendarDay(last);
     if (lastDay == today) {
       return StreakInfo(
         current: current.current == 0 ? 1 : current.current,

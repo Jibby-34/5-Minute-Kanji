@@ -1,5 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fiveminutekanji/core/models/progress.dart';
+import 'package:fiveminutekanji/core/models/start_of_day.dart';
 import 'package:fiveminutekanji/services/streak_service.dart';
 
 void main() {
@@ -33,5 +34,27 @@ void main() {
     );
     final next = service.recordCompletion(current, DateTime(2026, 9, 2, 8));
     expect(next.current, 1);
+  });
+
+  test('3:59 AM is still the previous study day', () {
+    final current = StreakInfo(current: 3, lastStudyDate: DateTime(2026, 9, 8));
+    final next = service.recordCompletion(
+      current,
+      DateTime(2026, 9, 9, 3, 59),
+      startOfDay: const StartOfDay(hour: 4),
+    );
+    expect(next.current, 3);
+    expect(next.lastStudyDate, DateTime(2026, 9, 8));
+  });
+
+  test('4:00 AM begins a new streak day', () {
+    final current = StreakInfo(current: 3, lastStudyDate: DateTime(2026, 9, 8));
+    final next = service.recordCompletion(
+      current,
+      DateTime(2026, 9, 9, 4),
+      startOfDay: const StartOfDay(hour: 4),
+    );
+    expect(next.current, 4);
+    expect(next.lastStudyDate, DateTime(2026, 9, 9));
   });
 }

@@ -3,6 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:fiveminutekanji/core/models/card_schedule.dart';
 import 'package:fiveminutekanji/core/models/progress.dart';
 import 'package:fiveminutekanji/core/models/review.dart';
+import 'package:fiveminutekanji/core/models/start_of_day.dart';
 import 'package:fiveminutekanji/data/shared_prefs_progress_repository.dart';
 import 'package:fiveminutekanji/features/home/home_controller.dart';
 import 'package:fiveminutekanji/features/review/review_controller.dart';
@@ -39,6 +40,16 @@ void main() {
       stored.forDay(now.add(const Duration(days: 1))).remainingAllowance(5),
       5,
     );
+  });
+
+  test('count does not reset until the configured start of day', () {
+    const start = StartOfDay(hour: 4);
+    final stored = DailyNewKanjiProgress(date: DateTime(2026, 9, 8), count: 4);
+    expect(
+      stored.forDay(DateTime(2026, 9, 9, 3, 59), startOfDay: start).count,
+      4,
+    );
+    expect(stored.forDay(DateTime(2026, 9, 9, 4), startOfDay: start).count, 0);
   });
 
   test('changing the daily limit does not reset today\'s count', () {
@@ -182,13 +193,22 @@ void main() {
     SharedPreferences.setMockInitialValues({});
     final prefs = await SharedPreferences.getInstance();
     final first = SharedPrefsProgressRepository(prefs);
-    await first.saveSettings(const AppSettings(newKanjiPerDay: 12));
+    await first.saveSettings(
+      const AppSettings(
+        newKanjiPerDay: 12,
+        startOfDay: StartOfDay(hour: 5, minute: 45),
+      ),
+    );
     await first.saveDailyNewKanji(
       DailyNewKanjiProgress(date: DateTime(2026, 9, 2), count: 4),
     );
 
     final restarted = SharedPrefsProgressRepository(prefs);
     expect((await restarted.getSettings()).newKanjiPerDay, 12);
+    expect(
+      (await restarted.getSettings()).startOfDay,
+      const StartOfDay(hour: 5, minute: 45),
+    );
     final daily = await restarted.getDailyNewKanji();
     expect(daily.count, 4);
     expect(daily.forDay(now).count, 4);
@@ -207,5 +227,41 @@ void main() {
     expect(progress.settings.newKanjiPerDay, 20);
     expect(settings.estimate.minMinutes, greaterThan(5));
     expect(settings.estimate.label, isNot(fiveLabel));
+  });
+
+  test('saved settings without a start of day default to 4:00 AM', () {
+    final settings = AppSettings.fromJson({'newKanjiPerDay': 8});
+    expect(settings.newKanjiPerDay, 8);
+    expect(settings.startOfDay, const StartOfDay(hour: 4));
+  });
+
+  test('changing start of day persists and is used immediately', () async {
+    final progress = MemoryProgressRepository(
+      dailyNewKanji: DailyNewKanjiProgress(
+        date: DateTime(2026, 9, 8),
+        count: 4,
+      ),
+    );
+    final settings = SettingsController(progressRepository: progress);
+    await settings.load();
+    expect(settings.startOfDay, const StartOfDay(hour: 4));
+
+    await settings.setStartOfDay(const StartOfDay(hour: 2, minute: 15));
+    expect(settings.startOfDay, const StartOfDay(hour: 2, minute: 15));
+    expect(progress.settings.startOfDay, const StartOfDay(hour: 2, minute: 15));
+
+    final lateNight = DateTime(2026, 9, 9, 3);
+    expect(
+      (await progress.getDailyNewKanji())
+          .forDay(lateNight, startOfDay: const StartOfDay(hour: 4))
+          .count,
+      4,
+    );
+    expect(
+      (await progress.getDailyNewKanji())
+          .forDay(lateNight, startOfDay: progress.settings.startOfDay)
+          .count,
+      0,
+    );
   });
 }

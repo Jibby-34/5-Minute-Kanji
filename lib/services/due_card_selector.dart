@@ -1,6 +1,6 @@
 import '../core/models/card_schedule.dart';
 import '../core/models/kanji_card.dart';
-import '../core/models/progress.dart';
+import '../core/models/start_of_day.dart';
 
 /// Picks cards for a sitting. SRS [CardSchedule.dueAt] is the ideal review
 /// time; this class decides daily availability for today's study window.
@@ -12,24 +12,35 @@ class DueCardSelector {
   }
 
   /// Encountered cards that belong to today's study window.
-  bool isEncounteredDue(CardSchedule? schedule, DateTime now) {
-    return !isNew(schedule) && isAvailableToday(schedule!, now);
+  bool isEncounteredDue(
+    CardSchedule? schedule,
+    DateTime now, {
+    StartOfDay startOfDay = StartOfDay.defaults,
+  }) {
+    return !isNew(schedule) &&
+        isAvailableToday(schedule!, now, startOfDay: startOfDay);
   }
 
-  bool isDue(CardSchedule? schedule, DateTime now) {
-    return isNew(schedule) || isAvailableToday(schedule!, now);
+  bool isDue(
+    CardSchedule? schedule,
+    DateTime now, {
+    StartOfDay startOfDay = StartOfDay.defaults,
+  }) {
+    return isNew(schedule) ||
+        isAvailableToday(schedule!, now, startOfDay: startOfDay);
   }
 
   /// True when [schedule] can be shown in today's sitting.
   ///
   /// Overdue cards and cards due later today are included. Cards due
   /// tomorrow or later are not. Does not change SRS intervals.
-  bool isAvailableToday(CardSchedule schedule, DateTime now) {
-    return schedule.dueAt.isBefore(_startOfTomorrow(now));
+  bool isAvailableToday(
+    CardSchedule schedule,
+    DateTime now, {
+    StartOfDay startOfDay = StartOfDay.defaults,
+  }) {
+    return schedule.dueAt.isBefore(startOfDay.startOfNextStudyDay(now));
   }
-
-  DateTime _startOfTomorrow(DateTime now) =>
-      calendarDay(now).add(const Duration(days: 1));
 
   List<KanjiCard> select({
     required List<KanjiCard> cards,
@@ -37,6 +48,7 @@ class DueCardSelector {
     required DateTime now,
     required int limit,
     int? maxNewCards,
+    StartOfDay startOfDay = StartOfDay.defaults,
   }) {
     if (limit <= 0) return const [];
 
@@ -48,7 +60,7 @@ class DueCardSelector {
       final schedule = schedules[card.id];
       if (isNew(schedule)) {
         news.add(card);
-      } else if (isAvailableToday(schedule!, now)) {
+      } else if (isAvailableToday(schedule!, now, startOfDay: startOfDay)) {
         if (schedule.state == CardLearningState.learning) {
           learningDue.add(card);
         } else {
@@ -94,10 +106,13 @@ class DueCardSelector {
     required List<KanjiCard> cards,
     required Map<String, CardSchedule> schedules,
     required DateTime now,
+    StartOfDay startOfDay = StartOfDay.defaults,
   }) {
     var due = 0;
     for (final card in cards) {
-      if (isEncounteredDue(schedules[card.id], now)) due++;
+      if (isEncounteredDue(schedules[card.id], now, startOfDay: startOfDay)) {
+        due++;
+      }
     }
     return due;
   }
@@ -117,13 +132,14 @@ class DueCardSelector {
     required List<KanjiCard> cards,
     required Map<String, CardSchedule> schedules,
     required DateTime now,
+    StartOfDay startOfDay = StartOfDay.defaults,
   }) {
     DateTime? next;
     for (final card in cards) {
       final schedule = schedules[card.id];
       if (schedule == null ||
           isNew(schedule) ||
-          isAvailableToday(schedule, now)) {
+          isAvailableToday(schedule, now, startOfDay: startOfDay)) {
         continue;
       }
       if (next == null || schedule.dueAt.isBefore(next)) {
@@ -203,4 +219,3 @@ class DueCardSelector {
     return result;
   }
 }
-

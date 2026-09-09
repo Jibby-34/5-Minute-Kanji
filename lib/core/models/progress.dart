@@ -1,4 +1,5 @@
 import 'review.dart';
+import 'start_of_day.dart';
 
 class ReviewHistoryEntry {
   const ReviewHistoryEntry({
@@ -90,9 +91,12 @@ class DailyNewKanjiProgress {
   final DateTime? date;
   final int count;
 
-  /// Stored progress for [now]'s calendar day. Yesterday's count becomes 0.
-  DailyNewKanjiProgress forDay(DateTime now) {
-    final today = calendarDay(now);
+  /// Stored progress for [now]'s study day. Yesterday's count becomes 0.
+  DailyNewKanjiProgress forDay(
+    DateTime now, {
+    StartOfDay startOfDay = StartOfDay.defaults,
+  }) {
+    final today = startOfDay.studyDate(now);
     if (date != null && calendarDay(date!) == today) return this;
     return DailyNewKanjiProgress(date: today);
   }
@@ -131,6 +135,7 @@ class AppSettings {
   const AppSettings({
     this.averageSecondsPerCard = 12,
     this.newKanjiPerDay = defaultNewKanjiPerDay,
+    this.startOfDay = StartOfDay.defaults,
   });
 
   static const int defaultNewKanjiPerDay = 5;
@@ -139,14 +144,20 @@ class AppSettings {
 
   final int averageSecondsPerCard;
   final int newKanjiPerDay;
+  final StartOfDay startOfDay;
 
-  AppSettings copyWith({int? averageSecondsPerCard, int? newKanjiPerDay}) {
+  AppSettings copyWith({
+    int? averageSecondsPerCard,
+    int? newKanjiPerDay,
+    StartOfDay? startOfDay,
+  }) {
     return AppSettings(
       averageSecondsPerCard:
           averageSecondsPerCard ?? this.averageSecondsPerCard,
       newKanjiPerDay: newKanjiPerDay == null
           ? this.newKanjiPerDay
           : clampNewKanjiPerDay(newKanjiPerDay),
+      startOfDay: startOfDay ?? this.startOfDay,
     );
   }
 
@@ -158,6 +169,8 @@ class AppSettings {
     return {
       'averageSecondsPerCard': averageSecondsPerCard,
       'newKanjiPerDay': newKanjiPerDay,
+      'startOfDayHour': startOfDay.hour,
+      'startOfDayMinute': startOfDay.minute,
     };
   }
 
@@ -169,10 +182,18 @@ class AppSettings {
       newKanjiPerDay: clampNewKanjiPerDay(
         (json['newKanjiPerDay'] as num?)?.toInt() ?? defaultNewKanjiPerDay,
       ),
+      startOfDay: StartOfDay.normalize(
+        hour:
+            (json['startOfDayHour'] as num?)?.toInt() ?? StartOfDay.defaultHour,
+        minute:
+            (json['startOfDayMinute'] as num?)?.toInt() ??
+            StartOfDay.defaultMinute,
+      ),
     );
   }
 }
 
+/// Date-only local midnight. Use [StartOfDay.studyDate] for study-day logic.
 DateTime calendarDay(DateTime date) =>
     DateTime(date.year, date.month, date.day);
 

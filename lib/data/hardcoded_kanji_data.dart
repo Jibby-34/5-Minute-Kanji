@@ -12,7 +12,7 @@ const rtkMvpLessonId = 'rtk_mvp_sample';
 /// First 250 JLPT N5 + N4 kanji cards for 5-Minute Kanji.
 const hardcodedKanjiCards = <KanjiCard>[
   KanjiCard(
-    id: 'n5-002',
+    id: 'n5-001',
     character: '一',
     meaning: 'one',
     keyword: 'one',
@@ -23,7 +23,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['ひと'],
   ),
   KanjiCard(
-    id: 'n5-009',
+    id: 'n5-002',
     character: '二',
     meaning: 'two',
     keyword: 'two',
@@ -34,7 +34,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['ふた'],
   ),
   KanjiCard(
-    id: 'n5-014',
+    id: 'n5-003',
     character: '三',
     meaning: 'three',
     keyword: 'three',
@@ -45,7 +45,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['み'],
   ),
   KanjiCard(
-    id: 'n5-028',
+    id: 'n5-004',
     character: '四',
     meaning: 'four',
     keyword: 'four',
@@ -56,7 +56,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['よん'],
   ),
   KanjiCard(
-    id: 'n5-024',
+    id: 'n5-005',
     character: '五',
     meaning: 'five',
     keyword: 'five',
@@ -67,7 +67,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['いつ'],
   ),
   KanjiCard(
-    id: 'n5-044',
+    id: 'n5-006',
     character: '六',
     meaning: 'six',
     keyword: 'six',
@@ -78,7 +78,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['むっつ'],
   ),
   KanjiCard(
-    id: 'n5-049',
+    id: 'n5-007',
     character: '七',
     meaning: 'seven',
     keyword: 'seven',
@@ -89,7 +89,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['なな'],
   ),
   KanjiCard(
-    id: 'n5-043',
+    id: 'n5-008',
     character: '八',
     meaning: 'eight',
     keyword: 'eight',
@@ -100,7 +100,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['やっつ'],
   ),
   KanjiCard(
-    id: 'n5-032',
+    id: 'n5-009',
     character: '九',
     meaning: 'nine',
     keyword: 'nine',
@@ -111,7 +111,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['ここのつ'],
   ),
   KanjiCard(
-    id: 'n5-008',
+    id: 'n5-010',
     character: '十',
     meaning: 'ten',
     keyword: 'ten',
@@ -122,7 +122,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['とお'],
   ),
   KanjiCard(
-    id: 'n5-005',
+    id: 'n5-011',
     character: '人',
     meaning: 'person',
     keyword: 'person',
@@ -133,7 +133,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['ひと'],
   ),
   KanjiCard(
-    id: 'n5-007',
+    id: 'n5-012',
     character: '大',
     meaning: 'big',
     keyword: 'big',
@@ -144,7 +144,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['おお'],
   ),
   KanjiCard(
-    id: 'n5-048',
+    id: 'n5-013',
     character: '小',
     meaning: 'small',
     keyword: 'small',
@@ -155,7 +155,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['ちいさい'],
   ),
   KanjiCard(
-    id: 'n5-069',
+    id: 'n5-014',
     character: '口',
     meaning: 'mouth',
     keyword: 'mouth',
@@ -166,7 +166,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['くち'],
   ),
   KanjiCard(
-    id: 'n5-001',
+    id: 'n5-015',
     character: '日',
     meaning: 'day',
     keyword: 'day',
@@ -177,7 +177,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['ひ'],
   ),
   KanjiCard(
-    id: 'n5-019',
+    id: 'n5-016',
     character: '月',
     meaning: 'month',
     keyword: 'month',
@@ -188,7 +188,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['つき'],
   ),
   KanjiCard(
-    id: 'n5-075',
+    id: 'n5-017',
     character: '木',
     meaning: 'tree',
     keyword: 'tree',
@@ -199,7 +199,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['き'],
   ),
   KanjiCard(
-    id: 'n5-064',
+    id: 'n5-018',
     character: '水',
     meaning: 'water',
     keyword: 'water',
@@ -210,7 +210,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['みず'],
   ),
   KanjiCard(
-    id: 'n5-091',
+    id: 'n5-019',
     character: '火',
     meaning: 'fire',
     keyword: 'fire',
@@ -221,7 +221,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['ひ'],
   ),
   KanjiCard(
-    id: 'n5-074',
+    id: 'n5-020',
     character: '土',
     meaning: 'earth',
     keyword: 'earth',
@@ -232,7 +232,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['つち'],
   ),
   KanjiCard(
-    id: 'n5-050',
+    id: 'n5-021',
     character: '山',
     meaning: 'mountain',
     keyword: 'mountain',
@@ -243,7 +243,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['やま'],
   ),
   KanjiCard(
-    id: 'n5-061',
+    id: 'n5-022',
     character: '川',
     meaning: 'river',
     keyword: 'river',
@@ -254,7 +254,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['かわ'],
   ),
   KanjiCard(
-    id: 'n5-035',
+    id: 'n5-023',
     character: '手',
     meaning: 'hand',
     keyword: 'hand',
@@ -265,7 +265,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['て'],
   ),
   KanjiCard(
-    id: 'n5-040',
+    id: 'n5-024',
     character: '目',
     meaning: 'eye',
     keyword: 'eye',
@@ -276,7 +276,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['め'],
   ),
   KanjiCard(
-    id: 'n5-103',
+    id: 'n5-025',
     character: '耳',
     meaning: 'ear',
     keyword: 'ear',
@@ -287,7 +287,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['みみ'],
   ),
   KanjiCard(
-    id: 'n5-054',
+    id: 'n5-026',
     character: '女',
     meaning: 'woman',
     keyword: 'woman',
@@ -298,7 +298,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['おんな'],
   ),
   KanjiCard(
-    id: 'n5-039',
+    id: 'n5-027',
     character: '子',
     meaning: 'child',
     keyword: 'child',
@@ -309,7 +309,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['こ'],
   ),
   KanjiCard(
-    id: 'n5-081',
+    id: 'n5-028',
     character: '足',
     meaning: 'foot',
     keyword: 'foot',
@@ -320,7 +320,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['あし'],
   ),
   KanjiCard(
-    id: 'n5-085',
+    id: 'n5-029',
     character: '白',
     meaning: 'white',
     keyword: 'white',
@@ -331,7 +331,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['しろ'],
   ),
   KanjiCard(
-    id: 'n5-100',
+    id: 'n5-030',
     character: '雨',
     meaning: 'rain',
     keyword: 'rain',
@@ -342,7 +342,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['あめ'],
   ),
   KanjiCard(
-    id: 'n5-026',
+    id: 'n5-031',
     character: '上',
     meaning: 'up',
     keyword: 'up',
@@ -353,7 +353,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['うえ'],
   ),
   KanjiCard(
-    id: 'n5-045',
+    id: 'n5-032',
     character: '下',
     meaning: 'down',
     keyword: 'down',
@@ -364,7 +364,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['した'],
   ),
   KanjiCard(
-    id: 'n5-011',
+    id: 'n5-033',
     character: '中',
     meaning: 'middle',
     keyword: 'middle',
@@ -375,7 +375,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['なか'],
   ),
   KanjiCard(
-    id: 'n5-033',
+    id: 'n5-034',
     character: '入',
     meaning: 'enter',
     keyword: 'enter',
@@ -386,7 +386,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['はいる'],
   ),
   KanjiCard(
-    id: 'n5-013',
+    id: 'n5-035',
     character: '出',
     meaning: 'exit',
     keyword: 'exit',
@@ -397,7 +397,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['でる'],
   ),
   KanjiCard(
-    id: 'n5-034',
+    id: 'n5-036',
     character: '立',
     meaning: 'stand',
     keyword: 'stand',
@@ -408,7 +408,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['たつ'],
   ),
   KanjiCard(
-    id: 'n5-018',
+    id: 'n5-037',
     character: '見',
     meaning: 'see',
     keyword: 'see',
@@ -419,7 +419,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['みる'],
   ),
   KanjiCard(
-    id: 'n5-042',
+    id: 'n5-038',
     character: '言',
     meaning: 'say',
     keyword: 'say',
@@ -430,7 +430,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['いう'],
   ),
   KanjiCard(
-    id: 'n5-016',
+    id: 'n5-039',
     character: '行',
     meaning: 'go',
     keyword: 'go',
@@ -441,7 +441,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['いく'],
   ),
   KanjiCard(
-    id: 'n5-077',
+    id: 'n5-040',
     character: '食',
     meaning: 'eat',
     keyword: 'eat',
@@ -452,7 +452,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['たべる'],
   ),
   KanjiCard(
-    id: 'n5-078',
+    id: 'n5-041',
     character: '車',
     meaning: 'car',
     keyword: 'car',
@@ -463,7 +463,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['くるま'],
   ),
   KanjiCard(
-    id: 'n5-031',
+    id: 'n5-042',
     character: '金',
     meaning: 'gold',
     keyword: 'gold',
@@ -474,7 +474,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['かね'],
   ),
   KanjiCard(
-    id: 'n5-038',
+    id: 'n5-043',
     character: '円',
     meaning: 'yen',
     keyword: 'yen',
@@ -485,7 +485,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['まるい'],
   ),
   KanjiCard(
-    id: 'n5-003',
+    id: 'n5-044',
     character: '国',
     meaning: 'country',
     keyword: 'country',
@@ -496,7 +496,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['くに'],
   ),
   KanjiCard(
-    id: 'n5-006',
+    id: 'n5-045',
     character: '年',
     meaning: 'year',
     keyword: 'year',
@@ -507,7 +507,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['とし'],
   ),
   KanjiCard(
-    id: 'n5-029',
+    id: 'n5-046',
     character: '今',
     meaning: 'now',
     keyword: 'now',
@@ -518,7 +518,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['いま'],
   ),
   KanjiCard(
-    id: 'n5-059',
+    id: 'n5-047',
     character: '先',
     meaning: 'previous',
     keyword: 'previous',
@@ -529,7 +529,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['さき'],
   ),
   KanjiCard(
-    id: 'n5-022',
+    id: 'n5-048',
     character: '前',
     meaning: 'before',
     keyword: 'before',
@@ -540,7 +540,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['まえ'],
   ),
   KanjiCard(
-    id: 'n5-021',
+    id: 'n5-049',
     character: '後',
     meaning: 'after',
     keyword: 'after',
@@ -551,7 +551,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['あと'],
   ),
   KanjiCard(
-    id: 'n5-062',
+    id: 'n5-050',
     character: '千',
     meaning: 'thousand',
     keyword: 'thousand',
@@ -562,7 +562,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['ち'],
   ),
   KanjiCard(
-    id: 'n5-082',
+    id: 'n5-051',
     character: '万',
     meaning: 'ten thousand',
     keyword: 'ten thousand',
@@ -573,7 +573,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: [],
   ),
   KanjiCard(
-    id: 'n5-057',
+    id: 'n5-052',
     character: '百',
     meaning: 'hundred',
     keyword: 'hundred',
@@ -584,7 +584,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: [],
   ),
   KanjiCard(
-    id: 'n5-004',
+    id: 'n5-053',
     character: '会',
     meaning: 'meet',
     keyword: 'meet',
@@ -595,7 +595,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['あう'],
   ),
   KanjiCard(
-    id: 'n5-010',
+    id: 'n5-054',
     character: '本',
     meaning: 'book',
     keyword: 'book',
@@ -606,7 +606,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['もと'],
   ),
   KanjiCard(
-    id: 'n5-015',
+    id: 'n5-055',
     character: '時',
     meaning: 'time',
     keyword: 'time',
@@ -617,7 +617,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['とき'],
   ),
   KanjiCard(
-    id: 'n5-017',
+    id: 'n5-056',
     character: '社',
     meaning: 'company',
     keyword: 'company',
@@ -628,7 +628,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['やしろ'],
   ),
   KanjiCard(
-    id: 'n5-025',
+    id: 'n5-057',
     character: '間',
     meaning: 'interval',
     keyword: 'interval',
@@ -639,7 +639,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['あいだ'],
   ),
   KanjiCard(
-    id: 'n5-027',
+    id: 'n5-058',
     character: '東',
     meaning: 'east',
     keyword: 'east',
@@ -650,7 +650,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['ひがし'],
   ),
   KanjiCard(
-    id: 'n5-036',
+    id: 'n5-059',
     character: '学',
     meaning: 'study',
     keyword: 'study',
@@ -661,7 +661,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['まなぶ'],
   ),
   KanjiCard(
-    id: 'n5-051',
+    id: 'n5-060',
     character: '話',
     meaning: 'talk',
     keyword: 'talk',
@@ -672,7 +672,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['はなす'],
   ),
   KanjiCard(
-    id: 'n5-053',
+    id: 'n5-061',
     character: '安',
     meaning: 'cheap',
     keyword: 'cheap',
@@ -683,7 +683,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['やすい'],
   ),
   KanjiCard(
-    id: 'n5-058',
+    id: 'n5-062',
     character: '書',
     meaning: 'write',
     keyword: 'write',
@@ -694,7 +694,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['かく'],
   ),
   KanjiCard(
-    id: 'n5-060',
+    id: 'n5-063',
     character: '名',
     meaning: 'name',
     keyword: 'name',
@@ -705,7 +705,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['な'],
   ),
   KanjiCard(
-    id: 'n5-066',
+    id: 'n5-064',
     character: '男',
     meaning: 'man',
     keyword: 'man',
@@ -716,7 +716,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['おとこ'],
   ),
   KanjiCard(
-    id: 'n5-068',
+    id: 'n5-065',
     character: '電',
     meaning: 'electricity',
     keyword: 'electricity',
@@ -727,7 +727,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: [],
   ),
   KanjiCard(
-    id: 'n5-070',
+    id: 'n5-066',
     character: '少',
     meaning: 'few',
     keyword: 'few',
@@ -738,7 +738,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['すくない'],
   ),
   KanjiCard(
-    id: 'n5-071',
+    id: 'n5-067',
     character: '校',
     meaning: 'school',
     keyword: 'school',
@@ -749,7 +749,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: [],
   ),
   KanjiCard(
-    id: 'n5-072',
+    id: 'n5-068',
     character: '語',
     meaning: 'language',
     keyword: 'language',
@@ -760,7 +760,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['かたる'],
   ),
   KanjiCard(
-    id: 'n5-076',
+    id: 'n5-069',
     character: '聞',
     meaning: 'hear',
     keyword: 'hear',
@@ -771,7 +771,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['きく'],
   ),
   KanjiCard(
-    id: 'n5-079',
+    id: 'n5-070',
     character: '何',
     meaning: 'what',
     keyword: 'what',
@@ -782,7 +782,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['なに'],
   ),
   KanjiCard(
-    id: 'n5-086',
+    id: 'n5-071',
     character: '古',
     meaning: 'old',
     keyword: 'old',
@@ -793,7 +793,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['ふるい'],
   ),
   KanjiCard(
-    id: 'n5-087',
+    id: 'n5-072',
     character: '天',
     meaning: 'heaven',
     keyword: 'heaven',
@@ -804,7 +804,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['あめ'],
   ),
   KanjiCard(
-    id: 'n5-093',
+    id: 'n5-073',
     character: '右',
     meaning: 'right',
     keyword: 'right',
@@ -815,7 +815,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['みぎ'],
   ),
   KanjiCard(
-    id: 'n5-094',
+    id: 'n5-074',
     character: '読',
     meaning: 'read',
     keyword: 'read',
@@ -826,7 +826,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['よむ'],
   ),
   KanjiCard(
-    id: 'n5-096',
+    id: 'n5-075',
     character: '左',
     meaning: 'left',
     keyword: 'left',
@@ -837,7 +837,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['ひだり'],
   ),
   KanjiCard(
-    id: 'n5-097',
+    id: 'n5-076',
     character: '休',
     meaning: 'rest',
     keyword: 'rest',
@@ -848,7 +848,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['やすむ'],
   ),
   KanjiCard(
-    id: 'n5-101',
+    id: 'n5-077',
     character: '飲',
     meaning: 'drink',
     keyword: 'drink',
@@ -859,7 +859,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['のむ'],
   ),
   KanjiCard(
-    id: 'n5-012',
+    id: 'n5-078',
     character: '長',
     meaning: 'long',
     keyword: 'long',
@@ -870,7 +870,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['ながい'],
   ),
   KanjiCard(
-    id: 'n5-020',
+    id: 'n5-079',
     character: '分',
     meaning: 'part',
     keyword: 'part',
@@ -881,7 +881,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['わかる'],
   ),
   KanjiCard(
-    id: 'n5-023',
+    id: 'n5-080',
     character: '生',
     meaning: 'life',
     keyword: 'life',
@@ -892,7 +892,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['いきる'],
   ),
   KanjiCard(
-    id: 'n5-030',
+    id: 'n5-081',
     character: '新',
     meaning: 'new',
     keyword: 'new',
@@ -903,7 +903,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['あたらしい'],
   ),
   KanjiCard(
-    id: 'n5-037',
+    id: 'n5-082',
     character: '高',
     meaning: 'tall',
     keyword: 'tall',
@@ -914,7 +914,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['たかい'],
   ),
   KanjiCard(
-    id: 'n5-041',
+    id: 'n5-083',
     character: '外',
     meaning: 'outside',
     keyword: 'outside',
@@ -925,7 +925,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['そと'],
   ),
   KanjiCard(
-    id: 'n5-046',
+    id: 'n5-084',
     character: '来',
     meaning: 'come',
     keyword: 'come',
@@ -936,7 +936,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['くる'],
   ),
   KanjiCard(
-    id: 'n5-047',
+    id: 'n5-085',
     character: '気',
     meaning: 'spirit',
     keyword: 'spirit',
@@ -947,7 +947,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: [],
   ),
   KanjiCard(
-    id: 'n5-052',
+    id: 'n5-086',
     character: '多',
     meaning: 'many',
     keyword: 'many',
@@ -958,7 +958,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['おおい'],
   ),
   KanjiCard(
-    id: 'n5-055',
+    id: 'n5-087',
     character: '北',
     meaning: 'north',
     keyword: 'north',
@@ -969,7 +969,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['きた'],
   ),
   KanjiCard(
-    id: 'n5-056',
+    id: 'n5-088',
     character: '午',
     meaning: 'noon',
     keyword: 'noon',
@@ -980,7 +980,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: [],
   ),
   KanjiCard(
-    id: 'n5-063',
+    id: 'n5-089',
     character: '道',
     meaning: 'road',
     keyword: 'road',
@@ -991,7 +991,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['みち'],
   ),
   KanjiCard(
-    id: 'n5-065',
+    id: 'n5-090',
     character: '半',
     meaning: 'half',
     keyword: 'half',
@@ -1002,7 +1002,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['なかば'],
   ),
   KanjiCard(
-    id: 'n5-067',
+    id: 'n5-091',
     character: '西',
     meaning: 'west',
     keyword: 'west',
@@ -1013,7 +1013,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['にし'],
   ),
   KanjiCard(
-    id: 'n5-073',
+    id: 'n5-092',
     character: '空',
     meaning: 'sky',
     keyword: 'sky',
@@ -1024,7 +1024,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['そら'],
   ),
   KanjiCard(
-    id: 'n5-080',
+    id: 'n5-093',
     character: '南',
     meaning: 'south',
     keyword: 'south',
@@ -1035,7 +1035,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['みなみ'],
   ),
   KanjiCard(
-    id: 'n5-083',
+    id: 'n5-094',
     character: '店',
     meaning: 'shop',
     keyword: 'shop',
@@ -1046,7 +1046,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['みせ'],
   ),
   KanjiCard(
-    id: 'n5-084',
+    id: 'n5-095',
     character: '毎',
     meaning: 'every',
     keyword: 'every',
@@ -1057,7 +1057,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: [],
   ),
   KanjiCard(
-    id: 'n5-088',
+    id: 'n5-096',
     character: '買',
     meaning: 'buy',
     keyword: 'buy',
@@ -1068,7 +1068,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['かう'],
   ),
   KanjiCard(
-    id: 'n5-089',
+    id: 'n5-097',
     character: '週',
     meaning: 'week',
     keyword: 'week',
@@ -1079,7 +1079,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: [],
   ),
   KanjiCard(
-    id: 'n5-090',
+    id: 'n5-098',
     character: '母',
     meaning: 'mother',
     keyword: 'mother',
@@ -1090,7 +1090,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['はは'],
   ),
   KanjiCard(
-    id: 'n5-092',
+    id: 'n5-099',
     character: '花',
     meaning: 'flower',
     keyword: 'flower',
@@ -1101,7 +1101,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['はな'],
   ),
   KanjiCard(
-    id: 'n5-095',
+    id: 'n5-100',
     character: '友',
     meaning: 'friend',
     keyword: 'friend',
@@ -1112,7 +1112,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['とも'],
   ),
   KanjiCard(
-    id: 'n5-098',
+    id: 'n5-101',
     character: '父',
     meaning: 'father',
     keyword: 'father',
@@ -1123,7 +1123,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['ちち'],
   ),
   KanjiCard(
-    id: 'n5-099',
+    id: 'n5-102',
     character: '駅',
     meaning: 'station',
     keyword: 'station',
@@ -1134,7 +1134,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: [],
   ),
   KanjiCard(
-    id: 'n5-102',
+    id: 'n5-103',
     character: '魚',
     meaning: 'fish',
     keyword: 'fish',
@@ -1189,7 +1189,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['たみ'],
   ),
   KanjiCard(
-    id: 'n4-006',
+    id: 'n4-005',
     character: '者',
     meaning: 'someone',
     keyword: 'someone',
@@ -1200,7 +1200,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['もの'],
   ),
   KanjiCard(
-    id: 'n4-007',
+    id: 'n4-006',
     character: '地',
     meaning: 'ground',
     keyword: 'ground',
@@ -1211,7 +1211,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: [],
   ),
   KanjiCard(
-    id: 'n4-008',
+    id: 'n4-007',
     character: '合',
     meaning: 'fit',
     keyword: 'fit',
@@ -1222,7 +1222,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['あう'],
   ),
   KanjiCard(
-    id: 'n4-009',
+    id: 'n4-008',
     character: '市',
     meaning: 'city',
     keyword: 'city',
@@ -1233,7 +1233,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['いち'],
   ),
   KanjiCard(
-    id: 'n4-011',
+    id: 'n4-009',
     character: '方',
     meaning: 'direction',
     keyword: 'direction',
@@ -1244,7 +1244,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['かた'],
   ),
   KanjiCard(
-    id: 'n4-012',
+    id: 'n4-010',
     character: '回',
     meaning: 'times',
     keyword: 'times',
@@ -1255,7 +1255,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['まわる'],
   ),
   KanjiCard(
-    id: 'n4-016',
+    id: 'n4-011',
     character: '力',
     meaning: 'power',
     keyword: 'power',
@@ -1266,7 +1266,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['ちから'],
   ),
   KanjiCard(
-    id: 'n4-018',
+    id: 'n4-012',
     character: '代',
     meaning: 'replace',
     keyword: 'replace',
@@ -1277,7 +1277,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['かわる'],
   ),
   KanjiCard(
-    id: 'n4-019',
+    id: 'n4-013',
     character: '明',
     meaning: 'bright',
     keyword: 'bright',
@@ -1288,7 +1288,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['あかるい'],
   ),
   KanjiCard(
-    id: 'n4-021',
+    id: 'n4-014',
     character: '京',
     meaning: 'capital',
     keyword: 'capital',
@@ -1299,7 +1299,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: [],
   ),
   KanjiCard(
-    id: 'n4-022',
+    id: 'n4-015',
     character: '通',
     meaning: 'pass through',
     keyword: 'pass through',
@@ -1310,7 +1310,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['とおる'],
   ),
   KanjiCard(
-    id: 'n4-023',
+    id: 'n4-016',
     character: '理',
     meaning: 'reason',
     keyword: 'reason',
@@ -1321,7 +1321,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: [],
   ),
   KanjiCard(
-    id: 'n4-024',
+    id: 'n4-017',
     character: '体',
     meaning: 'body',
     keyword: 'body',
@@ -1332,7 +1332,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['からだ'],
   ),
   KanjiCard(
-    id: 'n4-026',
+    id: 'n4-018',
     character: '主',
     meaning: 'main',
     keyword: 'main',
@@ -1343,7 +1343,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['ぬし'],
   ),
   KanjiCard(
-    id: 'n4-028',
+    id: 'n4-019',
     character: '首',
     meaning: 'neck',
     keyword: 'neck',
@@ -1354,7 +1354,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['くび'],
   ),
   KanjiCard(
-    id: 'n4-030',
+    id: 'n4-020',
     character: '不',
     meaning: 'not',
     keyword: 'not',
@@ -1365,7 +1365,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: [],
   ),
   KanjiCard(
-    id: 'n4-031',
+    id: 'n4-021',
     character: '作',
     meaning: 'make',
     keyword: 'make',
@@ -1376,7 +1376,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['つくる'],
   ),
   KanjiCard(
-    id: 'n4-032',
+    id: 'n4-022',
     character: '用',
     meaning: 'use',
     keyword: 'use',
@@ -1387,7 +1387,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['もちいる'],
   ),
   KanjiCard(
-    id: 'n4-033',
+    id: 'n4-023',
     character: '度',
     meaning: 'degree',
     keyword: 'degree',
@@ -1398,7 +1398,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['たび'],
   ),
   KanjiCard(
-    id: 'n4-034',
+    id: 'n4-024',
     character: '強',
     meaning: 'strong',
     keyword: 'strong',
@@ -1409,7 +1409,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['つよい'],
   ),
   KanjiCard(
-    id: 'n4-035',
+    id: 'n4-025',
     character: '持',
     meaning: 'hold',
     keyword: 'hold',
@@ -1420,7 +1420,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['もつ'],
   ),
   KanjiCard(
-    id: 'n4-036',
+    id: 'n4-026',
     character: '野',
     meaning: 'field',
     keyword: 'field',
@@ -1431,7 +1431,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['の'],
   ),
   KanjiCard(
-    id: 'n4-037',
+    id: 'n4-027',
     character: '都',
     meaning: 'metropolis',
     keyword: 'metropolis',
@@ -1442,7 +1442,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['みやこ'],
   ),
   KanjiCard(
-    id: 'n4-013',
+    id: 'n4-028',
     character: '場',
     meaning: 'place',
     keyword: 'place',
@@ -1453,7 +1453,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['ば'],
   ),
   KanjiCard(
-    id: 'n4-014',
+    id: 'n4-029',
     character: '員',
     meaning: 'member',
     keyword: 'member',
@@ -1464,7 +1464,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: [],
   ),
   KanjiCard(
-    id: 'n4-038',
+    id: 'n4-030',
     character: '以',
     meaning: 'by means of',
     keyword: 'by means of',
@@ -1475,7 +1475,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: [],
   ),
   KanjiCard(
-    id: 'n4-041',
+    id: 'n4-031',
     character: '世',
     meaning: 'world',
     keyword: 'world',
@@ -1486,7 +1486,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['よ'],
   ),
   KanjiCard(
-    id: 'n4-043',
+    id: 'n4-032',
     character: '県',
     meaning: 'prefecture',
     keyword: 'prefecture',
@@ -1497,7 +1497,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: [],
   ),
   KanjiCard(
-    id: 'n4-049',
+    id: 'n4-033',
     character: '産',
     meaning: 'produce',
     keyword: 'produce',
@@ -1508,7 +1508,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['うむ'],
   ),
   KanjiCard(
-    id: 'n4-050',
+    id: 'n4-034',
     character: '教',
     meaning: 'teach',
     keyword: 'teach',
@@ -1519,7 +1519,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['おしえる'],
   ),
   KanjiCard(
-    id: 'n4-057',
+    id: 'n4-035',
     character: '海',
     meaning: 'sea',
     keyword: 'sea',
@@ -1530,7 +1530,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['うみ'],
   ),
   KanjiCard(
-    id: 'n4-059',
+    id: 'n4-036',
     character: '知',
     meaning: 'know',
     keyword: 'know',
@@ -1541,7 +1541,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['しる'],
   ),
   KanjiCard(
-    id: 'n4-060',
+    id: 'n4-037',
     character: '集',
     meaning: 'gather',
     keyword: 'gather',
@@ -1552,7 +1552,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['あつまる'],
   ),
   KanjiCard(
-    id: 'n4-064',
+    id: 'n4-038',
     character: '使',
     meaning: 'use',
     keyword: 'use',
@@ -1563,7 +1563,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['つかう'],
   ),
   KanjiCard(
-    id: 'n4-066',
+    id: 'n4-039',
     character: '品',
     meaning: 'goods',
     keyword: 'goods',
@@ -1574,7 +1574,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['しな'],
   ),
   KanjiCard(
-    id: 'n4-067',
+    id: 'n4-040',
     character: '計',
     meaning: 'measure',
     keyword: 'measure',
@@ -1585,7 +1585,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['はかる'],
   ),
   KanjiCard(
-    id: 'n4-068',
+    id: 'n4-041',
     character: '死',
     meaning: 'death',
     keyword: 'death',
@@ -1596,7 +1596,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['しぬ'],
   ),
   KanjiCard(
-    id: 'n4-072',
+    id: 'n4-042',
     character: '朝',
     meaning: 'morning',
     keyword: 'morning',
@@ -1607,7 +1607,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['あさ'],
   ),
   KanjiCard(
-    id: 'n4-073',
+    id: 'n4-043',
     character: '村',
     meaning: 'village',
     keyword: 'village',
@@ -1618,7 +1618,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['むら'],
   ),
   KanjiCard(
-    id: 'n4-076',
+    id: 'n4-044',
     character: '台',
     meaning: 'stand',
     keyword: 'stand',
@@ -1629,7 +1629,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: [],
   ),
   KanjiCard(
-    id: 'n4-071',
+    id: 'n4-045',
     character: '始',
     meaning: 'begin',
     keyword: 'begin',
@@ -1640,7 +1640,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['はじめる'],
   ),
   KanjiCard(
-    id: 'n4-078',
+    id: 'n4-046',
     character: '住',
     meaning: 'live',
     keyword: 'live',
@@ -1651,7 +1651,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['すむ'],
   ),
   KanjiCard(
-    id: 'n4-079',
+    id: 'n4-047',
     character: '真',
     meaning: 'true',
     keyword: 'true',
@@ -1662,7 +1662,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['ま'],
   ),
   KanjiCard(
-    id: 'n4-088',
+    id: 'n4-048',
     character: '切',
     meaning: 'cut',
     keyword: 'cut',
@@ -1673,7 +1673,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['きる'],
   ),
   KanjiCard(
-    id: 'n4-089',
+    id: 'n4-049',
     character: '説',
     meaning: 'explain',
     keyword: 'explain',
@@ -1684,7 +1684,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['とく'],
   ),
   KanjiCard(
-    id: 'n4-090',
+    id: 'n4-050',
     character: '転',
     meaning: 'turn',
     keyword: 'turn',
@@ -1695,7 +1695,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['ころがる'],
   ),
   KanjiCard(
-    id: 'n4-093',
+    id: 'n4-051',
     character: '楽',
     meaning: 'fun',
     keyword: 'fun',
@@ -1706,7 +1706,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['たのしい'],
   ),
   KanjiCard(
-    id: 'n4-095',
+    id: 'n4-052',
     character: '着',
     meaning: 'wear',
     keyword: 'wear',
@@ -1717,7 +1717,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['きる'],
   ),
   KanjiCard(
-    id: 'n4-096',
+    id: 'n4-053',
     character: '乗',
     meaning: 'ride',
     keyword: 'ride',
@@ -1728,7 +1728,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['のる'],
   ),
   KanjiCard(
-    id: 'n4-101',
+    id: 'n4-054',
     character: '試',
     meaning: 'try',
     keyword: 'try',
@@ -1739,7 +1739,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['ためす'],
   ),
   KanjiCard(
-    id: 'n4-102',
+    id: 'n4-055',
     character: '族',
     meaning: 'family',
     keyword: 'family',
@@ -1750,7 +1750,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: [],
   ),
   KanjiCard(
-    id: 'n4-103',
+    id: 'n4-056',
     character: '銀',
     meaning: 'silver',
     keyword: 'silver',
@@ -1761,7 +1761,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: [],
   ),
   KanjiCard(
-    id: 'n4-104',
+    id: 'n4-057',
     character: '早',
     meaning: 'early',
     keyword: 'early',
@@ -1772,7 +1772,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['はやい'],
   ),
   KanjiCard(
-    id: 'n4-105',
+    id: 'n4-058',
     character: '映',
     meaning: 'reflect',
     keyword: 'reflect',
@@ -1783,7 +1783,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['うつる'],
   ),
   KanjiCard(
-    id: 'n4-106',
+    id: 'n4-059',
     character: '親',
     meaning: 'parent',
     keyword: 'parent',
@@ -1794,7 +1794,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['おや'],
   ),
   KanjiCard(
-    id: 'n4-109',
+    id: 'n4-060',
     character: '好',
     meaning: 'like',
     keyword: 'like',
@@ -1805,7 +1805,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['すき'],
   ),
   KanjiCard(
-    id: 'n4-112',
+    id: 'n4-061',
     character: '低',
     meaning: 'low',
     keyword: 'low',
@@ -1816,7 +1816,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['ひくい'],
   ),
   KanjiCard(
-    id: 'n4-114',
+    id: 'n4-062',
     character: '仕',
     meaning: 'serve',
     keyword: 'serve',
@@ -1827,7 +1827,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['つかえる'],
   ),
   KanjiCard(
-    id: 'n4-115',
+    id: 'n4-063',
     character: '去',
     meaning: 'leave',
     keyword: 'leave',
@@ -1838,7 +1838,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['さる'],
   ),
   KanjiCard(
-    id: 'n4-116',
+    id: 'n4-064',
     character: '味',
     meaning: 'taste',
     keyword: 'taste',
@@ -1849,7 +1849,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['あじ'],
   ),
   KanjiCard(
-    id: 'n4-119',
+    id: 'n4-065',
     character: '字',
     meaning: 'character',
     keyword: 'character',
@@ -1860,7 +1860,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: [],
   ),
   KanjiCard(
-    id: 'n4-120',
+    id: 'n4-066',
     character: '答',
     meaning: 'answer',
     keyword: 'answer',
@@ -1871,7 +1871,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['こたえる'],
   ),
   KanjiCard(
-    id: 'n4-122',
+    id: 'n4-067',
     character: '音',
     meaning: 'sound',
     keyword: 'sound',
@@ -1882,7 +1882,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['おと'],
   ),
   KanjiCard(
-    id: 'n4-123',
+    id: 'n4-068',
     character: '注',
     meaning: 'pour',
     keyword: 'pour',
@@ -1893,7 +1893,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['そそぐ'],
   ),
   KanjiCard(
-    id: 'n4-125',
+    id: 'n4-069',
     character: '歌',
     meaning: 'song',
     keyword: 'song',
@@ -1904,7 +1904,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['うた'],
   ),
   KanjiCard(
-    id: 'n4-129',
+    id: 'n4-070',
     character: '室',
     meaning: 'room',
     keyword: 'room',
@@ -1915,7 +1915,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: [],
   ),
   KanjiCard(
-    id: 'n4-130',
+    id: 'n4-071',
     character: '太',
     meaning: 'thick',
     keyword: 'thick',
@@ -1926,7 +1926,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['ふとい'],
   ),
   KanjiCard(
-    id: 'n4-135',
+    id: 'n4-072',
     character: '春',
     meaning: 'spring',
     keyword: 'spring',
@@ -1937,7 +1937,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['はる'],
   ),
   KanjiCard(
-    id: 'n4-136',
+    id: 'n4-073',
     character: '赤',
     meaning: 'red',
     keyword: 'red',
@@ -1948,7 +1948,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['あか'],
   ),
   KanjiCard(
-    id: 'n4-137',
+    id: 'n4-074',
     character: '青',
     meaning: 'blue',
     keyword: 'blue',
@@ -1959,7 +1959,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['あお'],
   ),
   KanjiCard(
-    id: 'n4-138',
+    id: 'n4-075',
     character: '森',
     meaning: 'forest',
     keyword: 'forest',
@@ -1970,7 +1970,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['もり'],
   ),
   KanjiCard(
-    id: 'n4-139',
+    id: 'n4-076',
     character: '館',
     meaning: 'building',
     keyword: 'building',
@@ -1981,7 +1981,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: [],
   ),
   KanjiCard(
-    id: 'n4-142',
+    id: 'n4-077',
     character: '走',
     meaning: 'run',
     keyword: 'run',
@@ -1992,7 +1992,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['はしる'],
   ),
   KanjiCard(
-    id: 'n4-094',
+    id: 'n4-078',
     character: '起',
     meaning: 'wake up',
     keyword: 'wake up',
@@ -2003,7 +2003,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['おきる'],
   ),
   KanjiCard(
-    id: 'n4-143',
+    id: 'n4-079',
     character: '秋',
     meaning: 'autumn',
     keyword: 'autumn',
@@ -2014,7 +2014,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['あき'],
   ),
   KanjiCard(
-    id: 'n4-144',
+    id: 'n4-080',
     character: '林',
     meaning: 'woods',
     keyword: 'woods',
@@ -2025,7 +2025,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['はやし'],
   ),
   KanjiCard(
-    id: 'n4-005',
+    id: 'n4-081',
     character: '発',
     meaning: 'depart',
     keyword: 'depart',
@@ -2036,7 +2036,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: [],
   ),
   KanjiCard(
-    id: 'n4-010',
+    id: 'n4-082',
     character: '業',
     meaning: 'business',
     keyword: 'business',
@@ -2047,7 +2047,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: [],
   ),
   KanjiCard(
-    id: 'n4-025',
+    id: 'n4-083',
     character: '田',
     meaning: 'rice field',
     keyword: 'rice field',
@@ -2058,7 +2058,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['た'],
   ),
   KanjiCard(
-    id: 'n4-048',
+    id: 'n4-084',
     character: '界',
     meaning: 'world',
     keyword: 'world',
@@ -2069,7 +2069,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: [],
   ),
   KanjiCard(
-    id: 'n4-056',
+    id: 'n4-085',
     character: '画',
     meaning: 'picture',
     keyword: 'picture',
@@ -2080,7 +2080,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: [],
   ),
   KanjiCard(
-    id: 'n4-081',
+    id: 'n4-086',
     character: '町',
     meaning: 'town',
     keyword: 'town',
@@ -2091,7 +2091,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['まち'],
   ),
   KanjiCard(
-    id: 'n4-027',
+    id: 'n4-087',
     character: '題',
     meaning: 'topic',
     keyword: 'topic',
@@ -2102,7 +2102,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: [],
   ),
   KanjiCard(
-    id: 'n4-040',
+    id: 'n4-088',
     character: '家',
     meaning: 'house',
     keyword: 'house',
@@ -2113,7 +2113,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['いえ'],
   ),
   KanjiCard(
-    id: 'n4-042',
+    id: 'n4-089',
     character: '区',
     meaning: 'ward',
     keyword: 'ward',
@@ -2124,7 +2124,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: [],
   ),
   KanjiCard(
-    id: 'n4-044',
+    id: 'n4-090',
     character: '進',
     meaning: 'advance',
     keyword: 'advance',
@@ -2135,7 +2135,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['すすむ'],
   ),
   KanjiCard(
-    id: 'n4-046',
+    id: 'n4-091',
     character: '院',
     meaning: 'institute',
     keyword: 'institute',
@@ -2146,7 +2146,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: [],
   ),
   KanjiCard(
-    id: 'n4-047',
+    id: 'n4-092',
     character: '心',
     meaning: 'heart',
     keyword: 'heart',
@@ -2157,7 +2157,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['こころ'],
   ),
   KanjiCard(
-    id: 'n4-029',
+    id: 'n4-093',
     character: '意',
     meaning: 'idea',
     keyword: 'idea',
@@ -2168,7 +2168,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: [],
   ),
   KanjiCard(
-    id: 'n4-039',
+    id: 'n4-094',
     character: '思',
     meaning: 'think',
     keyword: 'think',
@@ -2179,7 +2179,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['おもう'],
   ),
   KanjiCard(
-    id: 'n4-085',
+    id: 'n4-095',
     character: '急',
     meaning: 'hurry',
     keyword: 'hurry',
@@ -2190,7 +2190,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['いそぐ'],
   ),
   KanjiCard(
-    id: 'n4-127',
+    id: 'n4-096',
     character: '悪',
     meaning: 'bad',
     keyword: 'bad',
@@ -2201,7 +2201,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['わるい'],
   ),
   KanjiCard(
-    id: 'n4-051',
+    id: 'n4-097',
     character: '文',
     meaning: 'writing',
     keyword: 'writing',
@@ -2212,7 +2212,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['ふみ'],
   ),
   KanjiCard(
-    id: 'n4-052',
+    id: 'n4-098',
     character: '元',
     meaning: 'origin',
     keyword: 'origin',
@@ -2223,7 +2223,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['もと'],
   ),
   KanjiCard(
-    id: 'n4-053',
+    id: 'n4-099',
     character: '重',
     meaning: 'heavy',
     keyword: 'heavy',
@@ -2234,7 +2234,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['おもい'],
   ),
   KanjiCard(
-    id: 'n4-020',
+    id: 'n4-100',
     character: '動',
     meaning: 'move',
     keyword: 'move',
@@ -2245,7 +2245,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['うごく'],
   ),
   KanjiCard(
-    id: 'n4-108',
+    id: 'n4-101',
     character: '働',
     meaning: 'work',
     keyword: 'work',
@@ -2256,7 +2256,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['はたらく'],
   ),
   KanjiCard(
-    id: 'n4-054',
+    id: 'n4-102',
     character: '近',
     meaning: 'near',
     keyword: 'near',
@@ -2267,7 +2267,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['ちかい'],
   ),
   KanjiCard(
-    id: 'n4-055',
+    id: 'n4-103',
     character: '考',
     meaning: 'consider',
     keyword: 'consider',
@@ -2278,7 +2278,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['かんがえる'],
   ),
   KanjiCard(
-    id: 'n4-058',
+    id: 'n4-104',
     character: '売',
     meaning: 'sell',
     keyword: 'sell',
@@ -2289,7 +2289,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['うる'],
   ),
   KanjiCard(
-    id: 'n4-061',
+    id: 'n4-105',
     character: '別',
     meaning: 'separate',
     keyword: 'separate',
@@ -2300,7 +2300,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['わかれる'],
   ),
   KanjiCard(
-    id: 'n4-062',
+    id: 'n4-106',
     character: '物',
     meaning: 'thing',
     keyword: 'thing',
@@ -2311,7 +2311,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['もの'],
   ),
   KanjiCard(
-    id: 'n4-063',
+    id: 'n4-107',
     character: '引',
     meaning: 'pull',
     keyword: 'pull',
@@ -2322,7 +2322,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['ひく'],
   ),
   KanjiCard(
-    id: 'n4-065',
+    id: 'n4-108',
     character: '所',
     meaning: 'place',
     keyword: 'place',
@@ -2333,7 +2333,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['ところ'],
   ),
   KanjiCard(
-    id: 'n4-069',
+    id: 'n4-109',
     character: '特',
     meaning: 'special',
     keyword: 'special',
@@ -2344,7 +2344,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: [],
   ),
   KanjiCard(
-    id: 'n4-070',
+    id: 'n4-110',
     character: '私',
     meaning: 'I',
     keyword: 'I',
@@ -2355,7 +2355,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['わたし'],
   ),
   KanjiCard(
-    id: 'n4-074',
+    id: 'n4-111',
     character: '運',
     meaning: 'carry',
     keyword: 'carry',
@@ -2366,7 +2366,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['はこぶ'],
   ),
   KanjiCard(
-    id: 'n4-075',
+    id: 'n4-112',
     character: '終',
     meaning: 'end',
     keyword: 'end',
@@ -2377,7 +2377,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['おわる'],
   ),
   KanjiCard(
-    id: 'n4-077',
+    id: 'n4-113',
     character: '広',
     meaning: 'wide',
     keyword: 'wide',
@@ -2388,7 +2388,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['ひろい'],
   ),
   KanjiCard(
-    id: 'n4-080',
+    id: 'n4-114',
     character: '有',
     meaning: 'have',
     keyword: 'have',
@@ -2399,7 +2399,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['ある'],
   ),
   KanjiCard(
-    id: 'n4-082',
+    id: 'n4-115',
     character: '料',
     meaning: 'fee',
     keyword: 'fee',
@@ -2410,7 +2410,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: [],
   ),
   KanjiCard(
-    id: 'n4-083',
+    id: 'n4-116',
     character: '工',
     meaning: 'craft',
     keyword: 'craft',
@@ -2421,7 +2421,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: [],
   ),
   KanjiCard(
-    id: 'n4-084',
+    id: 'n4-117',
     character: '建',
     meaning: 'build',
     keyword: 'build',
@@ -2432,7 +2432,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['たてる'],
   ),
   KanjiCard(
-    id: 'n4-086',
+    id: 'n4-118',
     character: '止',
     meaning: 'stop',
     keyword: 'stop',
@@ -2443,7 +2443,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['とまる'],
   ),
   KanjiCard(
-    id: 'n4-045',
+    id: 'n4-119',
     character: '正',
     meaning: 'correct',
     keyword: 'correct',
@@ -2454,7 +2454,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['ただしい'],
   ),
   KanjiCard(
-    id: 'n4-124',
+    id: 'n4-120',
     character: '帰',
     meaning: 'return home',
     keyword: 'return home',
@@ -2465,7 +2465,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['かえる'],
   ),
   KanjiCard(
-    id: 'n4-131',
+    id: 'n4-121',
     character: '歩',
     meaning: 'walk',
     keyword: 'walk',
@@ -2476,7 +2476,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['あるく'],
   ),
   KanjiCard(
-    id: 'n4-087',
+    id: 'n4-122',
     character: '送',
     meaning: 'send',
     keyword: 'send',
@@ -2487,7 +2487,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['おくる'],
   ),
   KanjiCard(
-    id: 'n4-091',
+    id: 'n4-123',
     character: '研',
     meaning: 'polish',
     keyword: 'polish',
@@ -2498,7 +2498,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['とぐ'],
   ),
   KanjiCard(
-    id: 'n4-092',
+    id: 'n4-124',
     character: '究',
     meaning: 'research',
     keyword: 'research',
@@ -2509,7 +2509,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: [],
   ),
   KanjiCard(
-    id: 'n4-097',
+    id: 'n4-125',
     character: '病',
     meaning: 'illness',
     keyword: 'illness',
@@ -2520,7 +2520,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['やまい'],
   ),
   KanjiCard(
-    id: 'n4-098',
+    id: 'n4-126',
     character: '声',
     meaning: 'voice',
     keyword: 'voice',
@@ -2531,7 +2531,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['こえ'],
   ),
   KanjiCard(
-    id: 'n4-099',
+    id: 'n4-127',
     character: '質',
     meaning: 'quality',
     keyword: 'quality',
@@ -2542,7 +2542,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: [],
   ),
   KanjiCard(
-    id: 'n4-100',
+    id: 'n4-128',
     character: '待',
     meaning: 'wait',
     keyword: 'wait',
@@ -2553,7 +2553,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['まつ'],
   ),
   KanjiCard(
-    id: 'n4-107',
+    id: 'n4-129',
     character: '験',
     meaning: 'test',
     keyword: 'test',
@@ -2564,7 +2564,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: [],
   ),
   KanjiCard(
-    id: 'n4-110',
+    id: 'n4-130',
     character: '英',
     meaning: 'England',
     keyword: 'England',
@@ -2575,7 +2575,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: [],
   ),
   KanjiCard(
-    id: 'n4-111',
+    id: 'n4-131',
     character: '頭',
     meaning: 'head',
     keyword: 'head',
@@ -2586,7 +2586,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['あたま'],
   ),
   KanjiCard(
-    id: 'n4-113',
+    id: 'n4-132',
     character: '医',
     meaning: 'medicine',
     keyword: 'medicine',
@@ -2597,7 +2597,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: [],
   ),
   KanjiCard(
-    id: 'n4-117',
+    id: 'n4-133',
     character: '門',
     meaning: 'gate',
     keyword: 'gate',
@@ -2608,7 +2608,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['かど'],
   ),
   KanjiCard(
-    id: 'n4-017',
+    id: 'n4-134',
     character: '問',
     meaning: 'question',
     keyword: 'question',
@@ -2619,7 +2619,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['とう'],
   ),
   KanjiCard(
-    id: 'n4-015',
+    id: 'n4-135',
     character: '開',
     meaning: 'open',
     keyword: 'open',
@@ -2630,7 +2630,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['ひらく'],
   ),
   KanjiCard(
-    id: 'n4-118',
+    id: 'n4-136',
     character: '写',
     meaning: 'copy',
     keyword: 'copy',
@@ -2641,7 +2641,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['うつす'],
   ),
   KanjiCard(
-    id: 'n4-121',
+    id: 'n4-137',
     character: '夜',
     meaning: 'night',
     keyword: 'night',
@@ -2652,7 +2652,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['よる'],
   ),
   KanjiCard(
-    id: 'n4-126',
+    id: 'n4-138',
     character: '光',
     meaning: 'light',
     keyword: 'light',
@@ -2663,7 +2663,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['ひカリ'],
   ),
   KanjiCard(
-    id: 'n4-128',
+    id: 'n4-139',
     character: '図',
     meaning: 'map',
     keyword: 'map',
@@ -2674,7 +2674,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: [],
   ),
   KanjiCard(
-    id: 'n4-132',
+    id: 'n4-140',
     character: '風',
     meaning: 'wind',
     keyword: 'wind',
@@ -2685,7 +2685,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['かぜ'],
   ),
   KanjiCard(
-    id: 'n4-133',
+    id: 'n4-141',
     character: '紙',
     meaning: 'paper',
     keyword: 'paper',
@@ -2696,7 +2696,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['かみ'],
   ),
   KanjiCard(
-    id: 'n4-134',
+    id: 'n4-142',
     character: '黒',
     meaning: 'black',
     keyword: 'black',
@@ -2707,7 +2707,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['くろ'],
   ),
   KanjiCard(
-    id: 'n4-140',
+    id: 'n4-143',
     character: '屋',
     meaning: 'shop',
     keyword: 'shop',
@@ -2718,7 +2718,7 @@ const hardcodedKanjiCards = <KanjiCard>[
     kunyomi: ['や'],
   ),
   KanjiCard(
-    id: 'n4-141',
+    id: 'n4-144',
     character: '色',
     meaning: 'color',
     keyword: 'color',

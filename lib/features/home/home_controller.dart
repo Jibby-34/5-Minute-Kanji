@@ -6,6 +6,7 @@ import '../../core/models/card_schedule.dart';
 import '../../core/models/kanji_card.dart';
 import '../../core/models/progress.dart';
 import '../../core/models/review.dart';
+import '../../core/models/start_of_day.dart';
 import '../../core/utils/clock.dart';
 import '../../core/utils/time_format.dart';
 import '../../repositories/kanji_repository.dart';
@@ -34,6 +35,7 @@ class HomeController extends ChangeNotifier {
   int estimatedMinutes = 0;
   int streak = 0;
   DateTime? nextReviewAt;
+  StartOfDay startOfDay = StartOfDay.defaults;
 
   /// New kanji still left in today's allowance. Decreases when a card is
   /// learned, not when it is retrieved for the first time.
@@ -53,10 +55,14 @@ class HomeController extends ChangeNotifier {
       final settings = await progressRepository.getSettings();
       final streakInfo = await progressRepository.getStreak();
       final now = clock();
+      final dayBoundary = settings.startOfDay;
       final sessionConfig = config.copyWith(
         averageSecondsPerCard: settings.averageSecondsPerCard,
       );
-      final daily = (await progressRepository.getDailyNewKanji()).forDay(now);
+      final daily = (await progressRepository.getDailyNewKanji()).forDay(
+        now,
+        startOfDay: dayBoundary,
+      );
       final remainingDaily = daily.remainingAllowance(settings.newKanjiPerDay);
       final unencountered = selector.countNew(
         cards: cards,
@@ -67,6 +73,7 @@ class HomeController extends ChangeNotifier {
         cards: cards,
         schedules: schedules,
         now: now,
+        startOfDay: dayBoundary,
       );
       final remainingNew = math.min(unencountered, remainingDaily);
       final selected = selector.select(
@@ -79,6 +86,7 @@ class HomeController extends ChangeNotifier {
           dueReviewCount: due,
           remainingDaily: remainingNew,
         ),
+        startOfDay: dayBoundary,
       );
 
       dueCount = due;
@@ -88,6 +96,7 @@ class HomeController extends ChangeNotifier {
         averageSecondsPerCard: settings.averageSecondsPerCard,
       );
       streak = streakInfo.current;
+      startOfDay = dayBoundary;
       nextReviewAt = _nextReviewAt(
         cards: cards,
         schedules: schedules,
@@ -101,6 +110,7 @@ class HomeController extends ChangeNotifier {
       newRemainingToday = 0;
       estimatedMinutes = 0;
       streak = 0;
+      startOfDay = StartOfDay.defaults;
       nextReviewAt = null;
     }
 
@@ -125,9 +135,18 @@ class HomeController extends ChangeNotifier {
 
     final now = clock();
     final schedules = await progressRepository.getSchedules();
-    final daily = (await progressRepository.getDailyNewKanji()).forDay(now);
+    final dayBoundary = settings.startOfDay;
+    final daily = (await progressRepository.getDailyNewKanji()).forDay(
+      now,
+      startOfDay: dayBoundary,
+    );
     final remainingDaily = daily.remainingAllowance(settings.newKanjiPerDay);
-    final due = selector.countDue(cards: cards, schedules: schedules, now: now);
+    final due = selector.countDue(
+      cards: cards,
+      schedules: schedules,
+      now: now,
+      startOfDay: dayBoundary,
+    );
     final remainingNew = math.min(
       selector.countNew(cards: cards, schedules: schedules),
       remainingDaily,
@@ -143,6 +162,7 @@ class HomeController extends ChangeNotifier {
         dueReviewCount: due,
         remainingDaily: remainingNew,
       ),
+      startOfDay: dayBoundary,
     );
   }
 
@@ -160,10 +180,11 @@ class HomeController extends ChangeNotifier {
       cards: cards,
       schedules: schedules,
       now: now,
+      startOfDay: settings.startOfDay,
     );
 
     if (unencountered > 0 && settings.newKanjiPerDay > 0) {
-      final tomorrow = calendarDay(now).add(const Duration(days: 1));
+      final tomorrow = settings.startOfDay.startOfNextStudyDay(now);
       if (nextDue == null || tomorrow.isBefore(nextDue)) return tomorrow;
     }
     return nextDue;

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../core/navigation/app_routes.dart';
+import '../../core/models/start_of_day.dart';
 import '../../core/theme/app_theme.dart';
 import '../../core/theme/app_typography.dart';
 import '../../core/utils/time_format.dart';
@@ -213,7 +214,11 @@ class _StudyPanel extends StatelessWidget {
               ),
               const SizedBox(height: 22),
               home.isCaughtUp
-                  ? _CaughtUpCopy(nextReviewAt: home.nextReviewAt, now: now)
+                  ? _CaughtUpCopy(
+                      nextReviewAt: home.nextReviewAt,
+                      now: now,
+                      startOfDay: home.startOfDay,
+                    )
                   : _WorkloadCopy(home: home),
             ],
           ),
@@ -296,10 +301,15 @@ class _WorkloadCopy extends StatelessWidget {
 }
 
 class _CaughtUpCopy extends StatelessWidget {
-  const _CaughtUpCopy({required this.nextReviewAt, required this.now});
+  const _CaughtUpCopy({
+    required this.nextReviewAt,
+    required this.now,
+    required this.startOfDay,
+  });
 
   final DateTime? nextReviewAt;
   final DateTime now;
+  final StartOfDay startOfDay;
 
   @override
   Widget build(BuildContext context) {
@@ -318,7 +328,7 @@ class _CaughtUpCopy extends StatelessWidget {
         ),
         const SizedBox(height: 12),
         Text(
-          'Next review: ${formatNextReview(nextReviewAt, now)}',
+          'Next review: ${formatNextReview(nextReviewAt, now, startOfDay: startOfDay)}',
           textAlign: TextAlign.center,
           style: theme.textTheme.titleMedium?.copyWith(
             color: theme.mutedText,

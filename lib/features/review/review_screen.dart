@@ -96,7 +96,13 @@ class _ReviewView extends StatelessWidget {
     final summary = await controller.rate(result);
     if (!context.mounted || summary == null) return;
     await Navigator.of(context).pushReplacement(
-      AppRoutes.session(context, SessionCompleteScreen(summary: summary)),
+      AppRoutes.session(
+        context,
+        SessionCompleteScreen(
+          summary: summary,
+          startOfDay: controller.startOfDay,
+        ),
+      ),
     );
   }
 
@@ -105,7 +111,13 @@ class _ReviewView extends StatelessWidget {
     final summary = await controller.completePractice();
     if (!context.mounted || summary == null) return;
     await Navigator.of(context).pushReplacement(
-      AppRoutes.session(context, SessionCompleteScreen(summary: summary)),
+      AppRoutes.session(
+        context,
+        SessionCompleteScreen(
+          summary: summary,
+          startOfDay: controller.startOfDay,
+        ),
+      ),
     );
   }
 
@@ -114,7 +126,13 @@ class _ReviewView extends StatelessWidget {
     final summary = await controller.markCurrentAsKnown();
     if (!context.mounted || summary == null) return;
     await Navigator.of(context).pushReplacement(
-      AppRoutes.session(context, SessionCompleteScreen(summary: summary)),
+      AppRoutes.session(
+        context,
+        SessionCompleteScreen(
+          summary: summary,
+          startOfDay: controller.startOfDay,
+        ),
+      ),
     );
   }
 
