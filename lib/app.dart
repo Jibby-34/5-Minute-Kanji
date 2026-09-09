@@ -4,10 +4,12 @@ import 'package:provider/provider.dart';
 
 import 'core/theme/app_scroll_behavior.dart';
 import 'core/theme/app_theme.dart';
+import 'data/asset_stroke_data_repository.dart';
 import 'features/home/home_controller.dart';
 import 'features/home/home_screen.dart';
 import 'repositories/kanji_repository.dart';
 import 'repositories/progress_repository.dart';
+import 'repositories/stroke_data_repository.dart';
 import 'services/mark_as_known.dart';
 import 'services/srs_engine.dart';
 import 'services/srs_scheduler.dart';
@@ -18,11 +20,13 @@ class FiveMinuteKanjiApp extends StatelessWidget {
     required this.kanjiRepository,
     required this.progressRepository,
     this.srsEngine = const SrsEngine(),
+    this.strokeDataRepository,
   });
 
   final KanjiRepository kanjiRepository;
   final ProgressRepository progressRepository;
   final SrsScheduler srsEngine;
+  final StrokeDataRepository? strokeDataRepository;
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +35,9 @@ class FiveMinuteKanjiApp extends StatelessWidget {
         Provider<KanjiRepository>.value(value: kanjiRepository),
         Provider<ProgressRepository>.value(value: progressRepository),
         Provider<SrsScheduler>.value(value: srsEngine),
+        Provider<StrokeDataRepository>(
+          create: (_) => strokeDataRepository ?? AssetStrokeDataRepository(),
+        ),
         Provider<MarkAsKnownService>(
           create: (_) => MarkAsKnownService(
             progressRepository: progressRepository,

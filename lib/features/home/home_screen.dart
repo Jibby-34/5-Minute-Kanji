@@ -95,46 +95,14 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                     onOpenKanjiList: _openKanjiList,
                   ),
                   Expanded(
-                    child: Column(
-                      children: [
-                        Expanded(
-                          child: LayoutBuilder(
-                            builder: (context, constraints) {
-                              return SingleChildScrollView(
-                                physics: const BouncingScrollPhysics(),
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 32,
-                                ),
-                                child: ConstrainedBox(
-                                  constraints: BoxConstraints(
-                                    minHeight: constraints.maxHeight,
-                                  ),
-                                  child: Center(
-                                    child: ConstrainedBox(
-                                      constraints: const BoxConstraints(
-                                        maxWidth: 360,
-                                      ),
-                                      child: _StudyPanel(home: home, now: now),
-                                    ),
-                                  ),
-                                ),
-                              );
-                            },
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(32, 8, 32, 24),
-                          child: _StreakMark(streak: home.streak),
-                        ),
-                      ],
-                    ),
+                    child: _HomeCanvas(home: home, now: now),
                   ),
                   BottomActionInset(
+                    horizontalPadding: 16,
                     child: PrimaryButton(
                       label: home.isCaughtUp
                           ? 'Practice Anyway'
                           : 'Start Review',
-                      height: 56,
                       onPressed: () => _startReview(practice: home.isCaughtUp),
                     ),
                   ),
@@ -183,22 +151,87 @@ class _HomeNavBar extends StatelessWidget {
   }
 }
 
-class _StudyPanel extends StatelessWidget {
-  const _StudyPanel({required this.home, required this.now});
+/// Positions greeting + workload in the upper-middle, with streak near the
+/// bottom. Extra height becomes whitespace; short screens shrink gaps first.
+class _HomeCanvas extends StatelessWidget {
+  const _HomeCanvas({required this.home, required this.now});
 
   final HomeController home;
   final DateTime now;
 
   @override
   Widget build(BuildContext context) {
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final height = constraints.maxHeight;
+        final textScale = MediaQuery.textScalerOf(context).scale(16) / 16;
+        final compact = height < 500 || textScale > 1.25;
+        final topGap = (height * (compact ? 0.06 : 0.11)).clamp(12.0, 88.0);
+        final streakBottomGap = (height * (compact ? 0.03 : 0.045)).clamp(
+          8.0,
+          28.0,
+        );
+        final numberSize = (height * 0.07).clamp(42.0, 48.0);
+
+        return SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
+          padding: const EdgeInsets.symmetric(horizontal: 32),
+          child: ConstrainedBox(
+            constraints: BoxConstraints(minHeight: height),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  children: [
+                    SizedBox(height: topGap),
+                    ConstrainedBox(
+                      constraints: const BoxConstraints(maxWidth: 360),
+                      child: _StudyPanel(
+                        home: home,
+                        now: now,
+                        compact: compact,
+                        numberSize: numberSize,
+                      ),
+                    ),
+                  ],
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: 20, bottom: streakBottomGap),
+                  child: _StreakMark(streak: home.streak),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+}
+
+class _StudyPanel extends StatelessWidget {
+  const _StudyPanel({
+    required this.home,
+    required this.now,
+    required this.compact,
+    required this.numberSize,
+  });
+
+  final HomeController home;
+  final DateTime now;
+  final bool compact;
+  final double numberSize;
+
+  @override
+  Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final verticalPad = compact ? 16.0 : 22.0;
 
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
         const _StationeryRule(),
         Padding(
-          padding: const EdgeInsets.symmetric(vertical: 28, horizontal: 8),
+          padding: EdgeInsets.symmetric(vertical: verticalPad, horizontal: 8),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -207,19 +240,26 @@ class _StudyPanel extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: theme.textTheme.titleMedium?.copyWith(
                   color: theme.mutedText,
+                  fontSize: 15,
                   fontWeight: FontWeight.w400,
                   letterSpacing: 0.2,
                   height: 1.3,
                 ),
               ),
-              const SizedBox(height: 22),
+              SizedBox(height: compact ? 12 : 16),
               home.isCaughtUp
                   ? _CaughtUpCopy(
                       nextReviewAt: home.nextReviewAt,
                       now: now,
                       startOfDay: home.startOfDay,
+                      compact: compact,
+                      numberSize: numberSize,
                     )
-                  : _WorkloadCopy(home: home),
+                  : _WorkloadCopy(
+                      home: home,
+                      compact: compact,
+                      numberSize: numberSize,
+                    ),
             ],
           ),
         ),
@@ -230,9 +270,15 @@ class _StudyPanel extends StatelessWidget {
 }
 
 class _WorkloadCopy extends StatelessWidget {
-  const _WorkloadCopy({required this.home});
+  const _WorkloadCopy({
+    required this.home,
+    required this.compact,
+    required this.numberSize,
+  });
 
   final HomeController home;
+  final bool compact;
+  final double numberSize;
 
   @override
   Widget build(BuildContext context) {
@@ -249,51 +295,36 @@ class _WorkloadCopy extends StatelessWidget {
     final reviewLine = showNew && reviews > 0
         ? (reviews == 1 ? '1 review' : '$reviews reviews')
         : null;
+    final metaStyle = theme.textTheme.bodyMedium?.copyWith(
+      color: theme.mutedText,
+      fontSize: 14,
+      fontWeight: FontWeight.w400,
+      height: 1.35,
+    );
 
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        FittedBox(
-          fit: BoxFit.scaleDown,
-          child: Text(
-            '$count',
-            textAlign: TextAlign.center,
-            style: AppTypography.kanji(
-              color: theme.colorScheme.onSurface,
-              size: 48,
-            ),
-          ),
-        ),
-        const SizedBox(height: 6),
+        _WorkloadNumber(count: count, size: numberSize),
+        const SizedBox(height: 4),
         Text(
           label,
           textAlign: TextAlign.center,
           style: theme.textTheme.titleLarge?.copyWith(
+            fontSize: compact ? 18 : 19,
             fontWeight: FontWeight.w500,
             height: 1.3,
           ),
         ),
+        SizedBox(height: compact ? 10 : 14),
         if (reviewLine != null) ...[
-          const SizedBox(height: 12),
-          Text(
-            reviewLine,
-            textAlign: TextAlign.center,
-            style: theme.textTheme.bodyLarge?.copyWith(
-              color: theme.mutedText,
-              fontWeight: FontWeight.w400,
-              height: 1.35,
-            ),
-          ),
+          Text(reviewLine, textAlign: TextAlign.center, style: metaStyle),
+          const SizedBox(height: 4),
         ],
-        const SizedBox(height: 16),
         Text(
           '~${home.estimatedMinutes} min',
           textAlign: TextAlign.center,
-          style: theme.textTheme.titleMedium?.copyWith(
-            color: theme.mutedText,
-            fontWeight: FontWeight.w400,
-            height: 1.3,
-          ),
+          style: metaStyle,
         ),
       ],
     );
@@ -305,38 +336,75 @@ class _CaughtUpCopy extends StatelessWidget {
     required this.nextReviewAt,
     required this.now,
     required this.startOfDay,
+    required this.compact,
+    required this.numberSize,
   });
 
   final DateTime? nextReviewAt;
   final DateTime now;
   final StartOfDay startOfDay;
+  final bool compact;
+  final double numberSize;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final metaStyle = theme.textTheme.bodyMedium?.copyWith(
+      color: theme.mutedText,
+      fontSize: 14,
+      fontWeight: FontWeight.w400,
+      height: 1.35,
+    );
 
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
+        _WorkloadNumber(count: 0, size: numberSize),
+        const SizedBox(height: 4),
         Text(
-          "You're all caught up.",
+          'kanji remaining today',
           textAlign: TextAlign.center,
-          style: theme.textTheme.headlineSmall?.copyWith(
-            fontWeight: FontWeight.w600,
-            height: 1.25,
-          ),
-        ),
-        const SizedBox(height: 12),
-        Text(
-          'Next review: ${formatNextReview(nextReviewAt, now, startOfDay: startOfDay)}',
-          textAlign: TextAlign.center,
-          style: theme.textTheme.titleMedium?.copyWith(
-            color: theme.mutedText,
-            fontWeight: FontWeight.w400,
+          style: theme.textTheme.titleLarge?.copyWith(
+            fontSize: compact ? 18 : 19,
+            fontWeight: FontWeight.w500,
             height: 1.3,
           ),
         ),
+        SizedBox(height: compact ? 10 : 14),
+        Text(
+          "You're all caught up.",
+          textAlign: TextAlign.center,
+          style: metaStyle,
+        ),
+        const SizedBox(height: 4),
+        Text(
+          'Next review: ${formatNextReview(nextReviewAt, now, startOfDay: startOfDay)}',
+          textAlign: TextAlign.center,
+          style: metaStyle,
+        ),
       ],
+    );
+  }
+}
+
+class _WorkloadNumber extends StatelessWidget {
+  const _WorkloadNumber({required this.count, required this.size});
+
+  final int count;
+  final double size;
+
+  @override
+  Widget build(BuildContext context) {
+    return FittedBox(
+      fit: BoxFit.scaleDown,
+      child: Text(
+        '$count',
+        textAlign: TextAlign.center,
+        style: AppTypography.kanji(
+          color: Theme.of(context).colorScheme.onSurface,
+          size: size,
+        ),
+      ),
     );
   }
 }
@@ -349,16 +417,24 @@ class _StreakMark extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    const valueStyle = 17.0;
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       mainAxisSize: MainAxisSize.min,
       children: [
-        Text('🔥', style: theme.textTheme.titleMedium?.copyWith(height: 1)),
+        Text(
+          '🔥',
+          style: theme.textTheme.titleMedium?.copyWith(
+            fontSize: valueStyle,
+            height: 1,
+          ),
+        ),
         const SizedBox(width: 8),
         Text(
           '$streak',
-          style: theme.textTheme.titleLarge?.copyWith(
+          style: theme.textTheme.titleMedium?.copyWith(
+            fontSize: valueStyle,
             fontWeight: FontWeight.w600,
             height: 1.1,
           ),
@@ -367,6 +443,7 @@ class _StreakMark extends StatelessWidget {
         Text(
           'day streak',
           style: theme.textTheme.bodyLarge?.copyWith(
+            fontSize: 16,
             color: theme.mutedText,
             fontWeight: FontWeight.w400,
             height: 1.2,
@@ -382,6 +459,9 @@ class _StationeryRule extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(height: 1, color: Theme.of(context).hairline);
+    return ColoredBox(
+      color: Theme.of(context).hairline,
+      child: const SizedBox(height: 1, width: double.infinity),
+    );
   }
 }

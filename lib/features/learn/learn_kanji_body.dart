@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../core/models/kanji_card.dart';
 import '../../core/theme/app_theme.dart';
 import '../../core/theme/app_typography.dart';
+import '../stroke_order/kanji_stroke_animation.dart';
 
 class LearnKanjiBody extends StatelessWidget {
   const LearnKanjiBody({super.key, required this.card});
@@ -22,82 +23,71 @@ class LearnKanjiBody extends StatelessWidget {
 
     return LayoutBuilder(
       builder: (context, constraints) {
+        final kanjiSide = _kanjiSide(constraints);
+
         return SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
           child: ConstrainedBox(
             constraints: BoxConstraints(minHeight: constraints.maxHeight),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Center(
-                  child: FittedBox(
-                    fit: BoxFit.scaleDown,
-                    child: Text(
-                      card.character,
-                      style: AppTypography.kanji(
-                        color: theme.colorScheme.onSurface,
-                        size: 112,
-                      ),
-                    ),
+            child: Padding(
+              padding: const EdgeInsets.only(top: 8),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  KanjiStrokeAnimation(
+                    character: card.character,
+                    size: kanjiSide,
+                    showFrame: false,
+                    showStrokeNumbers: false,
+                    showFallbackCharacter: true,
                   ),
-                ),
-                const SizedBox(height: 28),
-                _sectionLabel(theme, 'Meaning'),
-                const SizedBox(height: 8),
-                Text(
-                  card.keyword,
-                  style: theme.textTheme.headlineSmall?.copyWith(
-                    fontWeight: FontWeight.w500,
-                    letterSpacing: -0.2,
-                    height: 1.3,
-                  ),
-                ),
-                if (showMeaning) ...[
+                  const SizedBox(height: 20),
+                  _sectionLabel(theme, 'Meaning'),
                   const SizedBox(height: 6),
                   Text(
-                    card.meaning,
-                    style: theme.textTheme.bodyLarge?.copyWith(
-                      color: theme.mutedText,
-                      height: 1.45,
+                    card.keyword,
+                    style: theme.textTheme.titleLarge?.copyWith(
+                      fontSize: 22,
+                      fontWeight: FontWeight.w500,
+                      letterSpacing: -0.2,
+                      height: 1.25,
                     ),
                   ),
-                ],
-                if (card.hasReadings) ...[
-                  const SizedBox(height: 24),
-                  _sectionLabel(theme, 'Readings'),
-                  const SizedBox(height: 8),
-                  if (card.onyomi.isNotEmpty)
+                  if (showMeaning) ...[
+                    const SizedBox(height: 4),
                     Text(
-                      'On: ${card.onyomiLabel}',
-                      style: theme.textTheme.bodyLarge?.copyWith(height: 1.45),
+                      card.meaning,
+                      style: theme.textTheme.bodyLarge?.copyWith(
+                        color: theme.mutedText,
+                        height: 1.35,
+                      ),
                     ),
-                  if (card.kunyomi.isNotEmpty)
+                  ],
+                  if (card.hasReadings) ...[
+                    const SizedBox(height: 20),
+                    _sectionLabel(theme, 'Readings'),
+                    const SizedBox(height: 6),
+                    if (card.onyomi.isNotEmpty)
+                      _readingRow(theme, 'On', card.onyomiLabel),
+                    if (card.kunyomi.isNotEmpty)
+                      _readingRow(theme, 'Kun', card.kunyomiLabel),
+                  ],
+                  if (showComponents) ...[
+                    const SizedBox(height: 16),
+                    _sectionLabel(theme, 'Components'),
+                    const SizedBox(height: 4),
                     Text(
-                      'Kun: ${card.kunyomiLabel}',
-                      style: theme.textTheme.bodyLarge?.copyWith(height: 1.45),
+                      card.componentsLabel,
+                      style: AppTypography.kanji(
+                        color: theme.colorScheme.onSurface,
+                        size: 20,
+                      ),
                     ),
+                  ],
+                  const SizedBox(height: 20),
+                  _mnemonic(theme),
                 ],
-                if (showComponents) ...[
-                  const SizedBox(height: 24),
-                  _sectionLabel(theme, 'Components'),
-                  const SizedBox(height: 8),
-                  Text(
-                    card.componentsLabel,
-                    style: AppTypography.kanji(
-                      color: theme.colorScheme.onSurface,
-                      size: 22,
-                    ),
-                  ),
-                ],
-                const SizedBox(height: 24),
-                _sectionLabel(theme, 'Mnemonic'),
-                const SizedBox(height: 8),
-                Text(
-                  card.mnemonic,
-                  style: theme.textTheme.bodyLarge?.copyWith(height: 1.45),
-                ),
-              ],
+              ),
             ),
           ),
         );
@@ -105,13 +95,75 @@ class LearnKanjiBody extends StatelessWidget {
     );
   }
 
+  double _kanjiSide(BoxConstraints constraints) {
+    final height = constraints.maxHeight;
+    if (!height.isFinite || height <= 0) return 156;
+    const replay = 44.0;
+    return (height * 0.29 - replay).clamp(128.0, 168.0);
+  }
+
   Widget _sectionLabel(ThemeData theme, String label) {
     return Text(
-      label,
+      label.toUpperCase(),
       style: theme.textTheme.labelLarge?.copyWith(
         color: theme.mutedText,
-        letterSpacing: 0.8,
+        letterSpacing: 1.3,
         fontWeight: FontWeight.w600,
+        fontSize: 12,
+        height: 1.2,
+      ),
+    );
+  }
+
+  Widget _readingRow(ThemeData theme, String kind, String value) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 2),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.baseline,
+        textBaseline: TextBaseline.alphabetic,
+        children: [
+          SizedBox(
+            width: 40,
+            child: Text(
+              kind,
+              style: theme.textTheme.bodyMedium?.copyWith(
+                color: theme.mutedText,
+                fontWeight: FontWeight.w600,
+                height: 1.25,
+              ),
+            ),
+          ),
+          Expanded(
+            child: Text(
+              value,
+              style: theme.textTheme.bodyLarge?.copyWith(height: 1.25),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _mnemonic(ThemeData theme) {
+    return Semantics(
+      label: 'Memory aid: ${card.mnemonic}',
+      child: ExcludeSemantics(
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Icon(Icons.lightbulb_outline, size: 18, color: theme.mutedText),
+            const SizedBox(width: 8),
+            Expanded(
+              child: Text(
+                card.mnemonic,
+                style: theme.textTheme.bodyLarge?.copyWith(
+                  color: theme.mutedText,
+                  height: 1.4,
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

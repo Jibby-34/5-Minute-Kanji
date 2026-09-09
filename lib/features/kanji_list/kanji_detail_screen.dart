@@ -10,6 +10,7 @@ import '../../services/kanji_status_resolver.dart';
 import '../../services/mark_as_known.dart';
 import '../../widgets/bottom_action_inset.dart';
 import '../../widgets/primary_button.dart';
+import '../stroke_order/kanji_stroke_animation.dart';
 
 class KanjiDetailScreen extends StatefulWidget {
   const KanjiDetailScreen({
@@ -69,9 +70,13 @@ class _KanjiDetailScreenState extends State<KanjiDetailScreen> {
         card.components.length > 1 ||
         (card.components.length == 1 &&
             card.components.first != card.character);
-    final showMeaning =
+    final showSecondaryMeaning =
         card.meaning.trim().isNotEmpty &&
         card.meaning.toLowerCase() != card.keyword.toLowerCase();
+    final primaryMeaning = _displayMeaning(
+      card.keyword.trim().isNotEmpty ? card.keyword : card.meaning,
+    );
+    final jlptLabel = _jlptShortLabel(card.jlptLevel);
 
     return Scaffold(
       body: SafeArea(
@@ -101,88 +106,117 @@ class _KanjiDetailScreenState extends State<KanjiDetailScreen> {
             Expanded(
               child: SingleChildScrollView(
                 physics: const BouncingScrollPhysics(),
-                padding: const EdgeInsets.fromLTRB(24, 16, 24, 40),
+                padding: const EdgeInsets.fromLTRB(24, 8, 24, 40),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    Center(
-                      child: FittedBox(
-                        fit: BoxFit.scaleDown,
-                        child: Text(
-                          card.character,
-                          style: AppTypography.kanji(
-                            color: theme.colorScheme.onSurface,
-                            size: 104,
+                    LayoutBuilder(
+                      builder: (context, constraints) {
+                        return KanjiStrokeAnimation(
+                          character: card.character,
+                          autoPlay: false,
+                          startCompleted: true,
+                          size: _kanjiSide(constraints),
+                          showFrame: false,
+                          showStrokeNumbers: true,
+                          showStrokeCount: true,
+                          showFallbackCharacter: true,
+                          replayColor: theme.colorScheme.primary,
+                        );
+                      },
+                    ),
+                    if (primaryMeaning.isNotEmpty) ...[
+                      const SizedBox(height: 28),
+                      _sectionLabel(theme, 'Meaning'),
+                      const SizedBox(height: 6),
+                      Text(
+                        primaryMeaning,
+                        style: theme.textTheme.titleLarge?.copyWith(
+                          fontSize: 22,
+                          fontWeight: FontWeight.w500,
+                          letterSpacing: -0.2,
+                          height: 1.25,
+                        ),
+                      ),
+                      if (showSecondaryMeaning) ...[
+                        const SizedBox(height: 4),
+                        Text(
+                          card.meaning.trim(),
+                          style: theme.textTheme.bodyLarge?.copyWith(
+                            color: theme.mutedText,
+                            height: 1.35,
                           ),
                         ),
-                      ),
-                    ),
-                    const SizedBox(height: 20),
-                    Text(
-                      card.keyword.toUpperCase(),
-                      textAlign: TextAlign.center,
-                      style: AppTypography.keyword(
-                        color: theme.colorScheme.onSurface,
-                      ),
-                    ),
-                    if (showMeaning) ...[
-                      const SizedBox(height: 8),
-                      Text(
-                        card.meaning,
-                        textAlign: TextAlign.center,
-                        style: theme.textTheme.bodyLarge?.copyWith(
-                          color: theme.mutedText,
-                        ),
-                      ),
+                      ],
                     ],
                     if (card.hasReadings) ...[
-                      const SizedBox(height: 28),
+                      const SizedBox(height: 22),
                       _sectionLabel(theme, 'Readings'),
-                      const SizedBox(height: 8),
+                      const SizedBox(height: 6),
                       if (card.onyomi.isNotEmpty)
-                        Text(
-                          'On: ${card.onyomiLabel}',
-                          style: theme.textTheme.bodyLarge?.copyWith(
-                            height: 1.45,
-                          ),
-                        ),
+                        _readingRow(theme, 'On', card.onyomiLabel),
                       if (card.kunyomi.isNotEmpty)
-                        Text(
-                          'Kun: ${card.kunyomiLabel}',
-                          style: theme.textTheme.bodyLarge?.copyWith(
-                            height: 1.45,
+                        _readingRow(theme, 'Kun', card.kunyomiLabel),
+                    ],
+                    const SizedBox(height: 22),
+                    _sectionLabel(theme, 'Status'),
+                    const SizedBox(height: 6),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.baseline,
+                      textBaseline: TextBaseline.alphabetic,
+                      children: [
+                        Expanded(
+                          child: Text(
+                            _status.label,
+                            style: theme.textTheme.bodyLarge?.copyWith(
+                              color: _statusColor(theme),
+                              fontWeight:
+                                  _status == KanjiProgressStatus.notEncountered
+                                  ? FontWeight.w400
+                                  : FontWeight.w600,
+                              height: 1.3,
+                            ),
                           ),
                         ),
-                    ],
-                    const SizedBox(height: 28),
-                    _sectionLabel(theme, 'Status'),
-                    const SizedBox(height: 8),
-                    Text(
-                      _status.label,
-                      style: theme.textTheme.bodyLarge?.copyWith(height: 1.45),
+                        if (jlptLabel != null)
+                          Text(
+                            jlptLabel,
+                            style: theme.textTheme.bodyMedium?.copyWith(
+                              color: theme.mutedText,
+                              fontWeight: FontWeight.w600,
+                              letterSpacing: 0.4,
+                              height: 1.3,
+                            ),
+                          ),
+                      ],
                     ),
                     const SizedBox(height: 20),
-                    _sectionLabel(theme, 'Mnemonic'),
-                    const SizedBox(height: 8),
+                    _sectionLabel(theme, 'Memory tip'),
+                    const SizedBox(height: 6),
                     Text(
                       card.mnemonic,
-                      style: theme.textTheme.bodyLarge?.copyWith(height: 1.45),
+                      style: theme.textTheme.bodyLarge?.copyWith(
+                        color: theme.mutedText,
+                        height: 1.4,
+                      ),
                     ),
                     if (showComponents) ...[
                       const SizedBox(height: 20),
                       _sectionLabel(theme, 'Components'),
-                      const SizedBox(height: 8),
+                      const SizedBox(height: 4),
                       Text(
                         card.componentsLabel,
                         style: AppTypography.kanji(
                           color: theme.colorScheme.onSurface,
-                          size: 22,
+                          size: 20,
                         ),
                       ),
                     ],
-                    const SizedBox(height: 28),
+                    const SizedBox(height: 24),
+                    Divider(height: 1, thickness: 1, color: theme.hairline),
+                    const SizedBox(height: 16),
                     _sectionLabel(theme, 'Review stats'),
-                    const SizedBox(height: 12),
+                    const SizedBox(height: 8),
                     _statRow(
                       theme,
                       'Reviews',
@@ -202,6 +236,7 @@ class _KanjiDetailScreenState extends State<KanjiDetailScreen> {
                       theme,
                       'Last reviewed',
                       _formatLastReviewed(_schedule?.lastReviewedAt),
+                      isLast: true,
                     ),
                   ],
                 ),
@@ -220,34 +255,108 @@ class _KanjiDetailScreenState extends State<KanjiDetailScreen> {
     );
   }
 
+  double _kanjiSide(BoxConstraints constraints) {
+    final width = constraints.maxWidth;
+    if (!width.isFinite || width <= 0) return 164;
+    return (width * 0.48).clamp(150.0, 176.0);
+  }
+
   Widget _sectionLabel(ThemeData theme, String label) {
     return Text(
-      label,
+      label.toUpperCase(),
       style: theme.textTheme.labelLarge?.copyWith(
         color: theme.mutedText,
-        letterSpacing: 0.8,
+        letterSpacing: 1.3,
         fontWeight: FontWeight.w600,
+        fontSize: 12,
+        height: 1.2,
       ),
     );
   }
 
-  Widget _statRow(ThemeData theme, String label, String value) {
+  Widget _readingRow(ThemeData theme, String kind, String value) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 10),
+      padding: const EdgeInsets.only(bottom: 2),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.baseline,
+        textBaseline: TextBaseline.alphabetic,
+        children: [
+          SizedBox(
+            width: 40,
+            child: Text(
+              kind,
+              style: theme.textTheme.bodyMedium?.copyWith(
+                color: theme.mutedText,
+                fontWeight: FontWeight.w600,
+                height: 1.25,
+              ),
+            ),
+          ),
+          Expanded(
+            child: Text(
+              value,
+              style: theme.textTheme.bodyLarge?.copyWith(height: 1.25),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _statRow(
+    ThemeData theme,
+    String label,
+    String value, {
+    bool isLast = false,
+  }) {
+    return Padding(
+      padding: EdgeInsets.only(bottom: isLast ? 0 : 6),
       child: Row(
         children: [
           Expanded(
             child: Text(
               label,
-              style: theme.textTheme.bodyLarge?.copyWith(
+              style: theme.textTheme.bodyMedium?.copyWith(
                 color: theme.mutedText,
+                height: 1.3,
               ),
             ),
           ),
-          Text(value, style: theme.textTheme.bodyLarge),
+          Text(
+            value,
+            style: theme.textTheme.bodyMedium?.copyWith(
+              color: theme.colorScheme.onSurface.withValues(alpha: 0.82),
+              height: 1.3,
+            ),
+          ),
         ],
       ),
     );
+  }
+
+  Color _statusColor(ThemeData theme) {
+    return switch (_status) {
+      KanjiProgressStatus.notEncountered => theme.mutedText,
+      KanjiProgressStatus.learning => theme.colorScheme.primary,
+      KanjiProgressStatus.mastered => theme.colorScheme.onSurface,
+    };
+  }
+
+  String _displayMeaning(String value) {
+    final trimmed = value.trim();
+    if (trimmed.isEmpty) return trimmed;
+    return '${trimmed[0].toUpperCase()}${trimmed.substring(1)}';
+  }
+
+  String? _jlptShortLabel(JlptLevel level) {
+    return switch (level) {
+      JlptLevel.n5 => 'N5',
+      JlptLevel.n4 => 'N4',
+      JlptLevel.n3 => 'N3',
+      JlptLevel.n2 => 'N2',
+      JlptLevel.n1 => 'N1',
+      JlptLevel.none => null,
+    };
   }
 
   String _formatLastReviewed(DateTime? at) {

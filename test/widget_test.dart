@@ -6,11 +6,16 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:fiveminutekanji/app.dart';
 import 'package:fiveminutekanji/core/models/card_schedule.dart';
+import 'package:fiveminutekanji/core/models/handwriting.dart';
 import 'package:fiveminutekanji/core/models/review.dart';
 import 'package:fiveminutekanji/core/theme/app_theme.dart';
 import 'package:fiveminutekanji/data/hardcoded_kanji_repository.dart';
 import 'package:fiveminutekanji/data/shared_prefs_progress_repository.dart';
+import 'package:fiveminutekanji/features/review/compare_body.dart';
+import 'package:fiveminutekanji/features/review/review_controller.dart';
 import 'package:fiveminutekanji/features/review/review_screen.dart';
+import 'package:fiveminutekanji/features/review/widgets/handwriting_pad.dart';
+import 'package:fiveminutekanji/features/stroke_order/kanji_stroke_animation.dart';
 import 'package:fiveminutekanji/repositories/progress_repository.dart';
 import 'package:fiveminutekanji/services/srs_engine.dart';
 import 'package:fiveminutekanji/services/srs_scheduler.dart';
@@ -172,15 +177,51 @@ void main() {
     expect(find.text('Submit'), findsOneWidget);
     expect(find.byTooltip('Close'), findsOneWidget);
 
+    const submitted = HandwritingInput(
+      strokes: [
+        HandwritingStroke([StrokePoint(0.2, 0.25), StrokePoint(0.8, 0.75)]),
+      ],
+    );
+    Provider.of<ReviewController>(
+      tester.element(find.text('Submit')),
+      listen: false,
+    ).updateDrawing(submitted);
+
     await tester.tap(find.text('Submit'));
     await tester.pumpAndSettle();
 
+    expect(find.byType(CompareBody), findsOneWidget);
+    expect(find.text('How did you do?'), findsOneWidget);
+    expect(find.text('YOUR DRAWING'), findsOneWidget);
+    expect(find.text('CORRECT'), findsOneWidget);
     expect(find.text(first.character), findsOneWidget);
-    expect(find.text(first.keyword.toUpperCase()), findsOneWidget);
+    expect(find.text(first.keyword), findsOneWidget);
     expect(find.text(first.mnemonic), findsOneWidget);
+    expect(find.text('Mnemonic'), findsNothing);
+    expect(find.text('Stroke Order'), findsOneWidget);
+    expect(find.byType(HandwritingPad), findsOneWidget);
+    expect(find.byType(KanjiStrokeAnimation), findsOneWidget);
+    expect(
+      tester.widget<HandwritingPad>(find.byType(HandwritingPad)).readOnly,
+      isTrue,
+    );
+    expect(
+      tester.widget<HandwritingPad>(find.byType(HandwritingPad)).value.strokes,
+      hasLength(submitted.strokes.length),
+    );
+    expect(
+      tester.widget<HandwritingPad>(find.byType(HandwritingPad)).value.isEmpty,
+      isFalse,
+    );
     expect(find.text('Good'), findsOneWidget);
     expect(find.text('Again'), findsOneWidget);
     expect(find.text('HARD'), findsNothing);
+
+    await tester.tap(find.text('Stroke Order'));
+    await tester.pump();
+    expect(find.byType(CompareBody), findsOneWidget);
+    expect(find.byType(KanjiStrokeAnimation), findsOneWidget);
+    expect(find.text('Again'), findsOneWidget);
 
     await tester.tap(find.text('Good'));
     await tester.pumpAndSettle();
@@ -282,6 +323,8 @@ void main() {
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 50));
 
+    expect(find.text('0'), findsWidgets);
+    expect(find.text('kanji remaining today'), findsOneWidget);
     expect(find.text("You're all caught up."), findsOneWidget);
     expect(find.text('Start Review'), findsNothing);
     expect(find.text('Practice Anyway'), findsOneWidget);

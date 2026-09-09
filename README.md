@@ -1,6 +1,8 @@
-# fiveminutekanji
+# 5-Minute Kanji
 
-A new Flutter project.
+Five-minute kanji SRS for busy Japanese learners.
+
+Stroke-order animations are generated at runtime from [KanjiVG](https://kanjivg.tagaini.net) vector data. See [assets/kanji/SOURCE.md](assets/kanji/SOURCE.md) for the bundled release, license, and how to refresh the dataset.
 
 ## Getting Started
 

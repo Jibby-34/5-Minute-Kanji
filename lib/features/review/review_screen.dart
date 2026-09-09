@@ -10,7 +10,6 @@ import '../../core/models/review.dart';
 import '../../core/models/study_phase.dart';
 import '../../core/navigation/app_routes.dart';
 import '../../core/theme/app_theme.dart';
-import '../../core/theme/app_typography.dart';
 import '../../core/utils/clock.dart';
 import '../../repositories/progress_repository.dart';
 import '../../services/srs_scheduler.dart';
@@ -19,6 +18,7 @@ import '../../widgets/primary_button.dart';
 import '../learn/learn_kanji_body.dart';
 import '../learn/practice_writing_body.dart';
 import '../session_complete/session_complete_screen.dart';
+import 'compare_body.dart';
 import 'review_controller.dart';
 import 'widgets/handwriting_pad.dart';
 
@@ -202,7 +202,7 @@ class _ReviewView extends StatelessWidget {
                             drawing: controller.drawing,
                             onDrawingChanged: controller.updateDrawing,
                           ),
-                          StudyPhase.compare => _CompareBody(
+                          StudyPhase.compare => CompareBody(
                             key: ValueKey('compare-${card.id}'),
                             card: card,
                             drawing:
@@ -334,152 +334,6 @@ class _PromptBody extends StatelessWidget {
           ),
         ),
       ],
-    );
-  }
-}
-
-class _CompareBody extends StatelessWidget {
-  const _CompareBody({super.key, required this.card, required this.drawing});
-
-  final KanjiCard card;
-  final HandwritingInput drawing;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final showComponents =
-        card.components.length > 1 ||
-        (card.components.length == 1 &&
-            card.components.first != card.character);
-
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        final stacked = constraints.maxWidth < 400;
-        final preview = stacked
-            ? Column(
-                children: [
-                  ConstrainedBox(
-                    constraints: BoxConstraints(
-                      maxHeight: math.min(220, constraints.maxWidth),
-                    ),
-                    child: AspectRatio(
-                      aspectRatio: 1,
-                      child: HandwritingPad(value: drawing, readOnly: true),
-                    ),
-                  ),
-                  const SizedBox(height: 12),
-                  Text(
-                    card.character,
-                    style: AppTypography.kanji(
-                      color: theme.colorScheme.onSurface,
-                      size: 88,
-                    ),
-                  ),
-                ],
-              )
-            : Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Expanded(
-                    child: AspectRatio(
-                      aspectRatio: 1,
-                      child: HandwritingPad(value: drawing, readOnly: true),
-                    ),
-                  ),
-                  const SizedBox(width: 16),
-                  Expanded(
-                    child: FittedBox(
-                      fit: BoxFit.scaleDown,
-                      child: Text(
-                        card.character,
-                        style: AppTypography.kanji(
-                          color: theme.colorScheme.onSurface,
-                          size: 104,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              );
-
-        return SingleChildScrollView(
-          physics: const BouncingScrollPhysics(),
-          child: ConstrainedBox(
-            constraints: BoxConstraints(minHeight: constraints.maxHeight),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                preview,
-                const SizedBox(height: 20),
-                Text(
-                  card.keyword.toUpperCase(),
-                  style: AppTypography.keyword(
-                    color: theme.colorScheme.onSurface,
-                  ),
-                ),
-                if (card.hasReadings) ...[
-                  const SizedBox(height: 16),
-                  if (card.onyomi.isNotEmpty)
-                    Text(
-                      'On: ${card.onyomiLabel}',
-                      style: theme.textTheme.bodyLarge?.copyWith(height: 1.45),
-                    ),
-                  if (card.kunyomi.isNotEmpty)
-                    Text(
-                      'Kun: ${card.kunyomiLabel}',
-                      style: theme.textTheme.bodyLarge?.copyWith(height: 1.45),
-                    ),
-                ],
-                const SizedBox(height: 20),
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    'Mnemonic',
-                    style: theme.textTheme.labelLarge?.copyWith(
-                      color: theme.mutedText,
-                      letterSpacing: 0.8,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 8),
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    card.mnemonic,
-                    style: theme.textTheme.bodyLarge?.copyWith(height: 1.45),
-                  ),
-                ),
-                if (showComponents) ...[
-                  const SizedBox(height: 20),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      'Components',
-                      style: theme.textTheme.labelLarge?.copyWith(
-                        color: theme.mutedText,
-                        letterSpacing: 0.8,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      card.componentsLabel,
-                      style: AppTypography.kanji(
-                        color: theme.colorScheme.onSurface,
-                        size: 22,
-                      ),
-                    ),
-                  ),
-                ],
-              ],
-            ),
-          ),
-        );
-      },
     );
   }
 }

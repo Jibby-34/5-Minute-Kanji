@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -11,6 +14,7 @@ import 'package:fiveminutekanji/core/models/kanji_card.dart';
 import 'package:fiveminutekanji/core/models/kanji_status.dart';
 import 'package:fiveminutekanji/core/models/progress.dart';
 import 'package:fiveminutekanji/core/models/review.dart';
+import 'package:fiveminutekanji/core/models/stroke_data.dart';
 import 'package:fiveminutekanji/core/models/study_phase.dart';
 import 'package:fiveminutekanji/core/theme/app_theme.dart';
 import 'package:fiveminutekanji/data/hardcoded_kanji_repository.dart';
@@ -18,6 +22,7 @@ import 'package:fiveminutekanji/data/shared_prefs_progress_repository.dart';
 import 'package:fiveminutekanji/features/review/review_controller.dart';
 import 'package:fiveminutekanji/features/review/review_screen.dart';
 import 'package:fiveminutekanji/repositories/progress_repository.dart';
+import 'package:fiveminutekanji/repositories/stroke_data_repository.dart';
 import 'package:fiveminutekanji/services/initial_known_card_schedule.dart';
 import 'package:fiveminutekanji/services/kanji_status_resolver.dart';
 import 'package:fiveminutekanji/services/srs_engine.dart';
@@ -68,12 +73,16 @@ void main() {
     WidgetTester tester, {
     required ProgressRepository progress,
     required List<KanjiCard> cards,
+    StrokeDataRepository? strokes,
+    bool settle = true,
   }) async {
     await tester.pumpWidget(
       MultiProvider(
         providers: [
           Provider<ProgressRepository>.value(value: progress),
           Provider<SrsScheduler>.value(value: const SrsEngine()),
+          if (strokes != null)
+            Provider<StrokeDataRepository>.value(value: strokes),
         ],
         child: MaterialApp(
           theme: AppTheme.light,
@@ -81,7 +90,11 @@ void main() {
         ),
       ),
     );
-    await tester.pumpAndSettle();
+    if (settle) {
+      await tester.pumpAndSettle();
+    } else {
+      await tester.pump();
+    }
   }
 
   Future<void> completeLearnIntro(WidgetTester tester) async {
@@ -252,19 +265,19 @@ void main() {
       final progress = SharedPrefsProgressRepository(prefs);
       final cards = await kanji.getAll();
       await progress.seedIfNeeded(cards.map((card) => card.id).toList());
-      final first = cards.firstWhere((card) => card.id == 'n5-003');
-      final second = cards.firstWhere((card) => card.id == 'n5-004');
+      final first = cards.firstWhere((card) => card.id == 'n5-029');
+      final second = cards.firstWhere((card) => card.id == 'n5-030');
 
       await pumpReview(tester, progress: progress, cards: [first, second]);
 
       expect(find.text('4 remaining'), findsOneWidget);
       expect(find.text(first.character), findsOneWidget);
-      expect(find.text('Meaning'), findsOneWidget);
+      expect(find.text('MEANING'), findsOneWidget);
       expect(find.text(first.keyword), findsOneWidget);
-      expect(find.text('Components'), findsOneWidget);
+      expect(find.text('COMPONENTS'), findsOneWidget);
       expect(find.text(first.componentsLabel), findsOneWidget);
-      expect(find.text('Mnemonic'), findsOneWidget);
       expect(find.text(first.mnemonic), findsOneWidget);
+      expect(find.text('READINGS'), findsOneWidget);
       expect(find.text('Practice Writing'), findsOneWidget);
       expect(find.text('Submit'), findsNothing);
 
@@ -448,5 +461,38 @@ void main() {
         expect((await progress.getDailyNewKanji()).count, 1);
       },
     );
+
+    testWidgets('practice writing is available while stroke order plays', (
+      tester,
+    ) async {
+      usePhoneViewport(tester);
+      final progress = MemoryProgressRepository();
+      final card = testCard('ichi', character: '一', keyword: 'one');
+      await progress.seedIfNeeded([card.id], now: now);
+      final raw = File('test/fixtures/strokes/04e00.json').readAsStringSync();
+      final strokes = MemoryStrokeDataRepository({
+        '一': StrokeData.fromJson(
+          Map<String, dynamic>.from(jsonDecode(raw) as Map),
+        ),
+      });
+
+      await pumpReview(
+        tester,
+        progress: progress,
+        cards: [card],
+        strokes: strokes,
+        settle: false,
+      );
+      await tester.pump();
+      await tester.pump();
+
+      expect(find.text('Stroke Order'), findsOneWidget);
+      expect(find.text('Practice Writing'), findsOneWidget);
+      expect(find.text('一'), findsNothing);
+
+      await tester.tap(find.text('Practice Writing'));
+      await tester.pumpAndSettle();
+      expect(find.text('Done'), findsOneWidget);
+    });
   });
 }

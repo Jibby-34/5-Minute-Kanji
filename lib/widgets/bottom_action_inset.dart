@@ -4,9 +4,14 @@ import '../core/theme/app_theme.dart';
 
 /// Thumb-zone action bar sitting above the home indicator.
 class BottomActionInset extends StatelessWidget {
-  const BottomActionInset({super.key, required this.child});
+  const BottomActionInset({
+    super.key,
+    required this.child,
+    this.horizontalPadding = 20,
+  });
 
   final Widget child;
+  final double horizontalPadding;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +25,12 @@ class BottomActionInset extends StatelessWidget {
         children: [
           Divider(height: 1, thickness: 1, color: theme.hairline),
           Padding(
-            padding: EdgeInsets.fromLTRB(20, 12, 20, 12 + bottom),
+            padding: EdgeInsets.fromLTRB(
+              horizontalPadding,
+              12,
+              horizontalPadding,
+              12 + bottom,
+            ),
             child: child,
           ),
         ],

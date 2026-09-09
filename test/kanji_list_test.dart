@@ -67,7 +67,14 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.text('Kanji Detail'), findsOneWidget);
-    expect(find.text(first.keyword.toUpperCase()), findsOneWidget);
+    expect(find.text('MEANING'), findsOneWidget);
+    expect(
+      find.text(
+        '${first.keyword[0].toUpperCase()}${first.keyword.substring(1)}',
+      ),
+      findsOneWidget,
+    );
+    expect(find.text('MEMORY TIP'), findsOneWidget);
     expect(find.text(first.mnemonic), findsOneWidget);
     expect(find.text('Not encountered'), findsOneWidget);
     expect(find.text('Reviews'), findsOneWidget);
@@ -436,7 +443,9 @@ void main() {
     );
   });
 
-  testWidgets('kanji overview hides JLPT headers with no cards', (tester) async {
+  testWidgets('kanji overview hides JLPT headers with no cards', (
+    tester,
+  ) async {
     usePhoneViewport(tester);
 
     await tester.pumpWidget(

@@ -5,6 +5,7 @@ import '../../core/models/start_of_day.dart';
 import '../../core/theme/app_theme.dart';
 import '../../core/utils/time_format.dart';
 import '../../repositories/progress_repository.dart';
+import 'open_source_licenses_screen.dart';
 import 'settings_controller.dart';
 
 class SettingsScreen extends StatelessWidget {
@@ -124,6 +125,38 @@ class _SettingsView extends StatelessWidget {
                                 formatStartOfDay(controller.startOfDay),
                                 textAlign: TextAlign.center,
                                 style: valueStyle,
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 48),
+                        Material(
+                          color: Colors.transparent,
+                          child: InkWell(
+                            onTap: () {
+                              Navigator.of(context).push(
+                                MaterialPageRoute<void>(
+                                  builder: (_) =>
+                                      const OpenSourceLicensesScreen(),
+                                ),
+                              );
+                            },
+                            borderRadius: BorderRadius.circular(12),
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 12),
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                    child: Text(
+                                      'Open source licenses',
+                                      style: sectionTitle,
+                                    ),
+                                  ),
+                                  Icon(
+                                    Icons.chevron_right,
+                                    color: theme.mutedText,
+                                  ),
+                                ],
                               ),
                             ),
                           ),

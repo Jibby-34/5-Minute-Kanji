@@ -1,0 +1,10 @@
+KanjiVG
+Copyright © 2009-2026 Ulrich Apel
+
+This product includes stroke-order data derived from KanjiVG
+(https://kanjivg.tagaini.net), released under the Creative Commons Attribution-Share Alike 3.0 license.
+
+The JSON files in assets/kanji/strokes/ are an adaptation of KanjiVG SVG
+data and are therefore also licensed under CC BY-SA 3.0.
+
+Full license text: COPYING
