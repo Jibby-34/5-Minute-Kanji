@@ -173,8 +173,10 @@ class DueCardSelector {
 
   /// Spreads new cards through existing due cards.
   ///
-  /// Starts with a due card when any exist, avoids dumping all new cards at
-  /// the front or back, and is not a rigid Review/New/Review/New pattern.
+  /// When reviews exist, every new card is placed before the last review so
+  /// the sitting cannot finish reviews with unlearned kanji still waiting.
+  /// New cards are staggered through the earlier reviews instead of clumped
+  /// at the front. With no reviews, the sitting is only new cards.
   List<KanjiCard> _interleaveNew({
     required List<KanjiCard> existing,
     required List<KanjiCard> news,
@@ -182,6 +184,21 @@ class DueCardSelector {
     if (news.isEmpty) return existing;
     if (existing.isEmpty) return news;
 
+    final lastReview = existing.last;
+    final earlierReviews = existing.sublist(0, existing.length - 1);
+    if (earlierReviews.isEmpty) {
+      return [...news, lastReview];
+    }
+    return [
+      ..._spreadNewThroughReviews(existing: earlierReviews, news: news),
+      lastReview,
+    ];
+  }
+
+  List<KanjiCard> _spreadNewThroughReviews({
+    required List<KanjiCard> existing,
+    required List<KanjiCard> news,
+  }) {
     final reviews = List<KanjiCard>.from(existing);
     final incoming = List<KanjiCard>.from(news);
     final result = <KanjiCard>[reviews.removeAt(0)];

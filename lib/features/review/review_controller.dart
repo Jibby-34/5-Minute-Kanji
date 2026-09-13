@@ -337,6 +337,14 @@ class ReviewController extends ChangeNotifier {
       startOfDay: _startOfDay,
     );
     session.offerDue(due);
+    if (!session.isComplete) return;
+
+    // A sitting must not report done while pooled new kanji are still
+    // unlearned — including the 0-review case where the queue is only news.
+    final unlearned = session.pool.where(_needsLearn).toList();
+    if (unlearned.isNotEmpty) {
+      session.offerDue(unlearned);
+    }
   }
 
   void _applyPhaseForCurrent() {

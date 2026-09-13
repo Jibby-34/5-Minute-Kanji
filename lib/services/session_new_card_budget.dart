@@ -1,31 +1,66 @@
 import 'dart:math' as math;
 
-/// How many new kanji this sitting should introduce.
+/// How many new kanji this sitting should introduce, and how large the
+/// sitting may grow so those cards actually fit.
 ///
 /// Separate from the daily allowance (how many may be encountered today)
 /// and from SRS due times (when a card is eligible again).
 ///
-/// Assumptions, easy to retune:
-/// - Most of a sitting should stay available for cards that already need review.
-/// - New cards scale with session capacity, not leftover daily allowance.
-/// - A session with no reviews may introduce more new cards, still not the
-///   entire remaining daily cap in a short sitting.
+/// Today's new kanji must be learned by the last review of the day. When
+/// no reviews remain, the sitting *is* that work: do not report done
+/// while unused daily new cards are still unlearned.
+class SessionCardBudget {
+  const SessionCardBudget({
+    required this.maxNewCards,
+    required this.sessionLimit,
+  });
+
+  final int maxNewCards;
+  final int sessionLimit;
+}
+
+SessionCardBudget sessionCardBudget({
+  required int sessionCapacity,
+  required int dueReviewCount,
+  required int remainingDaily,
+}) {
+  if (sessionCapacity <= 0) {
+    return const SessionCardBudget(maxNewCards: 0, sessionLimit: 0);
+  }
+
+  final remainingNew = remainingDaily < 0 ? 0 : remainingDaily;
+  final due = dueReviewCount < 0 ? 0 : dueReviewCount;
+
+  // Every remaining review fits in one sitting — including the 0-review
+  // case. This is the last review sitting, so take every remaining new
+  // card and grow the queue if the usual cap would leave any behind.
+  if (due <= sessionCapacity) {
+    final needed = due + remainingNew;
+    return SessionCardBudget(
+      maxNewCards: remainingNew,
+      sessionLimit: needed > sessionCapacity ? needed : sessionCapacity,
+    );
+  }
+
+  // More review sittings remain. Spread new cards across them so the
+  // last sitting still introduces whatever is left.
+  final reviewSessionsLeft = (due + sessionCapacity - 1) ~/ sessionCapacity;
+  final paced = remainingNew == 0
+      ? 0
+      : (remainingNew + reviewSessionsLeft - 1) ~/ reviewSessionsLeft;
+  final maxNew = math.min(remainingNew, math.min(paced, sessionCapacity));
+  return SessionCardBudget(maxNewCards: maxNew, sessionLimit: sessionCapacity);
+}
+
+/// How many new kanji this sitting should introduce.
 int sessionNewCardLimit({
   required int sessionCapacity,
   required int dueReviewCount,
   required int remainingDaily,
 }) {
-  if (remainingDaily <= 0 || sessionCapacity <= 0) return 0;
-
-  // ~1 new card per 8 slots when mixing with reviews (~3 in a 25-card sitting).
-  // ~1 per 4 slots when nothing is due, so a short session still introduces a few.
-  final slotsPerNew = dueReviewCount > 0 ? 8 : 4;
-  var target = sessionCapacity ~/ slotsPerNew;
-  if (target < 1) target = 1;
-
-  // Never spend more than ~40% of a sitting on brand-new cards.
-  final shareCap = math.max(1, (sessionCapacity * 0.4).round());
-  target = math.min(target, shareCap);
-
-  return math.min(remainingDaily, math.min(target, sessionCapacity));
+  return sessionCardBudget(
+    sessionCapacity: sessionCapacity,
+    dueReviewCount: dueReviewCount,
+    remainingDaily: remainingDaily,
+  ).maxNewCards;
 }

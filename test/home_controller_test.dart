@@ -205,7 +205,7 @@ void main() {
     expect(await controller.cardsForSession(practice: false), isEmpty);
   });
 
-  test('session mixes a few new cards with due reviews', () async {
+  test('last sitting includes every remaining new kanji', () async {
     final mixCards = [
       testCard('r1'),
       testCard('r2'),
@@ -252,13 +252,158 @@ void main() {
 
     expect(controller.dueCount, 5);
     expect(controller.newRemainingToday, 4);
-    expect(
-      session.where((card) => card.id.startsWith('n')).length,
-      lessThan(4),
-    );
+    expect(session.where((card) => card.id.startsWith('n')).length, 4);
     expect(session.where((card) => card.id.startsWith('r')).length, 5);
     expect(session.first.id.startsWith('n'), isFalse);
+    expect(session.last.id.startsWith('r'), isTrue);
   });
+
+  test('0 reviews still queues all 5 new kanji', () async {
+    final newCards = [
+      testCard('n1'),
+      testCard('n2'),
+      testCard('n3'),
+      testCard('n4'),
+      testCard('n5'),
+    ];
+    final progress = MemoryProgressRepository(
+      schedules: {
+        for (final card in newCards) card.id: CardSchedule.fresh(card.id, now),
+      },
+    );
+    final controller = HomeController(
+      kanjiRepository: FakeKanjiRepository(newCards),
+      progressRepository: progress,
+      config: const ReviewSessionConfig(
+        duration: Duration(minutes: 5),
+        maxCards: 25,
+        averageSecondsPerCard: 12,
+      ),
+      clock: () => now,
+    );
+    await controller.load();
+    final session = await controller.cardsForSession(practice: false);
+
+    expect(controller.dueCount, 0);
+    expect(controller.newRemainingToday, 5);
+    expect(controller.isCaughtUp, isFalse);
+    expect(session.map((card) => card.id), ['n1', 'n2', 'n3', 'n4', 'n5']);
+  });
+
+  test('1 review and 5 new still queues every new kanji', () async {
+    final cards = [
+      testCard('r1'),
+      testCard('n1'),
+      testCard('n2'),
+      testCard('n3'),
+      testCard('n4'),
+      testCard('n5'),
+    ];
+    final progress = MemoryProgressRepository(
+      schedules: {
+        'r1': CardSchedule(
+          cardId: 'r1',
+          state: CardLearningState.review,
+          reviewCount: 1,
+          correctCount: 1,
+          incorrectCount: 0,
+          dueAt: now,
+          interval: SrsEngine.graduatingInterval,
+          ease: 2.5,
+          lastReviewedAt: now,
+          consecutiveGoodCount: 1,
+        ),
+        for (final id in ['n1', 'n2', 'n3', 'n4', 'n5'])
+          id: CardSchedule.fresh(id, now),
+      },
+    );
+    final controller = HomeController(
+      kanjiRepository: FakeKanjiRepository(cards),
+      progressRepository: progress,
+      config: const ReviewSessionConfig(
+        duration: Duration(minutes: 5),
+        maxCards: 25,
+        averageSecondsPerCard: 12,
+      ),
+      clock: () => now,
+    );
+    await controller.load();
+    final session = await controller.cardsForSession(practice: false);
+
+    expect(controller.dueCount, 1);
+    expect(controller.newRemainingToday, 5);
+    expect(session.where((card) => card.id.startsWith('n')).length, 5);
+    expect(session.where((card) => card.id == 'r1').length, 1);
+    expect(session.last.id, 'r1');
+  });
+
+  test(
+    'home is not caught up until 0-review new kanji are all learned',
+    () async {
+      final newCards = [
+        testCard('n1'),
+        testCard('n2'),
+        testCard('n3'),
+        testCard('n4'),
+        testCard('n5'),
+      ];
+      final progress = MemoryProgressRepository(
+        schedules: {
+          for (final card in newCards)
+            card.id: CardSchedule.fresh(card.id, now),
+        },
+      );
+      final home = HomeController(
+        kanjiRepository: FakeKanjiRepository(newCards),
+        progressRepository: progress,
+        config: const ReviewSessionConfig(
+          duration: Duration(minutes: 5),
+          maxCards: 25,
+          averageSecondsPerCard: 12,
+        ),
+        clock: () => now,
+      );
+      await home.load();
+      final sessionCards = await home.cardsForSession(practice: false);
+      expect(sessionCards.length, 5);
+      expect(home.isCaughtUp, isFalse);
+
+      final review = ReviewController(
+        progressRepository: progress,
+        srsEngine: const SrsEngine(),
+        cards: sessionCards,
+        config: const ReviewSessionConfig(
+          duration: Duration(minutes: 5),
+          maxCards: 25,
+        ),
+        startTime: now,
+        clock: () => now,
+        schedules: Map<String, CardSchedule>.from(progress.schedules),
+      );
+
+      var learned = 0;
+      while (!review.isComplete) {
+        if (review.phase == StudyPhase.learn) {
+          review.beginPractice();
+          await review.completePractice();
+          learned++;
+          await home.load();
+          if (learned < 5) {
+            expect(home.isCaughtUp, isFalse);
+            expect(home.newRemainingToday, 5 - learned);
+          }
+        } else {
+          review.submit();
+          await review.rate(ReviewResult.good);
+        }
+      }
+
+      expect(learned, 5);
+      await home.load();
+      expect(home.newRemainingToday, 0);
+      expect(home.isCaughtUp, isTrue);
+    },
+  );
 
   test('cards due before 4:00 AM count as today\'s workload', () async {
     final morning = DateTime(2026, 9, 2, 8);

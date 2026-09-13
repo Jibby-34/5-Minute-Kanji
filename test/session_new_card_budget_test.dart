@@ -2,34 +2,15 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:fiveminutekanji/services/session_new_card_budget.dart';
 
 void main() {
-  test(
-    'a 5-minute sitting introduces a few new cards, not the whole daily cap',
-    () {
-      expect(
-        sessionNewCardLimit(
-          sessionCapacity: 25,
-          dueReviewCount: 10,
-          remainingDaily: 6,
-        ),
-        inInclusiveRange(1, 3),
-      );
-    },
-  );
-
-  test('a longer sitting can introduce more new cards', () {
-    final short = sessionNewCardLimit(
-      sessionCapacity: 10,
-      dueReviewCount: 0,
-      remainingDaily: 6,
+  test('zero remaining daily introduces no new cards', () {
+    expect(
+      sessionNewCardLimit(
+        sessionCapacity: 25,
+        dueReviewCount: 8,
+        remainingDaily: 0,
+      ),
+      0,
     );
-    final longer = sessionNewCardLimit(
-      sessionCapacity: 25,
-      dueReviewCount: 0,
-      remainingDaily: 6,
-    );
-    expect(short, inInclusiveRange(1, 3));
-    expect(longer, greaterThan(short));
-    expect(longer, lessThanOrEqualTo(6));
   });
 
   test('never exceeds the remaining daily allowance', () {
@@ -43,27 +24,83 @@ void main() {
     );
   });
 
-  test('zero remaining daily introduces no new cards', () {
+  test('0 reviews and 5 new takes every remaining new card', () {
+    final budget = sessionCardBudget(
+      sessionCapacity: 25,
+      dueReviewCount: 0,
+      remainingDaily: 5,
+    );
+    expect(budget.maxNewCards, 5);
+    expect(budget.sessionLimit, greaterThanOrEqualTo(5));
+  });
+
+  test('0 reviews still takes all new when they exceed the usual cap', () {
+    final budget = sessionCardBudget(
+      sessionCapacity: 25,
+      dueReviewCount: 0,
+      remainingDaily: 50,
+    );
+    expect(budget.maxNewCards, 50);
+    expect(budget.sessionLimit, 50);
+  });
+
+  test('1 review and 5 new is the last sitting and takes all 5', () {
+    final budget = sessionCardBudget(
+      sessionCapacity: 25,
+      dueReviewCount: 1,
+      remainingDaily: 5,
+    );
+    expect(budget.maxNewCards, 5);
+    expect(budget.sessionLimit, greaterThanOrEqualTo(6));
+  });
+
+  test('2 reviews and 5 new is the last sitting and takes all 5', () {
     expect(
       sessionNewCardLimit(
         sessionCapacity: 25,
-        dueReviewCount: 8,
-        remainingDaily: 0,
+        dueReviewCount: 2,
+        remainingDaily: 5,
       ),
-      0,
+      5,
     );
   });
 
-  test(
-    'does not fill every leftover slot with new cards when reviews exist',
-    () {
-      final limit = sessionNewCardLimit(
+  test('a last sitting grows so leftover new cards are not stranded', () {
+    final budget = sessionCardBudget(
+      sessionCapacity: 25,
+      dueReviewCount: 10,
+      remainingDaily: 20,
+    );
+    expect(budget.maxNewCards, 20);
+    expect(budget.sessionLimit, 30);
+  });
+
+  test('many reviews pace new cards across remaining sittings', () {
+    expect(
+      sessionNewCardLimit(
         sessionCapacity: 25,
-        dueReviewCount: 2,
-        remainingDaily: 20,
-      );
-      expect(limit, lessThan(20));
-      expect(limit, lessThanOrEqualTo(10));
-    },
-  );
+        dueReviewCount: 30,
+        remainingDaily: 5,
+      ),
+      3,
+    );
+    expect(
+      sessionNewCardLimit(
+        sessionCapacity: 25,
+        dueReviewCount: 51,
+        remainingDaily: 5,
+      ),
+      2,
+    );
+  });
+
+  test('an overflowing review load keeps the usual sitting size', () {
+    final budget = sessionCardBudget(
+      sessionCapacity: 25,
+      dueReviewCount: 40,
+      remainingDaily: 5,
+    );
+    expect(budget.maxNewCards, lessThan(5));
+    expect(budget.sessionLimit, 25);
+  });
 }

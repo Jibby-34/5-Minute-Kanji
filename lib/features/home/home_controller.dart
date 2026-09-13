@@ -76,16 +76,17 @@ class HomeController extends ChangeNotifier {
         startOfDay: dayBoundary,
       );
       final remainingNew = math.min(unencountered, remainingDaily);
+      final budget = sessionCardBudget(
+        sessionCapacity: sessionConfig.effectiveMaxCards,
+        dueReviewCount: due,
+        remainingDaily: remainingNew,
+      );
       final selected = selector.select(
         cards: cards,
         schedules: schedules,
         now: now,
-        limit: sessionConfig.effectiveMaxCards,
-        maxNewCards: sessionNewCardLimit(
-          sessionCapacity: sessionConfig.effectiveMaxCards,
-          dueReviewCount: due,
-          remainingDaily: remainingNew,
-        ),
+        limit: budget.sessionLimit,
+        maxNewCards: budget.maxNewCards,
         startOfDay: dayBoundary,
       );
 
@@ -152,16 +153,18 @@ class HomeController extends ChangeNotifier {
       remainingDaily,
     );
 
+    final budget = sessionCardBudget(
+      sessionCapacity: limit,
+      dueReviewCount: due,
+      remainingDaily: remainingNew,
+    );
+
     return selector.select(
       cards: cards,
       schedules: schedules,
       now: now,
-      limit: limit,
-      maxNewCards: sessionNewCardLimit(
-        sessionCapacity: limit,
-        dueReviewCount: due,
-        remainingDaily: remainingNew,
-      ),
+      limit: budget.sessionLimit,
+      maxNewCards: budget.maxNewCards,
       startOfDay: dayBoundary,
     );
   }

@@ -285,39 +285,87 @@ void main() {
     expect(kinds.where((ch) => ch == 'N').length, 3);
     expect(kinds.where((ch) => ch == 'R').length, 5);
     expect(selected.first.id, 'r1');
+    expect(selected.last.id.startsWith('r'), isTrue);
   });
 
-  test(
-    'due reviews are not dropped just to fill the sitting with new cards',
-    () {
-      final reviewCards = List.generate(10, (i) => testCard('r$i'));
-      final newCards = List.generate(10, (i) => testCard('n$i'));
-      final selected = selector.select(
-        cards: [...reviewCards, ...newCards],
-        schedules: {
-          for (final card in reviewCards)
-            card.id: schedule(card.id, CardLearningState.review, dueAt: now),
-          for (final card in newCards)
-            card.id: CardSchedule.fresh(card.id, now),
-        },
-        now: now,
-        limit: 10,
-        maxNewCards: sessionNewCardLimit(
-          sessionCapacity: 10,
-          dueReviewCount: 10,
-          remainingDaily: 10,
-        ),
-      );
+  test('new cards are learned before the last review', () {
+    for (final reviewCount in [1, 2, 5, 8]) {
+      for (final newCount in [1, 3, 5]) {
+        final reviewCards = List.generate(reviewCount, (i) => testCard('r$i'));
+        final newCards = List.generate(newCount, (i) => testCard('n$i'));
+        final selected = selector.select(
+          cards: [...reviewCards, ...newCards],
+          schedules: {
+            for (final card in reviewCards)
+              card.id: schedule(card.id, CardLearningState.review, dueAt: now),
+            for (final card in newCards)
+              card.id: CardSchedule.fresh(card.id, now),
+          },
+          now: now,
+          limit: 40,
+          maxNewCards: newCount,
+        );
 
-      final newCount = selected.where((card) => card.id.startsWith('n')).length;
-      final reviewCount = selected
-          .where((card) => card.id.startsWith('r'))
-          .length;
-      expect(newCount, lessThan(reviewCount));
-      expect(newCount, inInclusiveRange(1, 3));
-      expect(reviewCount, greaterThanOrEqualTo(7));
-    },
-  );
+        final kinds = selected
+            .map((card) => card.id.startsWith('n') ? 'N' : 'R')
+            .toList();
+        expect(kinds.last, 'R', reason: '$reviewCount reviews, $newCount new');
+        expect(kinds.where((ch) => ch == 'N').length, newCount);
+        final lastReview = kinds.lastIndexOf('R');
+        expect(kinds.sublist(lastReview + 1), isEmpty);
+      }
+    }
+  });
+
+  test('0 reviews queues only the new kanji', () {
+    final newCards = [
+      testCard('n1'),
+      testCard('n2'),
+      testCard('n3'),
+      testCard('n4'),
+      testCard('n5'),
+    ];
+    final selected = selector.select(
+      cards: newCards,
+      schedules: {
+        for (final card in newCards) card.id: CardSchedule.fresh(card.id, now),
+      },
+      now: now,
+      limit: 25,
+      maxNewCards: 5,
+    );
+    expect(selected.map((card) => card.id), ['n1', 'n2', 'n3', 'n4', 'n5']);
+  });
+
+  test('due reviews are not dropped when more review sittings remain', () {
+    final reviewCards = List.generate(30, (i) => testCard('r$i'));
+    final newCards = List.generate(10, (i) => testCard('n$i'));
+    final budget = sessionCardBudget(
+      sessionCapacity: 10,
+      dueReviewCount: 30,
+      remainingDaily: 10,
+    );
+    final selected = selector.select(
+      cards: [...reviewCards, ...newCards],
+      schedules: {
+        for (final card in reviewCards)
+          card.id: schedule(card.id, CardLearningState.review, dueAt: now),
+        for (final card in newCards) card.id: CardSchedule.fresh(card.id, now),
+      },
+      now: now,
+      limit: budget.sessionLimit,
+      maxNewCards: budget.maxNewCards,
+    );
+
+    final newCount = selected.where((card) => card.id.startsWith('n')).length;
+    final reviewCount = selected
+        .where((card) => card.id.startsWith('r'))
+        .length;
+    expect(newCount, lessThan(reviewCount));
+    expect(newCount, lessThan(10));
+    expect(reviewCount, greaterThanOrEqualTo(6));
+    expect(selected.last.id.startsWith('r'), isTrue);
+  });
 
   test('new kanji follow JLPT n5 then n4, then lowest id', () {
     final n5 = testCard('n5-080', jlptLevel: JlptLevel.n5);

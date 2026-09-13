@@ -430,6 +430,109 @@ void main() {
     },
   );
 
+  test(
+    '0 reviews and 5 new do not complete until every new kanji is learned',
+    () async {
+      final progress = MemoryProgressRepository();
+      final ids = ['n1', 'n2', 'n3', 'n4', 'n5'];
+      final controller = ReviewController(
+        progressRepository: progress,
+        srsEngine: const SrsEngine(),
+        cards: ids.map(testCard).toList(),
+        config: const ReviewSessionConfig(
+          duration: Duration(minutes: 5),
+          maxCards: 25,
+        ),
+        startTime: now,
+        clock: () => now,
+        schedules: {for (final id in ids) id: CardSchedule.fresh(id, now)},
+      );
+
+      var learned = 0;
+      SessionSummary? summary;
+      while (!controller.isComplete) {
+        expect(summary, isNull);
+        if (controller.phase == StudyPhase.learn) {
+          controller.beginPractice();
+          summary = await controller.completePractice();
+          learned++;
+          if (learned < 5) {
+            expect(summary, isNull);
+            expect(controller.isComplete, isFalse);
+          }
+        } else {
+          expect(controller.phase, StudyPhase.recall);
+          controller.submit();
+          summary = await controller.rate(ReviewResult.good);
+        }
+      }
+
+      expect(learned, 5);
+      expect(summary, isNotNull);
+      expect(progress.dailyNewKanji.count, 5);
+      for (final id in ids) {
+        expect(progress.schedules[id]!.state, isNot(CardLearningState.newCard));
+      }
+    },
+  );
+
+  test(
+    '1 review and 5 new learn every new kanji before the last review',
+    () async {
+      final progress = MemoryProgressRepository();
+      final newIds = ['n1', 'n2', 'n3', 'n4', 'n5'];
+      await progress.seedIfNeeded(['r1', ...newIds], now: now);
+      await progress.saveSchedule(dueReview('r1'));
+      const selector = DueCardSelector();
+      final selected = selector.select(
+        cards: [testCard('r1'), ...newIds.map(testCard)],
+        schedules: progress.schedules,
+        now: now,
+        limit: 25,
+        maxNewCards: 5,
+      );
+      expect(selected.last.id, 'r1');
+
+      final controller = ReviewController(
+        progressRepository: progress,
+        srsEngine: const SrsEngine(),
+        cards: selected,
+        config: const ReviewSessionConfig(
+          duration: Duration(minutes: 5),
+          maxCards: 25,
+        ),
+        startTime: now,
+        clock: () => now,
+        schedules: Map<String, CardSchedule>.from(progress.schedules),
+      );
+
+      var learned = 0;
+      final events = <String>[];
+      while (!controller.isComplete) {
+        final id = controller.current!.id;
+        if (controller.phase == StudyPhase.learn) {
+          controller.beginPractice();
+          expect(await controller.completePractice(), isNull);
+          learned++;
+          events.add('learn:$id');
+        } else {
+          controller.submit();
+          await controller.rate(ReviewResult.good);
+          events.add('review:$id');
+        }
+      }
+
+      expect(learned, 5);
+      expect(events.where((event) => event.startsWith('learn:')).length, 5);
+      final lastReview = events.lastIndexWhere((event) => event == 'review:r1');
+      final lastLearn = events.lastIndexWhere(
+        (event) => event.startsWith('learn:'),
+      );
+      expect(lastLearn, lessThan(lastReview));
+      expect(controller.summary, isNotNull);
+    },
+  );
+
   test('introduced SRS state survives a new controller instance', () async {
     final progress = MemoryProgressRepository();
     final first = await controllerFor(progress: progress, ids: ['a', 'b']);
