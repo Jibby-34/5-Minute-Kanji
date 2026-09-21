@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../core/models/notification_settings.dart';
 import '../../core/models/start_of_day.dart';
 import '../../core/theme/app_theme.dart';
 import '../../core/utils/time_format.dart';
 import '../../repositories/progress_repository.dart';
+import '../../services/reminder_scheduler.dart';
 import 'open_source_licenses_screen.dart';
 import 'settings_controller.dart';
 
@@ -16,14 +18,42 @@ class SettingsScreen extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (context) => SettingsController(
         progressRepository: context.read<ProgressRepository>(),
+        reminderScheduler: context.read<ReminderScheduler?>(),
       )..load(),
       child: const _SettingsView(),
     );
   }
 }
 
-class _SettingsView extends StatelessWidget {
+class _SettingsView extends StatefulWidget {
   const _SettingsView();
+
+  @override
+  State<_SettingsView> createState() => _SettingsViewState();
+}
+
+class _SettingsViewState extends State<_SettingsView>
+    with WidgetsBindingObserver {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    // The user may have just changed notification permission in system
+    // settings.
+    if (state == AppLifecycleState.resumed && mounted) {
+      context.read<SettingsController>().refreshPermission();
+    }
+  }
 
   Future<void> _pickStartOfDay(
     BuildContext context,
@@ -129,6 +159,10 @@ class _SettingsView extends StatelessWidget {
                             ),
                           ),
                         ),
+                        const SizedBox(height: 40),
+                        Text('Study reminders', style: sectionTitle),
+                        const SizedBox(height: 4),
+                        _ReminderRows(controller: controller),
                         const SizedBox(height: 48),
                         Material(
                           color: Colors.transparent,
@@ -166,6 +200,127 @@ class _SettingsView extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+/// Compact reminder controls. Deliberately quieter than the sections above it.
+class _ReminderRows extends StatelessWidget {
+  const _ReminderRows({required this.controller});
+
+  final SettingsController controller;
+
+  Future<void> _pickReminderTime(BuildContext context) async {
+    final current = controller.reminderTime;
+    final picked = await showTimePicker(
+      context: context,
+      initialTime: TimeOfDay(hour: current.hour, minute: current.minute),
+    );
+    if (picked == null || !context.mounted) return;
+    await controller.setReminderTime(
+      ReminderTime(hour: picked.hour, minute: picked.minute),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final enabled = controller.dailyReminderEnabled;
+    final labelStyle = theme.textTheme.bodyLarge;
+    final valueStyle = theme.textTheme.bodyLarge?.copyWith(
+      color: enabled ? null : theme.mutedText,
+      fontWeight: FontWeight.w600,
+    );
+    final time = MaterialLocalizations.of(context).formatTimeOfDay(
+      TimeOfDay(
+        hour: controller.reminderTime.hour,
+        minute: controller.reminderTime.minute,
+      ),
+      alwaysUse24HourFormat: MediaQuery.alwaysUse24HourFormatOf(context),
+    );
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 4),
+          child: Row(
+            children: [
+              Expanded(child: Text('Daily reminder', style: labelStyle)),
+              Switch.adaptive(
+                value: enabled,
+                onChanged: controller.setDailyReminderEnabled,
+              ),
+            ],
+          ),
+        ),
+        Material(
+          color: Colors.transparent,
+          child: InkWell(
+            onTap: enabled ? () => _pickReminderTime(context) : null,
+            borderRadius: BorderRadius.circular(12),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 12),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      'Reminder time',
+                      style: labelStyle?.copyWith(
+                        color: enabled ? null : theme.mutedText,
+                      ),
+                    ),
+                  ),
+                  Text(time, style: valueStyle),
+                ],
+              ),
+            ),
+          ),
+        ),
+        if (controller.remindersBlockedBySystem)
+          _SystemNotificationsNotice(controller: controller),
+      ],
+    );
+  }
+}
+
+/// Shown only when reminders are on and the OS will not deliver them.
+class _SystemNotificationsNotice extends StatelessWidget {
+  const _SystemNotificationsNotice({required this.controller});
+
+  final SettingsController controller;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final canRequest = controller.canRequestPermission;
+
+    return Padding(
+      padding: const EdgeInsets.only(top: 4),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            canRequest
+                ? 'Allow notifications to receive your daily reminder.'
+                : 'Notifications are disabled in system settings.',
+            style: theme.textTheme.bodyMedium?.copyWith(color: theme.mutedText),
+          ),
+          const SizedBox(height: 4),
+          TextButton(
+            style: TextButton.styleFrom(
+              padding: EdgeInsets.zero,
+              minimumSize: const Size(0, 36),
+              tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+              alignment: Alignment.centerLeft,
+            ),
+            onPressed: canRequest
+                ? controller.requestPermission
+                : controller.openSystemNotificationSettings,
+            child: Text(canRequest ? 'Allow' : 'Open Settings'),
+          ),
+        ],
       ),
     );
   }

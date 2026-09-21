@@ -1,18 +1,14 @@
-import 'dart:math' as math;
-
 import 'package:flutter/foundation.dart';
 
-import '../../core/models/card_schedule.dart';
 import '../../core/models/kanji_card.dart';
-import '../../core/models/progress.dart';
 import '../../core/models/review.dart';
 import '../../core/models/start_of_day.dart';
 import '../../core/utils/clock.dart';
-import '../../core/utils/time_format.dart';
 import '../../repositories/kanji_repository.dart';
 import '../../repositories/progress_repository.dart';
+import '../../services/daily_workload.dart';
 import '../../services/due_card_selector.dart';
-import '../../services/session_new_card_budget.dart';
+import '../../services/reminder_scheduler.dart';
 
 class HomeController extends ChangeNotifier {
   HomeController({
@@ -20,13 +16,24 @@ class HomeController extends ChangeNotifier {
     required this.progressRepository,
     this.config = ReviewSessionConfig.fiveMinute,
     this.selector = const DueCardSelector(),
+    this.reminderScheduler,
     Clock? clock,
-  }) : clock = clock ?? DateTime.now;
+  }) : clock = clock ?? DateTime.now,
+       workloadService = DailyWorkloadService(
+         kanjiRepository: kanjiRepository,
+         progressRepository: progressRepository,
+         config: config,
+         selector: selector,
+       );
 
   final KanjiRepository kanjiRepository;
   final ProgressRepository progressRepository;
   final ReviewSessionConfig config;
   final DueCardSelector selector;
+  final DailyWorkloadService workloadService;
+
+  /// Absent in tests and on platforms without notifications.
+  final ReminderScheduler? reminderScheduler;
   final Clock clock;
 
   bool loading = true;
@@ -50,62 +57,15 @@ class HomeController extends ChangeNotifier {
     }
 
     try {
-      final cards = await kanjiRepository.getAll();
-      final schedules = await progressRepository.getSchedules();
-      final settings = await progressRepository.getSettings();
       final streakInfo = await progressRepository.getStreak();
-      final now = clock();
-      final dayBoundary = settings.startOfDay;
-      final sessionConfig = config.copyWith(
-        averageSecondsPerCard: settings.averageSecondsPerCard,
-      );
-      final daily = (await progressRepository.getDailyNewKanji()).forDay(
-        now,
-        startOfDay: dayBoundary,
-      );
-      final remainingDaily = daily.remainingAllowance(settings.newKanjiPerDay);
-      final unencountered = selector.countNew(
-        cards: cards,
-        schedules: schedules,
-      );
+      final workload = await workloadService.read(now: clock());
 
-      final due = selector.countDue(
-        cards: cards,
-        schedules: schedules,
-        now: now,
-        startOfDay: dayBoundary,
-      );
-      final remainingNew = math.min(unencountered, remainingDaily);
-      final budget = sessionCardBudget(
-        sessionCapacity: sessionConfig.effectiveMaxCards,
-        dueReviewCount: due,
-        remainingDaily: remainingNew,
-      );
-      final selected = selector.select(
-        cards: cards,
-        schedules: schedules,
-        now: now,
-        limit: budget.sessionLimit,
-        maxNewCards: budget.maxNewCards,
-        startOfDay: dayBoundary,
-      );
-
-      dueCount = due;
-      newRemainingToday = remainingNew;
-      estimatedMinutes = estimateReviewMinutes(
-        dueCount: selected.length,
-        averageSecondsPerCard: settings.averageSecondsPerCard,
-      );
+      dueCount = workload.dueCount;
+      newRemainingToday = workload.newRemainingToday;
+      estimatedMinutes = workload.estimatedMinutes;
       streak = streakInfo.current;
-      startOfDay = dayBoundary;
-      nextReviewAt = _nextReviewAt(
-        cards: cards,
-        schedules: schedules,
-        now: now,
-        settings: settings,
-        unencountered: unencountered,
-        remainingNew: remainingNew,
-      );
+      startOfDay = workload.startOfDay;
+      nextReviewAt = workload.nextReviewAt;
     } catch (_) {
       dueCount = 0;
       newRemainingToday = 0;
@@ -117,79 +77,27 @@ class HomeController extends ChangeNotifier {
 
     loading = false;
     notifyListeners();
+
+    // Home reloads at exactly the moments today's workload can have changed:
+    // startup, resume, and returning from a sitting, the kanji list or
+    // settings. That makes it the right place to keep the reminder honest.
+    await reminderScheduler?.reschedule();
   }
 
   Future<List<KanjiCard>> cardsForSession({required bool practice}) async {
     final cards = await kanjiRepository.getAll();
     if (cards.isEmpty) return const [];
 
-    final settings = await progressRepository.getSettings();
-    final sessionConfig = config.copyWith(
-      averageSecondsPerCard: settings.averageSecondsPerCard,
-    );
-    final limit = sessionConfig.effectiveMaxCards;
-
     if (practice) {
+      final settings = await progressRepository.getSettings();
+      final limit = config
+          .copyWith(averageSecondsPerCard: settings.averageSecondsPerCard)
+          .effectiveMaxCards;
       final shuffled = List<KanjiCard>.from(cards)..shuffle();
       return shuffled.take(limit).toList();
     }
 
-    final now = clock();
-    final schedules = await progressRepository.getSchedules();
-    final dayBoundary = settings.startOfDay;
-    final daily = (await progressRepository.getDailyNewKanji()).forDay(
-      now,
-      startOfDay: dayBoundary,
-    );
-    final remainingDaily = daily.remainingAllowance(settings.newKanjiPerDay);
-    final due = selector.countDue(
-      cards: cards,
-      schedules: schedules,
-      now: now,
-      startOfDay: dayBoundary,
-    );
-    final remainingNew = math.min(
-      selector.countNew(cards: cards, schedules: schedules),
-      remainingDaily,
-    );
-
-    final budget = sessionCardBudget(
-      sessionCapacity: limit,
-      dueReviewCount: due,
-      remainingDaily: remainingNew,
-    );
-
-    return selector.select(
-      cards: cards,
-      schedules: schedules,
-      now: now,
-      limit: budget.sessionLimit,
-      maxNewCards: budget.maxNewCards,
-      startOfDay: dayBoundary,
-    );
-  }
-
-  DateTime? _nextReviewAt({
-    required List<KanjiCard> cards,
-    required Map<String, CardSchedule> schedules,
-    required DateTime now,
-    required AppSettings settings,
-    required int unencountered,
-    required int remainingNew,
-  }) {
-    if (dueCount > 0 || remainingNew > 0) return now;
-
-    final nextDue = selector.nextFutureDue(
-      cards: cards,
-      schedules: schedules,
-      now: now,
-      startOfDay: settings.startOfDay,
-    );
-
-    if (unencountered > 0 && settings.newKanjiPerDay > 0) {
-      final tomorrow = settings.startOfDay.startOfNextStudyDay(now);
-      if (nextDue == null || tomorrow.isBefore(nextDue)) return tomorrow;
-    }
-    return nextDue;
+    final workload = await workloadService.read(now: clock());
+    return workload.sessionCards;
   }
 }

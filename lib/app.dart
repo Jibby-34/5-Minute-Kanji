@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
+import 'core/navigation/app_navigator.dart';
 import 'core/theme/app_scroll_behavior.dart';
 import 'core/theme/app_theme.dart';
 import 'data/asset_stroke_data_repository.dart';
@@ -11,6 +12,7 @@ import 'repositories/kanji_repository.dart';
 import 'repositories/progress_repository.dart';
 import 'repositories/stroke_data_repository.dart';
 import 'services/mark_as_known.dart';
+import 'services/reminder_scheduler.dart';
 import 'services/srs_engine.dart';
 import 'services/srs_scheduler.dart';
 
@@ -21,6 +23,7 @@ class FiveMinuteKanjiApp extends StatelessWidget {
     required this.progressRepository,
     this.srsEngine = const SrsEngine(),
     this.strokeDataRepository,
+    this.reminderScheduler,
   });
 
   final KanjiRepository kanjiRepository;
@@ -28,10 +31,14 @@ class FiveMinuteKanjiApp extends StatelessWidget {
   final SrsScheduler srsEngine;
   final StrokeDataRepository? strokeDataRepository;
 
+  /// Absent in tests and on platforms without local notifications.
+  final ReminderScheduler? reminderScheduler;
+
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        Provider<ReminderScheduler?>.value(value: reminderScheduler),
         Provider<KanjiRepository>.value(value: kanjiRepository),
         Provider<ProgressRepository>.value(value: progressRepository),
         Provider<SrsScheduler>.value(value: srsEngine),
@@ -48,11 +55,13 @@ class FiveMinuteKanjiApp extends StatelessWidget {
           create: (context) => HomeController(
             kanjiRepository: kanjiRepository,
             progressRepository: progressRepository,
+            reminderScheduler: reminderScheduler,
           )..load(),
         ),
       ],
       child: MaterialApp(
         title: '5-Minute Kanji',
+        navigatorKey: AppNavigator.key,
         debugShowCheckedModeBanner: false,
         theme: AppTheme.light,
         darkTheme: AppTheme.dark,

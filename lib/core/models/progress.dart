@@ -1,3 +1,4 @@
+import 'notification_settings.dart';
 import 'review.dart';
 import 'start_of_day.dart';
 
@@ -136,6 +137,7 @@ class AppSettings {
     this.averageSecondsPerCard = 12,
     this.newKanjiPerDay = defaultNewKanjiPerDay,
     this.startOfDay = StartOfDay.defaults,
+    this.notifications = NotificationSettings.defaults,
   });
 
   static const int defaultNewKanjiPerDay = 5;
@@ -145,11 +147,13 @@ class AppSettings {
   final int averageSecondsPerCard;
   final int newKanjiPerDay;
   final StartOfDay startOfDay;
+  final NotificationSettings notifications;
 
   AppSettings copyWith({
     int? averageSecondsPerCard,
     int? newKanjiPerDay,
     StartOfDay? startOfDay,
+    NotificationSettings? notifications,
   }) {
     return AppSettings(
       averageSecondsPerCard:
@@ -158,6 +162,7 @@ class AppSettings {
           ? this.newKanjiPerDay
           : clampNewKanjiPerDay(newKanjiPerDay),
       startOfDay: startOfDay ?? this.startOfDay,
+      notifications: notifications ?? this.notifications,
     );
   }
 
@@ -171,6 +176,7 @@ class AppSettings {
       'newKanjiPerDay': newKanjiPerDay,
       'startOfDayHour': startOfDay.hour,
       'startOfDayMinute': startOfDay.minute,
+      'notifications': notifications.toJson(),
     };
   }
 
@@ -189,7 +195,18 @@ class AppSettings {
             (json['startOfDayMinute'] as num?)?.toInt() ??
             StartOfDay.defaultMinute,
       ),
+      notifications: NotificationSettings.fromJson(
+        _asStringKeyMap(json['notifications']),
+      ),
     );
+  }
+
+  static Map<String, dynamic>? _asStringKeyMap(Object? value) {
+    if (value is Map<String, dynamic>) return value;
+    if (value is Map) {
+      return value.map((key, item) => MapEntry(key.toString(), item));
+    }
+    return null;
   }
 }
 
