@@ -252,6 +252,7 @@ class _MnemonicLink extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final accent = theme.colorScheme.primary;
     return Semantics(
       button: true,
       label: 'Show the ${component.name} component',
@@ -262,12 +263,21 @@ class _MnemonicLink extends StatelessWidget {
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text(text, style: style),
+              Text(
+                text,
+                style: style.copyWith(
+                  color: accent,
+                  fontWeight: FontWeight.w600,
+                  decoration: TextDecoration.underline,
+                  decorationColor: accent.withValues(alpha: 0.45),
+                  decorationThickness: 1,
+                ),
+              ),
               const SizedBox(width: 2),
               Icon(
                 Icons.lightbulb_outline,
                 size: 12,
-                color: theme.colorScheme.primary.withValues(alpha: 0.72),
+                color: accent.withValues(alpha: 0.85),
               ),
             ],
           ),

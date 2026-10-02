@@ -98,6 +98,10 @@ void main() {
     expect(find.text('A person rests against a tree.'), findsNothing);
     expect(linkText('person'), findsOneWidget);
     expect(linkText('tree'), findsOneWidget);
+    final personStyle = tester.widget<Text>(linkText('person')).style!;
+    expect(personStyle.fontWeight, FontWeight.w600);
+    expect(personStyle.color, AppTheme.light.colorScheme.primary);
+    expect(personStyle.decoration, TextDecoration.underline);
     expect(find.text('亻'), findsNothing);
     expect(find.byIcon(Icons.lightbulb_outline), findsNWidgets(2));
     expect(find.bySemanticsLabel('Show the person component'), findsOneWidget);
