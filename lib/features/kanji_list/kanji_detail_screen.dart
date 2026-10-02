@@ -9,6 +9,7 @@ import '../../core/theme/app_typography.dart';
 import '../../services/kanji_status_resolver.dart';
 import '../../services/mark_as_known.dart';
 import '../../widgets/bottom_action_inset.dart';
+import '../../widgets/mnemonic_text.dart';
 import '../../widgets/primary_button.dart';
 import '../stroke_order/kanji_stroke_animation.dart';
 
@@ -66,10 +67,7 @@ class _KanjiDetailScreenState extends State<KanjiDetailScreen> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final card = widget.card;
-    final showComponents =
-        card.components.length > 1 ||
-        (card.components.length == 1 &&
-            card.components.first != card.character);
+    final showComponents = card.hasComponentBreakdown;
     final showSecondaryMeaning =
         card.meaning.trim().isNotEmpty &&
         card.meaning.toLowerCase() != card.keyword.toLowerCase();
@@ -193,9 +191,10 @@ class _KanjiDetailScreenState extends State<KanjiDetailScreen> {
                     const SizedBox(height: 20),
                     _sectionLabel(theme, 'Memory tip'),
                     const SizedBox(height: 6),
-                    Text(
-                      card.mnemonic,
-                      style: theme.textTheme.bodyLarge?.copyWith(
+                    MnemonicText(
+                      mnemonic: card.mnemonic,
+                      components: card.components,
+                      style: theme.textTheme.bodyLarge!.copyWith(
                         color: theme.mutedText,
                         height: 1.4,
                       ),

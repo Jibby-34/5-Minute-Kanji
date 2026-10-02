@@ -22,6 +22,37 @@ enum JlptLevel {
   };
 }
 
+/// A visual building block of a kanji, optionally tied to the mnemonic.
+///
+/// [mnemonicText] is the English word or phrase in the card mnemonic that
+/// refers to this component. It is matched exactly, aside from case.
+/// [occurrence] selects which match to use when that phrase appears more
+/// than once, starting at 0. Leave [mnemonicText] null to keep the component
+/// out of the mnemonic.
+class KanjiComponent {
+  const KanjiComponent({
+    required this.id,
+    required this.character,
+    required this.name,
+    this.image,
+    this.mnemonicText,
+    this.occurrence = 0,
+  });
+
+  final String id;
+  final String character;
+  final String name;
+
+  /// Asset path for a component illustration. A missing file falls back to
+  /// [character].
+  final String? image;
+
+  final String? mnemonicText;
+  final int occurrence;
+
+  String get label => '$character — $name';
+}
+
 /// A single kanji study card. Content-agnostic: RTK, Anki, JLPT, or custom later.
 class KanjiCard {
   const KanjiCard({
@@ -47,7 +78,7 @@ class KanjiCard {
   final String meaning;
   final String keyword;
   final String mnemonic;
-  final List<String> components;
+  final List<KanjiComponent> components;
   final int strokeCount;
   final JlptLevel jlptLevel;
   final int? rtkIndex;
@@ -58,7 +89,13 @@ class KanjiCard {
   final String? sourceDeckId;
   final ContentAccess access;
 
-  String get componentsLabel => components.join(' + ');
+  String get componentsLabel =>
+      components.map((component) => component.label).join(' + ');
+
+  /// Whether the components line adds information beyond the character itself.
+  bool get hasComponentBreakdown =>
+      components.length > 1 ||
+      (components.length == 1 && components.single.label != character);
 
   String get onyomiLabel => onyomi.join('・');
 

@@ -65,9 +65,7 @@ void main() {
         providers: [
           Provider<ProgressRepository>.value(value: repo),
           Provider<StrokeDataRepository>.value(
-            value: MemoryStrokeDataRepository({
-              kanji.character: ?strokeData,
-            }),
+            value: MemoryStrokeDataRepository({kanji.character: ?strokeData}),
           ),
           Provider<MarkAsKnownService>(
             create: (_) => MarkAsKnownService(
@@ -158,7 +156,14 @@ void main() {
       meaning: 'daylight',
       keyword: 'day',
       mnemonic: 'A sun through a window.',
-      components: ['日'],
+      components: [
+        KanjiComponent(
+          id: 'sun',
+          character: '日',
+          name: 'sun',
+          mnemonicText: 'sun',
+        ),
+      ],
       jlptLevel: JlptLevel.none,
     );
     await pumpDetail(tester, kanji: bare, strokeData: loadFixture('04e00'));
@@ -169,7 +174,7 @@ void main() {
     expect(find.text('On'), findsNothing);
     expect(find.text('N5'), findsNothing);
     expect(find.text('COMPONENTS'), findsOneWidget);
-    expect(find.text('日'), findsOneWidget);
+    expect(find.text(bare.componentsLabel), findsOneWidget);
     expect(find.text('Mark as Known'), findsOneWidget);
 
     await tester.tap(find.text('Mark as Known'));

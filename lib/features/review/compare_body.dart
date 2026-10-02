@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import '../../core/models/handwriting.dart';
 import '../../core/models/kanji_card.dart';
 import '../../core/theme/app_theme.dart';
+import '../../widgets/mnemonic_text.dart';
 import '../stroke_order/kanji_stroke_animation.dart';
 import 'widgets/handwriting_pad.dart';
 
@@ -189,26 +190,28 @@ class _CompareBodyState extends State<CompareBody> {
   }
 
   Widget _mnemonic(ThemeData theme) {
-    return Semantics(
-      label: 'Memory aid: ${card.mnemonic}',
-      child: ExcludeSemantics(
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Icon(Icons.lightbulb_outline, size: 18, color: theme.mutedText),
-            const SizedBox(width: 8),
-            Expanded(
-              child: Text(
-                card.mnemonic,
-                style: theme.textTheme.bodyLarge?.copyWith(
-                  color: theme.mutedText,
-                  height: 1.4,
-                ),
-              ),
-            ),
-          ],
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        ExcludeSemantics(
+          child: Icon(
+            Icons.lightbulb_outline,
+            size: 18,
+            color: theme.mutedText,
+          ),
         ),
-      ),
+        const SizedBox(width: 8),
+        Expanded(
+          child: MnemonicText(
+            mnemonic: card.mnemonic,
+            components: card.components,
+            style: theme.textTheme.bodyLarge!.copyWith(
+              color: theme.mutedText,
+              height: 1.4,
+            ),
+          ),
+        ),
+      ],
     );
   }
 

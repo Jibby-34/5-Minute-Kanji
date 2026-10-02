@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../core/models/kanji_card.dart';
 import '../../core/theme/app_theme.dart';
 import '../../core/theme/app_typography.dart';
+import '../../widgets/mnemonic_text.dart';
 import '../stroke_order/kanji_stroke_animation.dart';
 
 class LearnKanjiBody extends StatelessWidget {
@@ -13,10 +14,7 @@ class LearnKanjiBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final showComponents =
-        card.components.length > 1 ||
-        (card.components.length == 1 &&
-            card.components.first != card.character);
+    final showComponents = card.hasComponentBreakdown;
     final showMeaning =
         card.meaning.trim().isNotEmpty &&
         card.meaning.toLowerCase() != card.keyword.toLowerCase();
@@ -145,26 +143,28 @@ class LearnKanjiBody extends StatelessWidget {
   }
 
   Widget _mnemonic(ThemeData theme) {
-    return Semantics(
-      label: 'Memory aid: ${card.mnemonic}',
-      child: ExcludeSemantics(
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Icon(Icons.lightbulb_outline, size: 18, color: theme.mutedText),
-            const SizedBox(width: 8),
-            Expanded(
-              child: Text(
-                card.mnemonic,
-                style: theme.textTheme.bodyLarge?.copyWith(
-                  color: theme.mutedText,
-                  height: 1.4,
-                ),
-              ),
-            ),
-          ],
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        ExcludeSemantics(
+          child: Icon(
+            Icons.lightbulb_outline,
+            size: 18,
+            color: theme.mutedText,
+          ),
         ),
-      ),
+        const SizedBox(width: 8),
+        Expanded(
+          child: MnemonicText(
+            mnemonic: card.mnemonic,
+            components: card.components,
+            style: theme.textTheme.bodyLarge!.copyWith(
+              color: theme.mutedText,
+              height: 1.4,
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
