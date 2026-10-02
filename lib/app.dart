@@ -7,11 +7,12 @@ import 'core/theme/app_scroll_behavior.dart';
 import 'core/theme/app_theme.dart';
 import 'data/asset_stroke_data_repository.dart';
 import 'features/home/home_controller.dart';
-import 'features/home/home_screen.dart';
+import 'features/placement/placement_gate.dart';
 import 'repositories/kanji_repository.dart';
 import 'repositories/progress_repository.dart';
 import 'repositories/stroke_data_repository.dart';
 import 'services/mark_as_known.dart';
+import 'services/placement_service.dart';
 import 'services/reminder_scheduler.dart';
 import 'services/srs_engine.dart';
 import 'services/srs_scheduler.dart';
@@ -51,6 +52,13 @@ class FiveMinuteKanjiApp extends StatelessWidget {
             srsEngine: srsEngine,
           ),
         ),
+        Provider<PlacementService>(
+          create: (context) => PlacementService(
+            kanjiRepository: kanjiRepository,
+            progressRepository: progressRepository,
+            markAsKnown: context.read<MarkAsKnownService>(),
+          ),
+        ),
         ChangeNotifierProvider(
           create: (context) => HomeController(
             kanjiRepository: kanjiRepository,
@@ -76,7 +84,7 @@ class FiveMinuteKanjiApp extends StatelessWidget {
             child: child ?? const SizedBox.shrink(),
           );
         },
-        home: const HomeScreen(),
+        home: const PlacementGate(),
       ),
     );
   }

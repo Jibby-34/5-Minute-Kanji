@@ -1,4 +1,5 @@
 import '../core/models/card_schedule.dart';
+import '../core/models/placement.dart';
 import '../core/models/progress.dart';
 
 abstract class ProgressRepository {
@@ -25,6 +26,10 @@ abstract class ProgressRepository {
   Future<DailyNewKanjiProgress> getDailyNewKanji();
 
   Future<void> saveDailyNewKanji(DailyNewKanjiProgress progress);
+
+  Future<PlacementProgress> getPlacement();
+
+  Future<void> savePlacement(PlacementProgress placement);
 
   /// Creates a fresh due-now schedule for any card that has none.
   Future<void> seedIfNeeded(List<String> cardIds, {DateTime? now});

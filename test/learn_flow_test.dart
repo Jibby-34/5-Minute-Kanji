@@ -409,6 +409,7 @@ void main() {
       await pumpReview(tester, progress: progress, cards: [first]);
       await completeLearnIntro(tester);
 
+      await completePlacementTest(progress);
       await tester.pumpWidget(
         FiveMinuteKanjiApp(
           kanjiRepository: kanji,

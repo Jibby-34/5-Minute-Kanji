@@ -8,6 +8,8 @@ import 'package:fiveminutekanji/data/hardcoded_kanji_repository.dart';
 import 'package:fiveminutekanji/data/shared_prefs_progress_repository.dart';
 import 'package:fiveminutekanji/features/home/home_screen.dart';
 
+import 'support/fakes.dart';
+
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
@@ -34,6 +36,7 @@ void main() {
     final cards = await kanji.getAll();
     await progress.seedIfNeeded(cards.map((card) => card.id).toList());
 
+    await completePlacementTest(progress);
     await tester.pumpWidget(
       FiveMinuteKanjiApp(kanjiRepository: kanji, progressRepository: progress),
     );

@@ -46,6 +46,7 @@ void main() {
     await progress.seedIfNeeded(cards.map((card) => card.id).toList());
     final first = cards.first;
 
+    await completePlacementTest(progress);
     await tester.pumpWidget(
       FiveMinuteKanjiApp(kanjiRepository: kanji, progressRepository: progress),
     );
@@ -104,6 +105,7 @@ void main() {
     }
     await progress.saveSchedule(schedule);
 
+    await completePlacementTest(progress);
     await tester.pumpWidget(
       FiveMinuteKanjiApp(kanjiRepository: kanji, progressRepository: progress),
     );
@@ -144,6 +146,7 @@ void main() {
     );
     await progress.saveSchedule(schedule);
 
+    await completePlacementTest(progress);
     await tester.pumpWidget(
       FiveMinuteKanjiApp(kanjiRepository: kanji, progressRepository: progress),
     );
@@ -172,6 +175,7 @@ void main() {
       DailyNewKanjiProgress(date: now, count: 3),
     );
 
+    await completePlacementTest(progress);
     await tester.pumpWidget(
       FiveMinuteKanjiApp(kanjiRepository: kanji, progressRepository: progress),
     );
@@ -239,6 +243,7 @@ void main() {
       learning = const SrsEngine().introduce(current: learning, now: now);
       await progress.saveSchedule(learning);
 
+      await completePlacementTest(progress);
       await tester.pumpWidget(
         FiveMinuteKanjiApp(
           kanjiRepository: kanji,

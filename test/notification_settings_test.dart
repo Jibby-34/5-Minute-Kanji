@@ -11,6 +11,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'support/fakes.dart';
+
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
@@ -104,6 +106,7 @@ void main() {
       final cards = await kanji.getAll();
       await progress.seedIfNeeded(cards.map((card) => card.id).toList());
 
+      await completePlacementTest(progress);
       await tester.pumpWidget(
         FiveMinuteKanjiApp(
           kanjiRepository: kanji,
@@ -169,6 +172,7 @@ void main() {
       final cards = await kanji.getAll();
       await progress.seedIfNeeded(cards.map((card) => card.id).toList());
 
+      await completePlacementTest(progress);
       await tester.pumpWidget(
         FiveMinuteKanjiApp(
           kanjiRepository: kanji,

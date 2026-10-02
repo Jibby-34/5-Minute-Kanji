@@ -1,6 +1,7 @@
 import 'package:fiveminutekanji/core/models/card_schedule.dart';
 import 'package:fiveminutekanji/core/models/curriculum.dart';
 import 'package:fiveminutekanji/core/models/kanji_card.dart';
+import 'package:fiveminutekanji/core/models/placement.dart';
 import 'package:fiveminutekanji/core/models/progress.dart';
 import 'package:fiveminutekanji/repositories/kanji_repository.dart';
 import 'package:fiveminutekanji/repositories/progress_repository.dart';
@@ -21,6 +22,12 @@ KanjiCard testCard(
     strokeCount: 1,
     jlptLevel: jlptLevel,
   );
+}
+
+/// Puts a repository in the state of a user who is past the first-launch
+/// placement test, which is where tests that pump the app root start from.
+Future<void> completePlacementTest(ProgressRepository progress) {
+  return progress.savePlacement(const PlacementProgress(completed: true));
 }
 
 class FakeKanjiRepository implements KanjiRepository {
@@ -55,6 +62,7 @@ class MemoryProgressRepository implements ProgressRepository {
   StreakInfo streak = StreakInfo.empty;
   AppSettings settings;
   DailyNewKanjiProgress dailyNewKanji;
+  PlacementProgress placement = PlacementProgress.empty;
 
   @override
   Future<Map<String, CardSchedule>> getSchedules() async =>
@@ -106,6 +114,14 @@ class MemoryProgressRepository implements ProgressRepository {
   @override
   Future<void> saveDailyNewKanji(DailyNewKanjiProgress next) async {
     dailyNewKanji = next;
+  }
+
+  @override
+  Future<PlacementProgress> getPlacement() async => placement;
+
+  @override
+  Future<void> savePlacement(PlacementProgress next) async {
+    placement = next;
   }
 
   @override

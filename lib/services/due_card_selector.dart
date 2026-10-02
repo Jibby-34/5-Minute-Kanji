@@ -2,6 +2,17 @@ import '../core/models/card_schedule.dart';
 import '../core/models/kanji_card.dart';
 import '../core/models/start_of_day.dart';
 
+/// The order unencountered kanji are introduced in: easiest JLPT level first,
+/// then the content order inside a level. Also the difficulty order the
+/// placement test samples along.
+int compareKanjiLearnOrder(KanjiCard a, KanjiCard b) {
+  final aLevel = JlptLevel.sectionOrder.indexOf(a.jlptLevel);
+  final bLevel = JlptLevel.sectionOrder.indexOf(b.jlptLevel);
+  final levelCompare = aLevel.compareTo(bLevel);
+  if (levelCompare != 0) return levelCompare;
+  return a.id.compareTo(b.id);
+}
+
 /// Picks cards for a sitting. SRS [CardSchedule.dueAt] is the ideal review
 /// time; this class decides daily availability for today's study window.
 class DueCardSelector {
@@ -71,7 +82,7 @@ class DueCardSelector {
 
     _sortByDueThenId(learningDue, schedules, now);
     _sortByDueThenId(reviewDue, schedules, now);
-    news.sort(_compareNewLearnOrder);
+    news.sort(compareKanjiLearnOrder);
 
     final existingAvailable = learningDue.length + reviewDue.length;
     final int newTakeCount;
@@ -147,14 +158,6 @@ class DueCardSelector {
       }
     }
     return next;
-  }
-
-  int _compareNewLearnOrder(KanjiCard a, KanjiCard b) {
-    final aLevel = JlptLevel.sectionOrder.indexOf(a.jlptLevel);
-    final bLevel = JlptLevel.sectionOrder.indexOf(b.jlptLevel);
-    final levelCompare = aLevel.compareTo(bLevel);
-    if (levelCompare != 0) return levelCompare;
-    return a.id.compareTo(b.id);
   }
 
   void _sortByDueThenId(

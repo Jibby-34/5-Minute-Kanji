@@ -6,7 +6,9 @@ import '../../core/models/start_of_day.dart';
 import '../../core/theme/app_theme.dart';
 import '../../core/utils/time_format.dart';
 import '../../repositories/progress_repository.dart';
+import '../../services/placement_service.dart';
 import '../../services/reminder_scheduler.dart';
+import '../placement/placement_screen.dart';
 import 'open_source_licenses_screen.dart';
 import 'settings_controller.dart';
 
@@ -53,6 +55,21 @@ class _SettingsViewState extends State<_SettingsView>
     if (state == AppLifecycleState.resumed && mounted) {
       context.read<SettingsController>().refreshPermission();
     }
+  }
+
+  /// A retake only ever adds known kanji: kanji with progress are left out of
+  /// the test, so nothing already learned is disturbed.
+  Future<void> _retakePlacementTest(BuildContext context) async {
+    final service = context.read<PlacementService>();
+    await service.restart();
+    if (!context.mounted) return;
+    await Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (routeContext) => PlacementScreen(
+          onFinished: () => Navigator.of(routeContext).maybePop(),
+        ),
+      ),
+    );
   }
 
   Future<void> _pickStartOfDay(
@@ -164,41 +181,60 @@ class _SettingsViewState extends State<_SettingsView>
                         const SizedBox(height: 4),
                         _ReminderRows(controller: controller),
                         const SizedBox(height: 48),
-                        Material(
-                          color: Colors.transparent,
-                          child: InkWell(
-                            onTap: () {
-                              Navigator.of(context).push(
-                                MaterialPageRoute<void>(
-                                  builder: (_) =>
-                                      const OpenSourceLicensesScreen(),
-                                ),
-                              );
-                            },
-                            borderRadius: BorderRadius.circular(12),
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 12),
-                              child: Row(
-                                children: [
-                                  Expanded(
-                                    child: Text(
-                                      'Open source licenses',
-                                      style: sectionTitle,
-                                    ),
-                                  ),
-                                  Icon(
-                                    Icons.chevron_right,
-                                    color: theme.mutedText,
-                                  ),
-                                ],
+                        _SettingsLinkRow(
+                          label: 'Retake placement test',
+                          style: sectionTitle,
+                          onTap: () => _retakePlacementTest(context),
+                        ),
+                        const SizedBox(height: 8),
+                        _SettingsLinkRow(
+                          label: 'Open source licenses',
+                          style: sectionTitle,
+                          onTap: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute<void>(
+                                builder: (_) =>
+                                    const OpenSourceLicensesScreen(),
                               ),
-                            ),
-                          ),
+                            );
+                          },
                         ),
                       ],
                     ),
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class _SettingsLinkRow extends StatelessWidget {
+  const _SettingsLinkRow({
+    required this.label,
+    required this.onTap,
+    this.style,
+  });
+
+  final String label;
+  final VoidCallback onTap;
+  final TextStyle? style;
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(12),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 12),
+          child: Row(
+            children: [
+              Expanded(child: Text(label, style: style)),
+              Icon(Icons.chevron_right, color: Theme.of(context).mutedText),
+            ],
+          ),
         ),
       ),
     );
