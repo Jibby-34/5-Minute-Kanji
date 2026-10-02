@@ -1,6 +1,7 @@
 import 'package:fiveminutekanji/core/models/card_schedule.dart';
 import 'package:fiveminutekanji/core/models/curriculum.dart';
 import 'package:fiveminutekanji/core/models/kanji_card.dart';
+import 'package:fiveminutekanji/core/models/onboarding.dart';
 import 'package:fiveminutekanji/core/models/placement.dart';
 import 'package:fiveminutekanji/core/models/progress.dart';
 import 'package:fiveminutekanji/repositories/kanji_repository.dart';
@@ -25,9 +26,25 @@ KanjiCard testCard(
 }
 
 /// Puts a repository in the state of a user who is past the first-launch
-/// placement test, which is where tests that pump the app root start from.
+/// placement test.
 Future<void> completePlacementTest(ProgressRepository progress) {
   return progress.savePlacement(const PlacementProgress(completed: true));
+}
+
+/// Puts a repository in the state of a user who is past onboarding, which is
+/// where tests that pump the app root start from.
+Future<void> completeOnboarding(ProgressRepository progress) async {
+  await completePlacementTest(progress);
+  await progress.saveOnboarding(
+    const OnboardingProgress(stage: OnboardingStage.completed),
+  );
+}
+
+/// Drops a repository straight into the placement step of onboarding.
+Future<void> startPlacementStep(ProgressRepository progress) {
+  return progress.saveOnboarding(
+    const OnboardingProgress(stage: OnboardingStage.placementInProgress),
+  );
 }
 
 class FakeKanjiRepository implements KanjiRepository {
@@ -63,6 +80,7 @@ class MemoryProgressRepository implements ProgressRepository {
   AppSettings settings;
   DailyNewKanjiProgress dailyNewKanji;
   PlacementProgress placement = PlacementProgress.empty;
+  OnboardingProgress onboarding = OnboardingProgress.empty;
 
   @override
   Future<Map<String, CardSchedule>> getSchedules() async =>
@@ -122,6 +140,14 @@ class MemoryProgressRepository implements ProgressRepository {
   @override
   Future<void> savePlacement(PlacementProgress next) async {
     placement = next;
+  }
+
+  @override
+  Future<OnboardingProgress> getOnboarding() async => onboarding;
+
+  @override
+  Future<void> saveOnboarding(OnboardingProgress next) async {
+    onboarding = next;
   }
 
   @override

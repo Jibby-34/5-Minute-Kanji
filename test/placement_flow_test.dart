@@ -45,6 +45,9 @@ void main() {
     const kanji = HardcodedKanjiRepository();
     final cards = await kanji.getAll();
     await progress.seedIfNeeded(cards.map((card) => card.id).toList());
+    // Start at the placement step: the screens around it belong to the
+    // onboarding tests.
+    await startPlacementStep(progress);
     return progress;
   }
 
@@ -84,7 +87,7 @@ void main() {
     return asked;
   }
 
-  testWidgets('first launch opens the placement test instead of Home', (
+  testWidgets('the placement step opens the test instead of Home', (
     tester,
   ) async {
     usePhoneViewport(tester);
@@ -126,7 +129,7 @@ void main() {
     expect(controllerOf(tester).question?.id, isNot(card.id));
   });
 
-  testWidgets('the test marks what the user knows and hands over to Home', (
+  testWidgets('the test marks what the user knows and hands over the flow', (
     tester,
   ) async {
     usePhoneViewport(tester);
@@ -144,8 +147,12 @@ void main() {
 
     expect(asked.length, inInclusiveRange(12, 36));
     expect(find.text("You're all set!"), findsOneWidget);
-    expect(find.textContaining('you already know'), findsOneWidget);
-    expect(find.textContaining('Your starting point:'), findsOneWidget);
+    expect(find.text('kanji already known'), findsOneWidget);
+    expect(find.textContaining('Starting around JLPT'), findsOneWidget);
+    expect(
+      find.text("We've added the kanji you already know to your library."),
+      findsOneWidget,
+    );
     expect(find.text('Start Learning'), findsOneWidget);
 
     final schedules = await progress.getSchedules();
@@ -169,8 +176,7 @@ void main() {
     await tester.tap(find.text('Start Learning'));
     await tester.pumpAndSettle();
 
-    expect(find.text('kanji remaining today'), findsOneWidget);
-    expect(find.text('Start Review'), findsOneWidget);
+    expect(find.text('How much time fits into your day?'), findsOneWidget);
     expect(find.text("Let's find your starting point"), findsNothing);
   });
 
@@ -189,7 +195,7 @@ void main() {
     await pumpApp(tester, SharedPrefsProgressRepository(await SharedPreferences.getInstance()));
 
     expect(find.text("Let's find your starting point"), findsNothing);
-    expect(find.text('kanji remaining today'), findsOneWidget);
+    expect(find.text('How much time fits into your day?'), findsOneWidget);
   });
 
   testWidgets('closing the app mid-test resumes on the same kanji', (
@@ -234,18 +240,19 @@ void main() {
 
     const kanji = HardcodedKanjiRepository();
     final total = (await kanji.getAll()).length;
-    expect(find.text('We found $total kanji you already know.'), findsOneWidget);
+    expect(find.text('$total'), findsOneWidget);
+    expect(find.text('kanji already known'), findsOneWidget);
     expect(find.text("That's every kanji in the app."), findsOneWidget);
 
     await tester.tap(find.text('Start Learning'));
     await tester.pumpAndSettle();
-    expect(find.text("You're all caught up."), findsOneWidget);
+    expect(find.text('How much time fits into your day?'), findsOneWidget);
   });
 
   testWidgets('Settings can run the placement test again', (tester) async {
     usePhoneViewport(tester);
     final progress = await freshProgress();
-    await completePlacementTest(progress);
+    await completeOnboarding(progress);
     await pumpApp(tester, progress);
 
     await tester.tap(find.byTooltip('Settings'));
@@ -275,6 +282,7 @@ void main() {
     SharedPreferences.setMockInitialValues({});
     final prefs = await SharedPreferences.getInstance();
     final progress = SharedPrefsProgressRepository(prefs);
+    await startPlacementStep(progress);
 
     await tester.pumpWidget(
       FiveMinuteKanjiApp(
@@ -286,7 +294,7 @@ void main() {
     await tester.pump(const Duration(milliseconds: 50));
 
     expect(find.text("Let's find your starting point"), findsNothing);
-    expect(find.text('kanji remaining today'), findsOneWidget);
+    expect(find.text('How much time fits into your day?'), findsOneWidget);
     expect((await progress.getPlacement()).completed, isFalse);
   });
 

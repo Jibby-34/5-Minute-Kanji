@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../core/models/card_schedule.dart';
+import '../core/models/onboarding.dart';
 import '../core/models/placement.dart';
 import '../core/models/progress.dart';
 import '../repositories/progress_repository.dart';
@@ -147,6 +148,19 @@ class SharedPrefsProgressRepository implements ProgressRepository {
   }
 
   @override
+  Future<OnboardingProgress> getOnboarding() async {
+    await _ensureLoaded();
+    return _blob.onboarding;
+  }
+
+  @override
+  Future<void> saveOnboarding(OnboardingProgress onboarding) async {
+    await _ensureLoaded();
+    _blob = _blob.copyWith(onboarding: onboarding);
+    await _persist();
+  }
+
+  @override
   Future<void> seedIfNeeded(List<String> cardIds, {DateTime? now}) async {
     await _ensureLoaded();
     final timestamp = now ?? DateTime.now();
@@ -174,6 +188,7 @@ class _ProgressBlob {
     this.settings = const AppSettings(),
     this.dailyNewKanji = DailyNewKanjiProgress.empty,
     this.placement = PlacementProgress.empty,
+    this.onboarding = OnboardingProgress.empty,
   });
 
   final Map<String, CardSchedule> schedules;
@@ -182,6 +197,7 @@ class _ProgressBlob {
   final AppSettings settings;
   final DailyNewKanjiProgress dailyNewKanji;
   final PlacementProgress placement;
+  final OnboardingProgress onboarding;
 
   _ProgressBlob copyWith({
     Map<String, CardSchedule>? schedules,
@@ -190,6 +206,7 @@ class _ProgressBlob {
     AppSettings? settings,
     DailyNewKanjiProgress? dailyNewKanji,
     PlacementProgress? placement,
+    OnboardingProgress? onboarding,
   }) {
     return _ProgressBlob(
       schedules: schedules ?? this.schedules,
@@ -198,6 +215,7 @@ class _ProgressBlob {
       settings: settings ?? this.settings,
       dailyNewKanji: dailyNewKanji ?? this.dailyNewKanji,
       placement: placement ?? this.placement,
+      onboarding: onboarding ?? this.onboarding,
     );
   }
 
@@ -211,6 +229,7 @@ class _ProgressBlob {
       'settings': settings.toJson(),
       'dailyNewKanji': dailyNewKanji.toJson(),
       'placement': placement.toJson(),
+      'onboarding': onboarding.toJson(),
     };
   }
 
@@ -247,6 +266,9 @@ class _ProgressBlob {
         _asStringKeyMap(json['dailyNewKanji']),
       ),
       placement: PlacementProgress.fromJson(_asStringKeyMap(json['placement'])),
+      onboarding: OnboardingProgress.fromJson(
+        _asStringKeyMap(json['onboarding']),
+      ),
     );
   }
 }

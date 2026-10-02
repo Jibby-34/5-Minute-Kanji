@@ -6,7 +6,9 @@ import 'package:provider/provider.dart';
 
 import '../../core/models/handwriting.dart';
 import '../../core/models/kanji_card.dart';
+import '../../core/models/onboarding.dart';
 import '../../core/models/review.dart';
+import '../../core/models/start_of_day.dart';
 import '../../core/models/study_phase.dart';
 import '../../core/navigation/app_routes.dart';
 import '../../core/theme/app_theme.dart';
@@ -17,10 +19,16 @@ import '../../widgets/bottom_action_inset.dart';
 import '../../widgets/primary_button.dart';
 import '../learn/learn_kanji_body.dart';
 import '../learn/practice_writing_body.dart';
+import '../onboarding/widgets/onboarding_hint_text.dart';
 import '../session_complete/session_complete_screen.dart';
 import 'compare_body.dart';
 import 'review_controller.dart';
 import 'widgets/handwriting_pad.dart';
+
+/// Builds what replaces the session when it ends. See
+/// [ReviewScreen.onSessionComplete].
+typedef SessionCompleteBuilder =
+    Widget Function(SessionSummary summary, StartOfDay startOfDay);
 
 class ReviewScreen extends StatelessWidget {
   const ReviewScreen({
@@ -29,12 +37,16 @@ class ReviewScreen extends StatelessWidget {
     required this.config,
     this.isPractice = false,
     this.clock,
+    this.onSessionComplete,
   });
 
   final List<KanjiCard> cards;
   final ReviewSessionConfig config;
   final bool isPractice;
   final Clock? clock;
+
+  /// Replaces the usual summary screen. Used once, for the first session.
+  final SessionCompleteBuilder? onSessionComplete;
 
   @override
   Widget build(BuildContext context) {
@@ -73,16 +85,21 @@ class ReviewScreen extends StatelessWidget {
         controller.hydrate();
         return controller;
       },
-      child: const _ReviewView(),
+      child: _ReviewView(onSessionComplete: onSessionComplete),
     );
   }
 }
 
 class _ReviewView extends StatelessWidget {
-  const _ReviewView();
+  const _ReviewView({this.onSessionComplete});
+
+  final SessionCompleteBuilder? onSessionComplete;
 
   Future<void> _submit(BuildContext context) async {
     HapticFeedback.lightImpact();
+    OnboardingHintScope.maybeOf(context)?.dismiss(
+      OnboardingHint.drawFromMemory,
+    );
     context.read<ReviewController>().submit();
   }
 
@@ -92,46 +109,37 @@ class _ReviewView extends StatelessWidget {
     } else {
       HapticFeedback.lightImpact();
     }
+    OnboardingHintScope.maybeOf(context)?.dismissAll(const [
+      OnboardingHint.compareDrawing,
+      OnboardingHint.rateRecall,
+    ]);
     final controller = context.read<ReviewController>();
     final summary = await controller.rate(result);
     if (!context.mounted || summary == null) return;
-    await Navigator.of(context).pushReplacement(
-      AppRoutes.session(
-        context,
-        SessionCompleteScreen(
-          summary: summary,
-          startOfDay: controller.startOfDay,
-        ),
-      ),
-    );
+    await _showSummary(context, summary);
   }
 
   Future<void> _finishLearning(BuildContext context) async {
     final controller = context.read<ReviewController>();
     final summary = await controller.completePractice();
     if (!context.mounted || summary == null) return;
-    await Navigator.of(context).pushReplacement(
-      AppRoutes.session(
-        context,
-        SessionCompleteScreen(
-          summary: summary,
-          startOfDay: controller.startOfDay,
-        ),
-      ),
-    );
+    await _showSummary(context, summary);
   }
 
   Future<void> _markAsKnown(BuildContext context) async {
     final controller = context.read<ReviewController>();
     final summary = await controller.markCurrentAsKnown();
     if (!context.mounted || summary == null) return;
-    await Navigator.of(context).pushReplacement(
+    await _showSummary(context, summary);
+  }
+
+  Future<void> _showSummary(BuildContext context, SessionSummary summary) {
+    final startOfDay = context.read<ReviewController>().startOfDay;
+    return Navigator.of(context).pushReplacement(
       AppRoutes.session(
         context,
-        SessionCompleteScreen(
-          summary: summary,
-          startOfDay: controller.startOfDay,
-        ),
+        onSessionComplete?.call(summary, startOfDay) ??
+            SessionCompleteScreen(summary: summary, startOfDay: startOfDay),
       ),
     );
   }
@@ -266,19 +274,28 @@ class _ReviewView extends StatelessWidget {
           onPressed: controller.busy ? null : () => _submit(context),
         );
       case StudyPhase.compare:
-        return Row(
+        return Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
-            RatingButton(
-              label: 'Again',
-              onPressed: controller.busy
-                  ? null
-                  : () => _rate(context, ReviewResult.again),
+            const OnboardingHintText(
+              OnboardingHint.rateRecall,
+              padding: EdgeInsets.only(left: 8, right: 8, bottom: 12),
             ),
-            RatingButton(
-              label: 'Good',
-              onPressed: controller.busy
-                  ? null
-                  : () => _rate(context, ReviewResult.good),
+            Row(
+              children: [
+                RatingButton(
+                  label: 'Again',
+                  onPressed: controller.busy
+                      ? null
+                      : () => _rate(context, ReviewResult.again),
+                ),
+                RatingButton(
+                  label: 'Good',
+                  onPressed: controller.busy
+                      ? null
+                      : () => _rate(context, ReviewResult.good),
+                ),
+              ],
             ),
           ],
         );
@@ -310,6 +327,10 @@ class _PromptBody extends StatelessWidget {
             fontWeight: FontWeight.w500,
             letterSpacing: -0.2,
           ),
+        ),
+        const OnboardingHintText(
+          OnboardingHint.drawFromMemory,
+          padding: EdgeInsets.only(top: 8),
         ),
         const SizedBox(height: 16),
         Expanded(

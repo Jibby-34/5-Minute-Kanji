@@ -7,11 +7,14 @@ import 'core/theme/app_scroll_behavior.dart';
 import 'core/theme/app_theme.dart';
 import 'data/asset_stroke_data_repository.dart';
 import 'features/home/home_controller.dart';
-import 'features/placement/placement_gate.dart';
+import 'features/onboarding/onboarding_gate.dart';
+import 'features/onboarding/onboarding_hint_controller.dart';
+import 'features/onboarding/widgets/onboarding_hint_text.dart';
 import 'repositories/kanji_repository.dart';
 import 'repositories/progress_repository.dart';
 import 'repositories/stroke_data_repository.dart';
 import 'services/mark_as_known.dart';
+import 'services/onboarding_service.dart';
 import 'services/placement_service.dart';
 import 'services/reminder_scheduler.dart';
 import 'services/srs_engine.dart';
@@ -59,6 +62,15 @@ class FiveMinuteKanjiApp extends StatelessWidget {
             markAsKnown: context.read<MarkAsKnownService>(),
           ),
         ),
+        Provider<OnboardingService>(
+          create: (_) =>
+              OnboardingService(progressRepository: progressRepository),
+        ),
+        ChangeNotifierProvider<OnboardingHintController>(
+          create: (context) => OnboardingHintController(
+            service: context.read<OnboardingService>(),
+          )..load(),
+        ),
         ChangeNotifierProvider(
           create: (context) => HomeController(
             kanjiRepository: kanjiRepository,
@@ -79,12 +91,16 @@ class FiveMinuteKanjiApp extends StatelessWidget {
           final overlay =
               Theme.of(context).appBarTheme.systemOverlayStyle ??
               SystemUiOverlayStyle.dark;
-          return AnnotatedRegion<SystemUiOverlayStyle>(
-            value: overlay,
-            child: child ?? const SizedBox.shrink(),
+          // Above the navigator so first-time hints reach pushed sessions.
+          return OnboardingHintScope(
+            notifier: context.read<OnboardingHintController>(),
+            child: AnnotatedRegion<SystemUiOverlayStyle>(
+              value: overlay,
+              child: child ?? const SizedBox.shrink(),
+            ),
           );
         },
-        home: const PlacementGate(),
+        home: const OnboardingGate(),
       ),
     );
   }

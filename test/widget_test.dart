@@ -49,7 +49,7 @@ void main() {
     final cards = await kanji.getAll();
     await progress.seedIfNeeded(cards.map((card) => card.id).toList());
 
-    await completePlacementTest(progress);
+    await completeOnboarding(progress);
     await tester.pumpWidget(
       FiveMinuteKanjiApp(kanjiRepository: kanji, progressRepository: progress),
     );
@@ -284,7 +284,7 @@ void main() {
     expect((await progress.getStreak()).current, 1);
 
     await tester.tap(find.text('Done'));
-    await completePlacementTest(progress);
+    await completeOnboarding(progress);
     await tester.pumpWidget(
       FiveMinuteKanjiApp(kanjiRepository: kanji, progressRepository: progress),
     );
@@ -321,7 +321,7 @@ void main() {
       );
     }
 
-    await completePlacementTest(progress);
+    await completeOnboarding(progress);
     await tester.pumpWidget(
       FiveMinuteKanjiApp(kanjiRepository: kanji, progressRepository: progress),
     );
@@ -381,7 +381,7 @@ void main() {
     expect(schedule.isDueAt(now), isFalse);
     expect((await restarted.getDailyNewKanji()).count, 1);
 
-    await completePlacementTest(restarted);
+    await completeOnboarding(restarted);
     await tester.pumpWidget(
       FiveMinuteKanjiApp(kanjiRepository: kanji, progressRepository: restarted),
     );
@@ -405,7 +405,7 @@ void main() {
     final cards = await kanji.getAll();
     await progress.seedIfNeeded(cards.map((card) => card.id).toList());
 
-    await completePlacementTest(progress);
+    await completeOnboarding(progress);
     await tester.pumpWidget(
       FiveMinuteKanjiApp(kanjiRepository: kanji, progressRepository: progress),
     );

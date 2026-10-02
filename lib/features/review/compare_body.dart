@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 
 import '../../core/models/handwriting.dart';
 import '../../core/models/kanji_card.dart';
+import '../../core/models/onboarding.dart';
 import '../../core/theme/app_theme.dart';
 import '../../widgets/mnemonic_text.dart';
+import '../onboarding/widgets/onboarding_hint_text.dart';
 import '../stroke_order/kanji_stroke_animation.dart';
 import 'widgets/handwriting_pad.dart';
 
@@ -52,6 +54,10 @@ class _CompareBodyState extends State<CompareBody> {
                       fontWeight: FontWeight.w500,
                       height: 1.2,
                     ),
+                  ),
+                  const OnboardingHintText(
+                    OnboardingHint.compareDrawing,
+                    padding: EdgeInsets.only(top: 6),
                   ),
                   const SizedBox(height: 14),
                   _comparison(theme, side),

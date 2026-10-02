@@ -106,7 +106,7 @@ void main() {
       final cards = await kanji.getAll();
       await progress.seedIfNeeded(cards.map((card) => card.id).toList());
 
-      await completePlacementTest(progress);
+      await completeOnboarding(progress);
       await tester.pumpWidget(
         FiveMinuteKanjiApp(
           kanjiRepository: kanji,
@@ -172,7 +172,7 @@ void main() {
       final cards = await kanji.getAll();
       await progress.seedIfNeeded(cards.map((card) => card.id).toList());
 
-      await completePlacementTest(progress);
+      await completeOnboarding(progress);
       await tester.pumpWidget(
         FiveMinuteKanjiApp(
           kanjiRepository: kanji,

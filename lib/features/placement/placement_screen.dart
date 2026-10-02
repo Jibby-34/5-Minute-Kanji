@@ -8,6 +8,7 @@ import '../../core/theme/app_theme.dart';
 import '../../core/theme/app_typography.dart';
 import '../../services/placement_service.dart';
 import '../../widgets/bottom_action_inset.dart';
+import '../../widgets/centered_copy.dart';
 import '../../widgets/primary_button.dart';
 import 'placement_controller.dart';
 
@@ -75,7 +76,7 @@ class _PlacementIntro extends StatelessWidget {
     return Column(
       children: [
         Expanded(
-          child: _CenteredCopy(
+          child: CenteredCopy(
             children: [
               Text(
                 "Let's find your starting point",
@@ -267,7 +268,7 @@ class _PlacementResults extends StatelessWidget {
     return Column(
       children: [
         Expanded(
-          child: _CenteredCopy(
+          child: CenteredCopy(
             children: [
               Text(
                 "You're all set!",
@@ -277,23 +278,52 @@ class _PlacementResults extends StatelessWidget {
                   letterSpacing: -0.6,
                 ),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 24),
+              if (count > 0) ...[
+                FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: Text(
+                    '$count',
+                    style: AppTypography.kanji(
+                      color: theme.colorScheme.onSurface,
+                      size: 48,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  'kanji already known',
+                  textAlign: TextAlign.center,
+                  style: theme.textTheme.titleLarge?.copyWith(
+                    fontWeight: FontWeight.w500,
+                    height: 1.3,
+                  ),
+                ),
+              ] else
+                Text(
+                  _nothingFound(level),
+                  textAlign: TextAlign.center,
+                  style: theme.textTheme.titleLarge?.copyWith(
+                    fontWeight: FontWeight.w500,
+                    height: 1.35,
+                  ),
+                ),
+              const SizedBox(height: 18),
               Text(
-                _found(count, level),
+                _startingPoint(level),
                 textAlign: TextAlign.center,
-                style: theme.textTheme.titleLarge?.copyWith(
+                style: theme.textTheme.titleMedium?.copyWith(
                   fontWeight: FontWeight.w500,
-                  height: 1.35,
+                  height: 1.4,
                 ),
               ),
-              if (_startingPoint(count, level) case final startingPoint?) ...[
-                const SizedBox(height: 16),
+              if (count > 0) ...[
+                const SizedBox(height: 12),
                 Text(
-                  startingPoint,
+                  "We've added the kanji you already know to your library.",
                   textAlign: TextAlign.center,
-                  style: theme.textTheme.titleMedium?.copyWith(
+                  style: theme.textTheme.bodyLarge?.copyWith(
                     color: theme.mutedText,
-                    fontWeight: FontWeight.w400,
                     height: 1.4,
                   ),
                 ),
@@ -308,53 +338,20 @@ class _PlacementResults extends StatelessWidget {
     );
   }
 
-  String _found(int count, JlptLevel? level) {
-    if (count > 0) {
-      return 'We found ${count == 1 ? '1 kanji' : '$count kanji'} '
-          'you already know.';
-    }
-    // A retake can find nothing left to place, which is not the same as a
-    // learner who is starting from scratch.
+  /// A retake can find nothing left to place, which is not the same as a
+  /// learner who is starting from scratch.
+  String _nothingFound(JlptLevel? level) {
     return level == null
         ? 'Every kanji in the app is already in your reviews.'
         : "We'll start you from the beginning.";
   }
 
-  /// Kept to one quiet line. The useful outcome is the known kanji, not a
-  /// proficiency score.
-  String? _startingPoint(int count, JlptLevel? level) {
-    if (level == null) {
-      return count > 0 ? "That's every kanji in the app." : null;
-    }
+  /// One quiet line. No level is invented when the test cannot tell.
+  String _startingPoint(JlptLevel? level) {
+    if (level == null) return "That's every kanji in the app.";
     return switch (level) {
-      JlptLevel.none => null,
-      _ => 'Your starting point: around ${level.sectionTitle}',
+      JlptLevel.none => 'Your starting point is ready.',
+      _ => 'Starting around ${level.sectionTitle}',
     };
-  }
-}
-
-/// Centred copy that scrolls instead of overflowing when type is scaled up.
-class _CenteredCopy extends StatelessWidget {
-  const _CenteredCopy({required this.children});
-
-  final List<Widget> children;
-
-  @override
-  Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        return SingleChildScrollView(
-          physics: const BouncingScrollPhysics(),
-          padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 24),
-          child: ConstrainedBox(
-            constraints: BoxConstraints(minHeight: constraints.maxHeight - 48),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: children,
-            ),
-          ),
-        );
-      },
-    );
   }
 }
