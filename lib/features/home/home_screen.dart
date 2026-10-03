@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../core/navigation/app_routes.dart';
 import '../../core/models/start_of_day.dart';
+import '../../core/navigation/app_routes.dart';
+import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_theme.dart';
 import '../../core/theme/app_typography.dart';
 import '../../core/utils/time_format.dart';
-import '../../widgets/bottom_action_inset.dart';
 import '../../widgets/primary_button.dart';
+import '../../widgets/section_label.dart';
+import '../../widgets/soft_card.dart';
 import '../../widgets/streak_mark.dart';
 import '../kanji_list/kanji_list_screen.dart';
 import '../review/review_screen.dart';
@@ -91,20 +93,15 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
             ? const Center(child: CircularProgressIndicator(strokeWidth: 2))
             : Column(
                 children: [
-                  _HomeNavBar(
+                  _HomeHeader(
                     onOpenSettings: _openSettings,
                     onOpenKanjiList: _openKanjiList,
                   ),
                   Expanded(
-                    child: _HomeCanvas(home: home, now: now),
-                  ),
-                  BottomActionInset(
-                    horizontalPadding: 16,
-                    child: PrimaryButton(
-                      label: home.isCaughtUp
-                          ? 'Practice Anyway'
-                          : 'Start Review',
-                      onPressed: () => _startReview(practice: home.isCaughtUp),
+                    child: _HomeCanvas(
+                      home: home,
+                      now: now,
+                      onStart: () => _startReview(practice: home.isCaughtUp),
                     ),
                   ),
                 ],
@@ -114,8 +111,10 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
   }
 }
 
-class _HomeNavBar extends StatelessWidget {
-  const _HomeNavBar({
+/// Settings and the kanji list sit in the corners as quiet icon buttons, so
+/// nothing competes with today's study action.
+class _HomeHeader extends StatelessWidget {
+  const _HomeHeader({
     required this.onOpenSettings,
     required this.onOpenKanjiList,
   });
@@ -125,81 +124,137 @@ class _HomeNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final iconColor = theme.colorScheme.onSurface.withValues(alpha: 0.72);
-
     return Padding(
-      padding: const EdgeInsets.fromLTRB(4, 4, 4, 0),
-      child: IconTheme(
-        data: IconThemeData(size: 22, color: iconColor),
-        child: Row(
-          children: [
-            IconButton(
-              tooltip: 'Settings',
-              onPressed: onOpenSettings,
-              icon: const Icon(Icons.settings_outlined),
-            ),
-            const Spacer(),
-            IconButton(
-              tooltip: 'Kanji List',
-              onPressed: onOpenKanjiList,
-              icon: const Icon(Icons.grid_view_outlined),
-            ),
-          ],
+      padding: const EdgeInsets.fromLTRB(20, 8, 20, 0),
+      child: Row(
+        children: [
+          _NavIconButton(
+            icon: Icons.settings_outlined,
+            tooltip: 'Settings',
+            onPressed: onOpenSettings,
+          ),
+          const Spacer(),
+          _NavIconButton(
+            icon: Icons.grid_view_rounded,
+            tooltip: 'Kanji List',
+            onPressed: onOpenKanjiList,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _NavIconButton extends StatelessWidget {
+  const _NavIconButton({
+    required this.icon,
+    required this.tooltip,
+    required this.onPressed,
+  });
+
+  final IconData icon;
+  final String tooltip;
+  final VoidCallback onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
+    return SizedBox.square(
+      dimension: 44,
+      child: IconButton(
+        tooltip: tooltip,
+        onPressed: onPressed,
+        icon: Icon(icon, size: 20),
+        style: IconButton.styleFrom(
+          backgroundColor: theme.cardWash,
+          foregroundColor: theme.colorScheme.onSurface.withValues(alpha: 0.75),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(13),
+            side: BorderSide(color: theme.hairline),
+          ),
         ),
       ),
     );
   }
 }
 
-/// Positions greeting + workload in the upper-middle, with streak near the
-/// bottom. Extra height becomes whitespace; short screens shrink gaps first.
+/// Greeting, today's study card and the streak, composed around the middle of
+/// the screen. Extra height becomes even whitespace; short screens shrink the
+/// gaps first and scroll only as a last resort.
 class _HomeCanvas extends StatelessWidget {
-  const _HomeCanvas({required this.home, required this.now});
+  const _HomeCanvas({
+    required this.home,
+    required this.now,
+    required this.onStart,
+  });
 
   final HomeController home;
   final DateTime now;
+  final VoidCallback onStart;
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final bottomInset = MediaQuery.viewPaddingOf(context).bottom;
+
     return LayoutBuilder(
       builder: (context, constraints) {
         final height = constraints.maxHeight;
         final textScale = MediaQuery.textScalerOf(context).scale(16) / 16;
-        final compact = height < 500 || textScale > 1.25;
-        final topGap = (height * (compact ? 0.06 : 0.11)).clamp(12.0, 88.0);
-        final streakBottomGap = (height * (compact ? 0.03 : 0.045)).clamp(
-          8.0,
+        final compact = height < 540 || textScale > 1.25;
+        final greetingGap = (height * (compact ? 0.022 : 0.032)).clamp(
+          12.0,
           28.0,
         );
-        final numberSize = (height * 0.07).clamp(42.0, 48.0);
+        final streakGap = (height * (compact ? 0.03 : 0.045)).clamp(18.0, 38.0);
+        final numberSize = (height * (compact ? 0.11 : 0.125)).clamp(
+          60.0,
+          100.0,
+        );
+        final verticalPadding = compact ? 8.0 : 16.0;
+        // Sitting a little above the geometric centre keeps the count in the
+        // reading zone instead of floating in the middle of the page.
+        final topBias = compact ? 0.0 : (height * 0.07).clamp(0.0, 64.0);
+        final freeHeight = height - verticalPadding * 2 - bottomInset - topBias;
 
         return SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
-          padding: const EdgeInsets.symmetric(horizontal: 32),
+          padding: EdgeInsets.fromLTRB(
+            24,
+            verticalPadding,
+            24,
+            verticalPadding + bottomInset + topBias,
+          ),
           child: ConstrainedBox(
-            constraints: BoxConstraints(minHeight: height),
+            constraints: BoxConstraints(minHeight: freeHeight),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Column(
-                  children: [
-                    SizedBox(height: topGap),
-                    ConstrainedBox(
-                      constraints: const BoxConstraints(maxWidth: 360),
-                      child: _StudyPanel(
-                        home: home,
-                        now: now,
-                        compact: compact,
-                        numberSize: numberSize,
-                      ),
-                    ),
-                  ],
+                Text(
+                  greetingFor(now),
+                  textAlign: TextAlign.center,
+                  style: theme.textTheme.titleMedium?.copyWith(
+                    color: theme.mutedText,
+                    fontSize: 15,
+                    fontWeight: FontWeight.w400,
+                    letterSpacing: 0.2,
+                    height: 1.3,
+                  ),
                 ),
-                Padding(
-                  padding: EdgeInsets.only(top: 20, bottom: streakBottomGap),
-                  child: StreakMark(streak: home.streak),
+                SizedBox(height: greetingGap),
+                ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 400),
+                  child: _DailyStudyCard(
+                    home: home,
+                    now: now,
+                    compact: compact,
+                    numberSize: numberSize,
+                    onStart: onStart,
+                  ),
                 ),
+                SizedBox(height: streakGap),
+                StreakMark(streak: home.streak),
               ],
             ),
           ),
@@ -209,215 +264,225 @@ class _HomeCanvas extends StatelessWidget {
   }
 }
 
-class _StudyPanel extends StatelessWidget {
-  const _StudyPanel({
+/// Everything about today in one place: how much is left, the one action to
+/// take, and when the next review lands.
+class _DailyStudyCard extends StatelessWidget {
+  const _DailyStudyCard({
     required this.home,
     required this.now,
     required this.compact,
     required this.numberSize,
+    required this.onStart,
   });
 
   final HomeController home;
   final DateTime now;
   final bool compact;
   final double numberSize;
+  final VoidCallback onStart;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final verticalPad = compact ? 16.0 : 22.0;
+    final workload = _Workload.of(home);
+    // While work is waiting the next review is now, which the button already
+    // says; the line earns its place once the next one is further out.
+    final nextReviewAt = home.nextReviewAt;
+    final showNextReview =
+        home.isCaughtUp || (nextReviewAt != null && nextReviewAt.isAfter(now));
 
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        const _StationeryRule(),
-        Padding(
-          padding: EdgeInsets.symmetric(vertical: verticalPad, horizontal: 8),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(
-                greetingFor(now),
-                textAlign: TextAlign.center,
-                style: theme.textTheme.titleMedium?.copyWith(
-                  color: theme.mutedText,
-                  fontSize: 15,
-                  fontWeight: FontWeight.w400,
-                  letterSpacing: 0.2,
-                  height: 1.3,
-                ),
-              ),
-              SizedBox(height: compact ? 12 : 16),
-              home.isCaughtUp
-                  ? _CaughtUpCopy(
-                      nextReviewAt: home.nextReviewAt,
-                      now: now,
-                      startOfDay: home.startOfDay,
-                      compact: compact,
-                      numberSize: numberSize,
-                    )
-                  : _WorkloadCopy(
-                      home: home,
-                      compact: compact,
-                      numberSize: numberSize,
-                    ),
-            ],
+    return SoftCard(
+      padding: EdgeInsets.symmetric(
+        horizontal: 20,
+        vertical: compact ? 18 : 24,
+      ),
+      child: Column(
+        children: [
+          const SectionLabel('Today', align: TextAlign.center),
+          SizedBox(height: compact ? 12 : 18),
+          _DailyCount(
+            count: workload.count,
+            size: numberSize,
+            caughtUp: home.isCaughtUp,
           ),
-        ),
-        const _StationeryRule(),
-      ],
-    );
-  }
-}
-
-class _WorkloadCopy extends StatelessWidget {
-  const _WorkloadCopy({
-    required this.home,
-    required this.compact,
-    required this.numberSize,
-  });
-
-  final HomeController home;
-  final bool compact;
-  final double numberSize;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final newCount = home.newRemainingToday;
-    final reviews = home.dueCount;
-    final showNew = newCount > 0;
-    final count = showNew ? newCount : reviews;
-    final label = showNew
-        ? 'kanji remaining today'
-        : reviews == 1
-        ? 'review remaining today'
-        : 'reviews remaining today';
-    final reviewLine = showNew && reviews > 0
-        ? (reviews == 1 ? '1 review' : '$reviews reviews')
-        : null;
-    final metaStyle = theme.textTheme.bodyMedium?.copyWith(
-      color: theme.mutedText,
-      fontSize: 14,
-      fontWeight: FontWeight.w400,
-      height: 1.35,
-    );
-
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        _WorkloadNumber(count: count, size: numberSize),
-        const SizedBox(height: 4),
-        Text(
-          label,
-          textAlign: TextAlign.center,
-          style: theme.textTheme.titleLarge?.copyWith(
-            fontSize: compact ? 18 : 19,
-            fontWeight: FontWeight.w500,
-            height: 1.3,
+          SizedBox(height: compact ? 4 : 6),
+          Text(
+            workload.label,
+            textAlign: TextAlign.center,
+            style: theme.textTheme.titleLarge?.copyWith(
+              fontSize: compact ? 19 : 20,
+              fontWeight: FontWeight.w500,
+              letterSpacing: -0.2,
+              height: 1.3,
+            ),
           ),
-        ),
-        SizedBox(height: compact ? 10 : 14),
-        if (reviewLine != null) ...[
-          Text(reviewLine, textAlign: TextAlign.center, style: metaStyle),
-          const SizedBox(height: 4),
+          SizedBox(height: compact ? 6 : 8),
+          Text(
+            workload.meta,
+            textAlign: TextAlign.center,
+            style: theme.textTheme.bodyMedium?.copyWith(
+              color: theme.mutedText,
+              fontSize: 14,
+              height: 1.35,
+            ),
+          ),
+          SizedBox(height: compact ? 18 : 24),
+          PrimaryButton(label: workload.action, onPressed: onStart),
+          if (showNextReview) ...[
+            SizedBox(height: compact ? 14 : 18),
+            Divider(height: 1, thickness: 1, color: theme.hairline),
+            SizedBox(height: compact ? 12 : 14),
+            _NextReviewLine(
+              nextReviewAt: home.nextReviewAt,
+              now: now,
+              startOfDay: home.startOfDay,
+            ),
+          ],
         ],
-        Text(
-          '~${home.estimatedMinutes} min',
-          textAlign: TextAlign.center,
-          style: metaStyle,
-        ),
-      ],
-    );
-  }
-}
-
-class _CaughtUpCopy extends StatelessWidget {
-  const _CaughtUpCopy({
-    required this.nextReviewAt,
-    required this.now,
-    required this.startOfDay,
-    required this.compact,
-    required this.numberSize,
-  });
-
-  final DateTime? nextReviewAt;
-  final DateTime now;
-  final StartOfDay startOfDay;
-  final bool compact;
-  final double numberSize;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final metaStyle = theme.textTheme.bodyMedium?.copyWith(
-      color: theme.mutedText,
-      fontSize: 14,
-      fontWeight: FontWeight.w400,
-      height: 1.35,
-    );
-
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        _WorkloadNumber(count: 0, size: numberSize),
-        const SizedBox(height: 4),
-        Text(
-          'kanji remaining today',
-          textAlign: TextAlign.center,
-          style: theme.textTheme.titleLarge?.copyWith(
-            fontSize: compact ? 18 : 19,
-            fontWeight: FontWeight.w500,
-            height: 1.3,
-          ),
-        ),
-        SizedBox(height: compact ? 10 : 14),
-        Text(
-          "You're all caught up.",
-          textAlign: TextAlign.center,
-          style: metaStyle,
-        ),
-        const SizedBox(height: 4),
-        Text(
-          'Next review: ${formatNextReview(nextReviewAt, now, startOfDay: startOfDay)}',
-          textAlign: TextAlign.center,
-          style: metaStyle,
-        ),
-      ],
-    );
-  }
-}
-
-class _WorkloadNumber extends StatelessWidget {
-  const _WorkloadNumber({required this.count, required this.size});
-
-  final int count;
-  final double size;
-
-  @override
-  Widget build(BuildContext context) {
-    return FittedBox(
-      fit: BoxFit.scaleDown,
-      child: Text(
-        '$count',
-        textAlign: TextAlign.center,
-        style: AppTypography.kanji(
-          color: Theme.of(context).colorScheme.onSurface,
-          size: size,
-        ),
       ),
     );
   }
 }
 
-class _StationeryRule extends StatelessWidget {
-  const _StationeryRule();
+/// The one number the screen is built around, on a faint paper circle.
+class _DailyCount extends StatelessWidget {
+  const _DailyCount({
+    required this.count,
+    required this.size,
+    required this.caughtUp,
+  });
+
+  final int count;
+  final double size;
+  final bool caughtUp;
 
   @override
   Widget build(BuildContext context) {
-    return ColoredBox(
-      color: Theme.of(context).hairline,
-      child: const SizedBox(height: 1, width: double.infinity),
+    final theme = Theme.of(context);
+    final dark = theme.brightness == Brightness.dark;
+    // Done for the day reads green; work left reads indigo.
+    final wash = caughtUp
+        ? (dark ? AppColors.darkIndigoWash : AppColors.masteredWash)
+        : theme.accentWash;
+    final diameter = size * 1.45;
+
+    return Stack(
+      alignment: Alignment.center,
+      children: [
+        SizedBox.square(
+          dimension: diameter,
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              gradient: RadialGradient(
+                colors: [
+                  wash.withValues(alpha: 0.55),
+                  wash.withValues(alpha: 0),
+                ],
+                stops: const [0.5, 1],
+              ),
+            ),
+          ),
+        ),
+        FittedBox(
+          fit: BoxFit.scaleDown,
+          child: Text(
+            '$count',
+            textAlign: TextAlign.center,
+            style: AppTypography.kanji(
+              color: theme.colorScheme.onSurface,
+              size: size,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+/// Reassurance that spaced repetition is being handled, kept deliberately
+/// quiet.
+class _NextReviewLine extends StatelessWidget {
+  const _NextReviewLine({
+    required this.nextReviewAt,
+    required this.now,
+    required this.startOfDay,
+  });
+
+  final DateTime? nextReviewAt;
+  final DateTime now;
+  final StartOfDay startOfDay;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        ExcludeSemantics(
+          child: Icon(Icons.schedule_rounded, size: 15, color: theme.mutedText),
+        ),
+        const SizedBox(width: 7),
+        Flexible(
+          child: Text(
+            'Next review: '
+            '${formatNextReview(nextReviewAt, now, startOfDay: startOfDay)}',
+            textAlign: TextAlign.center,
+            style: theme.textTheme.bodyMedium?.copyWith(
+              color: theme.mutedText,
+              fontSize: 14,
+              height: 1.3,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+/// Today's numbers turned into the words the card shows. New kanji lead;
+/// reviews take over once the day's new cards are done.
+class _Workload {
+  const _Workload({
+    required this.count,
+    required this.label,
+    required this.meta,
+    required this.action,
+  });
+
+  final int count;
+  final String label;
+  final String meta;
+  final String action;
+
+  static _Workload of(HomeController home) {
+    if (home.isCaughtUp) {
+      return const _Workload(
+        count: 0,
+        label: 'kanji remaining today',
+        meta: "You're all caught up.",
+        action: 'Practice Anyway',
+      );
+    }
+
+    final newCount = home.newRemainingToday;
+    final reviews = home.dueCount;
+    final showNew = newCount > 0;
+    final minutes = '~${home.estimatedMinutes} min';
+    final reviewLine = showNew && reviews > 0
+        ? (reviews == 1 ? '1 review' : '$reviews reviews')
+        : null;
+
+    return _Workload(
+      count: showNew ? newCount : reviews,
+      label: showNew
+          ? 'kanji remaining today'
+          : reviews == 1
+          ? 'review remaining today'
+          : 'reviews remaining today',
+      meta: reviewLine == null ? minutes : '$reviewLine · $minutes',
+      action: 'Start Review',
     );
   }
 }

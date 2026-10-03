@@ -65,14 +65,17 @@ void main() {
     expect(find.text('Start Review'), findsOneWidget);
     expect(find.textContaining('day streak'), findsOneWidget);
     expect(find.textContaining('min'), findsOneWidget);
+    // Work is waiting, so the next review is now and the line stays out.
+    expect(find.textContaining('Next review:'), findsNothing);
     expect(tester.takeException(), isNull);
 
+    // Reading order: today's count, the action it leads to, then the streak.
     final number = tester.getCenter(find.text('5'));
-    final streak = tester.getCenter(find.textContaining('day streak'));
     final start = tester.getCenter(find.text('Start Review'));
-    expect(number.dy, lessThan(844 * 0.42));
-    expect(streak.dy, greaterThan(number.dy));
-    expect(start.dy, greaterThan(streak.dy));
+    final streak = tester.getCenter(find.textContaining('day streak'));
+    expect(number.dy, lessThan(844 * 0.45));
+    expect(start.dy, greaterThan(number.dy));
+    expect(streak.dy, greaterThan(start.dy));
   });
 
   testWidgets('home layout does not overflow common phone sizes', (
