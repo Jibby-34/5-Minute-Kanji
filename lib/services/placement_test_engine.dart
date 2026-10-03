@@ -50,7 +50,10 @@ class PlacementTestEngine {
     final ordered = List<KanjiCard>.of(pool)..sort(compareKanjiLearnOrder);
     if (ordered.isEmpty) return const [];
 
-    final count = math.max(1, math.min(maxBands, ordered.length ~/ minBandSize));
+    final count = math.max(
+      1,
+      math.min(maxBands, ordered.length ~/ minBandSize),
+    );
     return [
       for (var i = 0; i < count; i++)
         ordered.sublist(
@@ -121,7 +124,8 @@ class PlacementRun {
   KanjiCard? get currentQuestion {
     if (_bands.isEmpty) return null;
     if (answeredCount >= _engine.maxQuestions) return null;
-    if (_boundaryBracketed && answeredCount >= _engine.minQuestions) return null;
+    if (_boundaryBracketed && answeredCount >= _engine.minQuestions)
+      return null;
 
     final band = _bandWithQuestionsNear(_band);
     if (band == null) return null;

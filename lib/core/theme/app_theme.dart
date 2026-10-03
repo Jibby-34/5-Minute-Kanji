@@ -8,6 +8,14 @@ import 'app_typography.dart';
 class AppTheme {
   AppTheme._();
 
+  /// Shared action metrics. Buttons are tall enough to feel tactile and
+  /// rounded enough to feel soft, without becoming pills.
+  static const double buttonHeight = 56;
+  static const double buttonRadius = 16;
+
+  /// Radius for content cards and the handwriting pad.
+  static const double cardRadius = 20;
+
   static ThemeData get light {
     final base = ThemeData(
       useMaterial3: true,
@@ -102,31 +110,37 @@ class AppTheme {
         ),
       ),
       dividerColor: hairline,
+      // One button language across the app: same height, radius and label
+      // weight, so a primary and a secondary action sit together cleanly.
       filledButtonTheme: FilledButtonThemeData(
         style: FilledButton.styleFrom(
           backgroundColor: primary,
           foregroundColor: onPrimary,
           elevation: 0,
-          minimumSize: const Size.fromHeight(52),
+          minimumSize: const Size.fromHeight(buttonHeight),
           textStyle: textTheme.titleMedium?.copyWith(
+            fontSize: 17,
             fontWeight: FontWeight.w600,
-            letterSpacing: 0.2,
+            letterSpacing: 0.1,
           ),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(14),
+            borderRadius: BorderRadius.circular(buttonRadius),
           ),
         ),
       ),
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: OutlinedButton.styleFrom(
           foregroundColor: text,
-          side: BorderSide(color: hairline),
-          minimumSize: const Size.fromHeight(52),
+          backgroundColor: surface,
+          side: BorderSide(color: hairline, width: 1.4),
+          minimumSize: const Size.fromHeight(buttonHeight),
           textStyle: textTheme.titleMedium?.copyWith(
+            fontSize: 17,
             fontWeight: FontWeight.w600,
+            letterSpacing: 0.1,
           ),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(14),
+            borderRadius: BorderRadius.circular(buttonRadius),
           ),
         ),
       ),
@@ -141,6 +155,16 @@ extension ThemeExtras on ThemeData {
   Color get hairline => brightness == Brightness.dark
       ? AppColors.darkHairline
       : AppColors.hairline;
+
+  /// Barely-there fill that groups content without boxing the whole screen.
+  Color get cardWash => brightness == Brightness.dark
+      ? AppColors.darkSurface
+      : AppColors.paperDeep.withValues(alpha: 0.5);
+
+  /// Tint used behind a hero kanji and on a selected choice.
+  Color get accentWash => brightness == Brightness.dark
+      ? AppColors.darkIndigoWash
+      : AppColors.indigoWash;
 
   Color statusWash(KanjiProgressStatus status) {
     final dark = brightness == Brightness.dark;

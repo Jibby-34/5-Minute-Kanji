@@ -97,9 +97,9 @@ class _ReviewView extends StatelessWidget {
 
   Future<void> _submit(BuildContext context) async {
     HapticFeedback.lightImpact();
-    OnboardingHintScope.maybeOf(context)?.dismiss(
-      OnboardingHint.drawFromMemory,
-    );
+    OnboardingHintScope.maybeOf(
+      context,
+    )?.dismiss(OnboardingHint.drawFromMemory);
     context.read<ReviewController>().submit();
   }
 
@@ -291,6 +291,7 @@ class _ReviewView extends StatelessWidget {
                 ),
                 RatingButton(
                   label: 'Good',
+                  isPrimary: true,
                   onPressed: controller.busy
                       ? null
                       : () => _rate(context, ReviewResult.good),
@@ -323,16 +324,19 @@ class _PromptBody extends StatelessWidget {
       children: [
         Text(
           card.keyword,
-          style: theme.textTheme.headlineSmall?.copyWith(
-            fontWeight: FontWeight.w500,
-            letterSpacing: -0.2,
+          textAlign: TextAlign.center,
+          style: theme.textTheme.headlineMedium?.copyWith(
+            fontSize: 34,
+            fontWeight: FontWeight.w600,
+            letterSpacing: -0.5,
+            height: 1.15,
           ),
         ),
         const OnboardingHintText(
           OnboardingHint.drawFromMemory,
           padding: EdgeInsets.only(top: 8),
         ),
-        const SizedBox(height: 16),
+        const SizedBox(height: 18),
         Expanded(
           child: LayoutBuilder(
             builder: (context, constraints) {

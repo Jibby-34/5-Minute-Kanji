@@ -9,6 +9,9 @@ class AppColors {
   static const Color muted = Color(0xFF8A8478);
   static const Color hairline = Color(0xFFD9D2C5);
   static const Color paperDeep = Color(0xFFE8E1D4);
+
+  /// Faint indigo tint for selected rows and the halo behind a hero kanji.
+  static const Color indigoWash = Color(0xFFE4E4EE);
   static const Color learningWash = Color(0xFFD8DCE8);
   static const Color masteredWash = Color(0xFFD6E0D4);
 
@@ -18,6 +21,7 @@ class AppColors {
   static const Color darkMuted = Color(0xFF9C968A);
   static const Color darkHairline = Color(0xFF3A3832);
   static const Color darkIndigo = Color(0xFF6B78A8);
+  static const Color darkIndigoWash = Color(0xFF2B3047);
   static const Color darkLearningWash = Color(0xFF2A3148);
   static const Color darkMasteredWash = Color(0xFF2A332C);
 }

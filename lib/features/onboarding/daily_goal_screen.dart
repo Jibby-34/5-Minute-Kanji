@@ -4,8 +4,8 @@ import 'package:provider/provider.dart';
 import '../../core/models/daily_goal.dart';
 import '../../core/theme/app_theme.dart';
 import '../../services/onboarding_service.dart';
-import '../../widgets/bottom_action_inset.dart';
 import '../../widgets/primary_button.dart';
+import 'widgets/onboarding_scaffold.dart';
 
 /// Asks for a time budget, not a kanji count: the number of new kanji a day is
 /// derived from it and lands in the same setting the user can change later.
@@ -61,81 +61,70 @@ class _DailyGoalScreenState extends State<DailyGoalScreen> {
       DailyGoal(_minutes),
     );
 
-    return Scaffold(
-      body: SafeArea(
-        bottom: false,
-        child: Column(
+    return OnboardingScaffold(
+      step: 3,
+      action: PrimaryButton(
+        label: 'Begin',
+        onPressed: _saving ? null : _submit,
+      ),
+      content: (context, height) {
+        return Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Expanded(
-              child: ListView(
-                physics: const BouncingScrollPhysics(),
-                padding: const EdgeInsets.fromLTRB(28, 48, 28, 24),
-                children: [
-                  Text(
-                    'How much time fits into your day?',
-                    style: theme.textTheme.headlineSmall?.copyWith(
-                      fontWeight: FontWeight.w600,
-                      letterSpacing: -0.4,
-                      height: 1.2,
-                    ),
-                  ),
-                  const SizedBox(height: 32),
-                  for (final goal in DailyGoal.presets) ...[
-                    _GoalOption(
-                      label: goal.label,
-                      note: goal == DailyGoal.recommended
-                          ? 'Recommended'
-                          : null,
-                      selected: !_custom && _minutes == goal.minutes,
-                      onTap: () => _selectPreset(goal),
-                    ),
-                    const SizedBox(height: 10),
-                  ],
-                  _GoalOption(
-                    label: 'Custom',
-                    note: _custom ? '$_customMinutes minutes' : null,
-                    selected: _custom,
-                    onTap: _selectCustom,
-                  ),
-                  if (_custom) ...[
-                    const SizedBox(height: 8),
-                    Slider(
-                      min: DailyGoal.minCustomMinutes.toDouble(),
-                      max: DailyGoal.maxCustomMinutes.toDouble(),
-                      divisions:
-                          DailyGoal.maxCustomMinutes -
-                          DailyGoal.minCustomMinutes,
-                      value: _customMinutes.toDouble(),
-                      label: '$_customMinutes minutes',
-                      onChanged: (value) => _setCustomMinutes(value.round()),
-                    ),
-                  ],
-                  const SizedBox(height: 24),
-                  Text(
-                    'About ${newPerDay == 1 ? '1 new kanji' : '$newPerDay new kanji'} '
-                    'a day. You can change this in Settings.',
-                    style: theme.textTheme.bodyMedium?.copyWith(
-                      color: theme.mutedText,
-                      height: 1.4,
-                    ),
-                  ),
-                ],
-              ),
+            const OnboardingHeadline(
+              label: 'Daily goal',
+              title: 'How much time fits into your day?',
             ),
-            BottomActionInset(
-              child: PrimaryButton(
-                label: 'Begin',
-                onPressed: _saving ? null : _submit,
+            SizedBox(height: (height * 0.06).clamp(24.0, 40.0)),
+            for (final goal in DailyGoal.presets) ...[
+              _GoalOption(
+                label: goal.label,
+                note: goal == DailyGoal.recommended ? 'Recommended' : null,
+                selected: !_custom && _minutes == goal.minutes,
+                onTap: () => _selectPreset(goal),
+              ),
+              const SizedBox(height: 10),
+            ],
+            _GoalOption(
+              label: 'Custom',
+              note: _custom ? '$_customMinutes minutes' : null,
+              selected: _custom,
+              onTap: _selectCustom,
+            ),
+            if (_custom)
+              SliderTheme(
+                data: SliderTheme.of(
+                  context,
+                ).copyWith(trackHeight: 3, inactiveTrackColor: theme.hairline),
+                child: Slider(
+                  min: DailyGoal.minCustomMinutes.toDouble(),
+                  max: DailyGoal.maxCustomMinutes.toDouble(),
+                  divisions:
+                      DailyGoal.maxCustomMinutes - DailyGoal.minCustomMinutes,
+                  value: _customMinutes.toDouble(),
+                  label: '$_customMinutes minutes',
+                  onChanged: (value) => _setCustomMinutes(value.round()),
+                ),
+              ),
+            SizedBox(height: _custom ? 12 : 24),
+            Text(
+              'About ${newPerDay == 1 ? '1 new kanji' : '$newPerDay new kanji'} '
+              'a day.\nYou can change this in Settings.',
+              textAlign: TextAlign.center,
+              style: theme.textTheme.bodyMedium?.copyWith(
+                color: theme.mutedText,
+                height: 1.4,
               ),
             ),
           ],
-        ),
-      ),
+        );
+      },
     );
   }
 }
 
-/// A single tappable choice. Selection is a border and a tick, nothing louder.
+/// A single tappable choice: a warm fill and a tick when picked, nothing
+/// louder.
 class _GoalOption extends StatelessWidget {
   const _GoalOption({
     required this.label,
@@ -161,14 +150,16 @@ class _GoalOption extends StatelessWidget {
         color: Colors.transparent,
         child: InkWell(
           onTap: onTap,
-          borderRadius: BorderRadius.circular(14),
+          borderRadius: BorderRadius.circular(AppTheme.buttonRadius),
           child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 16),
+            constraints: const BoxConstraints(minHeight: 64),
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(14),
+              color: selected ? theme.accentWash.withValues(alpha: 0.55) : null,
+              borderRadius: BorderRadius.circular(AppTheme.buttonRadius),
               border: Border.all(
                 color: selected ? primary : theme.hairline,
-                width: selected ? 1.6 : 1,
+                width: selected ? 1.6 : 1.2,
               ),
             ),
             child: Row(
@@ -176,8 +167,10 @@ class _GoalOption extends StatelessWidget {
                 Expanded(
                   child: Text(
                     label,
-                    style: theme.textTheme.titleMedium?.copyWith(
+                    style: theme.textTheme.titleLarge?.copyWith(
+                      fontSize: 20,
                       fontWeight: selected ? FontWeight.w600 : FontWeight.w500,
+                      letterSpacing: -0.2,
                     ),
                   ),
                 ),
@@ -185,17 +178,36 @@ class _GoalOption extends StatelessWidget {
                   Text(
                     note,
                     style: theme.textTheme.bodyMedium?.copyWith(
-                      color: theme.mutedText,
+                      color: selected ? primary : theme.mutedText,
+                      fontWeight: FontWeight.w600,
                     ),
                   ),
-                if (selected) ...[
-                  const SizedBox(width: 10),
-                  Icon(Icons.check, size: 20, color: primary),
-                ],
+                SizedBox(width: selected ? 12 : 0),
+                if (selected) _Tick(color: primary),
               ],
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class _Tick extends StatelessWidget {
+  const _Tick({required this.color});
+
+  final Color color;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 24,
+      height: 24,
+      decoration: BoxDecoration(color: color, shape: BoxShape.circle),
+      child: Icon(
+        Icons.check,
+        size: 15,
+        color: Theme.of(context).colorScheme.onPrimary,
       ),
     );
   }

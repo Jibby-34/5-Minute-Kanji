@@ -57,9 +57,7 @@ class _OnboardingGateState extends State<OnboardingGate> {
           !await placement.isRequired()) {
         // Nothing left to place: don't hold the user on a test with no
         // questions.
-        stage = await onboarding.advanceTo(
-          OnboardingStage.placementCompleted,
-        );
+        stage = await onboarding.advanceTo(OnboardingStage.placementCompleted);
       }
     } catch (_) {
       // Never let a storage failure lock the user out of the app.
@@ -159,12 +157,11 @@ class _OnboardingGateState extends State<OnboardingGate> {
       ReviewScreen(
         cards: cards,
         config: home.config,
-        onSessionComplete: (summary, startOfDay) =>
-            FirstSessionCompleteScreen(
-              summary: summary,
-              startOfDay: startOfDay,
-              onContinue: _afterFirstSession,
-            ),
+        onSessionComplete: (summary, startOfDay) => FirstSessionCompleteScreen(
+          summary: summary,
+          startOfDay: startOfDay,
+          onContinue: _afterFirstSession,
+        ),
       ),
     );
 

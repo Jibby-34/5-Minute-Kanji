@@ -95,7 +95,9 @@ class PlacementController extends ChangeNotifier {
     notifyListeners();
 
     try {
-      summary = await service.complete(run?.outcome() ?? PlacementOutcome.empty);
+      summary = await service.complete(
+        run?.outcome() ?? PlacementOutcome.empty,
+      );
     } catch (_) {
       summary = const PlacementSummary(knownCount: 0);
     }

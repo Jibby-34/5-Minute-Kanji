@@ -5,10 +5,9 @@ import '../../core/theme/app_theme.dart';
 import '../../repositories/progress_repository.dart';
 import '../../services/notification_gateway.dart';
 import '../../services/reminder_scheduler.dart';
-import '../../widgets/bottom_action_inset.dart';
-import '../../widgets/centered_copy.dart';
 import '../../widgets/primary_button.dart';
 import '../settings/settings_controller.dart';
+import 'widgets/onboarding_scaffold.dart';
 
 /// Offered once, after the first session, never at launch.
 ///
@@ -55,63 +54,84 @@ class _ReminderPromptView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     final controller = context.watch<SettingsController>();
     final busy = controller.loading;
 
-    return Scaffold(
-      body: SafeArea(
-        bottom: false,
-        child: Column(
+    return OnboardingScaffold(
+      action: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          PrimaryButton(
+            label: 'Remind Me',
+            onPressed: busy ? null : () => _accept(context),
+          ),
+          const SizedBox(height: 10),
+          SecondaryButton(
+            label: 'Maybe Later',
+            onPressed: busy ? null : () => _decline(context),
+          ),
+        ],
+      ),
+      content: (context, height) {
+        return Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Expanded(
-              child: CenteredCopy(
-                children: [
-                  Text(
-                    'Want a reminder tomorrow?',
-                    textAlign: TextAlign.center,
-                    style: theme.textTheme.headlineSmall?.copyWith(
-                      fontWeight: FontWeight.w600,
-                      letterSpacing: -0.4,
-                      height: 1.2,
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-                  Text(
-                    "We'll remind you when it's time for your 5-minute "
-                    'kanji session.',
-                    textAlign: TextAlign.center,
-                    style: theme.textTheme.titleMedium?.copyWith(
-                      color: theme.mutedText,
-                      fontWeight: FontWeight.w400,
-                      height: 1.45,
-                    ),
-                  ),
-                ],
-              ),
+            const OnboardingHeadline(
+              label: 'Daily reminder',
+              title: 'Want a reminder tomorrow?',
+              subtitle:
+                  "We'll remind you when it's time\n"
+                  'for your 5-minute kanji session.',
             ),
-            BottomActionInset(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  PrimaryButton(
-                    label: 'Remind Me',
-                    onPressed: busy ? null : () => _accept(context),
-                  ),
-                  const SizedBox(height: 10),
-                  SizedBox(
-                    width: double.infinity,
-                    height: 52,
-                    child: OutlinedButton(
-                      onPressed: busy ? null : () => _decline(context),
-                      child: const Text('Maybe Later'),
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            SizedBox(height: (height * 0.06).clamp(24.0, 36.0)),
+            _TimeChip(controller: controller),
           ],
-        ),
+        );
+      },
+    );
+  }
+}
+
+/// Shows the time the reminder would actually arrive, so the ask is concrete.
+class _TimeChip extends StatelessWidget {
+  const _TimeChip({required this.controller});
+
+  final SettingsController controller;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final time = MaterialLocalizations.of(context).formatTimeOfDay(
+      TimeOfDay(
+        hour: controller.reminderTime.hour,
+        minute: controller.reminderTime.minute,
+      ),
+    );
+
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
+      decoration: BoxDecoration(
+        color: theme.cardWash,
+        borderRadius: BorderRadius.circular(AppTheme.buttonRadius),
+        border: Border.all(color: theme.hairline),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(
+            Icons.notifications_none_rounded,
+            size: 19,
+            color: theme.mutedText,
+          ),
+          const SizedBox(width: 9),
+          Text(
+            time,
+            style: theme.textTheme.titleMedium?.copyWith(
+              fontWeight: FontWeight.w600,
+              letterSpacing: 0.2,
+            ),
+          ),
+        ],
       ),
     );
   }

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import '../../core/models/handwriting.dart';
 import '../../core/models/kanji_card.dart';
 import '../../core/theme/app_typography.dart';
+import '../../widgets/section_label.dart';
 import '../review/widgets/handwriting_pad.dart';
 
 class PracticeWritingBody extends StatelessWidget {
@@ -25,14 +26,16 @@ class PracticeWritingBody extends StatelessWidget {
 
     return Column(
       children: [
+        const SectionLabel('Copy it below'),
+        const SizedBox(height: 10),
         Text(
           card.character,
           style: AppTypography.kanji(
             color: theme.colorScheme.onSurface,
-            size: 64,
+            size: 72,
           ),
         ),
-        const SizedBox(height: 12),
+        const SizedBox(height: 16),
         Expanded(
           child: LayoutBuilder(
             builder: (context, constraints) {

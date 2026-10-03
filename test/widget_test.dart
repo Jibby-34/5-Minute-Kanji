@@ -194,7 +194,7 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.byType(CompareBody), findsOneWidget);
-    expect(find.text('How did you do?'), findsOneWidget);
+    expect(find.text('HOW DID YOU DO?'), findsOneWidget);
     expect(find.text('YOUR DRAWING'), findsOneWidget);
     expect(find.text('CORRECT'), findsOneWidget);
     expect(find.text(first.character), findsOneWidget);

@@ -6,10 +6,11 @@ import '../../core/models/start_of_day.dart';
 import '../../core/theme/app_theme.dart';
 import '../../core/utils/time_format.dart';
 import '../../repositories/progress_repository.dart';
-import '../../widgets/bottom_action_inset.dart';
-import '../../widgets/centered_copy.dart';
 import '../../widgets/primary_button.dart';
+import '../../widgets/section_label.dart';
+import '../../widgets/soft_card.dart';
 import '../../widgets/streak_mark.dart';
+import 'widgets/onboarding_scaffold.dart';
 
 /// Shown once, in place of the usual session summary, after the first sitting.
 ///
@@ -66,70 +67,85 @@ class _FirstSessionCompleteScreenState
     final theme = Theme.of(context);
     final reviews = widget.summary.reviewedCount - _learned;
 
-    return Scaffold(
-      body: SafeArea(
-        bottom: false,
-        child: Column(
-          children: [
-            Expanded(
-              child: CenteredCopy(
-                horizontalPadding: 24,
-                children: [
-                  _FadeIn(
-                    child: Text(
-                      'Day 1 complete!',
-                      textAlign: TextAlign.center,
-                      style: theme.textTheme.displaySmall?.copyWith(
-                        fontWeight: FontWeight.w600,
-                        letterSpacing: -0.6,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-                  Text(
+    return OnboardingScaffold(
+      action: PrimaryButton(label: 'Continue', onPressed: widget.onContinue),
+      content: (context, height) {
+        return _FadeIn(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              OnboardingHeadline(
+                title: 'Day 1 complete!',
+                subtitle:
                     '${formatSessionDuration(widget.summary.duration)} '
                     'well spent.',
-                    textAlign: TextAlign.center,
-                    style: theme.textTheme.headlineSmall?.copyWith(
-                      color: theme.mutedText,
-                      fontWeight: FontWeight.w400,
-                    ),
+              ),
+              SizedBox(height: (height * 0.07).clamp(26.0, 44.0)),
+              if (_learned > 0 || reviews > 0)
+                SoftCard(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 20,
+                    vertical: 26,
                   ),
-                  const SizedBox(height: 28),
-                  if (_learned > 0)
-                    Text(
-                      _learned == 1 ? '1 kanji learned' : '$_learned kanji learned',
-                      textAlign: TextAlign.center,
-                      style: theme.textTheme.titleLarge?.copyWith(
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  if (reviews > 0) ...[
-                    const SizedBox(height: 10),
-                    Text(
-                      reviews == 1
-                          ? '1 review completed'
-                          : '$reviews reviews completed',
-                      textAlign: TextAlign.center,
-                      style: theme.textTheme.bodyLarge?.copyWith(
-                        color: theme.mutedText,
-                      ),
-                    ),
-                  ],
-                  const SizedBox(height: 32),
-                  StreakMark(streak: _streak),
-                ],
-              ),
-            ),
-            BottomActionInset(
-              child: PrimaryButton(
-                label: 'Continue',
-                onPressed: widget.onContinue,
-              ),
-            ),
-          ],
-        ),
+                  child: Column(
+                    children: [
+                      if (_learned > 0)
+                        OnboardingStat(
+                          value: '$_learned',
+                          label: 'kanji learned',
+                        )
+                      else
+                        OnboardingStat(
+                          value: '$reviews',
+                          label: reviews == 1
+                              ? 'review completed'
+                              : 'reviews completed',
+                        ),
+                      if (_learned > 0 && reviews > 0) ...[
+                        const SizedBox(height: 18),
+                        const HairlineMark(width: 56),
+                        const SizedBox(height: 18),
+                        Text(
+                          reviews == 1
+                              ? '1 review completed'
+                              : '$reviews reviews completed',
+                          textAlign: TextAlign.center,
+                          style: theme.textTheme.titleMedium?.copyWith(
+                            color: theme.mutedText,
+                          ),
+                        ),
+                      ],
+                    ],
+                  ),
+                ),
+              SizedBox(height: (height * 0.05).clamp(20.0, 32.0)),
+              _StreakChip(streak: _streak),
+            ],
+          ),
+        );
+      },
+    );
+  }
+}
+
+/// The streak, set apart so it reads as a reward rather than another stat.
+class _StreakChip extends StatelessWidget {
+  const _StreakChip({required this.streak});
+
+  final int streak;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 11),
+      decoration: BoxDecoration(
+        color: theme.cardWash,
+        borderRadius: BorderRadius.circular(AppTheme.buttonRadius),
+        border: Border.all(color: theme.hairline),
       ),
+      child: StreakMark(streak: streak),
     );
   }
 }

@@ -7,9 +7,11 @@ import '../../core/models/placement.dart';
 import '../../core/theme/app_theme.dart';
 import '../../core/theme/app_typography.dart';
 import '../../services/placement_service.dart';
-import '../../widgets/bottom_action_inset.dart';
-import '../../widgets/centered_copy.dart';
+import '../../widgets/kanji_mark.dart';
 import '../../widgets/primary_button.dart';
+import '../../widgets/section_label.dart';
+import '../../widgets/soft_card.dart';
+import '../onboarding/widgets/onboarding_scaffold.dart';
 import 'placement_controller.dart';
 
 /// Quick recognition pass that works out which kanji the user already knows.
@@ -43,23 +45,17 @@ class _PlacementView extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = context.watch<PlacementController>();
 
-    return Scaffold(
-      body: SafeArea(
-        bottom: false,
-        child: switch (controller.phase) {
-          PlacementPhase.loading ||
-          PlacementPhase.saving => const Center(
-            child: CircularProgressIndicator(strokeWidth: 2),
-          ),
-          PlacementPhase.intro => _PlacementIntro(controller: controller),
-          PlacementPhase.asking => _PlacementQuestion(controller: controller),
-          PlacementPhase.results => _PlacementResults(
-            summary: controller.summary,
-            onFinished: onFinished,
-          ),
-        },
+    return switch (controller.phase) {
+      PlacementPhase.loading || PlacementPhase.saving => const Scaffold(
+        body: Center(child: CircularProgressIndicator(strokeWidth: 2)),
       ),
-    );
+      PlacementPhase.intro => _PlacementIntro(controller: controller),
+      PlacementPhase.asking => _PlacementQuestion(controller: controller),
+      PlacementPhase.results => _PlacementResults(
+        summary: controller.summary,
+        onFinished: onFinished,
+      ),
+    };
   }
 }
 
@@ -73,51 +69,73 @@ class _PlacementIntro extends StatelessWidget {
     final theme = Theme.of(context);
     final resuming = controller.isResuming;
 
-    return Column(
-      children: [
-        Expanded(
-          child: CenteredCopy(
-            children: [
-              Text(
-                "Let's find your starting point",
-                textAlign: TextAlign.center,
-                style: theme.textTheme.displaySmall?.copyWith(
-                  fontWeight: FontWeight.w600,
-                  letterSpacing: -0.6,
-                  height: 1.15,
+    return OnboardingScaffold(
+      step: 2,
+      action: PrimaryButton(
+        label: resuming ? 'Continue' : 'Start Placement Test',
+        onPressed: controller.start,
+      ),
+      content: (context, height) {
+        return Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            _LevelRamp(size: (height * 0.15).clamp(48.0, 88.0)),
+            SizedBox(height: height * 0.08),
+            OnboardingHeadline(
+              label: 'Placement',
+              title: "Let's find your starting point",
+              subtitle: resuming
+                  ? 'Pick up where you left off.'
+                  : "We'll show you some kanji to figure out\n"
+                        'what you already know.',
+            ),
+            const SizedBox(height: 14),
+            Text(
+              'It only takes a couple minutes.',
+              textAlign: TextAlign.center,
+              style: theme.textTheme.bodyLarge?.copyWith(
+                color: theme.mutedText,
+                height: 1.4,
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
+}
+
+/// Three kanji fading out: easy to hard, which is what the test is looking for.
+class _LevelRamp extends StatelessWidget {
+  const _LevelRamp({required this.size});
+
+  final double size;
+
+  static const _characters = ['日', '校', '議'];
+  static const _alphas = [1.0, 0.45, 0.18];
+
+  @override
+  Widget build(BuildContext context) {
+    final ink = Theme.of(context).colorScheme.onSurface;
+
+    return ExcludeSemantics(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          for (var index = 0; index < _characters.length; index++)
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 9),
+              child: Text(
+                _characters[index],
+                style: AppTypography.kanji(
+                  color: ink.withValues(alpha: _alphas[index]),
+                  size: size,
                 ),
               ),
-              const SizedBox(height: 20),
-              Text(
-                resuming
-                    ? 'Pick up where you left off.'
-                    : "We'll show you some kanji to figure out what you "
-                          'already know.',
-                textAlign: TextAlign.center,
-                style: theme.textTheme.titleMedium?.copyWith(
-                  color: theme.mutedText,
-                  fontWeight: FontWeight.w400,
-                  height: 1.4,
-                ),
-              ),
-              const SizedBox(height: 12),
-              Text(
-                'It only takes a couple minutes.',
-                textAlign: TextAlign.center,
-                style: theme.textTheme.titleMedium?.copyWith(
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-            ],
-          ),
-        ),
-        BottomActionInset(
-          child: PrimaryButton(
-            label: resuming ? 'Continue' : 'Start Placement Test',
-            onPressed: controller.start,
-          ),
-        ),
-      ],
+            ),
+        ],
+      ),
     );
   }
 }
@@ -136,66 +154,62 @@ class _PlacementQuestion extends StatelessWidget {
   Widget build(BuildContext context) {
     final card = controller.question;
     if (card == null) {
-      return const Center(child: CircularProgressIndicator(strokeWidth: 2));
+      return const Scaffold(
+        body: Center(child: CircularProgressIndicator(strokeWidth: 2)),
+      );
     }
 
-    return Column(
-      children: [
-        _PlacementProgress(controller: controller),
-        Expanded(
-          child: AnimatedSwitcher(
-            duration: const Duration(milliseconds: 180),
-            switchInCurve: Curves.easeOut,
-            switchOutCurve: Curves.easeIn,
-            child: _PlacementKanji(key: ValueKey(card.id), card: card),
+    return OnboardingScaffold(
+      header: _PlacementProgress(controller: controller),
+      action: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          PrimaryButton(
+            label: 'I know it',
+            onPressed: () => _answer(context, known: true),
           ),
-        ),
-        BottomActionInset(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              PrimaryButton(
-                label: 'I know it',
-                onPressed: () => _answer(context, known: true),
-              ),
-              const SizedBox(height: 10),
-              SizedBox(
-                width: double.infinity,
-                height: 52,
-                child: OutlinedButton(
-                  onPressed: () => _answer(context, known: false),
-                  child: const Text("I don't know it"),
-                ),
-              ),
-            ],
+          const SizedBox(height: 10),
+          SecondaryButton(
+            label: "I don't know it",
+            onPressed: () => _answer(context, known: false),
           ),
-        ),
-      ],
+        ],
+      ),
+      content: (context, height) {
+        return Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const SectionLabel(
+              'Do you know this kanji?',
+              align: TextAlign.center,
+            ),
+            SizedBox(height: height * 0.04),
+            AnimatedSwitcher(
+              duration: const Duration(milliseconds: 180),
+              switchInCurve: Curves.easeOut,
+              switchOutCurve: Curves.easeIn,
+              child: _PlacementKanji(
+                key: ValueKey(card.id),
+                card: card,
+                size: (height * 0.3).clamp(96.0, 164.0),
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 }
 
 class _PlacementKanji extends StatelessWidget {
-  const _PlacementKanji({super.key, required this.card});
+  const _PlacementKanji({super.key, required this.card, required this.size});
 
   final KanjiCard card;
+  final double size;
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24),
-        child: FittedBox(
-          fit: BoxFit.scaleDown,
-          child: Text(
-            card.character,
-            style: AppTypography.kanji(
-              color: Theme.of(context).colorScheme.onSurface,
-            ),
-          ),
-        ),
-      ),
-    );
+    return KanjiMark(character: card.character, size: size);
   }
 }
 
@@ -214,13 +228,19 @@ class _PlacementProgress extends StatelessWidget {
     return Column(
       children: [
         Padding(
-          padding: EdgeInsets.fromLTRB(20, canClose ? 4 : 16, 4, 12),
+          padding: EdgeInsets.fromLTRB(
+            28,
+            canClose ? 2 : 14,
+            canClose ? 8 : 28,
+            10,
+          ),
           child: Row(
             children: [
               Text(
                 '${controller.answeredCount + 1} / ~${controller.estimatedTotal}',
                 style: theme.textTheme.bodyMedium?.copyWith(
                   color: theme.mutedText,
+                  fontWeight: FontWeight.w600,
                   letterSpacing: 0.4,
                 ),
               ),
@@ -235,16 +255,19 @@ class _PlacementProgress extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: TweenAnimationBuilder<double>(
-            tween: Tween(end: controller.progress),
-            duration: const Duration(milliseconds: 220),
-            curve: Curves.easeOut,
-            builder: (context, value, _) => LinearProgressIndicator(
-              value: value,
-              minHeight: 2,
-              backgroundColor: theme.hairline,
-              color: theme.colorScheme.primary,
+          padding: const EdgeInsets.symmetric(horizontal: 28),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(3),
+            child: TweenAnimationBuilder<double>(
+              tween: Tween(end: controller.progress),
+              duration: const Duration(milliseconds: 220),
+              curve: Curves.easeOut,
+              builder: (context, value, _) => LinearProgressIndicator(
+                value: value,
+                minHeight: 3,
+                backgroundColor: theme.hairline,
+                color: theme.colorScheme.primary,
+              ),
             ),
           ),
         ),
@@ -265,76 +288,64 @@ class _PlacementResults extends StatelessWidget {
     final count = summary?.knownCount ?? 0;
     final level = summary?.startingLevel;
 
-    return Column(
-      children: [
-        Expanded(
-          child: CenteredCopy(
-            children: [
-              Text(
-                "You're all set!",
-                textAlign: TextAlign.center,
-                style: theme.textTheme.displaySmall?.copyWith(
-                  fontWeight: FontWeight.w600,
-                  letterSpacing: -0.6,
-                ),
-              ),
-              const SizedBox(height: 24),
-              if (count > 0) ...[
-                FittedBox(
-                  fit: BoxFit.scaleDown,
-                  child: Text(
-                    '$count',
-                    style: AppTypography.kanji(
-                      color: theme.colorScheme.onSurface,
-                      size: 48,
+    return OnboardingScaffold(
+      step: 2,
+      action: PrimaryButton(label: 'Start Learning', onPressed: onFinished),
+      content: (context, height) {
+        return Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const OnboardingHeadline(
+              label: 'Placement complete',
+              title: "You're all set!",
+            ),
+            SizedBox(height: height * 0.06),
+            SoftCard(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 26),
+              child: Column(
+                children: [
+                  if (count > 0)
+                    OnboardingStat(
+                      value: '$count',
+                      label: 'kanji already known',
+                    )
+                  else
+                    Text(
+                      _nothingFound(level),
+                      textAlign: TextAlign.center,
+                      style: theme.textTheme.titleLarge?.copyWith(
+                        fontWeight: FontWeight.w500,
+                        height: 1.35,
+                      ),
+                    ),
+                  const SizedBox(height: 20),
+                  const HairlineMark(width: 56),
+                  const SizedBox(height: 20),
+                  Text(
+                    _startingPoint(level),
+                    textAlign: TextAlign.center,
+                    style: theme.textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.w500,
+                      height: 1.35,
                     ),
                   ),
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  'kanji already known',
-                  textAlign: TextAlign.center,
-                  style: theme.textTheme.titleLarge?.copyWith(
-                    fontWeight: FontWeight.w500,
-                    height: 1.3,
-                  ),
-                ),
-              ] else
-                Text(
-                  _nothingFound(level),
-                  textAlign: TextAlign.center,
-                  style: theme.textTheme.titleLarge?.copyWith(
-                    fontWeight: FontWeight.w500,
-                    height: 1.35,
-                  ),
-                ),
-              const SizedBox(height: 18),
+                ],
+              ),
+            ),
+            if (count > 0) ...[
+              SizedBox(height: height * 0.04),
               Text(
-                _startingPoint(level),
+                "We've added the kanji you already know to your library.",
                 textAlign: TextAlign.center,
-                style: theme.textTheme.titleMedium?.copyWith(
-                  fontWeight: FontWeight.w500,
+                style: theme.textTheme.bodyLarge?.copyWith(
+                  color: theme.mutedText,
                   height: 1.4,
                 ),
               ),
-              if (count > 0) ...[
-                const SizedBox(height: 12),
-                Text(
-                  "We've added the kanji you already know to your library.",
-                  textAlign: TextAlign.center,
-                  style: theme.textTheme.bodyLarge?.copyWith(
-                    color: theme.mutedText,
-                    height: 1.4,
-                  ),
-                ),
-              ],
             ],
-          ),
-        ),
-        BottomActionInset(
-          child: PrimaryButton(label: 'Start Learning', onPressed: onFinished),
-        ),
-      ],
+          ],
+        );
+      },
     );
   }
 

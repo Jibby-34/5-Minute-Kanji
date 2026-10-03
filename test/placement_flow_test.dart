@@ -81,7 +81,9 @@ void main() {
       final card = controllerOf(tester).question!;
       expect(find.text(card.character), findsOneWidget);
       asked.add(card);
-      await tester.tap(find.text(knows(card) ? 'I know it' : "I don't know it"));
+      await tester.tap(
+        find.text(knows(card) ? 'I know it' : "I don't know it"),
+      );
       await tester.pumpAndSettle();
     }
     return asked;
@@ -165,7 +167,10 @@ void main() {
     // status in the list, and not waiting in today's queue.
     for (final schedule in known) {
       expect(schedule.state, CardLearningState.review);
-      expect(schedule.interval, calculateInitialKnownCardSchedule(schedule.cardId));
+      expect(
+        schedule.interval,
+        calculateInitialKnownCardSchedule(schedule.cardId),
+      );
       expect(schedule.isDueAt(now), isFalse);
       expect(resolver.resolve(schedule), KanjiProgressStatus.learning);
     }
@@ -192,7 +197,10 @@ void main() {
 
     // Tear the tree down so the next launch starts from storage.
     await tester.pumpWidget(const SizedBox.shrink());
-    await pumpApp(tester, SharedPrefsProgressRepository(await SharedPreferences.getInstance()));
+    await pumpApp(
+      tester,
+      SharedPrefsProgressRepository(await SharedPreferences.getInstance()),
+    );
 
     expect(find.text("Let's find your starting point"), findsNothing);
     expect(find.text('How much time fits into your day?'), findsOneWidget);
@@ -214,7 +222,10 @@ void main() {
     final pending = controllerOf(tester).question!;
 
     await tester.pumpWidget(const SizedBox.shrink());
-    await pumpApp(tester, SharedPrefsProgressRepository(await SharedPreferences.getInstance()));
+    await pumpApp(
+      tester,
+      SharedPrefsProgressRepository(await SharedPreferences.getInstance()),
+    );
 
     expect(find.text('Continue'), findsOneWidget);
     expect(find.text('Start Placement Test'), findsNothing);
@@ -338,37 +349,43 @@ void main() {
       expect(pool, hasLength(cards.length - 2));
     });
 
-    test('completing the test preserves kanji that already had progress', () async {
-      final cards = [
-        for (var i = 0; i < 12; i++)
-          testCard('k${i.toString().padLeft(2, '0')}', jlptLevel: JlptLevel.n5),
-      ];
-      final progress = MemoryProgressRepository();
-      await progress.seedIfNeeded(cards.map((card) => card.id).toList());
-      final learning = const SrsEngine().introduce(
-        current: (await progress.getSchedule('k00'))!,
-        now: DateTime(2026, 9, 2, 8),
-      );
-      await progress.saveSchedule(learning);
+    test(
+      'completing the test preserves kanji that already had progress',
+      () async {
+        final cards = [
+          for (var i = 0; i < 12; i++)
+            testCard(
+              'k${i.toString().padLeft(2, '0')}',
+              jlptLevel: JlptLevel.n5,
+            ),
+        ];
+        final progress = MemoryProgressRepository();
+        await progress.seedIfNeeded(cards.map((card) => card.id).toList());
+        final learning = const SrsEngine().introduce(
+          current: (await progress.getSchedule('k00'))!,
+          now: DateTime(2026, 9, 2, 8),
+        );
+        await progress.saveSchedule(learning);
 
-      final service = serviceFor(progress, cards);
-      await service.complete(
-        PlacementOutcome(
-          knownCardIds: cards.map((card) => card.id).toList(),
-          answeredCount: 12,
-        ),
-      );
+        final service = serviceFor(progress, cards);
+        await service.complete(
+          PlacementOutcome(
+            knownCardIds: cards.map((card) => card.id).toList(),
+            answeredCount: 12,
+          ),
+        );
 
-      expect((await progress.getSchedule('k00'))!.dueAt, learning.dueAt);
-      expect(
-        (await progress.getSchedule('k00'))!.state,
-        CardLearningState.learning,
-      );
-      expect(
-        (await progress.getSchedule('k01'))!.state,
-        CardLearningState.review,
-      );
-    });
+        expect((await progress.getSchedule('k00'))!.dueAt, learning.dueAt);
+        expect(
+          (await progress.getSchedule('k00'))!.state,
+          CardLearningState.learning,
+        );
+        expect(
+          (await progress.getSchedule('k01'))!.state,
+          CardLearningState.review,
+        );
+      },
+    );
 
     test('a pool with nothing left to place completes itself', () async {
       final cards = [testCard('k00'), testCard('k01')];
@@ -404,23 +421,26 @@ void main() {
       expect((await service.progress()).answers, hasLength(1));
     });
 
-    test('the real kanji set is placed in a couple of minutes of taps', () async {
-      const kanji = HardcodedKanjiRepository();
-      const engine = PlacementTestEngine();
-      final cards = await kanji.getAll();
-      final run = engine.replay(cards, const []);
-      while (!run.isFinished) {
-        final question = run.currentQuestion!;
-        run.record(
-          PlacementAnswer(
-            cardId: question.id,
-            known: question.jlptLevel == JlptLevel.n5,
-          ),
-        );
-      }
+    test(
+      'the real kanji set is placed in a couple of minutes of taps',
+      () async {
+        const kanji = HardcodedKanjiRepository();
+        const engine = PlacementTestEngine();
+        final cards = await kanji.getAll();
+        final run = engine.replay(cards, const []);
+        while (!run.isFinished) {
+          final question = run.currentQuestion!;
+          run.record(
+            PlacementAnswer(
+              cardId: question.id,
+              known: question.jlptLevel == JlptLevel.n5,
+            ),
+          );
+        }
 
-      expect(run.answeredCount, inInclusiveRange(12, 36));
-      expect(run.outcome().knownCardIds.length, greaterThan(50));
-    });
+        expect(run.answeredCount, inInclusiveRange(12, 36));
+        expect(run.outcome().knownCardIds.length, greaterThan(50));
+      },
+    );
   });
 }

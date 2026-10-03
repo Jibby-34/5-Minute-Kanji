@@ -157,10 +157,7 @@ void main() {
       await service.markHintSeen(OnboardingHint.drawFromMemory);
 
       expect(await service.hasSeenHint(OnboardingHint.drawFromMemory), isTrue);
-      expect(
-        await service.hasSeenHint(OnboardingHint.compareDrawing),
-        isFalse,
-      );
+      expect(await service.hasSeenHint(OnboardingHint.compareDrawing), isFalse);
     });
 
     test('hints dismissed together are both remembered', () async {
@@ -203,9 +200,24 @@ void main() {
 
   group('first launch', () {
     final cards = [
-      testCard('n5-001', character: '一', keyword: 'one', jlptLevel: JlptLevel.n5),
-      testCard('n5-002', character: '二', keyword: 'two', jlptLevel: JlptLevel.n5),
-      testCard('n5-003', character: '三', keyword: 'three', jlptLevel: JlptLevel.n5),
+      testCard(
+        'n5-001',
+        character: '一',
+        keyword: 'one',
+        jlptLevel: JlptLevel.n5,
+      ),
+      testCard(
+        'n5-002',
+        character: '二',
+        keyword: 'two',
+        jlptLevel: JlptLevel.n5,
+      ),
+      testCard(
+        'n5-003',
+        character: '三',
+        keyword: 'three',
+        jlptLevel: JlptLevel.n5,
+      ),
     ];
 
     Future<SharedPrefsProgressRepository> freshProgress() async {
@@ -350,7 +362,8 @@ void main() {
 
       // 6. Day one, with the numbers the session actually produced.
       expect(find.text('Day 1 complete!'), findsOneWidget);
-      expect(find.text('3 kanji learned'), findsOneWidget);
+      expect(find.text('3'), findsOneWidget);
+      expect(find.text('kanji learned'), findsOneWidget);
       expect(find.text('🔥'), findsOneWidget);
       expect(find.text('day streak'), findsOneWidget);
       expect(find.text('Continue'), findsOneWidget);
@@ -361,10 +374,7 @@ void main() {
       // 7. Home.
       expect(homeScreen(), findsOneWidget);
       expect(find.text('Day 1 complete!'), findsNothing);
-      expect(
-        (await progress.getOnboarding()).stage,
-        OnboardingStage.completed,
-      );
+      expect((await progress.getOnboarding()).stage, OnboardingStage.completed);
     });
 
     testWidgets('a returning user goes straight to Home', (tester) async {
@@ -510,10 +520,7 @@ void main() {
         (await progress.getSettings()).notifications.dailyReminderEnabled,
         isTrue,
       );
-      expect(
-        (await progress.getOnboarding()).stage,
-        OnboardingStage.completed,
-      );
+      expect((await progress.getOnboarding()).stage, OnboardingStage.completed);
     });
 
     testWidgets('declining the reminder still lets the user in', (
@@ -522,9 +529,7 @@ void main() {
       usePhoneViewport(tester);
       final progress = await freshProgress();
       await progress.saveOnboarding(
-        const OnboardingProgress(
-          stage: OnboardingStage.firstSessionCompleted,
-        ),
+        const OnboardingProgress(stage: OnboardingStage.firstSessionCompleted),
       );
       final gateway = FakeNotificationGateway(
         permissionStatus: NotificationPermission.notDetermined,
@@ -551,10 +556,7 @@ void main() {
         (await progress.getSettings()).notifications.dailyReminderEnabled,
         isFalse,
       );
-      expect(
-        (await progress.getOnboarding()).stage,
-        OnboardingStage.completed,
-      );
+      expect((await progress.getOnboarding()).stage, OnboardingStage.completed);
     });
 
     testWidgets('granted permission skips the reminder question', (
@@ -563,9 +565,7 @@ void main() {
       usePhoneViewport(tester);
       final progress = await freshProgress();
       await progress.saveOnboarding(
-        const OnboardingProgress(
-          stage: OnboardingStage.firstSessionCompleted,
-        ),
+        const OnboardingProgress(stage: OnboardingStage.firstSessionCompleted),
       );
       final reminders = ReminderScheduler(
         gateway: FakeNotificationGateway(),
@@ -581,10 +581,7 @@ void main() {
 
       expect(find.text('Want a reminder tomorrow?'), findsNothing);
       expect(find.text('Start Review'), findsOneWidget);
-      expect(
-        (await progress.getOnboarding()).stage,
-        OnboardingStage.completed,
-      );
+      expect((await progress.getOnboarding()).stage, OnboardingStage.completed);
     });
   });
 }

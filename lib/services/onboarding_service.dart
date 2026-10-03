@@ -46,9 +46,7 @@ class OnboardingService {
       // first one: there is no second Day 1.
       if (hasStudied &&
           !onboarding.stage.isAtLeast(OnboardingStage.firstSessionCompleted)) {
-        return _save(
-          onboarding.atLeast(OnboardingStage.firstSessionCompleted),
-        );
+        return _save(onboarding.atLeast(OnboardingStage.firstSessionCompleted));
       }
 
       return onboarding.stage;

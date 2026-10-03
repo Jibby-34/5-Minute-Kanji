@@ -13,7 +13,10 @@ class PlacementAnswer {
   static PlacementAnswer? fromJson(Map<String, dynamic> json) {
     final cardId = json['cardId'] as String?;
     if (cardId == null || cardId.isEmpty) return null;
-    return PlacementAnswer(cardId: cardId, known: json['known'] as bool? ?? false);
+    return PlacementAnswer(
+      cardId: cardId,
+      known: json['known'] as bool? ?? false,
+    );
   }
 }
 
@@ -33,7 +36,10 @@ class PlacementProgress {
 
   bool get hasStarted => answers.isNotEmpty;
 
-  PlacementProgress copyWith({bool? completed, List<PlacementAnswer>? answers}) {
+  PlacementProgress copyWith({
+    bool? completed,
+    List<PlacementAnswer>? answers,
+  }) {
     return PlacementProgress(
       completed: completed ?? this.completed,
       answers: answers ?? this.answers,

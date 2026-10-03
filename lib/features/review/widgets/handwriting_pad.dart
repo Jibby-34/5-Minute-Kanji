@@ -1,8 +1,9 @@
+import 'dart:math' as math;
+
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import '../../../core/models/handwriting.dart';
-import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_theme.dart';
 
 class HandwritingPad extends StatefulWidget {
@@ -104,10 +105,8 @@ class _HandwritingPadState extends State<HandwritingPad> {
 
     return DecoratedBox(
       decoration: BoxDecoration(
-        color: theme.brightness == Brightness.dark
-            ? AppColors.darkSurface
-            : AppColors.paperDeep.withValues(alpha: 0.45),
-        borderRadius: BorderRadius.circular(12),
+        color: theme.cardWash,
+        borderRadius: BorderRadius.circular(AppTheme.cardRadius),
         border: Border.all(color: grid),
       ),
       child: Stack(
@@ -190,19 +189,22 @@ class _HandwritingPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
+    // Dashed centre guides, the way a practice square is ruled on paper.
     final gridPaint = Paint()
-      ..color = grid.withValues(alpha: 0.7)
+      ..color = grid.withValues(alpha: 0.85)
       ..strokeWidth = 1
       ..style = PaintingStyle.stroke;
 
-    canvas.drawLine(
-      Offset(size.width / 2, 0),
-      Offset(size.width / 2, size.height),
+    _dashedLine(
+      canvas,
+      Offset(size.width / 2, 8),
+      Offset(size.width / 2, size.height - 8),
       gridPaint,
     );
-    canvas.drawLine(
-      Offset(0, size.height / 2),
-      Offset(size.width, size.height / 2),
+    _dashedLine(
+      canvas,
+      Offset(8, size.height / 2),
+      Offset(size.width - 8, size.height / 2),
       gridPaint,
     );
 
@@ -215,6 +217,20 @@ class _HandwritingPainter extends CustomPainter {
 
     for (final stroke in input.strokes) {
       _paintStroke(canvas, size, stroke, inkPaint);
+    }
+  }
+
+  void _dashedLine(Canvas canvas, Offset from, Offset to, Paint paint) {
+    const dash = 5.0;
+    const gap = 5.0;
+    final span = to - from;
+    final length = span.distance;
+    if (length <= 0) return;
+    final step = span / length;
+
+    for (var travelled = 0.0; travelled < length; travelled += dash + gap) {
+      final end = math.min(travelled + dash, length);
+      canvas.drawLine(from + step * travelled, from + step * end, paint);
     }
   }
 
