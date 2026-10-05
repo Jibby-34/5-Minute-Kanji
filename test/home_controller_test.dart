@@ -109,7 +109,7 @@ void main() {
     await controller.load();
     expect(controller.dueCount, 0);
     expect(controller.newRemainingToday, 1);
-    expect((await controller.cardsForSession(practice: false)).single.id, 'b');
+    expect((await controller.cardsForSession()).single.id, 'b');
 
     final reviewed = await progress.getSchedule('a');
     now = reviewed!.dueAt;
@@ -163,7 +163,7 @@ void main() {
     expect(controller.dueCount, 1);
     expect(controller.newRemainingToday, 0);
     expect(controller.isCaughtUp, isFalse);
-    expect((await controller.cardsForSession(practice: false)).single.id, 'a');
+    expect((await controller.cardsForSession()).single.id, 'a');
     expect(controller.nextReviewAt, today);
   });
 
@@ -202,7 +202,7 @@ void main() {
     expect(controller.dueCount, 0);
     expect(controller.newRemainingToday, 0);
     expect(controller.nextReviewAt, later);
-    expect(await controller.cardsForSession(practice: false), isEmpty);
+    expect(await controller.cardsForSession(), isEmpty);
   });
 
   test('last sitting includes every remaining new kanji', () async {
@@ -248,7 +248,7 @@ void main() {
       clock: () => now,
     );
     await controller.load();
-    final session = await controller.cardsForSession(practice: false);
+    final session = await controller.cardsForSession();
 
     expect(controller.dueCount, 5);
     expect(controller.newRemainingToday, 4);
@@ -282,7 +282,7 @@ void main() {
       clock: () => now,
     );
     await controller.load();
-    final session = await controller.cardsForSession(practice: false);
+    final session = await controller.cardsForSession();
 
     expect(controller.dueCount, 0);
     expect(controller.newRemainingToday, 5);
@@ -328,7 +328,7 @@ void main() {
       clock: () => now,
     );
     await controller.load();
-    final session = await controller.cardsForSession(practice: false);
+    final session = await controller.cardsForSession();
 
     expect(controller.dueCount, 1);
     expect(controller.newRemainingToday, 5);
@@ -364,7 +364,7 @@ void main() {
         clock: () => now,
       );
       await home.load();
-      final sessionCards = await home.cardsForSession(practice: false);
+      final sessionCards = await home.cardsForSession();
       expect(sessionCards.length, 5);
       expect(home.isCaughtUp, isFalse);
 
@@ -448,7 +448,7 @@ void main() {
     await controller.load();
 
     expect(controller.dueCount, 1);
-    expect((await controller.cardsForSession(practice: false)).single.id, 'a');
+    expect((await controller.cardsForSession()).single.id, 'a');
     expect(controller.nextReviewAt, morning);
   });
 

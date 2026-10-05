@@ -308,7 +308,10 @@ void main() {
       await tester.pumpAndSettle();
 
       // 4. Daily goal, with five minutes recommended and selected.
-      expect(find.text('How much time fits into your day?'), findsOneWidget);
+      expect(
+        find.text('How much time do you want to study each day?'),
+        findsOneWidget,
+      );
       expect(find.text('5 minutes'), findsOneWidget);
       expect(find.text('Recommended'), findsOneWidget);
       expect(find.text('Custom'), findsOneWidget);
@@ -320,6 +323,7 @@ void main() {
       // The goal lands in the setting the user can change later.
       final settings = await progress.getSettings();
       expect(settings.newKanjiPerDay, 4);
+      expect(settings.dailyStudyMinutes, 5);
 
       // 5. The real learning screen, with its first-time pointers.
       expect(find.text('Practice Writing'), findsOneWidget);
@@ -415,7 +419,10 @@ void main() {
       await answerPlacement(tester);
       await tester.tap(find.text('Start Learning'));
       await tester.pumpAndSettle();
-      expect(find.text('How much time fits into your day?'), findsOneWidget);
+      expect(
+        find.text('How much time do you want to study each day?'),
+        findsOneWidget,
+      );
 
       await tester.pumpWidget(const SizedBox.shrink());
       await pumpApp(
@@ -423,7 +430,10 @@ void main() {
         SharedPrefsProgressRepository(await SharedPreferences.getInstance()),
       );
 
-      expect(find.text('How much time fits into your day?'), findsOneWidget);
+      expect(
+        find.text('How much time do you want to study each day?'),
+        findsOneWidget,
+      );
       expect(find.text('Get Started'), findsNothing);
     });
 

@@ -36,6 +36,7 @@ class ReviewScreen extends StatelessWidget {
     required this.cards,
     required this.config,
     this.isPractice = false,
+    this.isStudyAnyway = false,
     this.clock,
     this.onSessionComplete,
   });
@@ -43,6 +44,9 @@ class ReviewScreen extends StatelessWidget {
   final List<KanjiCard> cards;
   final ReviewSessionConfig config;
   final bool isPractice;
+
+  /// Optional overflow after the planned sitting. Still a real review.
+  final bool isStudyAnyway;
   final Clock? clock;
 
   /// Replaces the usual summary screen. Used once, for the first session.
@@ -80,6 +84,7 @@ class ReviewScreen extends StatelessWidget {
           cards: cards,
           config: config,
           isPractice: isPractice,
+          isStudyAnyway: isStudyAnyway,
           clock: clock,
         );
         controller.hydrate();

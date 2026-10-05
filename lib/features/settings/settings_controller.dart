@@ -36,6 +36,8 @@ class SettingsController extends ChangeNotifier {
 
   int get newKanjiPerDay => settings.newKanjiPerDay;
 
+  int get dailyStudyMinutes => settings.dailyStudyMinutes;
+
   StartOfDay get startOfDay => settings.startOfDay;
 
   NotificationSettings get notifications => settings.notifications;
@@ -83,6 +85,16 @@ class SettingsController extends ChangeNotifier {
 
     settings = settings.copyWith(newKanjiPerDay: clamped);
     _refreshEstimate();
+    notifyListeners();
+    await progressRepository.saveSettings(settings);
+    await reminderScheduler?.reschedule();
+  }
+
+  Future<void> setDailyStudyMinutes(int value) async {
+    final clamped = AppSettings.clampDailyStudyMinutes(value);
+    if (clamped == settings.dailyStudyMinutes && !loading) return;
+
+    settings = settings.copyWith(dailyStudyMinutes: clamped);
     notifyListeners();
     await progressRepository.saveSettings(settings);
     await reminderScheduler?.reschedule();

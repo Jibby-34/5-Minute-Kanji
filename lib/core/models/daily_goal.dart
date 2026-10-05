@@ -1,15 +1,20 @@
-/// How many minutes a day the user wants to spend.
+/// How many minutes a day the user wants the normal session planned around.
 ///
-/// The app already limits a day by new kanji rather than by minutes, so a goal
-/// is translated into that existing setting instead of being stored as a
-/// second, competing limit.
+/// Stored as [AppSettings.dailyStudyMinutes]. Onboarding also derives a
+/// new-kanji allowance from it; that allowance stays a separate cap.
 class DailyGoal {
   const DailyGoal(this.minutes);
 
   static const recommended = DailyGoal(5);
 
   /// Offered as one-tap choices. Anything else goes through Custom.
-  static const presets = [DailyGoal(5), DailyGoal(10), DailyGoal(15)];
+  static const presets = [
+    DailyGoal(5),
+    DailyGoal(10),
+    DailyGoal(15),
+    DailyGoal(20),
+    DailyGoal(30),
+  ];
 
   static const int minCustomMinutes = 3;
   static const int maxCustomMinutes = 30;

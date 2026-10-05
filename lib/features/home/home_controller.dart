@@ -22,7 +22,6 @@ class HomeController extends ChangeNotifier {
        workloadService = DailyWorkloadService(
          kanjiRepository: kanjiRepository,
          progressRepository: progressRepository,
-         config: config,
          selector: selector,
        );
 
@@ -41,6 +40,9 @@ class HomeController extends ChangeNotifier {
   int newRemainingToday = 0;
   int estimatedMinutes = 0;
   int streak = 0;
+  int recommendedCount = 0;
+  bool recommendedComplete = false;
+  bool studyAnywayAvailable = false;
   DateTime? nextReviewAt;
   StartOfDay startOfDay = StartOfDay.defaults;
 
@@ -63,6 +65,9 @@ class HomeController extends ChangeNotifier {
       dueCount = workload.dueCount;
       newRemainingToday = workload.newRemainingToday;
       estimatedMinutes = workload.estimatedMinutes;
+      recommendedCount = workload.sessionCards.length;
+      recommendedComplete = workload.recommendedComplete;
+      studyAnywayAvailable = workload.studyAnywayAvailable;
       streak = streakInfo.current;
       startOfDay = workload.startOfDay;
       nextReviewAt = workload.nextReviewAt;
@@ -70,6 +75,9 @@ class HomeController extends ChangeNotifier {
       dueCount = 0;
       newRemainingToday = 0;
       estimatedMinutes = 0;
+      recommendedCount = 0;
+      recommendedComplete = false;
+      studyAnywayAvailable = false;
       streak = 0;
       startOfDay = StartOfDay.defaults;
       nextReviewAt = null;
@@ -84,20 +92,9 @@ class HomeController extends ChangeNotifier {
     await reminderScheduler?.reschedule();
   }
 
-  Future<List<KanjiCard>> cardsForSession({required bool practice}) async {
-    final cards = await kanjiRepository.getAll();
-    if (cards.isEmpty) return const [];
-
-    if (practice) {
-      final settings = await progressRepository.getSettings();
-      final limit = config
-          .copyWith(averageSecondsPerCard: settings.averageSecondsPerCard)
-          .effectiveMaxCards;
-      final shuffled = List<KanjiCard>.from(cards)..shuffle();
-      return shuffled.take(limit).toList();
-    }
-
+  Future<List<KanjiCard>> cardsForSession({bool studyAnyway = false}) async {
     final workload = await workloadService.read(now: clock());
+    if (studyAnyway) return workload.overflowCards;
     return workload.sessionCards;
   }
 }

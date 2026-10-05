@@ -157,7 +157,7 @@ void main() {
 
     await home.load();
     expect(home.newRemainingToday, 0);
-    expect(await home.cardsForSession(practice: false), isEmpty);
+    expect(await home.cardsForSession(), isEmpty);
   });
 
   test('a zero daily limit introduces no new kanji', () async {
@@ -184,7 +184,7 @@ void main() {
     );
 
     await home.load();
-    final session = await home.cardsForSession(practice: false);
+    final session = await home.cardsForSession();
     expect(home.newRemainingToday, 0);
     expect(session.map((card) => card.id), ['r']);
   });

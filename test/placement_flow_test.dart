@@ -181,7 +181,10 @@ void main() {
     await tester.tap(find.text('Start Learning'));
     await tester.pumpAndSettle();
 
-    expect(find.text('How much time fits into your day?'), findsOneWidget);
+    expect(
+      find.text('How much time do you want to study each day?'),
+      findsOneWidget,
+    );
     expect(find.text("Let's find your starting point"), findsNothing);
   });
 
@@ -203,7 +206,10 @@ void main() {
     );
 
     expect(find.text("Let's find your starting point"), findsNothing);
-    expect(find.text('How much time fits into your day?'), findsOneWidget);
+    expect(
+      find.text('How much time do you want to study each day?'),
+      findsOneWidget,
+    );
   });
 
   testWidgets('closing the app mid-test resumes on the same kanji', (
@@ -257,7 +263,10 @@ void main() {
 
     await tester.tap(find.text('Start Learning'));
     await tester.pumpAndSettle();
-    expect(find.text('How much time fits into your day?'), findsOneWidget);
+    expect(
+      find.text('How much time do you want to study each day?'),
+      findsOneWidget,
+    );
   });
 
   testWidgets('Settings can run the placement test again', (tester) async {
@@ -305,7 +314,10 @@ void main() {
     await tester.pump(const Duration(milliseconds: 50));
 
     expect(find.text("Let's find your starting point"), findsNothing);
-    expect(find.text('How much time fits into your day?'), findsOneWidget);
+    expect(
+      find.text('How much time do you want to study each day?'),
+      findsOneWidget,
+    );
     expect((await progress.getPlacement()).completed, isFalse);
   });
 

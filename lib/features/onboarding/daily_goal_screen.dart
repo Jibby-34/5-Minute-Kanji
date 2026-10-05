@@ -73,7 +73,7 @@ class _DailyGoalScreenState extends State<DailyGoalScreen> {
           children: [
             const OnboardingHeadline(
               label: 'Daily goal',
-              title: 'How much time fits into your day?',
+              title: 'How much time do you want to study each day?',
             ),
             SizedBox(height: (height * 0.06).clamp(24.0, 40.0)),
             for (final goal in DailyGoal.presets) ...[
@@ -83,7 +83,7 @@ class _DailyGoalScreenState extends State<DailyGoalScreen> {
                 selected: !_custom && _minutes == goal.minutes,
                 onTap: () => _selectPreset(goal),
               ),
-              const SizedBox(height: 10),
+              const SizedBox(height: 8),
             ],
             _GoalOption(
               label: 'Custom',
@@ -152,8 +152,8 @@ class _GoalOption extends StatelessWidget {
           onTap: onTap,
           borderRadius: BorderRadius.circular(AppTheme.buttonRadius),
           child: Container(
-            constraints: const BoxConstraints(minHeight: 64),
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
+            constraints: const BoxConstraints(minHeight: 52),
+            padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
             decoration: BoxDecoration(
               color: selected ? theme.accentWash.withValues(alpha: 0.55) : null,
               borderRadius: BorderRadius.circular(AppTheme.buttonRadius),

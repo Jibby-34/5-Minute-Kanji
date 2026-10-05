@@ -110,7 +110,15 @@ class DueCardSelector {
       ...reviewDue,
     ].take(existingTakeCount).toList();
 
-    return _interleaveNew(existing: existing, news: newTake);
+    return arrangeSession(existing: existing, news: newTake);
+  }
+
+  /// Spreads new cards through reviews for a sitting that was already chosen.
+  List<KanjiCard> arrangeSession({
+    required List<KanjiCard> existing,
+    required List<KanjiCard> news,
+  }) {
+    return _interleaveNew(existing: existing, news: news);
   }
 
   int countDue({

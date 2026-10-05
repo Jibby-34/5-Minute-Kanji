@@ -1,4 +1,5 @@
 import '../core/models/card_schedule.dart';
+import '../core/models/daily_session_plan.dart';
 import '../core/models/onboarding.dart';
 import '../core/models/placement.dart';
 import '../core/models/progress.dart';
@@ -27,6 +28,10 @@ abstract class ProgressRepository {
   Future<DailyNewKanjiProgress> getDailyNewKanji();
 
   Future<void> saveDailyNewKanji(DailyNewKanjiProgress progress);
+
+  Future<DailySessionPlan> getDailySessionPlan();
+
+  Future<void> saveDailySessionPlan(DailySessionPlan plan);
 
   Future<PlacementProgress> getPlacement();
 

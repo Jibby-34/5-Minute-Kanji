@@ -43,9 +43,9 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
     }
   }
 
-  Future<void> _startReview({required bool practice}) async {
+  Future<void> _startReview({required bool studyAnyway}) async {
     final home = context.read<HomeController>();
-    final cards = await home.cardsForSession(practice: practice);
+    final cards = await home.cardsForSession(studyAnyway: studyAnyway);
     if (!mounted) return;
     if (cards.isEmpty) {
       await home.load(showLoading: false);
@@ -55,7 +55,11 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
     await Navigator.of(context).push(
       AppRoutes.session(
         context,
-        ReviewScreen(cards: cards, isPractice: practice, config: home.config),
+        ReviewScreen(
+          cards: cards,
+          isStudyAnyway: studyAnyway,
+          config: home.config,
+        ),
       ),
     );
     if (mounted) {
@@ -101,7 +105,8 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                     child: _HomeCanvas(
                       home: home,
                       now: now,
-                      onStart: () => _startReview(practice: home.isCaughtUp),
+                      onStart: () =>
+                          _startReview(studyAnyway: home.studyAnywayAvailable),
                     ),
                   ),
                 ],
@@ -285,11 +290,10 @@ class _DailyStudyCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final workload = _Workload.of(home);
-    // While work is waiting the next review is now, which the button already
-    // says; the line earns its place once the next one is further out.
-    final nextReviewAt = home.nextReviewAt;
+    // The line earns its place once today's planned sitting is finished and
+    // there is nothing optional left.
     final showNextReview =
-        home.isCaughtUp || (nextReviewAt != null && nextReviewAt.isAfter(now));
+        !home.studyAnywayAvailable && home.recommendedCount == 0;
 
     return SoftCard(
       padding: EdgeInsets.symmetric(
@@ -303,7 +307,7 @@ class _DailyStudyCard extends StatelessWidget {
           _DailyCount(
             count: workload.count,
             size: numberSize,
-            caughtUp: home.isCaughtUp,
+            caughtUp: home.recommendedCount == 0,
           ),
           SizedBox(height: compact ? 4 : 6),
           Text(
@@ -326,8 +330,22 @@ class _DailyStudyCard extends StatelessWidget {
               height: 1.35,
             ),
           ),
-          SizedBox(height: compact ? 18 : 24),
-          PrimaryButton(label: workload.action, onPressed: onStart),
+          if (workload.action case final action?) ...[
+            SizedBox(height: compact ? 18 : 24),
+            PrimaryButton(label: action, onPressed: onStart),
+            if (workload.footnote case final footnote?) ...[
+              SizedBox(height: compact ? 10 : 12),
+              Text(
+                footnote,
+                textAlign: TextAlign.center,
+                style: theme.textTheme.bodyMedium?.copyWith(
+                  color: theme.mutedText,
+                  fontSize: 14,
+                  height: 1.35,
+                ),
+              ),
+            ],
+          ],
           if (showNextReview) ...[
             SizedBox(height: compact ? 14 : 18),
             Divider(height: 1, thickness: 1, color: theme.hairline),
@@ -448,40 +466,39 @@ class _Workload {
     required this.count,
     required this.label,
     required this.meta,
-    required this.action,
+    this.action,
+    this.footnote,
   });
 
   final int count;
   final String label;
   final String meta;
-  final String action;
+  final String? action;
+  final String? footnote;
 
   static _Workload of(HomeController home) {
-    if (home.isCaughtUp) {
+    if (home.studyAnywayAvailable) {
+      return const _Workload(
+        count: 0,
+        label: 'kanji remaining today',
+        meta: "You're done for today!",
+        action: 'Study Anyway',
+        footnote: 'Keep going with other due kanji',
+      );
+    }
+
+    if (home.recommendedCount <= 0) {
       return const _Workload(
         count: 0,
         label: 'kanji remaining today',
         meta: "You're all caught up.",
-        action: 'Practice Anyway',
       );
     }
 
-    final newCount = home.newRemainingToday;
-    final reviews = home.dueCount;
-    final showNew = newCount > 0;
-    final minutes = '~${home.estimatedMinutes} min';
-    final reviewLine = showNew && reviews > 0
-        ? (reviews == 1 ? '1 review' : '$reviews reviews')
-        : null;
-
     return _Workload(
-      count: showNew ? newCount : reviews,
-      label: showNew
-          ? 'kanji remaining today'
-          : reviews == 1
-          ? 'review remaining today'
-          : 'reviews remaining today',
-      meta: reviewLine == null ? minutes : '$reviewLine · $minutes',
+      count: home.recommendedCount,
+      label: 'kanji remaining today',
+      meta: '~${home.estimatedMinutes} min',
       action: 'Start Review',
     );
   }

@@ -142,9 +142,7 @@ class _OnboardingGateState extends State<OnboardingGate> {
 
   Future<List<KanjiCard>> _firstSessionCards() async {
     try {
-      return await context.read<HomeController>().cardsForSession(
-        practice: false,
-      );
+      return await context.read<HomeController>().cardsForSession();
     } catch (_) {
       return const [];
     }

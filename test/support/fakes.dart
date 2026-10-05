@@ -1,4 +1,5 @@
 import 'package:fiveminutekanji/core/models/card_schedule.dart';
+import 'package:fiveminutekanji/core/models/daily_session_plan.dart';
 import 'package:fiveminutekanji/core/models/curriculum.dart';
 import 'package:fiveminutekanji/core/models/kanji_card.dart';
 import 'package:fiveminutekanji/core/models/onboarding.dart';
@@ -72,6 +73,7 @@ class MemoryProgressRepository implements ProgressRepository {
     Map<String, CardSchedule>? schedules,
     this.settings = const AppSettings(),
     this.dailyNewKanji = DailyNewKanjiProgress.empty,
+    this.dailySessionPlan = DailySessionPlan.empty,
   }) : schedules = schedules ?? {};
 
   final Map<String, CardSchedule> schedules;
@@ -79,6 +81,7 @@ class MemoryProgressRepository implements ProgressRepository {
   StreakInfo streak = StreakInfo.empty;
   AppSettings settings;
   DailyNewKanjiProgress dailyNewKanji;
+  DailySessionPlan dailySessionPlan;
   PlacementProgress placement = PlacementProgress.empty;
   OnboardingProgress onboarding = OnboardingProgress.empty;
 
@@ -132,6 +135,14 @@ class MemoryProgressRepository implements ProgressRepository {
   @override
   Future<void> saveDailyNewKanji(DailyNewKanjiProgress next) async {
     dailyNewKanji = next;
+  }
+
+  @override
+  Future<DailySessionPlan> getDailySessionPlan() async => dailySessionPlan;
+
+  @override
+  Future<void> saveDailySessionPlan(DailySessionPlan plan) async {
+    dailySessionPlan = plan;
   }
 
   @override

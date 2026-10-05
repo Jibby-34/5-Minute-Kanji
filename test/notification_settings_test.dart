@@ -152,6 +152,7 @@ void main() {
     ) async {
       await openSettings(tester);
 
+      await tester.ensureVisible(find.byType(Switch));
       await tester.tap(find.byType(Switch));
       await tester.pumpAndSettle();
 

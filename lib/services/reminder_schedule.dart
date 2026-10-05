@@ -112,7 +112,7 @@ DailyReminder? planDailyReminder({
 /// The estimate is omitted rather than faked when it is unavailable.
 String reminderBodyFor(DailyWorkload workload) {
   final count = workload.remainingCount;
-  final noun = workload.countsNewKanji
+  final noun = workload.usesPlannedSession || workload.countsNewKanji
       ? 'kanji'
       : count == 1
       ? 'review'

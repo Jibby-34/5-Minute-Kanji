@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../core/models/card_schedule.dart';
+import '../core/models/daily_session_plan.dart';
 import '../core/models/onboarding.dart';
 import '../core/models/placement.dart';
 import '../core/models/progress.dart';
@@ -135,6 +136,19 @@ class SharedPrefsProgressRepository implements ProgressRepository {
   }
 
   @override
+  Future<DailySessionPlan> getDailySessionPlan() async {
+    await _ensureLoaded();
+    return _blob.dailySessionPlan;
+  }
+
+  @override
+  Future<void> saveDailySessionPlan(DailySessionPlan plan) async {
+    await _ensureLoaded();
+    _blob = _blob.copyWith(dailySessionPlan: plan);
+    await _persist();
+  }
+
+  @override
   Future<PlacementProgress> getPlacement() async {
     await _ensureLoaded();
     return _blob.placement;
@@ -187,6 +201,7 @@ class _ProgressBlob {
     this.streak = StreakInfo.empty,
     this.settings = const AppSettings(),
     this.dailyNewKanji = DailyNewKanjiProgress.empty,
+    this.dailySessionPlan = DailySessionPlan.empty,
     this.placement = PlacementProgress.empty,
     this.onboarding = OnboardingProgress.empty,
   });
@@ -196,6 +211,7 @@ class _ProgressBlob {
   final StreakInfo streak;
   final AppSettings settings;
   final DailyNewKanjiProgress dailyNewKanji;
+  final DailySessionPlan dailySessionPlan;
   final PlacementProgress placement;
   final OnboardingProgress onboarding;
 
@@ -205,6 +221,7 @@ class _ProgressBlob {
     StreakInfo? streak,
     AppSettings? settings,
     DailyNewKanjiProgress? dailyNewKanji,
+    DailySessionPlan? dailySessionPlan,
     PlacementProgress? placement,
     OnboardingProgress? onboarding,
   }) {
@@ -214,6 +231,7 @@ class _ProgressBlob {
       streak: streak ?? this.streak,
       settings: settings ?? this.settings,
       dailyNewKanji: dailyNewKanji ?? this.dailyNewKanji,
+      dailySessionPlan: dailySessionPlan ?? this.dailySessionPlan,
       placement: placement ?? this.placement,
       onboarding: onboarding ?? this.onboarding,
     );
@@ -228,6 +246,7 @@ class _ProgressBlob {
       'streak': streak.toJson(),
       'settings': settings.toJson(),
       'dailyNewKanji': dailyNewKanji.toJson(),
+      'dailySessionPlan': dailySessionPlan.toJson(),
       'placement': placement.toJson(),
       'onboarding': onboarding.toJson(),
     };
@@ -264,6 +283,9 @@ class _ProgressBlob {
       settings: AppSettings.fromJson(_asStringKeyMap(json['settings'])),
       dailyNewKanji: DailyNewKanjiProgress.fromJson(
         _asStringKeyMap(json['dailyNewKanji']),
+      ),
+      dailySessionPlan: DailySessionPlan.fromJson(
+        _asStringKeyMap(json['dailySessionPlan']),
       ),
       placement: PlacementProgress.fromJson(_asStringKeyMap(json['placement'])),
       onboarding: OnboardingProgress.fromJson(

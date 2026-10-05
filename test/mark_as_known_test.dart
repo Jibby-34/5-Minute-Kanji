@@ -181,7 +181,7 @@ void main() {
 
       expect(progress.dailyNewKanji.count, 0);
       expect(home.newRemainingToday, 2);
-      final session = await home.cardsForSession(practice: false);
+      final session = await home.cardsForSession();
       expect(session.map((card) => card.id), ['n4', 'n5']);
     },
   );

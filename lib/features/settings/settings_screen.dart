@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../core/models/daily_goal.dart';
 import '../../core/models/notification_settings.dart';
 import '../../core/models/start_of_day.dart';
 import '../../core/theme/app_theme.dart';
@@ -129,80 +130,172 @@ class _SettingsViewState extends State<_SettingsView>
                   ? const Center(
                       child: CircularProgressIndicator(strokeWidth: 2),
                     )
-                  : ListView(
+                  : SingleChildScrollView(
                       physics: const BouncingScrollPhysics(),
                       padding: const EdgeInsets.fromLTRB(24, 28, 24, 40),
-                      children: [
-                        Text('New kanji per day', style: sectionTitle),
-                        const SizedBox(height: 16),
-                        Text(
-                          '${controller.newKanjiPerDay}',
-                          textAlign: TextAlign.center,
-                          style: valueStyle,
-                        ),
-                        const SizedBox(height: 8),
-                        Slider(
-                          min: 0,
-                          max: 50,
-                          divisions: 50,
-                          value: controller.newKanjiPerDay.toDouble(),
-                          label: '${controller.newKanjiPerDay}',
-                          onChanged: (value) {
-                            controller.setNewKanjiPerDay(value.round());
-                          },
-                        ),
-                        const SizedBox(height: 4),
-                        Text(
-                          controller.estimate.label,
-                          style: theme.textTheme.bodyLarge?.copyWith(
-                            color: theme.mutedText,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Text('Daily study time', style: sectionTitle),
+                          const SizedBox(height: 16),
+                          Text(
+                            '${controller.dailyStudyMinutes} minutes',
+                            textAlign: TextAlign.center,
+                            style: valueStyle,
                           ),
-                        ),
-                        const SizedBox(height: 40),
-                        Text('Start of day', style: sectionTitle),
-                        const SizedBox(height: 16),
-                        Material(
-                          color: Colors.transparent,
-                          child: InkWell(
-                            onTap: () => _pickStartOfDay(context, controller),
-                            borderRadius: BorderRadius.circular(12),
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 8),
-                              child: Text(
-                                formatStartOfDay(controller.startOfDay),
-                                textAlign: TextAlign.center,
-                                style: valueStyle,
+                          const SizedBox(height: 16),
+                          _DailyStudyChoices(controller: controller),
+                          const SizedBox(height: 8),
+                          Text(
+                            'Plans your normal session. Extra due kanji stay optional.',
+                            textAlign: TextAlign.center,
+                            style: theme.textTheme.bodyLarge?.copyWith(
+                              color: theme.mutedText,
+                            ),
+                          ),
+                          const SizedBox(height: 40),
+                          Text('New kanji per day', style: sectionTitle),
+                          const SizedBox(height: 16),
+                          Text(
+                            '${controller.newKanjiPerDay}',
+                            textAlign: TextAlign.center,
+                            style: valueStyle,
+                          ),
+                          const SizedBox(height: 8),
+                          Slider(
+                            min: 0,
+                            max: 50,
+                            divisions: 50,
+                            value: controller.newKanjiPerDay.toDouble(),
+                            label: '${controller.newKanjiPerDay}',
+                            onChanged: (value) {
+                              controller.setNewKanjiPerDay(value.round());
+                            },
+                          ),
+                          const SizedBox(height: 4),
+                          Text(
+                            controller.estimate.label,
+                            style: theme.textTheme.bodyLarge?.copyWith(
+                              color: theme.mutedText,
+                            ),
+                          ),
+                          const SizedBox(height: 40),
+                          Text('Start of day', style: sectionTitle),
+                          const SizedBox(height: 16),
+                          Material(
+                            color: Colors.transparent,
+                            child: InkWell(
+                              onTap: () => _pickStartOfDay(context, controller),
+                              borderRadius: BorderRadius.circular(12),
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 8,
+                                ),
+                                child: Text(
+                                  formatStartOfDay(controller.startOfDay),
+                                  textAlign: TextAlign.center,
+                                  style: valueStyle,
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                        const SizedBox(height: 40),
-                        Text('Study reminders', style: sectionTitle),
-                        const SizedBox(height: 4),
-                        _ReminderRows(controller: controller),
-                        const SizedBox(height: 48),
-                        _SettingsLinkRow(
-                          label: 'Retake placement test',
-                          style: sectionTitle,
-                          onTap: () => _retakePlacementTest(context),
-                        ),
-                        const SizedBox(height: 8),
-                        _SettingsLinkRow(
-                          label: 'Open source licenses',
-                          style: sectionTitle,
-                          onTap: () {
-                            Navigator.of(context).push(
-                              MaterialPageRoute<void>(
-                                builder: (_) =>
-                                    const OpenSourceLicensesScreen(),
-                              ),
-                            );
-                          },
-                        ),
-                      ],
+                          const SizedBox(height: 40),
+                          Text('Study reminders', style: sectionTitle),
+                          const SizedBox(height: 4),
+                          _ReminderRows(controller: controller),
+                          const SizedBox(height: 48),
+                          _SettingsLinkRow(
+                            label: 'Retake placement test',
+                            style: sectionTitle,
+                            onTap: () => _retakePlacementTest(context),
+                          ),
+                          const SizedBox(height: 8),
+                          _SettingsLinkRow(
+                            label: 'Open source licenses',
+                            style: sectionTitle,
+                            onTap: () {
+                              Navigator.of(context).push(
+                                MaterialPageRoute<void>(
+                                  builder: (_) =>
+                                      const OpenSourceLicensesScreen(),
+                                ),
+                              );
+                            },
+                          ),
+                        ],
+                      ),
                     ),
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class _DailyStudyChoices extends StatelessWidget {
+  const _DailyStudyChoices({required this.controller});
+
+  final SettingsController controller;
+
+  @override
+  Widget build(BuildContext context) {
+    return Wrap(
+      alignment: WrapAlignment.center,
+      spacing: 8,
+      runSpacing: 8,
+      children: [
+        for (final goal in DailyGoal.presets)
+          _MinuteChip(
+            label: '${goal.minutes}',
+            selected: controller.dailyStudyMinutes == goal.minutes,
+            onTap: () => controller.setDailyStudyMinutes(goal.minutes),
+          ),
+      ],
+    );
+  }
+}
+
+class _MinuteChip extends StatelessWidget {
+  const _MinuteChip({
+    required this.label,
+    required this.selected,
+    required this.onTap,
+  });
+
+  final String label;
+  final bool selected;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final primary = theme.colorScheme.primary;
+
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(12),
+        child: Container(
+          constraints: const BoxConstraints(minWidth: 52, minHeight: 40),
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            color: selected ? theme.accentWash.withValues(alpha: 0.7) : null,
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(
+              color: selected ? primary : theme.hairline,
+              width: selected ? 1.6 : 1.2,
+            ),
+          ),
+          child: Text(
+            label,
+            style: theme.textTheme.titleMedium?.copyWith(
+              fontWeight: selected ? FontWeight.w600 : FontWeight.w500,
+              color: selected ? primary : null,
+            ),
+          ),
         ),
       ),
     );

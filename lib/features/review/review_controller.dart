@@ -24,6 +24,7 @@ class ReviewController extends ChangeNotifier {
     required List<KanjiCard> cards,
     required ReviewSessionConfig config,
     this.isPractice = false,
+    this.isStudyAnyway = false,
     this.streakService = const StreakService(),
     this.grader = const ManualAnswerGrader(),
     this.statusResolver = const KanjiStatusResolver(),
@@ -63,6 +64,7 @@ class ReviewController extends ChangeNotifier {
   final KanjiStatusResolver statusResolver;
   final DueCardSelector selector;
   final bool isPractice;
+  final bool isStudyAnyway;
   final ReviewSession session;
 
   bool ready = false;
@@ -182,10 +184,7 @@ class ReviewController extends ChangeNotifier {
       _visibleCard = session.current ?? card;
 
       if (session.isComplete) {
-        final streak = await progressRepository.getStreak();
-        await progressRepository.saveStreak(
-          streakService.recordCompletion(streak, now, startOfDay: dayBoundary),
-        );
+        await _recordFinishedSession(now, dayBoundary);
         summary = session.toSummary(
           now: now,
           nextReviewAt: await _soonestDue(now),
@@ -222,10 +221,7 @@ class ReviewController extends ChangeNotifier {
       _visibleCard = session.current ?? card;
 
       if (session.isComplete) {
-        final streak = await progressRepository.getStreak();
-        await progressRepository.saveStreak(
-          streakService.recordCompletion(streak, now, startOfDay: dayBoundary),
-        );
+        await _recordFinishedSession(now, dayBoundary);
         summary = session.toSummary(
           now: now,
           nextReviewAt: await _soonestDue(now),
@@ -299,10 +295,7 @@ class ReviewController extends ChangeNotifier {
       _visibleCard = session.current ?? card;
 
       if (session.isComplete) {
-        final streak = await progressRepository.getStreak();
-        await progressRepository.saveStreak(
-          streakService.recordCompletion(streak, now, startOfDay: dayBoundary),
-        );
+        await _recordFinishedSession(now, dayBoundary);
         summary = session.toSummary(
           now: now,
           nextReviewAt: await _soonestDue(now),
@@ -319,6 +312,33 @@ class ReviewController extends ChangeNotifier {
     }
 
     return null;
+  }
+
+  Future<void> _recordFinishedSession(
+    DateTime now,
+    StartOfDay dayBoundary,
+  ) async {
+    final streak = await progressRepository.getStreak();
+    await progressRepository.saveStreak(
+      streakService.recordCompletion(streak, now, startOfDay: dayBoundary),
+    );
+    if (isPractice || isStudyAnyway) return;
+
+    final settings = await progressRepository.getSettings();
+    final plan = await progressRepository.getDailySessionPlan();
+    final today = settings.startOfDay.studyDate(now);
+    if (!plan.matches(
+      studyDate: today,
+      budgetMinutes: settings.dailyStudyMinutes,
+      newKanjiPerDay: settings.newKanjiPerDay,
+      startOfDay: settings.startOfDay,
+    )) {
+      return;
+    }
+    if (plan.completed) return;
+    await progressRepository.saveDailySessionPlan(
+      plan.copyWith(completed: true),
+    );
   }
 
   bool _needsLearn(KanjiCard card) {

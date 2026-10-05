@@ -136,6 +136,7 @@ class AppSettings {
   const AppSettings({
     this.averageSecondsPerCard = 12,
     this.newKanjiPerDay = defaultNewKanjiPerDay,
+    this.dailyStudyMinutes = defaultDailyStudyMinutes,
     this.startOfDay = StartOfDay.defaults,
     this.notifications = NotificationSettings.defaults,
   });
@@ -144,14 +145,24 @@ class AppSettings {
   static const int minNewKanjiPerDay = 0;
   static const int maxNewKanjiPerDay = 50;
 
+  /// Product default. The stored value, not this constant, plans the session.
+  static const int defaultDailyStudyMinutes = 5;
+  static const int minDailyStudyMinutes = 3;
+  static const int maxDailyStudyMinutes = 60;
+
   final int averageSecondsPerCard;
   final int newKanjiPerDay;
+
+  /// Minutes the normal daily session is planned to fit.
+  final int dailyStudyMinutes;
+
   final StartOfDay startOfDay;
   final NotificationSettings notifications;
 
   AppSettings copyWith({
     int? averageSecondsPerCard,
     int? newKanjiPerDay,
+    int? dailyStudyMinutes,
     StartOfDay? startOfDay,
     NotificationSettings? notifications,
   }) {
@@ -161,6 +172,9 @@ class AppSettings {
       newKanjiPerDay: newKanjiPerDay == null
           ? this.newKanjiPerDay
           : clampNewKanjiPerDay(newKanjiPerDay),
+      dailyStudyMinutes: dailyStudyMinutes == null
+          ? this.dailyStudyMinutes
+          : clampDailyStudyMinutes(dailyStudyMinutes),
       startOfDay: startOfDay ?? this.startOfDay,
       notifications: notifications ?? this.notifications,
     );
@@ -170,10 +184,15 @@ class AppSettings {
     return value.clamp(minNewKanjiPerDay, maxNewKanjiPerDay);
   }
 
+  static int clampDailyStudyMinutes(int value) {
+    return value.clamp(minDailyStudyMinutes, maxDailyStudyMinutes);
+  }
+
   Map<String, dynamic> toJson() {
     return {
       'averageSecondsPerCard': averageSecondsPerCard,
       'newKanjiPerDay': newKanjiPerDay,
+      'dailyStudyMinutes': dailyStudyMinutes,
       'startOfDayHour': startOfDay.hour,
       'startOfDayMinute': startOfDay.minute,
       'notifications': notifications.toJson(),
@@ -182,12 +201,20 @@ class AppSettings {
 
   static AppSettings fromJson(Map<String, dynamic>? json) {
     if (json == null) return const AppSettings();
+    final averageSecondsPerCard =
+        (json['averageSecondsPerCard'] as num?)?.toInt() ?? 12;
+    final newKanjiPerDay = clampNewKanjiPerDay(
+      (json['newKanjiPerDay'] as num?)?.toInt() ?? defaultNewKanjiPerDay,
+    );
     return AppSettings(
-      averageSecondsPerCard:
-          (json['averageSecondsPerCard'] as num?)?.toInt() ?? 12,
-      newKanjiPerDay: clampNewKanjiPerDay(
-        (json['newKanjiPerDay'] as num?)?.toInt() ?? defaultNewKanjiPerDay,
-      ),
+      averageSecondsPerCard: averageSecondsPerCard,
+      newKanjiPerDay: newKanjiPerDay,
+      dailyStudyMinutes: json['dailyStudyMinutes'] == null
+          ? _minutesFromLegacyNewKanji(
+              newKanjiPerDay: newKanjiPerDay,
+              averageSecondsPerCard: averageSecondsPerCard,
+            )
+          : clampDailyStudyMinutes((json['dailyStudyMinutes'] as num).toInt()),
       startOfDay: StartOfDay.normalize(
         hour:
             (json['startOfDayHour'] as num?)?.toInt() ?? StartOfDay.defaultHour,
@@ -199,6 +226,23 @@ class AppSettings {
         _asStringKeyMap(json['notifications']),
       ),
     );
+  }
+
+  /// Older installs stored a time goal only as [newKanjiPerDay].
+  ///
+  /// The default allowance stays 5 minutes. Anything else is mapped back with
+  /// the same low estimate onboarding used: 30s to learn a kanji plus 3.5
+  /// reviews at [averageSecondsPerCard].
+  static int _minutesFromLegacyNewKanji({
+    required int newKanjiPerDay,
+    required int averageSecondsPerCard,
+  }) {
+    if (newKanjiPerDay <= 0 || newKanjiPerDay == defaultNewKanjiPerDay) {
+      return defaultDailyStudyMinutes;
+    }
+    final seconds = averageSecondsPerCard < 1 ? 12 : averageSecondsPerCard;
+    final perCard = 30 + 3.5 * seconds;
+    return clampDailyStudyMinutes((newKanjiPerDay * perCard / 60).round());
   }
 
   static Map<String, dynamic>? _asStringKeyMap(Object? value) {

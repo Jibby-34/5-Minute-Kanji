@@ -60,11 +60,14 @@ class OnboardingService {
     return _save(onboarding.atLeast(stage));
   }
 
-  /// Records the goal by setting the daily new-kanji allowance it implies.
+  /// Records the time budget and the daily new-kanji allowance it implies.
   Future<void> selectDailyGoal(DailyGoal goal) async {
     final settings = await progressRepository.getSettings();
     await progressRepository.saveSettings(
-      settings.copyWith(newKanjiPerDay: newKanjiPerDayFor(goal, settings)),
+      settings.copyWith(
+        newKanjiPerDay: newKanjiPerDayFor(goal, settings),
+        dailyStudyMinutes: goal.minutes,
+      ),
     );
     await advanceTo(OnboardingStage.dailyGoalSelected);
   }
