@@ -114,7 +114,7 @@ void main() {
     expect(find.text(card.character), findsOneWidget);
     expect(find.text('I know it'), findsOneWidget);
     expect(find.text("I don't know it"), findsOneWidget);
-    expect(find.text('1 / ~36'), findsOneWidget);
+    expect(find.text('1 / ~20'), findsOneWidget);
     expect(find.byType(LinearProgressIndicator), findsOneWidget);
 
     // Nothing that would give the answer away or grade it.
@@ -127,7 +127,7 @@ void main() {
     await tester.pumpAndSettle();
 
     // No wrong-answer screen: straight to the next kanji.
-    expect(find.text('2 / ~36'), findsOneWidget);
+    expect(find.text('2 / ~20'), findsOneWidget);
     expect(controllerOf(tester).question?.id, isNot(card.id));
   });
 
@@ -147,10 +147,11 @@ void main() {
       knows: (card) => card.jlptLevel == JlptLevel.n5,
     );
 
-    expect(asked.length, inInclusiveRange(12, 36));
+    expect(asked.length, inInclusiveRange(12, PlacementTestEngine.questionCap));
+    expect(asked.map((card) => card.id).toSet(), hasLength(asked.length));
     expect(find.text("You're all set!"), findsOneWidget);
     expect(find.text('kanji already known'), findsOneWidget);
-    expect(find.textContaining('Starting around JLPT'), findsOneWidget);
+    expect(find.text('Starting around JLPT N4'), findsOneWidget);
     expect(
       find.text("We've added the kanji you already know to your library."),
       findsOneWidget,
@@ -161,7 +162,10 @@ void main() {
     final known = schedules.values.where(
       (schedule) => schedule.state != CardLearningState.newCard,
     );
-    expect(known.length, inInclusiveRange(80, 130));
+    final n5Count = (await const HardcodedKanjiRepository().getAll())
+        .where((card) => card.jlptLevel == JlptLevel.n5)
+        .length;
+    expect(known.length, n5Count);
 
     // Known kanji look exactly like hand-marked ones: same interval, same
     // status in the list, and not waiting in today's queue.
@@ -241,7 +245,7 @@ void main() {
 
     expect(controllerOf(tester).question?.id, pending.id);
     expect(find.text(pending.character), findsOneWidget);
-    expect(find.text('5 / ~36'), findsOneWidget);
+    expect(find.text('5 / ~20'), findsOneWidget);
   });
 
   testWidgets('a learner who knows every kanji is placed at the end', (
@@ -450,8 +454,25 @@ void main() {
           );
         }
 
-        expect(run.answeredCount, inInclusiveRange(12, 36));
-        expect(run.outcome().knownCardIds.length, greaterThan(50));
+        expect(
+          run.answeredCount,
+          inInclusiveRange(12, PlacementTestEngine.questionCap),
+        );
+        final n5Count = cards
+            .where((card) => card.jlptLevel == JlptLevel.n5)
+            .length;
+        expect(run.outcome().knownCardIds, hasLength(n5Count));
+        expect(run.outcome().startingLevel, JlptLevel.n4);
+        expect(
+          cards.map((card) => card.jlptLevel).toSet(),
+          containsAll(const [
+            JlptLevel.n5,
+            JlptLevel.n4,
+            JlptLevel.n3,
+            JlptLevel.n2,
+            JlptLevel.n1,
+          ]),
+        );
       },
     );
   });

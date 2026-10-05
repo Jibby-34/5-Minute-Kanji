@@ -6,26 +6,29 @@ import 'due_card_selector.dart';
 
 /// Adaptive placement test over a pool of kanji the app does not already know.
 ///
-/// The pool is ordered by [compareKanjiLearnOrder] and cut into equal
-/// difficulty bands, easiest first. One band is probed at a time: passing a
-/// band pushes the search upward, failing it pulls the search back down, so the
-/// boundary between known and unknown is bracketed in a handful of rounds
-/// instead of walked kanji by kanji. The climb doubles band indexes before
-/// bisecting, which is what keeps an advanced learner out of beginner kanji
-/// after three questions.
+/// The pool is ordered by [compareKanjiLearnOrder] and cut into difficulty
+/// bands, easiest first. Each JLPT level is sliced into several bands, so the
+/// result can fall inside a level instead of only on a level boundary. One
+/// band is probed at a time: passing a band pushes the search upward, failing
+/// it pulls the search back down, and the climb doubles band indexes before
+/// bisecting. That resolves a fine boundary in a handful of rounds, which is
+/// what keeps the quiz short.
 ///
-/// The engine is stateless. A run is a pure function of the pool plus the
-/// answers so far, so a test interrupted by the app closing is replayed rather
-/// than restarted.
+/// A run never asks more than [questionCap] questions. The engine is
+/// stateless: a run is a pure function of the pool plus the answers so far,
+/// so a test interrupted by the app closing is replayed rather than restarted.
 class PlacementTestEngine {
   const PlacementTestEngine({
-    this.questionsPerBand = 3,
+    this.questionsPerBand = 2,
     this.minQuestions = 12,
-    this.maxQuestions = 36,
-    this.maxBands = 10,
+    this.maxQuestions = questionCap,
+    this.maxBands = 25,
     this.minBandSize = 3,
     this.passRatio = 2 / 3,
   });
+
+  /// Hard ceiling for one test. [maxQuestions] cannot raise it.
+  static const int questionCap = 20;
 
   /// Questions asked before a band is judged.
   final int questionsPerBand;
@@ -45,29 +48,127 @@ class PlacementTestEngine {
   /// Share of a band's answers that must be "I know it" for the band to pass.
   final double passRatio;
 
+  /// [maxQuestions] clamped to [questionCap].
+  int get questionLimit {
+    final requested = maxQuestions < 1 ? 1 : maxQuestions;
+    return requested < questionCap ? requested : questionCap;
+  }
+
+  /// Confirmation floor, never above [questionLimit].
+  int get minimumQuestions {
+    final requested = minQuestions < 0 ? 0 : minQuestions;
+    return requested < questionLimit ? requested : questionLimit;
+  }
+
   /// Pool split into difficulty bands, easiest first.
+  ///
+  /// Levels stay apart, and the question budget is spent on equal slices of
+  /// every level (about a fifth of each on the full N5–N1 list). The slice
+  /// count is how many bands the doubling search can still bracket inside
+  /// [questionLimit], not one probe per band. If there are more levels than
+  /// that, the largest adjacent levels are merged so the beginner boundary
+  /// is the last one given up.
   List<List<KanjiCard>> bands(List<KanjiCard> pool) {
     final ordered = List<KanjiCard>.of(pool)..sort(compareKanjiLearnOrder);
     if (ordered.isEmpty) return const [];
 
-    final count = math.max(
-      1,
-      math.min(maxBands, ordered.length ~/ minBandSize),
-    );
+    final groups = <_LevelGroup>[];
+    for (final card in ordered) {
+      if (groups.isEmpty ||
+          groups.last.cards.first.jlptLevel != card.jlptLevel) {
+        groups.add(_LevelGroup([card]));
+      } else {
+        groups.last.cards.add(card);
+      }
+    }
+
+    _fitGroupsToBudget(groups, _bandBudget(ordered.length));
     return [
-      for (var i = 0; i < count; i++)
-        ordered.sublist(
-          (ordered.length * i) ~/ count,
-          (ordered.length * (i + 1)) ~/ count,
+      for (final group in groups) ..._splitEvenly(group.cards, group.bandCount),
+    ];
+  }
+
+  /// How many bands the doubling search can bracket inside [questionLimit].
+  ///
+  /// [_bandsResolvedBy] is the largest band count whose worst-case number of
+  /// rounds still fits in the rounds this budget can pay for. It matches the
+  /// doubling climb below, so a change to that climb has to update the table.
+  int _bandBudget(int poolSize) {
+    final perBand = questionsPerBand < 1 ? 1 : questionsPerBand;
+    final rounds = math.max(1, questionLimit ~/ perBand);
+    final bySearch = _bandsResolvedBy(rounds);
+    final bySize = math.max(1, poolSize ~/ math.max(1, minBandSize));
+    final cap = maxBands < 1 ? 1 : maxBands;
+    return math.min(cap, math.min(bySearch, bySize));
+  }
+
+  static int _bandsResolvedBy(int rounds) {
+    const limits = <int>[1, 2, 3, 4, 6, 7, 11, 13, 21, 25];
+    if (rounds <= limits.length) return limits[rounds - 1];
+    return limits.last + (rounds - limits.length) * 8;
+  }
+
+  void _fitGroupsToBudget(List<_LevelGroup> groups, int budget) {
+    while (groups.length > budget && groups.length > 1) {
+      var mergeAt = 0;
+      var largest = -1;
+      for (var i = 0; i < groups.length - 1; i++) {
+        final size = groups[i].cards.length + groups[i + 1].cards.length;
+        if (size >= largest) {
+          largest = size;
+          mergeAt = i;
+        }
+      }
+      groups[mergeAt] = _LevelGroup([
+        ...groups[mergeAt].cards,
+        ...groups[mergeAt + 1].cards,
+      ]);
+      groups.removeAt(mergeAt + 1);
+    }
+
+    for (final group in groups) {
+      group.bandCount = 1;
+    }
+    var remaining = budget - groups.length;
+    while (remaining > 0) {
+      _LevelGroup? best;
+      var fewest = 1 << 30;
+      var largest = -1;
+      for (final group in groups) {
+        final nextCount = group.bandCount + 1;
+        if (group.cards.length ~/ nextCount < minBandSize) continue;
+        final fewer = group.bandCount < fewest;
+        final tieOnLargerLevel =
+            group.bandCount == fewest && group.cards.length > largest;
+        if (fewer || tieOnLargerLevel) {
+          best = group;
+          fewest = group.bandCount;
+          largest = group.cards.length;
+        }
+      }
+      if (best == null) break;
+      best.bandCount++;
+      remaining--;
+    }
+  }
+
+  List<List<KanjiCard>> _splitEvenly(List<KanjiCard> cards, int count) {
+    final bands = count < 1 ? 1 : math.min(count, cards.length);
+    if (bands <= 1) return [cards];
+    return [
+      for (var i = 0; i < bands; i++)
+        cards.sublist(
+          (cards.length * i) ~/ bands,
+          (cards.length * (i + 1)) ~/ bands,
         ),
     ];
   }
 
-  /// The denominator behind the `12 / ~35` progress hint. A ceiling, not a
+  /// The denominator behind the `1 / ~20` progress hint. A ceiling, not a
   /// prediction: finishing early reads as a bonus, finishing late would not.
   int estimatedQuestionCount(int poolSize) {
     if (poolSize <= 0) return 0;
-    return math.min(maxQuestions, poolSize);
+    return math.min(questionLimit, poolSize);
   }
 
   /// Rebuilds a run by feeding [answers] back through the same question
@@ -123,9 +224,10 @@ class PlacementRun {
   /// The kanji to put on screen, or null when the test is over.
   KanjiCard? get currentQuestion {
     if (_bands.isEmpty) return null;
-    if (answeredCount >= _engine.maxQuestions) return null;
-    if (_boundaryBracketed && answeredCount >= _engine.minQuestions)
+    if (answeredCount >= _engine.questionLimit) return null;
+    if (_boundaryBracketed && answeredCount >= _engine.minimumQuestions) {
       return null;
+    }
 
     final band = _bandWithQuestionsNear(_band);
     if (band == null) return null;
@@ -182,13 +284,32 @@ class PlacementRun {
     }
 
     final knownIds = known.toSet();
-    final nextToLearn = _pool.where((card) => !knownIds.contains(card.id));
+    KanjiCard? next;
+    for (final card in _pool) {
+      if (!knownIds.contains(card.id)) {
+        next = card;
+        break;
+      }
+    }
 
     return PlacementOutcome(
       knownCardIds: known,
       answeredCount: answeredCount,
-      startingLevel: nextToLearn.isEmpty ? null : nextToLearn.first.jlptLevel,
+      startingLevel: next?.jlptLevel,
+      resumesMidLevel: next != null && _resumesMidLevel(next, knownIds),
     );
+  }
+
+  /// True when some earlier kanji of [next]'s level were placed as known, so
+  /// learning starts inside that level rather than at its first card.
+  bool _resumesMidLevel(KanjiCard next, Set<String> knownIds) {
+    for (final card in _pool) {
+      if (card.id == next.id) return false;
+      if (card.jlptLevel == next.jlptLevel && knownIds.contains(card.id)) {
+        return true;
+      }
+    }
+    return false;
   }
 
   /// True once the boundary sits between two adjacent bands and there is
@@ -310,6 +431,13 @@ class _BandTally {
   }
 
   bool passed(double ratio) => total > 0 && known / total >= ratio;
+}
+
+class _LevelGroup {
+  _LevelGroup(this.cards);
+
+  final List<KanjiCard> cards;
+  int bandCount = 1;
 }
 
 int _gcd(int a, int b) {

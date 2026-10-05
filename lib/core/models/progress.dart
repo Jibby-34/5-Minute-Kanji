@@ -17,6 +17,17 @@ class ReviewHistoryEntry {
   final Duration timeOnCard;
   final bool isPractice;
 
+  ReviewHistoryEntry withCardId(String cardId) {
+    if (cardId == this.cardId) return this;
+    return ReviewHistoryEntry(
+      cardId: cardId,
+      rating: rating,
+      timestamp: timestamp,
+      timeOnCard: timeOnCard,
+      isPractice: isPractice,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     return {
       'cardId': cardId,

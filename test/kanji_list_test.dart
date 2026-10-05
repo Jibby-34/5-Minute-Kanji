@@ -13,6 +13,7 @@ import 'package:fiveminutekanji/core/models/review.dart';
 import 'package:fiveminutekanji/core/theme/app_theme.dart';
 import 'package:fiveminutekanji/data/hardcoded_kanji_repository.dart';
 import 'package:fiveminutekanji/data/shared_prefs_progress_repository.dart';
+import 'package:fiveminutekanji/features/kanji_list/kanji_list_controller.dart';
 import 'package:fiveminutekanji/features/kanji_list/kanji_list_screen.dart';
 import 'package:fiveminutekanji/repositories/kanji_repository.dart';
 import 'package:fiveminutekanji/repositories/progress_repository.dart';
@@ -58,10 +59,17 @@ void main() {
 
     expect(find.text('Kanji List'), findsOneWidget);
     expect(find.text('JLPT N5'), findsOneWidget);
-    expect(find.text('JLPT N3'), findsNothing);
-    expect(find.text('JLPT N2'), findsNothing);
-    expect(find.text('JLPT N1'), findsNothing);
-    expect(find.text('No JLPT Level'), findsNothing);
+    final list = Provider.of<KanjiListController>(
+      tester.element(find.text('Kanji List')),
+      listen: false,
+    );
+    expect(list.sections.map((section) => section.level), const [
+      JlptLevel.n5,
+      JlptLevel.n4,
+      JlptLevel.n3,
+      JlptLevel.n2,
+      JlptLevel.n1,
+    ]);
     expect(find.text(first.character), findsOneWidget);
 
     await tester.tap(find.text(first.character));

@@ -84,6 +84,7 @@ class PlacementOutcome {
     required this.knownCardIds,
     required this.answeredCount,
     this.startingLevel,
+    this.resumesMidLevel = false,
   });
 
   static const empty = PlacementOutcome(knownCardIds: [], answeredCount: 0);
@@ -96,14 +97,26 @@ class PlacementOutcome {
   /// JLPT level of the first kanji the user will be taught. Null when the test
   /// found nothing left to learn.
   final JlptLevel? startingLevel;
+
+  /// True when [startingLevel] is already partly known, so learning resumes
+  /// inside that level rather than at its first kanji.
+  final bool resumesMidLevel;
 }
 
 /// Results-screen copy data.
 class PlacementSummary {
-  const PlacementSummary({required this.knownCount, this.startingLevel});
+  const PlacementSummary({
+    required this.knownCount,
+    this.startingLevel,
+    this.resumesMidLevel = false,
+  });
 
   /// How many kanji this test moved into the known state.
   final int knownCount;
 
   final JlptLevel? startingLevel;
+
+  /// True when learning resumes inside [startingLevel] rather than at the
+  /// first kanji of that level.
+  final bool resumesMidLevel;
 }

@@ -265,8 +265,8 @@ void main() {
       final progress = SharedPrefsProgressRepository(prefs);
       final cards = await kanji.getAll();
       await progress.seedIfNeeded(cards.map((card) => card.id).toList());
-      final first = cards.firstWhere((card) => card.id == 'n5-029');
-      final second = cards.firstWhere((card) => card.id == 'n5-030');
+      final first = cards.firstWhere((card) => card.id == 'n5-013');
+      final second = cards.firstWhere((card) => card.id == 'n5-014');
 
       await pumpReview(tester, progress: progress, cards: [first, second]);
 

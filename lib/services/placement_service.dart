@@ -77,6 +77,7 @@ class PlacementService {
     return PlacementSummary(
       knownCount: marked.length,
       startingLevel: outcome.startingLevel,
+      resumesMidLevel: outcome.resumesMidLevel,
     );
   }
 

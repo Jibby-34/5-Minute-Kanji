@@ -8,6 +8,7 @@ import '../core/models/onboarding.dart';
 import '../core/models/placement.dart';
 import '../core/models/progress.dart';
 import '../repositories/progress_repository.dart';
+import 'legacy_kanji_id_remap.dart';
 
 class SharedPrefsProgressRepository implements ProgressRepository {
   SharedPrefsProgressRepository(this._prefs);
@@ -177,6 +178,7 @@ class SharedPrefsProgressRepository implements ProgressRepository {
   @override
   Future<void> seedIfNeeded(List<String> cardIds, {DateTime? now}) async {
     await _ensureLoaded();
+    await _migrateLegacyCatalogIfNeeded(cardIds);
     final timestamp = now ?? DateTime.now();
     final next = Map<String, CardSchedule>.from(_blob.schedules);
     var changed = false;
@@ -192,6 +194,81 @@ class SharedPrefsProgressRepository implements ProgressRepository {
       await _persist();
     }
   }
+
+  /// Moves schedules saved against the previous 250-card ids onto the current
+  /// id of the same character.
+  ///
+  /// The signal is an id that existed only in that catalog (`n5-081` and
+  /// above). A library seeded from the N5–N1 list has none of those ids, so
+  /// it is stamped and left alone. In-progress placement answers are dropped:
+  /// they were chosen from the old pool and would replay against the wrong
+  /// kanji. Completed placement and SRS state are kept.
+  Future<void> _migrateLegacyCatalogIfNeeded(List<String> cardIds) async {
+    if (_blob.kanjiCatalogVersion >= legacyKanjiCatalogVersion) return;
+
+    final currentIds = <String>{
+      for (final id in cardIds)
+        if (id.isNotEmpty) id,
+    };
+    final legacy = _blob.schedules.keys.any(
+      (id) => legacyKanjiIdRemap.containsKey(id) && !currentIds.contains(id),
+    );
+    if (!legacy) {
+      _blob = _blob.copyWith(kanjiCatalogVersion: legacyKanjiCatalogVersion);
+      await _persist();
+      return;
+    }
+
+    final schedules = <String, CardSchedule>{};
+    for (final entry in _blob.schedules.entries) {
+      final target = legacyKanjiIdRemap[entry.key] ?? entry.key;
+      final schedule = entry.value.withCardId(target);
+      final previous = schedules[target];
+      if (previous == null || _preferSchedule(schedule, previous)) {
+        schedules[target] = schedule;
+      }
+    }
+
+    final history = [
+      for (final entry in _blob.history)
+        entry.withCardId(legacyKanjiIdRemap[entry.cardId] ?? entry.cardId),
+    ];
+
+    final plan = _blob.dailySessionPlan;
+    final seen = <String>{};
+    final planIds = <String>[];
+    for (final id in plan.cardIds) {
+      final target = legacyKanjiIdRemap[id] ?? id;
+      if (target.isEmpty || !seen.add(target)) continue;
+      planIds.add(target);
+    }
+
+    _blob = _blob.copyWith(
+      schedules: schedules,
+      history: history,
+      dailySessionPlan: DailySessionPlan(
+        studyDate: plan.studyDate,
+        budgetMinutes: plan.budgetMinutes,
+        newKanjiPerDay: plan.newKanjiPerDay,
+        startOfDay: plan.startOfDay,
+        cardIds: planIds,
+        completed: plan.completed,
+      ),
+      placement: PlacementProgress(completed: _blob.placement.completed),
+      kanjiCatalogVersion: legacyKanjiCatalogVersion,
+    );
+    await _persist();
+  }
+
+  /// When two old ids land on one new id, keep the schedule that has actually
+  /// been studied.
+  bool _preferSchedule(CardSchedule candidate, CardSchedule existing) {
+    if (candidate.reviewCount != existing.reviewCount) {
+      return candidate.reviewCount > existing.reviewCount;
+    }
+    return candidate.state != CardLearningState.newCard &&
+        existing.state == CardLearningState.newCard;
+  }
 }
 
 class _ProgressBlob {
@@ -204,6 +281,7 @@ class _ProgressBlob {
     this.dailySessionPlan = DailySessionPlan.empty,
     this.placement = PlacementProgress.empty,
     this.onboarding = OnboardingProgress.empty,
+    this.kanjiCatalogVersion = 0,
   });
 
   final Map<String, CardSchedule> schedules;
@@ -215,6 +293,10 @@ class _ProgressBlob {
   final PlacementProgress placement;
   final OnboardingProgress onboarding;
 
+  /// 0 is the previous 250-card catalog. [legacyKanjiCatalogVersion] is the
+  /// N5–N1 list, after any id remap has run.
+  final int kanjiCatalogVersion;
+
   _ProgressBlob copyWith({
     Map<String, CardSchedule>? schedules,
     List<ReviewHistoryEntry>? history,
@@ -224,6 +306,7 @@ class _ProgressBlob {
     DailySessionPlan? dailySessionPlan,
     PlacementProgress? placement,
     OnboardingProgress? onboarding,
+    int? kanjiCatalogVersion,
   }) {
     return _ProgressBlob(
       schedules: schedules ?? this.schedules,
@@ -234,6 +317,7 @@ class _ProgressBlob {
       dailySessionPlan: dailySessionPlan ?? this.dailySessionPlan,
       placement: placement ?? this.placement,
       onboarding: onboarding ?? this.onboarding,
+      kanjiCatalogVersion: kanjiCatalogVersion ?? this.kanjiCatalogVersion,
     );
   }
 
@@ -249,6 +333,7 @@ class _ProgressBlob {
       'dailySessionPlan': dailySessionPlan.toJson(),
       'placement': placement.toJson(),
       'onboarding': onboarding.toJson(),
+      'kanjiCatalogVersion': kanjiCatalogVersion,
     };
   }
 
@@ -291,6 +376,7 @@ class _ProgressBlob {
       onboarding: OnboardingProgress.fromJson(
         _asStringKeyMap(json['onboarding']),
       ),
+      kanjiCatalogVersion: (json['kanjiCatalogVersion'] as num?)?.toInt() ?? 0,
     );
   }
 }

@@ -322,7 +322,10 @@ class _PlacementResults extends StatelessWidget {
                   const HairlineMark(width: 56),
                   const SizedBox(height: 20),
                   Text(
-                    _startingPoint(level),
+                    _startingPoint(
+                      level,
+                      resumesMidLevel: summary?.resumesMidLevel ?? false,
+                    ),
                     textAlign: TextAlign.center,
                     style: theme.textTheme.titleMedium?.copyWith(
                       fontWeight: FontWeight.w500,
@@ -358,10 +361,12 @@ class _PlacementResults extends StatelessWidget {
   }
 
   /// One quiet line. No level is invented when the test cannot tell.
-  String _startingPoint(JlptLevel? level) {
+  String _startingPoint(JlptLevel? level, {required bool resumesMidLevel}) {
     if (level == null) return "That's every kanji in the app.";
     return switch (level) {
       JlptLevel.none => 'Your starting point is ready.',
+      _ when resumesMidLevel =>
+        'Starting partway through ${level.sectionTitle}',
       _ => 'Starting around ${level.sectionTitle}',
     };
   }

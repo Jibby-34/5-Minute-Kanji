@@ -66,6 +66,24 @@ class CardSchedule {
     );
   }
 
+  /// Same SRS state under a different id. Used when a catalog renumbering
+  /// moves a character from one id to another.
+  CardSchedule withCardId(String cardId) {
+    if (cardId == this.cardId) return this;
+    return CardSchedule(
+      cardId: cardId,
+      state: state,
+      reviewCount: reviewCount,
+      correctCount: correctCount,
+      incorrectCount: incorrectCount,
+      dueAt: dueAt,
+      interval: interval,
+      ease: ease,
+      lastReviewedAt: lastReviewedAt,
+      consecutiveGoodCount: consecutiveGoodCount,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     return {
       'cardId': cardId,
