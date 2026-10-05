@@ -3,6 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:fiveminutekanji/core/models/kanji_card.dart';
 import 'package:fiveminutekanji/core/models/placement.dart';
 import 'package:fiveminutekanji/data/hardcoded_kanji_repository.dart';
+import 'package:fiveminutekanji/services/due_card_selector.dart';
 import 'package:fiveminutekanji/services/placement_test_engine.dart';
 
 import 'support/fakes.dart';
@@ -11,24 +12,25 @@ void main() {
   const engine = PlacementTestEngine();
 
   late List<KanjiCard> cards;
+  late List<KanjiCard> ordered;
 
   setUpAll(() async {
     cards = await const HardcodedKanjiRepository().getAll();
+    ordered = List<KanjiCard>.of(cards)..sort(compareKanjiLearnOrder);
   });
+
+  int indexOf(KanjiCard card) =>
+      ordered.indexWhere((item) => item.id == card.id);
+
+  bool knowsFirst(KanjiCard card, int count) => indexOf(card) < count;
 
   int countThrough(JlptLevel level) {
     final ceiling = JlptLevel.sectionOrder.indexOf(level);
-    return cards
+    return ordered
         .where(
           (card) => JlptLevel.sectionOrder.indexOf(card.jlptLevel) <= ceiling,
         )
         .length;
-  }
-
-  bool knowsThrough(KanjiCard card, JlptLevel? level) {
-    if (level == null) return false;
-    return JlptLevel.sectionOrder.indexOf(card.jlptLevel) <=
-        JlptLevel.sectionOrder.indexOf(level);
   }
 
   ({PlacementRun run, List<PlacementAnswer> answers}) takeTest(
@@ -51,76 +53,86 @@ void main() {
     return (run: run, answers: answers);
   }
 
-  test(
-    'the full catalog has every JLPT level and stays within 20 questions',
-    () {
-      final levels = cards.map((card) => card.jlptLevel).toSet();
-      expect(
-        levels,
-        containsAll(const [
-          JlptLevel.n5,
-          JlptLevel.n4,
-          JlptLevel.n3,
-          JlptLevel.n2,
-          JlptLevel.n1,
-        ]),
-      );
+  test('stays within 20 questions and never estimates above the truth', () {
+    final levels = ordered.map((card) => card.jlptLevel).toSet();
+    expect(
+      levels,
+      containsAll(const [
+        JlptLevel.n5,
+        JlptLevel.n4,
+        JlptLevel.n3,
+        JlptLevel.n2,
+        JlptLevel.n1,
+      ]),
+    );
 
-      for (final level in [null, JlptLevel.n5, JlptLevel.n3, JlptLevel.n1]) {
-        final test = takeTest((card) => knowsThrough(card, level));
-        expect(
-          test.run.answeredCount,
-          inInclusiveRange(
-            engine.minimumQuestions,
-            PlacementTestEngine.questionCap,
-          ),
-          reason: 'knows through $level',
-        );
-        expect(
-          test.answers.map((answer) => answer.cardId).toSet(),
-          hasLength(test.answers.length),
-          reason: 'knows through $level',
-        );
-      }
-
+    for (final cutoff in [0, 1, 40, 80, 250, 600, 1027, 1800, 2220]) {
+      final test = takeTest((card) => knowsFirst(card, cutoff));
       expect(
-        engine.estimatedQuestionCount(cards.length),
-        PlacementTestEngine.questionCap,
+        test.run.answeredCount,
+        inInclusiveRange(1, PlacementTestEngine.questionCap),
+        reason: 'cutoff $cutoff',
       );
-    },
-  );
+      expect(
+        test.answers.map((answer) => answer.cardId).toSet(),
+        hasLength(test.answers.length),
+        reason: 'cutoff $cutoff',
+      );
+      expect(
+        test.run.outcome().knownCardIds.length,
+        lessThanOrEqualTo(cutoff),
+        reason: 'cutoff $cutoff',
+      );
+      expect(
+        cutoff - test.run.outcome().knownCardIds.length,
+        lessThanOrEqualTo(3),
+        reason: 'cutoff $cutoff',
+      );
+    }
+
+    expect(
+      engine.estimatedQuestionCount(cards.length),
+      PlacementTestEngine.questionCap,
+    );
+  });
 
   test('a higher maxQuestions still cannot exceed 20', () {
-    const uncapped = PlacementTestEngine(maxQuestions: 100, minQuestions: 100);
+    const uncapped = PlacementTestEngine(maxQuestions: 100);
     final test = takeTest((_) => false, engine: uncapped);
 
-    expect(test.run.answeredCount, PlacementTestEngine.questionCap);
+    expect(
+      test.run.answeredCount,
+      lessThanOrEqualTo(PlacementTestEngine.questionCap),
+    );
+    expect(test.run.outcome().knownCardIds, isEmpty);
     expect(
       uncapped.estimatedQuestionCount(cards.length),
       PlacementTestEngine.questionCap,
     );
   });
 
-  test('samples across N5–N1 instead of the first cards in the file', () {
-    final test = takeTest((card) => knowsThrough(card, JlptLevel.n2));
-    final asked = test.answers.map((answer) => answer.cardId).toSet();
-    final askedLevels = cards
-        .where((card) => asked.contains(card.id))
-        .map((card) => card.jlptLevel)
-        .toSet();
-
-    expect(askedLevels, contains(JlptLevel.n5));
-    expect(askedLevels, contains(JlptLevel.n1));
-    expect(
-      asked,
-      isNot(cards.take(test.answers.length).map((card) => card.id).toSet()),
+  test('steps upward, then searches backward after the first miss', () {
+    final test = takeTest(
+      (card) => knowsFirst(card, countThrough(JlptLevel.n2)),
     );
+    final indexes = [
+      for (final answer in test.answers)
+        indexOf(ordered.firstWhere((card) => card.id == answer.cardId)),
+    ];
+    final firstMiss = test.answers.indexWhere((answer) => !answer.known);
+
+    expect(firstMiss, greaterThan(0));
+    for (var i = 1; i <= firstMiss; i++) {
+      expect(indexes[i], greaterThan(indexes[i - 1]));
+    }
+    expect(indexes[firstMiss + 1], lessThan(indexes[firstMiss]));
+    expect(indexes, isNot(List.generate(indexes.length, (i) => i)));
   });
 
   test('opens with the easiest kanji in the pool', () {
     final first = engine.replay(cards, const []).currentQuestion;
 
-    expect(first?.id, cards.first.id);
+    expect(first?.id, ordered.first.id);
     expect(first?.jlptLevel, JlptLevel.n5);
   });
 
@@ -128,28 +140,30 @@ void main() {
     final nothing = takeTest((_) => false).run.outcome();
     expect(nothing.knownCardIds, isEmpty);
     expect(nothing.startingLevel, JlptLevel.n5);
-    expect(nothing.answeredCount, engine.minimumQuestions);
+    expect(nothing.answeredCount, 1);
+    expect(nothing.resumesMidLevel, isFalse);
 
     final n5 = takeTest(
-      (card) => knowsThrough(card, JlptLevel.n5),
+      (card) => knowsFirst(card, countThrough(JlptLevel.n5)),
     ).run.outcome();
     expect(n5.knownCardIds, hasLength(countThrough(JlptLevel.n5)));
     expect(n5.startingLevel, JlptLevel.n4);
+    expect(n5.resumesMidLevel, isFalse);
 
     final n4 = takeTest(
-      (card) => knowsThrough(card, JlptLevel.n4),
+      (card) => knowsFirst(card, countThrough(JlptLevel.n4)),
     ).run.outcome();
     expect(n4.knownCardIds, hasLength(countThrough(JlptLevel.n4)));
     expect(n4.startingLevel, JlptLevel.n3);
 
     final n3 = takeTest(
-      (card) => knowsThrough(card, JlptLevel.n3),
+      (card) => knowsFirst(card, countThrough(JlptLevel.n3)),
     ).run.outcome();
     expect(n3.knownCardIds, hasLength(countThrough(JlptLevel.n3)));
     expect(n3.startingLevel, JlptLevel.n2);
 
     final n2 = takeTest(
-      (card) => knowsThrough(card, JlptLevel.n2),
+      (card) => knowsFirst(card, countThrough(JlptLevel.n2)),
     ).run.outcome();
     expect(n2.knownCardIds, hasLength(countThrough(JlptLevel.n2)));
     expect(n2.startingLevel, JlptLevel.n1);
@@ -159,85 +173,46 @@ void main() {
     expect(everything.startingLevel, isNull);
   });
 
-  test('places a learner inside a JLPT level, not only on its edge', () {
-    final bands = engine.bands(cards);
+  test('places a learner inside a JLPT level', () {
+    final n5Count = countThrough(JlptLevel.n5);
+    final earlyN5 = takeTest((card) => knowsFirst(card, 40)).run.outcome();
+    expect(earlyN5.knownCardIds, hasLength(40));
+    expect(earlyN5.startingLevel, JlptLevel.n5);
+    expect(earlyN5.resumesMidLevel, isTrue);
+    expect(earlyN5.knownCardIds.length, lessThan(n5Count));
 
-    ({PlacementOutcome outcome, int answered}) placeAt(int bandCount) {
-      final prefix = bands
-          .take(bandCount)
-          .expand((band) => band.map((card) => card.id))
-          .toSet();
-      final test = takeTest((card) => prefix.contains(card.id));
-      return (outcome: test.run.outcome(), answered: test.run.answeredCount);
-    }
+    final n3Start = countThrough(JlptLevel.n4);
+    final midN3 = n3Start + 120;
+    final insideN3 = takeTest((card) => knowsFirst(card, midN3)).run.outcome();
+    expect(insideN3.knownCardIds.length, lessThanOrEqualTo(midN3));
+    expect(midN3 - insideN3.knownCardIds.length, lessThanOrEqualTo(3));
+    expect(insideN3.startingLevel, JlptLevel.n3);
+    expect(insideN3.resumesMidLevel, isTrue);
 
-    // Two fifths of the way through N5. Obvious early, so it stops once the
-    // minimum confirmation questions are in, not at the 20-question cap.
-    final earlyN5 = placeAt(2);
-    expect(earlyN5.answered, engine.minimumQuestions);
-    expect(earlyN5.outcome.resumesMidLevel, isTrue);
-    expect(earlyN5.outcome.startingLevel, JlptLevel.n5);
-    expect(
-      earlyN5.outcome.knownCardIds,
-      hasLength(bands.take(2).expand((band) => band).length),
-    );
-
-    // Just under halfway through N3.
-    final midN3 = placeAt(12);
-    expect(midN3.answered, lessThanOrEqualTo(PlacementTestEngine.questionCap));
-    expect(midN3.outcome.resumesMidLevel, isTrue);
-    expect(midN3.outcome.startingLevel, JlptLevel.n3);
-    expect(
-      midN3.outcome.knownCardIds.toSet(),
-      bands.take(12).expand((band) => band.map((card) => card.id)).toSet(),
-    );
-
-    // Three fifths of the way through N1, with everything easier known.
-    final midN1 = placeAt(23);
-    expect(midN1.answered, lessThanOrEqualTo(PlacementTestEngine.questionCap));
-    expect(midN1.outcome.resumesMidLevel, isTrue);
-    expect(midN1.outcome.startingLevel, JlptLevel.n1);
-    expect(
-      midN1.outcome.knownCardIds.toSet(),
-      bands.take(23).expand((band) => band.map((card) => card.id)).toSet(),
-    );
-    expect(midN1.outcome.knownCardIds.length, lessThan(cards.length));
-    expect(
-      midN1.outcome.knownCardIds.length,
-      greaterThan(countThrough(JlptLevel.n2)),
-    );
+    final n1Start = countThrough(JlptLevel.n2);
+    final midN1 = n1Start + 400;
+    final insideN1 = takeTest((card) => knowsFirst(card, midN1)).run.outcome();
+    expect(insideN1.knownCardIds.length, lessThanOrEqualTo(midN1));
+    expect(insideN1.knownCardIds.length, greaterThan(n1Start));
+    expect(midN1 - insideN1.knownCardIds.length, lessThanOrEqualTo(3));
+    expect(insideN1.startingLevel, JlptLevel.n1);
+    expect(insideN1.resumesMidLevel, isTrue);
   });
 
-  test('an answered kanji is never overruled by its band', () {
-    final run = engine.replay(cards, const []);
-    String? refusedInEasyBand;
-    String? claimedInHardBand;
-    var seenHard = false;
-
-    while (!run.isFinished) {
-      final question = run.currentQuestion!;
-      final level = JlptLevel.sectionOrder.indexOf(question.jlptLevel);
-      var known = level <= JlptLevel.sectionOrder.indexOf(JlptLevel.n2);
-      if (!known) seenHard = true;
-      // Flip one answer on each side of the boundary, but only after the
-      // climb has reached a hard kanji. Refusing the opening question would
-      // end the search before any hard kanji is shown.
-      if (known && seenHard && refusedInEasyBand == null) {
-        known = false;
-        refusedInEasyBand = question.id;
-      } else if (!known && claimedInHardBand == null) {
-        known = true;
-        claimedInHardBand = question.id;
-      }
-      run.record(PlacementAnswer(cardId: question.id, known: known));
-    }
-
-    expect(refusedInEasyBand, isNotNull);
-    expect(claimedInHardBand, isNotNull);
+  test('an explicit answer is never overruled by the boundary', () {
+    final missed = ordered[10];
+    final claimed = ordered[400];
+    final run = engine.replay(ordered, [
+      PlacementAnswer(cardId: ordered.first.id, known: true),
+      PlacementAnswer(cardId: missed.id, known: false),
+      PlacementAnswer(cardId: claimed.id, known: true),
+    ]);
 
     final known = run.outcome().knownCardIds;
-    expect(known, isNot(contains(refusedInEasyBand)));
-    expect(known, contains(claimedInHardBand));
+    expect(known, isNot(contains(missed.id)));
+    expect(known, contains(claimed.id));
+    // The one known answer above the miss does not mark the gap as known.
+    expect(known.length, lessThan(50));
   });
 
   test('a replayed run resumes on the question it was left on', () {
@@ -247,7 +222,7 @@ void main() {
       final question = interrupted.currentQuestion!;
       final answer = PlacementAnswer(
         cardId: question.id,
-        known: question.jlptLevel == JlptLevel.n5,
+        known: indexOf(question) < 500,
       );
       answers.add(answer);
       interrupted.record(answer);
@@ -266,10 +241,10 @@ void main() {
     ]);
 
     expect(resumed.answeredCount, 0);
-    expect(resumed.currentQuestion?.id, cards.first.id);
+    expect(resumed.currentQuestion?.id, ordered.first.id);
   });
 
-  test('a pool too small to band still finishes', () {
+  test('a pool of a few kanji still finishes', () {
     final few = [
       for (var i = 0; i < 4; i++)
         testCard('k$i', jlptLevel: JlptLevel.n5, character: '$i'),
@@ -289,39 +264,5 @@ void main() {
     expect(run.outcome().knownCardIds, isEmpty);
     expect(run.outcome().startingLevel, isNull);
     expect(run.estimatedTotal, 0);
-  });
-
-  test('bands cover every level without mixing them or leaving gaps', () {
-    final bands = engine.bands(cards);
-
-    expect(bands, hasLength(25));
-    final slices = <JlptLevel, int>{};
-    for (final band in bands) {
-      final level = band.first.jlptLevel;
-      slices[level] = (slices[level] ?? 0) + 1;
-    }
-    expect(slices[JlptLevel.n5], 5);
-    expect(slices[JlptLevel.n4], 5);
-    expect(slices[JlptLevel.n3], 5);
-    expect(slices[JlptLevel.n2], 5);
-    expect(slices[JlptLevel.n1], 5);
-    expect(
-      bands.expand((band) => band).map((card) => card.id),
-      cards.map((card) => card.id),
-    );
-    expect(
-      bands.every(
-        (band) => band.map((card) => card.jlptLevel).toSet().length == 1,
-      ),
-      isTrue,
-    );
-    expect(bands.map((band) => band.first.jlptLevel).toSet(), {
-      JlptLevel.n5,
-      JlptLevel.n4,
-      JlptLevel.n3,
-      JlptLevel.n2,
-      JlptLevel.n1,
-    });
-    expect(bands.every((band) => band.isNotEmpty), isTrue);
   });
 }

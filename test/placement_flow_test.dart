@@ -123,12 +123,13 @@ void main() {
     expect(find.text(card.mnemonic), findsNothing);
     expect(find.textContaining('JLPT'), findsNothing);
 
-    await tester.tap(find.text("I don't know it"));
+    await tester.tap(find.text('I know it'));
     await tester.pumpAndSettle();
 
-    // No wrong-answer screen: straight to the next kanji.
+    // No grade screen: straight to a harder kanji.
     expect(find.text('2 / ~20'), findsOneWidget);
     expect(controllerOf(tester).question?.id, isNot(card.id));
+    expect(find.text(card.keyword), findsNothing);
   });
 
   testWidgets('the test marks what the user knows and hands over the flow', (
@@ -147,7 +148,7 @@ void main() {
       knows: (card) => card.jlptLevel == JlptLevel.n5,
     );
 
-    expect(asked.length, inInclusiveRange(12, PlacementTestEngine.questionCap));
+    expect(asked.length, inInclusiveRange(1, PlacementTestEngine.questionCap));
     expect(asked.map((card) => card.id).toSet(), hasLength(asked.length));
     expect(find.text("You're all set!"), findsOneWidget);
     expect(find.text('kanji already known'), findsOneWidget);
@@ -456,7 +457,7 @@ void main() {
 
         expect(
           run.answeredCount,
-          inInclusiveRange(12, PlacementTestEngine.questionCap),
+          inInclusiveRange(1, PlacementTestEngine.questionCap),
         );
         final n5Count = cards
             .where((card) => card.jlptLevel == JlptLevel.n5)
