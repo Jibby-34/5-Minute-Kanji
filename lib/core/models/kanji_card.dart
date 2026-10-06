@@ -51,6 +51,28 @@ class KanjiComponent {
   final int occurrence;
 
   String get label => '$character — $name';
+
+  /// Reads a catalog label such as `木 — tree`.
+  factory KanjiComponent.fromLabel(String label) {
+    final parts = label.split(' — ');
+    if (parts.length < 2) {
+      final text = label.trim();
+      return KanjiComponent(
+        id: text,
+        character: text,
+        name: text,
+        mnemonicText: text,
+      );
+    }
+    final character = parts.first.trim();
+    final name = parts.sublist(1).join(' — ').trim();
+    return KanjiComponent(
+      id: label,
+      character: character,
+      name: name,
+      mnemonicText: name,
+    );
+  }
 }
 
 /// A single kanji study card. Content-agnostic: RTK, Anki, JLPT, or custom later.
@@ -61,7 +83,8 @@ class KanjiCard {
     required this.meaning,
     required this.keyword,
     required this.mnemonic,
-    required this.components,
+    this.components = const [],
+    this.structuredComponents = const [],
     this.strokeCount = 0,
     this.jlptLevel = JlptLevel.none,
     this.rtkIndex,
@@ -71,6 +94,7 @@ class KanjiCard {
     this.source = ContentSource.rtk,
     this.sourceDeckId,
     this.access = ContentAccess.free,
+    this.difficulty = 0,
   });
 
   final String id;
@@ -78,7 +102,12 @@ class KanjiCard {
   final String meaning;
   final String keyword;
   final String mnemonic;
-  final List<KanjiComponent> components;
+
+  /// Catalog labels, `character — name`. Empty when [structuredComponents]
+  /// carries the richer form used by tests and hand-built cards.
+  final List<String> components;
+
+  final List<KanjiComponent> structuredComponents;
   final int strokeCount;
   final JlptLevel jlptLevel;
   final int? rtkIndex;
@@ -89,13 +118,28 @@ class KanjiCard {
   final String? sourceDeckId;
   final ContentAccess access;
 
-  String get componentsLabel =>
-      components.map((component) => component.label).join(' + ');
+  /// Relative difficulty from 1 (easiest) to 100 (hardest).
+  ///
+  /// 0 means this card has no placement difficulty. Several kanji can share
+  /// the same value; it is not an id.
+  final int difficulty;
+
+  /// Components the mnemonic and detail screens can draw.
+  List<KanjiComponent> get componentModels {
+    if (structuredComponents.isNotEmpty) return structuredComponents;
+    return [for (final label in components) KanjiComponent.fromLabel(label)];
+  }
+
+  String get componentsLabel => componentModels.isEmpty
+      ? ''
+      : componentModels.map((component) => component.label).join(' + ');
 
   /// Whether the components line adds information beyond the character itself.
-  bool get hasComponentBreakdown =>
-      components.length > 1 ||
-      (components.length == 1 && components.single.label != character);
+  bool get hasComponentBreakdown {
+    final models = componentModels;
+    return models.length > 1 ||
+        (models.length == 1 && models.single.label != character);
+  }
 
   String get onyomiLabel => onyomi.join('・');
 

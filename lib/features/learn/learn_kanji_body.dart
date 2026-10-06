@@ -159,7 +159,7 @@ class LearnKanjiBody extends StatelessWidget {
           Expanded(
             child: MnemonicText(
               mnemonic: card.mnemonic,
-              components: card.components,
+              components: card.componentModels,
               style: theme.textTheme.titleMedium!.copyWith(height: 1.4),
             ),
           ),

@@ -3,8 +3,7 @@ import '../core/models/kanji_card.dart';
 import '../core/models/start_of_day.dart';
 
 /// The order unencountered kanji are introduced in: easiest JLPT level first,
-/// then the content order inside a level. Also the difficulty order the
-/// placement test samples along.
+/// then the content order inside a level.
 int compareKanjiLearnOrder(KanjiCard a, KanjiCard b) {
   final aLevel = JlptLevel.sectionOrder.indexOf(a.jlptLevel);
   final bLevel = JlptLevel.sectionOrder.indexOf(b.jlptLevel);

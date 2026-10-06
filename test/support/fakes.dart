@@ -13,6 +13,7 @@ KanjiCard testCard(
   String? keyword,
   String? character,
   JlptLevel jlptLevel = JlptLevel.none,
+  int difficulty = 0,
 }) {
   return KanjiCard(
     id: id,
@@ -23,6 +24,7 @@ KanjiCard testCard(
     components: const [],
     strokeCount: 1,
     jlptLevel: jlptLevel,
+    difficulty: difficulty,
   );
 }
 

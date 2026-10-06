@@ -249,7 +249,7 @@ class _KanjiDetailScreenState extends State<KanjiDetailScreen> {
                       label: 'Memory tip',
                       child: MnemonicText(
                         mnemonic: card.mnemonic,
-                        components: card.components,
+                        components: card.componentModels,
                         style: theme.textTheme.bodyLarge!.copyWith(
                           color: theme.colorScheme.onSurface.withValues(
                             alpha: 0.72,
@@ -530,8 +530,9 @@ class _KanjiDetailScreenState extends State<KanjiDetailScreen> {
       height: 1.35,
     );
     final spans = <InlineSpan>[];
-    for (var index = 0; index < card.components.length; index++) {
-      final component = card.components[index];
+    final models = card.componentModels;
+    for (var index = 0; index < models.length; index++) {
+      final component = models[index];
       if (index > 0) {
         spans.add(TextSpan(text: ' + ', style: nameStyle));
       }

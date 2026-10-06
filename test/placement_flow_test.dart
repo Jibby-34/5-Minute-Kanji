@@ -65,9 +65,18 @@ void main() {
 
   PlacementController controllerOf(WidgetTester tester) {
     return Provider.of<PlacementController>(
-      tester.element(find.text('I know it')),
+      tester.element(find.text('WHAT DOES THIS MEAN?')),
       listen: false,
     );
+  }
+
+  /// Taps the right meaning, or one of the other three.
+  Future<void> tapMeaning(WidgetTester tester, {required bool known}) async {
+    final choice = controllerOf(
+      tester,
+    ).choices.firstWhere((choice) => choice.correct == known);
+    await tester.tap(find.text(choice.label));
+    await tester.pumpAndSettle();
   }
 
   /// Answers every question until the results screen, deciding each answer from
@@ -77,14 +86,11 @@ void main() {
     required bool Function(KanjiCard card) knows,
   }) async {
     final asked = <KanjiCard>[];
-    while (find.text('I know it').evaluate().isNotEmpty) {
+    while (find.text('WHAT DOES THIS MEAN?').evaluate().isNotEmpty) {
       final card = controllerOf(tester).question!;
       expect(find.text(card.character), findsOneWidget);
       asked.add(card);
-      await tester.tap(
-        find.text(knows(card) ? 'I know it' : "I don't know it"),
-      );
-      await tester.pumpAndSettle();
+      await tapMeaning(tester, known: knows(card));
     }
     return asked;
   }
@@ -110,26 +116,30 @@ void main() {
     await tester.tap(find.text('Start Placement Test'));
     await tester.pumpAndSettle();
 
-    final card = controllerOf(tester).question!;
+    final controller = controllerOf(tester);
+    final card = controller.question!;
+    final choices = controller.choices;
     expect(find.text(card.character), findsOneWidget);
-    expect(find.text('I know it'), findsOneWidget);
-    expect(find.text("I don't know it"), findsOneWidget);
+    expect(find.text('WHAT DOES THIS MEAN?'), findsOneWidget);
+    expect(choices, hasLength(4));
+    expect(choices.where((choice) => choice.correct), hasLength(1));
+    expect(choices.singleWhere((choice) => choice.correct).label, card.meaning);
+    for (final choice in choices) {
+      expect(find.text(choice.label), findsOneWidget);
+    }
     expect(find.text('1 / ~20'), findsOneWidget);
     expect(find.byType(LinearProgressIndicator), findsOneWidget);
 
-    // Nothing that would give the answer away or grade it.
-    expect(find.text(card.keyword), findsNothing);
-    expect(find.text(card.meaning), findsNothing);
+    // The meaning is one of the four choices. The mnemonic and level are not.
     expect(find.text(card.mnemonic), findsNothing);
     expect(find.textContaining('JLPT'), findsNothing);
 
-    await tester.tap(find.text('I know it'));
-    await tester.pumpAndSettle();
+    await tapMeaning(tester, known: true);
 
     // No grade screen: straight to a harder kanji.
     expect(find.text('2 / ~20'), findsOneWidget);
     expect(controllerOf(tester).question?.id, isNot(card.id));
-    expect(find.text(card.keyword), findsNothing);
+    expect(find.text(card.mnemonic), findsNothing);
   });
 
   testWidgets('the test marks what the user knows and hands over the flow', (
@@ -142,17 +152,16 @@ void main() {
     await tester.tap(find.text('Start Placement Test'));
     await tester.pumpAndSettle();
 
-    // A learner who knows N5 but not N4.
+    // Knows easier kanji and misses harder ones. Not a JLPT cutoff.
     final asked = await answerAll(
       tester,
-      knows: (card) => card.jlptLevel == JlptLevel.n5,
+      knows: (card) => card.difficulty <= 30,
     );
 
     expect(asked.length, inInclusiveRange(1, PlacementTestEngine.questionCap));
     expect(asked.map((card) => card.id).toSet(), hasLength(asked.length));
     expect(find.text("You're all set!"), findsOneWidget);
-    expect(find.text('kanji already known'), findsOneWidget);
-    expect(find.text('Starting around JLPT N4'), findsOneWidget);
+    expect(find.textContaining("You're roughly"), findsOneWidget);
     expect(
       find.text("We've added the kanji you already know to your library."),
       findsOneWidget,
@@ -160,24 +169,28 @@ void main() {
     expect(find.text('Start Learning'), findsOneWidget);
 
     final schedules = await progress.getSchedules();
-    final known = schedules.values.where(
-      (schedule) => schedule.state != CardLearningState.newCard,
-    );
-    final n5Count = (await const HardcodedKanjiRepository().getAll())
-        .where((card) => card.jlptLevel == JlptLevel.n5)
-        .length;
-    expect(known.length, n5Count);
+    final askedIds = asked.map((card) => card.id).toSet();
 
-    // Known kanji look exactly like hand-marked ones: same interval, same
-    // status in the list, and not waiting in today's queue.
-    for (final schedule in known) {
-      expect(schedule.state, CardLearningState.review);
-      expect(
-        schedule.interval,
-        calculateInitialKnownCardSchedule(schedule.cardId),
-      );
-      expect(schedule.isDueAt(now), isFalse);
-      expect(resolver.resolve(schedule), KanjiProgressStatus.learning);
+    for (final card in asked) {
+      final schedule = schedules[card.id]!;
+      if (card.difficulty <= 30) {
+        expect(schedule.state, CardLearningState.review);
+        expect(
+          schedule.interval,
+          calculateInitialKnownCardSchedule(schedule.cardId),
+        );
+        expect(schedule.isDueAt(now), isFalse);
+        expect(resolver.resolve(schedule), KanjiProgressStatus.learning);
+      } else {
+        expect(schedule.state, CardLearningState.newCard);
+      }
+    }
+
+    // A hard kanji the test did not confirm stays out of the known state.
+    final cards = await const HardcodedKanjiRepository().getAll();
+    for (final card in cards) {
+      if (card.difficulty < 90 || askedIds.contains(card.id)) continue;
+      expect(schedules[card.id]?.state, isNot(CardLearningState.review));
     }
 
     // The test does not spend the daily new-kanji allowance.
@@ -227,8 +240,7 @@ void main() {
     await tester.pumpAndSettle();
 
     for (var i = 0; i < 4; i++) {
-      await tester.tap(find.text('I know it'));
-      await tester.pumpAndSettle();
+      await tapMeaning(tester, known: true);
     }
     final pending = controllerOf(tester).question!;
 
@@ -260,11 +272,12 @@ void main() {
 
     await answerAll(tester, knows: (card) => true);
 
-    const kanji = HardcodedKanjiRepository();
-    final total = (await kanji.getAll()).length;
-    expect(find.text('$total'), findsOneWidget);
-    expect(find.text('kanji already known'), findsOneWidget);
-    expect(find.text("That's every kanji in the app."), findsOneWidget);
+    expect(find.textContaining("You're roughly"), findsOneWidget);
+    expect(find.textContaining('N1'), findsOneWidget);
+    expect(
+      find.text("We've added the kanji you already know to your library."),
+      findsOneWidget,
+    );
 
     await tester.tap(find.text('Start Learning'));
     await tester.pumpAndSettle();
@@ -291,7 +304,8 @@ void main() {
 
     await tester.tap(find.text('Start Placement Test'));
     await tester.pumpAndSettle();
-    expect(find.text('I know it'), findsOneWidget);
+    expect(find.text('WHAT DOES THIS MEAN?'), findsOneWidget);
+    expect(controllerOf(tester).choices, hasLength(4));
 
     // A retake is escapable, and abandoning it leaves the test completed.
     await tester.tap(find.byTooltip('Close'));
@@ -450,7 +464,7 @@ void main() {
           run.record(
             PlacementAnswer(
               cardId: question.id,
-              known: question.jlptLevel == JlptLevel.n5,
+              known: question.difficulty <= 30,
             ),
           );
         }
@@ -459,11 +473,13 @@ void main() {
           run.answeredCount,
           inInclusiveRange(1, PlacementTestEngine.questionCap),
         );
-        final n5Count = cards
-            .where((card) => card.jlptLevel == JlptLevel.n5)
-            .length;
-        expect(run.outcome().knownCardIds, hasLength(n5Count));
-        expect(run.outcome().startingLevel, JlptLevel.n4);
+        final outcome = run.outcome();
+        expect(outcome.estimatedDifficulty, greaterThan(10));
+        expect(outcome.estimatedDifficulty, lessThan(60));
+        expect(outcome.headline, contains("You're roughly"));
+        expect(outcome.intervalLow, lessThanOrEqualTo(outcome.intervalHigh));
+        expect(outcome.corpusPosition, greaterThan(0));
+        expect(outcome.corpusPosition, lessThan(cards.length));
         expect(
           cards.map((card) => card.jlptLevel).toSet(),
           containsAll(const [

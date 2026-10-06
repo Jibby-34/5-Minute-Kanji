@@ -156,7 +156,7 @@ void main() {
       meaning: 'daylight',
       keyword: 'day',
       mnemonic: 'A sun through a window.',
-      components: [
+      structuredComponents: [
         KanjiComponent(
           id: 'sun',
           character: '日',

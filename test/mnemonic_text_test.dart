@@ -195,7 +195,7 @@ void main() {
       meaning: 'rest',
       keyword: 'rest',
       mnemonic: 'A person rests against a tree.',
-      components: [
+      structuredComponents: [
         KanjiComponent(
           id: 'person',
           character: '亻',

@@ -30,7 +30,15 @@ List<String> kanjiDatasetProblems(List<KanjiCard> cards) {
     if (card.mnemonic.trim().isEmpty) {
       problems.add('$label has a blank mnemonic.');
     }
+    if (card.difficulty < 1 || card.difficulty > 100) {
+      problems.add('$label has a difficulty outside 1–100.');
+    }
     for (final component in card.components) {
+      if (component.trim().isEmpty) {
+        problems.add('$label has a blank component.');
+      }
+    }
+    for (final component in card.structuredComponents) {
       if (component.id.isEmpty ||
           component.character.isEmpty ||
           component.name.trim().isEmpty) {

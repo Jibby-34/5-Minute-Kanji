@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 
 import '../../core/models/kanji_card.dart';
 import '../../core/models/placement.dart';
+import '../../services/placement_choices.dart';
 import '../../services/placement_service.dart';
 import '../../services/placement_test_engine.dart';
 
@@ -20,6 +21,7 @@ class PlacementController extends ChangeNotifier {
   PlacementSummary? summary;
 
   List<KanjiCard> _pool = const [];
+  List<KanjiCard> _catalog = const [];
   List<PlacementAnswer> _answers = const [];
   PlacementRun? _run;
 
@@ -27,6 +29,13 @@ class PlacementController extends ChangeNotifier {
   bool _saving = false;
 
   KanjiCard? get question => _run?.currentQuestion;
+
+  /// The four meanings under [question]. Empty before a question is showing.
+  List<PlacementChoice> get choices {
+    final card = question;
+    if (card == null) return const [];
+    return placementMeaningChoices(card: card, pool: _pool);
+  }
 
   int get answeredCount => _answers.length;
 
@@ -47,13 +56,19 @@ class PlacementController extends ChangeNotifier {
     notifyListeners();
 
     try {
+      _catalog = await service.catalog();
       _pool = await service.candidates();
       _answers = (await service.progress()).answers;
     } catch (_) {
+      _catalog = const [];
       _pool = const [];
       _answers = const [];
     }
-    _run = engine.replay(_pool, _answers);
+    final seed = _pool.isEmpty ? engine.selectionSeed : await _selectionSeed();
+    _run = PlacementTestEngine(
+      maxQuestions: engine.maxQuestions,
+      selectionSeed: seed,
+    ).replay(_pool, _answers, corpus: _catalog);
 
     // Nothing to ask: finish straight away rather than show an empty test.
     if (_run!.isFinished) {
@@ -99,10 +114,21 @@ class PlacementController extends ChangeNotifier {
         run?.outcome() ?? PlacementOutcome.empty,
       );
     } catch (_) {
-      summary = const PlacementSummary(knownCount: 0);
+      summary = const PlacementSummary(
+        knownCount: 0,
+        headline: 'Your starting point is ready.',
+      );
     }
     phase = PlacementPhase.results;
     notifyListeners();
+  }
+
+  Future<int> _selectionSeed() async {
+    try {
+      return await service.ensureSelectionSeed();
+    } catch (_) {
+      return engine.selectionSeed == 0 ? 1 : engine.selectionSeed;
+    }
   }
 
   /// Serialises writes so two quick taps cannot persist out of order.

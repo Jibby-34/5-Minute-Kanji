@@ -1,7 +1,5 @@
-import 'kanji_card.dart';
-
-/// One answer from the placement test. [known] is the user's own judgement,
-/// not a graded result: the test asks for recognition, not production.
+/// One answer from the placement test. [known] is whether the user picked
+/// the kanji's meaning. A wrong choice is a miss, not a guess to grade later.
 class PlacementAnswer {
   const PlacementAnswer({required this.cardId, required this.known});
 
@@ -27,22 +25,31 @@ class PlacementAnswer {
 /// [answers] exist only while a test is unfinished; they let a run be replayed
 /// after the app is closed mid-test.
 class PlacementProgress {
-  const PlacementProgress({this.completed = false, this.answers = const []});
+  const PlacementProgress({
+    this.completed = false,
+    this.answers = const [],
+    this.selectionSeed = 0,
+  });
 
   static const empty = PlacementProgress();
 
   final bool completed;
   final List<PlacementAnswer> answers;
 
+  /// Mixes question choice. 0 means a run has not been given one yet.
+  final int selectionSeed;
+
   bool get hasStarted => answers.isNotEmpty;
 
   PlacementProgress copyWith({
     bool? completed,
     List<PlacementAnswer>? answers,
+    int? selectionSeed,
   }) {
     return PlacementProgress(
       completed: completed ?? this.completed,
       answers: answers ?? this.answers,
+      selectionSeed: selectionSeed ?? this.selectionSeed,
     );
   }
 
@@ -50,6 +57,7 @@ class PlacementProgress {
     return {
       'completed': completed,
       'answers': answers.map((answer) => answer.toJson()).toList(),
+      'selectionSeed': selectionSeed,
     };
   }
 
@@ -70,6 +78,7 @@ class PlacementProgress {
       return PlacementProgress(
         completed: json['completed'] as bool? ?? false,
         answers: answers,
+        selectionSeed: (json['selectionSeed'] as num?)?.toInt() ?? 0,
       );
     } catch (_) {
       return empty;
@@ -77,46 +86,76 @@ class PlacementProgress {
   }
 }
 
-/// What the test concluded: which kanji to treat as known, and where learning
-/// should begin.
+/// What the test concluded.
+///
+/// [knownCardIds] are marked known. [confirmCardIds] are queued for a light
+/// review. Tested kanji follow the answer the learner gave; the probabilities
+/// apply only to kanji the test did not show.
 class PlacementOutcome {
   const PlacementOutcome({
     required this.knownCardIds,
+    this.confirmCardIds = const [],
     required this.answeredCount,
-    this.startingLevel,
-    this.resumesMidLevel = false,
+    this.estimatedDifficulty = 0,
+    this.intervalLow = 0,
+    this.intervalHigh = 0,
+    this.corpusPosition = 0,
+    this.headline = '',
+    this.detail,
+    this.nothingToPlace = false,
   });
 
-  static const empty = PlacementOutcome(knownCardIds: [], answeredCount: 0);
+  static const empty = PlacementOutcome(
+    knownCardIds: [],
+    answeredCount: 0,
+    nothingToPlace: true,
+  );
 
   /// Kanji to hand to the existing Mark as Known path.
   final List<String> knownCardIds;
 
+  /// Untested kanji that should come back soon for confirmation.
+  final List<String> confirmCardIds;
+
   final int answeredCount;
 
-  /// JLPT level of the first kanji the user will be taught. Null when the test
-  /// found nothing left to learn.
-  final JlptLevel? startingLevel;
+  /// Posterior mean on the 1–100 difficulty scale. An estimate, not a cutoff.
+  final double estimatedDifficulty;
 
-  /// True when [startingLevel] is already partly known, so learning resumes
-  /// inside that level rather than at its first kanji.
-  final bool resumesMidLevel;
+  /// 10th and 90th percentiles of the posterior.
+  final int intervalLow;
+  final int intervalHigh;
+
+  /// How many catalog kanji have difficulty at or below [estimatedDifficulty].
+  final int corpusPosition;
+
+  /// Short result line, such as "You're roughly late N3".
+  final String headline;
+
+  /// Optional note when the credible interval reaches a later level.
+  final String? detail;
+
+  /// True when there was nothing left to ask about.
+  final bool nothingToPlace;
 }
 
 /// Results-screen copy data.
 class PlacementSummary {
   const PlacementSummary({
     required this.knownCount,
-    this.startingLevel,
-    this.resumesMidLevel = false,
+    this.confirmCount = 0,
+    this.headline = '',
+    this.detail,
+    this.nothingToPlace = false,
   });
 
   /// How many kanji this test moved into the known state.
   final int knownCount;
 
-  final JlptLevel? startingLevel;
+  /// How many untested kanji were queued for confirmation.
+  final int confirmCount;
 
-  /// True when learning resumes inside [startingLevel] rather than at the
-  /// first kanji of that level.
-  final bool resumesMidLevel;
+  final String headline;
+  final String? detail;
+  final bool nothingToPlace;
 }

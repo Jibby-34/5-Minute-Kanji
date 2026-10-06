@@ -6,6 +6,7 @@ import '../../core/models/kanji_card.dart';
 import '../../core/models/placement.dart';
 import '../../core/theme/app_theme.dart';
 import '../../core/theme/app_typography.dart';
+import '../../services/placement_choices.dart';
 import '../../services/placement_service.dart';
 import '../../widgets/kanji_mark.dart';
 import '../../widgets/primary_button.dart';
@@ -14,11 +15,11 @@ import '../../widgets/soft_card.dart';
 import '../onboarding/widgets/onboarding_scaffold.dart';
 import 'placement_controller.dart';
 
-/// Quick recognition pass that works out which kanji the user already knows.
+/// Quick meaning quiz that works out which kanji the user already knows.
 ///
-/// Three states in one screen: the invitation, the kanji being asked about, and
-/// the result. Nothing about an answer is ever shown back to the user — this is
-/// calibration, not a quiz.
+/// Three states in one screen: the invitation, a kanji with four meanings, and
+/// the result. A tap moves straight to the next kanji. Nothing marks the
+/// choice right or wrong.
 class PlacementScreen extends StatelessWidget {
   const PlacementScreen({super.key, required this.onFinished});
 
@@ -86,8 +87,8 @@ class _PlacementIntro extends StatelessWidget {
               title: "Let's find your starting point",
               subtitle: resuming
                   ? 'Pick up where you left off.'
-                  : "We'll show you some kanji to figure out\n"
-                        'what you already know.',
+                  : "We'll show you a kanji and ask\n"
+                        'what it means.',
             ),
             const SizedBox(height: 14),
             Text(
@@ -145,15 +146,16 @@ class _PlacementQuestion extends StatelessWidget {
 
   final PlacementController controller;
 
-  Future<void> _answer(BuildContext context, {required bool known}) async {
+  Future<void> _choose(BuildContext context, PlacementChoice choice) async {
     HapticFeedback.lightImpact();
-    await controller.answer(known: known);
+    await controller.answer(known: choice.correct);
   }
 
   @override
   Widget build(BuildContext context) {
     final card = controller.question;
-    if (card == null) {
+    final choices = controller.choices;
+    if (card == null || choices.isEmpty) {
       return const Scaffold(
         body: Center(child: CircularProgressIndicator(strokeWidth: 2)),
       );
@@ -164,25 +166,20 @@ class _PlacementQuestion extends StatelessWidget {
       action: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          PrimaryButton(
-            label: 'I know it',
-            onPressed: () => _answer(context, known: true),
-          ),
-          const SizedBox(height: 10),
-          SecondaryButton(
-            label: "I don't know it",
-            onPressed: () => _answer(context, known: false),
-          ),
+          for (var index = 0; index < choices.length; index++) ...[
+            if (index > 0) const SizedBox(height: 8),
+            _MeaningChoice(
+              label: choices[index].label,
+              onPressed: () => _choose(context, choices[index]),
+            ),
+          ],
         ],
       ),
       content: (context, height) {
         return Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const SectionLabel(
-              'Do you know this kanji?',
-              align: TextAlign.center,
-            ),
+            const SectionLabel('What does this mean?', align: TextAlign.center),
             SizedBox(height: height * 0.04),
             AnimatedSwitcher(
               duration: const Duration(milliseconds: 180),
@@ -191,12 +188,37 @@ class _PlacementQuestion extends StatelessWidget {
               child: _PlacementKanji(
                 key: ValueKey(card.id),
                 card: card,
-                size: (height * 0.3).clamp(96.0, 164.0),
+                size: (height * 0.34).clamp(88.0, 148.0),
               ),
             ),
           ],
         );
       },
+    );
+  }
+}
+
+/// One of the four meanings. Every choice looks the same, so the styling
+/// does not hint at the right one.
+class _MeaningChoice extends StatelessWidget {
+  const _MeaningChoice({required this.label, required this.onPressed});
+
+  final String label;
+  final VoidCallback onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: double.infinity,
+      child: OutlinedButton(
+        onPressed: onPressed,
+        style: OutlinedButton.styleFrom(
+          minimumSize: const Size.fromHeight(48),
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        ),
+        child: Text(label, textAlign: TextAlign.center),
+      ),
     );
   }
 }
@@ -285,8 +307,11 @@ class _PlacementResults extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final count = summary?.knownCount ?? 0;
-    final level = summary?.startingLevel;
+    final known = summary?.knownCount ?? 0;
+    final confirming = summary?.confirmCount ?? 0;
+    final nothing = summary?.nothingToPlace ?? false;
+    final headline = summary?.headline ?? '';
+    final detail = summary?.detail;
 
     return OnboardingScaffold(
       step: 2,
@@ -304,41 +329,47 @@ class _PlacementResults extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 26),
               child: Column(
                 children: [
-                  if (count > 0)
-                    OnboardingStat(
-                      value: '$count',
-                      label: 'kanji already known',
-                    )
-                  else
-                    Text(
-                      _nothingFound(level),
-                      textAlign: TextAlign.center,
-                      style: theme.textTheme.titleLarge?.copyWith(
-                        fontWeight: FontWeight.w500,
-                        height: 1.35,
-                      ),
-                    ),
-                  const SizedBox(height: 20),
-                  const HairlineMark(width: 56),
-                  const SizedBox(height: 20),
                   Text(
-                    _startingPoint(
-                      level,
-                      resumesMidLevel: summary?.resumesMidLevel ?? false,
-                    ),
+                    nothing
+                        ? 'Every kanji in the app is already in your reviews.'
+                        : headline.isEmpty
+                        ? 'Your starting point is ready.'
+                        : headline,
                     textAlign: TextAlign.center,
-                    style: theme.textTheme.titleMedium?.copyWith(
+                    style: theme.textTheme.titleLarge?.copyWith(
                       fontWeight: FontWeight.w500,
                       height: 1.35,
                     ),
                   ),
+                  if (!nothing && detail != null) ...[
+                    const SizedBox(height: 16),
+                    Text(
+                      detail,
+                      textAlign: TextAlign.center,
+                      style: theme.textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.w500,
+                        height: 1.35,
+                      ),
+                    ),
+                  ],
                 ],
               ),
             ),
-            if (count > 0) ...[
+            if (known > 0) ...[
               SizedBox(height: height * 0.04),
               Text(
                 "We've added the kanji you already know to your library.",
+                textAlign: TextAlign.center,
+                style: theme.textTheme.bodyLarge?.copyWith(
+                  color: theme.mutedText,
+                  height: 1.4,
+                ),
+              ),
+            ],
+            if (confirming > 0) ...[
+              SizedBox(height: height * 0.02),
+              Text(
+                'Some others will come up in review so we can confirm them.',
                 textAlign: TextAlign.center,
                 style: theme.textTheme.bodyLarge?.copyWith(
                   color: theme.mutedText,
@@ -350,24 +381,5 @@ class _PlacementResults extends StatelessWidget {
         );
       },
     );
-  }
-
-  /// A retake can find nothing left to place, which is not the same as a
-  /// learner who is starting from scratch.
-  String _nothingFound(JlptLevel? level) {
-    return level == null
-        ? 'Every kanji in the app is already in your reviews.'
-        : "We'll start you from the beginning.";
-  }
-
-  /// One quiet line. No level is invented when the test cannot tell.
-  String _startingPoint(JlptLevel? level, {required bool resumesMidLevel}) {
-    if (level == null) return "That's every kanji in the app.";
-    return switch (level) {
-      JlptLevel.none => 'Your starting point is ready.',
-      _ when resumesMidLevel =>
-        'Starting partway through ${level.sectionTitle}',
-      _ => 'Starting around ${level.sectionTitle}',
-    };
   }
 }

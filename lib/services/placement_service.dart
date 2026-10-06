@@ -1,3 +1,6 @@
+import 'dart:math' as math;
+
+import '../core/models/card_schedule.dart';
 import '../core/models/kanji_card.dart';
 import '../core/models/placement.dart';
 import '../core/utils/clock.dart';
@@ -5,6 +8,7 @@ import '../repositories/kanji_repository.dart';
 import '../repositories/progress_repository.dart';
 import 'due_card_selector.dart';
 import 'mark_as_known.dart';
+import 'placement_model.dart';
 
 /// Owns everything the placement test does outside of the question algorithm:
 /// which kanji it may ask about, saving an unfinished run, and turning a result
@@ -50,6 +54,20 @@ class PlacementService {
     return true;
   }
 
+  /// The full catalog. Used to describe where an estimate sits, including
+  /// kanji the test is not allowed to ask about.
+  Future<List<KanjiCard>> catalog() => kanjiRepository.getAll();
+
+  /// A stable mix for question choice, created once per run.
+  Future<int> ensureSelectionSeed() async {
+    final placement = await progressRepository.getPlacement();
+    if (placement.selectionSeed != 0) return placement.selectionSeed;
+    final raw = clock().microsecondsSinceEpoch & 0x7fffffff;
+    final seed = raw == 0 ? 1 : raw;
+    await _save(placement.copyWith(selectionSeed: seed));
+    return seed;
+  }
+
   /// Kanji the test may ask about: the ones the app has no progress for.
   /// Already-known kanji are left out — their answer is on record.
   Future<List<KanjiCard>> candidates() async {
@@ -68,16 +86,23 @@ class PlacementService {
   }
 
   /// Marks the kanji the test found, then records the test as done.
+  ///
+  /// Cards that already have SRS progress are left alone. A retake can add
+  /// placements for kanji that are still new; it does not reset the library.
   Future<PlacementSummary> complete(PlacementOutcome outcome) async {
+    final now = clock();
     final marked = await markAsKnown.markKanjiAsKnownAll(
       outcome.knownCardIds,
-      now: clock(),
+      now: now,
     );
+    final confirmed = await _confirmNewCards(outcome.confirmCardIds, now);
     await _save(const PlacementProgress(completed: true));
     return PlacementSummary(
       knownCount: marked.length,
-      startingLevel: outcome.startingLevel,
-      resumesMidLevel: outcome.resumesMidLevel,
+      confirmCount: confirmed,
+      headline: outcome.headline,
+      detail: outcome.detail,
+      nothingToPlace: outcome.nothingToPlace,
     );
   }
 
@@ -85,7 +110,42 @@ class PlacementService {
   /// so abandoning a retake cannot bring the test back on the next launch.
   Future<void> restart() async {
     final placement = await progressRepository.getPlacement();
-    await _save(placement.copyWith(answers: const []));
+    await _save(placement.copyWith(answers: const [], selectionSeed: 0));
+  }
+
+  /// Puts likely-but-untested kanji into learning, spread over later days so
+  /// they confirm gradually instead of filling today's session.
+  Future<int> _confirmNewCards(List<String> ids, DateTime now) async {
+    if (ids.isEmpty) return 0;
+    final existing = await progressRepository.getSchedules();
+    final horizon = math.max(placementConfirmMinHorizonDays, ids.length);
+    final updated = <CardSchedule>[];
+    for (final id in ids) {
+      if (id.isEmpty) continue;
+      final current = existing[id] ?? CardSchedule.fresh(id, now);
+      if (current.state != CardLearningState.newCard) continue;
+      final days = 1 + _dayBucket(id, horizon);
+      final interval = Duration(days: days);
+      updated.add(
+        current.copyWith(
+          state: CardLearningState.learning,
+          interval: interval,
+          dueAt: now.add(interval),
+        ),
+      );
+    }
+    if (updated.isEmpty) return 0;
+    await progressRepository.saveSchedules(updated);
+    return updated.length;
+  }
+
+  int _dayBucket(String id, int span) {
+    var hash = 2166136261;
+    for (final unit in id.codeUnits) {
+      hash ^= unit;
+      hash = (hash * 16777619) & 0xFFFFFFFF;
+    }
+    return hash % span;
   }
 
   Future<void> _save(PlacementProgress placement) =>

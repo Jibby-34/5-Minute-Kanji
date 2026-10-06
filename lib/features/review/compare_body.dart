@@ -227,7 +227,7 @@ class _CompareBodyState extends State<CompareBody> {
           Expanded(
             child: MnemonicText(
               mnemonic: card.mnemonic,
-              components: card.components,
+              components: card.componentModels,
               style: theme.textTheme.titleMedium!.copyWith(height: 1.4),
             ),
           ),
