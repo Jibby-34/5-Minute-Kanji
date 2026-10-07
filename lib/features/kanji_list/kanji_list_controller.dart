@@ -46,14 +46,30 @@ List<KanjiListSection> groupKanjiByJlpt(List<KanjiListItem> items) {
   ].where((section) => section.items.isNotEmpty).toList();
 }
 
-/// Flat list orders. JLPT grouping on the overview stays separate.
+/// Flat list orders. The JLPT option keeps the sectioned overview.
 enum KanjiListOrdering {
   recommended,
   frequency,
-  jlpt,
   difficulty,
+  jlpt,
   learned,
-  notEncountered,
+  notEncountered;
+
+  static const displayOptions = <KanjiListOrdering>[
+    recommended,
+    frequency,
+    difficulty,
+    jlpt,
+  ];
+
+  String get label => switch (this) {
+    KanjiListOrdering.recommended => 'Learning Path',
+    KanjiListOrdering.frequency => 'Frequency',
+    KanjiListOrdering.difficulty => 'Difficulty',
+    KanjiListOrdering.jlpt => 'JLPT',
+    KanjiListOrdering.learned => 'Learned',
+    KanjiListOrdering.notEncountered => 'New',
+  };
 }
 
 /// Sorts the kanji list with the same curriculum engine the study session uses.
@@ -149,10 +165,26 @@ class KanjiListController extends ChangeNotifier {
   bool loading = true;
   bool selecting = false;
   bool busy = false;
+  KanjiListOrdering ordering = KanjiListOrdering.recommended;
   List<KanjiListItem> items = const [];
   final Set<String> selectedIds = {};
+  CurriculumPriorityService? _curriculum;
 
-  List<KanjiListSection> get sections => groupKanjiByJlpt(items);
+  bool get groupsByJlpt => ordering == KanjiListOrdering.jlpt;
+
+  /// Kanji in the order selected on the list.
+  List<KanjiListItem> get orderedItems {
+    final curriculum = _curriculum;
+    if (curriculum == null) return items;
+    return orderKanjiListItems(
+      items: items,
+      ordering: ordering,
+      curriculum: curriculum,
+    );
+  }
+
+  List<KanjiListSection> get sections =>
+      groupKanjiByJlpt(groupsByJlpt ? orderedItems : items);
 
   int get selectedCount => selectedIds.length;
 
@@ -177,15 +209,23 @@ class KanjiListController extends ChangeNotifier {
             status: resolver.resolve(schedules[card.id]),
           ),
       ];
+      _curriculum = CurriculumPriorityService(cards);
       selectedIds.removeWhere(
         (id) => items.every((item) => item.card.id != id || !item.isNew),
       );
     } catch (_) {
       items = const [];
+      _curriculum = null;
       selectedIds.clear();
     }
 
     loading = false;
+    notifyListeners();
+  }
+
+  void setOrdering(KanjiListOrdering value) {
+    if (ordering == value) return;
+    ordering = value;
     notifyListeners();
   }
 

@@ -93,37 +93,41 @@ class _KanjiListView extends StatelessWidget {
           isFirst: isFirst,
         ),
       ),
-      SliverPadding(
-        padding: const EdgeInsets.fromLTRB(24, 0, 24, 0),
-        sliver: SliverGrid(
-          gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-            maxCrossAxisExtent: 112,
-            mainAxisSpacing: 16,
-            crossAxisSpacing: 16,
-            childAspectRatio: 1,
-          ),
-          delegate: SliverChildBuilderDelegate((context, index) {
-            final item = section.items[index];
-            final selectable = controller.isSelectable(item);
-            final selected = controller.isSelected(item.card.id);
-            return _KanjiListCard(
-              character: item.card.character,
-              status: item.status,
-              selecting: controller.selecting,
-              selectable: selectable,
-              selected: selected,
-              onTap: () {
-                if (controller.selecting) {
-                  controller.toggleSelected(item.card.id);
-                  return;
-                }
-                _openDetail(context, controller, item);
-              },
-            );
-          }, childCount: section.items.length),
-        ),
-      ),
+      _kanjiGrid(controller, section.items),
     ];
+  }
+
+  Widget _kanjiGrid(KanjiListController controller, List<KanjiListItem> items) {
+    return SliverPadding(
+      padding: const EdgeInsets.fromLTRB(24, 0, 24, 0),
+      sliver: SliverGrid(
+        gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+          maxCrossAxisExtent: 112,
+          mainAxisSpacing: 16,
+          crossAxisSpacing: 16,
+          childAspectRatio: 1,
+        ),
+        delegate: SliverChildBuilderDelegate((context, index) {
+          final item = items[index];
+          final selectable = controller.isSelectable(item);
+          final selected = controller.isSelected(item.card.id);
+          return _KanjiListCard(
+            character: item.card.character,
+            status: item.status,
+            selecting: controller.selecting,
+            selectable: selectable,
+            selected: selected,
+            onTap: () {
+              if (controller.selecting) {
+                controller.toggleSelected(item.card.id);
+                return;
+              }
+              _openDetail(context, controller, item);
+            },
+          );
+        }, childCount: items.length),
+      ),
+    );
   }
 
   @override
@@ -181,6 +185,11 @@ class _KanjiListView extends StatelessWidget {
                   ],
                 ),
               ),
+              if (!controller.loading)
+                _KanjiOrderBar(
+                  ordering: controller.ordering,
+                  onSelected: controller.setOrdering,
+                ),
               if (controller.selecting)
                 Padding(
                   padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
@@ -211,12 +220,19 @@ class _KanjiListView extends StatelessWidget {
                     : CustomScrollView(
                         physics: const BouncingScrollPhysics(),
                         slivers: [
-                          for (var i = 0; i < sections.length; i++)
-                            ..._sectionSlivers(
-                              controller,
-                              sections[i],
-                              isFirst: i == 0,
+                          if (controller.groupsByJlpt)
+                            for (var i = 0; i < sections.length; i++)
+                              ..._sectionSlivers(
+                                controller,
+                                sections[i],
+                                isFirst: i == 0,
+                              )
+                          else ...[
+                            const SliverToBoxAdapter(
+                              child: SizedBox(height: 12),
                             ),
+                            _kanjiGrid(controller, controller.orderedItems),
+                          ],
                           const SliverToBoxAdapter(child: SizedBox(height: 32)),
                         ],
                       ),
@@ -231,6 +247,86 @@ class _KanjiListView extends StatelessWidget {
                   ),
                 ),
             ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _KanjiOrderBar extends StatelessWidget {
+  const _KanjiOrderBar({required this.ordering, required this.onSelected});
+
+  final KanjiListOrdering ordering;
+  final ValueChanged<KanjiListOrdering> onSelected;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(24, 0, 24, 8),
+      child: Align(
+        alignment: Alignment.centerLeft,
+        child: Wrap(
+          spacing: 8,
+          runSpacing: 8,
+          children: [
+            for (final option in KanjiListOrdering.displayOptions)
+              _OrderChip(
+                label: option.label,
+                selected: option == ordering,
+                onTap: () => onSelected(option),
+              ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _OrderChip extends StatelessWidget {
+  const _OrderChip({
+    required this.label,
+    required this.selected,
+    required this.onTap,
+  });
+
+  final String label;
+  final bool selected;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final background = selected ? theme.colorScheme.primary : theme.cardColor;
+    final foreground = selected
+        ? theme.colorScheme.onPrimary
+        : theme.colorScheme.onSurface;
+    return Semantics(
+      button: true,
+      selected: selected,
+      child: Material(
+        color: background,
+        borderRadius: BorderRadius.circular(18),
+        child: InkWell(
+          onTap: onTap,
+          borderRadius: BorderRadius.circular(18),
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(18),
+              border: Border.all(
+                color: selected ? theme.colorScheme.primary : theme.hairline,
+              ),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
+              child: Text(
+                label,
+                style: theme.textTheme.labelLarge?.copyWith(
+                  color: foreground,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
           ),
         ),
       ),

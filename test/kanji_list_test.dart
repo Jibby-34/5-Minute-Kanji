@@ -58,6 +58,9 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.text('Kanji List'), findsOneWidget);
+    expect(find.text('Learning Path'), findsOneWidget);
+    await tester.tap(find.text('JLPT'));
+    await tester.pump();
     expect(find.text('JLPT N5'), findsOneWidget);
     final list = Provider.of<KanjiListController>(
       tester.element(find.text('Kanji List')),
@@ -388,6 +391,9 @@ void main() {
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 50));
 
+    await tester.tap(find.text('JLPT'));
+    await tester.pump();
+
     const titles = [
       'JLPT N5',
       'JLPT N4',
@@ -487,11 +493,100 @@ void main() {
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 50));
 
+    await tester.tap(find.text('JLPT'));
+    await tester.pump();
+
     expect(find.text('JLPT N5'), findsOneWidget);
     expect(find.text('JLPT N3'), findsOneWidget);
     expect(find.text('JLPT N4'), findsNothing);
     expect(find.text('JLPT N2'), findsNothing);
     expect(find.text('JLPT N1'), findsNothing);
     expect(find.text('No JLPT Level'), findsNothing);
+  });
+
+  testWidgets('order options rearrange the kanji grid', (tester) async {
+    tester.view.physicalSize = const Size(390, 900);
+    tester.view.devicePixelRatio = 1.0;
+    addTearDown(tester.view.resetPhysicalSize);
+    addTearDown(tester.view.resetDevicePixelRatio);
+
+    final cards = [
+      testCard(
+        'easy-obscure',
+        character: '七',
+        jlptLevel: JlptLevel.n5,
+        frequency: 500,
+        difficulty: 1,
+      ),
+      testCard(
+        'frequent-hard',
+        character: '用',
+        jlptLevel: JlptLevel.n1,
+        frequency: 1,
+        difficulty: 100,
+      ),
+      testCard(
+        'middle',
+        character: '中',
+        jlptLevel: JlptLevel.n3,
+        frequency: 50,
+        difficulty: 50,
+      ),
+    ];
+
+    await tester.pumpWidget(
+      MultiProvider(
+        providers: [
+          Provider<KanjiRepository>.value(value: FakeKanjiRepository(cards)),
+          Provider<ProgressRepository>.value(value: MemoryProgressRepository()),
+          Provider<MarkAsKnownService>(
+            create: (context) => MarkAsKnownService(
+              progressRepository: context.read<ProgressRepository>(),
+              srsEngine: const SrsEngine(),
+            ),
+          ),
+        ],
+        child: MaterialApp(
+          theme: AppTheme.light,
+          home: const KanjiListScreen(),
+        ),
+      ),
+    );
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 50));
+
+    List<String> visualOrder() {
+      final characters = ['七', '用', '中'];
+      characters.sort((a, b) {
+        final aBox = tester.getTopLeft(find.text(a));
+        final bBox = tester.getTopLeft(find.text(b));
+        final byY = aBox.dy.compareTo(bBox.dy);
+        if (byY != 0) return byY;
+        return aBox.dx.compareTo(bBox.dx);
+      });
+      return characters;
+    }
+
+    expect(find.text('Learning Path'), findsOneWidget);
+    expect(find.text('Frequency'), findsOneWidget);
+    expect(find.text('Difficulty'), findsOneWidget);
+    expect(find.text('JLPT'), findsOneWidget);
+    expect(find.text('JLPT N5'), findsNothing);
+    expect(visualOrder(), ['用', '七', '中']);
+
+    await tester.tap(find.text('Frequency'));
+    await tester.pump();
+    expect(visualOrder(), ['用', '中', '七']);
+
+    await tester.tap(find.text('Difficulty'));
+    await tester.pump();
+    expect(visualOrder(), ['七', '中', '用']);
+
+    await tester.tap(find.text('JLPT'));
+    await tester.pump();
+    expect(find.text('JLPT N5'), findsOneWidget);
+    expect(find.text('JLPT N3'), findsOneWidget);
+    expect(find.text('JLPT N1'), findsOneWidget);
+    expect(visualOrder(), ['七', '中', '用']);
   });
 }
