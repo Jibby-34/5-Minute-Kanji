@@ -65,18 +65,9 @@ void main() {
 
   PlacementController controllerOf(WidgetTester tester) {
     return Provider.of<PlacementController>(
-      tester.element(find.text('WHAT DOES THIS MEAN?')),
+      tester.element(find.text('I know it')),
       listen: false,
     );
-  }
-
-  /// Taps the right meaning, or one of the other three.
-  Future<void> tapMeaning(WidgetTester tester, {required bool known}) async {
-    final choice = controllerOf(
-      tester,
-    ).choices.firstWhere((choice) => choice.correct == known);
-    await tester.tap(find.text(choice.label));
-    await tester.pumpAndSettle();
   }
 
   /// Answers every question until the results screen, deciding each answer from
@@ -86,11 +77,14 @@ void main() {
     required bool Function(KanjiCard card) knows,
   }) async {
     final asked = <KanjiCard>[];
-    while (find.text('WHAT DOES THIS MEAN?').evaluate().isNotEmpty) {
+    while (find.text('I know it').evaluate().isNotEmpty) {
       final card = controllerOf(tester).question!;
       expect(find.text(card.character), findsOneWidget);
       asked.add(card);
-      await tapMeaning(tester, known: knows(card));
+      await tester.tap(
+        find.text(knows(card) ? 'I know it' : "I don't know it"),
+      );
+      await tester.pumpAndSettle();
     }
     return asked;
   }
@@ -116,25 +110,21 @@ void main() {
     await tester.tap(find.text('Start Placement Test'));
     await tester.pumpAndSettle();
 
-    final controller = controllerOf(tester);
-    final card = controller.question!;
-    final choices = controller.choices;
+    final card = controllerOf(tester).question!;
     expect(find.text(card.character), findsOneWidget);
-    expect(find.text('WHAT DOES THIS MEAN?'), findsOneWidget);
-    expect(choices, hasLength(4));
-    expect(choices.where((choice) => choice.correct), hasLength(1));
-    expect(choices.singleWhere((choice) => choice.correct).label, card.meaning);
-    for (final choice in choices) {
-      expect(find.text(choice.label), findsOneWidget);
-    }
+    expect(find.text('I know it'), findsOneWidget);
+    expect(find.text("I don't know it"), findsOneWidget);
     expect(find.text('1 / ~20'), findsOneWidget);
     expect(find.byType(LinearProgressIndicator), findsOneWidget);
 
-    // The meaning is one of the four choices. The mnemonic and level are not.
+    // Nothing that would give the answer away.
+    expect(find.text(card.keyword), findsNothing);
+    expect(find.text(card.meaning), findsNothing);
     expect(find.text(card.mnemonic), findsNothing);
     expect(find.textContaining('JLPT'), findsNothing);
 
-    await tapMeaning(tester, known: true);
+    await tester.tap(find.text('I know it'));
+    await tester.pumpAndSettle();
 
     // No grade screen: straight to a harder kanji.
     expect(find.text('2 / ~20'), findsOneWidget);
@@ -240,7 +230,8 @@ void main() {
     await tester.pumpAndSettle();
 
     for (var i = 0; i < 4; i++) {
-      await tapMeaning(tester, known: true);
+      await tester.tap(find.text('I know it'));
+      await tester.pumpAndSettle();
     }
     final pending = controllerOf(tester).question!;
 
@@ -304,8 +295,8 @@ void main() {
 
     await tester.tap(find.text('Start Placement Test'));
     await tester.pumpAndSettle();
-    expect(find.text('WHAT DOES THIS MEAN?'), findsOneWidget);
-    expect(controllerOf(tester).choices, hasLength(4));
+    expect(find.text('I know it'), findsOneWidget);
+    expect(find.text("I don't know it"), findsOneWidget);
 
     // A retake is escapable, and abandoning it leaves the test completed.
     await tester.tap(find.byTooltip('Close'));

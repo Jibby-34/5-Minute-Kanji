@@ -1,5 +1,5 @@
-/// One answer from the placement test. [known] is whether the user picked
-/// the kanji's meaning. A wrong choice is a miss, not a guess to grade later.
+/// One answer from the placement test. [known] is the user's own judgement
+/// of the kanji on screen. A miss is evidence, not a hard cutoff.
 class PlacementAnswer {
   const PlacementAnswer({required this.cardId, required this.known});
 

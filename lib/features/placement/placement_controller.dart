@@ -2,7 +2,6 @@ import 'package:flutter/foundation.dart';
 
 import '../../core/models/kanji_card.dart';
 import '../../core/models/placement.dart';
-import '../../services/placement_choices.dart';
 import '../../services/placement_service.dart';
 import '../../services/placement_test_engine.dart';
 
@@ -29,13 +28,6 @@ class PlacementController extends ChangeNotifier {
   bool _saving = false;
 
   KanjiCard? get question => _run?.currentQuestion;
-
-  /// The four meanings under [question]. Empty before a question is showing.
-  List<PlacementChoice> get choices {
-    final card = question;
-    if (card == null) return const [];
-    return placementMeaningChoices(card: card, pool: _pool);
-  }
 
   int get answeredCount => _answers.length;
 

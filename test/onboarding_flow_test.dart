@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:fiveminutekanji/app.dart';
@@ -12,7 +11,6 @@ import 'package:fiveminutekanji/core/models/onboarding.dart';
 import 'package:fiveminutekanji/core/models/placement.dart';
 import 'package:fiveminutekanji/core/models/progress.dart';
 import 'package:fiveminutekanji/data/shared_prefs_progress_repository.dart';
-import 'package:fiveminutekanji/features/placement/placement_controller.dart';
 import 'package:fiveminutekanji/repositories/progress_repository.dart';
 import 'package:fiveminutekanji/services/daily_workload.dart';
 import 'package:fiveminutekanji/services/daily_workload_estimator.dart';
@@ -249,19 +247,12 @@ void main() {
       await tester.pump(const Duration(milliseconds: 50));
     }
 
-    /// Misses the meaning on every placement question.
+    /// Answers the placement test with "I don't know it" all the way through.
     Future<void> answerPlacement(WidgetTester tester) async {
       await tester.tap(find.text('Start Placement Test'));
       await tester.pumpAndSettle();
-      while (find.text('WHAT DOES THIS MEAN?').evaluate().isNotEmpty) {
-        final controller = Provider.of<PlacementController>(
-          tester.element(find.text('WHAT DOES THIS MEAN?')),
-          listen: false,
-        );
-        final wrong = controller.choices.firstWhere(
-          (choice) => !choice.correct,
-        );
-        await tester.tap(find.text(wrong.label));
+      while (find.text("I don't know it").evaluate().isNotEmpty) {
+        await tester.tap(find.text("I don't know it"));
         await tester.pumpAndSettle();
       }
     }
