@@ -349,8 +349,20 @@ void main() {
 
     await tester.tap(find.byTooltip('Settings'));
     await tester.pumpAndSettle();
-    await tester.ensureVisible(find.text('Retake placement test'));
-    await tester.tap(find.text('Retake placement test'));
+    await tester.ensureVisible(find.text('Placement test'));
+    await tester.tap(find.text('Placement test'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Retake placement test?'), findsOneWidget);
+    await tester.tap(find.text('Cancel'));
+    await tester.pumpAndSettle();
+    expect(find.text('Where should we start?'), findsNothing);
+    expect(find.text('Placement test'), findsOneWidget);
+
+    await tester.ensureVisible(find.text('Placement test'));
+    await tester.tap(find.text('Placement test'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Retake test'));
     await tester.pumpAndSettle();
 
     expect(find.text('Where should we start?'), findsOneWidget);
@@ -367,7 +379,7 @@ void main() {
     // A retake is escapable, and abandoning it leaves the test completed.
     await tester.tap(find.byTooltip('Close'));
     await tester.pumpAndSettle();
-    expect(find.text('Retake placement test'), findsOneWidget);
+    expect(find.text('Placement test'), findsOneWidget);
     expect((await progress.getPlacement()).completed, isTrue);
   });
 

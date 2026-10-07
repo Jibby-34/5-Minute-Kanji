@@ -97,8 +97,14 @@ void main() {
   });
 
   group('settings screen', () {
-    Future<void> openSettings(WidgetTester tester) async {
-      usePhoneViewport(tester);
+    Future<void> openSettings(
+      WidgetTester tester, {
+      Size size = const Size(390, 844),
+    }) async {
+      tester.view.physicalSize = size;
+      tester.view.devicePixelRatio = 1.0;
+      addTearDown(tester.view.resetPhysicalSize);
+      addTearDown(tester.view.resetDevicePixelRatio);
       SharedPreferences.setMockInitialValues({});
       final prefs = await SharedPreferences.getInstance();
       const kanji = HardcodedKanjiRepository();
@@ -123,13 +129,31 @@ void main() {
     testWidgets('shows the reminder section with its defaults', (tester) async {
       await openSettings(tester);
 
-      expect(find.text('Study reminders'), findsOneWidget);
-      expect(find.text('Daily reminder'), findsOneWidget);
+      expect(find.text('REMINDERS'), findsOneWidget);
+      expect(find.text('Enable notifications'), findsOneWidget);
       expect(find.text('Reminder time'), findsOneWidget);
+      expect(find.text('Days'), findsOneWidget);
+      expect(find.text('Every day'), findsOneWidget);
       expect(find.text('7:00 PM'), findsOneWidget);
       expect(tester.widget<Switch>(find.byType(Switch)).value, isTrue);
+
+      await tester.scrollUntilVisible(find.text('Open source licenses'), 400);
+      expect(find.text('Placement test'), findsOneWidget);
+      expect(find.text('STUDY'), findsOneWidget);
+      expect(tester.takeException(), isNull);
       // No permission notice without a notification gateway.
       expect(find.text('Open Settings'), findsNothing);
+    });
+
+    testWidgets('settings scroll on a small phone without overflow', (
+      tester,
+    ) async {
+      await openSettings(tester, size: const Size(320, 568));
+
+      await tester.scrollUntilVisible(find.text('Open source licenses'), 400);
+      expect(find.text('Placement test'), findsOneWidget);
+      expect(find.text('4:00 AM'), findsOneWidget);
+      expect(tester.takeException(), isNull);
     });
 
     testWidgets('the reminder time opens the platform time picker', (
@@ -157,6 +181,7 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(tester.widget<Switch>(find.byType(Switch)).value, isFalse);
+      await tester.ensureVisible(find.text('7:00 PM'));
       await tester.tap(find.text('7:00 PM'));
       await tester.pumpAndSettle();
       expect(find.byType(TimePickerDialog), findsNothing);
