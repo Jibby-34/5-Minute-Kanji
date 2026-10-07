@@ -16,8 +16,9 @@ enum PlacementSelfAssessment {
   }
 }
 
-/// One answer from the placement test. [known] is the user's own judgement
-/// of the kanji on screen. A miss is evidence, not a hard cutoff.
+/// One answer from the placement test. [known] means the user could write
+/// that kanji from memory, not merely recognize it. A miss is evidence,
+/// not a hard cutoff.
 class PlacementAnswer {
   const PlacementAnswer({required this.cardId, required this.known});
 

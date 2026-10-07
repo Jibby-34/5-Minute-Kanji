@@ -247,7 +247,7 @@ void main() {
       await tester.pump(const Duration(milliseconds: 50));
     }
 
-    /// Answers the placement test with "I don't know it" all the way through.
+    /// Answers the placement test with "I can't write it" all the way through.
     Future<void> answerPlacement(WidgetTester tester) async {
       await tester.tap(find.text('Beginner'));
       await tester.pumpAndSettle();
@@ -255,8 +255,8 @@ void main() {
       await tester.pumpAndSettle();
       await tester.tap(find.text('Start Placement Test'));
       await tester.pumpAndSettle();
-      while (find.text("I don't know it").evaluate().isNotEmpty) {
-        await tester.tap(find.text("I don't know it"));
+      while (find.text("I can't write it").evaluate().isNotEmpty) {
+        await tester.tap(find.text("I can't write it"));
         await tester.pumpAndSettle();
       }
     }
@@ -303,7 +303,7 @@ void main() {
       await tester.pumpAndSettle();
 
       // 2. Self-assessment, then the existing placement test.
-      expect(find.text('How much Japanese do you know?'), findsOneWidget);
+      expect(find.text('How many kanji can you write?'), findsOneWidget);
       await answerPlacement(tester);
 
       // 3. Results.

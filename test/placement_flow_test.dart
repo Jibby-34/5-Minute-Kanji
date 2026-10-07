@@ -12,6 +12,7 @@ import 'package:fiveminutekanji/core/models/placement.dart';
 import 'package:fiveminutekanji/data/hardcoded_kanji_repository.dart';
 import 'package:fiveminutekanji/data/shared_prefs_progress_repository.dart';
 import 'package:fiveminutekanji/features/placement/placement_controller.dart';
+import 'package:fiveminutekanji/features/review/widgets/handwriting_pad.dart';
 import 'package:fiveminutekanji/repositories/progress_repository.dart';
 import 'package:fiveminutekanji/services/initial_known_card_schedule.dart';
 import 'package:fiveminutekanji/services/kanji_status_resolver.dart';
@@ -66,7 +67,7 @@ void main() {
 
   PlacementController controllerOf(WidgetTester tester) {
     return Provider.of<PlacementController>(
-      tester.element(find.text('I know it')),
+      tester.element(find.text('I can write it')),
       listen: false,
     );
   }
@@ -88,12 +89,12 @@ void main() {
     required bool Function(KanjiCard card) knows,
   }) async {
     final asked = <KanjiCard>[];
-    while (find.text('I know it').evaluate().isNotEmpty) {
+    while (find.text('I can write it').evaluate().isNotEmpty) {
       final card = controllerOf(tester).question!;
       expect(find.text(card.character), findsOneWidget);
       asked.add(card);
       await tester.tap(
-        find.text(knows(card) ? 'I know it' : "I don't know it"),
+        find.text(knows(card) ? 'I can write it' : "I can't write it"),
       );
       await tester.pumpAndSettle();
     }
@@ -106,18 +107,30 @@ void main() {
     usePhoneViewport(tester);
     await pumpApp(tester, await freshProgress());
 
-    expect(find.text('How much Japanese do you know?'), findsOneWidget);
+    expect(find.text('How many kanji can you write?'), findsOneWidget);
     expect(find.text("I'm new"), findsOneWidget);
     expect(find.text('Beginner'), findsOneWidget);
     expect(find.text('Intermediate'), findsOneWidget);
     expect(find.text('Expert'), findsOneWidget);
     expect(find.text('I haven\'t really studied kanji yet.'), findsOneWidget);
+    expect(
+      find.textContaining('Recognizing a kanji is not the same'),
+      findsOneWidget,
+    );
     expect(find.text('Start Placement Test'), findsNothing);
     expect(find.text('Start Review'), findsNothing);
     expect(find.text('kanji remaining today'), findsNothing);
 
     await chooseAssessment(tester, 'Beginner');
     expect(find.text("Let's find your starting point"), findsOneWidget);
+    expect(
+      find.textContaining('only if you could write it from memory'),
+      findsOneWidget,
+    );
+    expect(
+      find.text("Recognizing it isn't enough, and you won't have to draw."),
+      findsOneWidget,
+    );
     expect(find.text('It only takes a couple minutes.'), findsOneWidget);
     expect(find.text('Start Placement Test'), findsOneWidget);
   });
@@ -130,12 +143,12 @@ void main() {
     await pumpApp(tester, progress);
     await chooseAssessment(tester, "I'm new");
 
-    expect(find.text('I know it'), findsNothing);
-    expect(find.text("I don't know it"), findsNothing);
+    expect(find.text('I can write it'), findsNothing);
+    expect(find.text("I can't write it"), findsNothing);
     expect(find.text("You're all set!"), findsOneWidget);
     expect(find.text('Your starting point is ready.'), findsOneWidget);
     expect(
-      find.text("We've added the kanji you already know to your library."),
+      find.text("We've added the kanji you can already write to your library."),
       findsNothing,
     );
 
@@ -178,8 +191,14 @@ void main() {
     expect(card.difficulty, greaterThanOrEqualTo(beginner.low));
     expect(card.difficulty, lessThanOrEqualTo(beginner.high));
     expect(find.text(card.character), findsOneWidget);
-    expect(find.text('I know it'), findsOneWidget);
-    expect(find.text("I don't know it"), findsOneWidget);
+    expect(
+      find.text('COULD YOU WRITE THIS FROM MEMORY?'),
+      findsOneWidget,
+    );
+    expect(find.text("Recognizing it isn't enough."), findsOneWidget);
+    expect(find.text('I can write it'), findsOneWidget);
+    expect(find.text("I can't write it"), findsOneWidget);
+    expect(find.byType(HandwritingPad), findsNothing);
     expect(find.text('1 / ~20'), findsOneWidget);
     expect(find.byType(LinearProgressIndicator), findsOneWidget);
 
@@ -189,7 +208,7 @@ void main() {
     expect(find.text(card.mnemonic), findsNothing);
     expect(find.textContaining('JLPT'), findsNothing);
 
-    await tester.tap(find.text('I know it'));
+    await tester.tap(find.text('I can write it'));
     await tester.pumpAndSettle();
 
     // No grade screen: straight to a harder kanji.
@@ -220,7 +239,7 @@ void main() {
     expect(find.text("You're all set!"), findsOneWidget);
     expect(find.textContaining("You're roughly"), findsOneWidget);
     expect(
-      find.text("We've added the kanji you already know to your library."),
+      find.text("We've added the kanji you can already write to your library."),
       findsOneWidget,
     );
     expect(find.text('Start Learning'), findsOneWidget);
@@ -299,7 +318,7 @@ void main() {
     await tester.pumpAndSettle();
 
     for (var i = 0; i < 4; i++) {
-      await tester.tap(find.text('I know it'));
+      await tester.tap(find.text('I can write it'));
       await tester.pumpAndSettle();
     }
     final pending = controllerOf(tester).question!;
@@ -336,7 +355,7 @@ void main() {
     expect(find.textContaining("You're roughly"), findsOneWidget);
     expect(find.textContaining('N1'), findsOneWidget);
     expect(
-      find.text("We've added the kanji you already know to your library."),
+      find.text("We've added the kanji you can already write to your library."),
       findsOneWidget,
     );
 
@@ -360,7 +379,7 @@ void main() {
     await tester.tap(find.text('Retake placement test'));
     await tester.pumpAndSettle();
 
-    expect(find.text('How much Japanese do you know?'), findsOneWidget);
+    expect(find.text('How many kanji can you write?'), findsOneWidget);
     expect(find.text("Let's find your starting point"), findsNothing);
 
     await chooseAssessment(tester, 'Beginner');
@@ -368,8 +387,8 @@ void main() {
 
     await tester.tap(find.text('Start Placement Test'));
     await tester.pumpAndSettle();
-    expect(find.text('I know it'), findsOneWidget);
-    expect(find.text("I don't know it"), findsOneWidget);
+    expect(find.text('I can write it'), findsOneWidget);
+    expect(find.text("I can't write it"), findsOneWidget);
 
     // A retake is escapable, and abandoning it leaves the test completed.
     await tester.tap(find.byTooltip('Close'));

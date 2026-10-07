@@ -14,11 +14,11 @@ import '../../widgets/soft_card.dart';
 import '../onboarding/widgets/onboarding_scaffold.dart';
 import 'placement_controller.dart';
 
-/// Quick recognition pass that works out which kanji the user already knows.
+/// Self-check for kanji the user can write from memory.
 ///
-/// Three states in one screen: the invitation, the kanji being asked about, and
-/// the result. A tap moves straight to the next kanji. Nothing marks the
-/// answer right or wrong.
+/// Reviews ask for the character, so "known" here means they could produce
+/// it, not merely recognize it. Nothing is drawn. A tap moves straight to
+/// the next kanji, and nothing marks the answer right or wrong.
 class PlacementScreen extends StatelessWidget {
   const PlacementScreen({super.key, required this.onFinished});
 
@@ -79,17 +79,17 @@ const _assessmentOptions = [
   _AssessmentOption(
     PlacementSelfAssessment.beginner,
     'Beginner',
-    'I know some basic Japanese and common kanji.',
+    'I can write some common kanji from memory.',
   ),
   _AssessmentOption(
     PlacementSelfAssessment.intermediate,
     'Intermediate',
-    'I can read basic Japanese and recognize quite a few kanji.',
+    'I can write quite a few kanji from memory.',
   ),
   _AssessmentOption(
     PlacementSelfAssessment.expert,
     'Expert',
-    "I've studied Japanese for a long time and recognize lots of kanji.",
+    "I've studied for a long time and can write lots of kanji from memory.",
   ),
 ];
 
@@ -129,7 +129,9 @@ class _SelfAssessmentState extends State<_SelfAssessment> {
           children: [
             const OnboardingHeadline(
               label: 'Placement',
-              title: 'How much Japanese do you know?',
+              title: 'How many kanji can you write?',
+              subtitle:
+                  'From memory. Recognizing a kanji is not the same as being able to write it.',
             ),
             SizedBox(height: (height * 0.05).clamp(20.0, 32.0)),
             for (final option in _assessmentOptions) ...[
@@ -271,11 +273,21 @@ class _PlacementIntro extends StatelessWidget {
               label: 'Placement',
               title: "Let's find your starting point",
               subtitle: resuming
-                  ? 'Pick up where you left off.'
-                  : "We'll show you some kanji to figure out\n"
-                        'what you already know.',
+                  ? 'Pick up where you left off.\n'
+                        'Count a kanji only if you could write it from memory.'
+                  : "We'll show you some kanji.\n"
+                        'Count one only if you could write it from memory.',
             ),
             const SizedBox(height: 14),
+            Text(
+              "Recognizing it isn't enough, and you won't have to draw.",
+              textAlign: TextAlign.center,
+              style: theme.textTheme.bodyLarge?.copyWith(
+                color: theme.mutedText,
+                height: 1.4,
+              ),
+            ),
+            const SizedBox(height: 8),
             Text(
               'It only takes a couple minutes.',
               textAlign: TextAlign.center,
@@ -351,12 +363,12 @@ class _PlacementQuestion extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           PrimaryButton(
-            label: 'I know it',
+            label: 'I can write it',
             onPressed: () => _answer(context, known: true),
           ),
           const SizedBox(height: 10),
           SecondaryButton(
-            label: "I don't know it",
+            label: "I can't write it",
             onPressed: () => _answer(context, known: false),
           ),
         ],
@@ -366,8 +378,17 @@ class _PlacementQuestion extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const SectionLabel(
-              'Do you know this kanji?',
+              'Could you write this from memory?',
               align: TextAlign.center,
+            ),
+            const SizedBox(height: 8),
+            Text(
+              "Recognizing it isn't enough.",
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                color: Theme.of(context).mutedText,
+                height: 1.4,
+              ),
             ),
             SizedBox(height: height * 0.04),
             AnimatedSwitcher(
@@ -522,7 +543,7 @@ class _PlacementResults extends StatelessWidget {
             if (known > 0) ...[
               SizedBox(height: height * 0.04),
               Text(
-                "We've added the kanji you already know to your library.",
+                "We've added the kanji you can already write to your library.",
                 textAlign: TextAlign.center,
                 style: theme.textTheme.bodyLarge?.copyWith(
                   color: theme.mutedText,
