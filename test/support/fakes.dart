@@ -14,6 +14,8 @@ KanjiCard testCard(
   String? character,
   JlptLevel jlptLevel = JlptLevel.none,
   int difficulty = 0,
+  int frequency = 0,
+  List<String> components = const [],
 }) {
   return KanjiCard(
     id: id,
@@ -21,10 +23,11 @@ KanjiCard testCard(
     meaning: keyword ?? id,
     keyword: keyword ?? id,
     mnemonic: 'mnemonic $id',
-    components: const [],
+    components: components,
     strokeCount: 1,
     jlptLevel: jlptLevel,
     difficulty: difficulty,
+    frequency: frequency,
   );
 }
 

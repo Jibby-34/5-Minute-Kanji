@@ -232,6 +232,27 @@ void main() {
     expect(plan.overflow, isEmpty);
   });
 
+  test('new-card cap follows the curriculum order it is given', () {
+    SessionCandidate ranked(String id, int frequency) {
+      return SessionCandidate(
+        card: testCard(id, frequency: frequency),
+        priority: 1,
+        estimated: const Duration(seconds: 20),
+        isNew: true,
+      );
+    }
+
+    final plan = planner.plan(
+      candidates: [ranked('a-obscure', 500), ranked('b-common', 1)],
+      budget: const Duration(minutes: 30),
+      maxNewCards: 1,
+      compareNewCards: (a, b) => a.frequency.compareTo(b.frequency),
+    );
+
+    expect(plan.selected.single.card.id, 'b-common');
+    expect(plan.estimated.inSeconds, lessThanOrEqualTo(30 * 60));
+  });
+
   test('Again ranks above Good for the same card', () {
     final base = reviewCard('k');
     const engine = SrsEngine();

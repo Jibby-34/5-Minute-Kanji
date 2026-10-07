@@ -332,6 +332,7 @@ class ReviewController extends ChangeNotifier {
       budgetMinutes: settings.dailyStudyMinutes,
       newKanjiPerDay: settings.newKanjiPerDay,
       startOfDay: settings.startOfDay,
+      curriculumMode: settings.curriculumMode,
     )) {
       return;
     }

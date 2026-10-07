@@ -95,6 +95,7 @@ class KanjiCard {
     this.sourceDeckId,
     this.access = ContentAccess.free,
     this.difficulty = 0,
+    this.frequency = 0,
   });
 
   final String id;
@@ -123,6 +124,12 @@ class KanjiCard {
   /// 0 means this card has no placement difficulty. Several kanji can share
   /// the same value; it is not an id.
   final int difficulty;
+
+  /// Corpus frequency rank. Lower means the kanji is more common.
+  ///
+  /// 0 means this card has no frequency rank. The value is metadata, not a
+  /// curriculum priority score.
+  final int frequency;
 
   /// Components the mnemonic and detail screens can draw.
   List<KanjiComponent> get componentModels {

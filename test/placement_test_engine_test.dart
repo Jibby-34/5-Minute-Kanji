@@ -75,14 +75,24 @@ void main() {
     expect(outcome.headline, anyOf(contains('N5'), contains('N4')));
     expect(outcome.headline, isNot(contains('N1')));
 
-    final byId = {for (final card in cards) card.id: card};
-    for (final id in outcome.knownCardIds) {
-      expect(byId[id]!.difficulty, lessThanOrEqualTo(25));
-    }
     final hardest = cards.last;
     expect(outcome.knownCardIds, isNot(contains(hardest.id)));
-    expect(outcome.confirmCardIds, isNot(contains(hardest.id)));
-    expect(outcome.confirmCardIds, isNotEmpty);
+    expect(outcome.confirmCardIds, isEmpty);
+    if (outcome.headline.contains('N4') || outcome.headline.contains('N3')) {
+      for (final card in cards.where(
+        (card) => card.jlptLevel == JlptLevel.n5,
+      )) {
+        expect(outcome.knownCardIds, contains(card.id));
+      }
+    }
+    for (final card in cards.where((card) => card.jlptLevel == JlptLevel.n1)) {
+      final claimed = run.steps.any(
+        (step) => step.cardId == card.id && step.correct,
+      );
+      if (!claimed) {
+        expect(outcome.knownCardIds, isNot(contains(card.id)));
+      }
+    }
   });
 
   test('an intermediate estimate stays in the middle of the scale', () {
@@ -139,8 +149,31 @@ void main() {
     expect(outcome.estimatedDifficulty, inInclusiveRange(20, 80));
     expect(outcome.knownCardIds, contains(claimed.id));
     expect(outcome.knownCardIds, isNot(contains(missed.id)));
-    expect(outcome.confirmCardIds, isNot(contains(missed.id)));
     expect(outcome.knownCardIds, isNot(contains(cards.last.id)));
+  });
+
+  test('known kanji follow JLPT order, not difficulty', () {
+    final cards = [
+      testCard('n5-hard', difficulty: 90, jlptLevel: JlptLevel.n5),
+      testCard('n5-easy', difficulty: 80, jlptLevel: JlptLevel.n5),
+      testCard('n4-001', difficulty: 40, jlptLevel: JlptLevel.n4),
+      testCard('n4-002', difficulty: 41, jlptLevel: JlptLevel.n4),
+      testCard('n4-003', difficulty: 42, jlptLevel: JlptLevel.n4),
+      testCard('n1-easy', difficulty: 1, jlptLevel: JlptLevel.n1),
+      testCard('n1-also', difficulty: 2, jlptLevel: JlptLevel.n1),
+    ];
+    final before = PlacementCorpus(cards).idsKnownBefore(50);
+    expect(before, containsAll(['n5-hard', 'n5-easy', 'n4-001', 'n4-002']));
+    expect(before, isNot(contains('n1-easy')));
+    expect(before, isNot(contains('n4-003')));
+
+    final run = PlacementTestEngine().replay(cards, [
+      PlacementAnswer(cardId: 'n5-hard', known: false),
+      PlacementAnswer(cardId: 'n1-easy', known: true),
+    ]);
+    final known = run.outcome().knownCardIds;
+    expect(known, isNot(contains('n5-hard')));
+    expect(known, contains('n1-easy'));
   });
 
   test('the test never asks a 21st question', () {

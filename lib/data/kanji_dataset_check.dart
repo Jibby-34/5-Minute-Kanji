@@ -33,6 +33,9 @@ List<String> kanjiDatasetProblems(List<KanjiCard> cards) {
     if (card.difficulty < 1 || card.difficulty > 100) {
       problems.add('$label has a difficulty outside 1–100.');
     }
+    if (card.frequency < 1) {
+      problems.add('$label has a frequency below 1.');
+    }
     for (final component in card.components) {
       if (component.trim().isEmpty) {
         problems.add('$label has a blank component.');

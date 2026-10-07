@@ -179,8 +179,9 @@ class PlacementRun {
 
   /// What the test concluded.
   ///
-  /// A tested kanji keeps the answer the learner gave. Untested kanji are
-  /// seeded from their own probability, not from a cutoff under the mean.
+  /// The difficulty estimate is turned into a spot in JLPT order. Untested
+  /// kanji before that spot are marked known. A tested kanji keeps the
+  /// answer the learner gave, whichever side of that spot it sits on.
   PlacementOutcome outcome() {
     if (_eligible.isEmpty && _responses.isEmpty) {
       return PlacementOutcome(
@@ -190,22 +191,12 @@ class PlacementRun {
       );
     }
 
+    final before = _corpus.idsKnownBefore(estimatedDifficulty);
     final known = <String>[];
-    final confirm = <String>[];
     for (final card in _byId.values) {
       final answered = _responses[card.id];
-      if (answered == true) {
-        known.add(card.id);
-        continue;
-      }
       if (answered == false) continue;
-      if (!placementDifficultyIsValid(card.difficulty)) continue;
-      final probability = knowledgeProbability(card.difficulty);
-      if (probability >= placementKnownProbability) {
-        known.add(card.id);
-      } else if (probability >= placementConfirmProbability) {
-        confirm.add(card.id);
-      }
+      if (answered == true || before.contains(card.id)) known.add(card.id);
     }
 
     final interval = credibleInterval;
@@ -215,7 +206,7 @@ class PlacementRun {
     );
     final result = PlacementOutcome(
       knownCardIds: known,
-      confirmCardIds: confirm,
+      confirmCardIds: const [],
       answeredCount: answeredCount,
       estimatedDifficulty: estimatedDifficulty,
       intervalLow: interval.low,

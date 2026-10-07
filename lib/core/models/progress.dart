@@ -1,3 +1,4 @@
+import 'curriculum_mode.dart';
 import 'notification_settings.dart';
 import 'review.dart';
 import 'start_of_day.dart';
@@ -150,6 +151,7 @@ class AppSettings {
     this.dailyStudyMinutes = defaultDailyStudyMinutes,
     this.startOfDay = StartOfDay.defaults,
     this.notifications = NotificationSettings.defaults,
+    this.curriculumMode = CurriculumMode.defaultMode,
   });
 
   static const int defaultNewKanjiPerDay = 5;
@@ -170,12 +172,16 @@ class AppSettings {
   final StartOfDay startOfDay;
   final NotificationSettings notifications;
 
+  /// How new kanji are ordered. Recommended until the learner chooses another.
+  final CurriculumMode curriculumMode;
+
   AppSettings copyWith({
     int? averageSecondsPerCard,
     int? newKanjiPerDay,
     int? dailyStudyMinutes,
     StartOfDay? startOfDay,
     NotificationSettings? notifications,
+    CurriculumMode? curriculumMode,
   }) {
     return AppSettings(
       averageSecondsPerCard:
@@ -188,6 +194,7 @@ class AppSettings {
           : clampDailyStudyMinutes(dailyStudyMinutes),
       startOfDay: startOfDay ?? this.startOfDay,
       notifications: notifications ?? this.notifications,
+      curriculumMode: curriculumMode ?? this.curriculumMode,
     );
   }
 
@@ -207,6 +214,7 @@ class AppSettings {
       'startOfDayHour': startOfDay.hour,
       'startOfDayMinute': startOfDay.minute,
       'notifications': notifications.toJson(),
+      'curriculumMode': curriculumMode.name,
     };
   }
 
@@ -235,6 +243,9 @@ class AppSettings {
       ),
       notifications: NotificationSettings.fromJson(
         _asStringKeyMap(json['notifications']),
+      ),
+      curriculumMode: CurriculumMode.fromStorage(
+        json['curriculumMode'] as String?,
       ),
     );
   }

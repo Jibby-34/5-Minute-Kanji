@@ -3,6 +3,7 @@ import 'package:fiveminutekanji/core/models/card_schedule.dart';
 import 'package:fiveminutekanji/core/models/kanji_card.dart';
 import 'package:fiveminutekanji/core/models/kanji_status.dart';
 import 'package:fiveminutekanji/features/kanji_list/kanji_list_controller.dart';
+import 'package:fiveminutekanji/services/curriculum_priority_service.dart';
 import 'package:fiveminutekanji/services/initial_known_card_schedule.dart';
 
 import 'support/fakes.dart';
@@ -276,5 +277,83 @@ void main() {
       progress.schedules['none']!.interval,
       calculateInitialKnownCardSchedule('none'),
     );
+  });
+
+  test('list orderings share the curriculum engine', () {
+    final obscureEasy = testCard(
+      'obscure',
+      character: '易',
+      jlptLevel: JlptLevel.n5,
+      frequency: 800,
+      difficulty: 1,
+    );
+    final usefulHard = testCard(
+      'useful',
+      character: '用',
+      jlptLevel: JlptLevel.n1,
+      frequency: 1,
+      difficulty: 80,
+    );
+    final items = [
+      KanjiListItem(
+        card: obscureEasy,
+        schedule: null,
+        status: KanjiProgressStatus.notEncountered,
+      ),
+      KanjiListItem(
+        card: usefulHard,
+        schedule: CardSchedule(
+          cardId: usefulHard.id,
+          state: CardLearningState.review,
+          reviewCount: 3,
+          correctCount: 3,
+          incorrectCount: 0,
+          dueAt: now,
+          interval: const Duration(days: 21),
+          ease: 2.5,
+          consecutiveGoodCount: 3,
+        ),
+        status: KanjiProgressStatus.mastered,
+      ),
+    ];
+    final curriculum = CurriculumPriorityService([obscureEasy, usefulHard]);
+
+    final recommended = orderKanjiListItems(
+      items: items,
+      ordering: KanjiListOrdering.recommended,
+      curriculum: curriculum,
+    );
+    final byFrequency = orderKanjiListItems(
+      items: items,
+      ordering: KanjiListOrdering.frequency,
+      curriculum: curriculum,
+    );
+    final byJlpt = orderKanjiListItems(
+      items: items,
+      ordering: KanjiListOrdering.jlpt,
+      curriculum: curriculum,
+    );
+    final byDifficulty = orderKanjiListItems(
+      items: items,
+      ordering: KanjiListOrdering.difficulty,
+      curriculum: curriculum,
+    );
+    final learned = orderKanjiListItems(
+      items: items,
+      ordering: KanjiListOrdering.learned,
+      curriculum: curriculum,
+    );
+    final fresh = orderKanjiListItems(
+      items: items,
+      ordering: KanjiListOrdering.notEncountered,
+      curriculum: curriculum,
+    );
+
+    expect(recommended.first.card.id, 'useful');
+    expect(byFrequency.first.card.id, 'useful');
+    expect(byJlpt.first.card.id, 'obscure');
+    expect(byDifficulty.first.card.id, 'obscure');
+    expect(learned.first.card.id, 'useful');
+    expect(fresh.first.card.id, 'obscure');
   });
 }

@@ -1,6 +1,7 @@
 import 'dart:math' as math;
 
 import '../core/models/kanji_card.dart';
+import 'due_card_selector.dart';
 
 /// Chance an answer is right even when the kanji is well above the learner.
 const double placementGuessProbability = 0.05;
@@ -215,6 +216,43 @@ class PlacementCorpus {
     return count;
   }
 
+  /// Kanji that come before [estimatedDifficulty] in JLPT order.
+  ///
+  /// The score is only used to find early, mid, or late in a level. Earlier
+  /// levels are included in full. Early includes none of the current level,
+  /// mid includes its first third, and late includes its first two thirds.
+  /// Inside a level the order is [compareKanjiLearnOrder], not difficulty.
+  Set<String> idsKnownBefore(double estimatedDifficulty) {
+    if (ranked.isEmpty) return const {};
+    final position = positionFor(estimatedDifficulty);
+    if (position >= ranked.length) {
+      return {for (final card in ranked) card.id};
+    }
+    final place = _place(position);
+    final byLevel = <JlptLevel, List<KanjiCard>>{};
+    for (final card in ranked) {
+      (byLevel[card.jlptLevel] ??= []).add(card);
+    }
+    for (final cards in byLevel.values) {
+      cards.sort(compareKanjiLearnOrder);
+    }
+
+    final known = <String>{};
+    final placedOrder = JlptLevel.sectionOrder.indexOf(place.level);
+    for (final level in JlptLevel.sectionOrder) {
+      final cards = byLevel[level];
+      if (cards == null) continue;
+      final order = JlptLevel.sectionOrder.indexOf(level);
+      if (order < placedOrder) {
+        known.addAll(cards.map((card) => card.id));
+      } else if (order == placedOrder) {
+        final take = (cards.length * _fractionBefore(place.band)).floor();
+        known.addAll(cards.take(take).map((card) => card.id));
+      }
+    }
+    return known;
+  }
+
   /// "You're roughly late N3", plus an overlap line when the interval
   /// crosses into a later level.
   PlacementDescription describe({
@@ -261,6 +299,14 @@ class PlacementCorpus {
       return "You're roughly at the end of the list";
     }
     return "You're roughly ${place.band} ${place.level.shortName}";
+  }
+
+  double _fractionBefore(String band) {
+    return switch (band) {
+      'mid' => 1 / 3,
+      'late' => 2 / 3,
+      _ => 0,
+    };
   }
 
   String? _overlap(_LevelPlace mean, _LevelPlace high) {

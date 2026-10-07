@@ -251,6 +251,7 @@ class SharedPrefsProgressRepository implements ProgressRepository {
         budgetMinutes: plan.budgetMinutes,
         newKanjiPerDay: plan.newKanjiPerDay,
         startOfDay: plan.startOfDay,
+        curriculumMode: plan.curriculumMode,
         cardIds: planIds,
         completed: plan.completed,
       ),

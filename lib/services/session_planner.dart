@@ -60,12 +60,14 @@ class SessionPlanner {
     required List<SessionCandidate> candidates,
     required Duration budget,
     required int maxNewCards,
+    int Function(KanjiCard a, KanjiCard b) compareNewCards =
+        compareKanjiLearnOrder,
   }) {
     if (budget.inSeconds <= 0 || candidates.isEmpty) {
       return PlannedSession.empty;
     }
 
-    final capped = _capNewCards(candidates, maxNewCards);
+    final capped = _capNewCards(candidates, maxNewCards, compareNewCards);
     if (capped.isEmpty) return PlannedSession.empty;
 
     final pool = List<SessionCandidate>.from(capped)..sort(_byPriority);
@@ -94,7 +96,7 @@ class SessionPlanner {
           ..sort(_byPriority);
 
     return PlannedSession(
-      selected: _arrange(chosen),
+      selected: _arrange(chosen, compareNewCards),
       overflow: overflow,
       estimated: _sum(chosen),
     );
@@ -108,10 +110,11 @@ class SessionPlanner {
   List<SessionCandidate> _capNewCards(
     List<SessionCandidate> candidates,
     int maxNewCards,
+    int Function(KanjiCard a, KanjiCard b) compareNewCards,
   ) {
     final limit = maxNewCards < 0 ? 0 : maxNewCards;
     final news = candidates.where((candidate) => candidate.isNew).toList()
-      ..sort((a, b) => compareKanjiLearnOrder(a.card, b.card));
+      ..sort((a, b) => compareNewCards(a.card, b.card));
     final allowed = news
         .take(limit)
         .map((candidate) => candidate.card.id)
@@ -124,12 +127,15 @@ class SessionPlanner {
         .toList();
   }
 
-  List<SessionCandidate> _arrange(List<SessionCandidate> chosen) {
+  List<SessionCandidate> _arrange(
+    List<SessionCandidate> chosen,
+    int Function(KanjiCard a, KanjiCard b) compareNewCards,
+  ) {
     final byId = {for (final candidate in chosen) candidate.card.id: candidate};
     final existing = chosen.where((candidate) => !candidate.isNew).toList()
       ..sort(_byPriority);
     final news = chosen.where((candidate) => candidate.isNew).toList()
-      ..sort((a, b) => compareKanjiLearnOrder(a.card, b.card));
+      ..sort((a, b) => compareNewCards(a.card, b.card));
     final ordered = arranger.arrangeSession(
       existing: existing.map((candidate) => candidate.card).toList(),
       news: news.map((candidate) => candidate.card).toList(),

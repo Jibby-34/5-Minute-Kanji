@@ -176,10 +176,12 @@ void main() {
       }
     }
 
-    // A hard kanji the test did not confirm stays out of the known state.
+    // N1 stays unknown unless the learner said they know that kanji.
+    // Placement is a JLPT prefix, so an easy N1 card is not swept in.
     final cards = await const HardcodedKanjiRepository().getAll();
-    for (final card in cards) {
-      if (card.difficulty < 90 || askedIds.contains(card.id)) continue;
+    for (final card in cards.where((card) => card.jlptLevel == JlptLevel.n1)) {
+      final claimed = askedIds.contains(card.id) && card.difficulty <= 30;
+      if (claimed) continue;
       expect(schedules[card.id]?.state, isNot(CardLearningState.review));
     }
 

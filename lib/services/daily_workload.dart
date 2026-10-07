@@ -9,6 +9,7 @@ import '../repositories/kanji_repository.dart';
 import '../repositories/progress_repository.dart';
 import 'card_priority_scorer.dart';
 import 'card_time_estimator.dart';
+import 'curriculum_priority_service.dart';
 import 'due_card_selector.dart';
 import 'session_planner.dart';
 
@@ -86,8 +87,9 @@ class DailyWorkload {
 
 /// Computes the day's workload from progress + settings.
 ///
-/// SRS still decides what is eligible. This service only chooses which of
-/// those cards fit the user's time budget.
+/// SRS still decides which encountered cards are eligible, and the session
+/// planner still decides what fits the time budget. New kanji are ordered by
+/// [CurriculumPriorityService] before that daily allowance is applied.
 class DailyWorkloadService {
   const DailyWorkloadService({
     required this.kanjiRepository,
@@ -123,12 +125,22 @@ class DailyWorkloadService {
       startOfDay: dayBoundary,
     );
     final remainingNew = math.min(unencountered, remainingDaily);
+    final curriculum = CurriculumPriorityService(cards);
+    final knownCardIds = {
+      for (final card in cards)
+        if (!selector.isNew(schedules[card.id])) card.id,
+    };
+    final compareNewCards = curriculum.comparer(
+      mode: settings.curriculumMode,
+      knownCardIds: knownCardIds,
+    );
     final candidates = _candidates(
       cards: cards,
       schedules: schedules,
       now: now,
       startOfDay: dayBoundary,
       maxNewCards: remainingNew,
+      compareNewCards: compareNewCards,
     );
     final studyDate = dayBoundary.studyDate(now);
     final stored = await progressRepository.getDailySessionPlan();
@@ -137,6 +149,7 @@ class DailyWorkloadService {
       budgetMinutes: settings.dailyStudyMinutes,
       newKanjiPerDay: settings.newKanjiPerDay,
       startOfDay: dayBoundary,
+      curriculumMode: settings.curriculumMode,
     );
 
     final List<KanjiCard> session;
@@ -170,12 +183,14 @@ class DailyWorkloadService {
         candidates: candidates,
         budget: Duration(minutes: settings.dailyStudyMinutes),
         maxNewCards: remainingNew,
+        compareNewCards: compareNewCards,
       );
       final next = DailySessionPlan(
         studyDate: studyDate,
         budgetMinutes: settings.dailyStudyMinutes,
         newKanjiPerDay: settings.newKanjiPerDay,
         startOfDay: dayBoundary,
+        curriculumMode: settings.curriculumMode,
         cardIds: planned.selected
             .map((candidate) => candidate.card.id)
             .toList(),
@@ -214,6 +229,7 @@ class DailyWorkloadService {
     required DateTime now,
     required StartOfDay startOfDay,
     required int maxNewCards,
+    required int Function(KanjiCard a, KanjiCard b) compareNewCards,
   }) {
     final news = <KanjiCard>[];
     final existing = <KanjiCard>[];
@@ -229,7 +245,7 @@ class DailyWorkloadService {
         existing.add(card);
       }
     }
-    news.sort(compareKanjiLearnOrder);
+    news.sort(compareNewCards);
 
     final result = <SessionCandidate>[];
     final newTake = maxNewCards <= 0

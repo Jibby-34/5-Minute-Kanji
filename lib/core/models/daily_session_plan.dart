@@ -1,17 +1,19 @@
+import 'curriculum_mode.dart';
 import 'progress.dart';
 import 'start_of_day.dart';
 
 /// The recommended queue for one study day.
 ///
-/// Frozen until the study day, time budget, new-kanji allowance, or start of
-/// day changes. Cards left out of [cardIds] stay eligible; they are not
-/// failed, skipped, or rescheduled.
+/// Frozen until the study day, time budget, new-kanji allowance, start of
+/// day, or curriculum mode changes. Cards left out of [cardIds] stay eligible;
+/// they are not failed, skipped, or rescheduled.
 class DailySessionPlan {
   const DailySessionPlan({
     this.studyDate,
     this.budgetMinutes = 0,
     this.newKanjiPerDay = 0,
     this.startOfDay = StartOfDay.defaults,
+    this.curriculumMode = CurriculumMode.defaultMode,
     this.cardIds = const [],
     this.completed = false,
   });
@@ -22,6 +24,10 @@ class DailySessionPlan {
   final int budgetMinutes;
   final int newKanjiPerDay;
   final StartOfDay startOfDay;
+
+  /// The learning order this queue was built with.
+  final CurriculumMode curriculumMode;
+
   final List<String> cardIds;
   final bool completed;
 
@@ -30,13 +36,15 @@ class DailySessionPlan {
     required int budgetMinutes,
     required int newKanjiPerDay,
     required StartOfDay startOfDay,
+    CurriculumMode curriculumMode = CurriculumMode.defaultMode,
   }) {
     final stored = this.studyDate;
     if (stored == null) return false;
     return calendarDay(stored) == calendarDay(studyDate) &&
         this.budgetMinutes == budgetMinutes &&
         this.newKanjiPerDay == newKanjiPerDay &&
-        this.startOfDay == startOfDay;
+        this.startOfDay == startOfDay &&
+        this.curriculumMode == curriculumMode;
   }
 
   DailySessionPlan copyWith({bool? completed}) {
@@ -45,6 +53,7 @@ class DailySessionPlan {
       budgetMinutes: budgetMinutes,
       newKanjiPerDay: newKanjiPerDay,
       startOfDay: startOfDay,
+      curriculumMode: curriculumMode,
       cardIds: cardIds,
       completed: completed ?? this.completed,
     );
@@ -57,6 +66,7 @@ class DailySessionPlan {
       'newKanjiPerDay': newKanjiPerDay,
       'startOfDayHour': startOfDay.hour,
       'startOfDayMinute': startOfDay.minute,
+      'curriculumMode': curriculumMode.name,
       'cardIds': cardIds,
       'completed': completed,
     };
@@ -84,6 +94,9 @@ class DailySessionPlan {
           minute:
               (json['startOfDayMinute'] as num?)?.toInt() ??
               StartOfDay.defaultMinute,
+        ),
+        curriculumMode: CurriculumMode.fromStorage(
+          json['curriculumMode'] as String?,
         ),
         cardIds: ids,
         completed: json['completed'] as bool? ?? false,

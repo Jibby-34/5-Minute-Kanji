@@ -1,10 +1,12 @@
 import 'package:flutter/foundation.dart';
 
 import '../../core/models/card_schedule.dart';
+import '../../core/models/curriculum_mode.dart';
 import '../../core/models/kanji_card.dart';
 import '../../core/models/kanji_status.dart';
 import '../../repositories/kanji_repository.dart';
 import '../../repositories/progress_repository.dart';
+import '../../services/curriculum_priority_service.dart';
 import '../../services/kanji_status_resolver.dart';
 import '../../services/mark_as_known.dart';
 import '../../services/srs_engine.dart';
@@ -42,6 +44,87 @@ List<KanjiListSection> groupKanjiByJlpt(List<KanjiListItem> items) {
         ],
       ),
   ].where((section) => section.items.isNotEmpty).toList();
+}
+
+/// Flat list orders. JLPT grouping on the overview stays separate.
+enum KanjiListOrdering {
+  recommended,
+  frequency,
+  jlpt,
+  difficulty,
+  learned,
+  notEncountered,
+}
+
+/// Sorts the kanji list with the same curriculum engine the study session uses.
+///
+/// [KanjiListOrdering.learned] and [KanjiListOrdering.notEncountered] are list
+/// status orders. They do not recalculate curriculum priority.
+List<KanjiListItem> orderKanjiListItems({
+  required List<KanjiListItem> items,
+  required KanjiListOrdering ordering,
+  required CurriculumPriorityService curriculum,
+  Set<String>? knownCardIds,
+}) {
+  final known =
+      knownCardIds ??
+      {
+        for (final item in items)
+          if (item.status != KanjiProgressStatus.notEncountered) item.card.id,
+      };
+  final ordered = List<KanjiListItem>.from(items);
+  switch (ordering) {
+    case KanjiListOrdering.learned:
+      ordered.sort((a, b) {
+        final byStatus = _statusRank(
+          a.status,
+          learnedFirst: true,
+        ).compareTo(_statusRank(b.status, learnedFirst: true));
+        if (byStatus != 0) return byStatus;
+        return a.card.id.compareTo(b.card.id);
+      });
+    case KanjiListOrdering.notEncountered:
+      ordered.sort((a, b) {
+        final byStatus = _statusRank(
+          a.status,
+          learnedFirst: false,
+        ).compareTo(_statusRank(b.status, learnedFirst: false));
+        if (byStatus != 0) return byStatus;
+        return a.card.id.compareTo(b.card.id);
+      });
+    case KanjiListOrdering.recommended:
+    case KanjiListOrdering.frequency:
+    case KanjiListOrdering.jlpt:
+    case KanjiListOrdering.difficulty:
+      ordered.sort(
+        (a, b) => curriculum.compare(
+          a.card,
+          b.card,
+          mode: _curriculumMode(ordering),
+          knownCardIds: known,
+        ),
+      );
+  }
+  return ordered;
+}
+
+CurriculumMode _curriculumMode(KanjiListOrdering ordering) {
+  return switch (ordering) {
+    KanjiListOrdering.recommended => CurriculumMode.recommended,
+    KanjiListOrdering.frequency => CurriculumMode.frequency,
+    KanjiListOrdering.jlpt => CurriculumMode.jlpt,
+    KanjiListOrdering.difficulty => CurriculumMode.difficulty,
+    KanjiListOrdering.learned ||
+    KanjiListOrdering.notEncountered => CurriculumMode.recommended,
+  };
+}
+
+int _statusRank(KanjiProgressStatus status, {required bool learnedFirst}) {
+  return switch (status) {
+    KanjiProgressStatus.mastered => learnedFirst ? 0 : 2,
+    KanjiProgressStatus.learning => 1,
+    KanjiProgressStatus.notEncountered => learnedFirst ? 2 : 0,
+  };
 }
 
 class KanjiListController extends ChangeNotifier {
