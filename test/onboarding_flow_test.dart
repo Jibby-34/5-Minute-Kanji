@@ -247,7 +247,7 @@ void main() {
       await tester.pump(const Duration(milliseconds: 50));
     }
 
-    /// Answers the placement test with "I can't write it" all the way through.
+    /// Answers the placement test with "Not yet" all the way through.
     Future<void> answerPlacement(WidgetTester tester) async {
       await tester.tap(find.text('Beginner'));
       await tester.pumpAndSettle();
@@ -255,8 +255,8 @@ void main() {
       await tester.pumpAndSettle();
       await tester.tap(find.text('Start Placement Test'));
       await tester.pumpAndSettle();
-      while (find.text("I can't write it").evaluate().isNotEmpty) {
-        await tester.tap(find.text("I can't write it"));
+      while (find.text("Not yet").evaluate().isNotEmpty) {
+        await tester.tap(find.text("Not yet"));
         await tester.pumpAndSettle();
       }
     }
@@ -303,23 +303,21 @@ void main() {
       await tester.pumpAndSettle();
 
       // 2. Self-assessment, then the existing placement test.
-      expect(find.text('How many kanji can you write?'), findsOneWidget);
+      expect(find.text('Where should we start?'), findsOneWidget);
       await answerPlacement(tester);
 
       // 3. Results.
       expect(find.text("You're all set!"), findsOneWidget);
-      expect(find.textContaining("You're roughly"), findsOneWidget);
-      expect(find.textContaining('N5'), findsOneWidget);
+      expect(find.textContaining('We estimate you can write'), findsOneWidget);
+      expect(find.textContaining('curriculum'), findsOneWidget);
+      expect(find.textContaining('N5'), findsNothing);
       expect(find.text('Start Learning'), findsOneWidget);
 
       await tester.tap(find.text('Start Learning'));
       await tester.pumpAndSettle();
 
       // 4. Daily goal, with five minutes recommended and selected.
-      expect(
-        find.text('How much time do you want to study each day?'),
-        findsOneWidget,
-      );
+      expect(find.text('How long each day?'), findsOneWidget);
       expect(find.text('5 minutes'), findsOneWidget);
       expect(find.text('Recommended'), findsOneWidget);
       expect(find.text('Custom'), findsOneWidget);
@@ -427,10 +425,7 @@ void main() {
       await answerPlacement(tester);
       await tester.tap(find.text('Start Learning'));
       await tester.pumpAndSettle();
-      expect(
-        find.text('How much time do you want to study each day?'),
-        findsOneWidget,
-      );
+      expect(find.text('How long each day?'), findsOneWidget);
 
       await tester.pumpWidget(const SizedBox.shrink());
       await pumpApp(
@@ -438,10 +433,7 @@ void main() {
         SharedPrefsProgressRepository(await SharedPreferences.getInstance()),
       );
 
-      expect(
-        find.text('How much time do you want to study each day?'),
-        findsOneWidget,
-      );
+      expect(find.text('How long each day?'), findsOneWidget);
       expect(find.text('Get Started'), findsNothing);
     });
 

@@ -73,7 +73,7 @@ class _DailyGoalScreenState extends State<DailyGoalScreen> {
           children: [
             const OnboardingHeadline(
               label: 'Daily goal',
-              title: 'How much time do you want to study each day?',
+              title: 'How long each day?',
             ),
             SizedBox(height: (height * 0.06).clamp(24.0, 40.0)),
             for (final goal in DailyGoal.presets) ...[

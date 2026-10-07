@@ -181,7 +181,7 @@ class OnboardingHeadline extends StatelessWidget {
           Text(
             subtitle!,
             textAlign: align,
-            style: theme.textTheme.titleMedium?.copyWith(
+            style: theme.textTheme.bodyMedium?.copyWith(
               color: theme.mutedText,
               height: 1.4,
             ),

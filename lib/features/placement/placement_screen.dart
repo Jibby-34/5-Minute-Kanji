@@ -9,7 +9,6 @@ import '../../core/theme/app_typography.dart';
 import '../../services/placement_service.dart';
 import '../../widgets/kanji_mark.dart';
 import '../../widgets/primary_button.dart';
-import '../../widgets/section_label.dart';
 import '../../widgets/soft_card.dart';
 import '../onboarding/widgets/onboarding_scaffold.dart';
 import 'placement_controller.dart';
@@ -74,22 +73,22 @@ const _assessmentOptions = [
   _AssessmentOption(
     PlacementSelfAssessment.newUser,
     "I'm new",
-    "I haven't really studied kanji yet.",
+    "I haven't studied kanji yet.",
   ),
   _AssessmentOption(
     PlacementSelfAssessment.beginner,
     'Beginner',
-    'I can write some common kanji from memory.',
+    'Some common kanji.',
   ),
   _AssessmentOption(
     PlacementSelfAssessment.intermediate,
     'Intermediate',
-    'I can write quite a few kanji from memory.',
+    'Quite a few kanji.',
   ),
   _AssessmentOption(
     PlacementSelfAssessment.expert,
     'Expert',
-    "I've studied for a long time and can write lots of kanji from memory.",
+    'A lot of kanji.',
   ),
 ];
 
@@ -129,9 +128,7 @@ class _SelfAssessmentState extends State<_SelfAssessment> {
           children: [
             const OnboardingHeadline(
               label: 'Placement',
-              title: 'How many kanji can you write?',
-              subtitle:
-                  'From memory. Recognizing a kanji is not the same as being able to write it.',
+              title: 'Where should we start?',
             ),
             SizedBox(height: (height * 0.05).clamp(20.0, 32.0)),
             for (final option in _assessmentOptions) ...[
@@ -254,7 +251,6 @@ class _PlacementIntro extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     final resuming = controller.isResuming;
 
     return OnboardingScaffold(
@@ -273,28 +269,8 @@ class _PlacementIntro extends StatelessWidget {
               label: 'Placement',
               title: "Let's find your starting point",
               subtitle: resuming
-                  ? 'Pick up where you left off.\n'
-                        'Count a kanji only if you could write it from memory.'
-                  : "We'll show you some kanji.\n"
-                        'Count one only if you could write it from memory.',
-            ),
-            const SizedBox(height: 14),
-            Text(
-              "Recognizing it isn't enough, and you won't have to draw.",
-              textAlign: TextAlign.center,
-              style: theme.textTheme.bodyLarge?.copyWith(
-                color: theme.mutedText,
-                height: 1.4,
-              ),
-            ),
-            const SizedBox(height: 8),
-            Text(
-              'It only takes a couple minutes.',
-              textAlign: TextAlign.center,
-              style: theme.textTheme.bodyLarge?.copyWith(
-                color: theme.mutedText,
-                height: 1.4,
-              ),
+                  ? 'Pick up where you left off.'
+                  : 'A few kanji. A couple of minutes.',
             ),
           ],
         );
@@ -363,34 +339,32 @@ class _PlacementQuestion extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           PrimaryButton(
-            label: 'I can write it',
+            label: 'Yes',
             onPressed: () => _answer(context, known: true),
           ),
           const SizedBox(height: 10),
           SecondaryButton(
-            label: "I can't write it",
+            label: 'Not yet',
             onPressed: () => _answer(context, known: false),
           ),
         ],
       ),
       content: (context, height) {
+        final theme = Theme.of(context);
         return Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const SectionLabel(
-              'Could you write this from memory?',
-              align: TextAlign.center,
-            ),
-            const SizedBox(height: 8),
             Text(
-              "Recognizing it isn't enough.",
+              'Can you write this kanji from memory?',
               textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                color: Theme.of(context).mutedText,
-                height: 1.4,
+              style: theme.textTheme.titleLarge?.copyWith(
+                fontSize: 22,
+                fontWeight: FontWeight.w500,
+                letterSpacing: -0.3,
+                height: 1.25,
               ),
             ),
-            SizedBox(height: height * 0.04),
+            SizedBox(height: height * 0.05),
             AnimatedSwitcher(
               duration: const Duration(milliseconds: 180),
               switchInCurve: Curves.easeOut,
@@ -495,8 +469,9 @@ class _PlacementResults extends StatelessWidget {
     final known = summary?.knownCount ?? 0;
     final confirming = summary?.confirmCount ?? 0;
     final nothing = summary?.nothingToPlace ?? false;
-    final headline = summary?.headline ?? '';
-    final detail = summary?.detail;
+    final start = known == 0
+        ? "We'll start you at the beginning of the curriculum."
+        : "We'll start you after those in the curriculum.";
 
     return OnboardingScaffold(
       step: 2,
@@ -517,46 +492,33 @@ class _PlacementResults extends StatelessWidget {
                   Text(
                     nothing
                         ? 'Every kanji in the app is already in your reviews.'
-                        : headline.isEmpty
-                        ? 'Your starting point is ready.'
-                        : headline,
+                        : 'We estimate you can write $known kanji.',
                     textAlign: TextAlign.center,
                     style: theme.textTheme.titleLarge?.copyWith(
                       fontWeight: FontWeight.w500,
                       height: 1.35,
                     ),
                   ),
-                  if (!nothing && detail != null) ...[
-                    const SizedBox(height: 16),
+                  if (!nothing) ...[
+                    const SizedBox(height: 12),
                     Text(
-                      detail,
+                      start,
                       textAlign: TextAlign.center,
-                      style: theme.textTheme.titleMedium?.copyWith(
-                        fontWeight: FontWeight.w500,
-                        height: 1.35,
+                      style: theme.textTheme.bodyMedium?.copyWith(
+                        color: theme.mutedText,
+                        height: 1.4,
                       ),
                     ),
                   ],
                 ],
               ),
             ),
-            if (known > 0) ...[
-              SizedBox(height: height * 0.04),
-              Text(
-                "We've added the kanji you can already write to your library.",
-                textAlign: TextAlign.center,
-                style: theme.textTheme.bodyLarge?.copyWith(
-                  color: theme.mutedText,
-                  height: 1.4,
-                ),
-              ),
-            ],
             if (confirming > 0) ...[
               SizedBox(height: height * 0.02),
               Text(
-                'Some others will come up in review so we can confirm them.',
+                'A few more will show up in review.',
                 textAlign: TextAlign.center,
-                style: theme.textTheme.bodyLarge?.copyWith(
+                style: theme.textTheme.bodyMedium?.copyWith(
                   color: theme.mutedText,
                   height: 1.4,
                 ),

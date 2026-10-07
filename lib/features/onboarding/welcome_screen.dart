@@ -53,14 +53,13 @@ class WelcomeScreen extends StatelessWidget {
                 height: 1.35,
               ),
             ),
-            const SizedBox(height: 12),
+            const SizedBox(height: 10),
             Text(
-              'Short sessions. Spaced repetition.\n'
-              'Actually write the kanji.',
+              'Short sessions. Spaced repetition.',
               textAlign: TextAlign.center,
-              style: theme.textTheme.bodyLarge?.copyWith(
+              style: theme.textTheme.bodyMedium?.copyWith(
                 color: theme.mutedText,
-                height: 1.45,
+                height: 1.4,
               ),
             ),
           ],
