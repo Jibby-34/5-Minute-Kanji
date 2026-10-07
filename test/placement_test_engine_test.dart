@@ -148,32 +148,32 @@ void main() {
     expect(outcome.knownCardIds, isNot(contains(cards.last.id)));
   });
 
-  test('the known set follows difficulty, not JLPT level', () {
+  test('the known set follows the learning path, not raw difficulty', () {
     final cards = [
-      testCard('n5-hard', difficulty: 90, jlptLevel: JlptLevel.n5),
-      testCard('n5-easy', difficulty: 80, jlptLevel: JlptLevel.n5),
-      testCard('n4-001', difficulty: 40, jlptLevel: JlptLevel.n4),
-      testCard('n4-002', difficulty: 41, jlptLevel: JlptLevel.n4),
-      testCard('n4-003', difficulty: 42, jlptLevel: JlptLevel.n4),
-      testCard('n1-easy', difficulty: 1, jlptLevel: JlptLevel.n1),
-      testCard('n1-also', difficulty: 2, jlptLevel: JlptLevel.n1),
+      testCard(
+        'frequent-hard',
+        difficulty: 90,
+        frequency: 1,
+        jlptLevel: JlptLevel.n5,
+      ),
+      testCard(
+        'rare-easy',
+        difficulty: 1,
+        frequency: 4000,
+        jlptLevel: JlptLevel.n1,
+      ),
     ];
-    // This helper still turns a position into a JLPT prefix for labels.
-    // The outcome below does not use it when deciding which kanji are known.
-    final before = PlacementCorpus(cards).idsKnownBefore(50);
-    expect(before, containsAll(['n5-hard', 'n5-easy', 'n4-001', 'n4-002']));
-    expect(before, isNot(contains('n1-easy')));
-    expect(before, isNot(contains('n4-003')));
+    final ranked = placementRanked(cards);
+    expect(ranked.first.id, 'frequent-hard');
+    expect(ranked.last.id, 'rare-easy');
 
     final run = PlacementTestEngine().replay(cards, [
-      PlacementAnswer(cardId: 'n5-hard', known: false),
-      PlacementAnswer(cardId: 'n1-easy', known: true),
+      PlacementAnswer(cardId: 'frequent-hard', known: true),
+      PlacementAnswer(cardId: 'rare-easy', known: false),
     ]);
     final known = run.outcome().knownCardIds;
-    expect(known, isNot(contains('n5-hard')));
-    expect(known, contains('n1-easy'));
-    expect(known, contains('n1-also'));
-    expect(known, isNot(contains('n5-easy')));
+    expect(known, contains('frequent-hard'));
+    expect(known, isNot(contains('rare-easy')));
   });
 
   test('the test never asks a 21st question', () {
@@ -245,11 +245,12 @@ void main() {
     expect(firstIds.length, greaterThan(1));
   });
 
-  test('a kanji with no difficulty is not asked', () {
+  test('a kanji with no difficulty is still on the learning path', () {
     final cards = [
       testCard('blank', difficulty: 0),
       testCard('easy', difficulty: 4, jlptLevel: JlptLevel.n5),
     ];
+    expect(placementRanked(cards).map((card) => card.id), ['easy', 'blank']);
     final run = PlacementTestEngine().replay(cards, const []);
     final asked = <String>[];
     while (run.currentQuestion != null) {
@@ -258,7 +259,7 @@ void main() {
         PlacementAnswer(cardId: run.currentQuestion!.id, known: false),
       );
     }
-    expect(asked, ['easy']);
+    expect(asked, ['easy', 'blank']);
   });
 
   test('an empty pool is finished before it starts', () {
@@ -284,17 +285,25 @@ void main() {
         ),
     ];
     final corpus = PlacementCorpus(cards);
-    expect(corpus.positionFor(4), 4);
+    final fourth = corpus.positions['n5-4']!.toDouble();
+    final ninth = corpus.positions['n4-9']!.toDouble();
+    expect(corpus.positionFor(fourth), 4);
     expect(
-      corpus.describe(estimatedDifficulty: 4, intervalHigh: 4).headline,
+      corpus
+          .describe(estimatedDifficulty: fourth, intervalHigh: fourth.toInt())
+          .headline,
       "You're roughly mid N5",
     );
     expect(
-      corpus.describe(estimatedDifficulty: 9, intervalHigh: 12).headline,
+      corpus
+          .describe(estimatedDifficulty: ninth, intervalHigh: ninth.toInt())
+          .headline,
       "You're roughly early N4",
     );
     expect(
-      corpus.describe(estimatedDifficulty: 4, intervalHigh: 12).detail,
+      corpus
+          .describe(estimatedDifficulty: fourth, intervalHigh: ninth.toInt())
+          .detail,
       contains('N4'),
     );
   });
@@ -314,17 +323,21 @@ void main() {
     expect(intermediate.center, lessThan(expert.center));
     expect(placementBandFor(cards, PlacementSelfAssessment.newUser), isNull);
 
-    // Four kanji with a gap. 35% of the list is the second card, not
-    // difficulty 35.
+    // Four kanji. 35% of the learning path is the second card's path
+    // position, not its difficulty and not the number 35.
     final gapped = [
       testCard('a', difficulty: 1),
       testCard('b', difficulty: 2),
       testCard('c', difficulty: 3),
       testCard('d', difficulty: 100),
     ];
+    final ranked = placementRanked(gapped);
+    final positions = placementPathPositions(ranked);
     final early = placementBandFor(gapped, PlacementSelfAssessment.beginner)!;
-    expect(early.high, 2);
-    expect(early.low, 1);
+    expect(early.low, positions[ranked.first.id]);
+    expect(early.high, positions[ranked[1].id]);
+    expect(early.high, isNot(35));
+    expect(early.high, isNot(ranked[1].difficulty));
   });
 
   test('the starting bell sits in the slice and still has a tail', () {
@@ -402,7 +415,7 @@ void main() {
         selectionSeed: 4,
       ).replay(cards, const [], selfAssessment: entry.key);
       final opening = <int>[];
-      for (var n = 0; n < 3; n++) {
+      for (var n = 0; n < 2; n++) {
         final question = run.currentQuestion!;
         opening.add(question.difficulty);
         run.record(PlacementAnswer(cardId: question.id, known: false));
@@ -412,6 +425,20 @@ void main() {
         expect(difficulty, lessThanOrEqualTo(entry.value.high));
       }
     }
+
+    // Two misses in a high slice abandon the rest of the opening spread
+    // and step downward, instead of asking something harder.
+    final expertRun = PlacementTestEngine(
+      selectionSeed: 4,
+    ).replay(cards, const [], selfAssessment: PlacementSelfAssessment.expert);
+    final expertBand = cases[PlacementSelfAssessment.expert]!;
+    expertRun.record(
+      PlacementAnswer(cardId: expertRun.currentQuestion!.id, known: false),
+    );
+    expertRun.record(
+      PlacementAnswer(cardId: expertRun.currentQuestion!.id, known: false),
+    );
+    expect(expertRun.currentQuestion!.difficulty, lessThan(expertBand.center));
 
     final beginner = cases[PlacementSelfAssessment.beginner]!;
     expect(beginner.high, lessThan(50));
@@ -508,7 +535,11 @@ void main() {
         selectionSeed: 3,
       ).replay(cards, const [], selfAssessment: assessment);
       final question = opening.currentQuestion!;
-      expect(question.difficulty, inInclusiveRange(band.low, band.high));
+      final path = PlacementCorpus(cards);
+      expect(
+        path.positions[question.id],
+        inInclusiveRange(band.low, band.high),
+      );
     }
 
     final beginner = placementBandFor(cards, PlacementSelfAssessment.beginner)!;
@@ -536,10 +567,24 @@ void main() {
     expect(fell.outcome().knownCardIds, isNot(contains(hardest.id)));
   });
 
+  test('a high self-assessment with mixed answers does not stop early', () {
+    final cards = ladder();
+    final run = answerAll(
+      cards,
+      (card) => card.difficulty <= 30,
+      assessment: PlacementSelfAssessment.expert,
+    );
+    expect(run.answeredCount, greaterThanOrEqualTo(placementMinQuestions));
+    expect(run.answeredCount, lessThanOrEqualTo(placementMaxQuestions));
+    expect(run.steps.where((step) => !step.correct).length, greaterThan(1));
+    expect(run.steps.where((step) => step.correct).length, greaterThan(0));
+  });
+
   test(
     'the known set does not skip kanji above the demonstrated level',
     () async {
       final cards = await const HardcodedKanjiRepository().getAll();
+      final positions = PlacementCorpus(cards).positions;
       final cases = <(int, PlacementSelfAssessment)>[
         (10, PlacementSelfAssessment.beginner),
         (35, PlacementSelfAssessment.intermediate),
@@ -548,7 +593,7 @@ void main() {
       for (final (truth, assessment) in cases) {
         final run = answerAll(
           cards,
-          (card) => card.difficulty <= truth,
+          (card) => (positions[card.id] ?? placementMaxDifficulty) <= truth,
           assessment: assessment,
         );
         final known = run.outcome().knownCardIds.toSet();
@@ -568,20 +613,20 @@ void main() {
             (step) => step.cardId == card.id && step.correct,
           );
           if (claimed) continue;
-          expect(card.difficulty, lessThan(lowestMiss));
-          expect(card.difficulty, lessThanOrEqualTo(truth));
+          expect(positions[card.id], lessThan(lowestMiss));
+          expect(positions[card.id], lessThanOrEqualTo(truth));
         }
       }
 
       final overclaimed = answerAll(
         cards,
-        (card) => card.difficulty <= 10,
+        (card) => (positions[card.id] ?? placementMaxDifficulty) <= 10,
         assessment: PlacementSelfAssessment.expert,
       );
       final extra = cards.where(
         (card) =>
             overclaimed.outcome().knownCardIds.contains(card.id) &&
-            card.difficulty > 10,
+            (positions[card.id] ?? 0) > 10,
       );
       expect(extra.length, lessThan(80));
     },

@@ -184,17 +184,17 @@ void main() {
 
     final card = controllerOf(tester).question!;
     final catalog = await const HardcodedKanjiRepository().getAll();
+    final path = PlacementCorpus(catalog);
     final beginner = placementBandFor(
       catalog,
       PlacementSelfAssessment.beginner,
     )!;
-    expect(card.difficulty, greaterThanOrEqualTo(beginner.low));
-    expect(card.difficulty, lessThanOrEqualTo(beginner.high));
-    expect(find.text(card.character), findsOneWidget);
     expect(
-      find.text('COULD YOU WRITE THIS FROM MEMORY?'),
-      findsOneWidget,
+      path.positions[card.id],
+      inInclusiveRange(beginner.low, beginner.high),
     );
+    expect(find.text(card.character), findsOneWidget);
+    expect(find.text('COULD YOU WRITE THIS FROM MEMORY?'), findsOneWidget);
     expect(find.text("Recognizing it isn't enough."), findsOneWidget);
     expect(find.text('I can write it'), findsOneWidget);
     expect(find.text("I can't write it"), findsOneWidget);
@@ -228,10 +228,12 @@ void main() {
     await tester.tap(find.text('Start Placement Test'));
     await tester.pumpAndSettle();
 
-    // Knows easier kanji and misses harder ones. Not a JLPT cutoff.
+    // Knows the early part of the Learning Path and misses what comes later.
+    final catalog = await const HardcodedKanjiRepository().getAll();
+    final positions = PlacementCorpus(catalog).positions;
     final asked = await answerAll(
       tester,
-      knows: (card) => card.difficulty <= 30,
+      knows: (card) => (positions[card.id] ?? 100) <= 30,
     );
 
     expect(asked.length, inInclusiveRange(1, PlacementTestEngine.questionCap));
@@ -248,7 +250,7 @@ void main() {
 
     for (final card in asked) {
       final schedule = schedules[card.id]!;
-      if (card.difficulty <= 30) {
+      if ((positions[card.id] ?? 100) <= 30) {
         expect(schedule.state, CardLearningState.review);
         expect(
           schedule.interval,
@@ -261,12 +263,13 @@ void main() {
       }
     }
 
-    // Easy kanji are marked from difficulty, including easy N1. A harder
-    // N1 card stays new unless the learner said they know it.
-    final cards = await const HardcodedKanjiRepository().getAll();
-    for (final card in cards.where((card) => card.jlptLevel == JlptLevel.n1)) {
+    // Early Learning Path kanji are marked known, including an early N1.
+    // A later N1 stays new unless the learner said they can write it.
+    for (final card in catalog.where(
+      (card) => card.jlptLevel == JlptLevel.n1,
+    )) {
       if (schedules[card.id]?.state != CardLearningState.review) continue;
-      expect(card.difficulty, lessThanOrEqualTo(30));
+      expect(positions[card.id], lessThanOrEqualTo(30));
     }
 
     // The test does not spend the daily new-kanji allowance.
@@ -577,13 +580,14 @@ void main() {
         const kanji = HardcodedKanjiRepository();
         const engine = PlacementTestEngine();
         final cards = await kanji.getAll();
+        final positions = PlacementCorpus(cards).positions;
         final run = engine.replay(cards, const []);
         while (!run.isFinished) {
           final question = run.currentQuestion!;
           run.record(
             PlacementAnswer(
               cardId: question.id,
-              known: question.difficulty <= 30,
+              known: (positions[question.id] ?? 100) <= 30,
             ),
           );
         }

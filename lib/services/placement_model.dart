@@ -1,7 +1,9 @@
 import 'dart:math' as math;
 
+import '../core/models/curriculum_mode.dart';
 import '../core/models/kanji_card.dart';
 import '../core/models/placement.dart';
+import 'curriculum_priority_service.dart';
 import 'due_card_selector.dart';
 
 /// Chance an answer is right even when the kanji is well above the learner.
@@ -18,6 +20,12 @@ const double placementBoundarySoftness = 7.5;
 
 /// Absolute maximum number of placement questions.
 const int placementMaxQuestions = 20;
+
+/// Do not stop before this many answers, unless the pool is smaller.
+///
+/// Four or five questions can look settled when a self-assessment was off
+/// and the answers disagree. The test still ends at [placementMaxQuestions].
+const int placementMinQuestions = 12;
 
 /// Stop early once the posterior is at least this concentrated.
 const double placementEarlyStopDeviation = 10;
@@ -117,18 +125,45 @@ class PlacementSelfAssessmentBand {
   final double center;
 }
 
-/// Eligible kanji, easiest first. Same order the placement run asks from.
-List<KanjiCard> placementRanked(Iterable<KanjiCard> cards) {
-  final ranked = [
-    for (final card in cards)
-      if (placementDifficultyIsValid(card.difficulty)) card,
-  ];
-  ranked.sort((a, b) {
-    final byDifficulty = a.difficulty.compareTo(b.difficulty);
-    if (byDifficulty != 0) return byDifficulty;
-    return a.id.compareTo(b.id);
-  });
+/// Eligible kanji in Learning Path order, earliest first.
+///
+/// This is the kanji list's default order: recommended priority from
+/// frequency, JLPT, difficulty, and components. [catalog] supplies the
+/// frequency scale when [cards] is only the askable subset. Nothing is
+/// treated as already known, so the order stays the default path.
+List<KanjiCard> placementRanked(
+  Iterable<KanjiCard> cards, {
+  Iterable<KanjiCard>? catalog,
+}) {
+  final ranked = cards.toList();
+  final curriculum = CurriculumPriorityService(catalog ?? ranked);
+  ranked.sort(
+    curriculum.comparer(
+      mode: CurriculumMode.recommended,
+      knownCardIds: const {},
+      customRanks: null,
+    ),
+  );
   return ranked;
+}
+
+/// Learning-path position from 1 (first to study) to 100 (last).
+///
+/// Kanji that sit next to each other on the path share a position, which is
+/// the group the placement test asks from.
+int placementPathPosition(int index, int length) {
+  if (length <= 1) return placementMinDifficulty;
+  final span = placementMaxDifficulty - placementMinDifficulty;
+  return placementMinDifficulty + ((index * span) / (length - 1)).round();
+}
+
+/// Path position for every card in [ranked], which must already be in
+/// Learning Path order.
+Map<String, int> placementPathPositions(List<KanjiCard> ranked) {
+  return {
+    for (var index = 0; index < ranked.length; index++)
+      ranked[index].id: placementPathPosition(index, ranked.length),
+  };
 }
 
 /// The overlapping slice for [assessment], or null when the test should
@@ -220,10 +255,11 @@ PlacementSelfAssessmentBand _bandFromPercents(
   );
   final first = lowIndex < highIndex ? lowIndex : highIndex;
   final last = lowIndex < highIndex ? highIndex : lowIndex;
+  final positions = placementPathPositions(ranked);
   return PlacementSelfAssessmentBand(
-    low: ranked[first].difficulty,
-    high: ranked[last].difficulty,
-    center: ranked[midIndex].difficulty.toDouble(),
+    low: positions[ranked[first].id]!,
+    high: positions[ranked[last].id]!,
+    center: positions[ranked[midIndex].id]!.toDouble(),
   );
 }
 
@@ -385,28 +421,27 @@ class PlacementCredibleInterval {
   final int high;
 }
 
-/// Where an estimated difficulty sits in the real catalog.
+/// Where an estimate sits on the Learning Path.
 class PlacementCorpus {
-  PlacementCorpus(List<KanjiCard> cards)
-    : ranked = [
-        for (final card in cards)
-          if (placementDifficultyIsValid(card.difficulty)) card,
-      ] {
-    ranked.sort((a, b) {
-      final byDifficulty = a.difficulty.compareTo(b.difficulty);
-      if (byDifficulty != 0) return byDifficulty;
-      return a.id.compareTo(b.id);
-    });
-  }
+  PlacementCorpus(List<KanjiCard> cards) : this._(placementRanked(cards));
 
-  /// Valid-difficulty kanji, easiest first.
+  PlacementCorpus._(List<KanjiCard> ranked)
+    : ranked = ranked,
+      positions = placementPathPositions(ranked);
+
+  /// Kanji in Learning Path order, earliest first.
   final List<KanjiCard> ranked;
 
-  /// How many ranked kanji have difficulty at or below [difficulty].
-  int positionFor(double difficulty) {
+  /// Learning-path position of each ranked kanji, from 1 to 100.
+  final Map<String, int> positions;
+
+  /// How many ranked kanji sit at or before [estimate] on the path.
+  int positionFor(double estimate) {
     var count = 0;
     for (final card in ranked) {
-      if (card.difficulty <= difficulty) {
+      final position = positions[card.id];
+      if (position == null) continue;
+      if (position <= estimate) {
         count++;
       } else {
         break;

@@ -24,7 +24,8 @@ class PlacementStep {
 
 /// Placement test over kanji the app does not already know.
 ///
-/// Answers are noisy evidence about a difficulty position from 1 to 100.
+/// Answers are noisy evidence about a position on the Learning Path,
+/// scaled from 1 (first to study) to 100 (last).
 /// The test keeps a probability distribution over that position, asks up to
 /// [questionCap] kanji, and never treats a single answer as a hard cutoff.
 /// A self-assessment, when one was chosen, is only a soft prior and a
@@ -88,32 +89,22 @@ class PlacementRun {
     List<KanjiCard> corpus,
     PlacementSelfAssessment? selfAssessment,
   ) : _corpus = PlacementCorpus(corpus) {
-    final skipped = <String>[];
     for (final card in pool) {
       _byId[card.id] = card;
-      if (placementDifficultyIsValid(card.difficulty)) {
+      if (_corpus.positions.containsKey(card.id)) {
         _eligible.add(card);
-      } else {
-        skipped.add(card.id);
       }
     }
     _eligible.sort((a, b) {
-      final byDifficulty = a.difficulty.compareTo(b.difficulty);
-      if (byDifficulty != 0) return byDifficulty;
+      final byPosition = _position(a).compareTo(_position(b));
+      if (byPosition != 0) return byPosition;
       return a.id.compareTo(b.id);
     });
-    assert(() {
-      if (skipped.isNotEmpty) {
-        developer.log(
-          'skipped ${skipped.length} kanji without a difficulty from '
-          '$placementMinDifficulty to $placementMaxDifficulty: '
-          '${skipped.take(8).join(', ')}',
-          name: 'placement',
-        );
-      }
-      return true;
-    }());
     _applyAssessment(selfAssessment);
+  }
+
+  int _position(KanjiCard card) {
+    return _corpus.positions[card.id] ?? placementMaxDifficulty;
   }
 
   final PlacementTestEngine _engine;
@@ -164,13 +155,14 @@ class PlacementRun {
     if (card == null || _responses.containsKey(answer.cardId)) return;
     if (answeredCount >= _engine.questionLimit) return;
     _responses[answer.cardId] = answer.known;
-    if (placementDifficultyIsValid(card.difficulty)) {
-      _posterior.observe(difficulty: card.difficulty, correct: answer.known);
-      _expandSearch(card.difficulty, answer.known);
+    final position = _position(card);
+    if (placementDifficultyIsValid(position)) {
+      _posterior.observe(difficulty: position, correct: answer.known);
+      _expandSearch(position, answer.known);
     }
     final step = PlacementStep(
       cardId: card.id,
-      difficulty: card.difficulty,
+      difficulty: position,
       correct: answer.known,
       mean: estimatedDifficulty,
       standardDeviation: standardDeviation,
@@ -191,17 +183,47 @@ class PlacementRun {
     if (_eligible.isEmpty) return true;
     if (answeredCount >= _engine.questionLimit) return true;
     if (_unasked.isEmpty) return true;
-    final anchorsLeft =
-        answeredCount < placementAnchorDifficulties.length &&
-        answeredCount < _eligible.length;
-    if (anchorsLeft) return false;
+    if (answeredCount < _minimumQuestions) return false;
     // Keep going while the last answer is pushing past the slice we started
     // in. Stopping there would freeze a confident-but-wrong self-assessment.
     if (_probingUp || _probingDown) return false;
     if (standardDeviation > placementEarlyStopDeviation) return false;
     // A tight average can still be high if every question sat well above or
     // below it. Check something near the boundary before trusting the stop.
-    return _boundaryChecked;
+    if (!_boundaryChecked) return false;
+    // All hits or all misses have not found the edge yet.
+    return _levelBracketed;
+  }
+
+  /// How many answers are required before an early stop is even considered.
+  int get _minimumQuestions {
+    final cap = _engine.questionLimit;
+    final floor = placementMinQuestions < cap ? placementMinQuestions : cap;
+    final pool = _eligible.length;
+    return floor < pool ? floor : pool;
+  }
+
+  bool get _hasHit => _steps.any((step) => step.correct);
+
+  bool get _hasMiss => _steps.any((step) => !step.correct);
+
+  /// True once a hit and a miss bracket the level, or the questions have
+  /// walked into the easiest or hardest kanji without finding the other side.
+  bool get _levelBracketed {
+    if (_hasHit && _hasMiss) return true;
+    final easiest = _easiestAsked;
+    if (!_hasHit &&
+        easiest != null &&
+        easiest <= placementMinDifficulty + placementSelectionWindow) {
+      return true;
+    }
+    final hardest = _hardestAsked;
+    if (!_hasMiss &&
+        hardest != null &&
+        hardest >= placementMaxDifficulty - placementSelectionWindow) {
+      return true;
+    }
+    return false;
   }
 
   bool get _boundaryChecked {
@@ -214,10 +236,10 @@ class PlacementRun {
     return false;
   }
 
-  /// Difficulty below which an untested kanji is treated as known.
+  /// Learning-path position below which an untested kanji is treated as known.
   ///
-  /// Uses a percentile under the average, and never reaches a difficulty
-  /// the learner said they don't know.
+  /// Uses a percentile under the average, and never reaches a position the
+  /// learner said they can't write.
   double get _knownCutoff {
     var cutoff = _posterior.quantile(placementKnownQuantile).toDouble();
     var lowestMiss = placementMaxDifficulty + 1.0;
@@ -238,9 +260,8 @@ class PlacementRun {
   /// What the test concluded.
   ///
   /// A tested kanji keeps the answer the learner gave. An untested kanji is
-  /// marked known only when its difficulty sits clearly below the estimate.
-  /// Earlier JLPT levels are not granted in bulk: a hard kanji in an early
-  /// level stays new unless the learner actually knows that difficulty.
+  /// marked known only when it sits clearly earlier on the Learning Path.
+  /// Raw difficulty and JLPT level are not granted in bulk.
   PlacementOutcome outcome() {
     if (_eligible.isEmpty && _responses.isEmpty) {
       return PlacementOutcome(
@@ -255,9 +276,7 @@ class PlacementRun {
     for (final card in _byId.values) {
       final answered = _responses[card.id];
       if (answered == false) continue;
-      if (answered == true ||
-          (placementDifficultyIsValid(card.difficulty) &&
-              card.difficulty <= cutoff)) {
+      if (answered == true || _position(card) <= cutoff) {
         known.add(card.id);
       }
     }
@@ -304,7 +323,7 @@ class PlacementRun {
   }
 
   void _applyAssessment(PlacementSelfAssessment? assessment) {
-    _band = placementBandFor(_eligible, assessment);
+    _band = placementBandFor(_corpus.ranked, assessment);
     final band = _band;
     if (band == null) {
       _posterior = PlacementPosterior();
@@ -406,13 +425,10 @@ class PlacementRun {
   }
 
   double _targetDifficulty() {
-    if (_band == null) {
-      if (answeredCount < placementAnchorDifficulties.length) {
+    if (!_anchorsDone) {
+      if (_band == null) {
         return placementAnchorDifficulties[answeredCount].toDouble();
       }
-      return estimatedDifficulty;
-    }
-    if (answeredCount < placementAnchorDifficulties.length) {
       return _anchorInBand(answeredCount);
     }
     if (_probingUp) {
@@ -427,12 +443,45 @@ class PlacementRun {
       final capped = stepped < _selectionLow ? _selectionLow : stepped;
       return capped.toDouble();
     }
+    // Still one-sided after the opening questions: keep walking until a
+    // hit and a miss bracket the level, or the scale runs out.
+    final easiest = _easiestAsked;
+    if (!_hasHit && easiest != null) {
+      final stepped = easiest - placementRangeExpansionStep;
+      if (stepped > placementMinDifficulty) return stepped.toDouble();
+      return placementMinDifficulty.toDouble();
+    }
+    final hardest = _hardestAsked;
+    if (!_hasMiss && hardest != null) {
+      final stepped = hardest + placementRangeExpansionStep;
+      if (stepped < placementMaxDifficulty) return stepped.toDouble();
+      return placementMaxDifficulty.toDouble();
+    }
     final low = _selectionLow.toDouble();
     final high = _selectionHigh.toDouble();
     final estimate = estimatedDifficulty;
     if (estimate < low) return low;
     if (estimate > high) return high;
     return estimate;
+  }
+
+  /// The opening spread is done after its questions, or sooner when two
+  /// answers already push out of the slice in the same direction.
+  bool get _anchorsDone {
+    if (answeredCount >= placementAnchorDifficulties.length) return true;
+    final band = _band;
+    if (band == null || _steps.length < 2) return false;
+    var missesAtOrBelowCenter = 0;
+    var hitsAtOrAboveCenter = 0;
+    for (final step in _steps) {
+      if (!step.correct && step.difficulty <= band.center) {
+        missesAtOrBelowCenter++;
+      }
+      if (step.correct && step.difficulty >= band.center) {
+        hitsAtOrAboveCenter++;
+      }
+    }
+    return missesAtOrBelowCenter >= 2 || hitsAtOrAboveCenter >= 2;
   }
 
   /// Five interior points of the starting slice, in the same role as
@@ -453,7 +502,7 @@ class PlacementRun {
     while (window <= placementMaxDifficulty) {
       final near = [
         for (final card in waiting)
-          if ((card.difficulty - target).abs() <= window) card,
+          if ((_position(card) - target).abs() <= window) card,
       ];
       if (near.isNotEmpty) return near[_mixIndex(near.length, target)];
       window += placementSelectionWindow;
@@ -472,8 +521,8 @@ class PlacementRun {
     if (_band == null) return waiting;
     final inside = [
       for (final card in waiting)
-        if (card.difficulty >= _selectionLow &&
-            card.difficulty <= _selectionHigh)
+        if (_position(card) >= _selectionLow &&
+            _position(card) <= _selectionHigh)
           card,
     ];
     if (inside.isEmpty) return waiting;
