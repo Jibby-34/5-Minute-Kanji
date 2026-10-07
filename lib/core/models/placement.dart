@@ -1,3 +1,21 @@
+/// Where the learner thinks they are, before any kanji is shown.
+///
+/// A starting guess for the placement model. [newUser] skips the test.
+/// The other three only bias where the test looks first.
+enum PlacementSelfAssessment {
+  newUser,
+  beginner,
+  intermediate,
+  expert;
+
+  static PlacementSelfAssessment? fromName(String? name) {
+    for (final assessment in PlacementSelfAssessment.values) {
+      if (assessment.name == name) return assessment;
+    }
+    return null;
+  }
+}
+
 /// One answer from the placement test. [known] is the user's own judgement
 /// of the kanji on screen. A miss is evidence, not a hard cutoff.
 class PlacementAnswer {
@@ -29,6 +47,7 @@ class PlacementProgress {
     this.completed = false,
     this.answers = const [],
     this.selectionSeed = 0,
+    this.selfAssessment,
   });
 
   static const empty = PlacementProgress();
@@ -39,17 +58,25 @@ class PlacementProgress {
   /// Mixes question choice. 0 means a run has not been given one yet.
   final int selectionSeed;
 
+  /// The learner's own starting guess. Null until they pick one.
+  final PlacementSelfAssessment? selfAssessment;
+
   bool get hasStarted => answers.isNotEmpty;
 
   PlacementProgress copyWith({
     bool? completed,
     List<PlacementAnswer>? answers,
     int? selectionSeed,
+    PlacementSelfAssessment? selfAssessment,
+    bool clearSelfAssessment = false,
   }) {
     return PlacementProgress(
       completed: completed ?? this.completed,
       answers: answers ?? this.answers,
       selectionSeed: selectionSeed ?? this.selectionSeed,
+      selfAssessment: clearSelfAssessment
+          ? null
+          : (selfAssessment ?? this.selfAssessment),
     );
   }
 
@@ -58,6 +85,7 @@ class PlacementProgress {
       'completed': completed,
       'answers': answers.map((answer) => answer.toJson()).toList(),
       'selectionSeed': selectionSeed,
+      if (selfAssessment != null) 'selfAssessment': selfAssessment!.name,
     };
   }
 
@@ -79,6 +107,9 @@ class PlacementProgress {
         completed: json['completed'] as bool? ?? false,
         answers: answers,
         selectionSeed: (json['selectionSeed'] as num?)?.toInt() ?? 0,
+        selfAssessment: PlacementSelfAssessment.fromName(
+          json['selfAssessment'] as String?,
+        ),
       );
     } catch (_) {
       return empty;

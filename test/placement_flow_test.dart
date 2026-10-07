@@ -16,6 +16,7 @@ import 'package:fiveminutekanji/repositories/progress_repository.dart';
 import 'package:fiveminutekanji/services/initial_known_card_schedule.dart';
 import 'package:fiveminutekanji/services/kanji_status_resolver.dart';
 import 'package:fiveminutekanji/services/mark_as_known.dart';
+import 'package:fiveminutekanji/services/placement_model.dart';
 import 'package:fiveminutekanji/services/placement_service.dart';
 import 'package:fiveminutekanji/services/placement_test_engine.dart';
 import 'package:fiveminutekanji/services/srs_engine.dart';
@@ -70,6 +71,16 @@ void main() {
     );
   }
 
+  /// Picks a self-assessment and continues into the placement intro.
+  Future<void> chooseAssessment(WidgetTester tester, String level) async {
+    await tester.ensureVisible(find.text(level));
+    await tester.tap(find.text(level));
+    await tester.pumpAndSettle();
+    await tester.ensureVisible(find.text('Continue'));
+    await tester.tap(find.text('Continue'));
+    await tester.pumpAndSettle();
+  }
+
   /// Answers every question until the results screen, deciding each answer from
   /// the kanji on screen.
   Future<List<KanjiCard>> answerAll(
@@ -95,11 +106,58 @@ void main() {
     usePhoneViewport(tester);
     await pumpApp(tester, await freshProgress());
 
+    expect(find.text('How much Japanese do you know?'), findsOneWidget);
+    expect(find.text("I'm new"), findsOneWidget);
+    expect(find.text('Beginner'), findsOneWidget);
+    expect(find.text('Intermediate'), findsOneWidget);
+    expect(find.text('Expert'), findsOneWidget);
+    expect(find.text('I haven\'t really studied kanji yet.'), findsOneWidget);
+    expect(find.text('Start Placement Test'), findsNothing);
+    expect(find.text('Start Review'), findsNothing);
+    expect(find.text('kanji remaining today'), findsNothing);
+
+    await chooseAssessment(tester, 'Beginner');
     expect(find.text("Let's find your starting point"), findsOneWidget);
     expect(find.text('It only takes a couple minutes.'), findsOneWidget);
     expect(find.text('Start Placement Test'), findsOneWidget);
-    expect(find.text('Start Review'), findsNothing);
-    expect(find.text('kanji remaining today'), findsNothing);
+  });
+
+  testWidgets("I'm new skips the questions and starts from zero", (
+    tester,
+  ) async {
+    usePhoneViewport(tester);
+    final progress = await freshProgress();
+    await pumpApp(tester, progress);
+    await chooseAssessment(tester, "I'm new");
+
+    expect(find.text('I know it'), findsNothing);
+    expect(find.text("I don't know it"), findsNothing);
+    expect(find.text("You're all set!"), findsOneWidget);
+    expect(find.text('Your starting point is ready.'), findsOneWidget);
+    expect(
+      find.text("We've added the kanji you already know to your library."),
+      findsNothing,
+    );
+
+    final placement = await progress.getPlacement();
+    expect(placement.completed, isTrue);
+    expect(placement.selfAssessment, PlacementSelfAssessment.newUser);
+    expect(placement.answers, isEmpty);
+
+    final schedules = await progress.getSchedules();
+    expect(
+      schedules.values.where(
+        (schedule) => schedule.state == CardLearningState.review,
+      ),
+      isEmpty,
+    );
+
+    await tester.tap(find.text('Start Learning'));
+    await tester.pumpAndSettle();
+    expect(
+      find.text('How much time do you want to study each day?'),
+      findsOneWidget,
+    );
   });
 
   testWidgets('a question shows the kanji alone, with quiet progress', (
@@ -107,10 +165,18 @@ void main() {
   ) async {
     usePhoneViewport(tester);
     await pumpApp(tester, await freshProgress());
+    await chooseAssessment(tester, 'Beginner');
     await tester.tap(find.text('Start Placement Test'));
     await tester.pumpAndSettle();
 
     final card = controllerOf(tester).question!;
+    final catalog = await const HardcodedKanjiRepository().getAll();
+    final beginner = placementBandFor(
+      catalog,
+      PlacementSelfAssessment.beginner,
+    )!;
+    expect(card.difficulty, greaterThanOrEqualTo(beginner.low));
+    expect(card.difficulty, lessThanOrEqualTo(beginner.high));
     expect(find.text(card.character), findsOneWidget);
     expect(find.text('I know it'), findsOneWidget);
     expect(find.text("I don't know it"), findsOneWidget);
@@ -139,6 +205,7 @@ void main() {
     final progress = await freshProgress();
     final now = DateTime.now();
     await pumpApp(tester, progress);
+    await chooseAssessment(tester, 'Beginner');
     await tester.tap(find.text('Start Placement Test'));
     await tester.pumpAndSettle();
 
@@ -159,7 +226,6 @@ void main() {
     expect(find.text('Start Learning'), findsOneWidget);
 
     final schedules = await progress.getSchedules();
-    final askedIds = asked.map((card) => card.id).toSet();
 
     for (final card in asked) {
       final schedule = schedules[card.id]!;
@@ -176,13 +242,12 @@ void main() {
       }
     }
 
-    // N1 stays unknown unless the learner said they know that kanji.
-    // Placement is a JLPT prefix, so an easy N1 card is not swept in.
+    // Easy kanji are marked from difficulty, including easy N1. A harder
+    // N1 card stays new unless the learner said they know it.
     final cards = await const HardcodedKanjiRepository().getAll();
     for (final card in cards.where((card) => card.jlptLevel == JlptLevel.n1)) {
-      final claimed = askedIds.contains(card.id) && card.difficulty <= 30;
-      if (claimed) continue;
-      expect(schedules[card.id]?.state, isNot(CardLearningState.review));
+      if (schedules[card.id]?.state != CardLearningState.review) continue;
+      expect(card.difficulty, lessThanOrEqualTo(30));
     }
 
     // The test does not spend the daily new-kanji allowance.
@@ -202,6 +267,7 @@ void main() {
     usePhoneViewport(tester);
     final progress = await freshProgress();
     await pumpApp(tester, progress);
+    await chooseAssessment(tester, 'Beginner');
     await tester.tap(find.text('Start Placement Test'));
     await tester.pumpAndSettle();
     await answerAll(tester, knows: (card) => false);
@@ -228,6 +294,7 @@ void main() {
     usePhoneViewport(tester);
     final progress = await freshProgress();
     await pumpApp(tester, progress);
+    await chooseAssessment(tester, 'Beginner');
     await tester.tap(find.text('Start Placement Test'));
     await tester.pumpAndSettle();
 
@@ -260,6 +327,7 @@ void main() {
     usePhoneViewport(tester);
     final progress = await freshProgress();
     await pumpApp(tester, progress);
+    await chooseAssessment(tester, 'Expert');
     await tester.tap(find.text('Start Placement Test'));
     await tester.pumpAndSettle();
 
@@ -292,7 +360,10 @@ void main() {
     await tester.tap(find.text('Retake placement test'));
     await tester.pumpAndSettle();
 
-    expect(find.text("Let's find your starting point"), findsOneWidget);
+    expect(find.text('How much Japanese do you know?'), findsOneWidget);
+    expect(find.text("Let's find your starting point"), findsNothing);
+
+    await chooseAssessment(tester, 'Beginner');
     expect(find.text('Start Placement Test'), findsOneWidget);
 
     await tester.tap(find.text('Start Placement Test'));
@@ -424,6 +495,42 @@ void main() {
 
       expect(await service.isRequired(), isFalse);
       expect((await progress.getPlacement()).completed, isTrue);
+    });
+
+    test('the self-assessment is kept with the placement run', () async {
+      final cards = [
+        for (var i = 0; i < 4; i++) testCard('k$i', difficulty: i + 1),
+      ];
+      final progress = MemoryProgressRepository();
+      await progress.seedIfNeeded(cards.map((card) => card.id).toList());
+      final service = serviceFor(progress, cards);
+
+      await service.saveSelfAssessment(PlacementSelfAssessment.intermediate);
+      final stored = await service.progress();
+      expect(stored.selfAssessment, PlacementSelfAssessment.intermediate);
+      expect(
+        PlacementProgress.fromJson(stored.toJson()).selfAssessment,
+        PlacementSelfAssessment.intermediate,
+      );
+      expect(
+        PlacementProgress.fromJson(const {
+          'completed': false,
+          'answers': <dynamic>[],
+        }).selfAssessment,
+        isNull,
+      );
+
+      await service.complete(
+        const PlacementOutcome(knownCardIds: [], answeredCount: 0),
+      );
+      final completed = await service.progress();
+      expect(completed.completed, isTrue);
+      expect(completed.answers, isEmpty);
+      expect(completed.selfAssessment, PlacementSelfAssessment.intermediate);
+
+      await service.restart();
+      expect((await service.progress()).selfAssessment, isNull);
+      expect((await service.progress()).completed, isTrue);
     });
 
     test('a retake keeps the test off the next launch', () async {

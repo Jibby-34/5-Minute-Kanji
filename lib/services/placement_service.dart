@@ -85,6 +85,12 @@ class PlacementService {
     await _save(placement.copyWith(answers: answers));
   }
 
+  /// Stores the learner's starting guess. Does not mark any kanji known.
+  Future<void> saveSelfAssessment(PlacementSelfAssessment assessment) async {
+    final placement = await progressRepository.getPlacement();
+    await _save(placement.copyWith(selfAssessment: assessment));
+  }
+
   /// Marks the kanji the test found, then records the test as done.
   ///
   /// Cards that already have SRS progress are left alone. A retake can add
@@ -96,7 +102,13 @@ class PlacementService {
       now: now,
     );
     final confirmed = await _confirmNewCards(outcome.confirmCardIds, now);
-    await _save(const PlacementProgress(completed: true));
+    final placement = await progressRepository.getPlacement();
+    await _save(
+      PlacementProgress(
+        completed: true,
+        selfAssessment: placement.selfAssessment,
+      ),
+    );
     return PlacementSummary(
       knownCount: marked.length,
       confirmCount: confirmed,
@@ -110,7 +122,13 @@ class PlacementService {
   /// so abandoning a retake cannot bring the test back on the next launch.
   Future<void> restart() async {
     final placement = await progressRepository.getPlacement();
-    await _save(placement.copyWith(answers: const [], selectionSeed: 0));
+    await _save(
+      placement.copyWith(
+        answers: const [],
+        selectionSeed: 0,
+        clearSelfAssessment: true,
+      ),
+    );
   }
 
   /// Puts likely-but-untested kanji into learning, spread over later days so

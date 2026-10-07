@@ -255,7 +255,10 @@ class SharedPrefsProgressRepository implements ProgressRepository {
         cardIds: planIds,
         completed: plan.completed,
       ),
-      placement: PlacementProgress(completed: _blob.placement.completed),
+      placement: PlacementProgress(
+        completed: _blob.placement.completed,
+        selfAssessment: _blob.placement.selfAssessment,
+      ),
       kanjiCatalogVersion: legacyKanjiCatalogVersion,
     );
     await _persist();

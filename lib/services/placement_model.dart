@@ -1,6 +1,7 @@
 import 'dart:math' as math;
 
 import '../core/models/kanji_card.dart';
+import '../core/models/placement.dart';
 import 'due_card_selector.dart';
 
 /// Chance an answer is right even when the kanji is well above the learner.
@@ -25,7 +26,10 @@ const double placementEarlyStopDeviation = 10;
 const List<int> placementAnchorDifficulties = [10, 30, 50, 70, 90];
 
 /// Half-width of the first window when picking a kanji near a target.
-const int placementSelectionWindow = 10;
+///
+/// Tight enough that a question lands near the difficulty it was chosen
+/// for. The window still grows when nothing sits that close.
+const int placementSelectionWindow = 4;
 
 /// Untested kanji at or above this probability are marked known.
 ///
@@ -40,6 +44,38 @@ const double placementConfirmProbability = 0.50;
 
 const int placementMinDifficulty = 1;
 const int placementMaxDifficulty = 100;
+
+/// Overlapping slices of the placement order, as fractions of the sorted list.
+///
+/// Kanji are sorted by [KanjiCard.difficulty] ascending — the order the
+/// placement model already estimates. A slice is a position in that list,
+/// not a raw difficulty number, so gaps in the values do not create a cutoff.
+/// The ranges overlap so a learner who misjudges themselves is still nearby.
+const double placementBeginnerMinPercent = 0.0;
+const double placementBeginnerMaxPercent = 0.35;
+
+const double placementIntermediateMinPercent = 0.20;
+const double placementIntermediateMaxPercent = 0.70;
+
+const double placementExpertMinPercent = 0.50;
+const double placementExpertMaxPercent = 1.0;
+
+/// Narrowest self-assessment bell, in difficulty points.
+///
+/// Wide enough that answers can still move the estimate well outside the
+/// selected slice. The bell is wider when the slice itself is wide.
+const double placementSelfAssessmentMinSpread = 18;
+
+/// How many difficulty points question selection may step outside the
+/// current slice after an answer pushes against an edge.
+const int placementRangeExpansionStep = 8;
+
+/// Untested kanji are marked known from this percentile of the estimate.
+///
+/// The average is where a kanji is a coin flip, and it sits high when the
+/// test is still unsure. The 25th percentile stays under that average, so
+/// the kanji we skip are the ones the learner is likely to know.
+const double placementKnownQuantile = 0.25;
 
 /// Confirmation reviews are spread over at least this many days.
 const int placementConfirmMinHorizonDays = 30;
@@ -66,13 +102,163 @@ double placementProbabilityCorrect(int position, int difficulty) {
   return placementGuessProbability + ceiling * placementSigmoid(scale);
 }
 
+/// Inclusive difficulty bounds of one self-assessment slice.
+class PlacementSelfAssessmentBand {
+  const PlacementSelfAssessmentBand({
+    required this.low,
+    required this.high,
+    required this.center,
+  });
+
+  final int low;
+  final int high;
+
+  /// Difficulty of the kanji at the middle of the slice.
+  final double center;
+}
+
+/// Eligible kanji, easiest first. Same order the placement run asks from.
+List<KanjiCard> placementRanked(Iterable<KanjiCard> cards) {
+  final ranked = [
+    for (final card in cards)
+      if (placementDifficultyIsValid(card.difficulty)) card,
+  ];
+  ranked.sort((a, b) {
+    final byDifficulty = a.difficulty.compareTo(b.difficulty);
+    if (byDifficulty != 0) return byDifficulty;
+    return a.id.compareTo(b.id);
+  });
+  return ranked;
+}
+
+/// The overlapping slice for [assessment], or null when the test should
+/// start from the uniform prior. [newUser] does not run the test at all.
+PlacementSelfAssessmentBand? placementBandFor(
+  Iterable<KanjiCard> cards,
+  PlacementSelfAssessment? assessment,
+) {
+  final (double, double)? percents = switch (assessment) {
+    PlacementSelfAssessment.beginner => (
+      placementBeginnerMinPercent,
+      placementBeginnerMaxPercent,
+    ),
+    PlacementSelfAssessment.intermediate => (
+      placementIntermediateMinPercent,
+      placementIntermediateMaxPercent,
+    ),
+    PlacementSelfAssessment.expert => (
+      placementExpertMinPercent,
+      placementExpertMaxPercent,
+    ),
+    PlacementSelfAssessment.newUser || null => null,
+  };
+  if (percents == null) return null;
+  return _bandFromPercents(placementRanked(cards), percents.$1, percents.$2);
+}
+
+/// Mode of a bell whose mean, after the scale's edges, is [targetMean].
+///
+/// A bell aimed at a low difficulty is cut off by the bottom of the scale,
+/// and that leftover mass pulls the average upward. Placing the mode so the
+/// average lands on [targetMean] keeps the starting guess from running high.
+double placementPriorMode({
+  required double targetMean,
+  required double spread,
+}) {
+  final floor = placementMinDifficulty.toDouble();
+  final ceiling = placementMaxDifficulty.toDouble();
+  final target = targetMean < floor
+      ? floor
+      : targetMean > ceiling
+      ? ceiling
+      : targetMean;
+  var low = floor;
+  var high = ceiling;
+  var best = target;
+  for (var step = 0; step < 24; step++) {
+    final mid = (low + high) / 2;
+    final mean = PlacementPosterior.centered(mid, spread: spread).mean;
+    best = mid;
+    if ((mean - target).abs() < 0.2) return mid;
+    if (mean > target) {
+      high = mid;
+    } else {
+      low = mid;
+    }
+  }
+  return best;
+}
+
+/// Spread of the starting bell for [band]. Always at least
+/// [placementSelfAssessmentMinSpread], and wider for a wider slice.
+double placementSelfAssessmentSpreadFor(PlacementSelfAssessmentBand band) {
+  final span = (band.high - band.low).abs().toDouble();
+  final scaled = span * 0.6;
+  if (scaled < placementSelfAssessmentMinSpread) {
+    return placementSelfAssessmentMinSpread;
+  }
+  return scaled;
+}
+
+PlacementSelfAssessmentBand _bandFromPercents(
+  List<KanjiCard> ranked,
+  double minPercent,
+  double maxPercent,
+) {
+  if (ranked.isEmpty) {
+    return const PlacementSelfAssessmentBand(
+      low: placementMinDifficulty,
+      high: placementMaxDifficulty,
+      center: 50.5,
+    );
+  }
+  final lowIndex = _percentileIndex(ranked.length, minPercent);
+  final highIndex = _percentileIndex(ranked.length, maxPercent);
+  final midIndex = _percentileIndex(
+    ranked.length,
+    (minPercent + maxPercent) / 2,
+  );
+  final first = lowIndex < highIndex ? lowIndex : highIndex;
+  final last = lowIndex < highIndex ? highIndex : lowIndex;
+  return PlacementSelfAssessmentBand(
+    low: ranked[first].difficulty,
+    high: ranked[last].difficulty,
+    center: ranked[midIndex].difficulty.toDouble(),
+  );
+}
+
+int _percentileIndex(int length, double percent) {
+  if (length <= 1) return 0;
+  final clamped = percent < 0
+      ? 0.0
+      : percent > 1
+      ? 1.0
+      : percent;
+  final index = (clamped * (length - 1)).round();
+  if (index < 0) return 0;
+  if (index > length - 1) return length - 1;
+  return index;
+}
+
 /// Probability distribution over learner positions 1–100.
 class PlacementPosterior {
   PlacementPosterior() : _log = List<double>.filled(placementPositionCount, 0);
 
+  /// Broad bell centered on [center]. Every position keeps some weight.
+  PlacementPosterior.centered(double center, {required double spread})
+    : _log = _bell(center, spread < 1 ? 1 : spread);
+
   /// Unnormalized log weights. Equal logs are the uniform prior.
   final List<double> _log;
   List<double>? _weights;
+
+  static List<double> _bell(double center, double spread) {
+    return List<double>.generate(placementPositionCount, (index) {
+      final position = index + placementMinDifficulty;
+      final z = (position - center) / spread;
+      return -0.5 * z * z;
+    });
+  }
 
   void observe({required int difficulty, required bool correct}) {
     if (!placementDifficultyIsValid(difficulty)) return;
@@ -137,6 +323,19 @@ class PlacementPosterior {
     }
     if (variance < 0) return 0;
     return math.sqrt(variance);
+  }
+
+  /// Smallest position where the cumulative probability reaches [probability].
+  int quantile(double probability) {
+    final values = weights;
+    var cumulative = 0.0;
+    for (var index = 0; index < values.length; index++) {
+      cumulative += values[index];
+      if (cumulative >= probability - 1e-9) {
+        return index + placementMinDifficulty;
+      }
+    }
+    return placementMaxDifficulty;
   }
 
   /// Smallest positions where the cumulative probability reaches 10% and 90%.

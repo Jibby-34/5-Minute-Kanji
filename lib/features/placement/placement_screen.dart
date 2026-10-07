@@ -49,6 +49,9 @@ class _PlacementView extends StatelessWidget {
       PlacementPhase.loading || PlacementPhase.saving => const Scaffold(
         body: Center(child: CircularProgressIndicator(strokeWidth: 2)),
       ),
+      PlacementPhase.selfAssessment => _SelfAssessment(
+        onContinue: controller.choose,
+      ),
       PlacementPhase.intro => _PlacementIntro(controller: controller),
       PlacementPhase.asking => _PlacementQuestion(controller: controller),
       PlacementPhase.results => _PlacementResults(
@@ -56,6 +59,189 @@ class _PlacementView extends StatelessWidget {
         onFinished: onFinished,
       ),
     };
+  }
+}
+
+class _AssessmentOption {
+  const _AssessmentOption(this.assessment, this.title, this.detail);
+
+  final PlacementSelfAssessment assessment;
+  final String title;
+  final String detail;
+}
+
+const _assessmentOptions = [
+  _AssessmentOption(
+    PlacementSelfAssessment.newUser,
+    "I'm new",
+    "I haven't really studied kanji yet.",
+  ),
+  _AssessmentOption(
+    PlacementSelfAssessment.beginner,
+    'Beginner',
+    'I know some basic Japanese and common kanji.',
+  ),
+  _AssessmentOption(
+    PlacementSelfAssessment.intermediate,
+    'Intermediate',
+    'I can read basic Japanese and recognize quite a few kanji.',
+  ),
+  _AssessmentOption(
+    PlacementSelfAssessment.expert,
+    'Expert',
+    "I've studied Japanese for a long time and recognize lots of kanji.",
+  ),
+];
+
+/// Asks where to start looking. The choice is a guess, not a level.
+class _SelfAssessment extends StatefulWidget {
+  const _SelfAssessment({required this.onContinue});
+
+  final Future<void> Function(PlacementSelfAssessment assessment) onContinue;
+
+  @override
+  State<_SelfAssessment> createState() => _SelfAssessmentState();
+}
+
+class _SelfAssessmentState extends State<_SelfAssessment> {
+  PlacementSelfAssessment? _selected;
+  bool _saving = false;
+
+  Future<void> _submit() async {
+    final selected = _selected;
+    if (selected == null || _saving) return;
+    setState(() => _saving = true);
+    await widget.onContinue(selected);
+    if (mounted) setState(() => _saving = false);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return OnboardingScaffold(
+      step: 2,
+      action: PrimaryButton(
+        label: 'Continue',
+        onPressed: _selected == null || _saving ? null : _submit,
+      ),
+      content: (context, height) {
+        return Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const OnboardingHeadline(
+              label: 'Placement',
+              title: 'How much Japanese do you know?',
+            ),
+            SizedBox(height: (height * 0.05).clamp(20.0, 32.0)),
+            for (final option in _assessmentOptions) ...[
+              _AssessmentCard(
+                option: option,
+                selected: _selected == option.assessment,
+                onTap: () => setState(() => _selected = option.assessment),
+              ),
+              const SizedBox(height: 8),
+            ],
+          ],
+        );
+      },
+    );
+  }
+}
+
+class _AssessmentCard extends StatelessWidget {
+  const _AssessmentCard({
+    required this.option,
+    required this.selected,
+    required this.onTap,
+  });
+
+  final _AssessmentOption option;
+  final bool selected;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final primary = theme.colorScheme.primary;
+
+    return Semantics(
+      selected: selected,
+      button: true,
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: onTap,
+          borderRadius: BorderRadius.circular(AppTheme.buttonRadius),
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 180),
+            curve: Curves.easeOut,
+            constraints: const BoxConstraints(minHeight: 72),
+            padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
+            decoration: BoxDecoration(
+              color: selected ? theme.accentWash.withValues(alpha: 0.55) : null,
+              borderRadius: BorderRadius.circular(AppTheme.buttonRadius),
+              border: Border.all(
+                color: selected ? primary : theme.hairline,
+                width: selected ? 1.6 : 1.2,
+              ),
+            ),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        option.title,
+                        style: theme.textTheme.titleLarge?.copyWith(
+                          fontSize: 18,
+                          fontWeight: selected
+                              ? FontWeight.w600
+                              : FontWeight.w500,
+                          letterSpacing: -0.2,
+                          height: 1.2,
+                        ),
+                      ),
+                      const SizedBox(height: 2),
+                      Text(
+                        option.detail,
+                        style: theme.textTheme.bodyMedium?.copyWith(
+                          color: theme.mutedText,
+                          height: 1.35,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                if (selected) ...[
+                  const SizedBox(width: 12),
+                  _Tick(color: primary),
+                ],
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _Tick extends StatelessWidget {
+  const _Tick({required this.color});
+
+  final Color color;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 24,
+      height: 24,
+      decoration: BoxDecoration(color: color, shape: BoxShape.circle),
+      child: Icon(
+        Icons.check,
+        size: 15,
+        color: Theme.of(context).colorScheme.onPrimary,
+      ),
+    );
   }
 }
 
