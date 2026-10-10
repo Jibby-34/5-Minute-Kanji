@@ -72,6 +72,58 @@ enum KanjiListOrdering {
   };
 }
 
+/// Learning-status filter for the list. Uses [KanjiProgressStatus], not tile color.
+enum KanjiListStatusFilter {
+  all,
+  learning,
+  mastered;
+
+  String get label => switch (this) {
+    KanjiListStatusFilter.all => 'All',
+    KanjiListStatusFilter.learning => 'Learning',
+    KanjiListStatusFilter.mastered => 'Mastered',
+  };
+}
+
+/// Folds case and katakana so reading search matches hiragana or katakana.
+String foldForSearch(String value) {
+  final lower = value.toLowerCase();
+  final buffer = StringBuffer();
+  for (final rune in lower.runes) {
+    if (rune >= 0x30A1 && rune <= 0x30F6) {
+      buffer.writeCharCode(rune - 0x60);
+    } else if (rune == 0x30FB || rune == 0x00B7) {
+      continue;
+    } else {
+      buffer.writeCharCode(rune);
+    }
+  }
+  return buffer.toString();
+}
+
+/// Search blob for one card: character, meanings, readings, and mnemonic.
+String kanjiSearchKey(KanjiCard card) {
+  return [
+    card.character,
+    card.meaning,
+    card.keyword,
+    card.mnemonic,
+    ...card.onyomi,
+    ...card.kunyomi,
+  ].map(foldForSearch).join('\n');
+}
+
+bool kanjiMatchesStatus(
+  KanjiProgressStatus status,
+  KanjiListStatusFilter filter,
+) {
+  return switch (filter) {
+    KanjiListStatusFilter.all => true,
+    KanjiListStatusFilter.learning => status == KanjiProgressStatus.learning,
+    KanjiListStatusFilter.mastered => status == KanjiProgressStatus.mastered,
+  };
+}
+
 /// Sorts the kanji list with the same curriculum engine the study session uses.
 ///
 /// [KanjiListOrdering.learned] and [KanjiListOrdering.notEncountered] are list
@@ -166,27 +218,78 @@ class KanjiListController extends ChangeNotifier {
   bool selecting = false;
   bool busy = false;
   KanjiListOrdering ordering = KanjiListOrdering.recommended;
+  KanjiListStatusFilter statusFilter = KanjiListStatusFilter.all;
+  String query = '';
   List<KanjiListItem> items = const [];
   final Set<String> selectedIds = {};
+
+  /// N5 starts open. Other levels stay closed until the learner expands them.
+  final Set<JlptLevel> expandedLevels = {JlptLevel.n5};
+
   CurriculumPriorityService? _curriculum;
+  Map<String, String> _searchKeys = const {};
+  List<KanjiListItem>? _cachedOrdered;
+  KanjiListOrdering? _cachedOrdering;
+
+  /// While a search is active, section expansion is temporary and does not
+  /// replace [expandedLevels].
+  Set<JlptLevel>? _searchSectionExpansion;
 
   bool get groupsByJlpt => ordering == KanjiListOrdering.jlpt;
 
-  /// Kanji in the order selected on the list.
+  bool get searchActive => query.trim().isNotEmpty;
+
+  /// Kanji in the order selected on the list, before search and status filters.
   List<KanjiListItem> get orderedItems {
+    final cached = _cachedOrdered;
+    if (cached != null && _cachedOrdering == ordering) return cached;
     final curriculum = _curriculum;
     if (curriculum == null) return items;
-    return orderKanjiListItems(
+    final ordered = orderKanjiListItems(
       items: items,
       ordering: ordering,
       curriculum: curriculum,
     );
+    _cachedOrdered = ordered;
+    _cachedOrdering = ordering;
+    return ordered;
   }
 
-  List<KanjiListSection> get sections =>
-      groupKanjiByJlpt(groupsByJlpt ? orderedItems : items);
+  /// [orderedItems] limited to the current search and learning-status filter.
+  List<KanjiListItem> get visibleItems {
+    final ordered = orderedItems;
+    if (!searchActive && statusFilter == KanjiListStatusFilter.all) {
+      return ordered;
+    }
+    return [
+      for (final item in ordered)
+        if (_isVisible(item)) item,
+    ];
+  }
+
+  int get matchCount => visibleItems.length;
+
+  List<KanjiListSection> get sections {
+    final source = groupsByJlpt ? orderedItems : items;
+    if (!searchActive && statusFilter == KanjiListStatusFilter.all) {
+      return groupKanjiByJlpt(source);
+    }
+    return groupKanjiByJlpt([
+      for (final item in source)
+        if (_isVisible(item)) item,
+    ]);
+  }
 
   int get selectedCount => selectedIds.length;
+
+  bool isSectionExpanded(JlptLevel level) {
+    if (searchActive) {
+      final override = _searchSectionExpansion;
+      if (override == null) return true;
+      return override.contains(level);
+    }
+    return expandedLevels.contains(level);
+  }
 
   bool isSelectable(KanjiListItem item) => item.isNew;
 
@@ -210,12 +313,18 @@ class KanjiListController extends ChangeNotifier {
           ),
       ];
       _curriculum = CurriculumPriorityService(cards);
+      _searchKeys = {
+        for (final item in items) item.card.id: kanjiSearchKey(item.card),
+      };
+      _cachedOrdered = null;
       selectedIds.removeWhere(
         (id) => items.every((item) => item.card.id != id || !item.isNew),
       );
     } catch (_) {
       items = const [];
       _curriculum = null;
+      _searchKeys = const {};
+      _cachedOrdered = null;
       selectedIds.clear();
     }
 
@@ -227,6 +336,37 @@ class KanjiListController extends ChangeNotifier {
     if (ordering == value) return;
     ordering = value;
     notifyListeners();
+  }
+
+  void setQuery(String value) {
+    if (query == value) return;
+    query = value;
+    _searchSectionExpansion = null;
+    notifyListeners();
+  }
+
+  void setStatusFilter(KanjiListStatusFilter value) {
+    if (statusFilter == value) return;
+    statusFilter = value;
+    notifyListeners();
+  }
+
+  void toggleSection(JlptLevel level) {
+    if (searchActive) {
+      final current = _searchSectionExpansion ?? JlptLevel.sectionOrder.toSet();
+      if (!current.remove(level)) current.add(level);
+      _searchSectionExpansion = current;
+    } else if (!expandedLevels.remove(level)) {
+      expandedLevels.add(level);
+    }
+    notifyListeners();
+  }
+
+  bool _isVisible(KanjiListItem item) {
+    if (!kanjiMatchesStatus(item.status, statusFilter)) return false;
+    if (!searchActive) return true;
+    final key = _searchKeys[item.card.id] ?? kanjiSearchKey(item.card);
+    return key.contains(foldForSearch(query.trim()));
   }
 
   void enterSelection() {

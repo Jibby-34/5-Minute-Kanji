@@ -13,6 +13,7 @@ import 'package:fiveminutekanji/core/models/review.dart';
 import 'package:fiveminutekanji/core/theme/app_theme.dart';
 import 'package:fiveminutekanji/data/hardcoded_kanji_repository.dart';
 import 'package:fiveminutekanji/data/shared_prefs_progress_repository.dart';
+import 'package:fiveminutekanji/features/kanji_list/kanji_detail_screen.dart';
 import 'package:fiveminutekanji/features/kanji_list/kanji_list_controller.dart';
 import 'package:fiveminutekanji/features/kanji_list/kanji_list_screen.dart';
 import 'package:fiveminutekanji/repositories/kanji_repository.dart';
@@ -37,6 +38,20 @@ void main() {
     addTearDown(tester.view.resetDevicePixelRatio);
   }
 
+  Finder detailText(String text) {
+    return find.descendant(
+      of: find.byType(KanjiDetailScreen),
+      matching: find.text(text),
+    );
+  }
+
+  Future<void> chooseKanjiOrder(WidgetTester tester, String label) async {
+    await tester.tap(find.byKey(const Key('kanji-list-sort')));
+    await tester.pumpAndSettle();
+    await tester.tap(find.widgetWithText(ListTile, label));
+    await tester.pumpAndSettle();
+  }
+
   testWidgets('home list button opens kanji grid and detail', (tester) async {
     usePhoneViewport(tester);
     SharedPreferences.setMockInitialValues({});
@@ -59,8 +74,7 @@ void main() {
 
     expect(find.text('Kanji List'), findsOneWidget);
     expect(find.text('Learning Path'), findsOneWidget);
-    await tester.tap(find.text('JLPT'));
-    await tester.pump();
+    await chooseKanjiOrder(tester, 'JLPT');
     expect(find.text('JLPT N5'), findsOneWidget);
     final list = Provider.of<KanjiListController>(
       tester.element(find.text('Kanji List')),
@@ -127,7 +141,7 @@ void main() {
     await tester.tap(find.text(first.character));
     await tester.pumpAndSettle();
 
-    expect(find.text('Mastered'), findsOneWidget);
+    expect(detailText('Mastered'), findsOneWidget);
   });
 
   testWidgets('Again after mastered shows Learning on detail', (tester) async {
@@ -168,8 +182,8 @@ void main() {
     await tester.tap(find.text(first.character));
     await tester.pumpAndSettle();
 
-    expect(find.text('Learning'), findsOneWidget);
-    expect(find.text('Mastered'), findsNothing);
+    expect(detailText('Learning'), findsOneWidget);
+    expect(detailText('Mastered'), findsNothing);
   });
 
   testWidgets('Mark as Known on detail enters SRS as learning', (tester) async {
@@ -203,8 +217,8 @@ void main() {
     await tester.tap(find.text('Mark as Known'));
     await tester.pumpAndSettle();
 
-    expect(find.text('Learning'), findsOneWidget);
-    expect(find.text('Mastered'), findsNothing);
+    expect(detailText('Learning'), findsOneWidget);
+    expect(detailText('Mastered'), findsNothing);
     expect(find.text('Not encountered'), findsNothing);
     expect(find.text('Mark as Known'), findsNothing);
 
@@ -223,7 +237,7 @@ void main() {
     await tester.pumpAndSettle();
     await tester.tap(find.text(first.character));
     await tester.pumpAndSettle();
-    expect(find.text('Learning'), findsOneWidget);
+    expect(detailText('Learning'), findsOneWidget);
   });
 
   testWidgets(
@@ -319,8 +333,8 @@ void main() {
 
       await tester.tap(find.text(second.character));
       await tester.pumpAndSettle();
-      expect(find.text('Learning'), findsOneWidget);
-      expect(find.text('Mastered'), findsNothing);
+      expect(detailText('Learning'), findsOneWidget);
+      expect(detailText('Mastered'), findsNothing);
     },
   );
 
@@ -391,8 +405,7 @@ void main() {
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 50));
 
-    await tester.tap(find.text('JLPT'));
-    await tester.pump();
+    await chooseKanjiOrder(tester, 'JLPT');
 
     const titles = [
       'JLPT N5',
@@ -406,6 +419,10 @@ void main() {
 
     for (final title in titles) {
       expect(find.text(title), findsOneWidget);
+    }
+    for (final title in titles.skip(1)) {
+      await tester.tap(find.text(title));
+      await tester.pump();
     }
     for (final character in characters) {
       expect(find.text(character), findsOneWidget);
@@ -493,8 +510,7 @@ void main() {
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 50));
 
-    await tester.tap(find.text('JLPT'));
-    await tester.pump();
+    await chooseKanjiOrder(tester, 'JLPT');
 
     expect(find.text('JLPT N5'), findsOneWidget);
     expect(find.text('JLPT N3'), findsOneWidget);
@@ -568,25 +584,240 @@ void main() {
     }
 
     expect(find.text('Learning Path'), findsOneWidget);
-    expect(find.text('Frequency'), findsOneWidget);
-    expect(find.text('Difficulty'), findsOneWidget);
-    expect(find.text('JLPT'), findsOneWidget);
     expect(find.text('JLPT N5'), findsNothing);
     expect(visualOrder(), ['用', '七', '中']);
 
-    await tester.tap(find.text('Frequency'));
-    await tester.pump();
+    await tester.tap(find.byKey(const Key('kanji-list-sort')));
+    await tester.pumpAndSettle();
+    expect(find.widgetWithText(ListTile, 'Learning Path'), findsOneWidget);
+    expect(find.widgetWithText(ListTile, 'Frequency'), findsOneWidget);
+    expect(find.widgetWithText(ListTile, 'Difficulty'), findsOneWidget);
+    expect(find.widgetWithText(ListTile, 'JLPT'), findsOneWidget);
+    await tester.tap(find.widgetWithText(ListTile, 'Frequency'));
+    await tester.pumpAndSettle();
+    expect(find.text('Frequency'), findsOneWidget);
     expect(visualOrder(), ['用', '中', '七']);
 
-    await tester.tap(find.text('Difficulty'));
-    await tester.pump();
+    await chooseKanjiOrder(tester, 'Difficulty');
     expect(visualOrder(), ['七', '中', '用']);
 
-    await tester.tap(find.text('JLPT'));
-    await tester.pump();
+    await chooseKanjiOrder(tester, 'JLPT');
     expect(find.text('JLPT N5'), findsOneWidget);
     expect(find.text('JLPT N3'), findsOneWidget);
     expect(find.text('JLPT N1'), findsOneWidget);
+    await tester.tap(find.text('JLPT N3'));
+    await tester.pump();
+    await tester.tap(find.text('JLPT N1'));
+    await tester.pump();
     expect(visualOrder(), ['七', '中', '用']);
+  });
+
+  testWidgets('search and filters work across sort modes', (tester) async {
+    usePhoneViewport(tester);
+    final now = DateTime(2026, 9, 2, 8);
+    final cards = [
+      const KanjiCard(
+        id: 'sun',
+        character: '日',
+        meaning: 'day',
+        keyword: 'sun',
+        mnemonic: 'a sun over the horizon',
+        onyomi: ['ニチ'],
+        kunyomi: ['ひ'],
+        jlptLevel: JlptLevel.n5,
+        frequency: 2,
+        difficulty: 1,
+      ),
+      testCard(
+        'person',
+        keyword: 'person',
+        character: '人',
+        jlptLevel: JlptLevel.n4,
+        frequency: 20,
+        difficulty: 40,
+      ),
+      testCard(
+        'moon',
+        keyword: 'moon',
+        character: '月',
+        jlptLevel: JlptLevel.n1,
+        frequency: 5,
+        difficulty: 10,
+      ),
+    ];
+    final progress = MemoryProgressRepository(
+      schedules: {
+        'sun': CardSchedule.fresh('sun', now),
+        'person': CardSchedule(
+          cardId: 'person',
+          state: CardLearningState.review,
+          reviewCount: 1,
+          correctCount: 1,
+          incorrectCount: 0,
+          dueAt: now,
+          interval: const Duration(days: 1),
+          ease: 2.5,
+          consecutiveGoodCount: 1,
+        ),
+        'moon': CardSchedule(
+          cardId: 'moon',
+          state: CardLearningState.review,
+          reviewCount: 3,
+          correctCount: 3,
+          incorrectCount: 0,
+          dueAt: now,
+          interval: const Duration(days: 1),
+          ease: 2.5,
+          consecutiveGoodCount: 3,
+        ),
+      },
+    );
+
+    await tester.pumpWidget(
+      MultiProvider(
+        providers: [
+          Provider<KanjiRepository>.value(value: FakeKanjiRepository(cards)),
+          Provider<ProgressRepository>.value(value: progress),
+          Provider<MarkAsKnownService>(
+            create: (context) => MarkAsKnownService(
+              progressRepository: context.read<ProgressRepository>(),
+              srsEngine: const SrsEngine(),
+            ),
+          ),
+        ],
+        child: MaterialApp(
+          theme: AppTheme.light,
+          home: const KanjiListScreen(),
+        ),
+      ),
+    );
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 50));
+
+    expect(find.text('Search kanji or meaning...'), findsOneWidget);
+    expect(find.text('3 kanji'), findsOneWidget);
+    expect(find.text('All'), findsOneWidget);
+
+    await tester.enterText(
+      find.byKey(const Key('kanji-list-search')),
+      'horizon',
+    );
+    await tester.pump();
+    expect(find.text('日'), findsOneWidget);
+    expect(find.text('人'), findsNothing);
+    expect(find.text('月'), findsNothing);
+    expect(find.text('1 kanji'), findsOneWidget);
+
+    await tester.tap(find.byTooltip('Clear search'));
+    await tester.pump();
+    expect(find.text('3 kanji'), findsOneWidget);
+
+    await tester.enterText(find.byKey(const Key('kanji-list-search')), 'にち');
+    await tester.pump();
+    expect(find.text('日'), findsOneWidget);
+
+    await tester.tap(find.byTooltip('Clear search'));
+    await tester.pump();
+    await tester.tap(find.text('Learning'));
+    await tester.pump();
+    expect(find.text('人'), findsOneWidget);
+    expect(find.text('日'), findsNothing);
+    expect(find.text('月'), findsNothing);
+
+    await tester.tap(find.text('Mastered'));
+    await tester.pump();
+    expect(find.text('月'), findsOneWidget);
+    expect(find.text('人'), findsNothing);
+
+    await tester.enterText(
+      find.byKey(const Key('kanji-list-search')),
+      'person',
+    );
+    await tester.pump();
+    expect(find.text('No kanji match your search.'), findsOneWidget);
+    expect(find.text('0 kanji'), findsOneWidget);
+
+    await tester.tap(find.text('All'));
+    await tester.pump();
+    expect(find.text('人'), findsOneWidget);
+    expect(
+      tester.widget<TextField>(find.byType(TextField)).controller?.text,
+      'person',
+    );
+
+    await chooseKanjiOrder(tester, 'Frequency');
+    expect(find.text('Frequency'), findsOneWidget);
+    expect(find.text('人'), findsOneWidget);
+    expect(
+      tester.widget<TextField>(find.byType(TextField)).controller?.text,
+      'person',
+    );
+
+    await tester.tap(find.byTooltip('Clear search'));
+    await tester.pump();
+    await chooseKanjiOrder(tester, 'JLPT');
+    expect(find.text('日'), findsOneWidget);
+    expect(find.text('JLPT N1'), findsOneWidget);
+    expect(find.text('月'), findsNothing);
+
+    await tester.enterText(find.byKey(const Key('kanji-list-search')), 'moon');
+    await tester.pump();
+    expect(find.text('月'), findsOneWidget);
+    expect(find.text('JLPT N1'), findsOneWidget);
+    expect(find.text('1 kanji'), findsOneWidget);
+
+    await tester.tap(find.byTooltip('Clear search'));
+    await tester.pump();
+    expect(find.text('月'), findsNothing);
+    expect(find.text('日'), findsOneWidget);
+    expect(find.text('3 kanji'), findsOneWidget);
+  });
+
+  testWidgets('narrow phone does not overflow the list controls', (
+    tester,
+  ) async {
+    tester.view.physicalSize = const Size(320, 640);
+    tester.view.devicePixelRatio = 1.0;
+    addTearDown(tester.view.resetPhysicalSize);
+    addTearDown(tester.view.resetDevicePixelRatio);
+
+    await tester.pumpWidget(
+      MultiProvider(
+        providers: [
+          Provider<KanjiRepository>.value(
+            value: FakeKanjiRepository([
+              testCard('a', character: '一'),
+              testCard('b', character: '二'),
+              testCard('c', character: '三'),
+            ]),
+          ),
+          Provider<ProgressRepository>.value(value: MemoryProgressRepository()),
+          Provider<MarkAsKnownService>(
+            create: (context) => MarkAsKnownService(
+              progressRepository: context.read<ProgressRepository>(),
+              srsEngine: const SrsEngine(),
+            ),
+          ),
+        ],
+        child: MaterialApp(
+          theme: AppTheme.light,
+          home: const KanjiListScreen(),
+        ),
+      ),
+    );
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 50));
+
+    expect(find.text('Kanji List'), findsOneWidget);
+    expect(find.text('Learning Path'), findsOneWidget);
+    expect(find.text('3 kanji'), findsOneWidget);
+    expect(tester.takeException(), isNull);
+
+    await tester.tap(find.text('Select'));
+    await tester.pump();
+    expect(find.text('Select All New'), findsOneWidget);
+    expect(find.text('Clear Selection'), findsOneWidget);
+    expect(find.widgetWithText(FilledButton, 'Mark as Known'), findsOneWidget);
+    expect(tester.takeException(), isNull);
   });
 }

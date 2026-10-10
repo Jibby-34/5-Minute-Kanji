@@ -356,4 +356,130 @@ void main() {
     expect(learned.first.card.id, 'useful');
     expect(fresh.first.card.id, 'obscure');
   });
+
+  test(
+    'search and status filters keep sort order and JLPT expansion',
+    () async {
+      final sun = const KanjiCard(
+        id: 'sun',
+        character: '日',
+        meaning: 'day',
+        keyword: 'sun',
+        mnemonic: 'a sun over the horizon',
+        onyomi: ['ニチ'],
+        kunyomi: ['ひ'],
+        jlptLevel: JlptLevel.n5,
+        frequency: 2,
+        difficulty: 1,
+      );
+      final person = testCard(
+        'person',
+        keyword: 'person',
+        character: '人',
+        jlptLevel: JlptLevel.n4,
+        frequency: 20,
+        difficulty: 40,
+      );
+      final moon = testCard(
+        'moon',
+        keyword: 'moon',
+        character: '月',
+        jlptLevel: JlptLevel.n1,
+        frequency: 5,
+        difficulty: 10,
+      );
+      final progress = MemoryProgressRepository(
+        schedules: {
+          'sun': CardSchedule.fresh('sun', now),
+          'person': CardSchedule(
+            cardId: 'person',
+            state: CardLearningState.review,
+            reviewCount: 1,
+            correctCount: 1,
+            incorrectCount: 0,
+            dueAt: now,
+            interval: const Duration(days: 1),
+            ease: 2.5,
+            consecutiveGoodCount: 1,
+          ),
+          'moon': CardSchedule(
+            cardId: 'moon',
+            state: CardLearningState.review,
+            reviewCount: 3,
+            correctCount: 3,
+            incorrectCount: 0,
+            dueAt: now,
+            interval: const Duration(days: 1),
+            ease: 2.5,
+            consecutiveGoodCount: 3,
+          ),
+        },
+      );
+      final controller = KanjiListController(
+        kanjiRepository: FakeKanjiRepository([sun, person, moon]),
+        progressRepository: progress,
+      );
+      await controller.load();
+
+      controller.setQuery(' 日 ');
+      expect(controller.visibleItems.map((item) => item.card.id), ['sun']);
+      controller.setQuery('day');
+      expect(controller.visibleItems.single.card.id, 'sun');
+      controller.setQuery('SUN');
+      expect(controller.visibleItems.single.card.id, 'sun');
+      controller.setQuery('horizon');
+      expect(controller.visibleItems.single.card.id, 'sun');
+      controller.setQuery('ひ');
+      expect(controller.visibleItems.single.card.id, 'sun');
+      controller.setQuery('にち');
+      expect(controller.visibleItems.single.card.id, 'sun');
+      controller.setQuery('ニチ');
+      expect(controller.visibleItems.single.card.id, 'sun');
+
+      controller.setQuery('');
+      controller.setStatusFilter(KanjiListStatusFilter.learning);
+      expect(controller.visibleItems.single.card.id, 'person');
+      controller.setStatusFilter(KanjiListStatusFilter.mastered);
+      expect(controller.visibleItems.single.card.id, 'moon');
+      controller.setStatusFilter(KanjiListStatusFilter.all);
+      expect(controller.matchCount, 3);
+
+      controller.setQuery('person');
+      controller.setOrdering(KanjiListOrdering.frequency);
+      expect(controller.query, 'person');
+      expect(controller.statusFilter, KanjiListStatusFilter.all);
+      expect(controller.ordering, KanjiListOrdering.frequency);
+      expect(controller.visibleItems.single.card.id, 'person');
+
+      controller.enterSelection();
+      controller.toggleSelected('sun');
+      controller.setQuery('moon');
+      controller.setStatusFilter(KanjiListStatusFilter.mastered);
+      expect(controller.selectedIds, {'sun'});
+
+      controller.exitSelection();
+      controller.setQuery('');
+      controller.setStatusFilter(KanjiListStatusFilter.all);
+      controller.setOrdering(KanjiListOrdering.jlpt);
+      expect(controller.isSectionExpanded(JlptLevel.n5), isTrue);
+      expect(controller.isSectionExpanded(JlptLevel.n1), isFalse);
+      controller.toggleSection(JlptLevel.n1);
+      controller.setQuery('月');
+      expect(controller.isSectionExpanded(JlptLevel.n1), isTrue);
+      expect(controller.sections.single.items.single.card.id, 'moon');
+      expect(controller.matchCount, 1);
+      controller.toggleSection(JlptLevel.n5);
+      expect(controller.isSectionExpanded(JlptLevel.n5), isFalse);
+      expect(controller.expandedLevels.contains(JlptLevel.n5), isTrue);
+      controller.setQuery('');
+      expect(controller.isSectionExpanded(JlptLevel.n5), isTrue);
+      expect(controller.isSectionExpanded(JlptLevel.n1), isTrue);
+      expect(controller.isSectionExpanded(JlptLevel.n4), isFalse);
+      expect(controller.sections.map((section) => section.items.length), [
+        1,
+        1,
+        1,
+      ]);
+    },
+  );
 }
