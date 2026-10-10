@@ -166,6 +166,21 @@ extension ThemeExtras on ThemeData {
       ? AppColors.darkIndigoWash
       : AppColors.indigoWash;
 
+  Color get sageInk =>
+      brightness == Brightness.dark ? AppColors.darkSage : AppColors.sage;
+
+  Color get sageWash => brightness == Brightness.dark
+      ? AppColors.darkMasteredWash
+      : AppColors.masteredWash;
+
+  Color get warmBrownInk => brightness == Brightness.dark
+      ? AppColors.darkWarmBrown
+      : AppColors.warmBrown;
+
+  Color get warmBrownWash => brightness == Brightness.dark
+      ? AppColors.darkWarmBrownWash
+      : AppColors.warmBrownWash;
+
   Color statusWash(KanjiProgressStatus status) {
     final dark = brightness == Brightness.dark;
     return switch (status) {

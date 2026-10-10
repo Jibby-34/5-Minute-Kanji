@@ -229,7 +229,7 @@ void main() {
     await tester.tap(find.text('Good'));
     await tester.pumpAndSettle();
 
-    expect(find.text('Nice.'), findsOneWidget);
+    expect(find.text('Nice work.'), findsOneWidget);
   });
 
   testWidgets('finishing a session persists progress and streak', (
@@ -274,8 +274,8 @@ void main() {
     await tester.tap(find.text('Good'));
     await tester.pumpAndSettle();
 
-    expect(find.text('Nice.'), findsOneWidget);
-    expect(find.text('1 kanji reviewed'), findsOneWidget);
+    expect(find.text('Nice work.'), findsOneWidget);
+    expect(find.text('kanji reviewed'), findsOneWidget);
     expect(find.text('Done'), findsOneWidget);
 
     final schedule = await progress.getSchedule(first.id);

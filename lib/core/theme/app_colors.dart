@@ -15,6 +15,11 @@ class AppColors {
   static const Color learningWash = Color(0xFFD8DCE8);
   static const Color masteredWash = Color(0xFFD6E0D4);
 
+  /// Quiet result tones. Sage for a review that landed, warm brown for one to revisit.
+  static const Color sage = Color(0xFF4F624C);
+  static const Color warmBrown = Color(0xFF6E5340);
+  static const Color warmBrownWash = Color(0xFFE2CDB6);
+
   static const Color darkScaffold = Color(0xFF1A1916);
   static const Color darkSurface = Color(0xFF22211D);
   static const Color darkText = Color(0xFFEDE8DF);
@@ -24,4 +29,7 @@ class AppColors {
   static const Color darkIndigoWash = Color(0xFF2B3047);
   static const Color darkLearningWash = Color(0xFF2A3148);
   static const Color darkMasteredWash = Color(0xFF2A332C);
+  static const Color darkSage = Color(0xFFC3D2BE);
+  static const Color darkWarmBrown = Color(0xFFD7C2A8);
+  static const Color darkWarmBrownWash = Color(0xFF3C332C);
 }
