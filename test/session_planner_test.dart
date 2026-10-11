@@ -211,6 +211,84 @@ void main() {
     },
   );
 
+  test('today\'s new kanji are included even when they pass the time budget', () {
+    final news = [
+      for (var i = 0; i < 4; i++)
+        candidate(
+          id: 'n$i',
+          priority: 0.5,
+          estimated: const Duration(seconds: 30),
+          isNew: true,
+        ),
+    ];
+    final reviews = [
+      for (var i = 0; i < 6; i++)
+        candidate(
+          id: 'r$i',
+          priority: 10 - i.toDouble(),
+          estimated: const Duration(seconds: 20),
+        ),
+    ];
+
+    final plan = planner.plan(
+      candidates: [...reviews, ...news],
+      budget: const Duration(seconds: 50),
+      maxNewCards: 4,
+    );
+
+    expect(plan.selected.where((item) => item.isNew).map((item) => item.card.id), [
+      'n0',
+      'n1',
+      'n2',
+      'n3',
+    ]);
+    expect(plan.selected.where((item) => !item.isNew), isEmpty);
+    expect(plan.estimated.inSeconds, greaterThan(50));
+    expect(plan.overflow.map((item) => item.card.id), [
+      'r0',
+      'r1',
+      'r2',
+      'r3',
+      'r4',
+      'r5',
+    ]);
+  });
+
+  test('reviews fill only the time left after today\'s new kanji', () {
+    final plan = planner.plan(
+      candidates: [
+        candidate(
+          id: 'r-high',
+          priority: 9,
+          estimated: const Duration(seconds: 20),
+        ),
+        candidate(
+          id: 'r-low',
+          priority: 1,
+          estimated: const Duration(seconds: 20),
+        ),
+        candidate(
+          id: 'n0',
+          priority: 0.2,
+          estimated: const Duration(seconds: 30),
+          isNew: true,
+        ),
+        candidate(
+          id: 'n1',
+          priority: 0.2,
+          estimated: const Duration(seconds: 30),
+          isNew: true,
+        ),
+      ],
+      budget: const Duration(seconds: 80),
+      maxNewCards: 2,
+    );
+
+    expect(plan.selected.map((item) => item.card.id), ['n0', 'n1', 'r-high']);
+    expect(plan.overflow.map((item) => item.card.id), ['r-low']);
+    expect(plan.estimated.inSeconds, lessThanOrEqualTo((80 * 1.05).round()));
+  });
+
   test('new-card limits stay in force even when the time budget is large', () {
     final news = [
       for (var i = 0; i < 6; i++)
@@ -295,6 +373,29 @@ void main() {
     );
   });
 
+  test('a full review pile does not drop today\'s new kanji', () async {
+    final reviews = deck(40);
+    final news = [for (var i = 0; i < 4; i++) testCard('n$i')];
+    final progress = MemoryProgressRepository(
+      settings: const AppSettings(dailyStudyMinutes: 3, newKanjiPerDay: 4),
+      schedules: {for (final card in reviews) card.id: reviewCard(card.id)},
+    );
+
+    final workload = await service(progress, [
+      ...reviews,
+      ...news,
+    ]).read(now: now);
+
+    expect(
+      workload.sessionCards
+          .where((card) => card.id.startsWith('n'))
+          .map((card) => card.id)
+          .toSet(),
+      {'n0', 'n1', 'n2', 'n3'},
+    );
+    expect(workload.sessionCards.length, greaterThan(4));
+  });
+
   test('missing days do not grow the session past the time budget', () async {
     final cards = deck(40);
     final progress = MemoryProgressRepository(
@@ -310,7 +411,7 @@ void main() {
     );
 
     final monday = await service(progress, cards).read(now: now);
-    expect(monday.sessionCards.length, lessThan(20));
+    expect(monday.sessionCards.length, lessThan(cards.length));
     expect(monday.estimatedMinutes, lessThanOrEqualTo(6));
     expect(monday.studyAnywayAvailable, isFalse);
 
@@ -438,7 +539,7 @@ void main() {
   test(
     'leaving a card out of the session does not change its SRS state',
     () async {
-      final cards = deck(20);
+      final cards = deck(40);
       final progress = MemoryProgressRepository(
         settings: const AppSettings(dailyStudyMinutes: 5, newKanjiPerDay: 0),
         schedules: {
@@ -464,7 +565,7 @@ void main() {
   );
 
   test('finishing the planned session leaves the rest optional', () async {
-    final cards = deck(20);
+    final cards = deck(40);
     final progress = MemoryProgressRepository(
       settings: const AppSettings(dailyStudyMinutes: 5, newKanjiPerDay: 0),
       schedules: {
@@ -601,6 +702,22 @@ void main() {
     expect(
       estimator.estimate(learning, isNew: false),
       greaterThan(estimator.estimate(mature, isNew: false)),
+    );
+    expect(estimator.estimate(fresh, isNew: true), const Duration(seconds: 21));
+    expect(
+      estimator.estimate(learning, isNew: false),
+      const Duration(seconds: 17),
+    );
+    expect(
+      estimator.estimate(
+        reviewCard('r', interval: const Duration(days: 1)),
+        isNew: false,
+      ),
+      const Duration(seconds: 14),
+    );
+    expect(
+      estimator.estimate(mature, isNew: false),
+      const Duration(seconds: 10),
     );
   });
 

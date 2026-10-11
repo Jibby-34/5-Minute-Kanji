@@ -41,11 +41,14 @@ class PlannedSession {
   final Duration estimated;
 }
 
-/// Picks the highest-value cards whose estimates fit a time budget.
+/// Picks cards for a time budget.
 ///
-/// Greedy, not optimal. A card is skipped when it would push the sitting
-/// past the upper tolerance, unless it is the only card and leaving it out
-/// would drop an important review forever. Scoring stays outside this class.
+/// Every new kanji allowed today is included, even when that pushes the
+/// sitting past the budget. Reviews then fill whatever time is left, highest
+/// priority first. Greedy, not optimal. A review is skipped when it would
+/// push the sitting past the upper tolerance, unless it is the only card and
+/// leaving it out would drop an important review forever. Scoring stays
+/// outside this class.
 class SessionPlanner {
   const SessionPlanner({
     this.upperTolerance = 1.05,
@@ -70,12 +73,19 @@ class SessionPlanner {
     final capped = _capNewCards(candidates, maxNewCards, compareNewCards);
     if (capped.isEmpty) return PlannedSession.empty;
 
-    final pool = List<SessionCandidate>.from(capped)..sort(_byPriority);
+    final news = capped.where((candidate) => candidate.isNew).toList();
+    final reviews = capped.where((candidate) => !candidate.isNew).toList()
+      ..sort(_byPriority);
     final upper = _upperSeconds(budget);
     final chosen = <SessionCandidate>[];
     var used = 0;
 
-    for (final candidate in pool) {
+    for (final candidate in news) {
+      chosen.add(candidate);
+      used += math.max(1, candidate.estimated.inSeconds);
+    }
+
+    for (final candidate in reviews) {
       final seconds = math.max(1, candidate.estimated.inSeconds);
       if (chosen.isEmpty && seconds > upper) {
         chosen.add(candidate);

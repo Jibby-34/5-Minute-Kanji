@@ -87,9 +87,10 @@ class DailyWorkload {
 
 /// Computes the day's workload from progress + settings.
 ///
-/// SRS still decides which encountered cards are eligible, and the session
-/// planner still decides what fits the time budget. New kanji are ordered by
-/// [CurriculumPriorityService] before that daily allowance is applied.
+/// SRS still decides which encountered cards are eligible. Today's new kanji,
+/// already limited to the daily allowance and ordered by
+/// [CurriculumPriorityService], are always part of the sitting. The session
+/// planner then fills any time that remains with reviews.
 class DailyWorkloadService {
   const DailyWorkloadService({
     required this.kanjiRepository,

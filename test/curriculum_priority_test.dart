@@ -594,7 +594,7 @@ void main() {
       },
     );
 
-    test('the time budget can still stop before the daily allowance', () async {
+    test('the time budget does not leave out today\'s new kanji', () async {
       final cards = [
         for (var i = 0; i < 8; i++)
           card(
@@ -611,9 +611,9 @@ void main() {
 
       final workload = await workloadFor(progress, cards).read(now: now);
 
-      expect(workload.sessionCards.length, lessThan(8));
-      expect(workload.sessionCards.length, 2);
+      expect(workload.sessionCards, hasLength(8));
       expect(workload.newRemainingToday, 8);
+      expect(workload.estimatedMinutes, greaterThan(1));
     });
 
     test(

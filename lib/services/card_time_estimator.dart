@@ -4,12 +4,16 @@ import '../core/models/card_schedule.dart';
 ///
 /// Constants stand in for measured review times. Passing different durations
 /// here is the seam a later estimator can use once real timings exist.
+///
+/// Each default is the original timing reduced by 30%, rounded to the nearest
+/// second because the session planner counts whole seconds: 30s, 24s, 20s,
+/// and 14s become 21s, 17s, 14s, and 10s.
 class CardTimeEstimator {
   const CardTimeEstimator({
-    this.newCard = const Duration(seconds: 30),
-    this.learningCard = const Duration(seconds: 24),
-    this.reviewCard = const Duration(seconds: 20),
-    this.matureCard = const Duration(seconds: 14),
+    this.newCard = const Duration(seconds: 21),
+    this.learningCard = const Duration(seconds: 17),
+    this.reviewCard = const Duration(seconds: 14),
+    this.matureCard = const Duration(seconds: 10),
     this.matureInterval = const Duration(days: 21),
   });
 
