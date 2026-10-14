@@ -10,7 +10,7 @@ Stroke-order assets in `assets/kanji/strokes/` are derived from [KanjiVG](https:
 | Download | https://github.com/KanjiVG/kanjivg/releases/download/r20250816/kanjivg-20250816-main.zip |
 | License | Creative Commons Attribution-Share Alike 3.0 |
 | Copyright | © 2009–2026 Ulrich Apel |
-| Imported kanji | 250 |
+| Imported kanji | 2220 |
 | Missing kanji | 0 |
 
 The JSON files are an adaptation of the KanjiVG SVG stroke paths for the kanji

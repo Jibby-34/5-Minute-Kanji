@@ -55,10 +55,9 @@ Future<void> main() async {
   }
   await File('${thirdParty.path}/NOTICE').writeAsString(noticeText());
 
-  final extractDir = Directory('${cacheDir.path}/kanjivg-extract');
-  if (extractDir.existsSync()) {
-    extractDir.deleteSync(recursive: true);
-  }
+  final extractDir = Directory(
+    '${cacheDir.path}/kanjivg-extract-${DateTime.now().millisecondsSinceEpoch}',
+  );
   extractDir.createSync(recursive: true);
   final extract = await Process.run('tar', [
     '-xf',
