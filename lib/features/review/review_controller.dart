@@ -9,7 +9,9 @@ import '../../core/models/review.dart';
 import '../../core/models/study_phase.dart';
 import '../../core/utils/clock.dart';
 import '../../repositories/progress_repository.dart';
+import '../../services/active_duration_timer.dart';
 import '../../services/answer_grader.dart';
+import '../../services/card_time_estimator.dart';
 import '../../services/daily_review_clock.dart';
 import '../../services/daily_workload.dart';
 import '../../services/due_card_selector.dart';
@@ -31,6 +33,7 @@ class ReviewController extends ChangeNotifier {
     this.grader = const ManualAnswerGrader(),
     this.statusResolver = const KanjiStatusResolver(),
     this.selector = const DueCardSelector(),
+    this.timeEstimator = const CardTimeEstimator(),
     this.workloadService,
     MarkAsKnownService? markAsKnown,
     Map<String, CardSchedule>? schedules,
@@ -50,7 +53,6 @@ class ReviewController extends ChangeNotifier {
          isPractice: isPractice,
          startTime: startTime ?? (clock ?? DateTime.now)(),
        ) {
-    _cardShownAt = this.clock();
     reviewClock = DailyReviewClock(
       startedAt: session.startTime,
       startOfDay: _startOfDay,
@@ -59,6 +61,7 @@ class ReviewController extends ChangeNotifier {
       _schedules = Map<String, CardSchedule>.from(schedules);
       _applyPhaseForCurrent();
       ready = true;
+      _beginCardTiming();
     }
   }
 
@@ -70,6 +73,7 @@ class ReviewController extends ChangeNotifier {
   final AnswerGrader grader;
   final KanjiStatusResolver statusResolver;
   final DueCardSelector selector;
+  final CardTimeEstimator timeEstimator;
 
   /// When set, an unfinished daily time goal can draw the next priority card.
   final DailyWorkloadService? workloadService;
@@ -84,7 +88,8 @@ class ReviewController extends ChangeNotifier {
   HandwritingInput drawing = HandwritingInput.empty;
   ReviewAnswer? answer;
   ReviewResult? suggestedResult;
-  late DateTime _cardShownAt;
+  final ActiveDurationTimer _cardTimer = ActiveDurationTimer();
+  bool _cardTimingOpen = false;
   SessionSummary? summary;
   KanjiCard? _visibleCard;
   Map<String, CardSchedule> _schedules = {};
@@ -138,6 +143,7 @@ class ReviewController extends ChangeNotifier {
         _schedules = Map<String, CardSchedule>.from(schedules);
         _applyPhaseForCurrent();
         ready = true;
+        _beginCardTiming();
       }
     }
 
@@ -147,12 +153,16 @@ class ReviewController extends ChangeNotifier {
 
   /// Freezes the daily clock. Time until the app is open again is not review.
   void pauseReviewTime() {
-    reviewClock.pause(clock());
+    final now = clock();
+    reviewClock.pause(now);
+    _cardTimer.pause(now);
   }
 
   /// Continues the daily clock from [clock], leaving the gap uncounted.
   void resumeReviewTime() {
-    reviewClock.resume(clock());
+    final now = clock();
+    reviewClock.resume(now);
+    _cardTimer.resume(now);
   }
 
   /// Writes today's review time. Safe to call again; each save replaces the
@@ -225,6 +235,7 @@ class ReviewController extends ChangeNotifier {
     notifyListeners();
 
     final now = clock();
+    final active = _cardTimer.elapsedAt(now);
     try {
       final dayBoundary = await _loadStartOfDay();
       final existing =
@@ -234,6 +245,7 @@ class ReviewController extends ChangeNotifier {
       await progressRepository.saveSchedule(updated);
       _schedules[card.id] = updated;
       if (existing.state == CardLearningState.newCard) {
+        await _recordPace(schedule: existing, isNew: true, duration: active);
         final daily = (await progressRepository.getDailyNewKanji()).forDay(
           now,
           startOfDay: dayBoundary,
@@ -325,7 +337,7 @@ class ReviewController extends ChangeNotifier {
     notifyListeners();
 
     final now = clock();
-    final timeOnCard = now.difference(_cardShownAt);
+    final timeOnCard = _cardTimer.elapsedAt(now);
 
     try {
       final dayBoundary = await _loadStartOfDay();
@@ -340,6 +352,11 @@ class ReviewController extends ChangeNotifier {
         );
         await progressRepository.saveSchedule(updated);
         _schedules[card.id] = updated;
+        await _recordPace(
+          schedule: existing,
+          isNew: false,
+          duration: timeOnCard,
+        );
       }
 
       await progressRepository.addHistory(
@@ -347,7 +364,7 @@ class ReviewController extends ChangeNotifier {
           cardId: card.id,
           rating: result,
           timestamp: now,
-          timeOnCard: timeOnCard.isNegative ? Duration.zero : timeOnCard,
+          timeOnCard: timeOnCard,
           isPractice: isPractice,
         ),
       );
@@ -486,12 +503,40 @@ class ReviewController extends ChangeNotifier {
     phase = _needsLearn(card) ? StudyPhase.learn : StudyPhase.recall;
   }
 
+  void _beginCardTiming() {
+    final now = clock();
+    _cardTimer.start(now);
+    _cardTimingOpen = true;
+    if (!reviewClock.isRunning) _cardTimer.pause(now);
+  }
+
+  /// One finished card updates the pace model once. A repeat of the same
+  /// showing finds the timer closed and is ignored.
+  Future<void> _recordPace({
+    required CardSchedule? schedule,
+    required bool isNew,
+    required Duration duration,
+  }) async {
+    final active = _cardTimingOpen ? duration : Duration.zero;
+    _cardTimingOpen = false;
+    if (!CardTimeEstimator.isUsableDuration(active)) return;
+    final current = await progressRepository.getReviewDurationModel();
+    final next = timeEstimator.learn(
+      current,
+      schedule: schedule,
+      isNew: isNew,
+      duration: active,
+    );
+    if (next == null) return;
+    await progressRepository.saveReviewDurationModel(next);
+  }
+
   void _resetForNextCard() {
     drawing = HandwritingInput.empty;
     answer = null;
     suggestedResult = null;
     padGeneration++;
-    _cardShownAt = clock();
+    _beginCardTiming();
     _applyPhaseForCurrent();
   }
 

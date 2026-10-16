@@ -7,6 +7,7 @@ import '../core/models/daily_session_plan.dart';
 import '../core/models/onboarding.dart';
 import '../core/models/placement.dart';
 import '../core/models/progress.dart';
+import '../core/models/review_duration.dart';
 import '../repositories/progress_repository.dart';
 import 'legacy_kanji_id_remap.dart';
 
@@ -146,6 +147,19 @@ class SharedPrefsProgressRepository implements ProgressRepository {
   Future<void> saveDailyReviewTime(DailyReviewTime progress) async {
     await _ensureLoaded();
     _blob = _blob.copyWith(dailyReviewTime: progress);
+    await _persist();
+  }
+
+  @override
+  Future<ReviewDurationModel> getReviewDurationModel() async {
+    await _ensureLoaded();
+    return _blob.reviewDurations;
+  }
+
+  @override
+  Future<void> saveReviewDurationModel(ReviewDurationModel model) async {
+    await _ensureLoaded();
+    _blob = _blob.copyWith(reviewDurations: model);
     await _persist();
   }
 
@@ -297,6 +311,7 @@ class _ProgressBlob {
     this.dailyNewKanji = DailyNewKanjiProgress.empty,
     this.dailyReviewTime = DailyReviewTime.empty,
     this.dailySessionPlan = DailySessionPlan.empty,
+    this.reviewDurations = ReviewDurationModel.empty,
     this.placement = PlacementProgress.empty,
     this.onboarding = OnboardingProgress.empty,
     this.kanjiCatalogVersion = 0,
@@ -309,6 +324,7 @@ class _ProgressBlob {
   final DailyNewKanjiProgress dailyNewKanji;
   final DailyReviewTime dailyReviewTime;
   final DailySessionPlan dailySessionPlan;
+  final ReviewDurationModel reviewDurations;
   final PlacementProgress placement;
   final OnboardingProgress onboarding;
 
@@ -324,6 +340,7 @@ class _ProgressBlob {
     DailyNewKanjiProgress? dailyNewKanji,
     DailyReviewTime? dailyReviewTime,
     DailySessionPlan? dailySessionPlan,
+    ReviewDurationModel? reviewDurations,
     PlacementProgress? placement,
     OnboardingProgress? onboarding,
     int? kanjiCatalogVersion,
@@ -336,6 +353,7 @@ class _ProgressBlob {
       dailyNewKanji: dailyNewKanji ?? this.dailyNewKanji,
       dailyReviewTime: dailyReviewTime ?? this.dailyReviewTime,
       dailySessionPlan: dailySessionPlan ?? this.dailySessionPlan,
+      reviewDurations: reviewDurations ?? this.reviewDurations,
       placement: placement ?? this.placement,
       onboarding: onboarding ?? this.onboarding,
       kanjiCatalogVersion: kanjiCatalogVersion ?? this.kanjiCatalogVersion,
@@ -353,6 +371,7 @@ class _ProgressBlob {
       'dailyNewKanji': dailyNewKanji.toJson(),
       'dailyReviewTime': dailyReviewTime.toJson(),
       'dailySessionPlan': dailySessionPlan.toJson(),
+      'reviewDurations': reviewDurations.toJson(),
       'placement': placement.toJson(),
       'onboarding': onboarding.toJson(),
       'kanjiCatalogVersion': kanjiCatalogVersion,
@@ -397,6 +416,7 @@ class _ProgressBlob {
       dailySessionPlan: DailySessionPlan.fromJson(
         _asStringKeyMap(json['dailySessionPlan']),
       ),
+      reviewDurations: ReviewDurationModel.fromJson(json['reviewDurations']),
       placement: PlacementProgress.fromJson(_asStringKeyMap(json['placement'])),
       onboarding: OnboardingProgress.fromJson(
         _asStringKeyMap(json['onboarding']),

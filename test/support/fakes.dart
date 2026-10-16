@@ -5,6 +5,7 @@ import 'package:fiveminutekanji/core/models/kanji_card.dart';
 import 'package:fiveminutekanji/core/models/onboarding.dart';
 import 'package:fiveminutekanji/core/models/placement.dart';
 import 'package:fiveminutekanji/core/models/progress.dart';
+import 'package:fiveminutekanji/core/models/review_duration.dart';
 import 'package:fiveminutekanji/repositories/kanji_repository.dart';
 import 'package:fiveminutekanji/repositories/progress_repository.dart';
 
@@ -80,7 +81,9 @@ class MemoryProgressRepository implements ProgressRepository {
     this.dailyNewKanji = DailyNewKanjiProgress.empty,
     this.dailyReviewTime = DailyReviewTime.empty,
     this.dailySessionPlan = DailySessionPlan.empty,
-  }) : schedules = schedules ?? {};
+    ReviewDurationModel? reviewDurations,
+  }) : schedules = schedules ?? {},
+       reviewDurations = reviewDurations ?? ReviewDurationModel.empty;
 
   final Map<String, CardSchedule> schedules;
   final List<ReviewHistoryEntry> history = [];
@@ -89,6 +92,7 @@ class MemoryProgressRepository implements ProgressRepository {
   DailyNewKanjiProgress dailyNewKanji;
   DailyReviewTime dailyReviewTime;
   DailySessionPlan dailySessionPlan;
+  ReviewDurationModel reviewDurations;
   PlacementProgress placement = PlacementProgress.empty;
   OnboardingProgress onboarding = OnboardingProgress.empty;
 
@@ -150,6 +154,14 @@ class MemoryProgressRepository implements ProgressRepository {
   @override
   Future<void> saveDailyReviewTime(DailyReviewTime next) async {
     dailyReviewTime = next;
+  }
+
+  @override
+  Future<ReviewDurationModel> getReviewDurationModel() async => reviewDurations;
+
+  @override
+  Future<void> saveReviewDurationModel(ReviewDurationModel model) async {
+    reviewDurations = model;
   }
 
   @override

@@ -135,6 +135,7 @@ class DailyWorkloadService {
       mode: settings.curriculumMode,
       knownCardIds: knownCardIds,
     );
+    final estimator = await _estimator();
     final candidates = _candidates(
       cards: cards,
       schedules: schedules,
@@ -142,6 +143,7 @@ class DailyWorkloadService {
       startOfDay: dayBoundary,
       maxNewCards: remainingNew,
       compareNewCards: compareNewCards,
+      estimator: estimator,
     );
     final studyDate = dayBoundary.studyDate(now);
     final stored = await progressRepository.getDailySessionPlan();
@@ -260,8 +262,14 @@ class DailyWorkloadService {
           mode: settings.curriculumMode,
           knownCardIds: knownCardIds,
         ),
+        estimator: await _estimator(),
       ),
     );
+  }
+
+  Future<CardTimeEstimator> _estimator() async {
+    final learned = await progressRepository.getReviewDurationModel();
+    return timeEstimator.withModel(learned);
   }
 
   List<SessionCandidate> _candidates({
@@ -271,6 +279,7 @@ class DailyWorkloadService {
     required StartOfDay startOfDay,
     required int maxNewCards,
     required int Function(KanjiCard a, KanjiCard b) compareNewCards,
+    required CardTimeEstimator estimator,
   }) {
     final news = <KanjiCard>[];
     final existing = <KanjiCard>[];
@@ -299,6 +308,7 @@ class DailyWorkloadService {
           schedule: schedules[card.id],
           now: now,
           isNew: true,
+          estimator: estimator,
         ),
       );
     }
@@ -309,6 +319,7 @@ class DailyWorkloadService {
           schedule: schedules[card.id],
           now: now,
           isNew: false,
+          estimator: estimator,
         ),
       );
     }
@@ -320,6 +331,7 @@ class DailyWorkloadService {
     required CardSchedule? schedule,
     required DateTime now,
     required bool isNew,
+    required CardTimeEstimator estimator,
   }) {
     return SessionCandidate(
       card: card,
@@ -330,7 +342,7 @@ class DailyWorkloadService {
         isNew: isNew,
         level: card.jlptLevel,
       ),
-      estimated: timeEstimator.estimate(schedule, isNew: isNew),
+      estimated: estimator.estimate(schedule, isNew: isNew),
     );
   }
 

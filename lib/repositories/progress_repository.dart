@@ -3,6 +3,7 @@ import '../core/models/daily_session_plan.dart';
 import '../core/models/onboarding.dart';
 import '../core/models/placement.dart';
 import '../core/models/progress.dart';
+import '../core/models/review_duration.dart';
 
 abstract class ProgressRepository {
   Future<Map<String, CardSchedule>> getSchedules();
@@ -32,6 +33,11 @@ abstract class ProgressRepository {
   Future<DailyReviewTime> getDailyReviewTime();
 
   Future<void> saveDailyReviewTime(DailyReviewTime progress);
+
+  /// Learned per-card paces. Empty until the user finishes real reviews.
+  Future<ReviewDurationModel> getReviewDurationModel();
+
+  Future<void> saveReviewDurationModel(ReviewDurationModel model);
 
   Future<DailySessionPlan> getDailySessionPlan();
 
