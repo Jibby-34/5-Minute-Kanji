@@ -64,6 +64,20 @@ class ReviewSession {
     return card;
   }
 
+  /// Adds the next card after the allotted queue has emptied.
+  ///
+  /// The card joins the pool so the usual due-card pass can offer it again
+  /// when SRS still wants it. Cards already queued, pooled, or reviewed in
+  /// this sitting are left untouched.
+  bool continueWith(KanjiCard card) {
+    if (_seenIds.contains(card.id)) return false;
+    if (_queue.any((queued) => queued.id == card.id)) return false;
+    if (_pool.any((pooled) => pooled.id == card.id)) return false;
+    _pool.add(card);
+    _queue.add(card);
+    return true;
+  }
+
   /// Put due session cards back in play. Missing cards keep [dueCards] order
   /// and are mixed a few places later, so a just-learned card does not jump
   /// ahead of the remaining reviews and new cards.

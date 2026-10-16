@@ -11,6 +11,7 @@ import '../../core/utils/clock.dart';
 import '../../repositories/progress_repository.dart';
 import '../../services/answer_grader.dart';
 import '../../services/daily_review_clock.dart';
+import '../../services/daily_workload.dart';
 import '../../services/due_card_selector.dart';
 import '../../services/kanji_status_resolver.dart';
 import '../../services/mark_as_known.dart';
@@ -30,6 +31,7 @@ class ReviewController extends ChangeNotifier {
     this.grader = const ManualAnswerGrader(),
     this.statusResolver = const KanjiStatusResolver(),
     this.selector = const DueCardSelector(),
+    this.workloadService,
     MarkAsKnownService? markAsKnown,
     Map<String, CardSchedule>? schedules,
     DateTime? startTime,
@@ -68,6 +70,9 @@ class ReviewController extends ChangeNotifier {
   final AnswerGrader grader;
   final KanjiStatusResolver statusResolver;
   final DueCardSelector selector;
+
+  /// When set, an unfinished daily time goal can draw the next priority card.
+  final DailyWorkloadService? workloadService;
   final bool isPractice;
   final bool isStudyAnyway;
   final ReviewSession session;
@@ -240,6 +245,10 @@ class ReviewController extends ChangeNotifier {
       _offerDueCards(now);
       _visibleCard = session.current ?? card;
 
+      if (session.isComplete && await _continueForTimeGoal(now)) {
+        _visibleCard = session.current ?? card;
+      }
+
       if (session.isComplete) {
         await _recordFinishedSession(now, dayBoundary);
         summary = await _summarize(now);
@@ -273,6 +282,10 @@ class ReviewController extends ChangeNotifier {
       session.completeIntroduction();
       _offerDueCards(now);
       _visibleCard = session.current ?? card;
+
+      if (session.isComplete && await _continueForTimeGoal(now)) {
+        _visibleCard = session.current ?? card;
+      }
 
       if (session.isComplete) {
         await _recordFinishedSession(now, dayBoundary);
@@ -345,6 +358,10 @@ class ReviewController extends ChangeNotifier {
       }
       _visibleCard = session.current ?? card;
 
+      if (session.isComplete && await _continueForTimeGoal(now)) {
+        _visibleCard = session.current ?? card;
+      }
+
       if (session.isComplete) {
         await _recordFinishedSession(now, dayBoundary);
         summary = await _summarize(now);
@@ -403,6 +420,44 @@ class ReviewController extends ChangeNotifier {
     if (session.hasReviewed(card.id)) return false;
     final schedule = _schedules[card.id];
     return schedule == null || schedule.state == CardLearningState.newCard;
+  }
+
+  /// When the allotted queue is empty, pull the next priority card if today's
+  /// study-time goal is still ahead and another eligible card remains.
+  ///
+  /// Checked only between cards, using [reviewClock], so the current card is
+  /// never cut off and background time stays uncounted.
+  Future<bool> _continueForTimeGoal(DateTime now) async {
+    final workload = workloadService;
+    if (workload == null || isPractice || isStudyAnyway || _disposed) {
+      return false;
+    }
+    if (!_reviewTimeReady) await hydrate();
+    if (_disposed || !session.isComplete) return false;
+
+    final settings = await progressRepository.getSettings();
+    _startOfDay = settings.startOfDay;
+    reviewClock.startOfDay = _startOfDay;
+    final goal = Duration(minutes: settings.dailyStudyMinutes);
+    if (reviewClock.totalAt(now) >= goal) return false;
+
+    final ranked = await workload.eligibleByPriority(now: now);
+    if (_disposed || !session.isComplete) return false;
+    final latest = await progressRepository.getSchedules();
+    _schedules.addAll(latest);
+
+    for (final card in ranked) {
+      if (!_canContinueWith(card, now)) continue;
+      if (session.continueWith(card)) return true;
+    }
+    return false;
+  }
+
+  bool _canContinueWith(KanjiCard card, DateTime now) {
+    if (session.hasReviewed(card.id)) return false;
+    if (session.queued.any((queued) => queued.id == card.id)) return false;
+    if (session.pool.any((pooled) => pooled.id == card.id)) return false;
+    return selector.isDue(_schedules[card.id], now, startOfDay: _startOfDay);
   }
 
   void _offerDueCards(DateTime now) {

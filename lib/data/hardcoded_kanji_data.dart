@@ -23,6 +23,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n5,
     onyomi: ['イチ'],
     kunyomi: ['ひと'],
+    commonWords: [
+      CommonWord(word: '一つ', reading: 'ひとつ', meaning: 'one'),
+      CommonWord(word: '一般', reading: 'いっぱん', meaning: 'general'),
+      CommonWord(word: '一番', reading: 'いちばん', meaning: 'number one'),
+    ],
   ),
   KanjiCard(
     id: 'n5-002',
@@ -36,6 +41,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n5,
     onyomi: ['シチ'],
     kunyomi: ['なな'],
+    commonWords: [
+      CommonWord(word: '七', reading: 'しち', meaning: 'seven'),
+      CommonWord(word: '七月', reading: 'しちがつ', meaning: 'July'),
+      CommonWord(word: '十七', reading: 'じゅうなな', meaning: 'seventeen'),
+    ],
   ),
   KanjiCard(
     id: 'n5-003',
@@ -49,6 +59,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n5,
     onyomi: ['マン'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '万能', reading: 'ばんのう', meaning: 'all-purpose'),
+      CommonWord(word: '万一', reading: 'まんいち', meaning: 'emergency'),
+      CommonWord(word: '十万', reading: 'じゅうまん', meaning: '100,000'),
+    ],
   ),
   KanjiCard(
     id: 'n5-004',
@@ -62,6 +77,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n5,
     onyomi: ['サン'],
     kunyomi: ['み'],
+    commonWords: [
+      CommonWord(word: '三', reading: 'さん', meaning: 'three'),
+      CommonWord(word: '再三', reading: 'さいさん', meaning: 'again and again'),
+      CommonWord(word: '三角', reading: 'さんかく', meaning: 'triangle'),
+    ],
   ),
   KanjiCard(
     id: 'n5-005',
@@ -75,6 +95,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n5,
     onyomi: ['ジョウ'],
     kunyomi: ['うえ'],
+    commonWords: [
+      CommonWord(word: '史上', reading: 'しじょう', meaning: 'in history'),
+      CommonWord(word: '上昇', reading: 'じょうしょう', meaning: 'rising'),
+      CommonWord(word: '向上', reading: 'こうじょう', meaning: 'elevation'),
+    ],
   ),
   KanjiCard(
     id: 'n5-006',
@@ -88,6 +113,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n5,
     onyomi: ['カ'],
     kunyomi: ['した'],
+    commonWords: [
+      CommonWord(word: '下車', reading: 'げしゃ', meaning: 'alighting'),
+      CommonWord(word: '地下', reading: 'ちか', meaning: 'underground'),
+      CommonWord(word: '低下', reading: 'ていか', meaning: 'fall'),
+    ],
   ),
   KanjiCard(
     id: 'n5-007',
@@ -101,6 +131,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n5,
     onyomi: ['チュウ'],
     kunyomi: ['なか'],
+    commonWords: [
+      CommonWord(word: '中央', reading: 'ちゅうおう', meaning: 'centre'),
+      CommonWord(word: '中心', reading: 'ちゅうしん', meaning: 'center'),
+      CommonWord(word: '中間', reading: 'ちゅうかん', meaning: 'middle'),
+    ],
   ),
   KanjiCard(
     id: 'n5-008',
@@ -114,6 +149,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n5,
     onyomi: ['キュウ'],
     kunyomi: ['ここのつ'],
+    commonWords: [
+      CommonWord(word: '九', reading: 'きゅう', meaning: 'nine'),
+      CommonWord(word: '九月', reading: 'くがつ', meaning: 'September'),
+      CommonWord(word: '十九', reading: 'じゅうきゅう', meaning: 'nineteen'),
+    ],
   ),
   KanjiCard(
     id: 'n5-009',
@@ -127,6 +167,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n5,
     onyomi: ['ニ'],
     kunyomi: ['ふた'],
+    commonWords: [
+      CommonWord(word: '二', reading: 'に', meaning: 'two'),
+      CommonWord(word: '二人', reading: 'ふたり', meaning: 'two persons'),
+      CommonWord(word: '二階', reading: 'にかい', meaning: 'second floor'),
+    ],
   ),
   KanjiCard(
     id: 'n5-010',
@@ -140,6 +185,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n5,
     onyomi: ['ゴ'],
     kunyomi: ['いつ'],
+    commonWords: [
+      CommonWord(word: '五', reading: 'ご', meaning: 'five'),
+      CommonWord(word: '五分', reading: 'ごぶ', meaning: 'half'),
+      CommonWord(word: '五月', reading: 'ごがつ', meaning: 'May'),
+    ],
   ),
   KanjiCard(
     id: 'n5-011',
@@ -153,6 +203,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n5,
     onyomi: ['ジン'],
     kunyomi: ['ひと'],
+    commonWords: [
+      CommonWord(word: '外国人', reading: 'がいこくじん', meaning: 'foreigner'),
+      CommonWord(word: '個人', reading: 'こじん', meaning: 'individual'),
+      CommonWord(word: '人間', reading: 'にんげん', meaning: 'human being'),
+    ],
   ),
   KanjiCard(
     id: 'n5-012',
@@ -166,6 +221,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n5,
     onyomi: ['コン'],
     kunyomi: ['いま'],
+    commonWords: [
+      CommonWord(word: '今回', reading: 'こんかい', meaning: 'this time'),
+      CommonWord(word: '今月', reading: 'こんげつ', meaning: 'this month'),
+      CommonWord(word: '今後', reading: 'こんご', meaning: 'from now on'),
+    ],
   ),
   KanjiCard(
     id: 'n5-013',
@@ -179,6 +239,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n5,
     onyomi: ['キュウ'],
     kunyomi: ['やすむ'],
+    commonWords: [
+      CommonWord(word: '夏休み', reading: 'なつやすみ', meaning: 'summer vacation'),
+      CommonWord(word: '休み', reading: 'やすみ', meaning: 'rest'),
+      CommonWord(word: '休暇', reading: 'きゅうか', meaning: 'holiday'),
+    ],
   ),
   KanjiCard(
     id: 'n5-014',
@@ -192,6 +257,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n5,
     onyomi: ['カ'],
     kunyomi: ['なに'],
+    commonWords: [
+      CommonWord(word: '何か', reading: 'なにか', meaning: 'something'),
+      CommonWord(word: '何', reading: 'なに', meaning: 'what'),
+      CommonWord(word: '何度', reading: 'なんど', meaning: 'how many times'),
+    ],
   ),
   KanjiCard(
     id: 'n5-015',
@@ -205,6 +275,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n5,
     onyomi: ['セン'],
     kunyomi: ['さき'],
+    commonWords: [
+      CommonWord(word: '先月', reading: 'せんげつ', meaning: 'last month'),
+      CommonWord(word: '先進国', reading: 'せんしんこく', meaning: 'developed country'),
+      CommonWord(word: '先生', reading: 'せんせい', meaning: 'teacher'),
+    ],
   ),
   KanjiCard(
     id: 'n5-016',
@@ -218,6 +293,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n5,
     onyomi: ['ニュウ'],
     kunyomi: ['はいる'],
+    commonWords: [
+      CommonWord(word: '輸入', reading: 'ゆにゅう', meaning: 'import'),
+      CommonWord(word: '購入', reading: 'こうにゅう', meaning: 'purchase'),
+      CommonWord(word: '収入', reading: 'しゅうにゅう', meaning: 'income'),
+    ],
   ),
   KanjiCard(
     id: 'n5-017',
@@ -231,6 +311,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n5,
     onyomi: ['ハチ'],
     kunyomi: ['やっつ'],
+    commonWords: [
+      CommonWord(word: '八', reading: 'はち', meaning: 'eight'),
+      CommonWord(word: '十八', reading: 'じゅうはち', meaning: 'eighteen'),
+      CommonWord(word: '八月', reading: 'はちがつ', meaning: 'August'),
+    ],
   ),
   KanjiCard(
     id: 'n5-018',
@@ -244,6 +329,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n5,
     onyomi: ['ロク'],
     kunyomi: ['むっつ'],
+    commonWords: [
+      CommonWord(word: '六', reading: 'ろく', meaning: 'six'),
+      CommonWord(word: '六月', reading: 'ろくがつ', meaning: 'June'),
+      CommonWord(word: '六十', reading: 'ろくじゅう', meaning: 'sixty'),
+    ],
   ),
   KanjiCard(
     id: 'n5-019',
@@ -257,6 +347,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n5,
     onyomi: ['エン'],
     kunyomi: ['まるい'],
+    commonWords: [
+      CommonWord(word: '円高', reading: 'えんだか', meaning: 'appreciation of the yen'),
+      CommonWord(word: '円', reading: 'えん', meaning: 'yen'),
+      CommonWord(word: '円安', reading: 'えんやす', meaning: 'depreciation of the yen'),
+    ],
   ),
   KanjiCard(
     id: 'n5-020',
@@ -270,6 +365,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n5,
     onyomi: ['シュツ'],
     kunyomi: ['でる'],
+    commonWords: [
+      CommonWord(word: '出身', reading: 'しゅっしん', meaning: 'one\'s origin'),
+      CommonWord(word: '輸出', reading: 'ゆしゅつ', meaning: 'export'),
+      CommonWord(word: '出場', reading: 'しゅつじょう', meaning: 'participation'),
+    ],
   ),
   KanjiCard(
     id: 'n5-021',
@@ -283,6 +383,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n5,
     onyomi: ['ブン'],
     kunyomi: ['わかる'],
+    commonWords: [
+      CommonWord(word: '自分', reading: 'じぶん', meaning: 'myself'),
+      CommonWord(word: '部分', reading: 'ぶぶん', meaning: 'portion'),
+      CommonWord(word: '分野', reading: 'ぶんや', meaning: 'field'),
+    ],
   ),
   KanjiCard(
     id: 'n5-022',
@@ -296,6 +401,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n5,
     onyomi: ['ゼン'],
     kunyomi: ['まえ'],
+    commonWords: [
+      CommonWord(word: '午前', reading: 'ごぜん', meaning: 'morning'),
+      CommonWord(word: '前年', reading: 'ぜんねん', meaning: 'the preceding year'),
+      CommonWord(word: '前回', reading: 'ぜんかい', meaning: 'previous time'),
+    ],
   ),
   KanjiCard(
     id: 'n5-023',
@@ -309,6 +419,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n5,
     onyomi: ['ホク'],
     kunyomi: ['きた'],
+    commonWords: [
+      CommonWord(word: '北', reading: 'きた', meaning: 'north'),
+      CommonWord(word: '南北', reading: 'なんぼく', meaning: 'north and south'),
+      CommonWord(word: '北部', reading: 'ほくぶ', meaning: 'northern part'),
+    ],
   ),
   KanjiCard(
     id: 'n5-024',
@@ -322,6 +437,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n5,
     onyomi: ['ジュウ'],
     kunyomi: ['とお'],
+    commonWords: [
+      CommonWord(word: '十', reading: 'じゅう', meaning: 'ten'),
+      CommonWord(word: '十分', reading: 'じゅうぶん', meaning: 'enough'),
+      CommonWord(word: '不十分', reading: 'ふじゅうぶん', meaning: 'insufficient'),
+    ],
   ),
   KanjiCard(
     id: 'n5-025',
@@ -335,6 +455,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n5,
     onyomi: ['セン'],
     kunyomi: ['ち'],
+    commonWords: [
+      CommonWord(word: '千', reading: 'せん', meaning: 'thousand'),
+      CommonWord(word: '三千', reading: 'さんぜん', meaning: '3000'),
+      CommonWord(word: '四千', reading: 'よんせん', meaning: 'four thousand'),
+    ],
   ),
   KanjiCard(
     id: 'n5-026',
@@ -348,6 +473,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n5,
     onyomi: ['ゴ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '午後', reading: 'ごご', meaning: 'afternoon'),
+      CommonWord(word: '午前', reading: 'ごぜん', meaning: 'morning'),
+      CommonWord(word: '正午', reading: 'しょうご', meaning: 'noon'),
+    ],
   ),
   KanjiCard(
     id: 'n5-027',
@@ -361,6 +491,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n5,
     onyomi: ['ハン'],
     kunyomi: ['なかば'],
+    commonWords: [
+      CommonWord(word: '後半', reading: 'こうはん', meaning: 'second half'),
+      CommonWord(word: '半分', reading: 'はんぶん', meaning: 'half'),
+      CommonWord(word: '前半', reading: 'ぜんはん', meaning: 'first half'),
+    ],
   ),
   KanjiCard(
     id: 'n5-028',
@@ -374,6 +509,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n5,
     onyomi: ['ナン'],
     kunyomi: ['みなみ'],
+    commonWords: [
+      CommonWord(word: '南', reading: 'みなみ', meaning: 'south'),
+      CommonWord(word: '南北', reading: 'なんぼく', meaning: 'north and south'),
+      CommonWord(word: '南部', reading: 'なんぶ', meaning: 'southern part'),
+    ],
   ),
   KanjiCard(
     id: 'n5-029',
@@ -387,6 +527,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n5,
     onyomi: ['ユウ'],
     kunyomi: ['とも'],
+    commonWords: [
+      CommonWord(word: '友人', reading: 'ゆうじん', meaning: 'friend'),
+      CommonWord(word: '友好', reading: 'ゆうこう', meaning: 'friendship'),
+      CommonWord(word: '親友', reading: 'しんゆう', meaning: 'close friend'),
+    ],
   ),
   KanjiCard(
     id: 'n5-030',
@@ -400,6 +545,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n5,
     onyomi: ['ウ'],
     kunyomi: ['みぎ'],
+    commonWords: [
+      CommonWord(word: '右', reading: 'みぎ', meaning: 'right'),
+      CommonWord(word: '右翼', reading: 'うよく', meaning: 'right wing'),
+      CommonWord(word: '左右', reading: 'さゆう', meaning: 'left and right'),
+    ],
   ),
   KanjiCard(
     id: 'n5-031',
@@ -413,6 +563,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n5,
     onyomi: ['メイ'],
     kunyomi: ['な'],
+    commonWords: [
+      CommonWord(word: '名', reading: 'な', meaning: 'name'),
+      CommonWord(word: '名誉', reading: 'めいよ', meaning: 'honor'),
+      CommonWord(word: '有名', reading: 'ゆうめい', meaning: 'famous'),
+    ],
   ),
   KanjiCard(
     id: 'n5-032',
@@ -426,6 +581,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n5,
     onyomi: ['シ'],
     kunyomi: ['よん'],
+    commonWords: [
+      CommonWord(word: '四', reading: 'し', meaning: 'four'),
+      CommonWord(word: '四季', reading: 'しき', meaning: 'the four seasons'),
+      CommonWord(word: '四方', reading: 'しほう', meaning: 'the four cardinal directions'),
+    ],
   ),
   KanjiCard(
     id: 'n5-033',
@@ -439,6 +599,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n5,
     onyomi: ['コク'],
     kunyomi: ['くに'],
+    commonWords: [
+      CommonWord(word: '外国', reading: 'がいこく', meaning: 'foreign country'),
+      CommonWord(word: '外国人', reading: 'がいこくじん', meaning: 'foreigner'),
+      CommonWord(word: '国家', reading: 'こっか', meaning: 'state'),
+    ],
   ),
   KanjiCard(
     id: 'n5-034',
@@ -452,6 +617,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n5,
     onyomi: ['ド'],
     kunyomi: ['つち'],
+    commonWords: [
+      CommonWord(word: '土地', reading: 'とち', meaning: 'plot of land'),
+      CommonWord(word: '領土', reading: 'りょうど', meaning: 'territory'),
+      CommonWord(word: '土', reading: 'つち', meaning: 'earth'),
+    ],
   ),
   KanjiCard(
     id: 'n5-035',
@@ -465,6 +635,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n5,
     onyomi: ['ガイ'],
     kunyomi: ['そと'],
+    commonWords: [
+      CommonWord(word: '海外', reading: 'かいがい', meaning: 'foreign'),
+      CommonWord(word: '外交', reading: 'がいこう', meaning: 'diplomacy'),
+      CommonWord(word: '外国', reading: 'がいこく', meaning: 'foreign country'),
+    ],
   ),
   KanjiCard(
     id: 'n5-036',
@@ -478,6 +653,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n5,
     onyomi: ['ダイ'],
     kunyomi: ['おお'],
+    commonWords: [
+      CommonWord(word: '拡大', reading: 'かくだい', meaning: 'expansion'),
+      CommonWord(word: '最大', reading: 'さいだい', meaning: 'biggest'),
+      CommonWord(word: '大会', reading: 'たいかい', meaning: 'mass meeting'),
+    ],
   ),
   KanjiCard(
     id: 'n5-037',
@@ -491,6 +671,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n5,
     onyomi: ['テン'],
     kunyomi: ['あめ'],
+    commonWords: [
+      CommonWord(word: '天皇', reading: 'てんのう', meaning: 'Emperor of Japan'),
+      CommonWord(word: '天', reading: 'てん', meaning: 'sky'),
+      CommonWord(word: '天気', reading: 'てんき', meaning: 'weather'),
+    ],
   ),
   KanjiCard(
     id: 'n5-038',
@@ -504,6 +689,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n5,
     onyomi: ['ジョ'],
     kunyomi: ['おんな'],
+    commonWords: [
+      CommonWord(word: '女子', reading: 'じょし', meaning: 'woman'),
+      CommonWord(word: '男女', reading: 'だんじょ', meaning: 'men and women'),
+      CommonWord(word: '彼女', reading: 'かのじょ', meaning: 'she'),
+    ],
   ),
   KanjiCard(
     id: 'n5-039',
@@ -517,6 +707,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n5,
     onyomi: ['シ'],
     kunyomi: ['こ'],
+    commonWords: [
+      CommonWord(word: '子', reading: 'こ', meaning: 'child'),
+      CommonWord(word: '女子', reading: 'じょし', meaning: 'woman'),
+      CommonWord(word: '男子', reading: 'だんし', meaning: 'boy'),
+    ],
   ),
   KanjiCard(
     id: 'n5-040',
@@ -530,6 +725,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n5,
     onyomi: ['ガク'],
     kunyomi: ['まなぶ'],
+    commonWords: [
+      CommonWord(word: '学校', reading: 'がっこう', meaning: 'school'),
+      CommonWord(word: '学生', reading: 'がくせい', meaning: 'student'),
+      CommonWord(word: '大学', reading: 'だいがく', meaning: 'university'),
+    ],
   ),
   KanjiCard(
     id: 'n5-041',
@@ -543,6 +743,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n5,
     onyomi: ['ショウ'],
     kunyomi: ['ちいさい'],
+    commonWords: [
+      CommonWord(word: '小学校', reading: 'しょうがっこう', meaning: 'primary school'),
+      CommonWord(word: '小説', reading: 'しょうせつ', meaning: 'novel'),
+      CommonWord(word: '小学生', reading: 'しょうがくせい', meaning: 'elementary school student'),
+    ],
   ),
   KanjiCard(
     id: 'n5-042',
@@ -556,6 +761,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n5,
     onyomi: ['サン'],
     kunyomi: ['やま'],
+    commonWords: [
+      CommonWord(word: '山', reading: 'やま', meaning: 'mountain'),
+      CommonWord(word: '火山', reading: 'かざん', meaning: 'volcano'),
+      CommonWord(word: '登山', reading: 'とざん', meaning: 'mountain climbing'),
+    ],
   ),
   KanjiCard(
     id: 'n5-043',
@@ -569,6 +779,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n5,
     onyomi: ['セン'],
     kunyomi: ['かわ'],
+    commonWords: [
+      CommonWord(word: '川', reading: 'かわ', meaning: 'river'),
+      CommonWord(word: '小川', reading: 'おがわ', meaning: 'stream'),
+      CommonWord(word: '河川', reading: 'かせん', meaning: 'rivers'),
+    ],
   ),
   KanjiCard(
     id: 'n5-044',
@@ -582,6 +797,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n5,
     onyomi: ['サ'],
     kunyomi: ['ひだり'],
+    commonWords: [
+      CommonWord(word: '左', reading: 'ひだり', meaning: 'left'),
+      CommonWord(word: '左翼', reading: 'さよく', meaning: 'left wing'),
+      CommonWord(word: '左右', reading: 'さゆう', meaning: 'left and right'),
+    ],
   ),
   KanjiCard(
     id: 'n5-045',
@@ -595,6 +815,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n5,
     onyomi: ['ネン'],
     kunyomi: ['とし'],
+    commonWords: [
+      CommonWord(word: '昨年', reading: 'さくねん', meaning: 'last year'),
+      CommonWord(word: '前年', reading: 'ぜんねん', meaning: 'the preceding year'),
+      CommonWord(word: '年間', reading: 'ねんかん', meaning: 'a year'),
+    ],
   ),
   KanjiCard(
     id: 'n5-046',
@@ -608,6 +833,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n5,
     onyomi: ['ゴ'],
     kunyomi: ['あと'],
+    commonWords: [
+      CommonWord(word: '午後', reading: 'ごご', meaning: 'afternoon'),
+      CommonWord(word: '後', reading: 'あと', meaning: 'behind'),
+      CommonWord(word: '今後', reading: 'こんご', meaning: 'from now on'),
+    ],
   ),
   KanjiCard(
     id: 'n5-047',
@@ -621,6 +851,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n5,
     onyomi: ['ニチ'],
     kunyomi: ['ひ'],
+    commonWords: [
+      CommonWord(word: '日米', reading: 'にちべい', meaning: 'Japan and the United States'),
+      CommonWord(word: '毎日', reading: 'まいにち', meaning: 'every day'),
+      CommonWord(word: '日程', reading: 'にってい', meaning: 'schedule'),
+    ],
   ),
   KanjiCard(
     id: 'n5-048',
@@ -634,6 +869,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n5,
     onyomi: ['ジ'],
     kunyomi: ['とき'],
+    commonWords: [
+      CommonWord(word: '時間', reading: 'じかん', meaning: 'time'),
+      CommonWord(word: '時代', reading: 'じだい', meaning: 'period'),
+      CommonWord(word: '当時', reading: 'とうじ', meaning: 'at that time'),
+    ],
   ),
   KanjiCard(
     id: 'n5-049',
@@ -647,6 +887,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n5,
     onyomi: ['ショ'],
     kunyomi: ['かく'],
+    commonWords: [
+      CommonWord(word: '書記', reading: 'しょき', meaning: 'clerk'),
+      CommonWord(word: '秘書', reading: 'ひしょ', meaning: 'secretary'),
+      CommonWord(word: '文書', reading: 'ぶんしょ', meaning: 'document'),
+    ],
   ),
   KanjiCard(
     id: 'n5-050',
@@ -660,6 +905,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n5,
     onyomi: ['ゲツ'],
     kunyomi: ['つき'],
+    commonWords: [
+      CommonWord(word: '今月', reading: 'こんげつ', meaning: 'this month'),
+      CommonWord(word: '先月', reading: 'せんげつ', meaning: 'last month'),
+      CommonWord(word: '来月', reading: 'らいげつ', meaning: 'next month'),
+    ],
   ),
   KanjiCard(
     id: 'n5-051',
@@ -673,6 +923,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n5,
     onyomi: ['モク'],
     kunyomi: ['き'],
+    commonWords: [
+      CommonWord(word: '木', reading: 'き', meaning: 'tree'),
+      CommonWord(word: '木造', reading: 'もくぞう', meaning: 'wooden'),
+      CommonWord(word: '木材', reading: 'もくざい', meaning: 'lumber'),
+    ],
   ),
   KanjiCard(
     id: 'n5-052',
@@ -686,6 +941,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n5,
     onyomi: ['ホン'],
     kunyomi: ['もと'],
+    commonWords: [
+      CommonWord(word: '基本', reading: 'きほん', meaning: 'basics'),
+      CommonWord(word: '本社', reading: 'ほんしゃ', meaning: 'head office'),
+      CommonWord(word: '本部', reading: 'ほんぶ', meaning: 'headquarters'),
+    ],
   ),
   KanjiCard(
     id: 'n5-053',
@@ -699,6 +959,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n5,
     onyomi: ['ライ'],
     kunyomi: ['くる'],
+    commonWords: [
+      CommonWord(word: '以来', reading: 'いらい', meaning: 'since'),
+      CommonWord(word: '従来', reading: 'じゅうらい', meaning: 'up to now'),
+      CommonWord(word: '将来', reading: 'しょうらい', meaning: 'future'),
+    ],
   ),
   KanjiCard(
     id: 'n5-054',
@@ -712,6 +977,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n5,
     onyomi: ['トウ'],
     kunyomi: ['ひがし'],
+    commonWords: [
+      CommonWord(word: '東', reading: 'ひがし', meaning: 'east'),
+      CommonWord(word: '東欧', reading: 'とうおう', meaning: 'Eastern Europe'),
+      CommonWord(word: '東西', reading: 'とうざい', meaning: 'east and west'),
+    ],
   ),
   KanjiCard(
     id: 'n5-055',
@@ -725,6 +995,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n5,
     onyomi: ['コウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '学校', reading: 'がっこう', meaning: 'school'),
+      CommonWord(word: '高校', reading: 'こうこう', meaning: 'senior high school'),
+      CommonWord(word: '校長', reading: 'こうちょう', meaning: 'principal'),
+    ],
   ),
   KanjiCard(
     id: 'n5-056',
@@ -738,6 +1013,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n5,
     onyomi: ['ボ'],
     kunyomi: ['はは'],
+    commonWords: [
+      CommonWord(word: '母', reading: 'はは', meaning: 'mother'),
+      CommonWord(word: '父母', reading: 'ふぼ', meaning: 'father and mother'),
+      CommonWord(word: '祖母', reading: 'そぼ', meaning: 'grandmother'),
+    ],
   ),
   KanjiCard(
     id: 'n5-057',
@@ -751,6 +1031,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n5,
     onyomi: ['マイ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '毎日', reading: 'まいにち', meaning: 'every day'),
+      CommonWord(word: '毎年', reading: 'まいとし', meaning: 'every year'),
+      CommonWord(word: '毎週', reading: 'まいしゅう', meaning: 'every week'),
+    ],
   ),
   KanjiCard(
     id: 'n5-058',
@@ -764,6 +1049,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n5,
     onyomi: ['キ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '気', reading: 'き', meaning: 'spirit'),
+      CommonWord(word: '景気', reading: 'けいき', meaning: 'business conditions'),
+      CommonWord(word: '人気', reading: 'にんき', meaning: 'popularity'),
+    ],
   ),
   KanjiCard(
     id: 'n5-059',
@@ -777,6 +1067,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n5,
     onyomi: ['スイ'],
     kunyomi: ['みず'],
+    commonWords: [
+      CommonWord(word: '水', reading: 'みず', meaning: 'water'),
+      CommonWord(word: '水準', reading: 'すいじゅん', meaning: 'level'),
+      CommonWord(word: '水道', reading: 'すいどう', meaning: 'water supply'),
+    ],
   ),
   KanjiCard(
     id: 'n5-060',
@@ -790,6 +1085,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n5,
     onyomi: ['カ'],
     kunyomi: ['ひ'],
+    commonWords: [
+      CommonWord(word: '火', reading: 'ひ', meaning: 'fire'),
+      CommonWord(word: '火山', reading: 'かざん', meaning: 'volcano'),
+      CommonWord(word: '火災', reading: 'かさい', meaning: 'conflagration'),
+    ],
   ),
   KanjiCard(
     id: 'n5-061',
@@ -803,6 +1103,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n5,
     onyomi: ['フ'],
     kunyomi: ['ちち'],
+    commonWords: [
+      CommonWord(word: '父', reading: 'ちち', meaning: 'father'),
+      CommonWord(word: '父母', reading: 'ふぼ', meaning: 'father and mother'),
+      CommonWord(word: '祖父', reading: 'そふ', meaning: 'grandfather'),
+    ],
   ),
   KanjiCard(
     id: 'n5-062',
@@ -816,6 +1121,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n5,
     onyomi: ['セイ'],
     kunyomi: ['いきる'],
+    commonWords: [
+      CommonWord(word: '学生', reading: 'がくせい', meaning: 'student'),
+      CommonWord(word: '生活', reading: 'せいかつ', meaning: 'life'),
+      CommonWord(word: '生産', reading: 'せいさん', meaning: 'production'),
+    ],
   ),
   KanjiCard(
     id: 'n5-063',
@@ -829,6 +1139,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n5,
     onyomi: ['ダン'],
     kunyomi: ['おとこ'],
+    commonWords: [
+      CommonWord(word: '男', reading: 'おとこ', meaning: 'man'),
+      CommonWord(word: '男子', reading: 'だんし', meaning: 'boy'),
+      CommonWord(word: '長男', reading: 'ちょうなん', meaning: 'eldest son'),
+    ],
   ),
   KanjiCard(
     id: 'n5-064',
@@ -842,6 +1157,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n5,
     onyomi: ['ハク'],
     kunyomi: ['しろ'],
+    commonWords: [
+      CommonWord(word: '白', reading: 'しろ', meaning: 'white'),
+      CommonWord(word: '白書', reading: 'はくしょ', meaning: 'white paper'),
+      CommonWord(word: '白人', reading: 'はくじん', meaning: 'white person'),
+    ],
   ),
   KanjiCard(
     id: 'n5-065',
@@ -855,6 +1175,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n5,
     onyomi: ['ヒャク'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '百', reading: 'ひゃく', meaning: 'hundred'),
+      CommonWord(word: '百貨店', reading: 'ひゃっかてん', meaning: 'department store'),
+      CommonWord(word: '二百', reading: 'にひゃく', meaning: '200'),
+    ],
   ),
   KanjiCard(
     id: 'n5-066',
@@ -868,6 +1193,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n5,
     onyomi: ['ブン'],
     kunyomi: ['きく'],
+    commonWords: [
+      CommonWord(word: '新聞', reading: 'しんぶん', meaning: 'newspaper'),
+      CommonWord(word: '聞かす', reading: 'きかす', meaning: 'to let (someone) hear'),
+      CommonWord(word: '新聞社', reading: 'しんぶんしゃ', meaning: 'newspaper company'),
+    ],
   ),
   KanjiCard(
     id: 'n5-067',
@@ -881,6 +1211,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n5,
     onyomi: ['コウ'],
     kunyomi: ['いく'],
+    commonWords: [
+      CommonWord(word: '銀行', reading: 'ぎんこう', meaning: 'bank'),
+      CommonWord(word: '行政', reading: 'ぎょうせい', meaning: 'executive'),
+      CommonWord(word: '行動', reading: 'こうどう', meaning: 'action'),
+    ],
   ),
   KanjiCard(
     id: 'n5-068',
@@ -894,6 +1229,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n5,
     onyomi: ['セイ'],
     kunyomi: ['にし'],
+    commonWords: [
+      CommonWord(word: '西', reading: 'にし', meaning: 'west'),
+      CommonWord(word: '東西', reading: 'とうざい', meaning: 'east and west'),
+      CommonWord(word: '西欧', reading: 'せいおう', meaning: 'Western Europe'),
+    ],
   ),
   KanjiCard(
     id: 'n5-069',
@@ -907,6 +1247,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n5,
     onyomi: ['ケン'],
     kunyomi: ['みる'],
+    commonWords: [
+      CommonWord(word: '意見', reading: 'いけん', meaning: 'opinion'),
+      CommonWord(word: '会見', reading: 'かいけん', meaning: 'interview'),
+      CommonWord(word: '見方', reading: 'みかた', meaning: 'viewpoint'),
+    ],
   ),
   KanjiCard(
     id: 'n5-070',
@@ -920,6 +1265,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n5,
     onyomi: ['ワ'],
     kunyomi: ['はなす'],
+    commonWords: [
+      CommonWord(word: '電話', reading: 'でんわ', meaning: 'telephone call'),
+      CommonWord(word: '話', reading: 'はなし', meaning: 'talk'),
+      CommonWord(word: '対話', reading: 'たいわ', meaning: 'dialogue'),
+    ],
   ),
   KanjiCard(
     id: 'n5-071',
@@ -933,6 +1283,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n5,
     onyomi: ['ゴ'],
     kunyomi: ['かたる'],
+    commonWords: [
+      CommonWord(word: '英語', reading: 'えいご', meaning: 'English'),
+      CommonWord(word: '物語', reading: 'ものがたり', meaning: 'story'),
+      CommonWord(word: '言語', reading: 'げんご', meaning: 'language'),
+    ],
   ),
   KanjiCard(
     id: 'n5-072',
@@ -946,6 +1301,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n5,
     onyomi: ['ドク'],
     kunyomi: ['よむ'],
+    commonWords: [
+      CommonWord(word: '読者', reading: 'どくしゃ', meaning: 'reader'),
+      CommonWord(word: '読書', reading: 'どくしょ', meaning: 'reading'),
+      CommonWord(word: '読む', reading: 'よむ', meaning: 'to read'),
+    ],
   ),
   KanjiCard(
     id: 'n5-073',
@@ -959,6 +1319,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n5,
     onyomi: ['シャ'],
     kunyomi: ['くるま'],
+    commonWords: [
+      CommonWord(word: '自動車', reading: 'じどうしゃ', meaning: 'car'),
+      CommonWord(word: '下車', reading: 'げしゃ', meaning: 'alighting'),
+      CommonWord(word: '自転車', reading: 'じてんしゃ', meaning: 'bicycle'),
+    ],
   ),
   KanjiCard(
     id: 'n5-074',
@@ -972,6 +1337,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n5,
     onyomi: ['キン'],
     kunyomi: ['かね'],
+    commonWords: [
+      CommonWord(word: '金融', reading: 'きんゆう', meaning: 'finance'),
+      CommonWord(word: '金利', reading: 'きんり', meaning: 'interest rate'),
+      CommonWord(word: '資金', reading: 'しきん', meaning: 'funds'),
+    ],
   ),
   KanjiCard(
     id: 'n5-075',
@@ -985,6 +1355,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n5,
     onyomi: ['チョウ'],
     kunyomi: ['ながい'],
+    commonWords: [
+      CommonWord(word: '会長', reading: 'かいちょう', meaning: 'president'),
+      CommonWord(word: '議長', reading: 'ぎちょう', meaning: 'chair'),
+      CommonWord(word: '社長', reading: 'しゃちょう', meaning: 'company president'),
+    ],
   ),
   KanjiCard(
     id: 'n5-076',
@@ -998,6 +1373,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n5,
     onyomi: ['カン'],
     kunyomi: ['あいだ'],
+    commonWords: [
+      CommonWord(word: '期間', reading: 'きかん', meaning: 'period'),
+      CommonWord(word: '時間', reading: 'じかん', meaning: 'time'),
+      CommonWord(word: '人間', reading: 'にんげん', meaning: 'human being'),
+    ],
   ),
   KanjiCard(
     id: 'n5-077',
@@ -1011,6 +1391,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n5,
     onyomi: ['ウ'],
     kunyomi: ['あめ'],
+    commonWords: [
+      CommonWord(word: '雨', reading: 'あめ', meaning: 'rain'),
+      CommonWord(word: '大雨', reading: 'おおあめ', meaning: 'heavy rain'),
+      CommonWord(word: '梅雨', reading: 'つゆ', meaning: 'rainy season'),
+    ],
   ),
   KanjiCard(
     id: 'n5-078',
@@ -1024,6 +1409,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n5,
     onyomi: ['デン'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '電話', reading: 'でんわ', meaning: 'telephone call'),
+      CommonWord(word: '電気', reading: 'でんき', meaning: 'electricity'),
+      CommonWord(word: '電力', reading: 'でんりょく', meaning: 'electric power'),
+    ],
   ),
   KanjiCard(
     id: 'n5-079',
@@ -1037,6 +1427,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n5,
     onyomi: ['ショク'],
     kunyomi: ['たべる'],
+    commonWords: [
+      CommonWord(word: '食事', reading: 'しょくじ', meaning: 'meal'),
+      CommonWord(word: '食品', reading: 'しょくひん', meaning: 'food'),
+      CommonWord(word: '昼食', reading: 'ちゅうしょく', meaning: 'lunch'),
+    ],
   ),
   KanjiCard(
     id: 'n5-080',
@@ -1050,6 +1445,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n5,
     onyomi: ['コウ'],
     kunyomi: ['たかい'],
+    commonWords: [
+      CommonWord(word: '高校', reading: 'こうこう', meaning: 'senior high school'),
+      CommonWord(word: '最高', reading: 'さいこう', meaning: 'best'),
+      CommonWord(word: '円高', reading: 'えんだか', meaning: 'appreciation of the yen'),
+    ],
   ),
   KanjiCard(
     id: 'n4-001',
@@ -1063,6 +1463,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['フ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '不況', reading: 'ふきょう', meaning: 'depression'),
+      CommonWord(word: '不安', reading: 'ふあん', meaning: 'anxiety'),
+      CommonWord(word: '不足', reading: 'ふそく', meaning: 'insufficiency'),
+    ],
   ),
   KanjiCard(
     id: 'n4-002',
@@ -1076,6 +1481,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['セイ'],
     kunyomi: ['よ'],
+    commonWords: [
+      CommonWord(word: '世界', reading: 'せかい', meaning: 'the world'),
+      CommonWord(word: '世代', reading: 'せだい', meaning: 'generation'),
+      CommonWord(word: '世論', reading: 'よろん', meaning: 'public opinion'),
+    ],
   ),
   KanjiCard(
     id: 'n4-003',
@@ -1089,6 +1499,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['シュ'],
     kunyomi: ['ぬし'],
+    commonWords: [
+      CommonWord(word: '民主', reading: 'みんしゅ', meaning: 'democracy'),
+      CommonWord(word: '主義', reading: 'しゅぎ', meaning: 'doctrine'),
+      CommonWord(word: '主催', reading: 'しゅさい', meaning: 'sponsorship'),
+    ],
   ),
   KanjiCard(
     id: 'n4-004',
@@ -1102,6 +1517,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['ジ'],
     kunyomi: ['こと'],
+    commonWords: [
+      CommonWord(word: '幹事', reading: 'かんじ', meaning: 'executive secretary'),
+      CommonWord(word: '記事', reading: 'きじ', meaning: 'article'),
+      CommonWord(word: '軍事', reading: 'ぐんじ', meaning: 'military affairs'),
+    ],
   ),
   KanjiCard(
     id: 'n4-005',
@@ -1115,6 +1535,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['キョウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '東京', reading: 'とうきょう', meaning: 'Tokyo'),
+      CommonWord(word: '京都', reading: 'きょうと', meaning: 'Kyoto'),
+      CommonWord(word: '京', reading: 'きょう', meaning: 'imperial capital'),
+    ],
   ),
   KanjiCard(
     id: 'n4-006',
@@ -1128,6 +1553,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['シ'],
     kunyomi: ['つかえる'],
+    commonWords: [
+      CommonWord(word: '仕事', reading: 'しごと', meaning: 'work'),
+      CommonWord(word: '仕組み', reading: 'しくみ', meaning: 'structure'),
+      CommonWord(word: '仕方', reading: 'しかた', meaning: 'way'),
+    ],
   ),
   KanjiCard(
     id: 'n4-007',
@@ -1141,6 +1571,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['ダイ'],
     kunyomi: ['かわる'],
+    commonWords: [
+      CommonWord(word: '時代', reading: 'じだい', meaning: 'period'),
+      CommonWord(word: '代表', reading: 'だいひょう', meaning: 'representation'),
+      CommonWord(word: '現代', reading: 'げんだい', meaning: 'present age'),
+    ],
   ),
   KanjiCard(
     id: 'n4-008',
@@ -1154,6 +1589,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['イ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '以来', reading: 'いらい', meaning: 'since'),
+      CommonWord(word: '以内', reading: 'いない', meaning: 'within'),
+      CommonWord(word: '以前', reading: 'いぜん', meaning: 'before'),
+    ],
   ),
   KanjiCard(
     id: 'n4-009',
@@ -1167,6 +1607,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['カイ'],
     kunyomi: ['あう'],
+    commonWords: [
+      CommonWord(word: '委員会', reading: 'いいんかい', meaning: 'committee'),
+      CommonWord(word: '会員', reading: 'かいいん', meaning: 'member'),
+      CommonWord(word: '会議', reading: 'かいぎ', meaning: 'meeting'),
+    ],
   ),
   KanjiCard(
     id: 'n4-010',
@@ -1180,6 +1625,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['ジュウ'],
     kunyomi: ['すむ'],
+    commonWords: [
+      CommonWord(word: '住宅', reading: 'じゅうたく', meaning: 'residence'),
+      CommonWord(word: '住民', reading: 'じゅうみん', meaning: 'inhabitant'),
+      CommonWord(word: '住所', reading: 'じゅうしょ', meaning: 'address'),
+    ],
   ),
   KanjiCard(
     id: 'n4-011',
@@ -1193,6 +1643,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['タイ'],
     kunyomi: ['からだ'],
+    commonWords: [
+      CommonWord(word: '具体的', reading: 'ぐたいてき', meaning: 'concrete'),
+      CommonWord(word: '全体', reading: 'ぜんたい', meaning: 'whole'),
+      CommonWord(word: '体制', reading: 'たいせい', meaning: 'order'),
+    ],
   ),
   KanjiCard(
     id: 'n4-012',
@@ -1206,6 +1661,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['サク'],
     kunyomi: ['つくる'],
+    commonWords: [
+      CommonWord(word: '作業', reading: 'さぎょう', meaning: 'work'),
+      CommonWord(word: '作家', reading: 'さっか', meaning: 'author'),
+      CommonWord(word: '作戦', reading: 'さくせん', meaning: 'tactics'),
+    ],
   ),
   KanjiCard(
     id: 'n4-013',
@@ -1219,6 +1679,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['シ'],
     kunyomi: ['つかう'],
+    commonWords: [
+      CommonWord(word: '使う', reading: 'つかう', meaning: 'to use'),
+      CommonWord(word: '使用', reading: 'しよう', meaning: 'use'),
+      CommonWord(word: '大使', reading: 'たいし', meaning: 'ambassador'),
+    ],
   ),
   KanjiCard(
     id: 'n4-014',
@@ -1232,6 +1697,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['シャク'],
     kunyomi: ['か'],
+    commonWords: [
+      CommonWord(word: '借金', reading: 'しゃっきん', meaning: 'debt'),
+      CommonWord(word: '借りる', reading: 'かりる', meaning: 'to borrow'),
+      CommonWord(word: '借り', reading: 'かり', meaning: 'borrowing'),
+    ],
   ),
   KanjiCard(
     id: 'n4-015',
@@ -1245,6 +1715,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['ゲン'],
     kunyomi: ['もと'],
+    commonWords: [
+      CommonWord(word: '地元', reading: 'じもと', meaning: 'home area'),
+      CommonWord(word: '元', reading: 'もと', meaning: 'origin'),
+      CommonWord(word: '元首', reading: 'げんしゅ', meaning: 'sovereign'),
+    ],
   ),
   KanjiCard(
     id: 'n4-016',
@@ -1258,6 +1733,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['ケイ', 'キョウ'],
     kunyomi: ['あに'],
+    commonWords: [
+      CommonWord(word: '兄', reading: 'あに', meaning: 'older brother'),
+      CommonWord(word: '兄弟', reading: 'きょうだい', meaning: 'brothers and sisters'),
+      CommonWord(word: '兄貴', reading: 'あにき', meaning: 'elder brother'),
+    ],
   ),
   KanjiCard(
     id: 'n4-017',
@@ -1271,6 +1751,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['コウ', 'ク'],
     kunyomi: ['おおやけ'],
+    commonWords: [
+      CommonWord(word: '公園', reading: 'こうえん', meaning: 'park'),
+      CommonWord(word: '公演', reading: 'こうえん', meaning: 'public performance'),
+      CommonWord(word: '公開', reading: 'こうかい', meaning: 'opening to the public'),
+    ],
   ),
   KanjiCard(
     id: 'n4-018',
@@ -1284,6 +1769,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['シャ'],
     kunyomi: ['うつす'],
+    commonWords: [
+      CommonWord(word: '写真', reading: 'しゃしん', meaning: 'photograph'),
+      CommonWord(word: '描写', reading: 'びょうしゃ', meaning: 'depiction'),
+      CommonWord(word: '写る', reading: 'うつる', meaning: 'to be photographed'),
+    ],
   ),
   KanjiCard(
     id: 'n4-019',
@@ -1297,6 +1787,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['トウ'],
     kunyomi: ['ふゆ'],
+    commonWords: [
+      CommonWord(word: '冬', reading: 'ふゆ', meaning: 'winter'),
+      CommonWord(word: '冬季', reading: 'とうき', meaning: 'winter season'),
+      CommonWord(word: '暖冬', reading: 'だんとう', meaning: 'mild winter'),
+    ],
   ),
   KanjiCard(
     id: 'n4-020',
@@ -1310,6 +1805,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['セツ'],
     kunyomi: ['きる'],
+    commonWords: [
+      CommonWord(word: '大切', reading: 'たいせつ', meaning: 'important'),
+      CommonWord(word: '一切', reading: 'いっさい', meaning: 'all'),
+      CommonWord(word: '適切', reading: 'てきせつ', meaning: 'appropriate'),
+    ],
   ),
   KanjiCard(
     id: 'n4-021',
@@ -1323,6 +1823,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['ベツ'],
     kunyomi: ['わかれる'],
+    commonWords: [
+      CommonWord(word: '特別', reading: 'とくべつ', meaning: 'special'),
+      CommonWord(word: '差別', reading: 'さべつ', meaning: 'distinction'),
+      CommonWord(word: '別に', reading: 'べつに', meaning: 'particularly'),
+    ],
   ),
   KanjiCard(
     id: 'n4-022',
@@ -1336,6 +1841,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['リョク'],
     kunyomi: ['ちから'],
+    commonWords: [
+      CommonWord(word: '勢力', reading: 'せいりょく', meaning: 'influence'),
+      CommonWord(word: '努力', reading: 'どりょく', meaning: 'effort'),
+      CommonWord(word: '協力', reading: 'きょうりょく', meaning: 'cooperation'),
+    ],
   ),
   KanjiCard(
     id: 'n4-023',
@@ -1349,6 +1859,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['ベン'],
     kunyomi: ['つと'],
+    commonWords: [
+      CommonWord(word: '勉強', reading: 'べんきょう', meaning: 'study'),
+      CommonWord(word: '勤勉', reading: 'きんべん', meaning: 'diligent'),
+      CommonWord(word: '勉強中', reading: 'べんきょうちゅう', meaning: 'while studying'),
+    ],
   ),
   KanjiCard(
     id: 'n4-024',
@@ -1362,6 +1877,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['ドウ'],
     kunyomi: ['うごく'],
+    commonWords: [
+      CommonWord(word: '運動', reading: 'うんどう', meaning: 'exercise'),
+      CommonWord(word: '活動', reading: 'かつどう', meaning: 'activity'),
+      CommonWord(word: '行動', reading: 'こうどう', meaning: 'action'),
+    ],
   ),
   KanjiCard(
     id: 'n4-025',
@@ -1375,6 +1895,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['イ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '医療', reading: 'いりょう', meaning: 'medical treatment'),
+      CommonWord(word: '医学', reading: 'いがく', meaning: 'medicine'),
+      CommonWord(word: '医師', reading: 'いし', meaning: 'doctor'),
+    ],
   ),
   KanjiCard(
     id: 'n4-026',
@@ -1388,6 +1913,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['キョ'],
     kunyomi: ['さる'],
+    commonWords: [
+      CommonWord(word: '過去', reading: 'かこ', meaning: 'the past'),
+      CommonWord(word: '死去', reading: 'しきょ', meaning: 'death'),
+      CommonWord(word: '去年', reading: 'きょねん', meaning: 'last year'),
+    ],
   ),
   KanjiCard(
     id: 'n4-027',
@@ -1401,6 +1931,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['コウ'],
     kunyomi: ['くち'],
+    commonWords: [
+      CommonWord(word: '悪口', reading: 'わるぐち', meaning: 'abuse'),
+      CommonWord(word: '人口', reading: 'じんこう', meaning: 'population'),
+      CommonWord(word: '口', reading: 'くち', meaning: 'mouth'),
+    ],
   ),
   KanjiCard(
     id: 'n4-028',
@@ -1414,6 +1949,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['コ'],
     kunyomi: ['ふるい'],
+    commonWords: [
+      CommonWord(word: '古代', reading: 'こだい', meaning: 'ancient times'),
+      CommonWord(word: '古典', reading: 'こてん', meaning: 'classic'),
+      CommonWord(word: '中古', reading: 'ちゅうこ', meaning: 'used'),
+    ],
   ),
   KanjiCard(
     id: 'n4-029',
@@ -1427,6 +1967,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['ダイ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '台', reading: 'だい', meaning: 'stand'),
+      CommonWord(word: '舞台', reading: 'ぶたい', meaning: 'stage'),
+      CommonWord(word: '台風', reading: 'たいふう', meaning: 'typhoon'),
+    ],
   ),
   KanjiCard(
     id: 'n4-030',
@@ -1440,6 +1985,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['ドウ'],
     kunyomi: ['おなじ'],
+    commonWords: [
+      CommonWord(word: '同時', reading: 'どうじ', meaning: 'same time'),
+      CommonWord(word: '共同', reading: 'きょうどう', meaning: 'cooperation'),
+      CommonWord(word: '同様', reading: 'どうよう', meaning: 'same'),
+    ],
   ),
   KanjiCard(
     id: 'n4-031',
@@ -1453,6 +2003,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['ミ'],
     kunyomi: ['あじ'],
+    commonWords: [
+      CommonWord(word: '意味', reading: 'いみ', meaning: 'meaning'),
+      CommonWord(word: '味', reading: 'あじ', meaning: 'flavor'),
+      CommonWord(word: '興味', reading: 'きょうみ', meaning: 'interest'),
+    ],
   ),
   KanjiCard(
     id: 'n4-032',
@@ -1466,6 +2021,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['ヒン'],
     kunyomi: ['しな'],
+    commonWords: [
+      CommonWord(word: '作品', reading: 'さくひん', meaning: 'work'),
+      CommonWord(word: '商品', reading: 'しょうひん', meaning: 'commodity'),
+      CommonWord(word: '製品', reading: 'せいひん', meaning: 'manufactured goods'),
+    ],
   ),
   KanjiCard(
     id: 'n4-033',
@@ -1479,6 +2039,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['イン'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '委員', reading: 'いいん', meaning: 'committee member'),
+      CommonWord(word: '委員会', reading: 'いいんかい', meaning: 'committee'),
+      CommonWord(word: '会員', reading: 'かいいん', meaning: 'member'),
+    ],
   ),
   KanjiCard(
     id: 'n4-034',
@@ -1492,6 +2057,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['モン'],
     kunyomi: ['とう'],
+    commonWords: [
+      CommonWord(word: '質問', reading: 'しつもん', meaning: 'question'),
+      CommonWord(word: '訪問', reading: 'ほうもん', meaning: 'call'),
+      CommonWord(word: '疑問', reading: 'ぎもん', meaning: 'doubt'),
+    ],
   ),
   KanjiCard(
     id: 'n4-035',
@@ -1505,6 +2075,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['ズ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '意図', reading: 'いと', meaning: 'intention'),
+      CommonWord(word: '図書館', reading: 'としょかん', meaning: 'library'),
+      CommonWord(word: '地図', reading: 'ちず', meaning: 'map'),
+    ],
   ),
   KanjiCard(
     id: 'n4-036',
@@ -1518,6 +2093,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['チ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '現地', reading: 'げんち', meaning: 'actual place'),
+      CommonWord(word: '地域', reading: 'ちいき', meaning: 'area'),
+      CommonWord(word: '地球', reading: 'ちきゅう', meaning: 'Earth'),
+    ],
   ),
   KanjiCard(
     id: 'n4-037',
@@ -1531,6 +2111,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['ドウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '食堂', reading: 'しょくどう', meaning: 'dining room'),
+      CommonWord(word: '講堂', reading: 'こうどう', meaning: 'auditorium'),
+      CommonWord(word: '堂々', reading: 'どうどう', meaning: 'magnificent'),
+    ],
   ),
   KanjiCard(
     id: 'n4-038',
@@ -1544,6 +2129,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['ジョウ'],
     kunyomi: ['ば'],
+    commonWords: [
+      CommonWord(word: '現場', reading: 'げんば', meaning: 'actual spot'),
+      CommonWord(word: '市場', reading: 'いちば', meaning: 'market'),
+      CommonWord(word: '場所', reading: 'ばしょ', meaning: 'place'),
+    ],
   ),
   KanjiCard(
     id: 'n4-039',
@@ -1557,6 +2147,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['バイ'],
     kunyomi: ['うる'],
+    commonWords: [
+      CommonWord(word: '販売', reading: 'はんばい', meaning: 'sale'),
+      CommonWord(word: '売買', reading: 'ばいばい', meaning: 'trade'),
+      CommonWord(word: '売り場', reading: 'うりば', meaning: 'selling area'),
+    ],
   ),
   KanjiCard(
     id: 'n4-040',
@@ -1570,6 +2165,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['カ'],
     kunyomi: ['なつ'],
+    commonWords: [
+      CommonWord(word: '夏', reading: 'なつ', meaning: 'summer'),
+      CommonWord(word: '夏休み', reading: 'なつやすみ', meaning: 'summer vacation'),
+      CommonWord(word: '夏季', reading: 'かき', meaning: 'summer season'),
+    ],
   ),
   KanjiCard(
     id: 'n4-041',
@@ -1583,6 +2183,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['セキ'],
     kunyomi: ['ゆう'],
+    commonWords: [
+      CommonWord(word: '夕食', reading: 'ゆうしょく', meaning: 'evening meal'),
+      CommonWord(word: '夕方', reading: 'ゆうがた', meaning: 'early evening'),
+      CommonWord(word: '夕刊', reading: 'ゆうかん', meaning: 'evening edition'),
+    ],
   ),
   KanjiCard(
     id: 'n4-042',
@@ -1596,6 +2201,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['タ'],
     kunyomi: ['おおい'],
+    commonWords: [
+      CommonWord(word: '多数', reading: 'たすう', meaning: 'large number'),
+      CommonWord(word: '多様', reading: 'たよう', meaning: 'diverse'),
+      CommonWord(word: '多角', reading: 'たかく', meaning: 'many-sided'),
+    ],
   ),
   KanjiCard(
     id: 'n4-043',
@@ -1609,6 +2219,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['ヤ'],
     kunyomi: ['よる'],
+    commonWords: [
+      CommonWord(word: '夜', reading: 'よる', meaning: 'night'),
+      CommonWord(word: '前夜', reading: 'ぜんや', meaning: 'last night'),
+      CommonWord(word: '徹夜', reading: 'てつや', meaning: 'staying up all night'),
+    ],
   ),
   KanjiCard(
     id: 'n4-044',
@@ -1622,6 +2237,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['マイ'],
     kunyomi: ['いもうと'],
+    commonWords: [
+      CommonWord(word: '妹', reading: 'いもうと', meaning: 'younger sister'),
+      CommonWord(word: '姉妹', reading: 'しまい', meaning: 'sisters'),
+      CommonWord(word: '弟妹', reading: 'ていまい', meaning: 'younger brother and sister'),
+    ],
   ),
   KanjiCard(
     id: 'n4-045',
@@ -1635,6 +2255,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['シ'],
     kunyomi: ['あね', 'はは'],
+    commonWords: [
+      CommonWord(word: '姉', reading: 'あね', meaning: 'older sister'),
+      CommonWord(word: '姉妹', reading: 'しまい', meaning: 'sisters'),
+      CommonWord(word: '義姉', reading: 'ぎし', meaning: 'sister-in-law'),
+    ],
   ),
   KanjiCard(
     id: 'n4-046',
@@ -1648,6 +2273,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['シ'],
     kunyomi: ['はじめる'],
+    commonWords: [
+      CommonWord(word: '開始', reading: 'かいし', meaning: 'start'),
+      CommonWord(word: '始まり', reading: 'はじまり', meaning: 'origin'),
+      CommonWord(word: '終始', reading: 'しゅうし', meaning: 'beginning and end'),
+    ],
   ),
   KanjiCard(
     id: 'n4-047',
@@ -1661,6 +2291,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['ジ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '黒字', reading: 'くろじ', meaning: 'the black'),
+      CommonWord(word: '数字', reading: 'すうじ', meaning: 'numeral'),
+      CommonWord(word: '赤字', reading: 'あかじ', meaning: 'the red'),
+    ],
   ),
   KanjiCard(
     id: 'n4-048',
@@ -1674,6 +2309,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['アン'],
     kunyomi: ['やすい'],
+    commonWords: [
+      CommonWord(word: '安全', reading: 'あんぜん', meaning: 'safety'),
+      CommonWord(word: '安定', reading: 'あんてい', meaning: 'stability'),
+      CommonWord(word: '不安', reading: 'ふあん', meaning: 'anxiety'),
+    ],
   ),
   KanjiCard(
     id: 'n4-049',
@@ -1687,6 +2327,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['シツ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '教室', reading: 'きょうしつ', meaning: 'classroom'),
+      CommonWord(word: '室内', reading: 'しつない', meaning: 'indoor'),
+      CommonWord(word: '温室', reading: 'おんしつ', meaning: 'greenhouse'),
+    ],
   ),
   KanjiCard(
     id: 'n4-050',
@@ -1700,6 +2345,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['カ'],
     kunyomi: ['いえ'],
+    commonWords: [
+      CommonWord(word: '家族', reading: 'かぞく', meaning: 'family'),
+      CommonWord(word: '家庭', reading: 'かてい', meaning: 'home'),
+      CommonWord(word: '国家', reading: 'こっか', meaning: 'state'),
+    ],
   ),
   KanjiCard(
     id: 'n4-051',
@@ -1713,6 +2363,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['ショウ'],
     kunyomi: ['すくない'],
+    commonWords: [
+      CommonWord(word: '少し', reading: 'すこし', meaning: 'a little'),
+      CommonWord(word: '少年', reading: 'しょうねん', meaning: 'boy'),
+      CommonWord(word: '減少', reading: 'げんしょう', meaning: 'decrease'),
+    ],
   ),
   KanjiCard(
     id: 'n4-052',
@@ -1726,6 +2381,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['オク'],
     kunyomi: ['や'],
+    commonWords: [
+      CommonWord(word: '部屋', reading: 'へや', meaning: 'room'),
+      CommonWord(word: '屋根', reading: 'やね', meaning: 'roof'),
+      CommonWord(word: '小屋', reading: 'こや', meaning: 'hut'),
+    ],
   ),
   KanjiCard(
     id: 'n4-053',
@@ -1739,6 +2399,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['コウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '工場', reading: 'こうじょう', meaning: 'factory'),
+      CommonWord(word: '工業', reading: 'こうぎょう', meaning: 'industry'),
+      CommonWord(word: '工事', reading: 'こうじ', meaning: 'construction work'),
+    ],
   ),
   KanjiCard(
     id: 'n4-054',
@@ -1752,6 +2417,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['キ'],
     kunyomi: ['かえる'],
+    commonWords: [
+      CommonWord(word: '帰国', reading: 'きこく', meaning: 'return to one\'s country'),
+      CommonWord(word: '復帰', reading: 'ふっき', meaning: 'return'),
+      CommonWord(word: '帰宅', reading: 'きたく', meaning: 'returning home'),
+    ],
   ),
   KanjiCard(
     id: 'n4-055',
@@ -1765,6 +2435,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['コウ'],
     kunyomi: ['ひろい'],
+    commonWords: [
+      CommonWord(word: '広告', reading: 'こうこく', meaning: 'advertisement'),
+      CommonWord(word: '広い', reading: 'ひろい', meaning: 'spacious'),
+      CommonWord(word: '広場', reading: 'ひろば', meaning: 'public square'),
+    ],
   ),
   KanjiCard(
     id: 'n4-056',
@@ -1778,6 +2453,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['テン'],
     kunyomi: ['みせ'],
+    commonWords: [
+      CommonWord(word: '支店', reading: 'してん', meaning: 'branch office'),
+      CommonWord(word: '百貨店', reading: 'ひゃっかてん', meaning: 'department store'),
+      CommonWord(word: '書店', reading: 'しょてん', meaning: 'bookshop'),
+    ],
   ),
   KanjiCard(
     id: 'n4-057',
@@ -1791,6 +2471,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['ド'],
     kunyomi: ['たび'],
+    commonWords: [
+      CommonWord(word: '制度', reading: 'せいど', meaning: 'system'),
+      CommonWord(word: '程度', reading: 'ていど', meaning: 'degree'),
+      CommonWord(word: '今度', reading: 'こんど', meaning: 'this time'),
+    ],
   ),
   KanjiCard(
     id: 'n4-058',
@@ -1804,6 +2489,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['ケン'],
     kunyomi: ['たてる'],
+    commonWords: [
+      CommonWord(word: '建設', reading: 'けんせつ', meaning: 'construction'),
+      CommonWord(word: '建物', reading: 'たてもの', meaning: 'building'),
+      CommonWord(word: '再建', reading: 'さいけん', meaning: 'rebuilding'),
+    ],
   ),
   KanjiCard(
     id: 'n4-059',
@@ -1817,6 +2507,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['テイ', 'ダイ', 'デ'],
     kunyomi: ['おとうと'],
+    commonWords: [
+      CommonWord(word: '弟', reading: 'おとうと', meaning: 'younger brother'),
+      CommonWord(word: '兄弟', reading: 'きょうだい', meaning: 'brothers and sisters'),
+      CommonWord(word: '弟子', reading: 'でし', meaning: 'pupil'),
+    ],
   ),
   KanjiCard(
     id: 'n4-060',
@@ -1830,6 +2525,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['キョウ'],
     kunyomi: ['つよい'],
+    commonWords: [
+      CommonWord(word: '強化', reading: 'きょうか', meaning: 'strengthening'),
+      CommonWord(word: '強制', reading: 'きょうせい', meaning: 'compulsion'),
+      CommonWord(word: '勉強', reading: 'べんきょう', meaning: 'study'),
+    ],
   ),
   KanjiCard(
     id: 'n4-061',
@@ -1843,6 +2543,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['タイ'],
     kunyomi: ['まつ'],
+    commonWords: [
+      CommonWord(word: '期待', reading: 'きたい', meaning: 'expectation'),
+      CommonWord(word: '招待', reading: 'しょうたい', meaning: 'invitation'),
+      CommonWord(word: '待遇', reading: 'たいぐう', meaning: 'treatment'),
+    ],
   ),
   KanjiCard(
     id: 'n4-062',
@@ -1856,6 +2561,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['シン'],
     kunyomi: ['こころ'],
+    commonWords: [
+      CommonWord(word: '関心', reading: 'かんしん', meaning: 'concern'),
+      CommonWord(word: '中心', reading: 'ちゅうしん', meaning: 'center'),
+      CommonWord(word: '心臓', reading: 'しんぞう', meaning: 'heart'),
+    ],
   ),
   KanjiCard(
     id: 'n4-063',
@@ -1869,6 +2579,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['シ'],
     kunyomi: ['おもう'],
+    commonWords: [
+      CommonWord(word: '思わず', reading: 'おもわず', meaning: 'unconsciously'),
+      CommonWord(word: '思い', reading: 'おもい', meaning: 'thought'),
+      CommonWord(word: '思う', reading: 'おもう', meaning: 'to think'),
+    ],
   ),
   KanjiCard(
     id: 'n4-064',
@@ -1882,6 +2597,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['キュウ'],
     kunyomi: ['いそぐ'],
+    commonWords: [
+      CommonWord(word: '緊急', reading: 'きんきゅう', meaning: 'urgency'),
+      CommonWord(word: '急', reading: 'きゅう', meaning: 'sudden'),
+      CommonWord(word: '急速', reading: 'きゅうそく', meaning: 'rapid'),
+    ],
   ),
   KanjiCard(
     id: 'n4-065',
@@ -1895,6 +2615,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['アク'],
     kunyomi: ['わるい'],
+    commonWords: [
+      CommonWord(word: '悪口', reading: 'わるぐち', meaning: 'abuse'),
+      CommonWord(word: '悪化', reading: 'あっか', meaning: 'deterioration'),
+      CommonWord(word: '悪', reading: 'あく', meaning: 'evil'),
+    ],
   ),
   KanjiCard(
     id: 'n4-066',
@@ -1908,6 +2633,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['イ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '意見', reading: 'いけん', meaning: 'opinion'),
+      CommonWord(word: '意味', reading: 'いみ', meaning: 'meaning'),
+      CommonWord(word: '合意', reading: 'ごうい', meaning: 'agreement'),
+    ],
   ),
   KanjiCard(
     id: 'n4-067',
@@ -1921,6 +2651,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['シュ'],
     kunyomi: ['て'],
+    commonWords: [
+      CommonWord(word: '手', reading: 'て', meaning: 'hand'),
+      CommonWord(word: '選手', reading: 'せんしゅ', meaning: 'player'),
+      CommonWord(word: '相手', reading: 'あいて', meaning: 'companion'),
+    ],
   ),
   KanjiCard(
     id: 'n4-068',
@@ -1934,6 +2669,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['ジ'],
     kunyomi: ['もつ'],
+    commonWords: [
+      CommonWord(word: '維持', reading: 'いじ', meaning: 'maintenance'),
+      CommonWord(word: '支持', reading: 'しじ', meaning: 'support'),
+      CommonWord(word: '気持ち', reading: 'きもち', meaning: 'feeling'),
+    ],
   ),
   KanjiCard(
     id: 'n4-069',
@@ -1947,6 +2687,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['キョウ'],
     kunyomi: ['おしえる'],
+    commonWords: [
+      CommonWord(word: '教育', reading: 'きょういく', meaning: 'education'),
+      CommonWord(word: '教授', reading: 'きょうじゅ', meaning: 'professor'),
+      CommonWord(word: '教師', reading: 'きょうし', meaning: 'teacher'),
+    ],
   ),
   KanjiCard(
     id: 'n4-070',
@@ -1960,6 +2705,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['ブン'],
     kunyomi: ['ふみ'],
+    commonWords: [
+      CommonWord(word: '文化', reading: 'ぶんか', meaning: 'culture'),
+      CommonWord(word: '文学', reading: 'ぶんがく', meaning: 'literature'),
+      CommonWord(word: '文書', reading: 'ぶんしょ', meaning: 'document'),
+    ],
   ),
   KanjiCard(
     id: 'n4-071',
@@ -1973,6 +2723,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['リョウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '資料', reading: 'しりょう', meaning: 'material'),
+      CommonWord(word: '無料', reading: 'むりょう', meaning: 'free'),
+      CommonWord(word: '料金', reading: 'りょうきん', meaning: 'fee'),
+    ],
   ),
   KanjiCard(
     id: 'n4-072',
@@ -1986,6 +2741,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['シン'],
     kunyomi: ['あたらしい'],
+    commonWords: [
+      CommonWord(word: '新た', reading: 'あらた', meaning: 'new'),
+      CommonWord(word: '新聞', reading: 'しんぶん', meaning: 'newspaper'),
+      CommonWord(word: '新人', reading: 'しんじん', meaning: 'newcomer'),
+    ],
   ),
   KanjiCard(
     id: 'n4-073',
@@ -1999,6 +2759,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['ホウ'],
     kunyomi: ['かた'],
+    commonWords: [
+      CommonWord(word: '一方', reading: 'いっぽう', meaning: 'one'),
+      CommonWord(word: '見方', reading: 'みかた', meaning: 'viewpoint'),
+      CommonWord(word: '地方', reading: 'ちほう', meaning: 'district'),
+    ],
   ),
   KanjiCard(
     id: 'n4-074',
@@ -2012,6 +2777,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['リョ'],
     kunyomi: ['たび'],
+    commonWords: [
+      CommonWord(word: '旅行', reading: 'りょこう', meaning: 'travel'),
+      CommonWord(word: '旅客', reading: 'りょかく', meaning: 'passenger'),
+      CommonWord(word: '旅館', reading: 'りょかん', meaning: 'ryokan'),
+    ],
   ),
   KanjiCard(
     id: 'n4-075',
@@ -2025,6 +2795,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['ゾク'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '家族', reading: 'かぞく', meaning: 'family'),
+      CommonWord(word: '民族', reading: 'みんぞく', meaning: 'people'),
+      CommonWord(word: '親族', reading: 'しんぞく', meaning: 'relative'),
+    ],
   ),
   KanjiCard(
     id: 'n4-076',
@@ -2038,6 +2813,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['ソウ'],
     kunyomi: ['はやい'],
+    commonWords: [
+      CommonWord(word: '早期', reading: 'そうき', meaning: 'early stage'),
+      CommonWord(word: '早朝', reading: 'そうちょう', meaning: 'early morning'),
+      CommonWord(word: '早める', reading: 'はやめる', meaning: 'to bring forward'),
+    ],
   ),
   KanjiCard(
     id: 'n4-077',
@@ -2051,6 +2831,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['メイ'],
     kunyomi: ['あかるい'],
+    commonWords: [
+      CommonWord(word: '明らか', reading: 'あきらか', meaning: 'clear'),
+      CommonWord(word: '声明', reading: 'せいめい', meaning: 'declaration'),
+      CommonWord(word: '説明', reading: 'せつめい', meaning: 'explanation'),
+    ],
   ),
   KanjiCard(
     id: 'n4-078',
@@ -2064,6 +2849,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['エイ'],
     kunyomi: ['うつる'],
+    commonWords: [
+      CommonWord(word: '映画', reading: 'えいが', meaning: 'movie'),
+      CommonWord(word: '映像', reading: 'えいぞう', meaning: 'image'),
+      CommonWord(word: '上映', reading: 'じょうえい', meaning: 'screening'),
+    ],
   ),
   KanjiCard(
     id: 'n4-079',
@@ -2077,6 +2867,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['シュン'],
     kunyomi: ['はる'],
+    commonWords: [
+      CommonWord(word: '春', reading: 'はる', meaning: 'spring'),
+      CommonWord(word: '青春', reading: 'せいしゅん', meaning: 'youth'),
+      CommonWord(word: '売春', reading: 'ばいしゅん', meaning: 'prostitution'),
+    ],
   ),
   KanjiCard(
     id: 'n4-080',
@@ -2090,6 +2885,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['チュウ'],
     kunyomi: ['ひる'],
+    commonWords: [
+      CommonWord(word: '昼', reading: 'ひる', meaning: 'noon'),
+      CommonWord(word: '昼食', reading: 'ちゅうしょく', meaning: 'lunch'),
+      CommonWord(word: '昼間', reading: 'ひるま', meaning: 'daytime'),
+    ],
   ),
   KanjiCard(
     id: 'n4-081',
@@ -2103,6 +2903,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['ヨウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '土曜', reading: 'どよう', meaning: 'Saturday'),
+      CommonWord(word: '曜日', reading: 'ようび', meaning: 'day of the week'),
+      CommonWord(word: '日曜', reading: 'にちよう', meaning: 'Sunday'),
+    ],
   ),
   KanjiCard(
     id: 'n4-082',
@@ -2116,6 +2921,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['ユウ'],
     kunyomi: ['ある'],
+    commonWords: [
+      CommonWord(word: '有効', reading: 'ゆうこう', meaning: 'valid'),
+      CommonWord(word: '有力', reading: 'ゆうりょく', meaning: 'influential'),
+      CommonWord(word: '有権者', reading: 'ゆうけんしゃ', meaning: 'voter'),
+    ],
   ),
   KanjiCard(
     id: 'n4-083',
@@ -2129,6 +2939,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['フク'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '服', reading: 'ふく', meaning: 'clothes'),
+      CommonWord(word: '制服', reading: 'せいふく', meaning: 'uniform'),
+      CommonWord(word: '服装', reading: 'ふくそう', meaning: 'attire'),
+    ],
   ),
   KanjiCard(
     id: 'n4-084',
@@ -2142,6 +2957,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['チョウ'],
     kunyomi: ['あさ'],
+    commonWords: [
+      CommonWord(word: '早朝', reading: 'そうちょう', meaning: 'early morning'),
+      CommonWord(word: '朝日', reading: 'あさひ', meaning: 'morning sun'),
+      CommonWord(word: '朝刊', reading: 'ちょうかん', meaning: 'morning edition'),
+    ],
   ),
   KanjiCard(
     id: 'n4-085',
@@ -2155,6 +2975,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['ギョウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '企業', reading: 'きぎょう', meaning: 'enterprise'),
+      CommonWord(word: '業界', reading: 'ぎょうかい', meaning: 'business world'),
+      CommonWord(word: '業者', reading: 'ぎょうしゃ', meaning: 'trader'),
+    ],
   ),
   KanjiCard(
     id: 'n4-086',
@@ -2168,6 +2993,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['ガク'],
     kunyomi: ['たのしい'],
+    commonWords: [
+      CommonWord(word: '音楽', reading: 'おんがく', meaning: 'music'),
+      CommonWord(word: '楽しみ', reading: 'たのしみ', meaning: 'enjoyment'),
+      CommonWord(word: '楽器', reading: 'がっき', meaning: 'musical instrument'),
+    ],
   ),
   KanjiCard(
     id: 'n4-087',
@@ -2181,6 +3011,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['カ'],
     kunyomi: ['うた'],
+    commonWords: [
+      CommonWord(word: '歌', reading: 'うた', meaning: 'song'),
+      CommonWord(word: '歌手', reading: 'かしゅ', meaning: 'singer'),
+      CommonWord(word: '歌舞伎', reading: 'かぶき', meaning: 'kabuki'),
+    ],
   ),
   KanjiCard(
     id: 'n4-088',
@@ -2194,6 +3029,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['シ'],
     kunyomi: ['とまる'],
+    commonWords: [
+      CommonWord(word: '禁止', reading: 'きんし', meaning: 'prohibition'),
+      CommonWord(word: '停止', reading: 'ていし', meaning: 'stoppage'),
+      CommonWord(word: '防止', reading: 'ぼうし', meaning: 'prevention'),
+    ],
   ),
   KanjiCard(
     id: 'n4-089',
@@ -2207,6 +3047,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['セイ'],
     kunyomi: ['ただしい'],
+    commonWords: [
+      CommonWord(word: '改正', reading: 'かいせい', meaning: 'revision'),
+      CommonWord(word: '修正', reading: 'しゅうせい', meaning: 'amendment'),
+      CommonWord(word: '正式', reading: 'せいしき', meaning: 'formal'),
+    ],
   ),
   KanjiCard(
     id: 'n4-090',
@@ -2220,6 +3065,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['ホ'],
     kunyomi: ['あるく'],
+    commonWords: [
+      CommonWord(word: '譲歩', reading: 'じょうほ', meaning: 'concession'),
+      CommonWord(word: '進歩', reading: 'しんぽ', meaning: 'progress'),
+      CommonWord(word: '徒歩', reading: 'とほ', meaning: 'walking'),
+    ],
   ),
   KanjiCard(
     id: 'n4-091',
@@ -2233,6 +3083,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['シ'],
     kunyomi: ['しぬ'],
+    commonWords: [
+      CommonWord(word: '死者', reading: 'ししゃ', meaning: 'dead person'),
+      CommonWord(word: '脳死', reading: 'のうし', meaning: 'brain death'),
+      CommonWord(word: '死亡', reading: 'しぼう', meaning: 'death'),
+    ],
   ),
   KanjiCard(
     id: 'n4-092',
@@ -2246,6 +3101,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['チュウ'],
     kunyomi: ['そそぐ'],
+    commonWords: [
+      CommonWord(word: '注目', reading: 'ちゅうもく', meaning: 'notice'),
+      CommonWord(word: '注意', reading: 'ちゅうい', meaning: 'attention'),
+      CommonWord(word: '注文', reading: 'ちゅうもん', meaning: 'order'),
+    ],
   ),
   KanjiCard(
     id: 'n4-093',
@@ -2259,6 +3119,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['ヨウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '東洋', reading: 'とうよう', meaning: 'the East'),
+      CommonWord(word: '海洋', reading: 'かいよう', meaning: 'ocean'),
+      CommonWord(word: '西洋', reading: 'せいよう', meaning: 'the West'),
+    ],
   ),
   KanjiCard(
     id: 'n4-094',
@@ -2272,6 +3137,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['カイ'],
     kunyomi: ['うみ'],
+    commonWords: [
+      CommonWord(word: '海外', reading: 'かいがい', meaning: 'foreign'),
+      CommonWord(word: '海', reading: 'うみ', meaning: 'sea'),
+      CommonWord(word: '海軍', reading: 'かいぐん', meaning: 'navy'),
+    ],
   ),
   KanjiCard(
     id: 'n4-095',
@@ -2285,6 +3155,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['カン'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '漢字', reading: 'かんじ', meaning: 'kanji'),
+      CommonWord(word: '漢方薬', reading: 'かんぽうやく', meaning: 'Chinese herbal medicine'),
+      CommonWord(word: '漢方', reading: 'かんぽう', meaning: 'kampō'),
+    ],
   ),
   KanjiCard(
     id: 'n4-096',
@@ -2298,6 +3173,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['ギュウ'],
     kunyomi: ['うし'],
+    commonWords: [
+      CommonWord(word: '牛', reading: 'うし', meaning: 'cattle'),
+      CommonWord(word: '牛肉', reading: 'ぎゅうにく', meaning: 'beef'),
+      CommonWord(word: '牛乳', reading: 'ぎゅうにゅう', meaning: 'milk'),
+    ],
   ),
   KanjiCard(
     id: 'n4-097',
@@ -2311,6 +3191,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['ブツ'],
     kunyomi: ['もの'],
+    commonWords: [
+      CommonWord(word: '人物', reading: 'じんぶつ', meaning: 'person'),
+      CommonWord(word: '動物', reading: 'どうぶつ', meaning: 'animal'),
+      CommonWord(word: '建物', reading: 'たてもの', meaning: 'building'),
+    ],
   ),
   KanjiCard(
     id: 'n4-098',
@@ -2324,6 +3209,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['トク'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '特に', reading: 'とくに', meaning: 'particularly'),
+      CommonWord(word: '特別', reading: 'とくべつ', meaning: 'special'),
+      CommonWord(word: '特徴', reading: 'とくちょう', meaning: 'feature'),
+    ],
   ),
   KanjiCard(
     id: 'n4-099',
@@ -2337,6 +3227,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['ケン'],
     kunyomi: ['いぬ'],
+    commonWords: [
+      CommonWord(word: '犬', reading: 'いぬ', meaning: 'dog (Canis (lupus) familiaris)'),
+      CommonWord(word: '盲導犬', reading: 'もうどうけん', meaning: 'guide dog'),
+      CommonWord(word: '愛犬', reading: 'あいけん', meaning: 'pet dog'),
+    ],
   ),
   KanjiCard(
     id: 'n4-100',
@@ -2350,6 +3245,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['リ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '管理', reading: 'かんり', meaning: 'control'),
+      CommonWord(word: '理事', reading: 'りじ', meaning: 'director'),
+      CommonWord(word: '理由', reading: 'りゆう', meaning: 'reason'),
+    ],
   ),
   KanjiCard(
     id: 'n4-101',
@@ -2363,6 +3263,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['ヨウ'],
     kunyomi: ['もちいる'],
+    commonWords: [
+      CommonWord(word: '雇用', reading: 'こよう', meaning: 'employment'),
+      CommonWord(word: '採用', reading: 'さいよう', meaning: 'use'),
+      CommonWord(word: '費用', reading: 'ひよう', meaning: 'cost'),
+    ],
   ),
   KanjiCard(
     id: 'n4-102',
@@ -2376,6 +3281,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['デン'],
     kunyomi: ['た'],
+    commonWords: [
+      CommonWord(word: '水田', reading: 'すいでん', meaning: 'paddy field'),
+      CommonWord(word: '油田', reading: 'ゆでん', meaning: 'oil field'),
+      CommonWord(word: '田舎', reading: 'いなか', meaning: 'rural area'),
+    ],
   ),
   KanjiCard(
     id: 'n4-103',
@@ -2389,6 +3299,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['チョウ'],
     kunyomi: ['まち'],
+    commonWords: [
+      CommonWord(word: '町', reading: 'まち', meaning: 'town'),
+      CommonWord(word: '下町', reading: 'したまち', meaning: 'low-lying part of a city'),
+      CommonWord(word: '町並み', reading: 'まちなみ', meaning: 'townscape'),
+    ],
   ),
   KanjiCard(
     id: 'n4-104',
@@ -2402,6 +3317,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['ガ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '映画', reading: 'えいが', meaning: 'movie'),
+      CommonWord(word: '計画', reading: 'けいかく', meaning: 'plan'),
+      CommonWord(word: '企画', reading: 'きかく', meaning: 'planning'),
+    ],
   ),
   KanjiCard(
     id: 'n4-105',
@@ -2415,6 +3335,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['カイ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '業界', reading: 'ぎょうかい', meaning: 'business world'),
+      CommonWord(word: '世界', reading: 'せかい', meaning: 'the world'),
+      CommonWord(word: '政界', reading: 'せいかい', meaning: 'politics'),
+    ],
   ),
   KanjiCard(
     id: 'n4-106',
@@ -2428,6 +3353,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['ビョウ'],
     kunyomi: ['やまい'],
+    commonWords: [
+      CommonWord(word: '病院', reading: 'びょういん', meaning: 'hospital'),
+      CommonWord(word: '病気', reading: 'びょうき', meaning: 'illness'),
+      CommonWord(word: '病状', reading: 'びょうじょう', meaning: 'condition of a patient'),
+    ],
   ),
   KanjiCard(
     id: 'n4-107',
@@ -2441,6 +3371,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['ハツ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '開発', reading: 'かいはつ', meaning: 'development'),
+      CommonWord(word: '発言', reading: 'はつげん', meaning: 'statement'),
+      CommonWord(word: '発行', reading: 'はっこう', meaning: 'publication'),
+    ],
   ),
   KanjiCard(
     id: 'n4-108',
@@ -2454,6 +3389,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['テキ'],
     kunyomi: ['まと'],
+    commonWords: [
+      CommonWord(word: '具体的', reading: 'ぐたいてき', meaning: 'concrete'),
+      CommonWord(word: '積極的', reading: 'せっきょくてき', meaning: 'positive'),
+      CommonWord(word: '目的', reading: 'もくてき', meaning: 'purpose'),
+    ],
   ),
   KanjiCard(
     id: 'n4-109',
@@ -2467,6 +3407,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['モク'],
     kunyomi: ['め'],
+    commonWords: [
+      CommonWord(word: '目的', reading: 'もくてき', meaning: 'purpose'),
+      CommonWord(word: '目標', reading: 'もくひょう', meaning: 'goal'),
+      CommonWord(word: '注目', reading: 'ちゅうもく', meaning: 'notice'),
+    ],
   ),
   KanjiCard(
     id: 'n4-110',
@@ -2480,6 +3425,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['シン'],
     kunyomi: ['ま'],
+    commonWords: [
+      CommonWord(word: '写真', reading: 'しゃしん', meaning: 'photograph'),
+      CommonWord(word: '真相', reading: 'しんそう', meaning: 'truth'),
+      CommonWord(word: '真ん中', reading: 'まんなか', meaning: 'middle'),
+    ],
   ),
   KanjiCard(
     id: 'n4-111',
@@ -2493,6 +3443,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['チャク'],
     kunyomi: ['きる'],
+    commonWords: [
+      CommonWord(word: '着実', reading: 'ちゃくじつ', meaning: 'steady'),
+      CommonWord(word: '癒着', reading: 'ゆちゃく', meaning: 'adhesion'),
+      CommonWord(word: '着', reading: 'ちゃく', meaning: 'arrival'),
+    ],
   ),
   KanjiCard(
     id: 'n4-112',
@@ -2506,6 +3461,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['チ'],
     kunyomi: ['しる'],
+    commonWords: [
+      CommonWord(word: '知事', reading: 'ちじ', meaning: 'prefectural governor'),
+      CommonWord(word: '知る', reading: 'しる', meaning: 'to know'),
+      CommonWord(word: '知識', reading: 'ちしき', meaning: 'knowledge'),
+    ],
   ),
   KanjiCard(
     id: 'n4-113',
@@ -2519,6 +3479,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['ケン'],
     kunyomi: ['とぐ'],
+    commonWords: [
+      CommonWord(word: '研究', reading: 'けんきゅう', meaning: 'research'),
+      CommonWord(word: '研究所', reading: 'けんきゅうじょ', meaning: 'research institute'),
+      CommonWord(word: '研修', reading: 'けんしゅう', meaning: 'training'),
+    ],
   ),
   KanjiCard(
     id: 'n4-114',
@@ -2532,6 +3497,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['シャ'],
     kunyomi: ['やしろ'],
+    commonWords: [
+      CommonWord(word: '会社', reading: 'かいしゃ', meaning: 'company'),
+      CommonWord(word: '社会', reading: 'しゃかい', meaning: 'society'),
+      CommonWord(word: '社長', reading: 'しゃちょう', meaning: 'company president'),
+    ],
   ),
   KanjiCard(
     id: 'n4-115',
@@ -2545,6 +3515,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['シ'],
     kunyomi: ['わたし'],
+    commonWords: [
+      CommonWord(word: '私', reading: 'わたし', meaning: 'I'),
+      CommonWord(word: '私立', reading: 'しりつ', meaning: 'private'),
+      CommonWord(word: '私鉄', reading: 'してつ', meaning: 'private railway'),
+    ],
   ),
   KanjiCard(
     id: 'n4-116',
@@ -2558,6 +3533,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['シュウ'],
     kunyomi: ['あき'],
+    commonWords: [
+      CommonWord(word: '秋', reading: 'あき', meaning: 'autumn'),
+      CommonWord(word: '今秋', reading: 'こんしゅう', meaning: 'this autumn'),
+      CommonWord(word: '昨秋', reading: 'さくしゅう', meaning: 'autumn of last year'),
+    ],
   ),
   KanjiCard(
     id: 'n4-117',
@@ -2571,6 +3551,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['キュウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '研究', reading: 'けんきゅう', meaning: 'research'),
+      CommonWord(word: '究明', reading: 'きゅうめい', meaning: 'investigation'),
+      CommonWord(word: '究極', reading: 'きゅうきょく', meaning: 'ultimate'),
+    ],
   ),
   KanjiCard(
     id: 'n4-118',
@@ -2584,6 +3569,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['クウ'],
     kunyomi: ['そら'],
+    commonWords: [
+      CommonWord(word: '空港', reading: 'くうこう', meaning: 'airport'),
+      CommonWord(word: '航空', reading: 'こうくう', meaning: 'aviation'),
+      CommonWord(word: '空', reading: 'から', meaning: 'emptiness'),
+    ],
   ),
   KanjiCard(
     id: 'n4-119',
@@ -2597,6 +3587,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['リツ'],
     kunyomi: ['たつ'],
+    commonWords: [
+      CommonWord(word: '立場', reading: 'たちば', meaning: 'position'),
+      CommonWord(word: '国立', reading: 'こくりつ', meaning: 'national'),
+      CommonWord(word: '成立', reading: 'せいりつ', meaning: 'formation'),
+    ],
   ),
   KanjiCard(
     id: 'n4-120',
@@ -2610,6 +3605,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['トウ'],
     kunyomi: ['こたえる'],
+    commonWords: [
+      CommonWord(word: '回答', reading: 'かいとう', meaning: 'reply'),
+      CommonWord(word: '答申', reading: 'とうしん', meaning: 'report'),
+      CommonWord(word: '答え', reading: 'こたえ', meaning: 'answer'),
+    ],
   ),
   KanjiCard(
     id: 'n4-121',
@@ -2623,6 +3623,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['シ'],
     kunyomi: ['かみ'],
+    commonWords: [
+      CommonWord(word: '紙', reading: 'かみ', meaning: 'paper'),
+      CommonWord(word: '手紙', reading: 'てがみ', meaning: 'letter'),
+      CommonWord(word: '用紙', reading: 'ようし', meaning: 'blank form'),
+    ],
   ),
   KanjiCard(
     id: 'n4-122',
@@ -2636,6 +3641,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['シュウ'],
     kunyomi: ['おわる'],
+    commonWords: [
+      CommonWord(word: '最終', reading: 'さいしゅう', meaning: 'last'),
+      CommonWord(word: '終戦', reading: 'しゅうせん', meaning: 'end of war'),
+      CommonWord(word: '終了', reading: 'しゅうりょう', meaning: 'end'),
+    ],
   ),
   KanjiCard(
     id: 'n4-123',
@@ -2649,6 +3659,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['シュウ', 'ジュ'],
     kunyomi: ['なら'],
+    commonWords: [
+      CommonWord(word: '練習', reading: 'れんしゅう', meaning: 'practice'),
+      CommonWord(word: '学習', reading: 'がくしゅう', meaning: 'learning'),
+      CommonWord(word: '習慣', reading: 'しゅうかん', meaning: 'habit'),
+    ],
   ),
   KanjiCard(
     id: 'n4-124',
@@ -2662,6 +3677,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['コウ'],
     kunyomi: ['かんがえる'],
+    commonWords: [
+      CommonWord(word: '考え', reading: 'かんがえ', meaning: 'thinking'),
+      CommonWord(word: '参考', reading: 'さんこう', meaning: 'reference'),
+      CommonWord(word: '思考', reading: 'しこう', meaning: 'thought'),
+    ],
   ),
   KanjiCard(
     id: 'n4-125',
@@ -2675,6 +3695,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['シャ'],
     kunyomi: ['もの'],
+    commonWords: [
+      CommonWord(word: '患者', reading: 'かんじゃ', meaning: 'patient'),
+      CommonWord(word: '記者', reading: 'きしゃ', meaning: 'reporter'),
+      CommonWord(word: '業者', reading: 'ぎょうしゃ', meaning: 'trader'),
+    ],
   ),
   KanjiCard(
     id: 'n4-126',
@@ -2688,6 +3713,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['ニク'],
     kunyomi: ['しし'],
+    commonWords: [
+      CommonWord(word: '肉', reading: 'にく', meaning: 'flesh'),
+      CommonWord(word: '牛肉', reading: 'ぎゅうにく', meaning: 'beef'),
+      CommonWord(word: '筋肉', reading: 'きんにく', meaning: 'muscle'),
+    ],
   ),
   KanjiCard(
     id: 'n4-127',
@@ -2701,6 +3731,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['ジ'],
     kunyomi: ['みずから'],
+    commonWords: [
+      CommonWord(word: '自ら', reading: 'みずから', meaning: 'oneself'),
+      CommonWord(word: '自衛隊', reading: 'じえいたい', meaning: 'Japan Self-Defense Forces'),
+      CommonWord(word: '自身', reading: 'じしん', meaning: 'self'),
+    ],
   ),
   KanjiCard(
     id: 'n4-128',
@@ -2714,6 +3749,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['ショク'],
     kunyomi: ['いろ'],
+    commonWords: [
+      CommonWord(word: '色', reading: 'いろ', meaning: 'colour'),
+      CommonWord(word: '特色', reading: 'とくしょく', meaning: 'characteristic'),
+      CommonWord(word: '黄色', reading: 'きいろ', meaning: 'yellow'),
+    ],
   ),
   KanjiCard(
     id: 'n4-129',
@@ -2727,6 +3767,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['カ'],
     kunyomi: ['はな'],
+    commonWords: [
+      CommonWord(word: '花', reading: 'はな', meaning: 'flower'),
+      CommonWord(word: '花火', reading: 'はなび', meaning: 'fireworks'),
+      CommonWord(word: '花見', reading: 'はなみ', meaning: 'cherry blossom viewing'),
+    ],
   ),
   KanjiCard(
     id: 'n4-130',
@@ -2740,6 +3785,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['エイ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '英語', reading: 'えいご', meaning: 'English'),
+      CommonWord(word: '英雄', reading: 'えいゆう', meaning: 'hero'),
+      CommonWord(word: '英文', reading: 'えいぶん', meaning: 'English writing'),
+    ],
   ),
   KanjiCard(
     id: 'n4-131',
@@ -2753,6 +3803,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['チャ', 'サ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: 'お茶', reading: 'おちゃ', meaning: 'tea'),
+      CommonWord(word: '喫茶店', reading: 'きっさてん', meaning: 'coffee shop'),
+      CommonWord(word: '紅茶', reading: 'こうちゃ', meaning: 'black tea'),
+    ],
   ),
   KanjiCard(
     id: 'n4-132',
@@ -2766,6 +3821,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['シン'],
     kunyomi: ['おや'],
+    commonWords: [
+      CommonWord(word: '親', reading: 'おや', meaning: 'parent'),
+      CommonWord(word: '父親', reading: 'ちちおや', meaning: 'father'),
+      CommonWord(word: '母親', reading: 'ははおや', meaning: 'mother'),
+    ],
   ),
   KanjiCard(
     id: 'n4-133',
@@ -2779,6 +3839,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['ゲン'],
     kunyomi: ['いう'],
+    commonWords: [
+      CommonWord(word: '言葉', reading: 'ことば', meaning: 'language'),
+      CommonWord(word: '宣言', reading: 'せんげん', meaning: 'declaration'),
+      CommonWord(word: '発言', reading: 'はつげん', meaning: 'statement'),
+    ],
   ),
   KanjiCard(
     id: 'n4-134',
@@ -2792,6 +3857,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['ケイ'],
     kunyomi: ['はかる'],
+    commonWords: [
+      CommonWord(word: '計画', reading: 'けいかく', meaning: 'plan'),
+      CommonWord(word: '合計', reading: 'ごうけい', meaning: 'sum total'),
+      CommonWord(word: '計算', reading: 'けいさん', meaning: 'calculation'),
+    ],
   ),
   KanjiCard(
     id: 'n4-135',
@@ -2805,6 +3875,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['シ'],
     kunyomi: ['ためす'],
+    commonWords: [
+      CommonWord(word: '試験', reading: 'しけん', meaning: 'examination'),
+      CommonWord(word: '試み', reading: 'こころみ', meaning: 'attempt'),
+      CommonWord(word: '入試', reading: 'にゅうし', meaning: 'entrance examination'),
+    ],
   ),
   KanjiCard(
     id: 'n4-136',
@@ -2818,6 +3893,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['バイ'],
     kunyomi: ['かう'],
+    commonWords: [
+      CommonWord(word: '売買', reading: 'ばいばい', meaning: 'trade'),
+      CommonWord(word: '買収', reading: 'ばいしゅう', meaning: 'acquisition'),
+      CommonWord(word: '買い物', reading: 'かいもの', meaning: 'shopping'),
+    ],
   ),
   KanjiCard(
     id: 'n4-137',
@@ -2831,6 +3911,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['タイ'],
     kunyomi: ['か', 'かし'],
+    commonWords: [
+      CommonWord(word: '賃貸', reading: 'ちんたい', meaning: 'leasing'),
+      CommonWord(word: '貸し出し', reading: 'かしだし', meaning: 'lending'),
+      CommonWord(word: '貸し', reading: 'かし', meaning: 'loan'),
+    ],
   ),
   KanjiCard(
     id: 'n4-138',
@@ -2844,6 +3929,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['シツ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '質問', reading: 'しつもん', meaning: 'question'),
+      CommonWord(word: '物質', reading: 'ぶっしつ', meaning: 'material'),
+      CommonWord(word: '質', reading: 'しつ', meaning: 'quality'),
+    ],
   ),
   KanjiCard(
     id: 'n4-139',
@@ -2857,6 +3947,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['セキ'],
     kunyomi: ['あか'],
+    commonWords: [
+      CommonWord(word: '赤字', reading: 'あかじ', meaning: 'the red'),
+      CommonWord(word: '赤ちゃん', reading: 'あかちゃん', meaning: 'baby'),
+      CommonWord(word: '真っ赤', reading: 'まっか', meaning: 'bright red'),
+    ],
   ),
   KanjiCard(
     id: 'n4-140',
@@ -2870,6 +3965,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['ソウ'],
     kunyomi: ['はしる'],
+    commonWords: [
+      CommonWord(word: '走る', reading: 'はしる', meaning: 'to run'),
+      CommonWord(word: '逃走', reading: 'とうそう', meaning: 'flight'),
+      CommonWord(word: '走者', reading: 'そうしゃ', meaning: 'runner'),
+    ],
   ),
   KanjiCard(
     id: 'n4-141',
@@ -2883,6 +3983,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['キ'],
     kunyomi: ['おきる'],
+    commonWords: [
+      CommonWord(word: '起訴', reading: 'きそ', meaning: 'prosecution'),
+      CommonWord(word: '起こす', reading: 'おこす', meaning: 'to raise'),
+      CommonWord(word: '提起', reading: 'ていき', meaning: 'raising'),
+    ],
   ),
   KanjiCard(
     id: 'n4-142',
@@ -2896,6 +4001,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['ソク'],
     kunyomi: ['あし'],
+    commonWords: [
+      CommonWord(word: '足', reading: 'あし', meaning: 'foot'),
+      CommonWord(word: '不足', reading: 'ふそく', meaning: 'insufficiency'),
+      CommonWord(word: '発足', reading: 'ほっそく', meaning: 'starting'),
+    ],
   ),
   KanjiCard(
     id: 'n4-143',
@@ -2909,6 +4019,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['テン'],
     kunyomi: ['ころがる'],
+    commonWords: [
+      CommonWord(word: '運転', reading: 'うんてん', meaning: 'operation'),
+      CommonWord(word: '移転', reading: 'いてん', meaning: 'moving'),
+      CommonWord(word: '運転手', reading: 'うんてんしゅ', meaning: 'driver'),
+    ],
   ),
   KanjiCard(
     id: 'n4-144',
@@ -2922,6 +4037,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['キン'],
     kunyomi: ['ちかい'],
+    commonWords: [
+      CommonWord(word: '最近', reading: 'さいきん', meaning: 'recently'),
+      CommonWord(word: '近代', reading: 'きんだい', meaning: 'present day'),
+      CommonWord(word: '付近', reading: 'ふきん', meaning: 'neighborhood'),
+    ],
   ),
   KanjiCard(
     id: 'n4-145',
@@ -2935,6 +4055,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['ソウ'],
     kunyomi: ['おくる'],
+    commonWords: [
+      CommonWord(word: '放送', reading: 'ほうそう', meaning: 'broadcasting'),
+      CommonWord(word: '輸送', reading: 'ゆそう', meaning: 'transport'),
+      CommonWord(word: '送る', reading: 'おくる', meaning: 'to send'),
+    ],
   ),
   KanjiCard(
     id: 'n4-146',
@@ -2948,6 +4073,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['ツウ'],
     kunyomi: ['とおる'],
+    commonWords: [
+      CommonWord(word: '通信', reading: 'つうしん', meaning: 'correspondence'),
+      CommonWord(word: '見通し', reading: 'みとおし', meaning: 'unobstructed view'),
+      CommonWord(word: '共通', reading: 'きょうつう', meaning: 'common'),
+    ],
   ),
   KanjiCard(
     id: 'n4-147',
@@ -2961,6 +4091,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['シュウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '週', reading: 'しゅう', meaning: 'week'),
+      CommonWord(word: '週刊', reading: 'しゅうかん', meaning: 'weekly publication'),
+      CommonWord(word: '今週', reading: 'こんしゅう', meaning: 'this week'),
+    ],
   ),
   KanjiCard(
     id: 'n4-148',
@@ -2974,6 +4109,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['ウン'],
     kunyomi: ['はこぶ'],
+    commonWords: [
+      CommonWord(word: '運動', reading: 'うんどう', meaning: 'exercise'),
+      CommonWord(word: '運営', reading: 'うんえい', meaning: 'management'),
+      CommonWord(word: '運転', reading: 'うんてん', meaning: 'operation'),
+    ],
   ),
   KanjiCard(
     id: 'n4-149',
@@ -2987,6 +4127,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['ドウ'],
     kunyomi: ['みち'],
+    commonWords: [
+      CommonWord(word: '道', reading: 'みち', meaning: 'road'),
+      CommonWord(word: '報道', reading: 'ほうどう', meaning: 'report'),
+      CommonWord(word: '鉄道', reading: 'てつどう', meaning: 'railroad'),
+    ],
   ),
   KanjiCard(
     id: 'n4-150',
@@ -3000,6 +4145,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['ジュウ'],
     kunyomi: ['おもい'],
+    commonWords: [
+      CommonWord(word: '重要', reading: 'じゅうよう', meaning: 'important'),
+      CommonWord(word: '重大', reading: 'じゅうだい', meaning: 'serious'),
+      CommonWord(word: '貴重', reading: 'きちょう', meaning: 'precious'),
+    ],
   ),
   KanjiCard(
     id: 'n4-151',
@@ -3013,6 +4163,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['ヤ'],
     kunyomi: ['の'],
+    commonWords: [
+      CommonWord(word: '分野', reading: 'ぶんや', meaning: 'field'),
+      CommonWord(word: '野球', reading: 'やきゅう', meaning: 'baseball'),
+      CommonWord(word: '野党', reading: 'やとう', meaning: 'opposition party'),
+    ],
   ),
   KanjiCard(
     id: 'n4-152',
@@ -3026,6 +4181,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['ギン'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '銀行', reading: 'ぎんこう', meaning: 'bank'),
+      CommonWord(word: '銀', reading: 'ぎん', meaning: 'silver'),
+      CommonWord(word: '銀河', reading: 'ぎんが', meaning: 'Milky Way'),
+    ],
   ),
   KanjiCard(
     id: 'n4-153',
@@ -3039,6 +4199,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['カイ'],
     kunyomi: ['ひらく'],
+    commonWords: [
+      CommonWord(word: '開発', reading: 'かいはつ', meaning: 'development'),
+      CommonWord(word: '開催', reading: 'かいさい', meaning: 'holding'),
+      CommonWord(word: '開始', reading: 'かいし', meaning: 'start'),
+    ],
   ),
   KanjiCard(
     id: 'n4-154',
@@ -3052,6 +4217,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['イン'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '病院', reading: 'びょういん', meaning: 'hospital'),
+      CommonWord(word: '大学院', reading: 'だいがくいん', meaning: 'graduate school'),
+      CommonWord(word: '入院', reading: 'にゅういん', meaning: 'hospitalization'),
+    ],
   ),
   KanjiCard(
     id: 'n4-155',
@@ -3065,6 +4235,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['シュウ'],
     kunyomi: ['あつまる'],
+    commonWords: [
+      CommonWord(word: '集会', reading: 'しゅうかい', meaning: 'meeting'),
+      CommonWord(word: '集団', reading: 'しゅうだん', meaning: 'group'),
+      CommonWord(word: '編集', reading: 'へんしゅう', meaning: 'editing'),
+    ],
   ),
   KanjiCard(
     id: 'n4-156',
@@ -3078,6 +4253,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['セイ'],
     kunyomi: ['あお'],
+    commonWords: [
+      CommonWord(word: '青', reading: 'あお', meaning: 'blue'),
+      CommonWord(word: '青年', reading: 'せいねん', meaning: 'youth'),
+      CommonWord(word: '青空', reading: 'あおぞら', meaning: 'blue sky'),
+    ],
   ),
   KanjiCard(
     id: 'n4-157',
@@ -3091,6 +4271,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['オン'],
     kunyomi: ['おと'],
+    commonWords: [
+      CommonWord(word: '音楽', reading: 'おんがく', meaning: 'music'),
+      CommonWord(word: '音', reading: 'おと', meaning: 'sound'),
+      CommonWord(word: '本音', reading: 'ほんね', meaning: 'real intention'),
+    ],
   ),
   KanjiCard(
     id: 'n4-158',
@@ -3104,6 +4289,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['ダイ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '課題', reading: 'かだい', meaning: 'subject'),
+      CommonWord(word: '問題', reading: 'もんだい', meaning: 'question'),
+      CommonWord(word: '話題', reading: 'わだい', meaning: 'topic'),
+    ],
   ),
   KanjiCard(
     id: 'n4-159',
@@ -3117,6 +4307,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['フウ'],
     kunyomi: ['かぜ'],
+    commonWords: [
+      CommonWord(word: '風景', reading: 'ふうけい', meaning: 'scenery'),
+      CommonWord(word: '台風', reading: 'たいふう', meaning: 'typhoon'),
+      CommonWord(word: '風速', reading: 'ふうそく', meaning: 'wind speed'),
+    ],
   ),
   KanjiCard(
     id: 'n4-160',
@@ -3130,6 +4325,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['ハン'],
     kunyomi: ['めし'],
+    commonWords: [
+      CommonWord(word: '飯', reading: 'めし', meaning: 'cooked rice'),
+      CommonWord(word: '炊飯器', reading: 'すいはんき', meaning: 'rice cooker'),
+      CommonWord(word: '赤飯', reading: 'せきはん', meaning: 'red rice (beans and mochi) for'),
+    ],
   ),
   KanjiCard(
     id: 'n4-161',
@@ -3143,6 +4343,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['イン'],
     kunyomi: ['のむ'],
+    commonWords: [
+      CommonWord(word: '飲み物', reading: 'のみもの', meaning: 'drink'),
+      CommonWord(word: '飲食', reading: 'いんしょく', meaning: 'food and drink'),
+      CommonWord(word: '飲料', reading: 'いんりょう', meaning: 'beverage'),
+    ],
   ),
   KanjiCard(
     id: 'n4-162',
@@ -3156,6 +4361,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['カン'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '大使館', reading: 'たいしかん', meaning: 'embassy'),
+      CommonWord(word: '美術館', reading: 'びじゅつかん', meaning: 'art museum'),
+      CommonWord(word: '博物館', reading: 'はくぶつかん', meaning: 'museum'),
+    ],
   ),
   KanjiCard(
     id: 'n4-163',
@@ -3169,6 +4379,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['エキ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '駅', reading: 'えき', meaning: 'railway station'),
+      CommonWord(word: '駅前', reading: 'えきまえ', meaning: 'in front of a station'),
+      CommonWord(word: '駅員', reading: 'えきいん', meaning: 'station attendant'),
+    ],
   ),
   KanjiCard(
     id: 'n4-164',
@@ -3182,6 +4397,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['ケン'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '経験', reading: 'けいけん', meaning: 'experience'),
+      CommonWord(word: '試験', reading: 'しけん', meaning: 'examination'),
+      CommonWord(word: '実験', reading: 'じっけん', meaning: 'experiment'),
+    ],
   ),
   KanjiCard(
     id: 'n4-165',
@@ -3195,6 +4415,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['ギョ'],
     kunyomi: ['さかな'],
+    commonWords: [
+      CommonWord(word: '魚', reading: 'さかな', meaning: 'fish'),
+      CommonWord(word: '金魚', reading: 'きんぎょ', meaning: 'goldfish'),
+      CommonWord(word: '魚介類', reading: 'ぎょかいるい', meaning: 'marine products'),
+    ],
   ),
   KanjiCard(
     id: 'n4-166',
@@ -3208,6 +4433,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['チョウ'],
     kunyomi: ['とり'],
+    commonWords: [
+      CommonWord(word: '鳥', reading: 'とり', meaning: 'bird'),
+      CommonWord(word: '白鳥', reading: 'はくちょう', meaning: 'swan'),
+      CommonWord(word: '小鳥', reading: 'ことり', meaning: 'small bird'),
+    ],
   ),
   KanjiCard(
     id: 'n4-167',
@@ -3221,6 +4451,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n4,
     onyomi: ['コク'],
     kunyomi: ['くろ'],
+    commonWords: [
+      CommonWord(word: '黒字', reading: 'くろじ', meaning: 'the black'),
+      CommonWord(word: '黒', reading: 'くろ', meaning: 'black'),
+      CommonWord(word: '黒人', reading: 'こくじん', meaning: 'black person'),
+    ],
   ),
   KanjiCard(
     id: 'n3-001',
@@ -3234,6 +4469,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ヨ'],
     kunyomi: ['あた', 'あずか', 'くみ', 'ともに'],
+    commonWords: [
+      CommonWord(word: '与党', reading: 'よとう', meaning: 'ruling party'),
+      CommonWord(word: '給与', reading: 'きゅうよ', meaning: 'pay'),
+      CommonWord(word: '与野党', reading: 'よやとう', meaning: 'ruling and opposition parties'),
+    ],
   ),
   KanjiCard(
     id: 'n3-002',
@@ -3247,6 +4487,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['リョウ'],
     kunyomi: ['てる', 'ふたつ'],
+    commonWords: [
+      CommonWord(word: '両親', reading: 'りょうしん', meaning: 'parents'),
+      CommonWord(word: '車両', reading: 'しゃりょう', meaning: 'vehicle'),
+      CommonWord(word: '両者', reading: 'りょうしゃ', meaning: 'pair'),
+    ],
   ),
   KanjiCard(
     id: 'n3-003',
@@ -3260,6 +4505,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ジョウ'],
     kunyomi: ['のる'],
+    commonWords: [
+      CommonWord(word: '乗用車', reading: 'じょうようしゃ', meaning: 'car'),
+      CommonWord(word: '乗客', reading: 'じょうきゃく', meaning: 'passenger'),
+      CommonWord(word: '乗組員', reading: 'のりくみいん', meaning: 'crew'),
+    ],
   ),
   KanjiCard(
     id: 'n3-004',
@@ -3273,6 +4523,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ヨ', 'シャ'],
     kunyomi: ['あらかじ'],
+    commonWords: [
+      CommonWord(word: '予算', reading: 'よさん', meaning: 'estimate'),
+      CommonWord(word: '予定', reading: 'よてい', meaning: 'plans'),
+      CommonWord(word: '予選', reading: 'よせん', meaning: 'preliminary contest'),
+    ],
   ),
   KanjiCard(
     id: 'n3-005',
@@ -3286,6 +4541,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ソウ'],
     kunyomi: ['あらそ', 'いか'],
+    commonWords: [
+      CommonWord(word: '戦争', reading: 'せんそう', meaning: 'war'),
+      CommonWord(word: '競争', reading: 'きょうそう', meaning: 'competition'),
+      CommonWord(word: '紛争', reading: 'ふんそう', meaning: 'dispute'),
+    ],
   ),
   KanjiCard(
     id: 'n3-006',
@@ -3299,6 +4559,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ゴ'],
     kunyomi: ['たが', 'かたみ'],
+    commonWords: [
+      CommonWord(word: '相互', reading: 'そうご', meaning: 'mutual'),
+      CommonWord(word: '互い', reading: 'たがい', meaning: 'each other'),
+      CommonWord(word: '互いに', reading: 'たがいに', meaning: 'mutually'),
+    ],
   ),
   KanjiCard(
     id: 'n3-007',
@@ -3312,6 +4577,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ボウ', 'モウ'],
     kunyomi: ['な', 'ほろ'],
+    commonWords: [
+      CommonWord(word: '死亡', reading: 'しぼう', meaning: 'death'),
+      CommonWord(word: '亡命', reading: 'ぼうめい', meaning: 'fleeing from one\'s country'),
+      CommonWord(word: '死亡率', reading: 'しぼうりつ', meaning: 'death rate'),
+    ],
   ),
   KanjiCard(
     id: 'n3-008',
@@ -3325,6 +4595,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['コウ'],
     kunyomi: ['まじ', 'ま', '-か', 'か'],
+    commonWords: [
+      CommonWord(word: '外交', reading: 'がいこう', meaning: 'diplomacy'),
+      CommonWord(word: '交渉', reading: 'こうしょう', meaning: 'negotiations'),
+      CommonWord(word: '交流', reading: 'こうりゅう', meaning: 'exchange'),
+    ],
   ),
   KanjiCard(
     id: 'n3-009',
@@ -3338,6 +4613,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['タ'],
     kunyomi: ['ほか'],
+    commonWords: [
+      CommonWord(word: '他人', reading: 'たにん', meaning: 'another person'),
+      CommonWord(word: '他方', reading: 'たほう', meaning: 'one'),
+      CommonWord(word: '他', reading: 'ほか', meaning: 'another place'),
+    ],
   ),
   KanjiCard(
     id: 'n3-010',
@@ -3351,6 +4631,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['フ'],
     kunyomi: ['つ', '-つ', '-づ', '-づけ'],
+    commonWords: [
+      CommonWord(word: '付近', reading: 'ふきん', meaning: 'neighborhood'),
+      CommonWord(word: '寄付', reading: 'きふ', meaning: 'contribution'),
+      CommonWord(word: '付属', reading: 'ふぞく', meaning: 'being attached'),
+    ],
   ),
   KanjiCard(
     id: 'n3-011',
@@ -3364,6 +4649,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ケン'],
     kunyomi: ['くだん'],
+    commonWords: [
+      CommonWord(word: '事件', reading: 'じけん', meaning: 'event'),
+      CommonWord(word: '条件', reading: 'じょうけん', meaning: 'condition'),
+      CommonWord(word: '無条件', reading: 'むじょうけん', meaning: 'unconditional'),
+    ],
   ),
   KanjiCard(
     id: 'n3-012',
@@ -3377,6 +4667,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ニン'],
     kunyomi: ['まか'],
+    commonWords: [
+      CommonWord(word: '責任', reading: 'せきにん', meaning: 'duty'),
+      CommonWord(word: '辞任', reading: 'じにん', meaning: 'resignation'),
+      CommonWord(word: '就任', reading: 'しゅうにん', meaning: 'assumption'),
+    ],
   ),
   KanjiCard(
     id: 'n3-013',
@@ -3390,6 +4685,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['デン', 'テン'],
     kunyomi: ['つた', 'つだ', '-づた', 'つて'],
+    commonWords: [
+      CommonWord(word: '伝統', reading: 'でんとう', meaning: 'tradition'),
+      CommonWord(word: '宣伝', reading: 'せんでん', meaning: 'publicity'),
+      CommonWord(word: '伝説', reading: 'でんせつ', meaning: 'legend'),
+    ],
   ),
   KanjiCard(
     id: 'n3-014',
@@ -3403,6 +4703,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ジ'],
     kunyomi: ['に', 'ひ'],
+    commonWords: [
+      CommonWord(word: '類似', reading: 'るいじ', meaning: 'resemblance'),
+      CommonWord(word: '似顔', reading: 'にがお', meaning: 'portrait'),
+      CommonWord(word: '似通う', reading: 'にかよう', meaning: 'to resemble closely'),
+    ],
   ),
   KanjiCard(
     id: 'n3-015',
@@ -3416,6 +4721,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['イ'],
     kunyomi: ['くらい', 'ぐらい'],
+    commonWords: [
+      CommonWord(word: '単位', reading: 'たんい', meaning: 'unit'),
+      CommonWord(word: '地位', reading: 'ちい', meaning: 'position'),
+      CommonWord(word: '位置', reading: 'いち', meaning: 'place'),
+    ],
   ),
   KanjiCard(
     id: 'n3-016',
@@ -3429,6 +4739,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ヨ'],
     kunyomi: ['あま', 'あんま'],
+    commonWords: [
+      CommonWord(word: '余裕', reading: 'よゆう', meaning: 'surplus'),
+      CommonWord(word: '余地', reading: 'よち', meaning: 'space'),
+      CommonWord(word: '余暇', reading: 'よか', meaning: 'leisure'),
+    ],
   ),
   KanjiCard(
     id: 'n3-017',
@@ -3442,6 +4757,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['レイ'],
     kunyomi: ['たと'],
+    commonWords: [
+      CommonWord(word: '比例', reading: 'ひれい', meaning: 'proportion'),
+      CommonWord(word: '例えば', reading: 'たとえば', meaning: 'for example'),
+      CommonWord(word: '例', reading: 'れい', meaning: 'example'),
+    ],
   ),
   KanjiCard(
     id: 'n3-018',
@@ -3455,6 +4775,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['キョウ', 'ク', 'クウ', 'グ'],
     kunyomi: ['そな', 'とも', '-ども'],
+    commonWords: [
+      CommonWord(word: '子供', reading: 'こども', meaning: 'child'),
+      CommonWord(word: '供給', reading: 'きょうきゅう', meaning: 'supply'),
+      CommonWord(word: '提供', reading: 'ていきょう', meaning: 'offer'),
+    ],
   ),
   KanjiCard(
     id: 'n3-019',
@@ -3468,6 +4793,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ベン', 'ビン'],
     kunyomi: ['たよ'],
+    commonWords: [
+      CommonWord(word: '郵便', reading: 'ゆうびん', meaning: 'mail service'),
+      CommonWord(word: '便利', reading: 'べんり', meaning: 'convenient'),
+      CommonWord(word: '郵便局', reading: 'ゆうびんきょく', meaning: 'post office'),
+    ],
   ),
   KanjiCard(
     id: 'n3-020',
@@ -3481,6 +4811,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ケイ'],
     kunyomi: ['かか', 'かかり', '-がかり'],
+    commonWords: [
+      CommonWord(word: '関係', reading: 'かんけい', meaning: 'relation'),
+      CommonWord(word: '係', reading: 'かかり', meaning: 'charge'),
+      CommonWord(word: '無関係', reading: 'むかんけい', meaning: 'unrelated'),
+    ],
   ),
   KanjiCard(
     id: 'n3-021',
@@ -3494,6 +4829,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['シン'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '通信', reading: 'つうしん', meaning: 'correspondence'),
+      CommonWord(word: '信', reading: 'しん', meaning: 'honesty'),
+      CommonWord(word: '自信', reading: 'じしん', meaning: 'self-confidence'),
+    ],
   ),
   KanjiCard(
     id: 'n3-022',
@@ -3507,6 +4847,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['トウ'],
     kunyomi: ['たお', '-だお', 'さかさま', 'さかさ'],
+    commonWords: [
+      CommonWord(word: '倒産', reading: 'とうさん', meaning: 'bankruptcy'),
+      CommonWord(word: '倒れる', reading: 'たおれる', meaning: 'to fall'),
+      CommonWord(word: '圧倒', reading: 'あっとう', meaning: 'to overwhelm'),
+    ],
   ),
   KanjiCard(
     id: 'n3-023',
@@ -3520,6 +4865,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['コウ'],
     kunyomi: ['そうろう'],
+    commonWords: [
+      CommonWord(word: '候補', reading: 'こうほ', meaning: 'candidate'),
+      CommonWord(word: '立候補', reading: 'りっこうほ', meaning: 'candidacy'),
+      CommonWord(word: '気候', reading: 'きこう', meaning: 'climate'),
+    ],
   ),
   KanjiCard(
     id: 'n3-024',
@@ -3533,6 +4883,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['チ'],
     kunyomi: ['ね', 'あたい'],
+    commonWords: [
+      CommonWord(word: '価値', reading: 'かち', meaning: 'value'),
+      CommonWord(word: '値上げ', reading: 'ねあげ', meaning: 'price increase'),
+      CommonWord(word: '値段', reading: 'ねだん', meaning: 'price'),
+    ],
   ),
   KanjiCard(
     id: 'n3-025',
@@ -3546,6 +4901,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['イ'],
     kunyomi: ['えら'],
+    commonWords: [
+      CommonWord(word: '偉大', reading: 'いだい', meaning: 'great'),
+      CommonWord(word: '偉業', reading: 'いぎょう', meaning: 'great achievement'),
+      CommonWord(word: '偉人', reading: 'いじん', meaning: 'great person'),
+    ],
   ),
   KanjiCard(
     id: 'n3-026',
@@ -3559,6 +4919,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ソク'],
     kunyomi: ['かわ', 'がわ', 'そば'],
+    commonWords: [
+      CommonWord(word: '側', reading: 'がわ', meaning: 'side'),
+      CommonWord(word: '内側', reading: 'うちがわ', meaning: 'inside'),
+      CommonWord(word: '外側', reading: 'そとがわ', meaning: 'exterior'),
+    ],
   ),
   KanjiCard(
     id: 'n3-027',
@@ -3572,6 +4937,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['グウ'],
     kunyomi: ['たま'],
+    commonWords: [
+      CommonWord(word: '配偶者', reading: 'はいぐうしゃ', meaning: 'spouse'),
+      CommonWord(word: '偶然', reading: 'ぐうぜん', meaning: 'coincidence'),
+      CommonWord(word: '偶発', reading: 'ぐうはつ', meaning: 'sudden outbreak'),
+    ],
   ),
   KanjiCard(
     id: 'n3-028',
@@ -3585,6 +4955,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ビ'],
     kunyomi: ['そな', 'つぶさ'],
+    commonWords: [
+      CommonWord(word: '準備', reading: 'じゅんび', meaning: 'preparation'),
+      CommonWord(word: '整備', reading: 'せいび', meaning: 'maintenance'),
+      CommonWord(word: '設備', reading: 'せつび', meaning: 'equipment'),
+    ],
   ),
   KanjiCard(
     id: 'n3-029',
@@ -3598,6 +4973,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ドウ'],
     kunyomi: ['はたらく'],
+    commonWords: [
+      CommonWord(word: '労働', reading: 'ろうどう', meaning: 'labor'),
+      CommonWord(word: '労働者', reading: 'ろうどうしゃ', meaning: 'worker'),
+      CommonWord(word: '働き', reading: 'はたらき', meaning: 'work'),
+    ],
   ),
   KanjiCard(
     id: 'n3-030',
@@ -3611,6 +4991,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ユウ', 'ウ'],
     kunyomi: ['やさ', 'すぐ', 'まさ'],
+    commonWords: [
+      CommonWord(word: '優勝', reading: 'ゆうしょう', meaning: 'overall victory'),
+      CommonWord(word: '俳優', reading: 'はいゆう', meaning: 'actor'),
+      CommonWord(word: '優先', reading: 'ゆうせん', meaning: 'preference'),
+    ],
   ),
   KanjiCard(
     id: 'n3-031',
@@ -3624,6 +5009,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['コウ'],
     kunyomi: ['ひか', 'ひかり'],
+    commonWords: [
+      CommonWord(word: '光', reading: 'ひかり', meaning: 'light'),
+      CommonWord(word: '観光', reading: 'かんこう', meaning: 'sightseeing'),
+      CommonWord(word: '光景', reading: 'こうけい', meaning: 'scene'),
+    ],
   ),
   KanjiCard(
     id: 'n3-032',
@@ -3637,6 +5027,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ゼン'],
     kunyomi: ['まった', 'すべ'],
+    commonWords: [
+      CommonWord(word: '安全', reading: 'あんぜん', meaning: 'safety'),
+      CommonWord(word: '全体', reading: 'ぜんたい', meaning: 'whole'),
+      CommonWord(word: '全国', reading: 'ぜんこく', meaning: 'the whole country'),
+    ],
   ),
   KanjiCard(
     id: 'n3-033',
@@ -3650,6 +5045,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['キョウ'],
     kunyomi: ['とも', '-ども'],
+    commonWords: [
+      CommonWord(word: '共同', reading: 'きょうどう', meaning: 'cooperation'),
+      CommonWord(word: '共通', reading: 'きょうつう', meaning: 'common'),
+      CommonWord(word: '公共', reading: 'こうきょう', meaning: 'public'),
+    ],
   ),
   KanjiCard(
     id: 'n3-034',
@@ -3663,6 +5063,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['グ'],
     kunyomi: ['そな', 'つぶさ'],
+    commonWords: [
+      CommonWord(word: '具体的', reading: 'ぐたいてき', meaning: 'concrete'),
+      CommonWord(word: '道具', reading: 'どうぐ', meaning: 'tool'),
+      CommonWord(word: '具合', reading: 'ぐあい', meaning: 'condition'),
+    ],
   ),
   KanjiCard(
     id: 'n3-035',
@@ -3676,6 +5081,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ナイ', 'ダイ'],
     kunyomi: ['うち'],
+    commonWords: [
+      CommonWord(word: '国内', reading: 'こくない', meaning: 'within the country'),
+      CommonWord(word: '市内', reading: 'しない', meaning: 'in the city'),
+      CommonWord(word: '都内', reading: 'とない', meaning: 'within the (Tokyo) metropolitan area'),
+    ],
   ),
   KanjiCard(
     id: 'n3-036',
@@ -3689,6 +5099,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['レイ'],
     kunyomi: ['つめ', 'ひ', 'さ'],
+    commonWords: [
+      CommonWord(word: '冷戦', reading: 'れいせん', meaning: 'cold war'),
+      CommonWord(word: '冷静', reading: 'れいせい', meaning: 'calmness'),
+      CommonWord(word: '冷蔵庫', reading: 'れいぞうこ', meaning: 'refrigerator'),
+    ],
   ),
   KanjiCard(
     id: 'n3-037',
@@ -3702,6 +5117,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ショ'],
     kunyomi: ['ところ', '-こ', 'お'],
+    commonWords: [
+      CommonWord(word: '処分', reading: 'しょぶん', meaning: 'disposal'),
+      CommonWord(word: '処理', reading: 'しょり', meaning: 'processing'),
+      CommonWord(word: '処置', reading: 'しょち', meaning: 'measure'),
+    ],
   ),
   KanjiCard(
     id: 'n3-038',
@@ -3715,6 +5135,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['レツ', 'レ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '列車', reading: 'れっしゃ', meaning: 'train'),
+      CommonWord(word: '系列', reading: 'けいれつ', meaning: 'series'),
+      CommonWord(word: '列島', reading: 'れっとう', meaning: 'archipelago'),
+    ],
   ),
   KanjiCard(
     id: 'n3-039',
@@ -3728,6 +5153,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ショ'],
     kunyomi: ['はじ', 'はつ', 'うい', '-そ'],
+    commonWords: [
+      CommonWord(word: '最初', reading: 'さいしょ', meaning: 'beginning'),
+      CommonWord(word: '初', reading: 'はつ', meaning: 'first'),
+      CommonWord(word: '初日', reading: 'しょにち', meaning: 'first day'),
+    ],
   ),
   KanjiCard(
     id: 'n3-040',
@@ -3741,6 +5171,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ハン', 'バン'],
     kunyomi: ['わか'],
+    commonWords: [
+      CommonWord(word: '裁判', reading: 'さいばん', meaning: 'trial'),
+      CommonWord(word: '判決', reading: 'はんけつ', meaning: 'judicial decision'),
+      CommonWord(word: '判断', reading: 'はんだん', meaning: 'judgment'),
+    ],
   ),
   KanjiCard(
     id: 'n3-041',
@@ -3754,6 +5189,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['リ'],
     kunyomi: ['き'],
+    commonWords: [
+      CommonWord(word: '金利', reading: 'きんり', meaning: 'interest rate'),
+      CommonWord(word: '権利', reading: 'けんり', meaning: 'right'),
+      CommonWord(word: '勝利', reading: 'しょうり', meaning: 'victory'),
+    ],
   ),
   KanjiCard(
     id: 'n3-042',
@@ -3767,6 +5207,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['トウ'],
     kunyomi: ['いた'],
+    commonWords: [
+      CommonWord(word: '到着', reading: 'とうちゃく', meaning: 'arrival'),
+      CommonWord(word: '到達', reading: 'とうたつ', meaning: 'reaching'),
+      CommonWord(word: '周到', reading: 'しゅうとう', meaning: 'careful'),
+    ],
   ),
   KanjiCard(
     id: 'n3-043',
@@ -3780,6 +5225,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['セイ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '規制', reading: 'きせい', meaning: 'regulation'),
+      CommonWord(word: '制度', reading: 'せいど', meaning: 'system'),
+      CommonWord(word: '体制', reading: 'たいせい', meaning: 'order'),
+    ],
   ),
   KanjiCard(
     id: 'n3-044',
@@ -3793,6 +5243,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['コク'],
     kunyomi: ['きざ'],
+    commonWords: [
+      CommonWord(word: '深刻', reading: 'しんこく', meaning: 'serious'),
+      CommonWord(word: '彫刻', reading: 'ちょうこく', meaning: 'carving'),
+      CommonWord(word: '時刻', reading: 'じこく', meaning: 'time'),
+    ],
   ),
   KanjiCard(
     id: 'n3-045',
@@ -3806,6 +5261,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['カツ'],
     kunyomi: ['わ', 'わり', 'さ'],
+    commonWords: [
+      CommonWord(word: '役割', reading: 'やくわり', meaning: 'part'),
+      CommonWord(word: '割合', reading: 'わりあい', meaning: 'rate'),
+      CommonWord(word: '分割', reading: 'ぶんかつ', meaning: 'partition'),
+    ],
   ),
   KanjiCard(
     id: 'n3-046',
@@ -3819,6 +5279,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['カ'],
     kunyomi: ['くわ'],
+    commonWords: [
+      CommonWord(word: '加盟', reading: 'かめい', meaning: 'joining'),
+      CommonWord(word: '参加', reading: 'さんか', meaning: 'participation'),
+      CommonWord(word: '増加', reading: 'ぞうか', meaning: 'increase'),
+    ],
   ),
   KanjiCard(
     id: 'n3-047',
@@ -3832,6 +5297,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ジョ'],
     kunyomi: ['たす', 'す', 'すけ'],
+    commonWords: [
+      CommonWord(word: '援助', reading: 'えんじょ', meaning: 'assistance'),
+      CommonWord(word: '助教授', reading: 'じょきょうじゅ', meaning: 'assistant professor'),
+      CommonWord(word: '助手', reading: 'じょしゅ', meaning: 'assistant'),
+    ],
   ),
   KanjiCard(
     id: 'n3-048',
@@ -3845,6 +5315,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ド'],
     kunyomi: ['つと'],
+    commonWords: [
+      CommonWord(word: '努力', reading: 'どりょく', meaning: 'effort'),
+      CommonWord(word: '努める', reading: 'つとめる', meaning: 'to endeavor'),
+      CommonWord(word: '努めて', reading: 'つとめて', meaning: 'as much as possible'),
+    ],
   ),
   KanjiCard(
     id: 'n3-049',
@@ -3858,6 +5333,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ロウ'],
     kunyomi: ['ろう', 'いたわ', 'いた', 'ねぎら'],
+    commonWords: [
+      CommonWord(word: '労働', reading: 'ろうどう', meaning: 'labor'),
+      CommonWord(word: '労働者', reading: 'ろうどうしゃ', meaning: 'worker'),
+      CommonWord(word: '苦労', reading: 'くろう', meaning: 'trouble'),
+    ],
   ),
   KanjiCard(
     id: 'n3-050',
@@ -3871,6 +5351,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ム'],
     kunyomi: ['つと'],
+    commonWords: [
+      CommonWord(word: '外務省', reading: 'がいむしょう', meaning: 'Ministry of Foreign Affairs'),
+      CommonWord(word: '事務', reading: 'じむ', meaning: 'office work'),
+      CommonWord(word: '事務所', reading: 'じむしょ', meaning: 'office'),
+    ],
   ),
   KanjiCard(
     id: 'n3-051',
@@ -3884,6 +5369,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ショウ'],
     kunyomi: ['か', '-が', 'まさ', 'すぐ'],
+    commonWords: [
+      CommonWord(word: '優勝', reading: 'ゆうしょう', meaning: 'overall victory'),
+      CommonWord(word: '決勝', reading: 'けっしょう', meaning: 'decision of a contest'),
+      CommonWord(word: '勝利', reading: 'しょうり', meaning: 'victory'),
+    ],
   ),
   KanjiCard(
     id: 'n3-052',
@@ -3897,6 +5387,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['キン', 'ゴン'],
     kunyomi: ['つと', '-づと', 'いそ'],
+    commonWords: [
+      CommonWord(word: '勤務', reading: 'きんむ', meaning: 'service'),
+      CommonWord(word: '通勤', reading: 'つうきん', meaning: 'commuting to work'),
+      CommonWord(word: '勤労', reading: 'きんろう', meaning: 'labor'),
+    ],
   ),
   KanjiCard(
     id: 'n3-053',
@@ -3910,6 +5405,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['カ', 'ケ'],
     kunyomi: ['ば', 'ふ', 'け'],
+    commonWords: [
+      CommonWord(word: '強化', reading: 'きょうか', meaning: 'strengthening'),
+      CommonWord(word: '文化', reading: 'ぶんか', meaning: 'culture'),
+      CommonWord(word: '変化', reading: 'へんか', meaning: 'change'),
+    ],
   ),
   KanjiCard(
     id: 'n3-054',
@@ -3923,6 +5423,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['タン'],
     kunyomi: ['ひとえ'],
+    commonWords: [
+      CommonWord(word: '簡単', reading: 'かんたん', meaning: 'simple'),
+      CommonWord(word: '単位', reading: 'たんい', meaning: 'unit'),
+      CommonWord(word: '単なる', reading: 'たんなる', meaning: 'mere'),
+    ],
   ),
   KanjiCard(
     id: 'n3-055',
@@ -3936,6 +5441,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['キ'],
     kunyomi: ['あぶ', 'あや'],
+    commonWords: [
+      CommonWord(word: '危機', reading: 'きき', meaning: 'crisis'),
+      CommonWord(word: '危険', reading: 'きけん', meaning: 'danger'),
+      CommonWord(word: '危うい', reading: 'あやうい', meaning: 'dangerous'),
+    ],
   ),
   KanjiCard(
     id: 'n3-056',
@@ -3949,6 +5459,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ゲン'],
     kunyomi: ['はら'],
+    commonWords: [
+      CommonWord(word: '原因', reading: 'げんいん', meaning: 'cause'),
+      CommonWord(word: '原則', reading: 'げんそく', meaning: 'principle'),
+      CommonWord(word: '原子力', reading: 'げんしりょく', meaning: 'atomic energy'),
+    ],
   ),
   KanjiCard(
     id: 'n3-057',
@@ -3962,6 +5477,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['サン', 'シン'],
     kunyomi: ['まい', 'まじわる', 'みつ'],
+    commonWords: [
+      CommonWord(word: '参加', reading: 'さんか', meaning: 'participation'),
+      CommonWord(word: '参考', reading: 'さんこう', meaning: 'reference'),
+      CommonWord(word: '参議院', reading: 'さんぎいん', meaning: 'House of Councillors'),
+    ],
   ),
   KanjiCard(
     id: 'n3-058',
@@ -3975,6 +5495,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ハン', 'ホン', 'タン', 'ホ'],
     kunyomi: ['そ', 'かえ', '-かえ'],
+    commonWords: [
+      CommonWord(word: '違反', reading: 'いはん', meaning: 'violation'),
+      CommonWord(word: '反対', reading: 'はんたい', meaning: 'opposition'),
+      CommonWord(word: '反応', reading: 'はんのう', meaning: 'reaction'),
+    ],
   ),
   KanjiCard(
     id: 'n3-059',
@@ -3988,6 +5513,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['シュウ'],
     kunyomi: ['おさ'],
+    commonWords: [
+      CommonWord(word: '収入', reading: 'しゅうにゅう', meaning: 'income'),
+      CommonWord(word: '収支', reading: 'しゅうし', meaning: 'income and expenditure'),
+      CommonWord(word: '回収', reading: 'かいしゅう', meaning: 'collection'),
+    ],
   ),
   KanjiCard(
     id: 'n3-060',
@@ -4001,6 +5531,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['シュ'],
     kunyomi: ['と', 'とり', '-ど'],
+    commonWords: [
+      CommonWord(word: '取引', reading: 'とりひき', meaning: 'transactions'),
+      CommonWord(word: '取材', reading: 'しゅざい', meaning: 'gathering material'),
+      CommonWord(word: '取っ手', reading: 'とって', meaning: 'handle'),
+    ],
   ),
   KanjiCard(
     id: 'n3-061',
@@ -4014,6 +5549,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ジュ'],
     kunyomi: ['う', '-う'],
+    commonWords: [
+      CommonWord(word: '受験', reading: 'じゅけん', meaning: 'taking an examination'),
+      CommonWord(word: '受信', reading: 'じゅしん', meaning: 'receiving'),
+      CommonWord(word: '受け身', reading: 'うけみ', meaning: 'the defensive'),
+    ],
   ),
   KanjiCard(
     id: 'n3-062',
@@ -4027,6 +5567,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['カ', 'コク'],
     kunyomi: ['-べ'],
+    commonWords: [
+      CommonWord(word: '可能', reading: 'かのう', meaning: 'possible'),
+      CommonWord(word: '許可', reading: 'きょか', meaning: 'permission'),
+      CommonWord(word: '認可', reading: 'にんか', meaning: 'approval'),
+    ],
   ),
   KanjiCard(
     id: 'n3-063',
@@ -4040,6 +5585,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ゴウ'],
     kunyomi: ['さけ', 'よびな'],
+    commonWords: [
+      CommonWord(word: '番号', reading: 'ばんごう', meaning: 'number'),
+      CommonWord(word: '信号', reading: 'しんごう', meaning: 'signal'),
+      CommonWord(word: '記号', reading: 'きごう', meaning: 'sign'),
+    ],
   ),
   KanjiCard(
     id: 'n3-064',
@@ -4053,6 +5603,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ゴウ'],
     kunyomi: ['あう'],
+    commonWords: [
+      CommonWord(word: '合意', reading: 'ごうい', meaning: 'agreement'),
+      CommonWord(word: '連合', reading: 'れんごう', meaning: 'union'),
+      CommonWord(word: '総合', reading: 'そうごう', meaning: 'synthesis'),
+    ],
   ),
   KanjiCard(
     id: 'n3-065',
@@ -4066,6 +5621,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['コウ'],
     kunyomi: ['む', '-む', 'むこ', 'むか'],
+    commonWords: [
+      CommonWord(word: '方向', reading: 'ほうこう', meaning: 'direction'),
+      CommonWord(word: '意向', reading: 'いこう', meaning: 'intention'),
+      CommonWord(word: '傾向', reading: 'けいこう', meaning: 'tendency'),
+    ],
   ),
   KanjiCard(
     id: 'n3-066',
@@ -4079,6 +5639,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['クン'],
     kunyomi: ['きみ', '-ぎみ'],
+    commonWords: [
+      CommonWord(word: '諸君', reading: 'しょくん', meaning: 'you'),
+      CommonWord(word: '君が代', reading: 'きみがよ', meaning: 'Imperial reign'),
+      CommonWord(word: '君臨', reading: 'くんりん', meaning: 'reigning'),
+    ],
   ),
   KanjiCard(
     id: 'n3-067',
@@ -4092,6 +5657,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ヒ'],
     kunyomi: ['いな', 'いや'],
+    commonWords: [
+      CommonWord(word: '拒否', reading: 'きょひ', meaning: 'refusal'),
+      CommonWord(word: '否定', reading: 'ひてい', meaning: 'denial'),
+      CommonWord(word: '賛否', reading: 'さんぴ', meaning: 'yes and no'),
+    ],
   ),
   KanjiCard(
     id: 'n3-068',
@@ -4105,6 +5675,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['キュウ'],
     kunyomi: ['す'],
+    commonWords: [
+      CommonWord(word: '呼吸', reading: 'こきゅう', meaning: 'breathing'),
+      CommonWord(word: '吸収', reading: 'きゅうしゅう', meaning: 'absorption'),
+      CommonWord(word: '吸い殻', reading: 'すいがら', meaning: 'cigarette end'),
+    ],
   ),
   KanjiCard(
     id: 'n3-069',
@@ -4118,6 +5693,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['スイ'],
     kunyomi: ['ふ'],
+    commonWords: [
+      CommonWord(word: '吹雪', reading: 'ふぶき', meaning: 'snow storm'),
+      CommonWord(word: '息吹', reading: 'いぶき', meaning: 'breath'),
+      CommonWord(word: '吹き込む', reading: 'ふきこむ', meaning: 'to blow in'),
+    ],
   ),
   KanjiCard(
     id: 'n3-070',
@@ -4131,6 +5711,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['コク'],
     kunyomi: ['つ'],
+    commonWords: [
+      CommonWord(word: '被告', reading: 'ひこく', meaning: 'defendant'),
+      CommonWord(word: '報告', reading: 'ほうこく', meaning: 'report'),
+      CommonWord(word: '広告', reading: 'こうこく', meaning: 'advertisement'),
+    ],
   ),
   KanjiCard(
     id: 'n3-071',
@@ -4144,6 +5729,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['コ'],
     kunyomi: ['よ'],
+    commonWords: [
+      CommonWord(word: '呼ぶ', reading: 'よぶ', meaning: 'to call out'),
+      CommonWord(word: '呼吸', reading: 'こきゅう', meaning: 'breathing'),
+      CommonWord(word: '呼びかけ', reading: 'よびかけ', meaning: 'call'),
+    ],
   ),
   KanjiCard(
     id: 'n3-072',
@@ -4157,6 +5747,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['メイ', 'ミョウ'],
     kunyomi: ['いのち'],
+    commonWords: [
+      CommonWord(word: '革命', reading: 'かくめい', meaning: 'revolution'),
+      CommonWord(word: '生命', reading: 'せいめい', meaning: 'life'),
+      CommonWord(word: '命令', reading: 'めいれい', meaning: 'order'),
+    ],
   ),
   KanjiCard(
     id: 'n3-073',
@@ -4170,6 +5765,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ワ', 'オ', 'カ'],
     kunyomi: ['やわ', 'なご', 'あ'],
+    commonWords: [
+      CommonWord(word: '平和', reading: 'へいわ', meaning: 'peace'),
+      CommonWord(word: '緩和', reading: 'かんわ', meaning: 'relief'),
+      CommonWord(word: '和解', reading: 'わかい', meaning: 'reconciliation'),
+    ],
   ),
   KanjiCard(
     id: 'n3-074',
@@ -4183,6 +5783,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ショウ'],
     kunyomi: ['あきな'],
+    commonWords: [
+      CommonWord(word: '商品', reading: 'しょうひん', meaning: 'commodity'),
+      CommonWord(word: '商業', reading: 'しょうぎょう', meaning: 'commerce'),
+      CommonWord(word: '商社', reading: 'しょうしゃ', meaning: 'trading company'),
+    ],
   ),
   KanjiCard(
     id: 'n3-075',
@@ -4196,6 +5801,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['キ'],
     kunyomi: ['よろこ'],
+    commonWords: [
+      CommonWord(word: '喜び', reading: 'よろこび', meaning: 'joy'),
+      CommonWord(word: '喜劇', reading: 'きげき', meaning: 'comedy'),
+      CommonWord(word: '喜ぶ', reading: 'よろこぶ', meaning: 'to be delighted'),
+    ],
   ),
   KanjiCard(
     id: 'n3-076',
@@ -4209,6 +5819,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['カイ'],
     kunyomi: ['まわる'],
+    commonWords: [
+      CommonWord(word: '回復', reading: 'かいふく', meaning: 'restoration'),
+      CommonWord(word: '今回', reading: 'こんかい', meaning: 'this time'),
+      CommonWord(word: '回答', reading: 'かいとう', meaning: 'reply'),
+    ],
   ),
   KanjiCard(
     id: 'n3-077',
@@ -4222,6 +5837,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['イン'],
     kunyomi: ['よ', 'ちな'],
+    commonWords: [
+      CommonWord(word: '原因', reading: 'げんいん', meaning: 'cause'),
+      CommonWord(word: '要因', reading: 'よういん', meaning: 'main cause'),
+      CommonWord(word: '本因坊', reading: 'ほんいんぼう', meaning: 'Hon\'inbō'),
+    ],
   ),
   KanjiCard(
     id: 'n3-078',
@@ -4235,6 +5855,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['コン'],
     kunyomi: ['こま'],
+    commonWords: [
+      CommonWord(word: '困難', reading: 'こんなん', meaning: 'difficulty'),
+      CommonWord(word: '貧困', reading: 'ひんこん', meaning: 'poverty'),
+      CommonWord(word: '困惑', reading: 'こんわく', meaning: 'bewilderment'),
+    ],
   ),
   KanjiCard(
     id: 'n3-079',
@@ -4248,6 +5873,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['エン'],
     kunyomi: ['その'],
+    commonWords: [
+      CommonWord(word: '公園', reading: 'こうえん', meaning: 'park'),
+      CommonWord(word: '学園', reading: 'がくえん', meaning: 'educational institution'),
+      CommonWord(word: '動物園', reading: 'どうぶつえん', meaning: 'zoo'),
+    ],
   ),
   KanjiCard(
     id: 'n3-080',
@@ -4261,6 +5891,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ザイ'],
     kunyomi: ['あ'],
+    commonWords: [
+      CommonWord(word: '現在', reading: 'げんざい', meaning: 'the present'),
+      CommonWord(word: '存在', reading: 'そんざい', meaning: 'existence'),
+      CommonWord(word: '在日', reading: 'ざいにち', meaning: 'resident in Japan'),
+    ],
   ),
   KanjiCard(
     id: 'n3-081',
@@ -4274,6 +5909,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ホウ'],
     kunyomi: ['むく'],
+    commonWords: [
+      CommonWord(word: '情報', reading: 'じょうほう', meaning: 'information'),
+      CommonWord(word: '報告', reading: 'ほうこく', meaning: 'report'),
+      CommonWord(word: '報酬', reading: 'ほうしゅう', meaning: 'remuneration'),
+    ],
   ),
   KanjiCard(
     id: 'n3-082',
@@ -4287,6 +5927,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ゾウ'],
     kunyomi: ['ま', 'ふ'],
+    commonWords: [
+      CommonWord(word: '増加', reading: 'ぞうか', meaning: 'increase'),
+      CommonWord(word: '増税', reading: 'ぞうぜい', meaning: 'tax increase'),
+      CommonWord(word: '急増', reading: 'きゅうぞう', meaning: 'rapid increase'),
+    ],
   ),
   KanjiCard(
     id: 'n3-083',
@@ -4300,6 +5945,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['セイ'],
     kunyomi: ['こえ'],
+    commonWords: [
+      CommonWord(word: '声', reading: 'こえ', meaning: 'voice'),
+      CommonWord(word: '声明', reading: 'せいめい', meaning: 'declaration'),
+      CommonWord(word: '歌声', reading: 'うたごえ', meaning: 'singing voice'),
+    ],
   ),
   KanjiCard(
     id: 'n3-084',
@@ -4313,6 +5963,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ヘン'],
     kunyomi: ['か'],
+    commonWords: [
+      CommonWord(word: '変化', reading: 'へんか', meaning: 'change'),
+      CommonWord(word: '大変', reading: 'たいへん', meaning: 'very'),
+      CommonWord(word: '変わる', reading: 'かわる', meaning: 'to change'),
+    ],
   ),
   KanjiCard(
     id: 'n3-085',
@@ -4326,6 +5981,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ム', 'ボウ'],
     kunyomi: ['ゆめ', 'くら'],
+    commonWords: [
+      CommonWord(word: '夢', reading: 'ゆめ', meaning: 'dream'),
+      CommonWord(word: '悪夢', reading: 'あくむ', meaning: 'nightmare'),
+      CommonWord(word: '夢中', reading: 'むちゅう', meaning: 'absorbed in'),
+    ],
   ),
   KanjiCard(
     id: 'n3-086',
@@ -4339,6 +5999,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['タイ'],
     kunyomi: ['ふとい'],
+    commonWords: [
+      CommonWord(word: '太陽', reading: 'たいよう', meaning: 'Sun'),
+      CommonWord(word: '太鼓', reading: 'たいこ', meaning: 'drum'),
+      CommonWord(word: '太平洋', reading: 'たいへいよう', meaning: 'Pacific Ocean'),
+    ],
   ),
   KanjiCard(
     id: 'n3-087',
@@ -4352,6 +6017,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['フ', 'フウ', 'ブ'],
     kunyomi: ['おっと', 'それ'],
+    commonWords: [
+      CommonWord(word: '夫', reading: 'おっと', meaning: 'husband'),
+      CommonWord(word: '夫人', reading: 'ふじん', meaning: 'wife'),
+      CommonWord(word: '夫婦', reading: 'ふうふ', meaning: 'married couple'),
+    ],
   ),
   KanjiCard(
     id: 'n3-088',
@@ -4365,6 +6035,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['シツ'],
     kunyomi: ['うしな', 'う'],
+    commonWords: [
+      CommonWord(word: '失業', reading: 'しつぎょう', meaning: 'unemployment'),
+      CommonWord(word: '損失', reading: 'そんしつ', meaning: 'loss'),
+      CommonWord(word: '失敗', reading: 'しっぱい', meaning: 'failure'),
+    ],
   ),
   KanjiCard(
     id: 'n3-089',
@@ -4378,6 +6053,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['コウ'],
     kunyomi: ['すき'],
+    commonWords: [
+      CommonWord(word: '好調', reading: 'こうちょう', meaning: 'favourable'),
+      CommonWord(word: '友好', reading: 'ゆうこう', meaning: 'friendship'),
+      CommonWord(word: '格好', reading: 'かっこう', meaning: 'shape'),
+    ],
   ),
   KanjiCard(
     id: 'n3-090',
@@ -4391,6 +6071,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['サイ'],
     kunyomi: ['つま'],
+    commonWords: [
+      CommonWord(word: '妻', reading: 'つま', meaning: 'wife'),
+      CommonWord(word: '夫妻', reading: 'ふさい', meaning: 'husband and wife'),
+      CommonWord(word: '妻子', reading: 'さいし', meaning: 'wife and children'),
+    ],
   ),
   KanjiCard(
     id: 'n3-091',
@@ -4404,6 +6089,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ジョウ'],
     kunyomi: ['むすめ', 'こ'],
+    commonWords: [
+      CommonWord(word: '娘', reading: 'むすめ', meaning: 'daughter'),
+      CommonWord(word: '一人娘', reading: 'ひとりむすめ', meaning: 'only daughter'),
+      CommonWord(word: '娘婿', reading: 'むすめむこ', meaning: 'son-in-law'),
+    ],
   ),
   KanjiCard(
     id: 'n3-092',
@@ -4417,6 +6107,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['コン'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '結婚', reading: 'けっこん', meaning: 'marriage'),
+      CommonWord(word: '離婚', reading: 'りこん', meaning: 'divorce'),
+      CommonWord(word: '婚約', reading: 'こんやく', meaning: 'engagement'),
+    ],
   ),
   KanjiCard(
     id: 'n3-093',
@@ -4430,6 +6125,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['フ'],
     kunyomi: ['よめ'],
+    commonWords: [
+      CommonWord(word: '主婦', reading: 'しゅふ', meaning: 'housewife'),
+      CommonWord(word: '夫婦', reading: 'ふうふ', meaning: 'married couple'),
+      CommonWord(word: '産婦人科', reading: 'さんふじんか', meaning: 'maternity and gynaecology department'),
+    ],
   ),
   KanjiCard(
     id: 'n3-094',
@@ -4443,6 +6143,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ソン', 'ゾン'],
     kunyomi: ['ながら', 'あ', 'たも', 'と'],
+    commonWords: [
+      CommonWord(word: '存在', reading: 'そんざい', meaning: 'existence'),
+      CommonWord(word: '保存', reading: 'ほぞん', meaning: 'preservation'),
+      CommonWord(word: '共存', reading: 'きょうぞん', meaning: 'coexistence'),
+    ],
   ),
   KanjiCard(
     id: 'n3-095',
@@ -4456,6 +6161,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['タク'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '自宅', reading: 'じたく', meaning: 'one\'s home'),
+      CommonWord(word: '住宅', reading: 'じゅうたく', meaning: 'residence'),
+      CommonWord(word: '住宅地', reading: 'じゅうたくち', meaning: 'housing district'),
+    ],
   ),
   KanjiCard(
     id: 'n3-096',
@@ -4469,6 +6179,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['シュ', 'ス'],
     kunyomi: ['まも', 'もり', '-もり', 'かみ'],
+    commonWords: [
+      CommonWord(word: '保守', reading: 'ほしゅ', meaning: 'maintenance'),
+      CommonWord(word: '守備', reading: 'しゅび', meaning: 'defense'),
+      CommonWord(word: '守る', reading: 'まもる', meaning: 'to protect'),
+    ],
   ),
   KanjiCard(
     id: 'n3-097',
@@ -4482,6 +6197,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['カン'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '完成', reading: 'かんせい', meaning: 'completion'),
+      CommonWord(word: '完全', reading: 'かんぜん', meaning: 'perfect'),
+      CommonWord(word: '不完全', reading: 'ふかんぜん', meaning: 'imperfect'),
+    ],
   ),
   KanjiCard(
     id: 'n3-098',
@@ -4495,6 +6215,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['カン'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '官邸', reading: 'かんてい', meaning: 'official residence'),
+      CommonWord(word: '官僚', reading: 'かんりょう', meaning: 'bureaucrat'),
+      CommonWord(word: '官庁', reading: 'かんちょう', meaning: 'government office'),
+    ],
   ),
   KanjiCard(
     id: 'n3-099',
@@ -4508,6 +6233,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['テイ', 'ジョウ'],
     kunyomi: ['さだ'],
+    commonWords: [
+      CommonWord(word: '決定', reading: 'けってい', meaning: 'decision'),
+      CommonWord(word: '予定', reading: 'よてい', meaning: 'plans'),
+      CommonWord(word: '安定', reading: 'あんてい', meaning: 'stability'),
+    ],
   ),
   KanjiCard(
     id: 'n3-100',
@@ -4521,6 +6251,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ジツ', 'シツ'],
     kunyomi: ['み', 'みの', 'まこと', 'みち'],
+    commonWords: [
+      CommonWord(word: '現実', reading: 'げんじつ', meaning: 'reality'),
+      CommonWord(word: '事実', reading: 'じじつ', meaning: 'fact'),
+      CommonWord(word: '実施', reading: 'じっし', meaning: 'enforcement'),
+    ],
   ),
   KanjiCard(
     id: 'n3-101',
@@ -4534,6 +6269,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['キャク', 'カク'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '客', reading: 'きゃく', meaning: 'guest'),
+      CommonWord(word: '観客', reading: 'かんきゃく', meaning: 'spectator'),
+      CommonWord(word: '顧客', reading: 'こきゃく', meaning: 'customer'),
+    ],
   ),
   KanjiCard(
     id: 'n3-102',
@@ -4547,6 +6287,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ガイ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '障害', reading: 'しょうがい', meaning: 'obstacle'),
+      CommonWord(word: '被害', reading: 'ひがい', meaning: 'damage'),
+      CommonWord(word: '災害', reading: 'さいがい', meaning: 'calamity'),
+    ],
   ),
   KanjiCard(
     id: 'n3-103',
@@ -4560,6 +6305,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ヨウ'],
     kunyomi: ['い'],
+    commonWords: [
+      CommonWord(word: '内容', reading: 'ないよう', meaning: 'contents'),
+      CommonWord(word: '容疑者', reading: 'ようぎしゃ', meaning: 'suspect'),
+      CommonWord(word: '容易', reading: 'ようい', meaning: 'easy'),
+    ],
   ),
   KanjiCard(
     id: 'n3-104',
@@ -4573,6 +6323,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['シュク'],
     kunyomi: ['やど'],
+    commonWords: [
+      CommonWord(word: '宿泊', reading: 'しゅくはく', meaning: 'accommodation'),
+      CommonWord(word: '合宿', reading: 'がっしゅく', meaning: 'lodging together'),
+      CommonWord(word: '宿', reading: 'やど', meaning: 'lodging'),
+    ],
   ),
   KanjiCard(
     id: 'n3-105',
@@ -4586,6 +6341,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['キ'],
     kunyomi: ['よ', '-よ'],
+    commonWords: [
+      CommonWord(word: '寄付', reading: 'きふ', meaning: 'contribution'),
+      CommonWord(word: '年寄り', reading: 'としより', meaning: 'old person'),
+      CommonWord(word: '寄せる', reading: 'よせる', meaning: 'to come near'),
+    ],
   ),
   KanjiCard(
     id: 'n3-106',
@@ -4599,6 +6359,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['フ', 'フウ'],
     kunyomi: ['と', 'とみ'],
+    commonWords: [
+      CommonWord(word: '豊富', reading: 'ほうふ', meaning: 'abundant'),
+      CommonWord(word: '富', reading: 'とみ', meaning: 'riches'),
+      CommonWord(word: '貧富', reading: 'ひんぷ', meaning: 'wealth and poverty'),
+    ],
   ),
   KanjiCard(
     id: 'n3-107',
@@ -4612,6 +6377,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['カン'],
     kunyomi: ['さむ'],
+    commonWords: [
+      CommonWord(word: '寒さ', reading: 'さむさ', meaning: 'coldness'),
+      CommonWord(word: '寒気', reading: 'さむけ', meaning: 'chill'),
+      CommonWord(word: '寒冷', reading: 'かんれい', meaning: 'cold'),
+    ],
   ),
   KanjiCard(
     id: 'n3-108',
@@ -4625,6 +6395,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['シン'],
     kunyomi: ['ね', 'い', 'みたまや', 'や'],
+    commonWords: [
+      CommonWord(word: '寝室', reading: 'しんしつ', meaning: 'bedroom'),
+      CommonWord(word: '寝る', reading: 'ねる', meaning: 'to sleep'),
+      CommonWord(word: '昼寝', reading: 'ひるね', meaning: 'nap'),
+    ],
   ),
   KanjiCard(
     id: 'n3-109',
@@ -4638,6 +6413,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['サツ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '警察', reading: 'けいさつ', meaning: 'police'),
+      CommonWord(word: '検察', reading: 'けんさつ', meaning: 'criminal investigation'),
+      CommonWord(word: '視察', reading: 'しさつ', meaning: 'inspection'),
+    ],
   ),
   KanjiCard(
     id: 'n3-110',
@@ -4651,6 +6431,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['タイ', 'ツイ'],
     kunyomi: ['あいて', 'こた', 'そろ', 'つれあ'],
+    commonWords: [
+      CommonWord(word: '対応', reading: 'たいおう', meaning: 'correspondence'),
+      CommonWord(word: '対策', reading: 'たいさく', meaning: 'measure'),
+      CommonWord(word: '対象', reading: 'たいしょう', meaning: 'target'),
+    ],
   ),
   KanjiCard(
     id: 'n3-111',
@@ -4664,6 +6449,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['キョク'],
     kunyomi: ['つぼね'],
+    commonWords: [
+      CommonWord(word: '当局', reading: 'とうきょく', meaning: 'authorities'),
+      CommonWord(word: '結局', reading: 'けっきょく', meaning: 'after all'),
+      CommonWord(word: '支局', reading: 'しきょく', meaning: 'branch office'),
+    ],
   ),
   KanjiCard(
     id: 'n3-112',
@@ -4677,6 +6467,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['キョ', 'コ'],
     kunyomi: ['い', '-い', 'お'],
+    commonWords: [
+      CommonWord(word: '芝居', reading: 'しばい', meaning: 'play'),
+      CommonWord(word: '居住', reading: 'きょじゅう', meaning: 'residence'),
+      CommonWord(word: '住居', reading: 'じゅうきょ', meaning: 'dwelling'),
+    ],
   ),
   KanjiCard(
     id: 'n3-113',
@@ -4690,6 +6485,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['サ'],
     kunyomi: ['さ'],
+    commonWords: [
+      CommonWord(word: '差', reading: 'さ', meaning: 'difference'),
+      CommonWord(word: '格差', reading: 'かくさ', meaning: 'qualitative difference'),
+      CommonWord(word: '差別', reading: 'さべつ', meaning: 'distinction'),
+    ],
   ),
   KanjiCard(
     id: 'n3-114',
@@ -4703,6 +6503,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['シ'],
     kunyomi: ['いち'],
+    commonWords: [
+      CommonWord(word: '市場', reading: 'いちば', meaning: 'market'),
+      CommonWord(word: '市内', reading: 'しない', meaning: 'in the city'),
+      CommonWord(word: '市民', reading: 'しみん', meaning: 'citizen'),
+    ],
   ),
   KanjiCard(
     id: 'n3-115',
@@ -4716,6 +6521,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['シ'],
     kunyomi: ['いくさ'],
+    commonWords: [
+      CommonWord(word: '医師', reading: 'いし', meaning: 'doctor'),
+      CommonWord(word: '教師', reading: 'きょうし', meaning: 'teacher'),
+      CommonWord(word: '講師', reading: 'こうし', meaning: 'speaker'),
+    ],
   ),
   KanjiCard(
     id: 'n3-116',
@@ -4729,6 +6539,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['セキ'],
     kunyomi: ['むしろ'],
+    commonWords: [
+      CommonWord(word: '出席', reading: 'しゅっせき', meaning: 'attendance'),
+      CommonWord(word: '席', reading: 'せき', meaning: 'seat'),
+      CommonWord(word: '席上', reading: 'せきじょう', meaning: 'at the meeting'),
+    ],
   ),
   KanjiCard(
     id: 'n3-117',
@@ -4742,6 +6557,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ジョウ'],
     kunyomi: ['つね', 'とこ'],
+    commonWords: [
+      CommonWord(word: '正常', reading: 'せいじょう', meaning: 'normal'),
+      CommonWord(word: '通常', reading: 'つうじょう', meaning: 'usual'),
+      CommonWord(word: '非常', reading: 'ひじょう', meaning: 'emergency'),
+    ],
   ),
   KanjiCard(
     id: 'n3-118',
@@ -4755,6 +6575,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ヘイ', 'ビョウ', 'ヒョウ'],
     kunyomi: ['たい', 'ひら'],
+    commonWords: [
+      CommonWord(word: '平和', reading: 'へいわ', meaning: 'peace'),
+      CommonWord(word: '平均', reading: 'へいきん', meaning: 'average'),
+      CommonWord(word: '平成', reading: 'へいせい', meaning: 'Heisei era'),
+    ],
   ),
   KanjiCard(
     id: 'n3-119',
@@ -4768,6 +6593,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['コウ'],
     kunyomi: ['さいわ', 'さち', 'しあわ'],
+    commonWords: [
+      CommonWord(word: '不幸', reading: 'ふこう', meaning: 'unhappiness'),
+      CommonWord(word: '幸せ', reading: 'しあわせ', meaning: 'happiness'),
+      CommonWord(word: '幸運', reading: 'こううん', meaning: 'good luck'),
+    ],
   ),
   KanjiCard(
     id: 'n3-120',
@@ -4781,6 +6611,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['キ'],
     kunyomi: ['いく'],
+    commonWords: [
+      CommonWord(word: '幾つ', reading: 'いくつ', meaning: 'how many'),
+      CommonWord(word: '幾何学', reading: 'きかがく', meaning: 'geometry'),
+      CommonWord(word: '幾分', reading: 'いくぶん', meaning: 'somewhat'),
+    ],
   ),
   KanjiCard(
     id: 'n3-121',
@@ -4794,6 +6629,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ザ'],
     kunyomi: ['すわ'],
+    commonWords: [
+      CommonWord(word: '座席', reading: 'ざせき', meaning: 'seat'),
+      CommonWord(word: '即座', reading: 'そくざ', meaning: 'immediate'),
+      CommonWord(word: '座談会', reading: 'ざだんかい', meaning: 'symposium'),
+    ],
   ),
   KanjiCard(
     id: 'n3-122',
@@ -4807,6 +6647,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['テイ'],
     kunyomi: ['にわ'],
+    commonWords: [
+      CommonWord(word: '家庭', reading: 'かてい', meaning: 'home'),
+      CommonWord(word: '庭', reading: 'にわ', meaning: 'garden'),
+      CommonWord(word: '校庭', reading: 'こうてい', meaning: 'schoolyard'),
+    ],
   ),
   KanjiCard(
     id: 'n3-123',
@@ -4820,6 +6665,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['シキ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '株式', reading: 'かぶしき', meaning: 'share'),
+      CommonWord(word: '公式', reading: 'こうしき', meaning: 'official'),
+      CommonWord(word: '正式', reading: 'せいしき', meaning: 'formal'),
+    ],
   ),
   KanjiCard(
     id: 'n3-124',
@@ -4833,6 +6683,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['イン'],
     kunyomi: ['ひく'],
+    commonWords: [
+      CommonWord(word: '取引', reading: 'とりひき', meaning: 'transactions'),
+      CommonWord(word: '引退', reading: 'いんたい', meaning: 'retirement'),
+      CommonWord(word: '強引', reading: 'ごういん', meaning: 'overbearing'),
+    ],
   ),
   KanjiCard(
     id: 'n3-125',
@@ -4846,6 +6701,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['トウ'],
     kunyomi: ['あ', 'まさ'],
+    commonWords: [
+      CommonWord(word: '当局', reading: 'とうきょく', meaning: 'authorities'),
+      CommonWord(word: '当時', reading: 'とうじ', meaning: 'at that time'),
+      CommonWord(word: '当初', reading: 'とうしょ', meaning: 'beginning'),
+    ],
   ),
   KanjiCard(
     id: 'n3-126',
@@ -4859,6 +6719,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ケイ', 'ギョウ'],
     kunyomi: ['かた', '-がた', 'かたち', 'なり'],
+    commonWords: [
+      CommonWord(word: '形', reading: 'かたち', meaning: 'form'),
+      CommonWord(word: '形成', reading: 'けいせい', meaning: 'formation'),
+      CommonWord(word: '人形', reading: 'にんぎょう', meaning: 'doll'),
+    ],
   ),
   KanjiCard(
     id: 'n3-127',
@@ -4872,6 +6737,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ヤク', 'エキ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '役割', reading: 'やくわり', meaning: 'part'),
+      CommonWord(word: '取締役', reading: 'とりしまりやく', meaning: 'company director'),
+      CommonWord(word: '懲役', reading: 'ちょうえき', meaning: 'penal servitude'),
+    ],
   ),
   KanjiCard(
     id: 'n3-128',
@@ -4885,6 +6755,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ヒ'],
     kunyomi: ['かれ', 'かの', 'か'],
+    commonWords: [
+      CommonWord(word: '彼ら', reading: 'かれら', meaning: 'they'),
+      CommonWord(word: '彼女', reading: 'かのじょ', meaning: 'she'),
+      CommonWord(word: '彼岸', reading: 'ひがん', meaning: 'equinoctial week'),
+    ],
   ),
   KanjiCard(
     id: 'n3-129',
@@ -4898,6 +6773,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ト'],
     kunyomi: ['いたずら', 'あだ'],
+    commonWords: [
+      CommonWord(word: '生徒', reading: 'せいと', meaning: 'pupil'),
+      CommonWord(word: '徒歩', reading: 'とほ', meaning: 'walking'),
+      CommonWord(word: '教徒', reading: 'きょうと', meaning: 'believer'),
+    ],
   ),
   KanjiCard(
     id: 'n3-130',
@@ -4911,6 +6791,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['トク'],
     kunyomi: ['え', 'う'],
+    commonWords: [
+      CommonWord(word: '所得', reading: 'しょとく', meaning: 'income'),
+      CommonWord(word: '獲得', reading: 'かくとく', meaning: 'acquisition'),
+      CommonWord(word: '説得', reading: 'せっとく', meaning: 'persuasion'),
+    ],
   ),
   KanjiCard(
     id: 'n3-131',
@@ -4924,6 +6809,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ギョ', 'ゴ'],
     kunyomi: ['おん', 'お', 'み'],
+    commonWords: [
+      CommonWord(word: '防御', reading: 'ぼうぎょ', meaning: 'defense'),
+      CommonWord(word: '制御', reading: 'せいぎょ', meaning: 'control'),
+      CommonWord(word: '御所', reading: 'ごしょ', meaning: 'imperial palace'),
+    ],
   ),
   KanjiCard(
     id: 'n3-132',
@@ -4937,6 +6827,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ヒツ'],
     kunyomi: ['かなら'],
+    commonWords: [
+      CommonWord(word: '必要', reading: 'ひつよう', meaning: 'necessary'),
+      CommonWord(word: '必ず', reading: 'かならず', meaning: 'always'),
+      CommonWord(word: '必死', reading: 'ひっし', meaning: 'frantic'),
+    ],
   ),
   KanjiCard(
     id: 'n3-133',
@@ -4950,6 +6845,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ボウ'],
     kunyomi: ['わす'],
+    commonWords: [
+      CommonWord(word: '忘年会', reading: 'ぼうねんかい', meaning: 'year-end party'),
+      CommonWord(word: '忘れ物', reading: 'わすれもの', meaning: 'lost article'),
+      CommonWord(word: '忘却', reading: 'ぼうきゃく', meaning: 'lapse of memory'),
+    ],
   ),
   KanjiCard(
     id: 'n3-134',
@@ -4963,6 +6863,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ボウ', 'モウ'],
     kunyomi: ['いそが', 'せわ', 'おそ', 'うれえるさま'],
+    commonWords: [
+      CommonWord(word: '忙しい', reading: 'いそがしい', meaning: 'busy'),
+      CommonWord(word: '多忙', reading: 'たぼう', meaning: 'being very busy'),
+    ],
   ),
   KanjiCard(
     id: 'n3-135',
@@ -4976,6 +6880,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ネン'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '記念', reading: 'きねん', meaning: 'commemoration'),
+      CommonWord(word: '懸念', reading: 'けねん', meaning: 'worry'),
+      CommonWord(word: '残念', reading: 'ざんねん', meaning: 'regrettable'),
+    ],
   ),
   KanjiCard(
     id: 'n3-136',
@@ -4989,6 +6898,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ド', 'ヌ'],
     kunyomi: ['いか', 'おこ'],
+    commonWords: [
+      CommonWord(word: '怒り', reading: 'いかり', meaning: 'anger'),
+      CommonWord(word: '怒る', reading: 'おこる', meaning: 'to get angry'),
+      CommonWord(word: '激怒', reading: 'げきど', meaning: 'rage'),
+    ],
   ),
   KanjiCard(
     id: 'n3-137',
@@ -5002,6 +6916,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['フ', 'ホ'],
     kunyomi: ['こわ', 'お', 'おそ'],
+    commonWords: [
+      CommonWord(word: '恐怖', reading: 'きょうふ', meaning: 'fear'),
+      CommonWord(word: '怖い', reading: 'こわい', meaning: 'scary'),
+      CommonWord(word: '怖がる', reading: 'こわがる', meaning: 'to be afraid'),
+    ],
   ),
   KanjiCard(
     id: 'n3-138',
@@ -5015,6 +6934,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['セイ', 'ショウ'],
     kunyomi: ['さが'],
+    commonWords: [
+      CommonWord(word: '女性', reading: 'じょせい', meaning: 'woman'),
+      CommonWord(word: '男性', reading: 'だんせい', meaning: 'man'),
+      CommonWord(word: '性格', reading: 'せいかく', meaning: 'character'),
+    ],
   ),
   KanjiCard(
     id: 'n3-139',
@@ -5028,6 +6952,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['キョウ'],
     kunyomi: ['おそ', 'こわ'],
+    commonWords: [
+      CommonWord(word: '恐れ', reading: 'おそれ', meaning: 'fear'),
+      CommonWord(word: '恐れる', reading: 'おそれる', meaning: 'to fear'),
+      CommonWord(word: '恐らく', reading: 'おそらく', meaning: 'probably'),
+    ],
   ),
   KanjiCard(
     id: 'n3-140',
@@ -5041,6 +6970,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['チ'],
     kunyomi: ['は', 'はじ'],
+    commonWords: [
+      CommonWord(word: '恥', reading: 'はじ', meaning: 'shame'),
+      CommonWord(word: '恥ずかしい', reading: 'はずかしい', meaning: 'embarrassing'),
+      CommonWord(word: '恥じる', reading: 'はじる', meaning: 'to feel ashamed'),
+    ],
   ),
   KanjiCard(
     id: 'n3-141',
@@ -5054,6 +6988,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ソク'],
     kunyomi: ['いき'],
+    commonWords: [
+      CommonWord(word: '息子', reading: 'むすこ', meaning: 'son'),
+      CommonWord(word: '息', reading: 'いき', meaning: 'breath'),
+      CommonWord(word: '利息', reading: 'りそく', meaning: 'interest'),
+    ],
   ),
   KanjiCard(
     id: 'n3-142',
@@ -5067,6 +7006,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ヒ'],
     kunyomi: ['かな'],
+    commonWords: [
+      CommonWord(word: '悲劇', reading: 'ひげき', meaning: 'tragedy'),
+      CommonWord(word: '悲しみ', reading: 'かなしみ', meaning: 'sadness'),
+      CommonWord(word: '悲観', reading: 'ひかん', meaning: 'pessimism'),
+    ],
   ),
   KanjiCard(
     id: 'n3-143',
@@ -5080,6 +7024,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ジョウ', 'セイ'],
     kunyomi: ['なさ'],
+    commonWords: [
+      CommonWord(word: '事情', reading: 'じじょう', meaning: 'circumstances'),
+      CommonWord(word: '情勢', reading: 'じょうせい', meaning: 'state of things'),
+      CommonWord(word: '情報', reading: 'じょうほう', meaning: 'information'),
+    ],
   ),
   KanjiCard(
     id: 'n3-144',
@@ -5093,6 +7042,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ソウ', 'ソ'],
     kunyomi: ['おも'],
+    commonWords: [
+      CommonWord(word: '構想', reading: 'こうそう', meaning: 'plan'),
+      CommonWord(word: '予想', reading: 'よそう', meaning: 'expectation'),
+      CommonWord(word: '思想', reading: 'しそう', meaning: 'thought'),
+    ],
   ),
   KanjiCard(
     id: 'n3-145',
@@ -5106,6 +7060,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['アイ'],
     kunyomi: ['いと', 'かな', 'め', 'お'],
+    commonWords: [
+      CommonWord(word: '愛', reading: 'あい', meaning: 'love'),
+      CommonWord(word: '愛する', reading: 'あいする', meaning: 'to love'),
+      CommonWord(word: '愛しい', reading: 'いとしい', meaning: 'lovely'),
+    ],
   ),
   KanjiCard(
     id: 'n3-146',
@@ -5119,6 +7078,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['カン'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '感じ', reading: 'かんじ', meaning: 'feeling'),
+      CommonWord(word: '感覚', reading: 'かんかく', meaning: 'sense'),
+      CommonWord(word: '感染', reading: 'かんせん', meaning: 'infection'),
+    ],
   ),
   KanjiCard(
     id: 'n3-147',
@@ -5132,6 +7096,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['カン'],
     kunyomi: ['な'],
+    commonWords: [
+      CommonWord(word: '習慣', reading: 'しゅうかん', meaning: 'habit'),
+      CommonWord(word: '慣習', reading: 'かんしゅう', meaning: 'custom'),
+      CommonWord(word: '慣れ', reading: 'なれ', meaning: 'practice'),
+    ],
   ),
   KanjiCard(
     id: 'n3-148',
@@ -5145,6 +7114,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['セイ', 'ジョウ'],
     kunyomi: ['な', '-な'],
+    commonWords: [
+      CommonWord(word: '成長', reading: 'せいちょう', meaning: 'growth'),
+      CommonWord(word: '賛成', reading: 'さんせい', meaning: 'approval'),
+      CommonWord(word: '成果', reading: 'せいか', meaning: 'result'),
+    ],
   ),
   KanjiCard(
     id: 'n3-149',
@@ -5158,6 +7132,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['セン'],
     kunyomi: ['いくさ', 'たたか', 'おのの', 'そよ'],
+    commonWords: [
+      CommonWord(word: '戦争', reading: 'せんそう', meaning: 'war'),
+      CommonWord(word: '戦後', reading: 'せんご', meaning: 'postwar period'),
+      CommonWord(word: '作戦', reading: 'さくせん', meaning: 'tactics'),
+    ],
   ),
   KanjiCard(
     id: 'n3-150',
@@ -5171,6 +7150,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['レイ'],
     kunyomi: ['もど'],
+    commonWords: [
+      CommonWord(word: '戻す', reading: 'もどす', meaning: 'to put back'),
+      CommonWord(word: '戻し', reading: 'もどし', meaning: 'returning'),
+      CommonWord(word: '戻り', reading: 'もどり', meaning: 'return'),
+    ],
   ),
   KanjiCard(
     id: 'n3-151',
@@ -5184,6 +7168,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ショ'],
     kunyomi: ['ところ'],
+    commonWords: [
+      CommonWord(word: '事務所', reading: 'じむしょ', meaning: 'office'),
+      CommonWord(word: '場所', reading: 'ばしょ', meaning: 'place'),
+      CommonWord(word: '所得', reading: 'しょとく', meaning: 'income'),
+    ],
   ),
   KanjiCard(
     id: 'n3-152',
@@ -5197,6 +7186,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['サイ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '才能', reading: 'さいのう', meaning: 'talent'),
+      CommonWord(word: '天才', reading: 'てんさい', meaning: 'genius'),
+      CommonWord(word: '才', reading: 'さい', meaning: '... years old'),
+    ],
   ),
   KanjiCard(
     id: 'n3-153',
@@ -5210,6 +7204,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ダ', 'ダース'],
     kunyomi: ['う', 'ぶ'],
+    commonWords: [
+      CommonWord(word: '打撃', reading: 'だげき', meaning: 'blow'),
+      CommonWord(word: '打つ', reading: 'うつ', meaning: 'to hit'),
+      CommonWord(word: '打破', reading: 'だは', meaning: 'breaking down'),
+    ],
   ),
   KanjiCard(
     id: 'n3-154',
@@ -5223,6 +7222,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['フツ', 'ヒツ', 'ホツ'],
     kunyomi: ['はら', '-はら', '-ばら'],
+    commonWords: [
+      CommonWord(word: '支払い', reading: 'しはらい', meaning: 'payment'),
+      CommonWord(word: '払う', reading: 'はらう', meaning: 'to pay'),
+      CommonWord(word: '前払い', reading: 'まえばらい', meaning: 'payment in advance'),
+    ],
   ),
   KanjiCard(
     id: 'n3-155',
@@ -5236,6 +7240,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['トウ'],
     kunyomi: ['な', '-な'],
+    commonWords: [
+      CommonWord(word: '投資', reading: 'とうし', meaning: 'investment'),
+      CommonWord(word: '投票', reading: 'とうひょう', meaning: 'voting'),
+      CommonWord(word: '投書', reading: 'とうしょ', meaning: 'letter'),
+    ],
   ),
   KanjiCard(
     id: 'n3-156',
@@ -5249,6 +7258,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['セツ', 'シャク'],
     kunyomi: ['お', 'おり', '-お'],
+    commonWords: [
+      CommonWord(word: '折', reading: 'おり', meaning: 'opportunity'),
+      CommonWord(word: '時折', reading: 'ときおり', meaning: 'sometimes'),
+      CommonWord(word: '骨折', reading: 'こっせつ', meaning: 'bone fracture'),
+    ],
   ),
   KanjiCard(
     id: 'n3-157',
@@ -5262,6 +7276,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['バツ', 'ハツ', 'ハイ'],
     kunyomi: ['ぬ', '-ぬ'],
+    commonWords: [
+      CommonWord(word: '抜群', reading: 'ばつぐん', meaning: 'outstanding'),
+      CommonWord(word: '抜本的', reading: 'ばっぽんてき', meaning: 'drastic'),
+      CommonWord(word: '抜き', reading: 'ぬき', meaning: 'leaving out'),
+    ],
   ),
   KanjiCard(
     id: 'n3-158',
@@ -5275,6 +7294,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ホウ'],
     kunyomi: ['だ', 'いだ', 'かか'],
+    commonWords: [
+      CommonWord(word: '抱える', reading: 'かかえる', meaning: 'to hold in one\'s arms'),
+      CommonWord(word: '抱負', reading: 'ほうふ', meaning: 'aspiration'),
+      CommonWord(word: '抱え', reading: 'かかえ', meaning: 'armful'),
+    ],
   ),
   KanjiCard(
     id: 'n3-159',
@@ -5288,6 +7312,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['オウ'],
     kunyomi: ['お', 'おさ'],
+    commonWords: [
+      CommonWord(word: '押す', reading: 'おす', meaning: 'to push'),
+      CommonWord(word: '押さえる', reading: 'おさえる', meaning: 'to pin down'),
+      CommonWord(word: '押し', reading: 'おし', meaning: 'push'),
+    ],
   ),
   KanjiCard(
     id: 'n3-160',
@@ -5301,6 +7330,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ショウ'],
     kunyomi: ['まね'],
+    commonWords: [
+      CommonWord(word: '招待', reading: 'しょうたい', meaning: 'invitation'),
+      CommonWord(word: '招集', reading: 'しょうしゅう', meaning: 'call'),
+      CommonWord(word: '手招き', reading: 'てまねき', meaning: 'beckoning'),
+    ],
   ),
   KanjiCard(
     id: 'n3-161',
@@ -5314,6 +7348,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['シ'],
     kunyomi: ['ゆび', 'さ', '-さ'],
+    commonWords: [
+      CommonWord(word: '指導', reading: 'しどう', meaning: 'guidance'),
+      CommonWord(word: '指揮', reading: 'しき', meaning: 'command'),
+      CommonWord(word: '指定', reading: 'してい', meaning: 'designation'),
+    ],
   ),
   KanjiCard(
     id: 'n3-162',
@@ -5327,6 +7366,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ホ'],
     kunyomi: ['と', 'とら', 'つか'],
+    commonWords: [
+      CommonWord(word: '逮捕', reading: 'たいほ', meaning: 'arrest'),
+      CommonWord(word: '捕虜', reading: 'ほりょ', meaning: 'prisoner'),
+      CommonWord(word: '捕鯨', reading: 'ほげい', meaning: 'whaling'),
+    ],
   ),
   KanjiCard(
     id: 'n3-163',
@@ -5340,6 +7384,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['カイ', 'ケイ'],
     kunyomi: ['か', '-か', '-が', 'かかり'],
+    commonWords: [
+      CommonWord(word: '手掛かり', reading: 'てがかり', meaning: 'clue'),
+      CommonWord(word: '掛け', reading: 'かけ', meaning: 'credit'),
+      CommonWord(word: '掛ける', reading: 'かける', meaning: 'to hang up'),
+    ],
   ),
   KanjiCard(
     id: 'n3-164',
@@ -5353,6 +7402,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['タン'],
     kunyomi: ['さぐ', 'さが'],
+    commonWords: [
+      CommonWord(word: '探検', reading: 'たんけん', meaning: 'exploration'),
+      CommonWord(word: '探す', reading: 'さがす', meaning: 'to search for'),
+      CommonWord(word: '手探り', reading: 'てさぐり', meaning: 'fumbling'),
+    ],
   ),
   KanjiCard(
     id: 'n3-165',
@@ -5366,6 +7420,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['シ'],
     kunyomi: ['ささ', 'つか', 'か'],
+    commonWords: [
+      CommonWord(word: '支援', reading: 'しえん', meaning: 'support'),
+      CommonWord(word: '支局', reading: 'しきょく', meaning: 'branch office'),
+      CommonWord(word: '支配', reading: 'しはい', meaning: 'rule'),
+    ],
   ),
   KanjiCard(
     id: 'n3-166',
@@ -5379,6 +7438,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ホウ'],
     kunyomi: ['はな', '-っぱな', 'こ', 'ほう'],
+    commonWords: [
+      CommonWord(word: '放送', reading: 'ほうそう', meaning: 'broadcasting'),
+      CommonWord(word: '開放', reading: 'かいほう', meaning: 'opening'),
+      CommonWord(word: '解放', reading: 'かいほう', meaning: 'release'),
+    ],
   ),
   KanjiCard(
     id: 'n3-167',
@@ -5392,6 +7456,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['セイ', 'ショウ'],
     kunyomi: ['まつりごと', 'まん'],
+    commonWords: [
+      CommonWord(word: '行政', reading: 'ぎょうせい', meaning: 'executive'),
+      CommonWord(word: '財政', reading: 'ざいせい', meaning: 'public finance'),
+      CommonWord(word: '政界', reading: 'せいかい', meaning: 'politics'),
+    ],
   ),
   KanjiCard(
     id: 'n3-168',
@@ -5405,6 +7474,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ハイ'],
     kunyomi: ['やぶ'],
+    commonWords: [
+      CommonWord(word: '腐敗', reading: 'ふはい', meaning: 'decomposition'),
+      CommonWord(word: '失敗', reading: 'しっぱい', meaning: 'failure'),
+      CommonWord(word: '敗戦', reading: 'はいせん', meaning: 'defeat'),
+    ],
   ),
   KanjiCard(
     id: 'n3-169',
@@ -5418,6 +7492,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['サン'],
     kunyomi: ['ち', '-ち', 'ばら'],
+    commonWords: [
+      CommonWord(word: '解散', reading: 'かいさん', meaning: 'breaking up'),
+      CommonWord(word: '散歩', reading: 'さんぽ', meaning: 'walk'),
+      CommonWord(word: '分散', reading: 'ぶんさん', meaning: 'dispersion'),
+    ],
   ),
   KanjiCard(
     id: 'n3-170',
@@ -5431,6 +7510,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['スウ', 'ス', 'サク', 'ソク'],
     kunyomi: ['かず', 'かぞ', 'しばしば', 'せ'],
+    commonWords: [
+      CommonWord(word: '数字', reading: 'すうじ', meaning: 'numeral'),
+      CommonWord(word: '多数', reading: 'たすう', meaning: 'large number'),
+      CommonWord(word: '数', reading: 'かず', meaning: 'number'),
+    ],
   ),
   KanjiCard(
     id: 'n3-171',
@@ -5444,6 +7528,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ダン'],
     kunyomi: ['た', 'ことわ', 'さだ'],
+    commonWords: [
+      CommonWord(word: '判断', reading: 'はんだん', meaning: 'judgment'),
+      CommonWord(word: '決断', reading: 'けつだん', meaning: 'decision'),
+      CommonWord(word: '診断', reading: 'しんだん', meaning: 'diagnosis'),
+    ],
   ),
   KanjiCard(
     id: 'n3-172',
@@ -5457,6 +7546,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['エキ', 'イ'],
     kunyomi: ['やさ', 'やす'],
+    commonWords: [
+      CommonWord(word: '貿易', reading: 'ぼうえき', meaning: 'trade'),
+      CommonWord(word: '容易', reading: 'ようい', meaning: 'easy'),
+      CommonWord(word: '簡易', reading: 'かんい', meaning: 'simple'),
+    ],
   ),
   KanjiCard(
     id: 'n3-173',
@@ -5470,6 +7564,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['セキ', 'シャク'],
     kunyomi: ['むかし'],
+    commonWords: [
+      CommonWord(word: '昔', reading: 'むかし', meaning: 'the old days'),
+      CommonWord(word: '昔話', reading: 'むかしばなし', meaning: 'old tale'),
+      CommonWord(word: '一昔', reading: 'ひとむかし', meaning: 'an age'),
+    ],
   ),
   KanjiCard(
     id: 'n3-174',
@@ -5483,6 +7582,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['サク'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '昨年', reading: 'さくねん', meaning: 'last year'),
+      CommonWord(word: '一昨年', reading: 'おととし', meaning: 'year before last'),
+      CommonWord(word: '昨日', reading: 'きのう', meaning: 'yesterday'),
+    ],
   ),
   KanjiCard(
     id: 'n3-175',
@@ -5496,6 +7600,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['バン'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '晩', reading: 'ばん', meaning: 'evening'),
+      CommonWord(word: '晩年', reading: 'ばんねん', meaning: 'one\'s later years'),
+      CommonWord(word: '毎晩', reading: 'まいばん', meaning: 'every night'),
+    ],
   ),
   KanjiCard(
     id: 'n3-176',
@@ -5509,6 +7618,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ケイ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '景気', reading: 'けいき', meaning: 'business conditions'),
+      CommonWord(word: '背景', reading: 'はいけい', meaning: 'background'),
+      CommonWord(word: '風景', reading: 'ふうけい', meaning: 'scenery'),
+    ],
   ),
   KanjiCard(
     id: 'n3-177',
@@ -5522,6 +7636,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['セイ'],
     kunyomi: ['は', '-ば'],
+    commonWords: [
+      CommonWord(word: '晴れ', reading: 'はれ', meaning: 'clear weather'),
+      CommonWord(word: '晴天', reading: 'せいてん', meaning: 'fine weather'),
+      CommonWord(word: '晴れる', reading: 'はれる', meaning: 'to clear up'),
+    ],
   ),
   KanjiCard(
     id: 'n3-178',
@@ -5535,6 +7654,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['アン'],
     kunyomi: ['くら', 'くれ'],
+    commonWords: [
+      CommonWord(word: '暗殺', reading: 'あんさつ', meaning: 'assassination'),
+      CommonWord(word: '真っ暗', reading: 'まっくら', meaning: 'pitch-dark'),
+      CommonWord(word: '明暗', reading: 'めいあん', meaning: 'light and darkness'),
+    ],
   ),
   KanjiCard(
     id: 'n3-179',
@@ -5548,6 +7672,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ボ'],
     kunyomi: ['く'],
+    commonWords: [
+      CommonWord(word: '暮らし', reading: 'くらし', meaning: 'life'),
+      CommonWord(word: '暮れ', reading: 'くれ', meaning: 'sunset'),
+      CommonWord(word: '暮れる', reading: 'くれる', meaning: 'to get dark'),
+    ],
   ),
   KanjiCard(
     id: 'n3-180',
@@ -5561,6 +7690,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['キョク'],
     kunyomi: ['ま', 'くま'],
+    commonWords: [
+      CommonWord(word: '曲', reading: 'きょく', meaning: 'composition'),
+      CommonWord(word: '交響曲', reading: 'こうきょうきょく', meaning: 'symphony'),
+      CommonWord(word: '戯曲', reading: 'ぎきょく', meaning: 'drama'),
+    ],
   ),
   KanjiCard(
     id: 'n3-181',
@@ -5574,6 +7708,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['コウ'],
     kunyomi: ['さら', 'ふ'],
+    commonWords: [
+      CommonWord(word: '変更', reading: 'へんこう', meaning: 'change'),
+      CommonWord(word: '更に', reading: 'さらに', meaning: 'furthermore'),
+      CommonWord(word: '更新', reading: 'こうしん', meaning: 'renewal'),
+    ],
   ),
   KanjiCard(
     id: 'n3-182',
@@ -5587,6 +7726,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['サイ', 'シュ'],
     kunyomi: ['もっと', 'つま'],
+    commonWords: [
+      CommonWord(word: '最も', reading: 'もっとも', meaning: 'most'),
+      CommonWord(word: '最近', reading: 'さいきん', meaning: 'recently'),
+      CommonWord(word: '最後', reading: 'さいご', meaning: 'end'),
+    ],
   ),
   KanjiCard(
     id: 'n3-183',
@@ -5600,6 +7744,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ボウ', 'モウ'],
     kunyomi: ['のぞ', 'もち'],
+    commonWords: [
+      CommonWord(word: '希望', reading: 'きぼう', meaning: 'hope'),
+      CommonWord(word: '要望', reading: 'ようぼう', meaning: 'demand for'),
+      CommonWord(word: '展望', reading: 'てんぼう', meaning: 'view'),
+    ],
   ),
   KanjiCard(
     id: 'n3-184',
@@ -5613,6 +7762,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['キ', 'ゴ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '期間', reading: 'きかん', meaning: 'period'),
+      CommonWord(word: '期待', reading: 'きたい', meaning: 'expectation'),
+      CommonWord(word: '時期', reading: 'じき', meaning: 'time'),
+    ],
   ),
   KanjiCard(
     id: 'n3-185',
@@ -5626,6 +7780,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ミ', 'ビ'],
     kunyomi: ['いま', 'ま', 'ひつじ'],
+    commonWords: [
+      CommonWord(word: '未明', reading: 'みめい', meaning: 'early dawn'),
+      CommonWord(word: '未来', reading: 'みらい', meaning: 'future'),
+      CommonWord(word: '未定', reading: 'みてい', meaning: 'not yet fixed'),
+    ],
   ),
   KanjiCard(
     id: 'n3-186',
@@ -5639,6 +7798,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['マツ', 'バツ'],
     kunyomi: ['すえ', 'うら', 'うれ'],
+    commonWords: [
+      CommonWord(word: '年末', reading: 'ねんまつ', meaning: 'end-of-year'),
+      CommonWord(word: '末', reading: 'すえ', meaning: 'end'),
+      CommonWord(word: '週末', reading: 'しゅうまつ', meaning: 'weekend'),
+    ],
   ),
   KanjiCard(
     id: 'n3-187',
@@ -5652,6 +7816,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ソク'],
     kunyomi: ['たば', 'つか'],
+    commonWords: [
+      CommonWord(word: '約束', reading: 'やくそく', meaning: 'promise'),
+      CommonWord(word: '拘束', reading: 'こうそく', meaning: 'restriction'),
+      CommonWord(word: '花束', reading: 'はなたば', meaning: 'bunch of flowers'),
+    ],
   ),
   KanjiCard(
     id: 'n3-188',
@@ -5665,6 +7834,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ハイ'],
     kunyomi: ['さかずき'],
+    commonWords: [
+      CommonWord(word: '一杯', reading: 'いっぱい', meaning: 'one cup'),
+      CommonWord(word: '乾杯', reading: 'かんぱい', meaning: 'cheers'),
+      CommonWord(word: '杯', reading: 'さかずき', meaning: 'sake cup'),
+    ],
   ),
   KanjiCard(
     id: 'n3-189',
@@ -5678,6 +7852,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['カ'],
     kunyomi: ['は', 'はた', '-は'],
+    commonWords: [
+      CommonWord(word: '結果', reading: 'けっか', meaning: 'result'),
+      CommonWord(word: '効果', reading: 'こうか', meaning: 'effect'),
+      CommonWord(word: '果物', reading: 'くだもの', meaning: 'fruit'),
+    ],
   ),
   KanjiCard(
     id: 'n3-190',
@@ -5691,6 +7870,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['カク', 'コウ', 'キャク', 'ゴウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '価格', reading: 'かかく', meaning: 'price'),
+      CommonWord(word: '格差', reading: 'かくさ', meaning: 'qualitative difference'),
+      CommonWord(word: '資格', reading: 'しかく', meaning: 'qualifications'),
+    ],
   ),
   KanjiCard(
     id: 'n3-191',
@@ -5704,6 +7888,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['コウ'],
     kunyomi: ['かま'],
+    commonWords: [
+      CommonWord(word: '機構', reading: 'きこう', meaning: 'mechanism'),
+      CommonWord(word: '構造', reading: 'こうぞう', meaning: 'structure'),
+      CommonWord(word: '構想', reading: 'こうそう', meaning: 'plan'),
+    ],
   ),
   KanjiCard(
     id: 'n3-192',
@@ -5717,6 +7906,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ヨウ', 'ショウ'],
     kunyomi: ['さま', 'さん'],
+    commonWords: [
+      CommonWord(word: '同様', reading: 'どうよう', meaning: 'same'),
+      CommonWord(word: '様子', reading: 'ようす', meaning: 'state'),
+      CommonWord(word: '多様', reading: 'たよう', meaning: 'diverse'),
+    ],
   ),
   KanjiCard(
     id: 'n3-193',
@@ -5730,6 +7924,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ケン', 'ゴン'],
     kunyomi: ['おもり', 'かり', 'はか'],
+    commonWords: [
+      CommonWord(word: '政権', reading: 'せいけん', meaning: 'administration'),
+      CommonWord(word: '権利', reading: 'けんり', meaning: 'right'),
+      CommonWord(word: '権力', reading: 'けんりょく', meaning: 'power'),
+    ],
   ),
   KanjiCard(
     id: 'n3-194',
@@ -5743,6 +7942,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['オウ'],
     kunyomi: ['よこ'],
+    commonWords: [
+      CommonWord(word: '横', reading: 'よこ', meaning: 'horizontal'),
+      CommonWord(word: '横綱', reading: 'よこづな', meaning: 'yokozuna'),
+      CommonWord(word: '横断', reading: 'おうだん', meaning: 'crossing'),
+    ],
   ),
   KanjiCard(
     id: 'n3-195',
@@ -5756,6 +7960,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['キ'],
     kunyomi: ['はた'],
+    commonWords: [
+      CommonWord(word: '危機', reading: 'きき', meaning: 'crisis'),
+      CommonWord(word: '機関', reading: 'きかん', meaning: 'engine'),
+      CommonWord(word: '機構', reading: 'きこう', meaning: 'mechanism'),
+    ],
   ),
   KanjiCard(
     id: 'n3-196',
@@ -5769,6 +7978,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ケツ', 'ケン'],
     kunyomi: ['か'],
+    commonWords: [
+      CommonWord(word: '欠陥', reading: 'けっかん', meaning: 'defect'),
+      CommonWord(word: '不可欠', reading: 'ふかけつ', meaning: 'indispensable'),
+      CommonWord(word: '欠席', reading: 'けっせき', meaning: 'absence'),
+    ],
   ),
   KanjiCard(
     id: 'n3-197',
@@ -5782,6 +7996,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ジ', 'シ'],
     kunyomi: ['つ', 'つぎ'],
+    commonWords: [
+      CommonWord(word: '次回', reading: 'じかい', meaning: 'next time'),
+      CommonWord(word: '次第に', reading: 'しだいに', meaning: 'gradually'),
+      CommonWord(word: '次元', reading: 'じげん', meaning: 'dimension'),
+    ],
   ),
   KanjiCard(
     id: 'n3-198',
@@ -5795,6 +8014,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ヨク'],
     kunyomi: ['ほっ', 'ほ'],
+    commonWords: [
+      CommonWord(word: '意欲', reading: 'いよく', meaning: 'will'),
+      CommonWord(word: '欲', reading: 'よく', meaning: 'greed'),
+      CommonWord(word: '食欲', reading: 'しょくよく', meaning: 'appetite'),
+    ],
   ),
   KanjiCard(
     id: 'n3-199',
@@ -5808,6 +8032,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['シ'],
     kunyomi: ['よわい', 'は', 'よわ'],
+    commonWords: [
+      CommonWord(word: '歯', reading: 'は', meaning: 'tooth'),
+      CommonWord(word: '歯止め', reading: 'はどめ', meaning: 'brake'),
+      CommonWord(word: '歯科', reading: 'しか', meaning: 'dentistry'),
+    ],
   ),
   KanjiCard(
     id: 'n3-200',
@@ -5821,6 +8050,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['サイ', 'セイ'],
     kunyomi: ['とし', 'とせ', 'よわい'],
+    commonWords: [
+      CommonWord(word: '歳月', reading: 'さいげつ', meaning: 'time'),
+      CommonWord(word: '歳暮', reading: 'せいぼ', meaning: 'year-end gift'),
+      CommonWord(word: '万歳', reading: 'ばんざい', meaning: 'banzai'),
+    ],
   ),
   KanjiCard(
     id: 'n3-201',
@@ -5834,6 +8068,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ザン', 'サン'],
     kunyomi: ['のこ', 'そこな'],
+    commonWords: [
+      CommonWord(word: '残り', reading: 'のこり', meaning: 'remainder'),
+      CommonWord(word: '残念', reading: 'ざんねん', meaning: 'regrettable'),
+      CommonWord(word: '残す', reading: 'のこす', meaning: 'to leave'),
+    ],
   ),
   KanjiCard(
     id: 'n3-202',
@@ -5847,6 +8086,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ダン', 'タン'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '段階', reading: 'だんかい', meaning: 'stage'),
+      CommonWord(word: '手段', reading: 'しゅだん', meaning: 'means'),
+      CommonWord(word: '値段', reading: 'ねだん', meaning: 'price'),
+    ],
   ),
   KanjiCard(
     id: 'n3-203',
@@ -5860,6 +8104,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['サツ', 'サイ', 'セツ'],
     kunyomi: ['ころ', '-ごろ', 'そ', 'あや'],
+    commonWords: [
+      CommonWord(word: '殺人', reading: 'さつじん', meaning: 'murder'),
+      CommonWord(word: '殺す', reading: 'ころす', meaning: 'to kill'),
+      CommonWord(word: '自殺', reading: 'じさつ', meaning: 'suicide'),
+    ],
   ),
   KanjiCard(
     id: 'n3-204',
@@ -5873,6 +8122,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ミン'],
     kunyomi: ['たみ'],
+    commonWords: [
+      CommonWord(word: '国民', reading: 'こくみん', meaning: 'people'),
+      CommonWord(word: '市民', reading: 'しみん', meaning: 'citizen'),
+      CommonWord(word: '住民', reading: 'じゅうみん', meaning: 'inhabitant'),
+    ],
   ),
   KanjiCard(
     id: 'n3-205',
@@ -5886,6 +8140,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['キュウ', 'グ'],
     kunyomi: ['もと'],
+    commonWords: [
+      CommonWord(word: '要求', reading: 'ようきゅう', meaning: 'demand'),
+      CommonWord(word: '請求', reading: 'せいきゅう', meaning: 'claim'),
+      CommonWord(word: '求人', reading: 'きゅうじん', meaning: 'recruiting'),
+    ],
   ),
   KanjiCard(
     id: 'n3-206',
@@ -5899,6 +8158,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ケツ'],
     kunyomi: ['き', '-ぎ', 'さ'],
+    commonWords: [
+      CommonWord(word: '解決', reading: 'かいけつ', meaning: 'settlement'),
+      CommonWord(word: '決議', reading: 'けつぎ', meaning: 'resolution'),
+      CommonWord(word: '決定', reading: 'けってい', meaning: 'decision'),
+    ],
   ),
   KanjiCard(
     id: 'n3-207',
@@ -5912,6 +8176,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ジ', 'チ'],
     kunyomi: ['おさ', 'なお'],
+    commonWords: [
+      CommonWord(word: '政治', reading: 'せいじ', meaning: 'politics'),
+      CommonWord(word: '政治家', reading: 'せいじか', meaning: 'politician'),
+      CommonWord(word: '治療', reading: 'ちりょう', meaning: 'treatment'),
+    ],
   ),
   KanjiCard(
     id: 'n3-208',
@@ -5925,6 +8194,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ホウ', 'ハッ', 'ホッ', 'フラン'],
     kunyomi: ['のり'],
+    commonWords: [
+      CommonWord(word: '憲法', reading: 'けんぽう', meaning: 'constitution'),
+      CommonWord(word: '方法', reading: 'ほうほう', meaning: 'method'),
+      CommonWord(word: '法人', reading: 'ほうじん', meaning: 'corporation'),
+    ],
   ),
   KanjiCard(
     id: 'n3-209',
@@ -5938,6 +8212,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['エイ'],
     kunyomi: ['およ'],
+    commonWords: [
+      CommonWord(word: '水泳', reading: 'すいえい', meaning: 'swimming'),
+      CommonWord(word: '泳ぐ', reading: 'およぐ', meaning: 'to swim'),
+      CommonWord(word: '競泳', reading: 'きょうえい', meaning: 'competitive swimming'),
+    ],
   ),
   KanjiCard(
     id: 'n3-210',
@@ -5951,6 +8230,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['セン'],
     kunyomi: ['あら'],
+    commonWords: [
+      CommonWord(word: '洗濯', reading: 'せんたく', meaning: 'washing'),
+      CommonWord(word: '洗剤', reading: 'せんざい', meaning: 'detergent'),
+      CommonWord(word: '洗濯機', reading: 'せんたくき', meaning: 'washing machine'),
+    ],
   ),
   KanjiCard(
     id: 'n3-211',
@@ -5964,6 +8248,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['カツ'],
     kunyomi: ['い'],
+    commonWords: [
+      CommonWord(word: '活動', reading: 'かつどう', meaning: 'activity'),
+      CommonWord(word: '生活', reading: 'せいかつ', meaning: 'life'),
+      CommonWord(word: '活発', reading: 'かっぱつ', meaning: 'lively'),
+    ],
   ),
   KanjiCard(
     id: 'n3-212',
@@ -5977,6 +8266,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['リュウ', 'ル'],
     kunyomi: ['なが', '-なが'],
+    commonWords: [
+      CommonWord(word: '交流', reading: 'こうりゅう', meaning: 'exchange'),
+      CommonWord(word: '流れ', reading: 'ながれ', meaning: 'flow'),
+      CommonWord(word: '流通', reading: 'りゅうつう', meaning: 'circulation'),
+    ],
   ),
   KanjiCard(
     id: 'n3-213',
@@ -5990,6 +8284,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['フ'],
     kunyomi: ['う'],
+    commonWords: [
+      CommonWord(word: '浮かべる', reading: 'うかべる', meaning: 'to float'),
+      CommonWord(word: '浮気', reading: 'うわき', meaning: 'extramarital sex'),
+      CommonWord(word: '浮き彫り', reading: 'うきぼり', meaning: 'relief'),
+    ],
   ),
   KanjiCard(
     id: 'n3-214',
@@ -6003,6 +8302,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ショウ'],
     kunyomi: ['き', 'け'],
+    commonWords: [
+      CommonWord(word: '消費', reading: 'しょうひ', meaning: 'consumption'),
+      CommonWord(word: '消費者', reading: 'しょうひしゃ', meaning: 'consumer'),
+      CommonWord(word: '解消', reading: 'かいしょう', meaning: 'cancellation'),
+    ],
   ),
   KanjiCard(
     id: 'n3-215',
@@ -6016,6 +8320,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['シン'],
     kunyomi: ['ふか', '-ぶか', 'み'],
+    commonWords: [
+      CommonWord(word: '深刻', reading: 'しんこく', meaning: 'serious'),
+      CommonWord(word: '深める', reading: 'ふかめる', meaning: 'to deepen'),
+      CommonWord(word: '深み', reading: 'ふかみ', meaning: 'deep place'),
+    ],
   ),
   KanjiCard(
     id: 'n3-216',
@@ -6029,6 +8338,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['サイ', 'セイ'],
     kunyomi: ['す', '-ず', '-ずみ', '-す'],
+    commonWords: [
+      CommonWord(word: '経済', reading: 'けいざい', meaning: 'economy'),
+      CommonWord(word: '救済', reading: 'きゅうさい', meaning: 'relief'),
+      CommonWord(word: '返済', reading: 'へんさい', meaning: 'repayment'),
+    ],
   ),
   KanjiCard(
     id: 'n3-217',
@@ -6042,6 +8356,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ト'],
     kunyomi: ['わた', '-わた'],
+    commonWords: [
+      CommonWord(word: '渡す', reading: 'わたす', meaning: 'to ferry across'),
+      CommonWord(word: '過渡期', reading: 'かとき', meaning: 'transition period'),
+      CommonWord(word: '綱渡り', reading: 'つなわたり', meaning: 'tightrope walking'),
+    ],
   ),
   KanjiCard(
     id: 'n3-218',
@@ -6055,6 +8374,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['コウ'],
     kunyomi: ['みなと'],
+    commonWords: [
+      CommonWord(word: '空港', reading: 'くうこう', meaning: 'airport'),
+      CommonWord(word: '港', reading: 'みなと', meaning: 'harbour'),
+      CommonWord(word: '開港', reading: 'かいこう', meaning: 'opening a port'),
+    ],
   ),
   KanjiCard(
     id: 'n3-219',
@@ -6068,6 +8392,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['マン', 'バン'],
     kunyomi: ['み'],
+    commonWords: [
+      CommonWord(word: '不満', reading: 'ふまん', meaning: 'dissatisfaction'),
+      CommonWord(word: '満足', reading: 'まんぞく', meaning: 'satisfaction'),
+      CommonWord(word: '満員', reading: 'まんいん', meaning: 'full house'),
+    ],
   ),
   KanjiCard(
     id: 'n3-220',
@@ -6081,6 +8410,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['エン'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '演説', reading: 'えんぜつ', meaning: 'speech'),
+      CommonWord(word: '公演', reading: 'こうえん', meaning: 'public performance'),
+      CommonWord(word: '講演', reading: 'こうえん', meaning: 'lecture'),
+    ],
   ),
   KanjiCard(
     id: 'n3-221',
@@ -6094,6 +8428,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['テン'],
     kunyomi: ['つ', 'た', 'さ', 'とぼ'],
+    commonWords: [
+      CommonWord(word: '焦点', reading: 'しょうてん', meaning: 'focus'),
+      CommonWord(word: '視点', reading: 'してん', meaning: 'point of view'),
+      CommonWord(word: '重点', reading: 'じゅうてん', meaning: 'important point'),
+    ],
   ),
   KanjiCard(
     id: 'n3-222',
@@ -6107,6 +8446,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ゼン', 'ネン'],
     kunyomi: ['しか', 'さ'],
+    commonWords: [
+      CommonWord(word: '自然', reading: 'しぜん', meaning: 'nature'),
+      CommonWord(word: '当然', reading: 'とうぜん', meaning: 'natural'),
+      CommonWord(word: '依然', reading: 'いぜん', meaning: 'still'),
+    ],
   ),
   KanjiCard(
     id: 'n3-223',
@@ -6120,6 +8464,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['エン'],
     kunyomi: ['けむ', 'けむり'],
+    commonWords: [
+      CommonWord(word: '煙', reading: 'けむり', meaning: 'smoke'),
+      CommonWord(word: '喫煙', reading: 'きつえん', meaning: 'smoking'),
+      CommonWord(word: '禁煙', reading: 'きんえん', meaning: 'abstaining from smoking'),
+    ],
   ),
   KanjiCard(
     id: 'n3-224',
@@ -6133,6 +8482,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ネツ'],
     kunyomi: ['あつ'],
+    commonWords: [
+      CommonWord(word: '熱', reading: 'ねつ', meaning: 'heat'),
+      CommonWord(word: '熱心', reading: 'ねっしん', meaning: 'zealous'),
+      CommonWord(word: '熱帯', reading: 'ねったい', meaning: 'tropics'),
+    ],
   ),
   KanjiCard(
     id: 'n3-225',
@@ -6146,6 +8500,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ハン', 'ボン'],
     kunyomi: ['おか'],
+    commonWords: [
+      CommonWord(word: '犯罪', reading: 'はんざい', meaning: 'crime'),
+      CommonWord(word: '犯人', reading: 'はんにん', meaning: 'offender'),
+      CommonWord(word: '現行犯', reading: 'げんこうはん', meaning: 'flagrante delicto'),
+    ],
   ),
   KanjiCard(
     id: 'n3-226',
@@ -6159,6 +8518,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ジョウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '状況', reading: 'じょうきょう', meaning: 'state of affairs'),
+      CommonWord(word: '状態', reading: 'じょうたい', meaning: 'state'),
+      CommonWord(word: '現状', reading: 'げんじょう', meaning: 'present condition'),
+    ],
   ),
   KanjiCard(
     id: 'n3-227',
@@ -6172,6 +8536,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ビョウ'],
     kunyomi: ['ねこ'],
+    commonWords: [
+      CommonWord(word: '猫', reading: 'ねこ', meaning: 'cat'),
+      CommonWord(word: '子猫', reading: 'こねこ', meaning: 'kitten'),
+      CommonWord(word: '猫舌', reading: 'ねこじた', meaning: 'dislike of very hot food or drink'),
+    ],
   ),
   KanjiCard(
     id: 'n3-228',
@@ -6185,6 +8554,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['オウ', '-ノウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '女王', reading: 'じょおう', meaning: 'queen'),
+      CommonWord(word: '王国', reading: 'おうこく', meaning: 'kingdom'),
+      CommonWord(word: '王子', reading: 'おうじ', meaning: 'prince'),
+    ],
   ),
   KanjiCard(
     id: 'n3-229',
@@ -6198,6 +8572,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ゲン'],
     kunyomi: ['あらわ', 'うつつ', 'うつ'],
+    commonWords: [
+      CommonWord(word: '現在', reading: 'げんざい', meaning: 'the present'),
+      CommonWord(word: '現実', reading: 'げんじつ', meaning: 'reality'),
+      CommonWord(word: '現場', reading: 'げんば', meaning: 'actual spot'),
+    ],
   ),
   KanjiCard(
     id: 'n3-230',
@@ -6211,6 +8590,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['キュウ'],
     kunyomi: ['たま'],
+    commonWords: [
+      CommonWord(word: '地球', reading: 'ちきゅう', meaning: 'Earth'),
+      CommonWord(word: '野球', reading: 'やきゅう', meaning: 'baseball'),
+      CommonWord(word: '球', reading: 'きゅう', meaning: 'sphere'),
+    ],
   ),
   KanjiCard(
     id: 'n3-231',
@@ -6224,6 +8608,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['サン'],
     kunyomi: ['うむ'],
+    commonWords: [
+      CommonWord(word: '産業', reading: 'さんぎょう', meaning: 'industry'),
+      CommonWord(word: '生産', reading: 'せいさん', meaning: 'production'),
+      CommonWord(word: '資産', reading: 'しさん', meaning: 'property'),
+    ],
   ),
   KanjiCard(
     id: 'n3-232',
@@ -6237,6 +8626,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ユ', 'ユウ', 'ユイ'],
     kunyomi: ['よし', 'よ'],
+    commonWords: [
+      CommonWord(word: '自由', reading: 'じゆう', meaning: 'freedom'),
+      CommonWord(word: '理由', reading: 'りゆう', meaning: 'reason'),
+      CommonWord(word: '経由', reading: 'けいゆ', meaning: 'going through'),
+    ],
   ),
   KanjiCard(
     id: 'n3-233',
@@ -6250,6 +8644,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['シン'],
     kunyomi: ['もう', 'さる'],
+    commonWords: [
+      CommonWord(word: '申請', reading: 'しんせい', meaning: 'application'),
+      CommonWord(word: '答申', reading: 'とうしん', meaning: 'report'),
+      CommonWord(word: '申し訳', reading: 'もうしわけ', meaning: 'apology'),
+    ],
   ),
   KanjiCard(
     id: 'n3-234',
@@ -6263,6 +8662,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['リュウ', 'ル'],
     kunyomi: ['と', 'とど', 'るうぶる'],
+    commonWords: [
+      CommonWord(word: '留学', reading: 'りゅうがく', meaning: 'studying abroad'),
+      CommonWord(word: '留学生', reading: 'りゅうがくせい', meaning: 'overseas student'),
+      CommonWord(word: '在留', reading: 'ざいりゅう', meaning: 'residing'),
+    ],
   ),
   KanjiCard(
     id: 'n3-235',
@@ -6276,6 +8680,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['バン'],
     kunyomi: ['つが'],
+    commonWords: [
+      CommonWord(word: '一番', reading: 'いちばん', meaning: 'number one'),
+      CommonWord(word: '番組', reading: 'ばんぐみ', meaning: 'program'),
+      CommonWord(word: '番号', reading: 'ばんごう', meaning: 'number'),
+    ],
   ),
   KanjiCard(
     id: 'n3-236',
@@ -6289,6 +8698,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ギ'],
     kunyomi: ['うたが'],
+    commonWords: [
+      CommonWord(word: '疑い', reading: 'うたがい', meaning: 'doubt'),
+      CommonWord(word: '容疑者', reading: 'ようぎしゃ', meaning: 'suspect'),
+      CommonWord(word: '疑う', reading: 'うたがう', meaning: 'to doubt'),
+    ],
   ),
   KanjiCard(
     id: 'n3-237',
@@ -6302,6 +8716,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ヒ'],
     kunyomi: ['つか', '-づか'],
+    commonWords: [
+      CommonWord(word: '疲れ', reading: 'つかれ', meaning: 'tiredness'),
+      CommonWord(word: '疲労', reading: 'ひろう', meaning: 'fatigue'),
+      CommonWord(word: '疲弊', reading: 'ひへい', meaning: 'exhaustion'),
+    ],
   ),
   KanjiCard(
     id: 'n3-238',
@@ -6315,6 +8734,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ツウ'],
     kunyomi: ['いた'],
+    commonWords: [
+      CommonWord(word: '痛み', reading: 'いたみ', meaning: 'pain'),
+      CommonWord(word: '頭痛', reading: 'ずつう', meaning: 'headache'),
+      CommonWord(word: '痛い', reading: 'いたい', meaning: 'painful'),
+    ],
   ),
   KanjiCard(
     id: 'n3-239',
@@ -6328,6 +8752,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['トウ', 'ト', 'ドウ', 'ショウ'],
     kunyomi: ['のぼ', 'あ'],
+    commonWords: [
+      CommonWord(word: '登録', reading: 'とうろく', meaning: 'registration'),
+      CommonWord(word: '登場', reading: 'とうじょう', meaning: 'entrance'),
+      CommonWord(word: '登校', reading: 'とうこう', meaning: 'attendance'),
+    ],
   ),
   KanjiCard(
     id: 'n3-240',
@@ -6341,6 +8770,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['カイ'],
     kunyomi: ['みな', 'みんな'],
+    commonWords: [
+      CommonWord(word: '皆さん', reading: 'みなさん', meaning: 'all'),
+      CommonWord(word: '皆', reading: 'みな', meaning: 'everyone'),
+      CommonWord(word: '皆無', reading: 'かいむ', meaning: 'nonexistent'),
+    ],
   ),
   KanjiCard(
     id: 'n3-241',
@@ -6354,6 +8788,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['トウ'],
     kunyomi: ['ぬす'],
+    commonWords: [
+      CommonWord(word: '強盗', reading: 'ごうとう', meaning: 'robber'),
+      CommonWord(word: '盗む', reading: 'ぬすむ', meaning: 'to steal'),
+      CommonWord(word: '盗難', reading: 'とうなん', meaning: 'theft'),
+    ],
   ),
   KanjiCard(
     id: 'n3-242',
@@ -6367,6 +8806,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['チョク', 'ジキ', 'ジカ'],
     kunyomi: ['ただ', 'なお', '-なお', 'す'],
+    commonWords: [
+      CommonWord(word: '直後', reading: 'ちょくご', meaning: 'immediately following'),
+      CommonWord(word: '直接', reading: 'ちょくせつ', meaning: 'direct'),
+      CommonWord(word: '直前', reading: 'ちょくぜん', meaning: 'just before'),
+    ],
   ),
   KanjiCard(
     id: 'n3-243',
@@ -6380,6 +8824,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ソウ', 'ショウ'],
     kunyomi: ['あい'],
+    commonWords: [
+      CommonWord(word: '外相', reading: 'がいしょう', meaning: 'Foreign Minister'),
+      CommonWord(word: '首相', reading: 'しゅしょう', meaning: 'prime minister'),
+      CommonWord(word: '相手', reading: 'あいて', meaning: 'companion'),
+    ],
   ),
   KanjiCard(
     id: 'n3-244',
@@ -6393,6 +8842,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ミン'],
     kunyomi: ['ねむ'],
+    commonWords: [
+      CommonWord(word: '睡眠', reading: 'すいみん', meaning: 'sleep'),
+      CommonWord(word: '不眠', reading: 'ふみん', meaning: 'sleeplessness'),
+      CommonWord(word: '居眠り', reading: 'いねむり', meaning: 'nodding off'),
+    ],
   ),
   KanjiCard(
     id: 'n3-245',
@@ -6406,6 +8860,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['セキ', 'シャク', 'コク'],
     kunyomi: ['いし'],
+    commonWords: [
+      CommonWord(word: '石油', reading: 'せきゆ', meaning: 'oil'),
+      CommonWord(word: '化石', reading: 'かせき', meaning: 'fossil'),
+      CommonWord(word: '石炭', reading: 'せきたん', meaning: 'coal'),
+    ],
   ),
   KanjiCard(
     id: 'n3-246',
@@ -6419,6 +8878,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ハ'],
     kunyomi: ['やぶ', 'わ'],
+    commonWords: [
+      CommonWord(word: '破壊', reading: 'はかい', meaning: 'destruction'),
+      CommonWord(word: '突破', reading: 'とっぱ', meaning: 'breaking through'),
+      CommonWord(word: '破産', reading: 'はさん', meaning: 'bankruptcy'),
+    ],
   ),
   KanjiCard(
     id: 'n3-247',
@@ -6432,6 +8896,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['カク', 'コウ'],
     kunyomi: ['たし'],
+    commonWords: [
+      CommonWord(word: '確実', reading: 'かくじつ', meaning: 'certain'),
+      CommonWord(word: '確保', reading: 'かくほ', meaning: 'securing'),
+      CommonWord(word: '明確', reading: 'めいかく', meaning: 'clear'),
+    ],
   ),
   KanjiCard(
     id: 'n3-248',
@@ -6445,6 +8914,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ジ', 'シ'],
     kunyomi: ['しめ'],
+    commonWords: [
+      CommonWord(word: '指示', reading: 'しじ', meaning: 'indication'),
+      CommonWord(word: '示す', reading: 'しめす', meaning: 'to (take out and) show'),
+      CommonWord(word: '展示', reading: 'てんじ', meaning: 'exhibition'),
+    ],
   ),
   KanjiCard(
     id: 'n3-249',
@@ -6458,6 +8932,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['レイ', 'ライ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '礼', reading: 'れい', meaning: 'thanks'),
+      CommonWord(word: '儀礼', reading: 'ぎれい', meaning: 'courtesy'),
+      CommonWord(word: '礼儀', reading: 'れいぎ', meaning: 'manners'),
+    ],
   ),
   KanjiCard(
     id: 'n3-250',
@@ -6471,6 +8950,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ソ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '祖父', reading: 'そふ', meaning: 'grandfather'),
+      CommonWord(word: '祖母', reading: 'そぼ', meaning: 'grandmother'),
+      CommonWord(word: '先祖', reading: 'せんぞ', meaning: 'ancestor'),
+    ],
   ),
   KanjiCard(
     id: 'n3-251',
@@ -6484,6 +8968,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['シン', 'ジン'],
     kunyomi: ['かみ', 'かん', 'こう'],
+    commonWords: [
+      CommonWord(word: '精神', reading: 'せいしん', meaning: 'mind'),
+      CommonWord(word: '神', reading: 'かみ', meaning: 'god'),
+      CommonWord(word: '神経', reading: 'しんけい', meaning: 'nerve'),
+    ],
   ),
   KanjiCard(
     id: 'n3-252',
@@ -6497,6 +8986,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['フク'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '福祉', reading: 'ふくし', meaning: 'welfare'),
+      CommonWord(word: '幸福', reading: 'こうふく', meaning: 'happiness'),
+      CommonWord(word: '祝福', reading: 'しゅくふく', meaning: 'celebration'),
+    ],
   ),
   KanjiCard(
     id: 'n3-253',
@@ -6510,6 +9004,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['カ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '科学', reading: 'かがく', meaning: 'science'),
+      CommonWord(word: '教科書', reading: 'きょうかしょ', meaning: 'textbook'),
+      CommonWord(word: '学科', reading: 'がっか', meaning: 'subject'),
+    ],
   ),
   KanjiCard(
     id: 'n3-254',
@@ -6523,6 +9022,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['テイ'],
     kunyomi: ['ほど', '-ほど'],
+    commonWords: [
+      CommonWord(word: '程度', reading: 'ていど', meaning: 'degree'),
+      CommonWord(word: '日程', reading: 'にってい', meaning: 'schedule'),
+      CommonWord(word: '過程', reading: 'かてい', meaning: 'process'),
+    ],
   ),
   KanjiCard(
     id: 'n3-255',
@@ -6536,6 +9040,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['シュ'],
     kunyomi: ['たね', '-ぐさ'],
+    commonWords: [
+      CommonWord(word: '一種', reading: 'いっしゅ', meaning: 'a kind'),
+      CommonWord(word: '種類', reading: 'しゅるい', meaning: 'variety'),
+      CommonWord(word: '人種', reading: 'じんしゅ', meaning: 'race'),
+    ],
   ),
   KanjiCard(
     id: 'n3-256',
@@ -6549,6 +9058,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['セキ'],
     kunyomi: ['つ', '-づ'],
+    commonWords: [
+      CommonWord(word: '積極的', reading: 'せっきょくてき', meaning: 'positive'),
+      CommonWord(word: '面積', reading: 'めんせき', meaning: 'area'),
+      CommonWord(word: '蓄積', reading: 'ちくせき', meaning: 'accumulation'),
+    ],
   ),
   KanjiCard(
     id: 'n3-257',
@@ -6562,6 +9076,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['トツ', 'カ'],
     kunyomi: ['つ'],
+    commonWords: [
+      CommonWord(word: '衝突', reading: 'しょうとつ', meaning: 'collision'),
+      CommonWord(word: '突破', reading: 'とっぱ', meaning: 'breaking through'),
+      CommonWord(word: '突然', reading: 'とつぜん', meaning: 'abrupt'),
+    ],
   ),
   KanjiCard(
     id: 'n3-258',
@@ -6575,6 +9094,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ソウ', 'ス'],
     kunyomi: ['まど', 'てんまど', 'けむだし'],
+    commonWords: [
+      CommonWord(word: '窓', reading: 'まど', meaning: 'window'),
+      CommonWord(word: '窓口', reading: 'まどぐち', meaning: 'counter'),
+      CommonWord(word: '同窓会', reading: 'どうそうかい', meaning: 'alumni association'),
+    ],
   ),
   KanjiCard(
     id: 'n3-259',
@@ -6588,6 +9112,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ショウ'],
     kunyomi: ['わら', 'え'],
+    commonWords: [
+      CommonWord(word: '笑い', reading: 'わらい', meaning: 'laugh'),
+      CommonWord(word: '笑顔', reading: 'えがお', meaning: 'smiling face'),
+      CommonWord(word: '微笑', reading: 'びしょう', meaning: 'smile'),
+    ],
   ),
   KanjiCard(
     id: 'n3-260',
@@ -6601,6 +9130,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['トウ'],
     kunyomi: ['ひと', 'など', '-ら'],
+    commonWords: [
+      CommonWord(word: '高等', reading: 'こうとう', meaning: 'high class'),
+      CommonWord(word: '平等', reading: 'びょうどう', meaning: 'equality'),
+      CommonWord(word: '均等', reading: 'きんとう', meaning: 'equal'),
+    ],
   ),
   KanjiCard(
     id: 'n3-261',
@@ -6614,6 +9148,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ソウ'],
     kunyomi: ['はこ'],
+    commonWords: [
+      CommonWord(word: '箱', reading: 'はこ', meaning: 'box'),
+      CommonWord(word: '私書箱', reading: 'ししょばこ', meaning: 'post office box'),
+      CommonWord(word: '投票箱', reading: 'とうひょうばこ', meaning: 'ballot box'),
+    ],
   ),
   KanjiCard(
     id: 'n3-262',
@@ -6627,6 +9166,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ベイ', 'マイ', 'メエトル'],
     kunyomi: ['こめ', 'よね'],
+    commonWords: [
+      CommonWord(word: '日米', reading: 'にちべい', meaning: 'Japan and the United States'),
+      CommonWord(word: '米価', reading: 'べいか', meaning: 'rice price'),
+      CommonWord(word: '新米', reading: 'しんまい', meaning: 'new rice'),
+    ],
   ),
   KanjiCard(
     id: 'n3-263',
@@ -6640,6 +9184,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['セイ', 'ショウ'],
     kunyomi: ['しら', 'くわ'],
+    commonWords: [
+      CommonWord(word: '精神', reading: 'せいしん', meaning: 'mind'),
+      CommonWord(word: '精密', reading: 'せいみつ', meaning: 'precise'),
+      CommonWord(word: '精', reading: 'せい', meaning: 'spirit'),
+    ],
   ),
   KanjiCard(
     id: 'n3-264',
@@ -6653,6 +9202,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ヤク'],
     kunyomi: ['つづ', 'つづま'],
+    commonWords: [
+      CommonWord(word: '契約', reading: 'けいやく', meaning: 'contract'),
+      CommonWord(word: '条約', reading: 'じょうやく', meaning: 'treaty'),
+      CommonWord(word: '公約', reading: 'こうやく', meaning: 'public commitment'),
+    ],
   ),
   KanjiCard(
     id: 'n3-265',
@@ -6666,6 +9220,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ソ'],
     kunyomi: ['く', 'くみ', '-ぐみ'],
+    commonWords: [
+      CommonWord(word: '組織', reading: 'そしき', meaning: 'organization'),
+      CommonWord(word: '番組', reading: 'ばんぐみ', meaning: 'program'),
+      CommonWord(word: '組合', reading: 'くみあい', meaning: 'association'),
+    ],
   ),
   KanjiCard(
     id: 'n3-266',
@@ -6679,6 +9238,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ケイ', 'キョウ', 'キン'],
     kunyomi: ['へ', 'た', 'たていと', 'はか'],
+    commonWords: [
+      CommonWord(word: '経営', reading: 'けいえい', meaning: 'management'),
+      CommonWord(word: '経済', reading: 'けいざい', meaning: 'economy'),
+      CommonWord(word: '経験', reading: 'けいけん', meaning: 'experience'),
+    ],
   ),
   KanjiCard(
     id: 'n3-267',
@@ -6692,6 +9256,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['キュウ'],
     kunyomi: ['たま', 'たも', '-たま'],
+    commonWords: [
+      CommonWord(word: '供給', reading: 'きょうきゅう', meaning: 'supply'),
+      CommonWord(word: '給与', reading: 'きゅうよ', meaning: 'pay'),
+      CommonWord(word: '給食', reading: 'きゅうしょく', meaning: 'provision of lunch'),
+    ],
   ),
   KanjiCard(
     id: 'n3-268',
@@ -6705,6 +9274,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['カイ', 'エ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '絵画', reading: 'かいが', meaning: 'painting'),
+      CommonWord(word: '絵本', reading: 'えほん', meaning: 'picture book'),
+      CommonWord(word: '絵の具', reading: 'えのぐ', meaning: 'paint'),
+    ],
   ),
   KanjiCard(
     id: 'n3-269',
@@ -6718,6 +9292,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ゼツ'],
     kunyomi: ['た'],
+    commonWords: [
+      CommonWord(word: '絶対', reading: 'ぜったい', meaning: 'absolutely'),
+      CommonWord(word: '中絶', reading: 'ちゅうぜつ', meaning: 'abortion'),
+      CommonWord(word: '絶好', reading: 'ぜっこう', meaning: 'best'),
+    ],
   ),
   KanjiCard(
     id: 'n3-270',
@@ -6731,6 +9310,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ゾク', 'ショク', 'コウ', 'キョウ'],
     kunyomi: ['つづ', 'つぐ'],
+    commonWords: [
+      CommonWord(word: '連続', reading: 'れんぞく', meaning: 'continuation'),
+      CommonWord(word: '手続き', reading: 'てつづき', meaning: 'procedure'),
+      CommonWord(word: '続々', reading: 'ぞくぞく', meaning: 'successively'),
+    ],
   ),
   KanjiCard(
     id: 'n3-271',
@@ -6744,6 +9328,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ショ', 'チョ'],
     kunyomi: ['お', 'いとぐち'],
+    commonWords: [
+      CommonWord(word: '一緒', reading: 'いっしょ', meaning: 'together'),
+      CommonWord(word: '情緒', reading: 'じょうちょ', meaning: 'emotion'),
+      CommonWord(word: '由緒', reading: 'ゆいしょ', meaning: 'history'),
+    ],
   ),
   KanjiCard(
     id: 'n3-272',
@@ -6757,6 +9346,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ザイ'],
     kunyomi: ['つみ'],
+    commonWords: [
+      CommonWord(word: '犯罪', reading: 'はんざい', meaning: 'crime'),
+      CommonWord(word: '無罪', reading: 'むざい', meaning: 'innocence'),
+      CommonWord(word: '謝罪', reading: 'しゃざい', meaning: 'apology'),
+    ],
   ),
   KanjiCard(
     id: 'n3-273',
@@ -6770,6 +9364,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['チ'],
     kunyomi: ['お', '-お'],
+    commonWords: [
+      CommonWord(word: '措置', reading: 'そち', meaning: 'measure'),
+      CommonWord(word: '設置', reading: 'せっち', meaning: 'establishment'),
+      CommonWord(word: '装置', reading: 'そうち', meaning: 'equipment'),
+    ],
   ),
   KanjiCard(
     id: 'n3-274',
@@ -6783,6 +9382,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ビ', 'ミ'],
     kunyomi: ['うつく'],
+    commonWords: [
+      CommonWord(word: '美術', reading: 'びじゅつ', meaning: 'art'),
+      CommonWord(word: '美術館', reading: 'びじゅつかん', meaning: 'art museum'),
+      CommonWord(word: '美しい', reading: 'うつくしい', meaning: 'beautiful'),
+    ],
   ),
   KanjiCard(
     id: 'n3-275',
@@ -6796,6 +9400,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ロウ'],
     kunyomi: ['お', 'ふ'],
+    commonWords: [
+      CommonWord(word: '老人', reading: 'ろうじん', meaning: 'old person'),
+      CommonWord(word: '老後', reading: 'ろうご', meaning: 'old age'),
+      CommonWord(word: '老化', reading: 'ろうか', meaning: 'ageing'),
+    ],
   ),
   KanjiCard(
     id: 'n3-276',
@@ -6809,6 +9418,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ジ'],
     kunyomi: ['みみ'],
+    commonWords: [
+      CommonWord(word: '耳', reading: 'みみ', meaning: 'ear'),
+      CommonWord(word: '耳元', reading: 'みみもと', meaning: 'close to the ear'),
+      CommonWord(word: '耳鼻科', reading: 'じびか', meaning: 'otolaryngology'),
+    ],
   ),
   KanjiCard(
     id: 'n3-277',
@@ -6822,6 +9436,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ショク', 'ソク'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '職員', reading: 'しょくいん', meaning: 'staff member'),
+      CommonWord(word: '汚職', reading: 'おしょく', meaning: 'corruption'),
+      CommonWord(word: '就職', reading: 'しゅうしょく', meaning: 'finding employment'),
+    ],
   ),
   KanjiCard(
     id: 'n3-278',
@@ -6835,6 +9454,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['イク'],
     kunyomi: ['そだ', 'はぐく'],
+    commonWords: [
+      CommonWord(word: '教育', reading: 'きょういく', meaning: 'education'),
+      CommonWord(word: '体育', reading: 'たいいく', meaning: 'physical education'),
+      CommonWord(word: '育児', reading: 'いくじ', meaning: 'childcare'),
+    ],
   ),
   KanjiCard(
     id: 'n3-279',
@@ -6848,6 +9472,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ハイ'],
     kunyomi: ['せ', 'せい', 'そむ'],
+    commonWords: [
+      CommonWord(word: '背景', reading: 'はいけい', meaning: 'background'),
+      CommonWord(word: '背中', reading: 'せなか', meaning: 'back'),
+      CommonWord(word: '背', reading: 'せい', meaning: 'height'),
+    ],
   ),
   KanjiCard(
     id: 'n3-280',
@@ -6861,6 +9490,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ノウ'],
     kunyomi: ['よ', 'あた'],
+    commonWords: [
+      CommonWord(word: '可能', reading: 'かのう', meaning: 'possible'),
+      CommonWord(word: '機能', reading: 'きのう', meaning: 'function'),
+      CommonWord(word: '能力', reading: 'のうりょく', meaning: 'ability'),
+    ],
   ),
   KanjiCard(
     id: 'n3-281',
@@ -6874,6 +9508,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['フク'],
     kunyomi: ['はら'],
+    commonWords: [
+      CommonWord(word: '腹', reading: 'はら', meaning: 'abdomen'),
+      CommonWord(word: '裏腹', reading: 'うらはら', meaning: 'opposite'),
+      CommonWord(word: '太っ腹', reading: 'ふとっぱら', meaning: 'generous'),
+    ],
   ),
   KanjiCard(
     id: 'n3-282',
@@ -6887,6 +9526,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ブ'],
     kunyomi: ['ま', '-ま', 'まい'],
+    commonWords: [
+      CommonWord(word: '舞台', reading: 'ぶたい', meaning: 'stage'),
+      CommonWord(word: '歌舞伎', reading: 'かぶき', meaning: 'kabuki'),
+      CommonWord(word: '見舞う', reading: 'みまう', meaning: 'to visit and comfort or console'),
+    ],
   ),
   KanjiCard(
     id: 'n3-283',
@@ -6900,6 +9544,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['セン'],
     kunyomi: ['ふね', 'ふな'],
+    commonWords: [
+      CommonWord(word: '船', reading: 'ふね', meaning: 'ship'),
+      CommonWord(word: '漁船', reading: 'ぎょせん', meaning: 'fishing boat'),
+      CommonWord(word: '船長', reading: 'せんちょう', meaning: 'ship\'s captain'),
+    ],
   ),
   KanjiCard(
     id: 'n3-284',
@@ -6913,6 +9562,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['リョウ'],
     kunyomi: ['よ', '-よ', 'い', '-い'],
+    commonWords: [
+      CommonWord(word: '不良', reading: 'ふりょう', meaning: 'bad'),
+      CommonWord(word: '改良', reading: 'かいりょう', meaning: 'improvement'),
+      CommonWord(word: '良い', reading: 'よい', meaning: 'good'),
+    ],
   ),
   KanjiCard(
     id: 'n3-285',
@@ -6926,6 +9580,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ジャク', 'ニャク', 'ニャ'],
     kunyomi: ['わか', 'も', 'ごと'],
+    commonWords: [
+      CommonWord(word: '若者', reading: 'わかもの', meaning: 'young person'),
+      CommonWord(word: '若干', reading: 'じゃっかん', meaning: 'some'),
+      CommonWord(word: '若さ', reading: 'わかさ', meaning: 'youth'),
+    ],
   ),
   KanjiCard(
     id: 'n3-286',
@@ -6939,6 +9598,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ク'],
     kunyomi: ['くる', '-ぐる', 'にが'],
+    commonWords: [
+      CommonWord(word: '苦労', reading: 'くろう', meaning: 'trouble'),
+      CommonWord(word: '苦情', reading: 'くじょう', meaning: 'complaint'),
+      CommonWord(word: '苦しみ', reading: 'くるしみ', meaning: 'pain'),
+    ],
   ),
   KanjiCard(
     id: 'n3-287',
@@ -6952,6 +9616,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ソウ'],
     kunyomi: ['くさ', '-ぐさ'],
+    commonWords: [
+      CommonWord(word: '草', reading: 'くさ', meaning: 'grass'),
+      CommonWord(word: '草原', reading: 'そうげん', meaning: 'grassy field'),
+      CommonWord(word: '雑草', reading: 'ざっそう', meaning: 'weed'),
+    ],
   ),
   KanjiCard(
     id: 'n3-288',
@@ -6965,6 +9634,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ラク'],
     kunyomi: ['お'],
+    commonWords: [
+      CommonWord(word: '墜落', reading: 'ついらく', meaning: 'fall'),
+      CommonWord(word: '落ちる', reading: 'おちる', meaning: 'to fall'),
+      CommonWord(word: '落語', reading: 'らくご', meaning: 'rakugo'),
+    ],
   ),
   KanjiCard(
     id: 'n3-289',
@@ -6978,6 +9652,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ヨウ'],
     kunyomi: ['は'],
+    commonWords: [
+      CommonWord(word: '言葉', reading: 'ことば', meaning: 'language'),
+      CommonWord(word: '葉', reading: 'は', meaning: 'leaf'),
+      CommonWord(word: '紅葉', reading: 'こうよう', meaning: 'leaves turning red'),
+    ],
   ),
   KanjiCard(
     id: 'n3-290',
@@ -6991,6 +9670,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ヤク'],
     kunyomi: ['くすり'],
+    commonWords: [
+      CommonWord(word: '麻薬', reading: 'まやく', meaning: 'narcotic'),
+      CommonWord(word: '薬', reading: 'くすり', meaning: 'medicine'),
+      CommonWord(word: '医薬品', reading: 'いやくひん', meaning: 'medical and pharmaceutical products'),
+    ],
   ),
   KanjiCard(
     id: 'n3-291',
@@ -7004,6 +9688,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ジュツ'],
     kunyomi: ['すべ'],
+    commonWords: [
+      CommonWord(word: '技術', reading: 'ぎじゅつ', meaning: 'technology'),
+      CommonWord(word: '芸術', reading: 'げいじゅつ', meaning: 'art'),
+      CommonWord(word: '手術', reading: 'しゅじゅつ', meaning: 'surgery'),
+    ],
   ),
   KanjiCard(
     id: 'n3-292',
@@ -7017,6 +9706,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ヒョウ'],
     kunyomi: ['おもて', '-おもて', 'あらわ', 'あら'],
+    commonWords: [
+      CommonWord(word: '代表', reading: 'だいひょう', meaning: 'representation'),
+      CommonWord(word: '発表', reading: 'はっぴょう', meaning: 'announcement'),
+      CommonWord(word: '表現', reading: 'ひょうげん', meaning: 'expression'),
+    ],
   ),
   KanjiCard(
     id: 'n3-293',
@@ -7030,6 +9724,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ヨウ'],
     kunyomi: ['い', 'かなめ'],
+    commonWords: [
+      CommonWord(word: '重要', reading: 'じゅうよう', meaning: 'important'),
+      CommonWord(word: '必要', reading: 'ひつよう', meaning: 'necessary'),
+      CommonWord(word: '要求', reading: 'ようきゅう', meaning: 'demand'),
+    ],
   ),
   KanjiCard(
     id: 'n3-294',
@@ -7043,6 +9742,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['キ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '規制', reading: 'きせい', meaning: 'regulation'),
+      CommonWord(word: '規模', reading: 'きぼ', meaning: 'scale'),
+      CommonWord(word: '規定', reading: 'きてい', meaning: 'stipulation'),
+    ],
   ),
   KanjiCard(
     id: 'n3-295',
@@ -7056,6 +9760,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['カク'],
     kunyomi: ['おぼ', 'さ', 'さと'],
+    commonWords: [
+      CommonWord(word: '感覚', reading: 'かんかく', meaning: 'sense'),
+      CommonWord(word: '覚悟', reading: 'かくご', meaning: 'readiness'),
+      CommonWord(word: '自覚', reading: 'じかく', meaning: 'self-awareness'),
+    ],
   ),
   KanjiCard(
     id: 'n3-296',
@@ -7069,6 +9778,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['カン'],
     kunyomi: ['み', 'しめ'],
+    commonWords: [
+      CommonWord(word: '観光', reading: 'かんこう', meaning: 'sightseeing'),
+      CommonWord(word: '観測', reading: 'かんそく', meaning: 'observation'),
+      CommonWord(word: '観客', reading: 'かんきゃく', meaning: 'spectator'),
+    ],
   ),
   KanjiCard(
     id: 'n3-297',
@@ -7082,6 +9796,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['カイ', 'ゲ'],
     kunyomi: ['と', 'ほど', 'ほぐ', 'わか'],
+    commonWords: [
+      CommonWord(word: '解決', reading: 'かいけつ', meaning: 'settlement'),
+      CommonWord(word: '解散', reading: 'かいさん', meaning: 'breaking up'),
+      CommonWord(word: '見解', reading: 'けんかい', meaning: 'opinion'),
+    ],
   ),
   KanjiCard(
     id: 'n3-298',
@@ -7095,6 +9814,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['キ'],
     kunyomi: ['しる'],
+    commonWords: [
+      CommonWord(word: '記事', reading: 'きじ', meaning: 'article'),
+      CommonWord(word: '記者', reading: 'きしゃ', meaning: 'reporter'),
+      CommonWord(word: '記録', reading: 'きろく', meaning: 'record'),
+    ],
   ),
   KanjiCard(
     id: 'n3-299',
@@ -7108,6 +9832,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ホウ'],
     kunyomi: ['おとず', 'たず', 'と'],
+    commonWords: [
+      CommonWord(word: '訪問', reading: 'ほうもん', meaning: 'call'),
+      CommonWord(word: '訪ねる', reading: 'たずねる', meaning: 'to visit'),
+      CommonWord(word: '訪日', reading: 'ほうにち', meaning: 'visit to Japan'),
+    ],
   ),
   KanjiCard(
     id: 'n3-300',
@@ -7121,6 +9850,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['キョ'],
     kunyomi: ['ゆる', 'もと'],
+    commonWords: [
+      CommonWord(word: '許可', reading: 'きょか', meaning: 'permission'),
+      CommonWord(word: '許す', reading: 'ゆるす', meaning: 'to permit'),
+      CommonWord(word: '免許', reading: 'めんきょ', meaning: 'license'),
+    ],
   ),
   KanjiCard(
     id: 'n3-301',
@@ -7134,6 +9868,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ニン'],
     kunyomi: ['みと', 'したた'],
+    commonWords: [
+      CommonWord(word: '承認', reading: 'しょうにん', meaning: 'recognition'),
+      CommonWord(word: '確認', reading: 'かくにん', meaning: 'confirmation'),
+      CommonWord(word: '公認', reading: 'こうにん', meaning: 'official recognition'),
+    ],
   ),
   KanjiCard(
     id: 'n3-302',
@@ -7147,6 +9886,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ゴ'],
     kunyomi: ['あやま', '-あやま'],
+    commonWords: [
+      CommonWord(word: '誤り', reading: 'あやまり', meaning: 'error'),
+      CommonWord(word: '誤解', reading: 'ごかい', meaning: 'misunderstanding'),
+      CommonWord(word: '試行錯誤', reading: 'しこうさくご', meaning: 'trial and error'),
+    ],
   ),
   KanjiCard(
     id: 'n3-303',
@@ -7160,6 +9904,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['セツ'],
     kunyomi: ['とく'],
+    commonWords: [
+      CommonWord(word: '演説', reading: 'えんぜつ', meaning: 'speech'),
+      CommonWord(word: '説明', reading: 'せつめい', meaning: 'explanation'),
+      CommonWord(word: '小説', reading: 'しょうせつ', meaning: 'novel'),
+    ],
   ),
   KanjiCard(
     id: 'n3-304',
@@ -7173,6 +9922,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['チョウ'],
     kunyomi: ['しら', 'ととの'],
+    commonWords: [
+      CommonWord(word: '調べ', reading: 'しらべ', meaning: 'investigation'),
+      CommonWord(word: '調整', reading: 'ちょうせい', meaning: 'adjustment'),
+      CommonWord(word: '好調', reading: 'こうちょう', meaning: 'favourable'),
+    ],
   ),
   KanjiCard(
     id: 'n3-305',
@@ -7186,6 +9940,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ダン'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '会談', reading: 'かいだん', meaning: 'talks'),
+      CommonWord(word: '相談', reading: 'そうだん', meaning: 'consultation'),
+      CommonWord(word: '談話', reading: 'だんわ', meaning: 'talk'),
+    ],
   ),
   KanjiCard(
     id: 'n3-306',
@@ -7199,6 +9958,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ロン'],
     kunyomi: ['あげつら'],
+    commonWords: [
+      CommonWord(word: '議論', reading: 'ぎろん', meaning: 'argument'),
+      CommonWord(word: '結論', reading: 'けつろん', meaning: 'conclusion'),
+      CommonWord(word: '世論', reading: 'よろん', meaning: 'public opinion'),
+    ],
   ),
   KanjiCard(
     id: 'n3-307',
@@ -7212,6 +9976,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['シキ'],
     kunyomi: ['し', 'しる'],
+    commonWords: [
+      CommonWord(word: '意識', reading: 'いしき', meaning: 'consciousness'),
+      CommonWord(word: '認識', reading: 'にんしき', meaning: 'recognition'),
+      CommonWord(word: '知識', reading: 'ちしき', meaning: 'knowledge'),
+    ],
   ),
   KanjiCard(
     id: 'n3-308',
@@ -7225,6 +9994,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ケイ'],
     kunyomi: ['いまし'],
+    commonWords: [
+      CommonWord(word: '警察', reading: 'けいさつ', meaning: 'police'),
+      CommonWord(word: '警視庁', reading: 'けいしちょう', meaning: 'Metropolitan Police Department'),
+      CommonWord(word: '警戒', reading: 'けいかい', meaning: 'vigilance'),
+    ],
   ),
   KanjiCard(
     id: 'n3-309',
@@ -7238,6 +10012,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ギ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '会議', reading: 'かいぎ', meaning: 'meeting'),
+      CommonWord(word: '議員', reading: 'ぎいん', meaning: 'member of an assembly'),
+      CommonWord(word: '議会', reading: 'ぎかい', meaning: 'congress'),
+    ],
   ),
   KanjiCard(
     id: 'n3-310',
@@ -7251,6 +10030,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['フ'],
     kunyomi: ['ま', 'お'],
+    commonWords: [
+      CommonWord(word: '負担', reading: 'ふたん', meaning: 'burden'),
+      CommonWord(word: '勝負', reading: 'しょうぶ', meaning: 'victory or defeat'),
+      CommonWord(word: '負け', reading: 'まけ', meaning: 'defeat'),
+    ],
   ),
   KanjiCard(
     id: 'n3-311',
@@ -7264,6 +10048,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ザイ', 'サイ', 'ゾク'],
     kunyomi: ['たから'],
+    commonWords: [
+      CommonWord(word: '財政', reading: 'ざいせい', meaning: 'public finance'),
+      CommonWord(word: '財界', reading: 'ざいかい', meaning: 'financial world'),
+      CommonWord(word: '財産', reading: 'ざいさん', meaning: 'property'),
+    ],
   ),
   KanjiCard(
     id: 'n3-312',
@@ -7277,6 +10066,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ヒン', 'ビン'],
     kunyomi: ['まず'],
+    commonWords: [
+      CommonWord(word: '貧困', reading: 'ひんこん', meaning: 'poverty'),
+      CommonWord(word: '貧富', reading: 'ひんぷ', meaning: 'wealth and poverty'),
+      CommonWord(word: '貧しい', reading: 'まずしい', meaning: 'poor'),
+    ],
   ),
   KanjiCard(
     id: 'n3-313',
@@ -7290,6 +10084,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['セキ'],
     kunyomi: ['せ'],
+    commonWords: [
+      CommonWord(word: '責任', reading: 'せきにん', meaning: 'duty'),
+      CommonWord(word: '無責任', reading: 'むせきにん', meaning: 'irresponsibility'),
+      CommonWord(word: '責任者', reading: 'せきにんしゃ', meaning: 'person in charge'),
+    ],
   ),
   KanjiCard(
     id: 'n3-314',
@@ -7303,6 +10102,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ヒ'],
     kunyomi: ['つい'],
+    commonWords: [
+      CommonWord(word: '消費', reading: 'しょうひ', meaning: 'consumption'),
+      CommonWord(word: '消費者', reading: 'しょうひしゃ', meaning: 'consumer'),
+      CommonWord(word: '費用', reading: 'ひよう', meaning: 'cost'),
+    ],
   ),
   KanjiCard(
     id: 'n3-315',
@@ -7316,6 +10120,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['シ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '資金', reading: 'しきん', meaning: 'funds'),
+      CommonWord(word: '投資', reading: 'とうし', meaning: 'investment'),
+      CommonWord(word: '資産', reading: 'しさん', meaning: 'property'),
+    ],
   ),
   KanjiCard(
     id: 'n3-316',
@@ -7329,6 +10138,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['サン'],
     kunyomi: ['たす', 'たた'],
+    commonWords: [
+      CommonWord(word: '賛成', reading: 'さんせい', meaning: 'approval'),
+      CommonWord(word: '賛否', reading: 'さんぴ', meaning: 'yes and no'),
+      CommonWord(word: '協賛', reading: 'きょうさん', meaning: 'support'),
+    ],
   ),
   KanjiCard(
     id: 'n3-317',
@@ -7342,6 +10156,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['エツ', 'オツ'],
     kunyomi: ['こ', '-こ', '-ご'],
+    commonWords: [
+      CommonWord(word: '越える', reading: 'こえる', meaning: 'to cross over'),
+      CommonWord(word: '引っ越し', reading: 'ひっこし', meaning: 'moving'),
+      CommonWord(word: '引っ越す', reading: 'ひっこす', meaning: 'to move'),
+    ],
   ),
   KanjiCard(
     id: 'n3-318',
@@ -7355,6 +10174,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ロ', 'ル'],
     kunyomi: ['-じ', 'みち'],
+    commonWords: [
+      CommonWord(word: '道路', reading: 'どうろ', meaning: 'road'),
+      CommonWord(word: '路上', reading: 'ろじょう', meaning: 'on the road'),
+      CommonWord(word: '進路', reading: 'しんろ', meaning: 'route'),
+    ],
   ),
   KanjiCard(
     id: 'n3-319',
@@ -7368,6 +10192,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['シン'],
     kunyomi: ['み'],
+    commonWords: [
+      CommonWord(word: '自身', reading: 'じしん', meaning: 'self'),
+      CommonWord(word: '出身', reading: 'しゅっしん', meaning: 'one\'s origin'),
+      CommonWord(word: '身', reading: 'み', meaning: 'one\'s body'),
+    ],
   ),
   KanjiCard(
     id: 'n3-320',
@@ -7381,6 +10210,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ジ'],
     kunyomi: ['や', 'いな'],
+    commonWords: [
+      CommonWord(word: '辞任', reading: 'じにん', meaning: 'resignation'),
+      CommonWord(word: '辞書', reading: 'じしょ', meaning: 'dictionary'),
+      CommonWord(word: '辞退', reading: 'じたい', meaning: 'declining'),
+    ],
   ),
   KanjiCard(
     id: 'n3-321',
@@ -7394,6 +10228,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: [],
     kunyomi: ['-こ', 'こ'],
+    commonWords: [
+      CommonWord(word: '見込み', reading: 'みこみ', meaning: 'hope'),
+      CommonWord(word: '申し込み', reading: 'もうしこみ', meaning: 'application'),
+      CommonWord(word: '追い込む', reading: 'おいこむ', meaning: 'to herd'),
+    ],
   ),
   KanjiCard(
     id: 'n3-322',
@@ -7407,6 +10246,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ゲイ'],
     kunyomi: ['むか'],
+    commonWords: [
+      CommonWord(word: '歓迎', reading: 'かんげい', meaning: 'welcome'),
+      CommonWord(word: '迎え', reading: 'むかえ', meaning: 'meeting'),
+      CommonWord(word: '出迎え', reading: 'でむかえ', meaning: 'receiving'),
+    ],
   ),
   KanjiCard(
     id: 'n3-323',
@@ -7420,6 +10264,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ヘン'],
     kunyomi: ['かえ', '-かえ'],
+    commonWords: [
+      CommonWord(word: '返還', reading: 'へんかん', meaning: 'return'),
+      CommonWord(word: '返済', reading: 'へんさい', meaning: 'repayment'),
+      CommonWord(word: '返事', reading: 'へんじ', meaning: 'reply'),
+    ],
   ),
   KanjiCard(
     id: 'n3-324',
@@ -7433,6 +10282,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['メイ'],
     kunyomi: ['まよ'],
+    commonWords: [
+      CommonWord(word: '迷惑', reading: 'めいわく', meaning: 'trouble'),
+      CommonWord(word: '混迷', reading: 'こんめい', meaning: 'turmoil'),
+      CommonWord(word: '低迷', reading: 'ていめい', meaning: 'hanging low'),
+    ],
   ),
   KanjiCard(
     id: 'n3-325',
@@ -7446,6 +10300,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ツイ'],
     kunyomi: ['お'],
+    commonWords: [
+      CommonWord(word: '追加', reading: 'ついか', meaning: 'addition'),
+      CommonWord(word: '追う', reading: 'おう', meaning: 'to chase'),
+      CommonWord(word: '追及', reading: 'ついきゅう', meaning: 'investigation'),
+    ],
   ),
   KanjiCard(
     id: 'n3-326',
@@ -7459,6 +10318,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['タイ'],
     kunyomi: ['しりぞ', 'ひ', 'の', 'ど'],
+    commonWords: [
+      CommonWord(word: '退職', reading: 'たいしょく', meaning: 'retirement'),
+      CommonWord(word: '脱退', reading: 'だったい', meaning: 'withdrawal'),
+      CommonWord(word: '中退', reading: 'ちゅうたい', meaning: 'leaving school during a term'),
+    ],
   ),
   KanjiCard(
     id: 'n3-327',
@@ -7472,6 +10336,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['トウ'],
     kunyomi: ['に', 'のが'],
+    commonWords: [
+      CommonWord(word: '逃げる', reading: 'にげる', meaning: 'to run away'),
+      CommonWord(word: '逃走', reading: 'とうそう', meaning: 'flight'),
+      CommonWord(word: '逃れる', reading: 'のがれる', meaning: 'to escape'),
+    ],
   ),
   KanjiCard(
     id: 'n3-328',
@@ -7485,6 +10354,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ト'],
     kunyomi: ['みち'],
+    commonWords: [
+      CommonWord(word: '途中', reading: 'とちゅう', meaning: 'on the way'),
+      CommonWord(word: '用途', reading: 'ようと', meaning: 'use'),
+      CommonWord(word: '前途', reading: 'ぜんと', meaning: 'future'),
+    ],
   ),
   KanjiCard(
     id: 'n3-329',
@@ -7498,6 +10372,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ソク'],
     kunyomi: ['はや', 'すみ'],
+    commonWords: [
+      CommonWord(word: '急速', reading: 'きゅうそく', meaning: 'rapid'),
+      CommonWord(word: '高速', reading: 'こうそく', meaning: 'high-speed'),
+      CommonWord(word: '減速', reading: 'げんそく', meaning: 'deceleration'),
+    ],
   ),
   KanjiCard(
     id: 'n3-330',
@@ -7511,6 +10390,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['レン'],
     kunyomi: ['つら', 'つ', '-づ'],
+    commonWords: [
+      CommonWord(word: '関連', reading: 'かんれん', meaning: 'relation'),
+      CommonWord(word: '国連', reading: 'こくれん', meaning: 'United Nations'),
+      CommonWord(word: '連合', reading: 'れんごう', meaning: 'union'),
+    ],
   ),
   KanjiCard(
     id: 'n3-331',
@@ -7524,6 +10408,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['シン'],
     kunyomi: ['すすむ'],
+    commonWords: [
+      CommonWord(word: '推進', reading: 'すいしん', meaning: 'propulsion'),
+      CommonWord(word: '進出', reading: 'しんしゅつ', meaning: 'advance'),
+      CommonWord(word: '先進国', reading: 'せんしんこく', meaning: 'developed country'),
+    ],
   ),
   KanjiCard(
     id: 'n3-332',
@@ -7537,6 +10426,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['チ'],
     kunyomi: ['おく', 'おそ'],
+    commonWords: [
+      CommonWord(word: '遅れ', reading: 'おくれ', meaning: 'delay'),
+      CommonWord(word: '遅い', reading: 'おそい', meaning: 'slow'),
+      CommonWord(word: '遅刻', reading: 'ちこく', meaning: 'lateness'),
+    ],
   ),
   KanjiCard(
     id: 'n3-333',
@@ -7550,6 +10444,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ユウ', 'ユ'],
     kunyomi: ['あそ'],
+    commonWords: [
+      CommonWord(word: '遊び', reading: 'あそび', meaning: 'play'),
+      CommonWord(word: '遊園地', reading: 'ゆうえんち', meaning: 'amusement park'),
+      CommonWord(word: '遊説', reading: 'ゆうぜい', meaning: 'election tour'),
+    ],
   ),
   KanjiCard(
     id: 'n3-334',
@@ -7563,6 +10462,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['カ'],
     kunyomi: ['す', 'あやま', 'よぎ', 'よ'],
+    commonWords: [
+      CommonWord(word: '過去', reading: 'かこ', meaning: 'the past'),
+      CommonWord(word: '過程', reading: 'かてい', meaning: 'process'),
+      CommonWord(word: '過半数', reading: 'かはんすう', meaning: 'majority'),
+    ],
   ),
   KanjiCard(
     id: 'n3-335',
@@ -7576,6 +10480,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['タツ', 'ダ'],
     kunyomi: ['-たち'],
+    commonWords: [
+      CommonWord(word: '達成', reading: 'たっせい', meaning: 'achievement'),
+      CommonWord(word: '友達', reading: 'ともだち', meaning: 'friend'),
+      CommonWord(word: '通達', reading: 'つうたつ', meaning: 'notification'),
+    ],
   ),
   KanjiCard(
     id: 'n3-336',
@@ -7589,6 +10498,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['イ'],
     kunyomi: ['ちが', '-ちが', 'たが'],
+    commonWords: [
+      CommonWord(word: '違反', reading: 'いはん', meaning: 'violation'),
+      CommonWord(word: '違い', reading: 'ちがい', meaning: 'difference'),
+      CommonWord(word: '違法', reading: 'いほう', meaning: 'illegal'),
+    ],
   ),
   KanjiCard(
     id: 'n3-337',
@@ -7602,6 +10516,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['エン', 'オン'],
     kunyomi: ['とお'],
+    commonWords: [
+      CommonWord(word: '永遠', reading: 'えいえん', meaning: 'eternity'),
+      CommonWord(word: '望遠鏡', reading: 'ぼうえんきょう', meaning: 'telescope'),
+      CommonWord(word: '遠慮', reading: 'えんりょ', meaning: 'reserve'),
+    ],
   ),
   KanjiCard(
     id: 'n3-338',
@@ -7615,6 +10534,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['テキ'],
     kunyomi: ['かな'],
+    commonWords: [
+      CommonWord(word: '適切', reading: 'てきせつ', meaning: 'appropriate'),
+      CommonWord(word: '適用', reading: 'てきよう', meaning: 'application'),
+      CommonWord(word: '適当', reading: 'てきとう', meaning: 'suitable'),
+    ],
   ),
   KanjiCard(
     id: 'n3-339',
@@ -7628,6 +10552,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['セン'],
     kunyomi: ['えら', 'え', 'よ'],
+    commonWords: [
+      CommonWord(word: '選挙', reading: 'せんきょ', meaning: 'election'),
+      CommonWord(word: '選手', reading: 'せんしゅ', meaning: 'player'),
+      CommonWord(word: '当選', reading: 'とうせん', meaning: 'being elected'),
+    ],
   ),
   KanjiCard(
     id: 'n3-340',
@@ -7641,6 +10570,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ブ'],
     kunyomi: ['-べ'],
+    commonWords: [
+      CommonWord(word: '一部', reading: 'いちぶ', meaning: 'one part'),
+      CommonWord(word: '幹部', reading: 'かんぶ', meaning: 'management'),
+      CommonWord(word: '部長', reading: 'ぶちょう', meaning: 'head (chief, director) of a section or'),
+    ],
   ),
   KanjiCard(
     id: 'n3-341',
@@ -7654,6 +10588,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ト'],
     kunyomi: ['みやこ'],
+    commonWords: [
+      CommonWord(word: '都市', reading: 'とし', meaning: 'town'),
+      CommonWord(word: '都内', reading: 'とない', meaning: 'within the (Tokyo) metropolitan area'),
+      CommonWord(word: '首都', reading: 'しゅと', meaning: 'capital'),
+    ],
   ),
   KanjiCard(
     id: 'n3-342',
@@ -7667,6 +10606,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ハイ'],
     kunyomi: ['くば'],
+    commonWords: [
+      CommonWord(word: '支配', reading: 'しはい', meaning: 'rule'),
+      CommonWord(word: '心配', reading: 'しんぱい', meaning: 'worry'),
+      CommonWord(word: '配分', reading: 'はいぶん', meaning: 'distribution'),
+    ],
   ),
   KanjiCard(
     id: 'n3-343',
@@ -7680,6 +10624,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['シュ'],
     kunyomi: ['さけ', 'さか'],
+    commonWords: [
+      CommonWord(word: '酒', reading: 'さけ', meaning: 'alcohol'),
+      CommonWord(word: '日本酒', reading: 'にほんしゅ', meaning: 'sake'),
+      CommonWord(word: '居酒屋', reading: 'いざかや', meaning: 'izakaya'),
+    ],
   ),
   KanjiCard(
     id: 'n3-344',
@@ -7693,6 +10642,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ヘイ'],
     kunyomi: ['と', 'し', 'た'],
+    commonWords: [
+      CommonWord(word: '閉鎖', reading: 'へいさ', meaning: 'closing'),
+      CommonWord(word: '閉会', reading: 'へいかい', meaning: 'closure'),
+      CommonWord(word: '閉店', reading: 'へいてん', meaning: 'closing up shop'),
+    ],
   ),
   KanjiCard(
     id: 'n3-345',
@@ -7706,6 +10660,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['カン'],
     kunyomi: ['せき', '-ぜき', 'かか', 'からくり'],
+    commonWords: [
+      CommonWord(word: '関係', reading: 'かんけい', meaning: 'relation'),
+      CommonWord(word: '関心', reading: 'かんしん', meaning: 'concern'),
+      CommonWord(word: '機関', reading: 'きかん', meaning: 'engine'),
+    ],
   ),
   KanjiCard(
     id: 'n3-346',
@@ -7719,6 +10678,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ハン'],
     kunyomi: ['さか'],
+    commonWords: [
+      CommonWord(word: '阪神', reading: 'はんしん', meaning: 'Osaka-Kobe'),
+      CommonWord(word: '京阪', reading: 'けいはん', meaning: 'Kyoto and Osaka'),
+      CommonWord(word: '大阪', reading: 'おおさか', meaning: 'Osaka'),
+    ],
   ),
   KanjiCard(
     id: 'n3-347',
@@ -7732,6 +10696,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['コウ', 'ゴ'],
     kunyomi: ['お', 'ふ', 'くだ'],
+    commonWords: [
+      CommonWord(word: '降りる', reading: 'おりる', meaning: 'to descend'),
+      CommonWord(word: '以降', reading: 'いこう', meaning: 'on and after'),
+      CommonWord(word: '下降', reading: 'かこう', meaning: 'descent'),
+    ],
   ),
   KanjiCard(
     id: 'n3-348',
@@ -7745,6 +10714,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ゲン'],
     kunyomi: ['かぎ', '-かぎ'],
+    commonWords: [
+      CommonWord(word: '期限', reading: 'きげん', meaning: 'term'),
+      CommonWord(word: '権限', reading: 'けんげん', meaning: 'power'),
+      CommonWord(word: '制限', reading: 'せいげん', meaning: 'restriction'),
+    ],
   ),
   KanjiCard(
     id: 'n3-349',
@@ -7758,6 +10732,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ジョ', 'ジ'],
     kunyomi: ['のぞ', '-よ'],
+    commonWords: [
+      CommonWord(word: '解除', reading: 'かいじょ', meaning: 'termination'),
+      CommonWord(word: '排除', reading: 'はいじょ', meaning: 'exclusion'),
+      CommonWord(word: '掃除', reading: 'そうじ', meaning: 'cleaning'),
+    ],
   ),
   KanjiCard(
     id: 'n3-350',
@@ -7771,6 +10750,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ケン'],
     kunyomi: ['けわ'],
+    commonWords: [
+      CommonWord(word: '危険', reading: 'きけん', meaning: 'danger'),
+      CommonWord(word: '保険', reading: 'ほけん', meaning: 'insurance'),
+      CommonWord(word: '冒険', reading: 'ぼうけん', meaning: 'adventure'),
+    ],
   ),
   KanjiCard(
     id: 'n3-351',
@@ -7784,6 +10768,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ヨウ'],
     kunyomi: ['ひ'],
+    commonWords: [
+      CommonWord(word: '太陽', reading: 'たいよう', meaning: 'Sun'),
+      CommonWord(word: '陽', reading: 'よう', meaning: 'positive'),
+      CommonWord(word: '陽気', reading: 'ようき', meaning: 'cheerful'),
+    ],
   ),
   KanjiCard(
     id: 'n3-352',
@@ -7797,6 +10786,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['サイ'],
     kunyomi: ['きわ', '-ぎわ'],
+    commonWords: [
+      CommonWord(word: '国際', reading: 'こくさい', meaning: 'international'),
+      CommonWord(word: '実際', reading: 'じっさい', meaning: 'reality'),
+      CommonWord(word: '国際化', reading: 'こくさいか', meaning: 'internationalization'),
+    ],
   ),
   KanjiCard(
     id: 'n3-353',
@@ -7810,6 +10804,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ザツ', 'ゾウ'],
     kunyomi: ['まじ'],
+    commonWords: [
+      CommonWord(word: '雑誌', reading: 'ざっし', meaning: 'magazine'),
+      CommonWord(word: '複雑', reading: 'ふくざつ', meaning: 'complex'),
+      CommonWord(word: '混雑', reading: 'こんざつ', meaning: 'congestion'),
+    ],
   ),
   KanjiCard(
     id: 'n3-354',
@@ -7823,6 +10822,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ナン'],
     kunyomi: ['かた', '-がた', 'むずか', 'むづか'],
+    commonWords: [
+      CommonWord(word: '難民', reading: 'なんみん', meaning: 'refugee'),
+      CommonWord(word: '困難', reading: 'こんなん', meaning: 'difficulty'),
+      CommonWord(word: '避難', reading: 'ひなん', meaning: 'taking refuge'),
+    ],
   ),
   KanjiCard(
     id: 'n3-355',
@@ -7836,6 +10840,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['セツ'],
     kunyomi: ['ゆき'],
+    commonWords: [
+      CommonWord(word: '雪', reading: 'ゆき', meaning: 'snow'),
+      CommonWord(word: '積雪', reading: 'せきせつ', meaning: 'fallen snow'),
+      CommonWord(word: '大雪', reading: 'おおゆき', meaning: 'heavy snow'),
+    ],
   ),
   KanjiCard(
     id: 'n3-356',
@@ -7849,6 +10858,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['セイ', 'ジョウ'],
     kunyomi: ['しず'],
+    commonWords: [
+      CommonWord(word: '静か', reading: 'しずか', meaning: 'quiet'),
+      CommonWord(word: '冷静', reading: 'れいせい', meaning: 'calmness'),
+      CommonWord(word: '静止', reading: 'せいし', meaning: 'stillness'),
+    ],
   ),
   KanjiCard(
     id: 'n3-357',
@@ -7862,6 +10876,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ヒ'],
     kunyomi: ['あら'],
+    commonWords: [
+      CommonWord(word: '非常', reading: 'ひじょう', meaning: 'emergency'),
+      CommonWord(word: '是非', reading: 'ぜひ', meaning: 'certainly'),
+      CommonWord(word: '非難', reading: 'ひなん', meaning: 'criticism'),
+    ],
   ),
   KanjiCard(
     id: 'n3-358',
@@ -7875,6 +10894,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['メン', 'ベン'],
     kunyomi: ['おも', 'おもて', 'つら'],
+    commonWords: [
+      CommonWord(word: '面', reading: 'おもて', meaning: 'face'),
+      CommonWord(word: '場面', reading: 'ばめん', meaning: 'scene'),
+      CommonWord(word: '画面', reading: 'がめん', meaning: 'screen'),
+    ],
   ),
   KanjiCard(
     id: 'n3-359',
@@ -7888,6 +10912,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['カ'],
     kunyomi: ['くつ'],
+    commonWords: [
+      CommonWord(word: '靴', reading: 'くつ', meaning: 'shoe'),
+      CommonWord(word: '靴下', reading: 'くつした', meaning: 'socks'),
+      CommonWord(word: '革靴', reading: 'かわぐつ', meaning: 'leather shoes'),
+    ],
   ),
   KanjiCard(
     id: 'n3-360',
@@ -7901,6 +10930,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['チョウ'],
     kunyomi: ['いただ', 'いただき'],
+    commonWords: [
+      CommonWord(word: '頂点', reading: 'ちょうてん', meaning: 'vertex'),
+      CommonWord(word: '頂上', reading: 'ちょうじょう', meaning: 'top'),
+      CommonWord(word: '山頂', reading: 'さんちょう', meaning: 'summit'),
+    ],
   ),
   KanjiCard(
     id: 'n3-361',
@@ -7914,6 +10948,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['トウ'],
     kunyomi: ['あたま'],
+    commonWords: [
+      CommonWord(word: '冒頭', reading: 'ぼうとう', meaning: 'beginning'),
+      CommonWord(word: '先頭', reading: 'せんとう', meaning: 'head'),
+      CommonWord(word: '街頭', reading: 'がいとう', meaning: 'street'),
+    ],
   ),
   KanjiCard(
     id: 'n3-362',
@@ -7927,6 +10966,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ライ'],
     kunyomi: ['たの', 'たよ'],
+    commonWords: [
+      CommonWord(word: '信頼', reading: 'しんらい', meaning: 'trust'),
+      CommonWord(word: '依頼', reading: 'いらい', meaning: 'request'),
+      CommonWord(word: '頼む', reading: 'たのむ', meaning: 'to request'),
+    ],
   ),
   KanjiCard(
     id: 'n3-363',
@@ -7940,6 +10984,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ガン'],
     kunyomi: ['かお'],
+    commonWords: [
+      CommonWord(word: '顔', reading: 'かお', meaning: 'face'),
+      CommonWord(word: '笑顔', reading: 'えがお', meaning: 'smiling face'),
+      CommonWord(word: '素顔', reading: 'すがお', meaning: 'face with no make-up'),
+    ],
   ),
   KanjiCard(
     id: 'n3-364',
@@ -7953,6 +11002,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ガン'],
     kunyomi: ['ねが', '-ねがい'],
+    commonWords: [
+      CommonWord(word: '願い', reading: 'ねがい', meaning: 'desire'),
+      CommonWord(word: '念願', reading: 'ねんがん', meaning: 'one\'s heart\'s desire'),
+      CommonWord(word: '出願', reading: 'しゅつがん', meaning: 'application'),
+    ],
   ),
   KanjiCard(
     id: 'n3-365',
@@ -7966,6 +11020,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ルイ'],
     kunyomi: ['たぐ'],
+    commonWords: [
+      CommonWord(word: '人類', reading: 'じんるい', meaning: 'mankind'),
+      CommonWord(word: '種類', reading: 'しゅるい', meaning: 'variety'),
+      CommonWord(word: '書類', reading: 'しょるい', meaning: 'document'),
+    ],
   ),
   KanjiCard(
     id: 'n3-366',
@@ -7979,6 +11038,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ヒ'],
     kunyomi: ['と', '-と'],
+    commonWords: [
+      CommonWord(word: '飛行', reading: 'ひこう', meaning: 'flight'),
+      CommonWord(word: '飛行機', reading: 'ひこうき', meaning: 'airplane'),
+      CommonWord(word: '飛躍', reading: 'ひやく', meaning: 'leap'),
+    ],
   ),
   KanjiCard(
     id: 'n3-367',
@@ -7992,6 +11056,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['シュ'],
     kunyomi: ['くび'],
+    commonWords: [
+      CommonWord(word: '首相', reading: 'しゅしょう', meaning: 'prime minister'),
+      CommonWord(word: '首脳', reading: 'しゅのう', meaning: 'head'),
+      CommonWord(word: '首都', reading: 'しゅと', meaning: 'capital'),
+    ],
   ),
   KanjiCard(
     id: 'n3-368',
@@ -8005,6 +11074,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['バ', 'メ', 'マ', 'ボ'],
     kunyomi: ['うま', 'ま'],
+    commonWords: [
+      CommonWord(word: '馬', reading: 'うま', meaning: 'horse'),
+      CommonWord(word: '競馬', reading: 'けいば', meaning: 'horse racing'),
+      CommonWord(word: '出馬', reading: 'しゅつば', meaning: 'running'),
+    ],
   ),
   KanjiCard(
     id: 'n3-369',
@@ -8018,6 +11092,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['ハツ'],
     kunyomi: ['かみ'],
+    commonWords: [
+      CommonWord(word: '髪', reading: 'かみ', meaning: 'hair'),
+      CommonWord(word: '白髪', reading: 'しらが', meaning: 'white hair'),
+      CommonWord(word: '理髪', reading: 'りはつ', meaning: 'haircut'),
+    ],
   ),
   KanjiCard(
     id: 'n3-370',
@@ -8031,6 +11110,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n3,
     onyomi: ['メイ'],
     kunyomi: ['な'],
+    commonWords: [
+      CommonWord(word: '悲鳴', reading: 'ひめい', meaning: 'shriek'),
+      CommonWord(word: '鳴り', reading: 'なり', meaning: 'ringing'),
+      CommonWord(word: '鳴き声', reading: 'なきごえ', meaning: 'cry'),
+    ],
   ),
   KanjiCard(
     id: 'n2-001',
@@ -8044,6 +11128,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ヘイ', 'ホウ'],
     kunyomi: ['な', 'なみ', 'なら'],
+    commonWords: [
+      CommonWord(word: '並び', reading: 'ならび', meaning: 'line'),
+      CommonWord(word: '並み', reading: 'なみ', meaning: 'average'),
+      CommonWord(word: '並木', reading: 'なみき', meaning: 'roadside trees'),
+    ],
   ),
   KanjiCard(
     id: 'n2-002',
@@ -8057,6 +11146,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ガン'],
     kunyomi: ['まる'],
+    commonWords: [
+      CommonWord(word: '日の丸', reading: 'ひのまる', meaning: 'red or gold circle representing the Sun'),
+      CommonWord(word: '丸い', reading: 'まるい', meaning: 'round'),
+      CommonWord(word: '丸み', reading: 'まるみ', meaning: 'roundness'),
+    ],
   ),
   KanjiCard(
     id: 'n2-003',
@@ -8070,6 +11164,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['キュウ', 'ク'],
     kunyomi: ['ひさ'],
+    commonWords: [
+      CommonWord(word: '久しぶり', reading: 'ひさしぶり', meaning: 'a long time'),
+      CommonWord(word: '永久', reading: 'えいきゅう', meaning: 'eternity'),
+      CommonWord(word: '恒久', reading: 'こうきゅう', meaning: 'permanence'),
+    ],
   ),
   KanjiCard(
     id: 'n2-004',
@@ -8083,6 +11182,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ラン', 'ロン'],
     kunyomi: ['みだ', 'おさ', 'わた'],
+    commonWords: [
+      CommonWord(word: '混乱', reading: 'こんらん', meaning: 'disorder'),
+      CommonWord(word: '反乱', reading: 'はんらん', meaning: 'insurrection'),
+      CommonWord(word: '波乱', reading: 'はらん', meaning: 'disturbance'),
+    ],
   ),
   KanjiCard(
     id: 'n2-005',
@@ -8096,6 +11200,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ニュウ'],
     kunyomi: ['ちち', 'ち'],
+    commonWords: [
+      CommonWord(word: '牛乳', reading: 'ぎゅうにゅう', meaning: 'milk'),
+      CommonWord(word: '乳児', reading: 'にゅうじ', meaning: 'infant'),
+      CommonWord(word: '乳幼児', reading: 'にゅうようじ', meaning: 'babies and preschool children'),
+    ],
   ),
   KanjiCard(
     id: 'n2-006',
@@ -8109,6 +11218,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['カン', 'ケン'],
     kunyomi: ['かわ', 'ほ', 'ひ', 'いぬい'],
+    commonWords: [
+      CommonWord(word: '乾燥', reading: 'かんそう', meaning: 'dryness'),
+      CommonWord(word: '乾電池', reading: 'かんでんち', meaning: 'dry cell battery'),
+      CommonWord(word: '乾杯', reading: 'かんぱい', meaning: 'cheers'),
+    ],
   ),
   KanjiCard(
     id: 'n2-007',
@@ -8122,6 +11236,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['リョウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '了承', reading: 'りょうしょう', meaning: 'acknowledgement'),
+      CommonWord(word: '終了', reading: 'しゅうりょう', meaning: 'end'),
+      CommonWord(word: '了解', reading: 'りょうかい', meaning: 'comprehension'),
+    ],
   ),
   KanjiCard(
     id: 'n2-008',
@@ -8135,6 +11254,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['カイ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '紹介', reading: 'しょうかい', meaning: 'introduction'),
+      CommonWord(word: '仲介', reading: 'ちゅうかい', meaning: 'agency'),
+      CommonWord(word: '介入', reading: 'かいにゅう', meaning: 'intervention'),
+    ],
   ),
   KanjiCard(
     id: 'n2-009',
@@ -8148,6 +11272,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ブツ', 'フツ'],
     kunyomi: ['ほとけ'],
+    commonWords: [
+      CommonWord(word: '仏教', reading: 'ぶっきょう', meaning: 'Buddhism'),
+      CommonWord(word: '仏像', reading: 'ぶつぞう', meaning: 'statue of Buddha'),
+      CommonWord(word: '大仏', reading: 'だいぶつ', meaning: 'large statue of Buddha'),
+    ],
   ),
   KanjiCard(
     id: 'n2-010',
@@ -8161,6 +11290,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['レイ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '命令', reading: 'めいれい', meaning: 'order'),
+      CommonWord(word: '法令', reading: 'ほうれい', meaning: 'statute'),
+      CommonWord(word: '司令官', reading: 'しれいかん', meaning: 'commandant'),
+    ],
   ),
   KanjiCard(
     id: 'n2-011',
@@ -8174,6 +11308,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['チュウ'],
     kunyomi: ['なか'],
+    commonWords: [
+      CommonWord(word: '仲間', reading: 'なかま', meaning: 'companion'),
+      CommonWord(word: '仲介', reading: 'ちゅうかい', meaning: 'agency'),
+      CommonWord(word: '仲', reading: 'なか', meaning: 'relation'),
+    ],
   ),
   KanjiCard(
     id: 'n2-012',
@@ -8187,6 +11326,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['シン'],
     kunyomi: ['の'],
+    commonWords: [
+      CommonWord(word: '伸び', reading: 'のび', meaning: 'growth'),
+      CommonWord(word: '伸し', reading: 'のし', meaning: 'stretching'),
+      CommonWord(word: '伸び率', reading: 'のびりつ', meaning: 'growth rate'),
+    ],
   ),
   KanjiCard(
     id: 'n2-013',
@@ -8200,6 +11344,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['シ'],
     kunyomi: ['うかが'],
+    commonWords: [
+      CommonWord(word: '伺う', reading: 'うかがう', meaning: 'to call on someone'),
+      CommonWord(word: '進退伺い', reading: 'しんたいうかがい', meaning: 'informal resignation'),
+    ],
   ),
   KanjiCard(
     id: 'n2-014',
@@ -8213,6 +11361,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['テイ'],
     kunyomi: ['ひくい'],
+    commonWords: [
+      CommonWord(word: '最低', reading: 'さいてい', meaning: 'least'),
+      CommonWord(word: '低下', reading: 'ていか', meaning: 'fall'),
+      CommonWord(word: '低い', reading: 'ひくい', meaning: 'low'),
+    ],
   ),
   KanjiCard(
     id: 'n2-015',
@@ -8226,6 +11379,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['イ', 'エ'],
     kunyomi: ['よ'],
+    commonWords: [
+      CommonWord(word: '依然', reading: 'いぜん', meaning: 'still'),
+      CommonWord(word: '依頼', reading: 'いらい', meaning: 'request'),
+      CommonWord(word: '依存', reading: 'いぞん', meaning: 'dependence'),
+    ],
   ),
   KanjiCard(
     id: 'n2-016',
@@ -8239,6 +11397,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['コ', 'カ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '個人', reading: 'こじん', meaning: 'individual'),
+      CommonWord(word: '個性', reading: 'こせい', meaning: 'individuality'),
+      CommonWord(word: '別個', reading: 'べっこ', meaning: 'another'),
+    ],
   ),
   KanjiCard(
     id: 'n2-017',
@@ -8252,6 +11415,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['バイ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '倍', reading: 'ばい', meaning: 'double'),
+      CommonWord(word: '倍率', reading: 'ばいりつ', meaning: 'magnification'),
+      CommonWord(word: '倍増', reading: 'ばいぞう', meaning: 'doubling'),
+    ],
   ),
   KanjiCard(
     id: 'n2-018',
@@ -8265,6 +11433,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['テイ'],
     kunyomi: ['と'],
+    commonWords: [
+      CommonWord(word: '停止', reading: 'ていし', meaning: 'stoppage'),
+      CommonWord(word: '調停', reading: 'ちょうてい', meaning: 'mediation'),
+      CommonWord(word: '停滞', reading: 'ていたい', meaning: 'stagnation'),
+    ],
   ),
   KanjiCard(
     id: 'n2-019',
@@ -8278,6 +11451,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ケイ'],
     kunyomi: ['かたむ', 'かたぶ', 'かた', 'かし'],
+    commonWords: [
+      CommonWord(word: '傾向', reading: 'けいこう', meaning: 'tendency'),
+      CommonWord(word: '傾斜', reading: 'けいしゃ', meaning: 'inclination'),
+      CommonWord(word: '傾注', reading: 'けいちゅう', meaning: 'devoting (oneself) to'),
+    ],
   ),
   KanjiCard(
     id: 'n2-020',
@@ -8291,6 +11469,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ゾウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '映像', reading: 'えいぞう', meaning: 'image'),
+      CommonWord(word: '想像', reading: 'そうぞう', meaning: 'imagination'),
+      CommonWord(word: '仏像', reading: 'ぶつぞう', meaning: 'statue of Buddha'),
+    ],
   ),
   KanjiCard(
     id: 'n2-021',
@@ -8304,6 +11487,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['オク'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '一億', reading: 'いちおく', meaning: '100,000,000'),
+      CommonWord(word: '十億', reading: 'じゅうおく', meaning: '1,000,000,000'),
+      CommonWord(word: '百億', reading: 'ひゃくおく', meaning: '10,000,000,000'),
+    ],
   ),
   KanjiCard(
     id: 'n2-022',
@@ -8317,6 +11505,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['チョウ'],
     kunyomi: ['きざ'],
+    commonWords: [
+      CommonWord(word: '兆し', reading: 'きざし', meaning: 'sign'),
+      CommonWord(word: '前兆', reading: 'ぜんちょう', meaning: 'omen'),
+      CommonWord(word: '兆', reading: 'ちょう', meaning: '10^12'),
+    ],
   ),
   KanjiCard(
     id: 'n2-023',
@@ -8330,6 +11523,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ジ', 'ニ', 'ゲイ'],
     kunyomi: ['こ', '-こ', '-っこ'],
+    commonWords: [
+      CommonWord(word: '児童', reading: 'じどう', meaning: 'children'),
+      CommonWord(word: '育児', reading: 'いくじ', meaning: 'childcare'),
+      CommonWord(word: '幼児', reading: 'ようじ', meaning: 'young child'),
+    ],
   ),
   KanjiCard(
     id: 'n2-024',
@@ -8343,6 +11541,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['トウ'],
     kunyomi: ['なかま', 'むら'],
+    commonWords: [
+      CommonWord(word: '政党', reading: 'せいとう', meaning: 'political party'),
+      CommonWord(word: '野党', reading: 'やとう', meaning: 'opposition party'),
+      CommonWord(word: '与党', reading: 'よとう', meaning: 'ruling party'),
+    ],
   ),
   KanjiCard(
     id: 'n2-025',
@@ -8356,6 +11559,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ヘイ', 'ヒョウ'],
     kunyomi: ['つわもの'],
+    commonWords: [
+      CommonWord(word: '核兵器', reading: 'かくへいき', meaning: 'nuclear weapon'),
+      CommonWord(word: '兵器', reading: 'へいき', meaning: 'arms'),
+      CommonWord(word: '兵士', reading: 'へいし', meaning: 'soldier'),
+    ],
   ),
   KanjiCard(
     id: 'n2-026',
@@ -8369,6 +11577,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['サツ', 'サク'],
     kunyomi: ['ふみ'],
+    commonWords: [
+      CommonWord(word: '冊子', reading: 'さっし', meaning: 'book'),
+      CommonWord(word: '小冊子', reading: 'しょうさっし', meaning: 'booklet'),
+      CommonWord(word: '別冊', reading: 'べっさつ', meaning: 'separate volume'),
+    ],
   ),
   KanjiCard(
     id: 'n2-027',
@@ -8382,6 +11595,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['サイ', 'サ'],
     kunyomi: ['ふたた'],
+    commonWords: [
+      CommonWord(word: '再び', reading: 'ふたたび', meaning: 'again'),
+      CommonWord(word: '再開', reading: 'さいかい', meaning: 'reopening'),
+      CommonWord(word: '再建', reading: 'さいけん', meaning: 'rebuilding'),
+    ],
   ),
   KanjiCard(
     id: 'n2-028',
@@ -8395,6 +11613,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['トウ'],
     kunyomi: ['こお', 'こご', 'い', 'し'],
+    commonWords: [
+      CommonWord(word: '凍結', reading: 'とうけつ', meaning: 'freezing'),
+      CommonWord(word: '凍る', reading: 'こおる', meaning: 'to freeze'),
+      CommonWord(word: '凍死', reading: 'とうし', meaning: 'death from cold'),
+    ],
   ),
   KanjiCard(
     id: 'n2-029',
@@ -8408,6 +11631,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['カン'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '週刊', reading: 'しゅうかん', meaning: 'weekly publication'),
+      CommonWord(word: '創刊', reading: 'そうかん', meaning: 'foundation'),
+      CommonWord(word: '朝刊', reading: 'ちょうかん', meaning: 'morning edition'),
+    ],
   ),
   KanjiCard(
     id: 'n2-030',
@@ -8421,6 +11649,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['サツ'],
     kunyomi: ['す', '-ず', '-ずり', 'は'],
+    commonWords: [
+      CommonWord(word: '印刷', reading: 'いんさつ', meaning: 'printing'),
+      CommonWord(word: '刷新', reading: 'さっしん', meaning: 'reform'),
+      CommonWord(word: '増刷', reading: 'ぞうさつ', meaning: 'additional printing'),
+    ],
   ),
   KanjiCard(
     id: 'n2-031',
@@ -8434,6 +11667,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ケン'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '証券', reading: 'しょうけん', meaning: 'bond'),
+      CommonWord(word: '入場券', reading: 'にゅうじょうけん', meaning: 'admission ticket'),
+      CommonWord(word: '旅券', reading: 'りょけん', meaning: 'passport'),
+    ],
   ),
   KanjiCard(
     id: 'n2-032',
@@ -8447,6 +11685,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['シ'],
     kunyomi: ['さ', 'さし', 'とげ'],
+    commonWords: [
+      CommonWord(word: '刺激', reading: 'しげき', meaning: 'stimulus'),
+      CommonWord(word: '名刺', reading: 'めいし', meaning: 'business card'),
+      CommonWord(word: '風刺', reading: 'ふうし', meaning: 'satire'),
+    ],
   ),
   KanjiCard(
     id: 'n2-033',
@@ -8460,6 +11703,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ソク'],
     kunyomi: ['のっと', 'のり', 'すなわち'],
+    commonWords: [
+      CommonWord(word: '原則', reading: 'げんそく', meaning: 'principle'),
+      CommonWord(word: '規則', reading: 'きそく', meaning: 'rule'),
+      CommonWord(word: '罰則', reading: 'ばっそく', meaning: 'punishment'),
+    ],
   ),
   KanjiCard(
     id: 'n2-034',
@@ -8473,6 +11721,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['フク'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '副作用', reading: 'ふくさよう', meaning: 'side effect'),
+      CommonWord(word: '副社長', reading: 'ふくしゃちょう', meaning: 'executive vice-president'),
+      CommonWord(word: '副知事', reading: 'ふくちじ', meaning: 'vice-governor'),
+    ],
   ),
   KanjiCard(
     id: 'n2-035',
@@ -8486,6 +11739,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ゲキ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '劇場', reading: 'げきじょう', meaning: 'theatre'),
+      CommonWord(word: '劇', reading: 'げき', meaning: 'drama'),
+      CommonWord(word: '悲劇', reading: 'ひげき', meaning: 'tragedy'),
+    ],
   ),
   KanjiCard(
     id: 'n2-036',
@@ -8499,6 +11757,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['コウ'],
     kunyomi: ['き', 'ききめ', 'なら'],
+    commonWords: [
+      CommonWord(word: '効果', reading: 'こうか', meaning: 'effect'),
+      CommonWord(word: '有効', reading: 'ゆうこう', meaning: 'valid'),
+      CommonWord(word: '効率', reading: 'こうりつ', meaning: 'efficiency'),
+    ],
   ),
   KanjiCard(
     id: 'n2-037',
@@ -8512,6 +11775,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ユウ'],
     kunyomi: ['いさ'],
+    commonWords: [
+      CommonWord(word: '勇気', reading: 'ゆうき', meaning: 'courage'),
+      CommonWord(word: '勇退', reading: 'ゆうたい', meaning: 'retiring voluntarily'),
+      CommonWord(word: '勇敢', reading: 'ゆうかん', meaning: 'brave'),
+    ],
   ),
   KanjiCard(
     id: 'n2-038',
@@ -8525,6 +11793,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ボ'],
     kunyomi: ['つの'],
+    commonWords: [
+      CommonWord(word: '応募', reading: 'おうぼ', meaning: 'application'),
+      CommonWord(word: '募集', reading: 'ぼしゅう', meaning: 'recruitment'),
+      CommonWord(word: '募る', reading: 'つのる', meaning: 'to become stronger'),
+    ],
   ),
   KanjiCard(
     id: 'n2-039',
@@ -8538,6 +11811,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['セイ', 'ゼイ'],
     kunyomi: ['いきお', 'はずみ'],
+    commonWords: [
+      CommonWord(word: '姿勢', reading: 'しせい', meaning: 'posture'),
+      CommonWord(word: '情勢', reading: 'じょうせい', meaning: 'state of things'),
+      CommonWord(word: '勢力', reading: 'せいりょく', meaning: 'influence'),
+    ],
   ),
   KanjiCard(
     id: 'n2-040',
@@ -8551,6 +11829,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ホウ'],
     kunyomi: ['つつ', 'くる'],
+    commonWords: [
+      CommonWord(word: '包む', reading: 'つつむ', meaning: 'to wrap up'),
+      CommonWord(word: '包丁', reading: 'ほうちょう', meaning: 'kitchen knife'),
+      CommonWord(word: '包囲', reading: 'ほうい', meaning: 'siege'),
+    ],
   ),
   KanjiCard(
     id: 'n2-041',
@@ -8564,6 +11847,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ヒツ'],
     kunyomi: ['ひき'],
+    commonWords: [
+      CommonWord(word: '匹', reading: 'ひき', meaning: 'counter for small animals'),
+      CommonWord(word: '匹敵', reading: 'ひってき', meaning: 'to be a match for'),
+      CommonWord(word: '一匹', reading: 'いっぴき', meaning: 'one'),
+    ],
   ),
   KanjiCard(
     id: 'n2-042',
@@ -8577,6 +11865,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ク'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '区域', reading: 'くいき', meaning: 'area'),
+      CommonWord(word: '区間', reading: 'くかん', meaning: 'section'),
+      CommonWord(word: '区', reading: 'く', meaning: 'ward'),
+    ],
   ),
   KanjiCard(
     id: 'n2-043',
@@ -8590,6 +11883,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ソツ', 'シュツ'],
     kunyomi: ['そっ', 'お', 'ついに', 'にわか'],
+    commonWords: [
+      CommonWord(word: '卒業', reading: 'そつぎょう', meaning: 'graduation'),
+      CommonWord(word: '大卒', reading: 'だいそつ', meaning: 'university graduate'),
+      CommonWord(word: '高卒', reading: 'こうそつ', meaning: 'having graduated from high school'),
+    ],
   ),
   KanjiCard(
     id: 'n2-044',
@@ -8603,6 +11901,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['キョウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '協議', reading: 'きょうぎ', meaning: 'conference'),
+      CommonWord(word: '協力', reading: 'きょうりょく', meaning: 'cooperation'),
+      CommonWord(word: '妥協', reading: 'だきょう', meaning: 'compromise'),
+    ],
   ),
   KanjiCard(
     id: 'n2-045',
@@ -8616,6 +11919,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['セン'],
     kunyomi: ['し', 'うらな'],
+    commonWords: [
+      CommonWord(word: '占領', reading: 'せんりょう', meaning: 'occupying'),
+      CommonWord(word: '独占', reading: 'どくせん', meaning: 'monopoly'),
+      CommonWord(word: '占い', reading: 'うらない', meaning: 'fortune-telling'),
+    ],
   ),
   KanjiCard(
     id: 'n2-046',
@@ -8629,6 +11937,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['イン'],
     kunyomi: ['しるし', '-じるし', 'しる'],
+    commonWords: [
+      CommonWord(word: '印象', reading: 'いんしょう', meaning: 'impression'),
+      CommonWord(word: '調印', reading: 'ちょういん', meaning: 'signature'),
+      CommonWord(word: '印刷', reading: 'いんさつ', meaning: 'printing'),
+    ],
   ),
   KanjiCard(
     id: 'n2-047',
@@ -8642,6 +11955,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ラン'],
     kunyomi: ['たまご'],
+    commonWords: [
+      CommonWord(word: '卵', reading: 'たまご', meaning: 'eggs'),
+      CommonWord(word: '産卵', reading: 'さんらん', meaning: 'egg-laying'),
+      CommonWord(word: '受精卵', reading: 'じゅせいらん', meaning: 'fertilized egg'),
+    ],
   ),
   KanjiCard(
     id: 'n2-048',
@@ -8655,6 +11973,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['コウ'],
     kunyomi: ['あつ', 'あか'],
+    commonWords: [
+      CommonWord(word: '厚さ', reading: 'あつさ', meaning: 'thickness'),
+      CommonWord(word: '厚生', reading: 'こうせい', meaning: 'welfare'),
+      CommonWord(word: '濃厚', reading: 'のうこう', meaning: 'rich'),
+    ],
   ),
   KanjiCard(
     id: 'n2-049',
@@ -8668,6 +11991,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ソウ'],
     kunyomi: ['ふた', 'たぐい', 'ならぶ', 'ふたつ'],
+    commonWords: [
+      CommonWord(word: '双子', reading: 'ふたご', meaning: 'twins'),
+      CommonWord(word: '双方', reading: 'そうほう', meaning: 'both parties'),
+      CommonWord(word: '双', reading: 'そう', meaning: 'pair'),
+    ],
   ),
   KanjiCard(
     id: 'n2-050',
@@ -8681,6 +12009,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['キョウ'],
     kunyomi: ['さけ'],
+    commonWords: [
+      CommonWord(word: '叫ぶ', reading: 'さけぶ', meaning: 'to shout'),
+      CommonWord(word: '叫び', reading: 'さけび', meaning: 'shout'),
+      CommonWord(word: '絶叫', reading: 'ぜっきょう', meaning: 'scream'),
+    ],
   ),
   KanjiCard(
     id: 'n2-051',
@@ -8694,6 +12027,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ショウ'],
     kunyomi: ['め'],
+    commonWords: [
+      CommonWord(word: '召集', reading: 'しょうしゅう', meaning: 'convening'),
+      CommonWord(word: '召し上がる', reading: 'めしあがる', meaning: 'to eat'),
+      CommonWord(word: '応召', reading: 'おうしょう', meaning: 'responding to a call-up for military'),
+    ],
   ),
   KanjiCard(
     id: 'n2-052',
@@ -8707,6 +12045,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['シ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '歴史', reading: 'れきし', meaning: 'history'),
+      CommonWord(word: '史上', reading: 'しじょう', meaning: 'in history'),
+      CommonWord(word: '歴史的', reading: 'れきしてき', meaning: 'historical'),
+    ],
   ),
   KanjiCard(
     id: 'n2-053',
@@ -8720,6 +12063,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['カク'],
     kunyomi: ['おのおの'],
+    commonWords: [
+      CommonWord(word: '各自', reading: 'かくじ', meaning: 'each'),
+      CommonWord(word: '各位', reading: 'かくい', meaning: 'everyone'),
+      CommonWord(word: '各国', reading: 'かっこく', meaning: 'each country'),
+    ],
   ),
   KanjiCard(
     id: 'n2-054',
@@ -8733,6 +12081,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ガン'],
     kunyomi: ['ふく'],
+    commonWords: [
+      CommonWord(word: '含み', reading: 'ふくみ', meaning: 'implication'),
+      CommonWord(word: '含有', reading: 'がんゆう', meaning: 'containing'),
+      CommonWord(word: '含む', reading: 'ふくむ', meaning: 'to contain'),
+    ],
   ),
   KanjiCard(
     id: 'n2-055',
@@ -8746,6 +12099,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['シュウ'],
     kunyomi: ['まわ'],
+    commonWords: [
+      CommonWord(word: '周辺', reading: 'しゅうへん', meaning: 'circumference'),
+      CommonWord(word: '周囲', reading: 'しゅうい', meaning: 'surroundings'),
+      CommonWord(word: '一周', reading: 'いっしゅう', meaning: 'one round'),
+    ],
   ),
   KanjiCard(
     id: 'n2-056',
@@ -8759,6 +12117,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ショウ'],
     kunyomi: ['さ', '-ざき'],
+    commonWords: [
+      CommonWord(word: '返り咲き', reading: 'かえりざき', meaning: 'comeback'),
+      CommonWord(word: '遅咲き', reading: 'おそざき', meaning: 'blooming late'),
+      CommonWord(word: '咲く', reading: 'さく', meaning: 'to bloom'),
+    ],
   ),
   KanjiCard(
     id: 'n2-057',
@@ -8772,6 +12135,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['キツ'],
     kunyomi: ['の'],
+    commonWords: [
+      CommonWord(word: '喫煙', reading: 'きつえん', meaning: 'smoking'),
+      CommonWord(word: '喫茶店', reading: 'きっさてん', meaning: 'coffee shop'),
+      CommonWord(word: '喫する', reading: 'きっする', meaning: 'to eat'),
+    ],
   ),
   KanjiCard(
     id: 'n2-058',
@@ -8785,6 +12153,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['エイ'],
     kunyomi: ['いとな'],
+    commonWords: [
+      CommonWord(word: '経営', reading: 'けいえい', meaning: 'management'),
+      CommonWord(word: '営業', reading: 'えいぎょう', meaning: 'business'),
+      CommonWord(word: '国営', reading: 'こくえい', meaning: 'government management'),
+    ],
   ),
   KanjiCard(
     id: 'n2-059',
@@ -8798,6 +12171,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ダン', 'トン'],
     kunyomi: ['かたまり', 'まる'],
+    commonWords: [
+      CommonWord(word: '団体', reading: 'だんたい', meaning: 'group'),
+      CommonWord(word: '公団', reading: 'こうだん', meaning: 'public corporation'),
+      CommonWord(word: '団地', reading: 'だんち', meaning: 'multi-unit apartments'),
+    ],
   ),
   KanjiCard(
     id: 'n2-060',
@@ -8811,6 +12189,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['イ'],
     kunyomi: ['かこ'],
+    commonWords: [
+      CommonWord(word: '周囲', reading: 'しゅうい', meaning: 'surroundings'),
+      CommonWord(word: '範囲', reading: 'はんい', meaning: 'extent'),
+      CommonWord(word: '雰囲気', reading: 'ふんいき', meaning: 'atmosphere'),
+    ],
   ),
   KanjiCard(
     id: 'n2-061',
@@ -8824,6 +12207,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['コ'],
     kunyomi: ['かた'],
+    commonWords: [
+      CommonWord(word: '固定', reading: 'こてい', meaning: 'fixing'),
+      CommonWord(word: '固める', reading: 'かためる', meaning: 'to harden'),
+      CommonWord(word: '固有', reading: 'こゆう', meaning: 'characteristic'),
+    ],
   ),
   KanjiCard(
     id: 'n2-062',
@@ -8837,6 +12225,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['アツ', 'エン', 'オウ'],
     kunyomi: ['お', 'へ', 'おさ'],
+    commonWords: [
+      CommonWord(word: '圧力', reading: 'あつりょく', meaning: 'pressure'),
+      CommonWord(word: '弾圧', reading: 'だんあつ', meaning: 'oppression'),
+      CommonWord(word: '気圧', reading: 'きあつ', meaning: 'atmospheric pressure'),
+    ],
   ),
   KanjiCard(
     id: 'n2-063',
@@ -8850,6 +12243,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ハン'],
     kunyomi: ['さか'],
+    commonWords: [
+      CommonWord(word: '坂', reading: 'さか', meaning: 'slope'),
+      CommonWord(word: '坂道', reading: 'さかみち', meaning: 'hill road'),
+      CommonWord(word: '下り坂', reading: 'くだりざか', meaning: 'downhill'),
+    ],
   ),
   KanjiCard(
     id: 'n2-064',
@@ -8863,6 +12261,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['キン'],
     kunyomi: ['なら'],
+    commonWords: [
+      CommonWord(word: '平均', reading: 'へいきん', meaning: 'average'),
+      CommonWord(word: '均衡', reading: 'きんこう', meaning: 'balance'),
+      CommonWord(word: '均等', reading: 'きんとう', meaning: 'equal'),
+    ],
   ),
   KanjiCard(
     id: 'n2-065',
@@ -8876,6 +12279,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ケイ'],
     kunyomi: ['かた', '-がた'],
+    commonWords: [
+      CommonWord(word: '大型', reading: 'おおがた', meaning: 'large'),
+      CommonWord(word: '型', reading: 'かた', meaning: 'type'),
+      CommonWord(word: '小型', reading: 'こがた', meaning: 'small-sized'),
+    ],
   ),
   KanjiCard(
     id: 'n2-066',
@@ -8889,6 +12297,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['マイ'],
     kunyomi: ['う', 'うず', 'い'],
+    commonWords: [
+      CommonWord(word: '埋める', reading: 'うずめる', meaning: 'to cover'),
+      CommonWord(word: '埋め立て', reading: 'うめたて', meaning: 'land reclamation'),
+      CommonWord(word: '埋蔵', reading: 'まいぞう', meaning: 'burying in the ground'),
+    ],
   ),
   KanjiCard(
     id: 'n2-067',
@@ -8902,6 +12315,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ジョウ', 'セイ'],
     kunyomi: ['しろ'],
+    commonWords: [
+      CommonWord(word: '城', reading: 'しろ', meaning: 'castle'),
+      CommonWord(word: '城内', reading: 'じょうない', meaning: 'inside of a castle'),
+      CommonWord(word: '城下町', reading: 'じょうかまち', meaning: 'castle town'),
+    ],
   ),
   KanjiCard(
     id: 'n2-068',
@@ -8915,6 +12333,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['イキ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '地域', reading: 'ちいき', meaning: 'area'),
+      CommonWord(word: '領域', reading: 'りょういき', meaning: 'territory'),
+      CommonWord(word: '域内', reading: 'いきない', meaning: 'inside the area'),
+    ],
   ),
   KanjiCard(
     id: 'n2-069',
@@ -8928,6 +12351,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['トウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '塔', reading: 'とう', meaning: 'tower'),
+      CommonWord(word: '管制塔', reading: 'かんせいとう', meaning: 'control tower'),
+    ],
   ),
   KanjiCard(
     id: 'n2-070',
@@ -8941,6 +12368,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ト'],
     kunyomi: ['ぬ', 'まみ'],
+    commonWords: [
+      CommonWord(word: '塗装', reading: 'とそう', meaning: 'coating'),
+      CommonWord(word: '塗料', reading: 'とりょう', meaning: 'paint'),
+      CommonWord(word: '塗る', reading: 'ぬる', meaning: 'to paint'),
+    ],
   ),
   KanjiCard(
     id: 'n2-071',
@@ -8954,6 +12386,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['エン'],
     kunyomi: ['しお'],
+    commonWords: [
+      CommonWord(word: '塩', reading: 'しお', meaning: 'salt'),
+      CommonWord(word: '塩素', reading: 'えんそ', meaning: 'chlorine'),
+      CommonWord(word: '塩化', reading: 'えんか', meaning: 'chloridation'),
+    ],
   ),
   KanjiCard(
     id: 'n2-072',
@@ -8967,6 +12404,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['キョウ', 'ケイ'],
     kunyomi: ['さかい'],
+    commonWords: [
+      CommonWord(word: '環境', reading: 'かんきょう', meaning: 'environment'),
+      CommonWord(word: '国境', reading: 'こっきょう', meaning: 'border'),
+      CommonWord(word: '心境', reading: 'しんきょう', meaning: 'state of mind'),
+    ],
   ),
   KanjiCard(
     id: 'n2-073',
@@ -8980,6 +12422,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['オウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '中央', reading: 'ちゅうおう', meaning: 'centre'),
+      CommonWord(word: '中央集権', reading: 'ちゅうおうしゅうけん', meaning: 'centralized authoritarian rule'),
+    ],
   ),
   KanjiCard(
     id: 'n2-074',
@@ -8993,6 +12439,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['オウ'],
     kunyomi: ['おく', 'くま'],
+    commonWords: [
+      CommonWord(word: '奥', reading: 'おく', meaning: 'inner part'),
+      CommonWord(word: '奥行き', reading: 'おくゆき', meaning: 'depth'),
+      CommonWord(word: '奥山', reading: 'おくやま', meaning: 'remote mountain'),
+    ],
   ),
   KanjiCard(
     id: 'n2-075',
@@ -9006,6 +12457,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['セイ', 'ショウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '姓', reading: 'せい', meaning: 'surname'),
+      CommonWord(word: '同姓', reading: 'どうせい', meaning: 'same surname'),
+      CommonWord(word: '百姓', reading: 'ひゃくしょう', meaning: 'farmer'),
+    ],
   ),
   KanjiCard(
     id: 'n2-076',
@@ -9019,6 +12475,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['イ'],
     kunyomi: ['ゆだ'],
+    commonWords: [
+      CommonWord(word: '委員', reading: 'いいん', meaning: 'committee member'),
+      CommonWord(word: '委員会', reading: 'いいんかい', meaning: 'committee'),
+      CommonWord(word: '委員長', reading: 'いいんちょう', meaning: 'chairperson'),
+    ],
   ),
   KanjiCard(
     id: 'n2-077',
@@ -9032,6 +12493,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['キ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '季節', reading: 'きせつ', meaning: 'season'),
+      CommonWord(word: '冬季', reading: 'とうき', meaning: 'winter season'),
+      CommonWord(word: '四季', reading: 'しき', meaning: 'the four seasons'),
+    ],
   ),
   KanjiCard(
     id: 'n2-078',
@@ -9045,6 +12511,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ソン'],
     kunyomi: ['まご'],
+    commonWords: [
+      CommonWord(word: '孫', reading: 'まご', meaning: 'grandchild'),
+      CommonWord(word: '子孫', reading: 'しそん', meaning: 'descendant'),
+      CommonWord(word: '孫娘', reading: 'まごむすめ', meaning: 'granddaughter'),
+    ],
   ),
   KanjiCard(
     id: 'n2-079',
@@ -9058,6 +12529,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '宇宙', reading: 'うちゅう', meaning: 'universe'),
+      CommonWord(word: '宇宙開発', reading: 'うちゅうかいはつ', meaning: 'space development'),
+      CommonWord(word: '宇宙飛行士', reading: 'うちゅうひこうし', meaning: 'astronaut'),
+    ],
   ),
   KanjiCard(
     id: 'n2-080',
@@ -9071,6 +12547,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ホウ'],
     kunyomi: ['たから'],
+    commonWords: [
+      CommonWord(word: '宝', reading: 'たから', meaning: 'treasure'),
+      CommonWord(word: '宝石', reading: 'ほうせき', meaning: 'gem'),
+      CommonWord(word: '宝くじ', reading: 'たからくじ', meaning: 'lottery'),
+    ],
   ),
   KanjiCard(
     id: 'n2-081',
@@ -9084,6 +12565,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ジ'],
     kunyomi: ['てら'],
+    commonWords: [
+      CommonWord(word: '寺', reading: 'てら', meaning: 'temple'),
+      CommonWord(word: '寺院', reading: 'じいん', meaning: 'Buddhist temple'),
+      CommonWord(word: '国分寺', reading: 'こくぶんじ', meaning: 'state-supported provincial temple'),
+    ],
   ),
   KanjiCard(
     id: 'n2-082',
@@ -9097,6 +12583,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['フウ', 'ホウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '封鎖', reading: 'ふうさ', meaning: 'blockade'),
+      CommonWord(word: '封筒', reading: 'ふうとう', meaning: 'envelope'),
+      CommonWord(word: '封', reading: 'ふう', meaning: 'seal'),
+    ],
   ),
   KanjiCard(
     id: 'n2-083',
@@ -9110,6 +12601,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['セン'],
     kunyomi: ['もっぱ'],
+    commonWords: [
+      CommonWord(word: '専務', reading: 'せんむ', meaning: 'special duty'),
+      CommonWord(word: '専門', reading: 'せんもん', meaning: 'speciality'),
+      CommonWord(word: '専門家', reading: 'せんもんか', meaning: 'specialist'),
+    ],
   ),
   KanjiCard(
     id: 'n2-084',
@@ -9123,6 +12619,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ショウ', 'ソウ'],
     kunyomi: ['まさ', 'はた', 'ひきい', 'もって'],
+    commonWords: [
+      CommonWord(word: '将来', reading: 'しょうらい', meaning: 'future'),
+      CommonWord(word: '将棋', reading: 'しょうぎ', meaning: 'shogi'),
+      CommonWord(word: '将軍', reading: 'しょうぐん', meaning: 'general'),
+    ],
   ),
   KanjiCard(
     id: 'n2-085',
@@ -9136,6 +12637,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ソン'],
     kunyomi: ['たっと', 'とうと'],
+    commonWords: [
+      CommonWord(word: '尊重', reading: 'そんちょう', meaning: 'respect'),
+      CommonWord(word: '尊厳', reading: 'そんげん', meaning: 'dignity'),
+      CommonWord(word: '本尊', reading: 'ほんぞん', meaning: 'principal object of worship'),
+    ],
   ),
   KanjiCard(
     id: 'n2-086',
@@ -9149,6 +12655,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ドウ'],
     kunyomi: ['みちび'],
+    commonWords: [
+      CommonWord(word: '指導', reading: 'しどう', meaning: 'guidance'),
+      CommonWord(word: '導入', reading: 'どうにゅう', meaning: 'introduction'),
+      CommonWord(word: '半導体', reading: 'はんどうたい', meaning: 'semiconductor'),
+    ],
   ),
   KanjiCard(
     id: 'n2-087',
@@ -9162,6 +12673,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['カイ'],
     kunyomi: ['とど', '-とど'],
+    commonWords: [
+      CommonWord(word: '届', reading: 'とどけ', meaning: 'report'),
+      CommonWord(word: '無届け', reading: 'むとどけ', meaning: 'without notice'),
+      CommonWord(word: '見届ける', reading: 'みとどける', meaning: 'to make sure of'),
+    ],
   ),
   KanjiCard(
     id: 'n2-088',
@@ -9175,6 +12691,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ソウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '一層', reading: 'いっそう', meaning: 'even more'),
+      CommonWord(word: '高層', reading: 'こうそう', meaning: 'high-rise'),
+      CommonWord(word: '断層', reading: 'だんそう', meaning: 'fault'),
+    ],
   ),
   KanjiCard(
     id: 'n2-089',
@@ -9188,6 +12709,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ガン'],
     kunyomi: ['いわ'],
+    commonWords: [
+      CommonWord(word: '岩', reading: 'いわ', meaning: 'rock'),
+      CommonWord(word: '溶岩', reading: 'ようがん', meaning: 'lava'),
+      CommonWord(word: '岩間', reading: 'いわま', meaning: 'among rocks'),
+    ],
   ),
   KanjiCard(
     id: 'n2-090',
@@ -9201,6 +12727,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ガン'],
     kunyomi: ['きし'],
+    commonWords: [
+      CommonWord(word: '海岸', reading: 'かいがん', meaning: 'seashore'),
+      CommonWord(word: '沿岸', reading: 'えんがん', meaning: 'coast'),
+      CommonWord(word: '岸', reading: 'きし', meaning: 'bank'),
+    ],
   ),
   KanjiCard(
     id: 'n2-091',
@@ -9214,6 +12745,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['トウ'],
     kunyomi: ['しま'],
+    commonWords: [
+      CommonWord(word: '島', reading: 'しま', meaning: 'island'),
+      CommonWord(word: '半島', reading: 'はんとう', meaning: 'peninsula'),
+      CommonWord(word: '列島', reading: 'れっとう', meaning: 'archipelago'),
+    ],
   ),
   KanjiCard(
     id: 'n2-092',
@@ -9227,6 +12763,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['シュウ', 'ス'],
     kunyomi: ['す'],
+    commonWords: [
+      CommonWord(word: '州', reading: 'しゅう', meaning: 'state'),
+      CommonWord(word: '欧州', reading: 'おうしゅう', meaning: 'Europe'),
+      CommonWord(word: '九州', reading: 'きゅうしゅう', meaning: 'Kyūshū'),
+    ],
   ),
   KanjiCard(
     id: 'n2-093',
@@ -9240,6 +12781,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['キョ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '巨大', reading: 'きょだい', meaning: 'huge'),
+      CommonWord(word: '巨人', reading: 'きょじん', meaning: 'giant'),
+      CommonWord(word: '巨額', reading: 'きょがく', meaning: 'huge sum'),
+    ],
   ),
   KanjiCard(
     id: 'n2-094',
@@ -9253,6 +12799,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['カン', 'ケン'],
     kunyomi: ['ま', 'まき'],
+    commonWords: [
+      CommonWord(word: '巻き込む', reading: 'まきこむ', meaning: 'to roll up'),
+      CommonWord(word: '巻き返し', reading: 'まきかえし', meaning: 'rally'),
+      CommonWord(word: '巻末', reading: 'かんまつ', meaning: 'end of a book'),
+    ],
   ),
   KanjiCard(
     id: 'n2-095',
@@ -9266,6 +12817,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['フ', 'ホ'],
     kunyomi: ['ぬの', 'し', 'きれ'],
+    commonWords: [
+      CommonWord(word: '布', reading: 'ぬの', meaning: 'cloth'),
+      CommonWord(word: '財布', reading: 'さいふ', meaning: 'wallet'),
+      CommonWord(word: '配布', reading: 'はいふ', meaning: 'distribution'),
+    ],
   ),
   KanjiCard(
     id: 'n2-096',
@@ -9279,6 +12835,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['キ', 'ケ'],
     kunyomi: ['まれ', 'こいねが'],
+    commonWords: [
+      CommonWord(word: '希望', reading: 'きぼう', meaning: 'hope'),
+      CommonWord(word: '希薄', reading: 'きはく', meaning: 'thin'),
+      CommonWord(word: '希少', reading: 'きしょう', meaning: 'scarce'),
+    ],
   ),
   KanjiCard(
     id: 'n2-097',
@@ -9292,6 +12853,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['タイ'],
     kunyomi: ['お', 'おび'],
+    commonWords: [
+      CommonWord(word: '地帯', reading: 'ちたい', meaning: 'zone'),
+      CommonWord(word: '世帯', reading: 'せたい', meaning: 'household'),
+      CommonWord(word: '携帯', reading: 'けいたい', meaning: 'carrying'),
+    ],
   ),
   KanjiCard(
     id: 'n2-098',
@@ -9305,6 +12871,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ボウ', 'モウ'],
     kunyomi: ['ずきん', 'おお'],
+    commonWords: [
+      CommonWord(word: '帽子', reading: 'ぼうし', meaning: 'hat'),
+      CommonWord(word: '脱帽', reading: 'だつぼう', meaning: 'removing one\'s hat'),
+    ],
   ),
   KanjiCard(
     id: 'n2-099',
@@ -9318,6 +12888,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['フク'],
     kunyomi: ['はば'],
+    commonWords: [
+      CommonWord(word: '大幅', reading: 'おおはば', meaning: 'big'),
+      CommonWord(word: '幅', reading: 'はば', meaning: 'width'),
+      CommonWord(word: '幅広い', reading: 'はばひろい', meaning: 'extensive'),
+    ],
   ),
   KanjiCard(
     id: 'n2-100',
@@ -9331,6 +12906,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['カン'],
     kunyomi: ['ほ', '-ぼ', 'ひ'],
+    commonWords: [
+      CommonWord(word: '若干', reading: 'じゃっかん', meaning: 'some'),
+      CommonWord(word: '干渉', reading: 'かんしょう', meaning: 'interference'),
+      CommonWord(word: '干す', reading: 'ほす', meaning: 'to air'),
+    ],
   ),
   KanjiCard(
     id: 'n2-101',
@@ -9344,6 +12924,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ヨウ'],
     kunyomi: ['おさな'],
+    commonWords: [
+      CommonWord(word: '幼児', reading: 'ようじ', meaning: 'young child'),
+      CommonWord(word: '幼稚園', reading: 'ようちえん', meaning: 'kindergarten'),
+      CommonWord(word: '乳幼児', reading: 'にゅうようじ', meaning: 'babies and preschool children'),
+    ],
   ),
   KanjiCard(
     id: 'n2-102',
@@ -9357,6 +12942,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['チョウ', 'テイ'],
     kunyomi: ['やくしょ'],
+    commonWords: [
+      CommonWord(word: '警視庁', reading: 'けいしちょう', meaning: 'Metropolitan Police Department'),
+      CommonWord(word: '庁', reading: 'ちょう', meaning: 'government office'),
+      CommonWord(word: '県庁', reading: 'けんちょう', meaning: 'prefectural office'),
+    ],
   ),
   KanjiCard(
     id: 'n2-103',
@@ -9370,6 +12960,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ショウ'],
     kunyomi: ['とこ', 'ゆか'],
+    commonWords: [
+      CommonWord(word: '床', reading: 'とこ', meaning: 'bed'),
+      CommonWord(word: '床の間', reading: 'とこのま', meaning: 'tokonoma'),
+      CommonWord(word: '臨床', reading: 'りんしょう', meaning: 'clinical'),
+    ],
   ),
   KanjiCard(
     id: 'n2-104',
@@ -9383,6 +12978,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['テイ'],
     kunyomi: ['そこ'],
+    commonWords: [
+      CommonWord(word: '徹底', reading: 'てってい', meaning: 'thoroughness'),
+      CommonWord(word: '底', reading: 'そこ', meaning: 'bottom'),
+      CommonWord(word: '海底', reading: 'かいてい', meaning: 'bottom of the ocean'),
+    ],
   ),
   KanjiCard(
     id: 'n2-105',
@@ -9396,6 +12996,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['フ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '政府', reading: 'せいふ', meaning: 'government'),
+      CommonWord(word: '府立', reading: 'ふりつ', meaning: 'prefectural'),
+      CommonWord(word: '都道府県', reading: 'とどうふけん', meaning: 'prefectures'),
+    ],
   ),
   KanjiCard(
     id: 'n2-106',
@@ -9409,6 +13014,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['コ', 'ク'],
     kunyomi: ['くら'],
+    commonWords: [
+      CommonWord(word: '文庫', reading: 'ぶんこ', meaning: 'library'),
+      CommonWord(word: '倉庫', reading: 'そうこ', meaning: 'storehouse'),
+      CommonWord(word: '冷蔵庫', reading: 'れいぞうこ', meaning: 'refrigerator'),
+    ],
   ),
   KanjiCard(
     id: 'n2-107',
@@ -9422,6 +13032,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['エン'],
     kunyomi: ['の'],
+    commonWords: [
+      CommonWord(word: '延長', reading: 'えんちょう', meaning: 'extension'),
+      CommonWord(word: '延期', reading: 'えんき', meaning: 'postponement'),
+      CommonWord(word: '延滞', reading: 'えんたい', meaning: 'arrears'),
+    ],
   ),
   KanjiCard(
     id: 'n2-108',
@@ -9435,6 +13050,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ジャク'],
     kunyomi: ['よわ'],
+    commonWords: [
+      CommonWord(word: '弱点', reading: 'じゃくてん', meaning: 'weak point'),
+      CommonWord(word: '弱気', reading: 'よわき', meaning: 'timid'),
+      CommonWord(word: '弱み', reading: 'よわみ', meaning: 'weakness'),
+    ],
   ),
   KanjiCard(
     id: 'n2-109',
@@ -9448,6 +13068,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['リツ', 'リチ', 'レツ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '法律', reading: 'ほうりつ', meaning: 'law'),
+      CommonWord(word: '規律', reading: 'きりつ', meaning: 'order'),
+      CommonWord(word: '旋律', reading: 'せんりつ', meaning: 'melody'),
+    ],
   ),
   KanjiCard(
     id: 'n2-110',
@@ -9461,6 +13086,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['フク'],
     kunyomi: ['また'],
+    commonWords: [
+      CommonWord(word: '回復', reading: 'かいふく', meaning: 'restoration'),
+      CommonWord(word: '復活', reading: 'ふっかつ', meaning: 'revival'),
+      CommonWord(word: '復帰', reading: 'ふっき', meaning: 'return'),
+    ],
   ),
   KanjiCard(
     id: 'n2-111',
@@ -9474,6 +13104,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['カイ'],
     kunyomi: ['こころよ'],
+    commonWords: [
+      CommonWord(word: '軽快', reading: 'けいかい', meaning: 'light'),
+      CommonWord(word: '不快', reading: 'ふかい', meaning: 'displeasure'),
+      CommonWord(word: '快速', reading: 'かいそく', meaning: 'high speed'),
+    ],
   ),
   KanjiCard(
     id: 'n2-112',
@@ -9487,6 +13122,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['レン'],
     kunyomi: ['こ', 'こい'],
+    commonWords: [
+      CommonWord(word: '恋', reading: 'こい', meaning: 'love'),
+      CommonWord(word: '恋人', reading: 'こいびと', meaning: 'lover'),
+      CommonWord(word: '初恋', reading: 'はつこい', meaning: 'first love'),
+    ],
   ),
   KanjiCard(
     id: 'n2-113',
@@ -9500,6 +13140,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['カン'],
     kunyomi: ['わずら'],
+    commonWords: [
+      CommonWord(word: '患者', reading: 'かんじゃ', meaning: 'patient'),
+      CommonWord(word: '疾患', reading: 'しっかん', meaning: 'disease'),
+      CommonWord(word: '患う', reading: 'わずらう', meaning: 'to be ill'),
+    ],
   ),
   KanjiCard(
     id: 'n2-114',
@@ -9513,6 +13158,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ノウ'],
     kunyomi: ['なや', 'なやみ'],
+    commonWords: [
+      CommonWord(word: '悩み', reading: 'なやみ', meaning: 'trouble'),
+      CommonWord(word: '苦悩', reading: 'くのう', meaning: 'agony'),
+      CommonWord(word: '悩む', reading: 'なやむ', meaning: 'to be worried'),
+    ],
   ),
   KanjiCard(
     id: 'n2-115',
@@ -9526,6 +13176,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ゾウ'],
     kunyomi: ['にく'],
+    commonWords: [
+      CommonWord(word: '憎悪', reading: 'ぞうお', meaning: 'hatred'),
+      CommonWord(word: '愛憎', reading: 'あいぞう', meaning: 'love and hate'),
+      CommonWord(word: '憎む', reading: 'にくむ', meaning: 'to hate'),
+    ],
   ),
   KanjiCard(
     id: 'n2-116',
@@ -9539,6 +13194,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['コ'],
     kunyomi: ['と'],
+    commonWords: [
+      CommonWord(word: '戸', reading: 'と', meaning: 'door'),
+      CommonWord(word: '井戸', reading: 'いど', meaning: 'water well'),
+      CommonWord(word: '戸籍', reading: 'こせき', meaning: 'family register'),
+    ],
   ),
   KanjiCard(
     id: 'n2-117',
@@ -9552,6 +13212,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ショウ', 'ジョウ'],
     kunyomi: ['うけたまわ', 'う'],
+    commonWords: [
+      CommonWord(word: '承認', reading: 'しょうにん', meaning: 'recognition'),
+      CommonWord(word: '了承', reading: 'りょうしょう', meaning: 'acknowledgement'),
+      CommonWord(word: '承知', reading: 'しょうち', meaning: 'knowledge'),
+    ],
   ),
   KanjiCard(
     id: 'n2-118',
@@ -9565,6 +13230,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ギ'],
     kunyomi: ['わざ'],
+    commonWords: [
+      CommonWord(word: '技術', reading: 'ぎじゅつ', meaning: 'technology'),
+      CommonWord(word: '競技', reading: 'きょうぎ', meaning: 'game'),
+      CommonWord(word: '演技', reading: 'えんぎ', meaning: 'acting'),
+    ],
   ),
   KanjiCard(
     id: 'n2-119',
@@ -9578,6 +13248,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['タン'],
     kunyomi: ['かつ', 'にな'],
+    commonWords: [
+      CommonWord(word: '担当', reading: 'たんとう', meaning: 'being in charge'),
+      CommonWord(word: '負担', reading: 'ふたん', meaning: 'burden'),
+      CommonWord(word: '担保', reading: 'たんぽ', meaning: 'security'),
+    ],
   ),
   KanjiCard(
     id: 'n2-120',
@@ -9591,6 +13266,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ハイ'],
     kunyomi: ['おが', 'おろが'],
+    commonWords: [
+      CommonWord(word: '参拝', reading: 'さんぱい', meaning: 'going and worshipping'),
+      CommonWord(word: '礼拝', reading: 'れいはい', meaning: 'worship'),
+      CommonWord(word: '拝見', reading: 'はいけん', meaning: 'seeing'),
+    ],
   ),
   KanjiCard(
     id: 'n2-121',
@@ -9604,6 +13284,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['シュウ', 'ジュウ'],
     kunyomi: ['ひろ'],
+    commonWords: [
+      CommonWord(word: '収拾', reading: 'しゅうしゅう', meaning: 'control'),
+      CommonWord(word: '拾い物', reading: 'ひろいもの', meaning: 'found article'),
+      CommonWord(word: '拾う', reading: 'ひろう', meaning: 'to pick up'),
+    ],
   ),
   KanjiCard(
     id: 'n2-122',
@@ -9617,6 +13302,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['キョウ', 'ショウ'],
     kunyomi: ['はさ', 'わきばさ', 'さしはさ'],
+    commonWords: [
+      CommonWord(word: '挟む', reading: 'はさむ', meaning: 'to hold between'),
+      CommonWord(word: '挟み撃ち', reading: 'はさみうち', meaning: 'attack on both sides'),
+      CommonWord(word: '挟まる', reading: 'はさまる', meaning: 'to get between'),
+    ],
   ),
   KanjiCard(
     id: 'n2-123',
@@ -9630,6 +13320,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ソウ', 'シュ', 'シュウ'],
     kunyomi: ['さが'],
+    commonWords: [
+      CommonWord(word: '捜査', reading: 'そうさ', meaning: 'search'),
+      CommonWord(word: '特捜', reading: 'とくそう', meaning: 'special investigation'),
+    ],
   ),
   KanjiCard(
     id: 'n2-124',
@@ -9643,6 +13337,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['シャ'],
     kunyomi: ['す'],
+    commonWords: [
+      CommonWord(word: '使い捨て', reading: 'つかいすて', meaning: 'throwaway'),
+      CommonWord(word: '切り捨て', reading: 'きりすて', meaning: 'cutting a person down'),
+      CommonWord(word: '切り捨てる', reading: 'きりすてる', meaning: 'to cut off and throw away'),
+    ],
   ),
   KanjiCard(
     id: 'n2-125',
@@ -9656,6 +13355,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ソウ', 'シュ'],
     kunyomi: ['は'],
+    commonWords: [
+      CommonWord(word: '清掃', reading: 'せいそう', meaning: 'cleaning'),
+      CommonWord(word: '掃海', reading: 'そうかい', meaning: 'sweeping the sea for mines'),
+      CommonWord(word: '掃除機', reading: 'そうじき', meaning: 'vacuum cleaner'),
+    ],
   ),
   KanjiCard(
     id: 'n2-126',
@@ -9669,6 +13373,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['クツ'],
     kunyomi: ['ほ'],
+    commonWords: [
+      CommonWord(word: '発掘', reading: 'はっくつ', meaning: 'excavation'),
+      CommonWord(word: '掘削', reading: 'くっさく', meaning: 'digging out'),
+      CommonWord(word: '採掘', reading: 'さいくつ', meaning: 'mining'),
+    ],
   ),
   KanjiCard(
     id: 'n2-127',
@@ -9682,6 +13391,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['サイ'],
     kunyomi: ['と'],
+    commonWords: [
+      CommonWord(word: '採用', reading: 'さいよう', meaning: 'use'),
+      CommonWord(word: '採決', reading: 'さいけつ', meaning: 'vote'),
+      CommonWord(word: '採算', reading: 'さいさん', meaning: 'profit'),
+    ],
   ),
   KanjiCard(
     id: 'n2-128',
@@ -9695,6 +13409,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['セツ', 'ショウ'],
     kunyomi: ['つ'],
+    commonWords: [
+      CommonWord(word: '直接', reading: 'ちょくせつ', meaning: 'direct'),
+      CommonWord(word: '接触', reading: 'せっしょく', meaning: 'touch'),
+      CommonWord(word: '面接', reading: 'めんせつ', meaning: 'interview'),
+    ],
   ),
   KanjiCard(
     id: 'n2-129',
@@ -9708,6 +13427,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['カン'],
     kunyomi: ['か', '-か'],
+    commonWords: [
+      CommonWord(word: '交換', reading: 'こうかん', meaning: 'exchange'),
+      CommonWord(word: '換算', reading: 'かんさん', meaning: 'conversion'),
+      CommonWord(word: '換気', reading: 'かんき', meaning: 'ventilation'),
+    ],
   ),
   KanjiCard(
     id: 'n2-130',
@@ -9721,6 +13445,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ソン'],
     kunyomi: ['そこ', 'そこな', '-そこ'],
+    commonWords: [
+      CommonWord(word: '損害', reading: 'そんがい', meaning: 'damage'),
+      CommonWord(word: '損失', reading: 'そんしつ', meaning: 'loss'),
+      CommonWord(word: '損益', reading: 'そんえき', meaning: 'profit and loss'),
+    ],
   ),
   KanjiCard(
     id: 'n2-131',
@@ -9734,6 +13463,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['カイ'],
     kunyomi: ['あらた'],
+    commonWords: [
+      CommonWord(word: '改革', reading: 'かいかく', meaning: 'reform'),
+      CommonWord(word: '改正', reading: 'かいせい', meaning: 'revision'),
+      CommonWord(word: '改善', reading: 'かいぜん', meaning: 'betterment'),
+    ],
   ),
   KanjiCard(
     id: 'n2-132',
@@ -9747,6 +13481,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ケイ', 'キョウ'],
     kunyomi: ['うやま'],
+    commonWords: [
+      CommonWord(word: '敬意', reading: 'けいい', meaning: 'respect'),
+      CommonWord(word: '敬遠', reading: 'けいえん', meaning: 'pretending to respect (someone) while'),
+      CommonWord(word: '敬称', reading: 'けいしょう', meaning: 'honorific title'),
+    ],
   ),
   KanjiCard(
     id: 'n2-133',
@@ -9760,6 +13499,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['キュウ'],
     kunyomi: ['ふる', 'もと'],
+    commonWords: [
+      CommonWord(word: '旧式', reading: 'きゅうしき', meaning: 'old type'),
+      CommonWord(word: '復旧', reading: 'ふっきゅう', meaning: 'restoration'),
+      CommonWord(word: '新旧', reading: 'しんきゅう', meaning: 'new and old'),
+    ],
   ),
   KanjiCard(
     id: 'n2-134',
@@ -9773,6 +13517,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ショウ'],
     kunyomi: ['のぼ'],
+    commonWords: [
+      CommonWord(word: '上昇', reading: 'じょうしょう', meaning: 'rising'),
+      CommonWord(word: '昇進', reading: 'しょうしん', meaning: 'promotion'),
+      CommonWord(word: '昇給', reading: 'しょうきゅう', meaning: 'salary raise'),
+    ],
   ),
   KanjiCard(
     id: 'n2-135',
@@ -9786,6 +13535,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['セイ', 'ショウ'],
     kunyomi: ['ほし', '-ぼし'],
+    commonWords: [
+      CommonWord(word: '衛星', reading: 'えいせい', meaning: 'satellite'),
+      CommonWord(word: '星', reading: 'ほし', meaning: 'star'),
+      CommonWord(word: '火星', reading: 'かせい', meaning: 'Mars'),
+    ],
   ),
   KanjiCard(
     id: 'n2-136',
@@ -9799,6 +13553,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['フ'],
     kunyomi: ['あまね', 'あまねし'],
+    commonWords: [
+      CommonWord(word: '普通', reading: 'ふつう', meaning: 'normal'),
+      CommonWord(word: '普及', reading: 'ふきゅう', meaning: 'diffusion'),
+      CommonWord(word: '普遍', reading: 'ふへん', meaning: 'universal'),
+    ],
   ),
   KanjiCard(
     id: 'n2-137',
@@ -9812,6 +13571,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ボウ', 'バク'],
     kunyomi: ['あば'],
+    commonWords: [
+      CommonWord(word: '暴力', reading: 'ぼうりょく', meaning: 'violence'),
+      CommonWord(word: '暴動', reading: 'ぼうどう', meaning: 'insurrection'),
+      CommonWord(word: '暴落', reading: 'ぼうらく', meaning: 'slump'),
+    ],
   ),
   KanjiCard(
     id: 'n2-138',
@@ -9825,6 +13589,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ドン'],
     kunyomi: ['くも'],
+    commonWords: [
+      CommonWord(word: '曇り', reading: 'くもり', meaning: 'cloudiness'),
+      CommonWord(word: '曇る', reading: 'くもる', meaning: 'to get cloudy'),
+    ],
   ),
   KanjiCard(
     id: 'n2-139',
@@ -9838,6 +13606,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['タイ'],
     kunyomi: ['か'],
+    commonWords: [
+      CommonWord(word: '為替', reading: 'かわせ', meaning: 'money order'),
+      CommonWord(word: '代替', reading: 'だいたい', meaning: 'substitution'),
+      CommonWord(word: '両替', reading: 'りょうがえ', meaning: 'change'),
+    ],
   ),
   KanjiCard(
     id: 'n2-140',
@@ -9851,6 +13624,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['サツ'],
     kunyomi: ['ふだ'],
+    commonWords: [
+      CommonWord(word: '入札', reading: 'にゅうさつ', meaning: 'bid'),
+      CommonWord(word: '札', reading: 'さつ', meaning: 'banknote'),
+      CommonWord(word: '落札', reading: 'らくさつ', meaning: 'successful bid'),
+    ],
   ),
   KanjiCard(
     id: 'n2-141',
@@ -9864,6 +13642,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['キ'],
     kunyomi: ['つくえ'],
+    commonWords: [
+      CommonWord(word: '机', reading: 'つくえ', meaning: 'desk'),
+      CommonWord(word: '机上', reading: 'きじょう', meaning: 'on the desk'),
+    ],
   ),
   KanjiCard(
     id: 'n2-142',
@@ -9877,6 +13659,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ザイ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '取材', reading: 'しゅざい', meaning: 'gathering material'),
+      CommonWord(word: '材料', reading: 'ざいりょう', meaning: 'materials'),
+      CommonWord(word: '人材', reading: 'じんざい', meaning: 'capable person'),
+    ],
   ),
   KanjiCard(
     id: 'n2-143',
@@ -9890,6 +13677,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ソン'],
     kunyomi: ['むら'],
+    commonWords: [
+      CommonWord(word: '村', reading: 'むら', meaning: 'village'),
+      CommonWord(word: '農村', reading: 'のうそん', meaning: 'agricultural community'),
+      CommonWord(word: '市町村', reading: 'しちょうそん', meaning: 'cities, towns and villages'),
+    ],
   ),
   KanjiCard(
     id: 'n2-144',
@@ -9903,6 +13695,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ハン', 'バン'],
     kunyomi: ['いた'],
+    commonWords: [
+      CommonWord(word: '看板', reading: 'かんばん', meaning: 'signboard'),
+      CommonWord(word: '板', reading: 'いた', meaning: 'board'),
+      CommonWord(word: '鋼板', reading: 'こうはん', meaning: 'steel sheet'),
+    ],
   ),
   KanjiCard(
     id: 'n2-145',
@@ -9916,6 +13713,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['リン'],
     kunyomi: ['はやし'],
+    commonWords: [
+      CommonWord(word: '林', reading: 'はやし', meaning: 'wood'),
+      CommonWord(word: '森林', reading: 'しんりん', meaning: 'forest'),
+      CommonWord(word: '農林', reading: 'のうりん', meaning: 'agriculture and forestry'),
+    ],
   ),
   KanjiCard(
     id: 'n2-146',
@@ -9929,6 +13731,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['マイ', 'バイ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '枚数', reading: 'まいすう', meaning: 'the number of flat things'),
+      CommonWord(word: '一枚', reading: 'いちまい', meaning: 'one'),
+      CommonWord(word: '二枚', reading: 'にまい', meaning: 'two sheets'),
+    ],
   ),
   KanjiCard(
     id: 'n2-147',
@@ -9942,6 +13749,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['シ'],
     kunyomi: ['えだ'],
+    commonWords: [
+      CommonWord(word: '枝', reading: 'えだ', meaning: 'branch'),
+      CommonWord(word: '小枝', reading: 'こえだ', meaning: 'twig'),
+      CommonWord(word: '枝葉', reading: 'えだは', meaning: 'branches and leaves'),
+    ],
   ),
   KanjiCard(
     id: 'n2-148',
@@ -9955,6 +13767,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['コ'],
     kunyomi: ['か'],
+    commonWords: [
+      CommonWord(word: '枯れる', reading: 'かれる', meaning: 'to wither'),
+      CommonWord(word: '枯れ葉', reading: 'かれは', meaning: 'dead leaf'),
+      CommonWord(word: '枯れ木', reading: 'かれき', meaning: 'dead tree'),
+    ],
   ),
   KanjiCard(
     id: 'n2-149',
@@ -9968,6 +13785,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ジュウ', 'ニュウ'],
     kunyomi: ['やわ'],
+    commonWords: [
+      CommonWord(word: '柔軟', reading: 'じゅうなん', meaning: 'flexible'),
+      CommonWord(word: '柔道', reading: 'じゅうどう', meaning: 'judo'),
+      CommonWord(word: '柔らか', reading: 'やわらか', meaning: 'soft'),
+    ],
   ),
   KanjiCard(
     id: 'n2-150',
@@ -9981,6 +13803,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['チュウ'],
     kunyomi: ['はしら'],
+    commonWords: [
+      CommonWord(word: '柱', reading: 'はしら', meaning: 'pillar'),
+      CommonWord(word: '電柱', reading: 'でんちゅう', meaning: 'utility pole'),
+      CommonWord(word: '支柱', reading: 'しちゅう', meaning: 'prop'),
+    ],
   ),
   KanjiCard(
     id: 'n2-151',
@@ -9994,6 +13821,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['サ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '捜査', reading: 'そうさ', meaning: 'search'),
+      CommonWord(word: '調査', reading: 'ちょうさ', meaning: 'investigation'),
+      CommonWord(word: '検査', reading: 'けんさ', meaning: 'inspection'),
+    ],
   ),
   KanjiCard(
     id: 'n2-152',
@@ -10007,6 +13839,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['エイ', 'ヨウ'],
     kunyomi: ['さか', 'は', '-ば', 'え'],
+    commonWords: [
+      CommonWord(word: '栄養', reading: 'えいよう', meaning: 'nutrition'),
+      CommonWord(word: '繁栄', reading: 'はんえい', meaning: 'prosperity'),
+      CommonWord(word: '栄光', reading: 'えいこう', meaning: 'glory'),
+    ],
   ),
   KanjiCard(
     id: 'n2-153',
@@ -10020,6 +13857,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['コン'],
     kunyomi: ['ね', '-ね'],
+    commonWords: [
+      CommonWord(word: '根拠', reading: 'こんきょ', meaning: 'basis'),
+      CommonWord(word: '根', reading: 'ね', meaning: 'root'),
+      CommonWord(word: '屋根', reading: 'やね', meaning: 'roof'),
+    ],
   ),
   KanjiCard(
     id: 'n2-154',
@@ -10033,6 +13875,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['カイ'],
     kunyomi: ['かせ'],
+    commonWords: [
+      CommonWord(word: '機械', reading: 'きかい', meaning: 'machine'),
+      CommonWord(word: '機械化', reading: 'きかいか', meaning: 'mechanization'),
+      CommonWord(word: '工作機械', reading: 'こうさくきかい', meaning: 'machine tool'),
+    ],
   ),
   KanjiCard(
     id: 'n2-155',
@@ -10046,6 +13893,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ボウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '棒', reading: 'ぼう', meaning: 'pole'),
+      CommonWord(word: '泥棒', reading: 'どろぼう', meaning: 'thief'),
+      CommonWord(word: '鉄棒', reading: 'てつぼう', meaning: 'iron rod'),
+    ],
   ),
   KanjiCard(
     id: 'n2-156',
@@ -10059,6 +13911,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['シン'],
     kunyomi: ['もり'],
+    commonWords: [
+      CommonWord(word: '森', reading: 'もり', meaning: 'forest'),
+      CommonWord(word: '森閑', reading: 'しんかん', meaning: 'silent'),
+    ],
   ),
   KanjiCard(
     id: 'n2-157',
@@ -10072,6 +13928,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ショク'],
     kunyomi: ['う'],
+    commonWords: [
+      CommonWord(word: '移植', reading: 'いしょく', meaning: 'transplanting'),
+      CommonWord(word: '植物', reading: 'しょくぶつ', meaning: 'plant'),
+      CommonWord(word: '植民地', reading: 'しょくみんち', meaning: 'colony'),
+    ],
   ),
   KanjiCard(
     id: 'n2-158',
@@ -10085,6 +13946,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['キョク', 'ゴク'],
     kunyomi: ['きわ', 'き', '-ぎ'],
+    commonWords: [
+      CommonWord(word: '積極的', reading: 'せっきょくてき', meaning: 'positive'),
+      CommonWord(word: '消極的', reading: 'しょうきょくてき', meaning: 'negative'),
+      CommonWord(word: '極端', reading: 'きょくたん', meaning: 'extreme'),
+    ],
   ),
   KanjiCard(
     id: 'n2-159',
@@ -10098,6 +13964,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['キョウ'],
     kunyomi: ['はし'],
+    commonWords: [
+      CommonWord(word: '橋', reading: 'はし', meaning: 'bridge'),
+      CommonWord(word: '桟橋', reading: 'さんばし', meaning: 'wharf'),
+      CommonWord(word: '石橋', reading: 'いしばし', meaning: 'stone bridge'),
+    ],
   ),
   KanjiCard(
     id: 'n2-160',
@@ -10111,6 +13982,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['オウ'],
     kunyomi: ['うた', 'は'],
+    commonWords: [
+      CommonWord(word: '東欧', reading: 'とうおう', meaning: 'Eastern Europe'),
+      CommonWord(word: '西欧', reading: 'せいおう', meaning: 'Western Europe'),
+      CommonWord(word: '欧州', reading: 'おうしゅう', meaning: 'Europe'),
+    ],
   ),
   KanjiCard(
     id: 'n2-161',
@@ -10124,6 +14000,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ブ', 'ム'],
     kunyomi: ['たけ'],
+    commonWords: [
+      CommonWord(word: '武器', reading: 'ぶき', meaning: 'weapon'),
+      CommonWord(word: '武装', reading: 'ぶそう', meaning: 'arms'),
+      CommonWord(word: '武力', reading: 'ぶりょく', meaning: 'armed might'),
+    ],
   ),
   KanjiCard(
     id: 'n2-162',
@@ -10137,6 +14018,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['レキ', 'レッキ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '歴史', reading: 'れきし', meaning: 'history'),
+      CommonWord(word: '歴史的', reading: 'れきしてき', meaning: 'historical'),
+      CommonWord(word: '学歴', reading: 'がくれき', meaning: 'academic background'),
+    ],
   ),
   KanjiCard(
     id: 'n2-163',
@@ -10150,6 +14036,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['デン', 'テン'],
     kunyomi: ['との', '-どの'],
+    commonWords: [
+      CommonWord(word: '殿', reading: 'どの', meaning: 'Mr.'),
+      CommonWord(word: '殿下', reading: 'でんか', meaning: 'Your Highness'),
+      CommonWord(word: '宮殿', reading: 'きゅうでん', meaning: 'palace'),
+    ],
   ),
   KanjiCard(
     id: 'n2-164',
@@ -10163,6 +14054,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ドク'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '毒', reading: 'どく', meaning: 'poison'),
+      CommonWord(word: '中毒', reading: 'ちゅうどく', meaning: 'poisoning'),
+      CommonWord(word: '消毒', reading: 'しょうどく', meaning: 'disinfection'),
+    ],
   ),
   KanjiCard(
     id: 'n2-165',
@@ -10176,6 +14072,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ヒ'],
     kunyomi: ['くら'],
+    commonWords: [
+      CommonWord(word: '比べる', reading: 'くらべる', meaning: 'to compare'),
+      CommonWord(word: '比例', reading: 'ひれい', meaning: 'proportion'),
+      CommonWord(word: '比率', reading: 'ひりつ', meaning: 'ratio'),
+    ],
   ),
   KanjiCard(
     id: 'n2-166',
@@ -10189,6 +14090,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['モウ'],
     kunyomi: ['け'],
+    commonWords: [
+      CommonWord(word: '毛', reading: 'け', meaning: 'hair'),
+      CommonWord(word: '毛布', reading: 'もうふ', meaning: 'blanket'),
+      CommonWord(word: '毛皮', reading: 'けがわ', meaning: 'fur'),
+    ],
   ),
   KanjiCard(
     id: 'n2-167',
@@ -10202,6 +14108,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ヒョウ'],
     kunyomi: ['こおり', 'ひ', 'こお'],
+    commonWords: [
+      CommonWord(word: '氷', reading: 'こおり', meaning: 'ice'),
+      CommonWord(word: '氷山', reading: 'ひょうざん', meaning: 'iceberg'),
+      CommonWord(word: '氷河', reading: 'ひょうが', meaning: 'glacier'),
+    ],
   ),
   KanjiCard(
     id: 'n2-168',
@@ -10215,6 +14126,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['エイ'],
     kunyomi: ['なが'],
+    commonWords: [
+      CommonWord(word: '永遠', reading: 'えいえん', meaning: 'eternity'),
+      CommonWord(word: '永住', reading: 'えいじゅう', meaning: 'permanent residence'),
+      CommonWord(word: '永続', reading: 'えいぞく', meaning: 'permanence'),
+    ],
   ),
   KanjiCard(
     id: 'n2-169',
@@ -10228,6 +14144,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['カン'],
     kunyomi: ['あせ'],
+    commonWords: [
+      CommonWord(word: '汗', reading: 'あせ', meaning: 'sweat'),
+      CommonWord(word: '冷や汗', reading: 'ひやあせ', meaning: 'cold sweat'),
+      CommonWord(word: '発汗', reading: 'はっかん', meaning: 'sweating'),
+    ],
   ),
   KanjiCard(
     id: 'n2-170',
@@ -10241,6 +14162,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['オ'],
     kunyomi: ['けが', 'よご', 'きたな'],
+    commonWords: [
+      CommonWord(word: '汚職', reading: 'おしょく', meaning: 'corruption'),
+      CommonWord(word: '汚染', reading: 'おせん', meaning: 'pollution'),
+      CommonWord(word: '汚れ', reading: 'よごれ', meaning: 'dirt'),
+    ],
   ),
   KanjiCard(
     id: 'n2-171',
@@ -10254,6 +14180,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['チ'],
     kunyomi: ['いけ'],
+    commonWords: [
+      CommonWord(word: '池', reading: 'いけ', meaning: 'pond'),
+      CommonWord(word: '電池', reading: 'でんち', meaning: 'battery'),
+      CommonWord(word: '乾電池', reading: 'かんでんち', meaning: 'dry cell battery'),
+    ],
   ),
   KanjiCard(
     id: 'n2-172',
@@ -10267,6 +14198,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['チン', 'ジン'],
     kunyomi: ['しず'],
+    commonWords: [
+      CommonWord(word: '沈黙', reading: 'ちんもく', meaning: 'silence'),
+      CommonWord(word: '沈没', reading: 'ちんぼつ', meaning: 'sinking'),
+      CommonWord(word: '沈着', reading: 'ちんちゃく', meaning: 'composure'),
+    ],
   ),
   KanjiCard(
     id: 'n2-173',
@@ -10280,6 +14216,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['カ'],
     kunyomi: ['かわ'],
+    commonWords: [
+      CommonWord(word: '河川', reading: 'かせん', meaning: 'rivers'),
+      CommonWord(word: '河口', reading: 'かこう', meaning: 'mouth of river'),
+      CommonWord(word: '大河', reading: 'たいが', meaning: 'large river'),
+    ],
   ),
   KanjiCard(
     id: 'n2-174',
@@ -10293,6 +14234,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['フツ'],
     kunyomi: ['わ'],
+    commonWords: [
+      CommonWord(word: '沸騰', reading: 'ふっとう', meaning: 'boiling'),
+      CommonWord(word: '沸かす', reading: 'わかす', meaning: 'to boil'),
+      CommonWord(word: '沸く', reading: 'わく', meaning: 'to grow hot'),
+    ],
   ),
   KanjiCard(
     id: 'n2-175',
@@ -10306,6 +14252,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ユ', 'ユウ'],
     kunyomi: ['あぶら'],
+    commonWords: [
+      CommonWord(word: '石油', reading: 'せきゆ', meaning: 'oil'),
+      CommonWord(word: '原油', reading: 'げんゆ', meaning: 'crude oil'),
+      CommonWord(word: '油田', reading: 'ゆでん', meaning: 'oil field'),
+    ],
   ),
   KanjiCard(
     id: 'n2-176',
@@ -10319,6 +14270,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['キョウ'],
     kunyomi: ['まし', 'いわ', 'おもむき'],
+    commonWords: [
+      CommonWord(word: '状況', reading: 'じょうきょう', meaning: 'state of affairs'),
+      CommonWord(word: '不況', reading: 'ふきょう', meaning: 'depression'),
+      CommonWord(word: '実況', reading: 'じっきょう', meaning: 'actual state'),
+    ],
   ),
   KanjiCard(
     id: 'n2-177',
@@ -10332,6 +14288,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['セン'],
     kunyomi: ['いずみ'],
+    commonWords: [
+      CommonWord(word: '温泉', reading: 'おんせん', meaning: 'hot spring'),
+      CommonWord(word: '泉', reading: 'いずみ', meaning: 'spring'),
+      CommonWord(word: '源泉', reading: 'げんせん', meaning: 'source'),
+    ],
   ),
   KanjiCard(
     id: 'n2-178',
@@ -10345,6 +14306,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ハク'],
     kunyomi: ['と'],
+    commonWords: [
+      CommonWord(word: '宿泊', reading: 'しゅくはく', meaning: 'accommodation'),
+      CommonWord(word: '停泊', reading: 'ていはく', meaning: 'anchorage'),
+      CommonWord(word: '泊まり', reading: 'とまり', meaning: 'stay'),
+    ],
   ),
   KanjiCard(
     id: 'n2-179',
@@ -10358,6 +14324,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ハ'],
     kunyomi: ['なみ'],
+    commonWords: [
+      CommonWord(word: '波', reading: 'なみ', meaning: 'wave'),
+      CommonWord(word: '電波', reading: 'でんぱ', meaning: 'radio wave'),
+      CommonWord(word: '津波', reading: 'つなみ', meaning: 'tsunami'),
+    ],
   ),
   KanjiCard(
     id: 'n2-180',
@@ -10371,6 +14342,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['デイ', 'ナイ', 'デ', 'ニ'],
     kunyomi: ['どろ', 'なず'],
+    commonWords: [
+      CommonWord(word: '泥', reading: 'どろ', meaning: 'mud'),
+      CommonWord(word: '泥棒', reading: 'どろぼう', meaning: 'thief'),
+      CommonWord(word: '泥沼', reading: 'どろぬま', meaning: 'bog'),
+    ],
   ),
   KanjiCard(
     id: 'n2-181',
@@ -10384,6 +14360,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['セン'],
     kunyomi: ['あさ'],
+    commonWords: [
+      CommonWord(word: '浅見', reading: 'せんけん', meaning: 'shallow view'),
+      CommonWord(word: '浅瀬', reading: 'あさせ', meaning: 'shoal'),
+      CommonWord(word: '浅い', reading: 'あさい', meaning: 'shallow'),
+    ],
   ),
   KanjiCard(
     id: 'n2-182',
@@ -10397,6 +14378,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ヨク'],
     kunyomi: ['あ'],
+    commonWords: [
+      CommonWord(word: '浴びる', reading: 'あびる', meaning: 'to dash over oneself'),
+      CommonWord(word: '入浴', reading: 'にゅうよく', meaning: 'bathing'),
+      CommonWord(word: '浴室', reading: 'よくしつ', meaning: 'bathroom'),
+    ],
   ),
   KanjiCard(
     id: 'n2-183',
@@ -10410,6 +14396,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ルイ', 'レイ'],
     kunyomi: ['なみだ'],
+    commonWords: [
+      CommonWord(word: '涙', reading: 'なみだ', meaning: 'tear'),
+      CommonWord(word: '催涙', reading: 'さいるい', meaning: 'tear-inducing'),
+      CommonWord(word: '涙声', reading: 'なみだごえ', meaning: 'tearful voice'),
+    ],
   ),
   KanjiCard(
     id: 'n2-184',
@@ -10423,6 +14414,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['エキ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '血液', reading: 'けつえき', meaning: 'blood'),
+      CommonWord(word: '液体', reading: 'えきたい', meaning: 'liquid'),
+      CommonWord(word: '液晶', reading: 'えきしょう', meaning: 'liquid crystal'),
+    ],
   ),
   KanjiCard(
     id: 'n2-185',
@@ -10436,6 +14432,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['リョウ'],
     kunyomi: ['すず', 'うす', 'ひや', 'まことに'],
+    commonWords: [
+      CommonWord(word: '清涼', reading: 'せいりょう', meaning: 'cool'),
+      CommonWord(word: '涼風', reading: 'りょうふう', meaning: 'cool breeze'),
+      CommonWord(word: '涼む', reading: 'すずむ', meaning: 'to cool oneself'),
+    ],
   ),
   KanjiCard(
     id: 'n2-186',
@@ -10449,6 +14450,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['コン'],
     kunyomi: ['ま', '-ま', 'こ'],
+    commonWords: [
+      CommonWord(word: '混乱', reading: 'こんらん', meaning: 'disorder'),
+      CommonWord(word: '混迷', reading: 'こんめい', meaning: 'turmoil'),
+      CommonWord(word: '混雑', reading: 'こんざつ', meaning: 'congestion'),
+    ],
   ),
   KanjiCard(
     id: 'n2-187',
@@ -10462,6 +14468,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['セイ', 'ショウ', 'シン'],
     kunyomi: ['きよ'],
+    commonWords: [
+      CommonWord(word: '清算', reading: 'せいさん', meaning: 'settlement'),
+      CommonWord(word: '清掃', reading: 'せいそう', meaning: 'cleaning'),
+      CommonWord(word: '清潔', reading: 'せいけつ', meaning: 'clean'),
+    ],
   ),
   KanjiCard(
     id: 'n2-188',
@@ -10475,6 +14486,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ゲン'],
     kunyomi: ['へ'],
+    commonWords: [
+      CommonWord(word: '削減', reading: 'さくげん', meaning: 'cut'),
+      CommonWord(word: '減少', reading: 'げんしょう', meaning: 'decrease'),
+      CommonWord(word: '減速', reading: 'げんそく', meaning: 'deceleration'),
+    ],
   ),
   KanjiCard(
     id: 'n2-189',
@@ -10488,6 +14504,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['オン'],
     kunyomi: ['あたた', 'ぬく'],
+    commonWords: [
+      CommonWord(word: '気温', reading: 'きおん', meaning: 'temperature'),
+      CommonWord(word: '温泉', reading: 'おんせん', meaning: 'hot spring'),
+      CommonWord(word: '温暖', reading: 'おんだん', meaning: 'warm'),
+    ],
   ),
   KanjiCard(
     id: 'n2-190',
@@ -10501,6 +14522,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ソク'],
     kunyomi: ['はか'],
+    commonWords: [
+      CommonWord(word: '観測', reading: 'かんそく', meaning: 'observation'),
+      CommonWord(word: '測定', reading: 'そくてい', meaning: 'measurement'),
+      CommonWord(word: '推測', reading: 'すいそく', meaning: 'guess'),
+    ],
   ),
   KanjiCard(
     id: 'n2-191',
@@ -10514,6 +14540,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['コ'],
     kunyomi: ['みずうみ'],
+    commonWords: [
+      CommonWord(word: '湖', reading: 'みずうみ', meaning: 'lake'),
+      CommonWord(word: '湖畔', reading: 'こはん', meaning: 'lakeside'),
+      CommonWord(word: '琵琶湖', reading: 'びわこ', meaning: 'Lake Biwa'),
+    ],
   ),
   KanjiCard(
     id: 'n2-192',
@@ -10527,6 +14558,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['トウ'],
     kunyomi: ['ゆ'],
+    commonWords: [
+      CommonWord(word: '湯', reading: 'ゆ', meaning: 'hot water'),
+      CommonWord(word: '銭湯', reading: 'せんとう', meaning: 'public bath'),
+      CommonWord(word: '熱湯', reading: 'ねっとう', meaning: 'boiling water'),
+    ],
   ),
   KanjiCard(
     id: 'n2-193',
@@ -10540,6 +14576,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ワン'],
     kunyomi: ['いりえ'],
+    commonWords: [
+      CommonWord(word: '湾', reading: 'わん', meaning: 'bay'),
+      CommonWord(word: '台湾', reading: 'たいわん', meaning: 'Taiwan'),
+      CommonWord(word: '湾岸', reading: 'わんがん', meaning: 'gulf coast'),
+    ],
   ),
   KanjiCard(
     id: 'n2-194',
@@ -10553,6 +14594,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['シツ', 'シュウ'],
     kunyomi: ['しめ', 'うるお'],
+    commonWords: [
+      CommonWord(word: '湿度', reading: 'しつど', meaning: 'humidity'),
+      CommonWord(word: '湿気', reading: 'しっけ', meaning: 'moisture'),
+      CommonWord(word: '湿地', reading: 'しっち', meaning: 'damp ground'),
+    ],
   ),
   KanjiCard(
     id: 'n2-195',
@@ -10566,6 +14612,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ジュン'],
     kunyomi: ['じゅん', 'なぞら', 'のり', 'ひと'],
+    commonWords: [
+      CommonWord(word: '基準', reading: 'きじゅん', meaning: 'standard'),
+      CommonWord(word: '準備', reading: 'じゅんび', meaning: 'preparation'),
+      CommonWord(word: '水準', reading: 'すいじゅん', meaning: 'level'),
+    ],
   ),
   KanjiCard(
     id: 'n2-196',
@@ -10579,6 +14630,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ヨウ'],
     kunyomi: ['と'],
+    commonWords: [
+      CommonWord(word: '溶岩', reading: 'ようがん', meaning: 'lava'),
+      CommonWord(word: '溶接', reading: 'ようせつ', meaning: 'welding'),
+      CommonWord(word: '溶かす', reading: 'とかす', meaning: 'to melt'),
+    ],
   ),
   KanjiCard(
     id: 'n2-197',
@@ -10592,6 +14648,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['テキ'],
     kunyomi: ['しずく', 'したた'],
+    commonWords: [
+      CommonWord(word: '点滴', reading: 'てんてき', meaning: 'raindrops'),
+      CommonWord(word: '水滴', reading: 'すいてき', meaning: 'drop of water'),
+      CommonWord(word: '滴', reading: 'しずく', meaning: 'drop'),
+    ],
   ),
   KanjiCard(
     id: 'n2-198',
@@ -10605,6 +14666,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ギョ', 'リョウ'],
     kunyomi: ['あさ'],
+    commonWords: [
+      CommonWord(word: '漁業', reading: 'ぎょぎょう', meaning: 'fishing industry'),
+      CommonWord(word: '漁船', reading: 'ぎょせん', meaning: 'fishing boat'),
+      CommonWord(word: '漁師', reading: 'りょうし', meaning: 'fisherman'),
+    ],
   ),
   KanjiCard(
     id: 'n2-199',
@@ -10618,6 +14684,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ノウ'],
     kunyomi: ['こ'],
+    commonWords: [
+      CommonWord(word: '濃厚', reading: 'のうこう', meaning: 'rich'),
+      CommonWord(word: '濃縮', reading: 'のうしゅく', meaning: 'concentration'),
+      CommonWord(word: '濃淡', reading: 'のうたん', meaning: 'light and shade'),
+    ],
   ),
   KanjiCard(
     id: 'n2-200',
@@ -10631,6 +14702,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['タク'],
     kunyomi: ['すす', 'ゆす'],
+    commonWords: [
+      CommonWord(word: '洗濯', reading: 'せんたく', meaning: 'washing'),
+      CommonWord(word: '洗濯機', reading: 'せんたくき', meaning: 'washing machine'),
+      CommonWord(word: '洗濯物', reading: 'せんたくもの', meaning: 'laundry'),
+    ],
   ),
   KanjiCard(
     id: 'n2-201',
@@ -10644,6 +14720,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['トウ'],
     kunyomi: ['ひ', 'ほ', 'ともしび', 'とも'],
+    commonWords: [
+      CommonWord(word: '灯', reading: 'ひ', meaning: 'light'),
+      CommonWord(word: '灯油', reading: 'とうゆ', meaning: 'kerosene'),
+      CommonWord(word: '電灯', reading: 'でんとう', meaning: 'electric light'),
+    ],
   ),
   KanjiCard(
     id: 'n2-202',
@@ -10657,6 +14738,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['カイ'],
     kunyomi: ['はい'],
+    commonWords: [
+      CommonWord(word: '灰色', reading: 'はいいろ', meaning: 'grey'),
+      CommonWord(word: '灰皿', reading: 'はいざら', meaning: 'ashtray'),
+      CommonWord(word: '火山灰', reading: 'かざんばい', meaning: 'volcanic ash'),
+    ],
   ),
   KanjiCard(
     id: 'n2-203',
@@ -10670,6 +14756,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['タン'],
     kunyomi: ['すみ'],
+    commonWords: [
+      CommonWord(word: '石炭', reading: 'せきたん', meaning: 'coal'),
+      CommonWord(word: '炭', reading: 'すみ', meaning: 'charcoal'),
+      CommonWord(word: '炭素', reading: 'たんそ', meaning: 'carbon'),
+    ],
   ),
   KanjiCard(
     id: 'n2-204',
@@ -10683,6 +14774,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ム', 'ブ'],
     kunyomi: ['な'],
+    commonWords: [
+      CommonWord(word: '無料', reading: 'むりょう', meaning: 'free'),
+      CommonWord(word: '無職', reading: 'むしょく', meaning: 'without an occupation'),
+      CommonWord(word: '無罪', reading: 'むざい', meaning: 'innocence'),
+    ],
   ),
   KanjiCard(
     id: 'n2-205',
@@ -10696,6 +14792,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ショウ'],
     kunyomi: ['や', '-や'],
+    commonWords: [
+      CommonWord(word: '燃焼', reading: 'ねんしょう', meaning: 'burning'),
+      CommonWord(word: '日焼け', reading: 'ひやけ', meaning: 'sunburn'),
+      CommonWord(word: '焼き肉', reading: 'やきにく', meaning: 'yakiniku'),
+    ],
   ),
   KanjiCard(
     id: 'n2-206',
@@ -10709,6 +14810,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ショウ'],
     kunyomi: ['て'],
+    commonWords: [
+      CommonWord(word: '参照', reading: 'さんしょう', meaning: 'reference'),
+      CommonWord(word: '照明', reading: 'しょうめい', meaning: 'illumination'),
+      CommonWord(word: '対照', reading: 'たいしょう', meaning: 'contrast'),
+    ],
   ),
   KanjiCard(
     id: 'n2-207',
@@ -10722,6 +14828,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ネン'],
     kunyomi: ['も'],
+    commonWords: [
+      CommonWord(word: '燃料', reading: 'ねんりょう', meaning: 'fuel'),
+      CommonWord(word: '燃焼', reading: 'ねんしょう', meaning: 'burning'),
+      CommonWord(word: '燃費', reading: 'ねんぴ', meaning: 'fuel consumption'),
+    ],
   ),
   KanjiCard(
     id: 'n2-208',
@@ -10735,6 +14846,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ソウ'],
     kunyomi: ['はしゃ'],
+    commonWords: [
+      CommonWord(word: '乾燥', reading: 'かんそう', meaning: 'dryness'),
+      CommonWord(word: '焦燥', reading: 'しょうそう', meaning: 'impatience'),
+    ],
   ),
   KanjiCard(
     id: 'n2-209',
@@ -10748,6 +14863,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['バク'],
     kunyomi: ['は'],
+    commonWords: [
+      CommonWord(word: '爆発', reading: 'ばくはつ', meaning: 'explosion'),
+      CommonWord(word: '原爆', reading: 'げんばく', meaning: 'atomic bomb'),
+      CommonWord(word: '爆弾', reading: 'ばくだん', meaning: 'bomb'),
+    ],
   ),
   KanjiCard(
     id: 'n2-210',
@@ -10761,6 +14881,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ヘン'],
     kunyomi: ['かた'],
+    commonWords: [
+      CommonWord(word: '破片', reading: 'はへん', meaning: 'fragment'),
+      CommonWord(word: '片手', reading: 'かたて', meaning: 'one hand'),
+      CommonWord(word: '片方', reading: 'かたほう', meaning: 'one side'),
+    ],
   ),
   KanjiCard(
     id: 'n2-211',
@@ -10774,6 +14899,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ハン'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '出版', reading: 'しゅっぱん', meaning: 'publication'),
+      CommonWord(word: '出版社', reading: 'しゅっぱんしゃ', meaning: 'publisher'),
+      CommonWord(word: '版画', reading: 'はんが', meaning: 'woodcut'),
+    ],
   ),
   KanjiCard(
     id: 'n2-212',
@@ -10787,6 +14917,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ギョク'],
     kunyomi: ['たま', '-だま'],
+    commonWords: [
+      CommonWord(word: '玉', reading: 'たま', meaning: 'ball'),
+      CommonWord(word: '目玉', reading: 'めだま', meaning: 'eyeball'),
+      CommonWord(word: 'お年玉', reading: 'おとしだま', meaning: 'New Year\'s gift'),
+    ],
   ),
   KanjiCard(
     id: 'n2-213',
@@ -10800,6 +14935,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['チン'],
     kunyomi: ['めずら', 'たから'],
+    commonWords: [
+      CommonWord(word: '珍', reading: 'ちん', meaning: 'rare'),
+      CommonWord(word: '珍重', reading: 'ちんちょう', meaning: 'prizing'),
+      CommonWord(word: '珍味', reading: 'ちんみ', meaning: 'delicacy'),
+    ],
   ),
   KanjiCard(
     id: 'n2-214',
@@ -10813,6 +14953,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ビン', 'ヘイ'],
     kunyomi: ['かめ'],
+    commonWords: [
+      CommonWord(word: '瓶', reading: 'びん', meaning: 'bottle'),
+      CommonWord(word: '火炎瓶', reading: 'かえんびん', meaning: 'Molotov cocktail'),
+      CommonWord(word: '花瓶', reading: 'かびん', meaning: 'vase'),
+    ],
   ),
   KanjiCard(
     id: 'n2-215',
@@ -10826,6 +14971,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['カン'],
     kunyomi: ['あま', 'うま'],
+    commonWords: [
+      CommonWord(word: '甘い', reading: 'あまい', meaning: 'sweet-tasting'),
+      CommonWord(word: '甘え', reading: 'あまえ', meaning: 'overdependence'),
+      CommonWord(word: '甘み', reading: 'あまみ', meaning: 'sweetness'),
+    ],
   ),
   KanjiCard(
     id: 'n2-216',
@@ -10839,6 +14989,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['チク'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '家畜', reading: 'かちく', meaning: 'domestic animals'),
+      CommonWord(word: '畜産', reading: 'ちくさん', meaning: 'animal husbandry'),
+      CommonWord(word: '牧畜', reading: 'ぼくちく', meaning: 'stock-farming'),
+    ],
   ),
   KanjiCard(
     id: 'n2-217',
@@ -10852,6 +15007,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['リャク'],
     kunyomi: ['ほぼ', 'はぶ', 'おか', 'おさ'],
+    commonWords: [
+      CommonWord(word: '侵略', reading: 'しんりゃく', meaning: 'invasion'),
+      CommonWord(word: '戦略', reading: 'せんりゃく', meaning: 'strategy'),
+      CommonWord(word: '略称', reading: 'りゃくしょう', meaning: 'abbreviation'),
+    ],
   ),
   KanjiCard(
     id: 'n2-218',
@@ -10865,6 +15025,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ジョウ', 'チョウ'],
     kunyomi: ['たた', 'たたみ', 'かさ'],
+    commonWords: [
+      CommonWord(word: '畳', reading: 'じょう', meaning: 'tatami mat'),
+      CommonWord(word: '四畳半', reading: 'よじょうはん', meaning: 'four and a half tatami mats'),
+    ],
   ),
   KanjiCard(
     id: 'n2-219',
@@ -10878,6 +15042,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['リョウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '医療', reading: 'いりょう', meaning: 'medical treatment'),
+      CommonWord(word: '治療', reading: 'ちりょう', meaning: 'treatment'),
+      CommonWord(word: '診療', reading: 'しんりょう', meaning: 'diagnosis and treatment'),
+    ],
   ),
   KanjiCard(
     id: 'n2-220',
@@ -10891,6 +15060,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ヒ'],
     kunyomi: ['かわ'],
+    commonWords: [
+      CommonWord(word: '皮', reading: 'かわ', meaning: 'skin'),
+      CommonWord(word: '皮肉', reading: 'ひにく', meaning: 'irony'),
+      CommonWord(word: '毛皮', reading: 'けがわ', meaning: 'fur'),
+    ],
   ),
   KanjiCard(
     id: 'n2-221',
@@ -10904,6 +15078,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ベイ'],
     kunyomi: ['さら'],
+    commonWords: [
+      CommonWord(word: '皿', reading: 'さら', meaning: 'plate'),
+      CommonWord(word: '灰皿', reading: 'はいざら', meaning: 'ashtray'),
+      CommonWord(word: '受け皿', reading: 'うけざら', meaning: 'saucer'),
+    ],
   ),
   KanjiCard(
     id: 'n2-222',
@@ -10917,6 +15096,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['セイ', 'ショウ'],
     kunyomi: ['かえり', 'はぶ'],
+    commonWords: [
+      CommonWord(word: '外務省', reading: 'がいむしょう', meaning: 'Ministry of Foreign Affairs'),
+      CommonWord(word: '反省', reading: 'はんせい', meaning: 'reflection'),
+      CommonWord(word: '同省', reading: 'どうしょう', meaning: 'the said ministry'),
+    ],
   ),
   KanjiCard(
     id: 'n2-223',
@@ -10930,6 +15114,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ケン'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '県立', reading: 'けんりつ', meaning: 'prefectural'),
+      CommonWord(word: '県庁', reading: 'けんちょう', meaning: 'prefectural office'),
+      CommonWord(word: '県警', reading: 'けんけい', meaning: 'prefectural police'),
+    ],
   ),
   KanjiCard(
     id: 'n2-224',
@@ -10943,6 +15132,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['タン'],
     kunyomi: ['みじかい'],
+    commonWords: [
+      CommonWord(word: '短期', reading: 'たんき', meaning: 'short-term'),
+      CommonWord(word: '短大', reading: 'たんだい', meaning: 'junior college'),
+      CommonWord(word: '短歌', reading: 'たんか', meaning: 'tanka'),
+    ],
   ),
   KanjiCard(
     id: 'n2-225',
@@ -10956,6 +15150,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['サ', 'シャ'],
     kunyomi: ['すな'],
+    commonWords: [
+      CommonWord(word: '砂', reading: 'すな', meaning: 'sand'),
+      CommonWord(word: '砂漠', reading: 'さばく', meaning: 'desert'),
+      CommonWord(word: '砂糖', reading: 'さとう', meaning: 'sugar'),
+    ],
   ),
   KanjiCard(
     id: 'n2-226',
@@ -10969,6 +15168,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['コウ'],
     kunyomi: ['かた'],
+    commonWords: [
+      CommonWord(word: '硬貨', reading: 'こうか', meaning: 'coin'),
+      CommonWord(word: '強硬', reading: 'きょうこう', meaning: 'firm'),
+      CommonWord(word: '硬派', reading: 'こうは', meaning: 'hard-liners'),
+    ],
   ),
   KanjiCard(
     id: 'n2-227',
@@ -10982,6 +15186,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['マ'],
     kunyomi: ['みが', 'す'],
+    commonWords: [
+      CommonWord(word: '歯磨き', reading: 'はみがき', meaning: 'dental brushing'),
+      CommonWord(word: '磨き', reading: 'みがき', meaning: 'polish'),
+      CommonWord(word: '研磨', reading: 'けんま', meaning: 'grinding'),
+    ],
   ),
   KanjiCard(
     id: 'n2-228',
@@ -10995,6 +15204,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['キ'],
     kunyomi: ['いの'],
+    commonWords: [
+      CommonWord(word: '祈り', reading: 'いのり', meaning: 'prayer'),
+      CommonWord(word: '祈る', reading: 'いのる', meaning: 'to pray'),
+    ],
   ),
   KanjiCard(
     id: 'n2-229',
@@ -11008,6 +15221,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['シュク', 'シュウ'],
     kunyomi: ['いわ'],
+    commonWords: [
+      CommonWord(word: '祝い', reading: 'いわい', meaning: 'congratulation'),
+      CommonWord(word: '祝日', reading: 'しゅくじつ', meaning: 'national holiday'),
+      CommonWord(word: '祝福', reading: 'しゅくふく', meaning: 'celebration'),
+    ],
   ),
   KanjiCard(
     id: 'n2-230',
@@ -11021,6 +15239,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['サイ'],
     kunyomi: ['まつ', 'まつり'],
+    commonWords: [
+      CommonWord(word: '祭り', reading: 'まつり', meaning: 'festival'),
+      CommonWord(word: '冠婚葬祭', reading: 'かんこんそうさい', meaning: 'important ceremonial occasions in'),
+      CommonWord(word: '芸術祭', reading: 'げいじゅつさい', meaning: 'art festival'),
+    ],
   ),
   KanjiCard(
     id: 'n2-231',
@@ -11034,6 +15257,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['キン'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '禁止', reading: 'きんし', meaning: 'prohibition'),
+      CommonWord(word: '禁煙', reading: 'きんえん', meaning: 'abstaining from smoking'),
+      CommonWord(word: '監禁', reading: 'かんきん', meaning: 'confinement'),
+    ],
   ),
   KanjiCard(
     id: 'n2-232',
@@ -11047,6 +15275,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ビョウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '秒読み', reading: 'びょうよみ', meaning: 'countdown'),
+      CommonWord(word: '秒速', reading: 'びょうそく', meaning: 'speed per second'),
+      CommonWord(word: '秒', reading: 'びょう', meaning: 'second'),
+    ],
   ),
   KanjiCard(
     id: 'n2-233',
@@ -11060,6 +15293,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['イ'],
     kunyomi: ['うつ'],
+    commonWords: [
+      CommonWord(word: '移植', reading: 'いしょく', meaning: 'transplanting'),
+      CommonWord(word: '移転', reading: 'いてん', meaning: 'moving'),
+      CommonWord(word: '移動', reading: 'いどう', meaning: 'movement'),
+    ],
   ),
   KanjiCard(
     id: 'n2-234',
@@ -11073,6 +15311,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ゼイ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '関税', reading: 'かんぜい', meaning: 'customs'),
+      CommonWord(word: '課税', reading: 'かぜい', meaning: 'taxation'),
+      CommonWord(word: '増税', reading: 'ぞうぜい', meaning: 'tax increase'),
+    ],
   ),
   KanjiCard(
     id: 'n2-235',
@@ -11086,6 +15329,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ショウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '章', reading: 'しょう', meaning: 'chapter'),
+      CommonWord(word: '文章', reading: 'ぶんしょう', meaning: 'writing'),
+      CommonWord(word: '憲章', reading: 'けんしょう', meaning: 'charter'),
+    ],
   ),
   KanjiCard(
     id: 'n2-236',
@@ -11099,6 +15347,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ドウ'],
     kunyomi: ['わらべ'],
+    commonWords: [
+      CommonWord(word: '児童', reading: 'じどう', meaning: 'children'),
+      CommonWord(word: '童話', reading: 'どうわ', meaning: 'children\'s story'),
+      CommonWord(word: '童謡', reading: 'どうよう', meaning: 'children\'s song'),
+    ],
   ),
   KanjiCard(
     id: 'n2-237',
@@ -11112,6 +15365,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['キョウ', 'ケイ'],
     kunyomi: ['きそ', 'せ', 'くら'],
+    commonWords: [
+      CommonWord(word: '競技', reading: 'きょうぎ', meaning: 'game'),
+      CommonWord(word: '競争', reading: 'きょうそう', meaning: 'competition'),
+      CommonWord(word: '競馬', reading: 'けいば', meaning: 'horse racing'),
+    ],
   ),
   KanjiCard(
     id: 'n2-238',
@@ -11125,6 +15383,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['チク'],
     kunyomi: ['たけ'],
+    commonWords: [
+      CommonWord(word: '竹', reading: 'たけ', meaning: 'bamboo'),
+      CommonWord(word: '爆竹', reading: 'ばくちく', meaning: 'firecracker'),
+      CommonWord(word: '竹林', reading: 'ちくりん', meaning: 'bamboo thicket'),
+    ],
   ),
   KanjiCard(
     id: 'n2-239',
@@ -11138,6 +15401,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['フ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '終止符', reading: 'しゅうしふ', meaning: 'full stop'),
+      CommonWord(word: '切符', reading: 'きっぷ', meaning: 'ticket'),
+      CommonWord(word: '六十四分音符', reading: 'ろくじゅうしぶおんぷ', meaning: '64th note'),
+    ],
   ),
   KanjiCard(
     id: 'n2-240',
@@ -11151,6 +15419,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ヒツ'],
     kunyomi: ['ふで'],
+    commonWords: [
+      CommonWord(word: '執筆', reading: 'しっぴつ', meaning: 'writing'),
+      CommonWord(word: '筆', reading: 'ふで', meaning: 'writing brush'),
+      CommonWord(word: '筆者', reading: 'ひっしゃ', meaning: 'writer'),
+    ],
   ),
   KanjiCard(
     id: 'n2-241',
@@ -11164,6 +15437,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['トウ'],
     kunyomi: ['つつ'],
+    commonWords: [
+      CommonWord(word: '封筒', reading: 'ふうとう', meaning: 'envelope'),
+      CommonWord(word: '筒', reading: 'つつ', meaning: 'pipe'),
+      CommonWord(word: '筒井', reading: 'つつい', meaning: 'round well'),
+    ],
   ),
   KanjiCard(
     id: 'n2-242',
@@ -11177,6 +15455,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['サン'],
     kunyomi: ['そろ'],
+    commonWords: [
+      CommonWord(word: '予算', reading: 'よさん', meaning: 'estimate'),
+      CommonWord(word: '決算', reading: 'けっさん', meaning: 'settlement of accounts'),
+      CommonWord(word: '計算', reading: 'けいさん', meaning: 'calculation'),
+    ],
   ),
   KanjiCard(
     id: 'n2-243',
@@ -11190,6 +15473,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['カン'],
     kunyomi: ['くだ'],
+    commonWords: [
+      CommonWord(word: '管理', reading: 'かんり', meaning: 'control'),
+      CommonWord(word: '管', reading: 'かん', meaning: 'pipe'),
+      CommonWord(word: '血管', reading: 'けっかん', meaning: 'blood vessel'),
+    ],
   ),
   KanjiCard(
     id: 'n2-244',
@@ -11203,6 +15491,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['チク'],
     kunyomi: ['きず'],
+    commonWords: [
+      CommonWord(word: '建築', reading: 'けんちく', meaning: 'construction'),
+      CommonWord(word: '新築', reading: 'しんちく', meaning: 'new building'),
+      CommonWord(word: '改築', reading: 'かいちく', meaning: 'structural alteration'),
+    ],
   ),
   KanjiCard(
     id: 'n2-245',
@@ -11216,6 +15509,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['カン', 'ケン'],
     kunyomi: ['えら', 'ふだ'],
+    commonWords: [
+      CommonWord(word: '簡単', reading: 'かんたん', meaning: 'simple'),
+      CommonWord(word: '書簡', reading: 'しょかん', meaning: 'letter'),
+      CommonWord(word: '簡裁', reading: 'かんさい', meaning: 'summary court'),
+    ],
   ),
   KanjiCard(
     id: 'n2-246',
@@ -11229,6 +15527,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['セキ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '国籍', reading: 'こくせき', meaning: 'nationality'),
+      CommonWord(word: '書籍', reading: 'しょせき', meaning: 'book'),
+      CommonWord(word: '戸籍', reading: 'こせき', meaning: 'family register'),
+    ],
   ),
   KanjiCard(
     id: 'n2-247',
@@ -11242,6 +15545,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['フン'],
     kunyomi: ['デシメートル', 'こ', 'こな'],
+    commonWords: [
+      CommonWord(word: '粉', reading: 'こな', meaning: 'flour'),
+      CommonWord(word: '小麦粉', reading: 'こむぎこ', meaning: 'wheat flour'),
+      CommonWord(word: '粉末', reading: 'ふんまつ', meaning: 'fine powder'),
+    ],
   ),
   KanjiCard(
     id: 'n2-248',
@@ -11255,6 +15563,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['リュウ'],
     kunyomi: ['つぶ'],
+    commonWords: [
+      CommonWord(word: '粒', reading: 'つぶ', meaning: 'grain'),
+      CommonWord(word: '粒子', reading: 'りゅうし', meaning: 'particle'),
+      CommonWord(word: '素粒子', reading: 'そりゅうし', meaning: 'elementary particle'),
+    ],
   ),
   KanjiCard(
     id: 'n2-249',
@@ -11268,6 +15581,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['シ'],
     kunyomi: ['いと'],
+    commonWords: [
+      CommonWord(word: '糸', reading: 'いと', meaning: 'thread'),
+      CommonWord(word: '糸口', reading: 'いとぐち', meaning: 'beginning'),
+      CommonWord(word: '毛糸', reading: 'けいと', meaning: 'knitting wool'),
+    ],
   ),
   KanjiCard(
     id: 'n2-250',
@@ -11281,6 +15599,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['コウ', 'ク'],
     kunyomi: ['べに', 'くれない', 'あか'],
+    commonWords: [
+      CommonWord(word: '紅', reading: 'くれない', meaning: 'deep red'),
+      CommonWord(word: '紅白', reading: 'こうはく', meaning: 'red and white'),
+      CommonWord(word: '紅茶', reading: 'こうちゃ', meaning: 'black tea'),
+    ],
   ),
   KanjiCard(
     id: 'n2-251',
@@ -11294,6 +15617,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ジュン'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '単純', reading: 'たんじゅん', meaning: 'simple'),
+      CommonWord(word: '純粋', reading: 'じゅんすい', meaning: 'pure'),
+      CommonWord(word: '純', reading: 'じゅん', meaning: 'innocent'),
+    ],
   ),
   KanjiCard(
     id: 'n2-252',
@@ -11307,6 +15635,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['サイ'],
     kunyomi: ['ほそ', 'こま'],
+    commonWords: [
+      CommonWord(word: '細胞', reading: 'さいぼう', meaning: 'cell'),
+      CommonWord(word: '細かい', reading: 'こまかい', meaning: 'small'),
+      CommonWord(word: '詳細', reading: 'しょうさい', meaning: 'details'),
+    ],
   ),
   KanjiCard(
     id: 'n2-253',
@@ -11320,6 +15653,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ショウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '紹介', reading: 'しょうかい', meaning: 'introduction'),
+      CommonWord(word: '自己紹介', reading: 'じこしょうかい', meaning: 'self-introduction'),
+      CommonWord(word: '紹介者', reading: 'しょうかいしゃ', meaning: 'person who introduces someone'),
+    ],
   ),
   KanjiCard(
     id: 'n2-254',
@@ -11333,6 +15671,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ラク'],
     kunyomi: ['から'],
+    commonWords: [
+      CommonWord(word: '連絡', reading: 'れんらく', meaning: 'contacting'),
+      CommonWord(word: '絡み', reading: 'からみ', meaning: 'linkage'),
+      CommonWord(word: '短絡', reading: 'たんらく', meaning: 'short circuit'),
+    ],
   ),
   KanjiCard(
     id: 'n2-255',
@@ -11346,6 +15689,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['メン'],
     kunyomi: ['わた'],
+    commonWords: [
+      CommonWord(word: '綿', reading: 'めん', meaning: 'cotton'),
+      CommonWord(word: '綿密', reading: 'めんみつ', meaning: 'minute'),
+      CommonWord(word: '綿布', reading: 'めんぷ', meaning: 'cotton cloth'),
+    ],
   ),
   KanjiCard(
     id: 'n2-256',
@@ -11359,6 +15707,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ソウ'],
     kunyomi: ['す', 'すべ', 'ふさ'],
+    commonWords: [
+      CommonWord(word: '総会', reading: 'そうかい', meaning: 'general meeting'),
+      CommonWord(word: '総裁', reading: 'そうさい', meaning: 'president'),
+      CommonWord(word: '総合', reading: 'そうごう', meaning: 'synthesis'),
+    ],
   ),
   KanjiCard(
     id: 'n2-257',
@@ -11372,6 +15725,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['リョク', 'ロク'],
     kunyomi: ['みどり'],
+    commonWords: [
+      CommonWord(word: '緑', reading: 'みどり', meaning: 'green'),
+      CommonWord(word: '緑地', reading: 'りょくち', meaning: 'green tract of land'),
+      CommonWord(word: '緑化', reading: 'りょっか', meaning: 'greening'),
+    ],
   ),
   KanjiCard(
     id: 'n2-258',
@@ -11385,6 +15743,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['セン'],
     kunyomi: ['すじ'],
+    commonWords: [
+      CommonWord(word: '新幹線', reading: 'しんかんせん', meaning: 'Shinkansen'),
+      CommonWord(word: '線', reading: 'せん', meaning: 'line'),
+      CommonWord(word: '無線', reading: 'むせん', meaning: 'radio'),
+    ],
   ),
   KanjiCard(
     id: 'n2-259',
@@ -11398,6 +15761,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ヘン'],
     kunyomi: ['あ', '-あ'],
+    commonWords: [
+      CommonWord(word: '編成', reading: 'へんせい', meaning: 'composition'),
+      CommonWord(word: '編集', reading: 'へんしゅう', meaning: 'editing'),
+      CommonWord(word: '再編', reading: 'さいへん', meaning: 'reorganization'),
+    ],
   ),
   KanjiCard(
     id: 'n2-260',
@@ -11411,6 +15779,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['レン'],
     kunyomi: ['ね'],
+    commonWords: [
+      CommonWord(word: '練習', reading: 'れんしゅう', meaning: 'practice'),
+      CommonWord(word: '訓練', reading: 'くんれん', meaning: 'training'),
+      CommonWord(word: '未練', reading: 'みれん', meaning: 'lingering attachment'),
+    ],
   ),
   KanjiCard(
     id: 'n2-261',
@@ -11424,6 +15797,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['セキ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '実績', reading: 'じっせき', meaning: 'achievements'),
+      CommonWord(word: '業績', reading: 'ぎょうせき', meaning: 'achievement'),
+      CommonWord(word: '成績', reading: 'せいせき', meaning: 'results'),
+    ],
   ),
   KanjiCard(
     id: 'n2-262',
@@ -11437,6 +15815,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['カン'],
     kunyomi: ['かま'],
+    commonWords: [
+      CommonWord(word: '缶詰', reading: 'かんづめ', meaning: 'canned food'),
+      CommonWord(word: '缶', reading: 'かま', meaning: 'boiler'),
+      CommonWord(word: '空き缶', reading: 'あきかん', meaning: 'empty can'),
+    ],
   ),
   KanjiCard(
     id: 'n2-263',
@@ -11450,6 +15833,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ショ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '署名', reading: 'しょめい', meaning: 'signature'),
+      CommonWord(word: '税務署', reading: 'ぜいむしょ', meaning: 'tax office'),
+      CommonWord(word: '署員', reading: 'しょいん', meaning: 'staff member'),
+    ],
   ),
   KanjiCard(
     id: 'n2-264',
@@ -11463,6 +15851,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['グン'],
     kunyomi: ['む', 'むら'],
+    commonWords: [
+      CommonWord(word: '群', reading: 'ぐん', meaning: 'group'),
+      CommonWord(word: '抜群', reading: 'ばつぐん', meaning: 'outstanding'),
+      CommonWord(word: '症候群', reading: 'しょうこうぐん', meaning: 'syndrome'),
+    ],
   ),
   KanjiCard(
     id: 'n2-265',
@@ -11476,6 +15869,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ウ'],
     kunyomi: ['は', 'わ', 'はね'],
+    commonWords: [
+      CommonWord(word: '羽', reading: 'はね', meaning: 'feather'),
+      CommonWord(word: '羽目', reading: 'はめ', meaning: 'panel'),
+      CommonWord(word: '白羽', reading: 'しらは', meaning: 'white feather'),
+    ],
   ),
   KanjiCard(
     id: 'n2-266',
@@ -11489,6 +15887,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ヨク'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '翌日', reading: 'よくじつ', meaning: 'next day'),
+      CommonWord(word: '翌年', reading: 'よくねん', meaning: 'following year'),
+      CommonWord(word: '翌朝', reading: 'よくあさ', meaning: 'next morning'),
+    ],
   ),
   KanjiCard(
     id: 'n2-267',
@@ -11502,6 +15905,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['コウ'],
     kunyomi: ['たがや'],
+    commonWords: [
+      CommonWord(word: '農耕', reading: 'のうこう', meaning: 'farming'),
+      CommonWord(word: '耕作', reading: 'こうさく', meaning: 'cultivation'),
+      CommonWord(word: '耕す', reading: 'たがやす', meaning: 'to till'),
+    ],
   ),
   KanjiCard(
     id: 'n2-268',
@@ -11515,6 +15923,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['キ'],
     kunyomi: ['はだ'],
+    commonWords: [
+      CommonWord(word: '肌', reading: 'はだ', meaning: 'skin'),
+      CommonWord(word: '肌着', reading: 'はだぎ', meaning: 'underwear'),
+      CommonWord(word: '肌色', reading: 'はだいろ', meaning: 'flesh colour'),
+    ],
   ),
   KanjiCard(
     id: 'n2-269',
@@ -11528,6 +15941,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ケン'],
     kunyomi: ['かた'],
+    commonWords: [
+      CommonWord(word: '肩', reading: 'かた', meaning: 'shoulder'),
+      CommonWord(word: '肩書', reading: 'かたがき', meaning: 'title'),
+      CommonWord(word: '肩代わり', reading: 'かたがわり', meaning: 'taking over'),
+    ],
   ),
   KanjiCard(
     id: 'n2-270',
@@ -11541,6 +15959,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['コウ'],
     kunyomi: ['がえんじ'],
+    commonWords: [
+      CommonWord(word: '肯定', reading: 'こうてい', meaning: 'affirmation'),
+      CommonWord(word: '肯定的', reading: 'こうていてき', meaning: 'affirmative'),
+    ],
   ),
   KanjiCard(
     id: 'n2-271',
@@ -11554,6 +15976,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['イ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '胃', reading: 'い', meaning: 'stomach'),
+      CommonWord(word: '胃腸', reading: 'いちょう', meaning: 'stomach and intestines'),
+    ],
   ),
   KanjiCard(
     id: 'n2-272',
@@ -11567,6 +15993,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['キョウ'],
     kunyomi: ['むね', 'むな'],
+    commonWords: [
+      CommonWord(word: '胸', reading: 'むね', meaning: 'chest'),
+      CommonWord(word: '度胸', reading: 'どきょう', meaning: 'courage'),
+      CommonWord(word: '胸中', reading: 'きょうちゅう', meaning: 'one\'s heart'),
+    ],
   ),
   KanjiCard(
     id: 'n2-273',
@@ -11580,6 +16011,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['シ'],
     kunyomi: ['あぶら'],
+    commonWords: [
+      CommonWord(word: '脂肪', reading: 'しぼう', meaning: 'fat'),
+      CommonWord(word: '樹脂', reading: 'じゅし', meaning: 'resin'),
+      CommonWord(word: '油脂', reading: 'ゆし', meaning: 'fats and oils'),
+    ],
   ),
   KanjiCard(
     id: 'n2-274',
@@ -11593,6 +16029,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ノウ', 'ドウ'],
     kunyomi: ['のうずる'],
+    commonWords: [
+      CommonWord(word: '首脳', reading: 'しゅのう', meaning: 'head'),
+      CommonWord(word: '脳', reading: 'のう', meaning: 'brain'),
+      CommonWord(word: '脳死', reading: 'のうし', meaning: 'brain death'),
+    ],
   ),
   KanjiCard(
     id: 'n2-275',
@@ -11606,6 +16047,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ワン'],
     kunyomi: ['うで'],
+    commonWords: [
+      CommonWord(word: '腕', reading: 'うで', meaning: 'arm'),
+      CommonWord(word: '腕時計', reading: 'うでどけい', meaning: 'wristwatch'),
+      CommonWord(word: '腕前', reading: 'うでまえ', meaning: 'ability'),
+    ],
   ),
   KanjiCard(
     id: 'n2-276',
@@ -11619,6 +16065,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ヨウ'],
     kunyomi: ['こし'],
+    commonWords: [
+      CommonWord(word: '腰', reading: 'こし', meaning: 'lower back'),
+      CommonWord(word: '腰痛', reading: 'ようつう', meaning: 'lower back pain'),
+      CommonWord(word: '足腰', reading: 'あしこし', meaning: 'legs and loins'),
+    ],
   ),
   KanjiCard(
     id: 'n2-277',
@@ -11632,6 +16083,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['フ'],
     kunyomi: ['はだ'],
+    commonWords: [
+      CommonWord(word: '皮膚', reading: 'ひふ', meaning: 'skin'),
+      CommonWord(word: '皮膚科', reading: 'ひふか', meaning: 'dermatology'),
+      CommonWord(word: '皮膚病', reading: 'ひふびょう', meaning: 'skin disease'),
+    ],
   ),
   KanjiCard(
     id: 'n2-278',
@@ -11645,6 +16101,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ゾウ'],
     kunyomi: ['はらわた'],
+    commonWords: [
+      CommonWord(word: '心臓', reading: 'しんぞう', meaning: 'heart'),
+      CommonWord(word: '肝臓', reading: 'かんぞう', meaning: 'liver'),
+      CommonWord(word: '内臓', reading: 'ないぞう', meaning: 'internal organs'),
+    ],
   ),
   KanjiCard(
     id: 'n2-279',
@@ -11658,6 +16119,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['シン', 'ジン'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '大臣', reading: 'だいじん', meaning: 'cabinet minister'),
+      CommonWord(word: '総理大臣', reading: 'そうりだいじん', meaning: 'prime minister'),
+      CommonWord(word: '忠臣', reading: 'ちゅうしん', meaning: 'loyal retainer'),
+    ],
   ),
   KanjiCard(
     id: 'n2-280',
@@ -11671,6 +16137,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['シュウ'],
     kunyomi: ['ふね', 'ふな', '-ぶね'],
+    commonWords: [
+      CommonWord(word: '小舟', reading: 'こぶね', meaning: 'small boat'),
+      CommonWord(word: '呉越同舟', reading: 'ごえつどうしゅう', meaning: 'bitter enemies in the same boat'),
+      CommonWord(word: '舟艇', reading: 'しゅうてい', meaning: 'boat'),
+    ],
   ),
   KanjiCard(
     id: 'n2-281',
@@ -11684,6 +16155,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['コウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '航空', reading: 'こうくう', meaning: 'aviation'),
+      CommonWord(word: '航空機', reading: 'こうくうき', meaning: 'aircraft'),
+      CommonWord(word: '航海', reading: 'こうかい', meaning: 'voyage'),
+    ],
   ),
   KanjiCard(
     id: 'n2-282',
@@ -11697,6 +16173,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ハン'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '一般', reading: 'いっぱん', meaning: 'general'),
+      CommonWord(word: '全般', reading: 'ぜんぱん', meaning: 'whole'),
+      CommonWord(word: '先般', reading: 'せんぱん', meaning: 'some time ago'),
+    ],
   ),
   KanjiCard(
     id: 'n2-283',
@@ -11710,6 +16191,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ゲイ', 'ウン'],
     kunyomi: ['う', 'のり', 'わざ'],
+    commonWords: [
+      CommonWord(word: '芸術', reading: 'げいじゅつ', meaning: 'art'),
+      CommonWord(word: '芸能', reading: 'げいのう', meaning: 'public entertainment'),
+      CommonWord(word: '文芸', reading: 'ぶんげい', meaning: 'literature'),
+    ],
   ),
   KanjiCard(
     id: 'n2-284',
@@ -11723,6 +16209,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['コウ'],
     kunyomi: ['あ', 'あら', 'すさ'],
+    commonWords: [
+      CommonWord(word: '荒れる', reading: 'あれる', meaning: 'to become stormy'),
+      CommonWord(word: '荒らす', reading: 'あらす', meaning: 'to lay waste'),
+      CommonWord(word: '荒木', reading: 'あらき', meaning: 'logs in bark'),
+    ],
   ),
   KanjiCard(
     id: 'n2-285',
@@ -11736,6 +16227,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['カ'],
     kunyomi: ['に'],
+    commonWords: [
+      CommonWord(word: '出荷', reading: 'しゅっか', meaning: 'shipping'),
+      CommonWord(word: '荷物', reading: 'にもつ', meaning: 'luggage'),
+      CommonWord(word: '荷', reading: 'に', meaning: 'load'),
+    ],
   ),
   KanjiCard(
     id: 'n2-286',
@@ -11749,6 +16245,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['カ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '菓子', reading: 'かし', meaning: 'confectionery'),
+      CommonWord(word: '和菓子', reading: 'わがし', meaning: 'wagashi'),
+      CommonWord(word: '駄菓子', reading: 'だがし', meaning: 'penny candy'),
+    ],
   ),
   KanjiCard(
     id: 'n2-287',
@@ -11762,6 +16263,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['サイ'],
     kunyomi: ['な'],
+    commonWords: [
+      CommonWord(word: '野菜', reading: 'やさい', meaning: 'vegetable'),
+      CommonWord(word: '山菜', reading: 'さんさい', meaning: 'edible wild plants'),
+      CommonWord(word: '菜園', reading: 'さいえん', meaning: 'vegetable garden'),
+    ],
   ),
   KanjiCard(
     id: 'n2-288',
@@ -11775,6 +16281,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['チョ', 'チャク'],
     kunyomi: ['あらわ', 'いちじる'],
+    commonWords: [
+      CommonWord(word: '著者', reading: 'ちょしゃ', meaning: 'author'),
+      CommonWord(word: '著書', reading: 'ちょしょ', meaning: 'work'),
+      CommonWord(word: '著名', reading: 'ちょめい', meaning: 'famous'),
+    ],
   ),
   KanjiCard(
     id: 'n2-289',
@@ -11788,6 +16299,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ジョウ', 'セイ'],
     kunyomi: ['む'],
+    commonWords: [
+      CommonWord(word: '蒸す', reading: 'むす', meaning: 'to steam'),
+      CommonWord(word: '水蒸気', reading: 'すいじょうき', meaning: 'water vapour'),
+      CommonWord(word: '蒸気', reading: 'じょうき', meaning: 'steam'),
+    ],
   ),
   KanjiCard(
     id: 'n2-290',
@@ -11801,6 +16317,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ゾウ', 'ソウ'],
     kunyomi: ['くら', 'おさ', 'かく'],
+    commonWords: [
+      CommonWord(word: '大蔵', reading: 'おおくら', meaning: 'Ministry of Finance'),
+      CommonWord(word: '冷蔵庫', reading: 'れいぞうこ', meaning: 'refrigerator'),
+      CommonWord(word: '蔵相', reading: 'ぞうしょう', meaning: 'Minister of Finance'),
+    ],
   ),
   KanjiCard(
     id: 'n2-291',
@@ -11814,6 +16335,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ハク'],
     kunyomi: ['うす', '-うす', 'すすき'],
+    commonWords: [
+      CommonWord(word: '薄い', reading: 'うすい', meaning: 'thin'),
+      CommonWord(word: '薄暗い', reading: 'うすぐらい', meaning: 'dim'),
+      CommonWord(word: '薄れる', reading: 'うすれる', meaning: 'to fade'),
+    ],
   ),
   KanjiCard(
     id: 'n2-292',
@@ -11827,6 +16353,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['チュウ', 'キ'],
     kunyomi: ['むし'],
+    commonWords: [
+      CommonWord(word: '虫', reading: 'むし', meaning: 'insect'),
+      CommonWord(word: '虫歯', reading: 'むしば', meaning: 'tooth decay'),
+      CommonWord(word: '害虫', reading: 'がいちゅう', meaning: 'harmful insect'),
+    ],
   ),
   KanjiCard(
     id: 'n2-293',
@@ -11840,6 +16371,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ケツ'],
     kunyomi: ['ち'],
+    commonWords: [
+      CommonWord(word: '血', reading: 'ち', meaning: 'blood'),
+      CommonWord(word: '出血', reading: 'しゅっけつ', meaning: 'bleeding'),
+      CommonWord(word: '血圧', reading: 'けつあつ', meaning: 'blood pressure'),
+    ],
   ),
   KanjiCard(
     id: 'n2-294',
@@ -11853,6 +16389,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['イ', 'エ'],
     kunyomi: ['ころも', 'きぬ', '-ぎ'],
+    commonWords: [
+      CommonWord(word: '衣装', reading: 'いしょう', meaning: 'clothing'),
+      CommonWord(word: '衣類', reading: 'いるい', meaning: 'clothes'),
+      CommonWord(word: '浴衣', reading: 'ゆかた', meaning: 'yukata'),
+    ],
   ),
   KanjiCard(
     id: 'n2-295',
@@ -11866,6 +16407,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['タイ', 'ダイ'],
     kunyomi: ['ふくろ'],
+    commonWords: [
+      CommonWord(word: '袋', reading: 'ふくろ', meaning: 'bag'),
+      CommonWord(word: '手袋', reading: 'てぶくろ', meaning: 'glove'),
+      CommonWord(word: '紙袋', reading: 'かみぶくろ', meaning: 'paper bag'),
+    ],
   ),
   KanjiCard(
     id: 'n2-296',
@@ -11879,6 +16425,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ヒ'],
     kunyomi: ['こうむ', 'おお', 'かぶ'],
+    commonWords: [
+      CommonWord(word: '被告', reading: 'ひこく', meaning: 'defendant'),
+      CommonWord(word: '被害', reading: 'ひがい', meaning: 'damage'),
+      CommonWord(word: '被害者', reading: 'ひがいしゃ', meaning: 'victim'),
+    ],
   ),
   KanjiCard(
     id: 'n2-297',
@@ -11892,6 +16443,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ソウ', 'ショウ'],
     kunyomi: ['よそお'],
+    commonWords: [
+      CommonWord(word: '装置', reading: 'そうち', meaning: 'equipment'),
+      CommonWord(word: '武装', reading: 'ぶそう', meaning: 'arms'),
+      CommonWord(word: '衣装', reading: 'いしょう', meaning: 'clothing'),
+    ],
   ),
   KanjiCard(
     id: 'n2-298',
@@ -11905,6 +16461,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['リ'],
     kunyomi: ['うら'],
+    commonWords: [
+      CommonWord(word: '裏切る', reading: 'うらぎる', meaning: 'to betray'),
+      CommonWord(word: '表裏', reading: 'ひょうり', meaning: 'front and back'),
+      CommonWord(word: '裏', reading: 'うら', meaning: 'opposite side'),
+    ],
   ),
   KanjiCard(
     id: 'n2-299',
@@ -11918,6 +16479,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ホ'],
     kunyomi: ['おぎな'],
+    commonWords: [
+      CommonWord(word: '候補', reading: 'こうほ', meaning: 'candidate'),
+      CommonWord(word: '補助', reading: 'ほじょ', meaning: 'assistance'),
+      CommonWord(word: '補償', reading: 'ほしょう', meaning: 'compensation'),
+    ],
   ),
   KanjiCard(
     id: 'n2-300',
@@ -11931,6 +16497,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['フク'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '複雑', reading: 'ふくざつ', meaning: 'complex'),
+      CommonWord(word: '複数', reading: 'ふくすう', meaning: 'plural'),
+      CommonWord(word: '複合', reading: 'ふくごう', meaning: 'composite'),
+    ],
   ),
   KanjiCard(
     id: 'n2-301',
@@ -11944,6 +16515,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['カク'],
     kunyomi: ['かど', 'つの'],
+    commonWords: [
+      CommonWord(word: '多角', reading: 'たかく', meaning: 'many-sided'),
+      CommonWord(word: '角', reading: 'かく', meaning: 'angle'),
+      CommonWord(word: '三角', reading: 'さんかく', meaning: 'triangle'),
+    ],
   ),
   KanjiCard(
     id: 'n2-302',
@@ -11957,6 +16533,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ショク'],
     kunyomi: ['ふ', 'さわ'],
+    commonWords: [
+      CommonWord(word: '接触', reading: 'せっしょく', meaning: 'touch'),
+      CommonWord(word: '感触', reading: 'かんしょく', meaning: 'feel'),
+      CommonWord(word: '触れ合い', reading: 'ふれあい', meaning: 'contact'),
+    ],
   ),
   KanjiCard(
     id: 'n2-303',
@@ -11970,6 +16551,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['クン', 'キン'],
     kunyomi: ['おし', 'よ', 'くん'],
+    commonWords: [
+      CommonWord(word: '訓練', reading: 'くんれん', meaning: 'training'),
+      CommonWord(word: '教訓', reading: 'きょうくん', meaning: 'lesson'),
+      CommonWord(word: '特訓', reading: 'とっくん', meaning: 'special training'),
+    ],
   ),
   KanjiCard(
     id: 'n2-304',
@@ -11983,6 +16569,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['セツ'],
     kunyomi: ['もう'],
+    commonWords: [
+      CommonWord(word: '建設', reading: 'けんせつ', meaning: 'construction'),
+      CommonWord(word: '施設', reading: 'しせつ', meaning: 'facility'),
+      CommonWord(word: '設置', reading: 'せっち', meaning: 'establishment'),
+    ],
   ),
   KanjiCard(
     id: 'n2-305',
@@ -11996,6 +16587,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['シ'],
     kunyomi: ['ことば'],
+    commonWords: [
+      CommonWord(word: '代名詞', reading: 'だいめいし', meaning: 'pronoun'),
+      CommonWord(word: '歌詞', reading: 'かし', meaning: 'song lyrics'),
+      CommonWord(word: '形容詞', reading: 'けいようし', meaning: 'adjective'),
+    ],
   ),
   KanjiCard(
     id: 'n2-306',
@@ -12009,6 +16605,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['キツ', 'キチ'],
     kunyomi: ['つ', '-づ'],
+    commonWords: [
+      CommonWord(word: '缶詰', reading: 'かんづめ', meaning: 'canned food'),
+      CommonWord(word: '詰まる', reading: 'つまる', meaning: 'to be packed'),
+      CommonWord(word: '大詰め', reading: 'おおづめ', meaning: 'final scene'),
+    ],
   ),
   KanjiCard(
     id: 'n2-307',
@@ -12022,6 +16623,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['シ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '雑誌', reading: 'ざっし', meaning: 'magazine'),
+      CommonWord(word: '日誌', reading: 'にっし', meaning: 'journal'),
+      CommonWord(word: '誌面', reading: 'しめん', meaning: 'page of a magazine'),
+    ],
   ),
   KanjiCard(
     id: 'n2-308',
@@ -12035,6 +16641,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['カ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '課題', reading: 'かだい', meaning: 'subject'),
+      CommonWord(word: '課長', reading: 'かちょう', meaning: 'section manager'),
+      CommonWord(word: '課税', reading: 'かぜい', meaning: 'taxation'),
+    ],
   ),
   KanjiCard(
     id: 'n2-309',
@@ -12048,6 +16659,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ショ'],
     kunyomi: ['もろ'],
+    commonWords: [
+      CommonWord(word: '諸君', reading: 'しょくん', meaning: 'you'),
+      CommonWord(word: '諸', reading: 'しょ', meaning: 'various'),
+      CommonWord(word: '諸国', reading: 'しょこく', meaning: 'various countries'),
+    ],
   ),
   KanjiCard(
     id: 'n2-310',
@@ -12061,6 +16677,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['コウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '講演', reading: 'こうえん', meaning: 'lecture'),
+      CommonWord(word: '講師', reading: 'こうし', meaning: 'speaker'),
+      CommonWord(word: '講堂', reading: 'こうどう', meaning: 'auditorium'),
+    ],
   ),
   KanjiCard(
     id: 'n2-311',
@@ -12074,6 +16695,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['コク'],
     kunyomi: ['たに', 'きわ'],
+    commonWords: [
+      CommonWord(word: '谷', reading: 'たに', meaning: 'valley'),
+      CommonWord(word: '谷川', reading: 'たにがわ', meaning: 'mountain stream'),
+      CommonWord(word: '峡谷', reading: 'きょうこく', meaning: 'gorge'),
+    ],
   ),
   KanjiCard(
     id: 'n2-312',
@@ -12087,6 +16713,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ホウ', 'ブ'],
     kunyomi: ['ゆた', 'とよ'],
+    commonWords: [
+      CommonWord(word: '豊か', reading: 'ゆたか', meaning: 'abundant'),
+      CommonWord(word: '豊作', reading: 'ほうさく', meaning: 'abundant harvest'),
+      CommonWord(word: '豊漁', reading: 'ほうりょう', meaning: 'good catch'),
+    ],
   ),
   KanjiCard(
     id: 'n2-313',
@@ -12100,6 +16731,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ショウ', 'ゾウ'],
     kunyomi: ['かたど'],
+    commonWords: [
+      CommonWord(word: '対象', reading: 'たいしょう', meaning: 'target'),
+      CommonWord(word: '印象', reading: 'いんしょう', meaning: 'impression'),
+      CommonWord(word: '現象', reading: 'げんしょう', meaning: 'phenomenon'),
+    ],
   ),
   KanjiCard(
     id: 'n2-314',
@@ -12113,6 +16749,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['バイ'],
     kunyomi: ['かい'],
+    commonWords: [
+      CommonWord(word: '貝', reading: 'かい', meaning: 'shellfish'),
+      CommonWord(word: '貝殻', reading: 'かいがら', meaning: 'seashell'),
+    ],
   ),
   KanjiCard(
     id: 'n2-315',
@@ -12126,6 +16766,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['カ'],
     kunyomi: ['たから'],
+    commonWords: [
+      CommonWord(word: '通貨', reading: 'つうか', meaning: 'currency'),
+      CommonWord(word: '百貨店', reading: 'ひゃっかてん', meaning: 'department store'),
+      CommonWord(word: '貨物', reading: 'かもつ', meaning: 'cargo'),
+    ],
   ),
   KanjiCard(
     id: 'n2-316',
@@ -12139,6 +16784,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ハン'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '販売', reading: 'はんばい', meaning: 'sale'),
+      CommonWord(word: '市販', reading: 'しはん', meaning: 'putting on the market'),
+      CommonWord(word: '自販', reading: 'じはん', meaning: 'automatic selling'),
+    ],
   ),
   KanjiCard(
     id: 'n2-317',
@@ -12152,6 +16802,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['チョ'],
     kunyomi: ['た', 'たくわ'],
+    commonWords: [
+      CommonWord(word: '貯金', reading: 'ちょきん', meaning: 'putting money aside'),
+      CommonWord(word: '貯蓄', reading: 'ちょちく', meaning: 'savings'),
+      CommonWord(word: '郵貯', reading: 'ゆうちょ', meaning: 'postal (post-office) savings'),
+    ],
   ),
   KanjiCard(
     id: 'n2-318',
@@ -12165,6 +16820,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ボウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '貿易', reading: 'ぼうえき', meaning: 'trade'),
+      CommonWord(word: '保護貿易', reading: 'ほごぼうえき', meaning: 'protective trade'),
+    ],
   ),
   KanjiCard(
     id: 'n2-319',
@@ -12178,6 +16837,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ショウ'],
     kunyomi: ['ほ'],
+    commonWords: [
+      CommonWord(word: '賞金', reading: 'しょうきん', meaning: 'prize money'),
+      CommonWord(word: '入賞', reading: 'にゅうしょう', meaning: 'winning a prize'),
+      CommonWord(word: '賞', reading: 'しょう', meaning: 'prize'),
+    ],
   ),
   KanjiCard(
     id: 'n2-320',
@@ -12191,6 +16855,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ケン'],
     kunyomi: ['かしこ'],
+    commonWords: [
+      CommonWord(word: '賢明', reading: 'けんめい', meaning: 'wise'),
+      CommonWord(word: '普賢', reading: 'ふげん', meaning: 'Samantabhadra'),
+      CommonWord(word: '賢人', reading: 'けんじん', meaning: 'wise person'),
+    ],
   ),
   KanjiCard(
     id: 'n2-321',
@@ -12204,6 +16873,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ゾウ', 'ソウ'],
     kunyomi: ['おく'],
+    commonWords: [
+      CommonWord(word: '贈る', reading: 'おくる', meaning: 'to give'),
+      CommonWord(word: '贈り物', reading: 'おくりもの', meaning: 'present'),
+      CommonWord(word: '贈与', reading: 'ぞうよ', meaning: 'donation'),
+    ],
   ),
   KanjiCard(
     id: 'n2-322',
@@ -12217,6 +16891,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['チョウ'],
     kunyomi: ['こ'],
+    commonWords: [
+      CommonWord(word: '超過', reading: 'ちょうか', meaning: 'excess'),
+      CommonWord(word: '超党派', reading: 'ちょうとうは', meaning: 'suprapartisan'),
+      CommonWord(word: '超電導', reading: 'ちょうでんどう', meaning: 'superconductivity'),
+    ],
   ),
   KanjiCard(
     id: 'n2-323',
@@ -12230,6 +16909,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['セキ'],
     kunyomi: ['あと'],
+    commonWords: [
+      CommonWord(word: '跡', reading: 'あと', meaning: 'trace'),
+      CommonWord(word: '遺跡', reading: 'いせき', meaning: 'remains'),
+      CommonWord(word: '足跡', reading: 'あしあと', meaning: 'footprints'),
+    ],
   ),
   KanjiCard(
     id: 'n2-324',
@@ -12243,6 +16927,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ヨウ'],
     kunyomi: ['おど'],
+    commonWords: [
+      CommonWord(word: '踊り', reading: 'おどり', meaning: 'dancing'),
+      CommonWord(word: '盆踊り', reading: 'ぼんおどり', meaning: 'Bon Festival dance'),
+      CommonWord(word: '踊り子', reading: 'おどりこ', meaning: 'dancer'),
+    ],
   ),
   KanjiCard(
     id: 'n2-325',
@@ -12256,6 +16945,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['グン'],
     kunyomi: ['いくさ'],
+    commonWords: [
+      CommonWord(word: '軍事', reading: 'ぐんじ', meaning: 'military affairs'),
+      CommonWord(word: '軍', reading: 'ぐん', meaning: 'army'),
+      CommonWord(word: '海軍', reading: 'かいぐん', meaning: 'navy'),
+    ],
   ),
   KanjiCard(
     id: 'n2-326',
@@ -12269,6 +16963,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ケン'],
     kunyomi: ['のき'],
+    commonWords: [
+      CommonWord(word: '軒', reading: 'のき', meaning: 'eaves'),
+      CommonWord(word: '軒並み', reading: 'のきなみ', meaning: 'row of houses'),
+      CommonWord(word: '軒先', reading: 'のきさき', meaning: 'edge of the eaves'),
+    ],
   ),
   KanjiCard(
     id: 'n2-327',
@@ -12282,6 +16981,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ナン'],
     kunyomi: ['やわ'],
+    commonWords: [
+      CommonWord(word: '柔軟', reading: 'じゅうなん', meaning: 'flexible'),
+      CommonWord(word: '軟化', reading: 'なんか', meaning: 'softening'),
+      CommonWord(word: '軟式', reading: 'なんしき', meaning: 'soft'),
+    ],
   ),
   KanjiCard(
     id: 'n2-328',
@@ -12295,6 +16999,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ケイ', 'キョウ', 'キン'],
     kunyomi: ['かる', 'かろ'],
+    commonWords: [
+      CommonWord(word: '軽傷', reading: 'けいしょう', meaning: 'minor injury'),
+      CommonWord(word: '手軽', reading: 'てがる', meaning: 'easy'),
+      CommonWord(word: '気軽', reading: 'きがる', meaning: 'carefree'),
+    ],
   ),
   KanjiCard(
     id: 'n2-329',
@@ -12308,6 +17017,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['リン'],
     kunyomi: ['わ'],
+    commonWords: [
+      CommonWord(word: '輪', reading: 'わ', meaning: 'ring'),
+      CommonWord(word: '五輪', reading: 'ごりん', meaning: 'Olympic Games'),
+      CommonWord(word: '車輪', reading: 'しゃりん', meaning: 'wheel'),
+    ],
   ),
   KanjiCard(
     id: 'n2-330',
@@ -12321,6 +17035,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ユ', 'シュ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '輸出', reading: 'ゆしゅつ', meaning: 'export'),
+      CommonWord(word: '輸入', reading: 'ゆにゅう', meaning: 'import'),
+      CommonWord(word: '輸送', reading: 'ゆそう', meaning: 'transport'),
+    ],
   ),
   KanjiCard(
     id: 'n2-331',
@@ -12334,6 +17053,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['シン'],
     kunyomi: ['から', 'つら', '-づら', 'かのと'],
+    commonWords: [
+      CommonWord(word: '辛口', reading: 'からくち', meaning: 'dry taste'),
+      CommonWord(word: '辛い', reading: 'からい', meaning: 'spicy'),
+      CommonWord(word: '香辛料', reading: 'こうしんりょう', meaning: 'spice'),
+    ],
   ),
   KanjiCard(
     id: 'n2-332',
@@ -12347,6 +17071,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ノウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '農業', reading: 'のうぎょう', meaning: 'agriculture'),
+      CommonWord(word: '農家', reading: 'のうか', meaning: 'farmer'),
+      CommonWord(word: '農協', reading: 'のうきょう', meaning: 'agricultural cooperative'),
+    ],
   ),
   KanjiCard(
     id: 'n2-333',
@@ -12360,6 +17089,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ヘン'],
     kunyomi: ['あた', 'ほと', '-べ'],
+    commonWords: [
+      CommonWord(word: '周辺', reading: 'しゅうへん', meaning: 'circumference'),
+      CommonWord(word: '辺', reading: 'へん', meaning: 'area'),
+      CommonWord(word: '海辺', reading: 'うみべ', meaning: 'beach'),
+    ],
   ),
   KanjiCard(
     id: 'n2-334',
@@ -12373,6 +17107,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ジュツ'],
     kunyomi: ['の'],
+    commonWords: [
+      CommonWord(word: '記述', reading: 'きじゅつ', meaning: 'description'),
+      CommonWord(word: '供述', reading: 'きょうじゅつ', meaning: 'affidavit'),
+      CommonWord(word: '陳述', reading: 'ちんじゅつ', meaning: 'statement'),
+    ],
   ),
   KanjiCard(
     id: 'n2-335',
@@ -12386,6 +17125,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ギャク', 'ゲキ'],
     kunyomi: ['さか'],
+    commonWords: [
+      CommonWord(word: '逆', reading: 'ぎゃく', meaning: 'reverse'),
+      CommonWord(word: '逆転', reading: 'ぎゃくてん', meaning: 'reversal'),
+      CommonWord(word: '逆効果', reading: 'ぎゃくこうか', meaning: 'opposite effect'),
+    ],
   ),
   KanjiCard(
     id: 'n2-336',
@@ -12399,6 +17143,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ゾウ'],
     kunyomi: ['つく', '-づく'],
+    commonWords: [
+      CommonWord(word: '構造', reading: 'こうぞう', meaning: 'structure'),
+      CommonWord(word: '製造', reading: 'せいぞう', meaning: 'manufacture'),
+      CommonWord(word: '改造', reading: 'かいぞう', meaning: 'remodeling'),
+    ],
   ),
   KanjiCard(
     id: 'n2-337',
@@ -12412,6 +17161,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['コウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '郊外', reading: 'こうがい', meaning: 'suburb'),
+      CommonWord(word: '近郊', reading: 'きんこう', meaning: 'outskirts'),
+    ],
   ),
   KanjiCard(
     id: 'n2-338',
@@ -12425,6 +17178,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ユウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '郵便', reading: 'ゆうびん', meaning: 'mail service'),
+      CommonWord(word: '郵便局', reading: 'ゆうびんきょく', meaning: 'post office'),
+      CommonWord(word: '郵送', reading: 'ゆうそう', meaning: 'mailing'),
+    ],
   ),
   KanjiCard(
     id: 'n2-339',
@@ -12438,6 +17196,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['リョウ'],
     kunyomi: ['はか'],
+    commonWords: [
+      CommonWord(word: '大量', reading: 'たいりょう', meaning: 'large quantity'),
+      CommonWord(word: '重量', reading: 'じゅうりょう', meaning: 'weight'),
+      CommonWord(word: '数量', reading: 'すうりょう', meaning: 'quantity'),
+    ],
   ),
   KanjiCard(
     id: 'n2-340',
@@ -12451,6 +17214,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['シン'],
     kunyomi: ['はり'],
+    commonWords: [
+      CommonWord(word: '方針', reading: 'ほうしん', meaning: 'policy'),
+      CommonWord(word: '針', reading: 'はり', meaning: 'needle'),
+      CommonWord(word: '針金', reading: 'はりがね', meaning: 'wire'),
+    ],
   ),
   KanjiCard(
     id: 'n2-341',
@@ -12464,6 +17232,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ドン'],
     kunyomi: ['にぶ', 'なま', 'なまく'],
+    commonWords: [
+      CommonWord(word: '鈍化', reading: 'どんか', meaning: 'becoming dull'),
+      CommonWord(word: '鈍感', reading: 'どんかん', meaning: 'thickheaded'),
+      CommonWord(word: '鈍い', reading: 'にぶい', meaning: 'dull'),
+    ],
   ),
   KanjiCard(
     id: 'n2-342',
@@ -12477,6 +17250,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['テツ'],
     kunyomi: ['くろがね'],
+    commonWords: [
+      CommonWord(word: '鉄道', reading: 'てつどう', meaning: 'railroad'),
+      CommonWord(word: '鉄', reading: 'てつ', meaning: 'iron'),
+      CommonWord(word: '地下鉄', reading: 'ちかてつ', meaning: 'subway'),
+    ],
   ),
   KanjiCard(
     id: 'n2-343',
@@ -12490,6 +17268,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['コウ'],
     kunyomi: ['あらがね'],
+    commonWords: [
+      CommonWord(word: '鉱山', reading: 'こうざん', meaning: 'mine'),
+      CommonWord(word: '鉱業', reading: 'こうぎょう', meaning: 'mining industry'),
+      CommonWord(word: '鉱物', reading: 'こうぶつ', meaning: 'mineral'),
+    ],
   ),
   KanjiCard(
     id: 'n2-344',
@@ -12503,6 +17286,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ドウ'],
     kunyomi: ['あかがね'],
+    commonWords: [
+      CommonWord(word: '銅', reading: 'どう', meaning: 'copper'),
+      CommonWord(word: '銅像', reading: 'どうぞう', meaning: 'bronze statue'),
+      CommonWord(word: '銅版画', reading: 'どうはんが', meaning: 'copperplate engraving'),
+    ],
   ),
   KanjiCard(
     id: 'n2-345',
@@ -12516,6 +17304,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['エイ'],
     kunyomi: ['するど'],
+    commonWords: [
+      CommonWord(word: '鋭い', reading: 'するどい', meaning: 'sharp'),
+      CommonWord(word: '新鋭', reading: 'しんえい', meaning: 'young and energetic'),
+      CommonWord(word: '精鋭', reading: 'せいえい', meaning: 'elite'),
+    ],
   ),
   KanjiCard(
     id: 'n2-346',
@@ -12529,6 +17322,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ロク'],
     kunyomi: ['しる', 'と'],
+    commonWords: [
+      CommonWord(word: '記録', reading: 'きろく', meaning: 'record'),
+      CommonWord(word: '登録', reading: 'とうろく', meaning: 'registration'),
+      CommonWord(word: '録音', reading: 'ろくおん', meaning: 'recording'),
+    ],
   ),
   KanjiCard(
     id: 'n2-347',
@@ -12542,6 +17340,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['モン'],
     kunyomi: ['かど'],
+    commonWords: [
+      CommonWord(word: '部門', reading: 'ぶもん', meaning: 'division'),
+      CommonWord(word: '専門', reading: 'せんもん', meaning: 'speciality'),
+      CommonWord(word: '専門家', reading: 'せんもんか', meaning: 'specialist'),
+    ],
   ),
   KanjiCard(
     id: 'n2-348',
@@ -12555,6 +17358,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ボウ'],
     kunyomi: ['ふせ'],
+    commonWords: [
+      CommonWord(word: '防衛', reading: 'ぼうえい', meaning: 'defense'),
+      CommonWord(word: '国防', reading: 'こくぼう', meaning: 'national defence'),
+      CommonWord(word: '防止', reading: 'ぼうし', meaning: 'prevention'),
+    ],
   ),
   KanjiCard(
     id: 'n2-349',
@@ -12568,6 +17376,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['リク', 'ロク'],
     kunyomi: ['おか'],
+    commonWords: [
+      CommonWord(word: '大陸', reading: 'たいりく', meaning: 'continent'),
+      CommonWord(word: '陸', reading: 'りく', meaning: 'land'),
+      CommonWord(word: '陸軍', reading: 'りくぐん', meaning: 'army'),
+    ],
   ),
   KanjiCard(
     id: 'n2-350',
@@ -12581,6 +17394,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['グウ'],
     kunyomi: ['すみ'],
+    commonWords: [
+      CommonWord(word: '隅', reading: 'すみ', meaning: 'corner'),
+      CommonWord(word: '隅々', reading: 'すみずみ', meaning: 'every corner'),
+      CommonWord(word: '四隅', reading: 'よすみ', meaning: 'four corners'),
+    ],
   ),
   KanjiCard(
     id: 'n2-351',
@@ -12594,6 +17412,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['カイ'],
     kunyomi: ['きざはし'],
+    commonWords: [
+      CommonWord(word: '段階', reading: 'だんかい', meaning: 'stage'),
+      CommonWord(word: '二階', reading: 'にかい', meaning: 'second floor'),
+      CommonWord(word: '階級', reading: 'かいきゅう', meaning: 'class'),
+    ],
   ),
   KanjiCard(
     id: 'n2-352',
@@ -12607,6 +17430,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['セキ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '一隻', reading: 'いっせき', meaning: 'one boat'),
+      CommonWord(word: '一隻眼', reading: 'いっせきがん', meaning: 'discerning eye'),
+    ],
   ),
   KanjiCard(
     id: 'n2-353',
@@ -12620,6 +17447,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['コ'],
     kunyomi: ['やと'],
+    commonWords: [
+      CommonWord(word: '雇用', reading: 'こよう', meaning: 'employment'),
+      CommonWord(word: '解雇', reading: 'かいこ', meaning: 'dismissal'),
+      CommonWord(word: '雇う', reading: 'やとう', meaning: 'to employ'),
+    ],
   ),
   KanjiCard(
     id: 'n2-354',
@@ -12633,6 +17465,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ウン'],
     kunyomi: ['くも', '-ぐも'],
+    commonWords: [
+      CommonWord(word: '雲', reading: 'くも', meaning: 'cloud'),
+      CommonWord(word: '暗雲', reading: 'あんうん', meaning: 'dark clouds'),
+      CommonWord(word: '雲行き', reading: 'くもゆき', meaning: 'weather'),
+    ],
   ),
   KanjiCard(
     id: 'n2-355',
@@ -12646,6 +17483,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['レイ'],
     kunyomi: ['ぜろ', 'こぼ'],
+    commonWords: [
+      CommonWord(word: '零時', reading: 'れいじ', meaning: 'twelve o\'clock'),
+      CommonWord(word: '零細', reading: 'れいさい', meaning: 'insignificant'),
+      CommonWord(word: '零', reading: 'れい', meaning: 'zero'),
+    ],
   ),
   KanjiCard(
     id: 'n2-356',
@@ -12659,6 +17501,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['シン'],
     kunyomi: ['ふる'],
+    commonWords: [
+      CommonWord(word: '地震', reading: 'じしん', meaning: 'earthquake'),
+      CommonWord(word: '震度', reading: 'しんど', meaning: 'seismic intensity'),
+      CommonWord(word: '震源', reading: 'しんげん', meaning: 'hypocentre'),
+    ],
   ),
   KanjiCard(
     id: 'n2-357',
@@ -12672,6 +17519,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['カク'],
     kunyomi: ['かわ'],
+    commonWords: [
+      CommonWord(word: '改革', reading: 'かいかく', meaning: 'reform'),
+      CommonWord(word: '革命', reading: 'かくめい', meaning: 'revolution'),
+      CommonWord(word: '革', reading: 'かわ', meaning: 'leather'),
+    ],
   ),
   KanjiCard(
     id: 'n2-358',
@@ -12685,6 +17537,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ジュン'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '順調', reading: 'じゅんちょう', meaning: 'favourable'),
+      CommonWord(word: '順位', reading: 'じゅんい', meaning: 'order'),
+      CommonWord(word: '手順', reading: 'てじゅん', meaning: 'process'),
+    ],
   ),
   KanjiCard(
     id: 'n2-359',
@@ -12698,6 +17555,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ヨ'],
     kunyomi: ['あず'],
+    commonWords: [
+      CommonWord(word: '預金', reading: 'よきん', meaning: 'deposit'),
+      CommonWord(word: '預ける', reading: 'あずける', meaning: 'to leave'),
+      CommonWord(word: '預かる', reading: 'あずかる', meaning: 'to look after'),
+    ],
   ),
   KanjiCard(
     id: 'n2-360',
@@ -12711,6 +17573,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['リョウ'],
     kunyomi: ['えり'],
+    commonWords: [
+      CommonWord(word: '大統領', reading: 'だいとうりょう', meaning: 'president'),
+      CommonWord(word: '領土', reading: 'りょうど', meaning: 'territory'),
+      CommonWord(word: '占領', reading: 'せんりょう', meaning: 'occupying'),
+    ],
   ),
   KanjiCard(
     id: 'n2-361',
@@ -12724,6 +17591,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ガク'],
     kunyomi: ['ひたい'],
+    commonWords: [
+      CommonWord(word: '額', reading: 'がく', meaning: 'frame'),
+      CommonWord(word: '金額', reading: 'きんがく', meaning: 'amount of money'),
+      CommonWord(word: '総額', reading: 'そうがく', meaning: 'total amount'),
+    ],
   ),
   KanjiCard(
     id: 'n2-362',
@@ -12737,6 +17609,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['コウ', 'キョウ'],
     kunyomi: ['か', 'かお'],
+    commonWords: [
+      CommonWord(word: '香り', reading: 'かおり', meaning: 'aroma'),
+      CommonWord(word: '香水', reading: 'こうすい', meaning: 'perfume'),
+      CommonWord(word: '香辛料', reading: 'こうしんりょう', meaning: 'spice'),
+    ],
   ),
   KanjiCard(
     id: 'n2-363',
@@ -12750,6 +17627,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['チュウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '駐車場', reading: 'ちゅうしゃじょう', meaning: 'parking lot'),
+      CommonWord(word: '駐車', reading: 'ちゅうしゃ', meaning: 'parking'),
+      CommonWord(word: '駐在', reading: 'ちゅうざい', meaning: 'residence'),
+    ],
   ),
   KanjiCard(
     id: 'n2-364',
@@ -12763,6 +17645,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['コツ'],
     kunyomi: ['ほね'],
+    commonWords: [
+      CommonWord(word: '骨', reading: 'ほね', meaning: 'bone'),
+      CommonWord(word: '鉄骨', reading: 'てっこつ', meaning: 'steel frame'),
+      CommonWord(word: '骨折', reading: 'こっせつ', meaning: 'bone fracture'),
+    ],
   ),
   KanjiCard(
     id: 'n2-365',
@@ -12776,6 +17663,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['バク'],
     kunyomi: ['むぎ'],
+    commonWords: [
+      CommonWord(word: '麦', reading: 'むぎ', meaning: 'wheat'),
+      CommonWord(word: '小麦粉', reading: 'こむぎこ', meaning: 'wheat flour'),
+      CommonWord(word: '大麦', reading: 'おおむぎ', meaning: 'barley'),
+    ],
   ),
   KanjiCard(
     id: 'n2-366',
@@ -12789,6 +17681,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['コウ', 'オウ'],
     kunyomi: ['き', 'こ'],
+    commonWords: [
+      CommonWord(word: '黄金', reading: 'おうごん', meaning: 'gold'),
+      CommonWord(word: '黄色', reading: 'きいろ', meaning: 'yellow'),
+      CommonWord(word: '硫黄', reading: 'いおう', meaning: 'sulfur'),
+    ],
   ),
   KanjiCard(
     id: 'n2-367',
@@ -12802,6 +17699,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['ビ'],
     kunyomi: ['はな'],
+    commonWords: [
+      CommonWord(word: '鼻', reading: 'はな', meaning: 'nose'),
+      CommonWord(word: '鼻息', reading: 'はないき', meaning: 'nasal breathing'),
+      CommonWord(word: '鼻水', reading: 'はなみず', meaning: 'nasal mucus'),
+    ],
   ),
   KanjiCard(
     id: 'n2-368',
@@ -12815,6 +17717,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n2,
     onyomi: ['レイ'],
     kunyomi: ['よわい', 'とし'],
+    commonWords: [
+      CommonWord(word: '年齢', reading: 'ねんれい', meaning: 'age'),
+      CommonWord(word: '高齢', reading: 'こうれい', meaning: 'advanced age'),
+      CommonWord(word: '高齢者', reading: 'こうれいしゃ', meaning: 'old person'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0001',
@@ -12828,6 +17735,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['チョウ', 'テイ', 'チン', 'トウ'],
     kunyomi: ['ひのと'],
+    commonWords: [
+      CommonWord(word: '丁寧', reading: 'ていねい', meaning: 'polite'),
+      CommonWord(word: '包丁', reading: 'ほうちょう', meaning: 'kitchen knife'),
+      CommonWord(word: '装丁', reading: 'そうてい', meaning: 'binding'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0002',
@@ -12841,6 +17753,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['チュウ'],
     kunyomi: ['うし'],
+    commonWords: [
+      CommonWord(word: '丑', reading: 'うし', meaning: 'the Ox'),
+      CommonWord(word: '丑年', reading: 'うしどし', meaning: 'year of the Ox'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0003',
@@ -12854,6 +17770,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ショ', 'ソ', 'ショウ'],
     kunyomi: ['か'],
+    commonWords: [
+      CommonWord(word: '且つ', reading: 'かつ', meaning: 'and'),
+      CommonWord(word: '尚且つ', reading: 'なおかつ', meaning: 'besides'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0004',
@@ -12867,6 +17787,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キュウ'],
     kunyomi: ['おか'],
+    commonWords: [
+      CommonWord(word: '丘', reading: 'おか', meaning: 'hill'),
+      CommonWord(word: '砂丘', reading: 'さきゅう', meaning: 'sand dune'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0005',
@@ -12880,6 +17804,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ヘイ'],
     kunyomi: ['ひのえ'],
+    commonWords: [
+      CommonWord(word: '丙', reading: 'へい', meaning: 'third rank'),
+      CommonWord(word: '甲乙丙', reading: 'こうおつへい', meaning: 'A, B and C'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0006',
@@ -12893,6 +17821,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ジョウ', 'ショウ'],
     kunyomi: ['すく', 'たす'],
+    commonWords: [
+      CommonWord(word: '丞相', reading: 'じょうしょう', meaning: 'chancellor (ancient China)'),
+      CommonWord(word: '左丞相', reading: 'さじょうしょう', meaning: 'Minister of the Left'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0007',
@@ -12906,6 +17838,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['タン'],
     kunyomi: ['に'],
+    commonWords: [
+      CommonWord(word: '丹念', reading: 'たんねん', meaning: 'painstaking'),
+      CommonWord(word: '丹精', reading: 'たんせい', meaning: 'working earnestly'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0008',
@@ -12919,6 +17855,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ナイ', 'ダイ', 'ノ', 'アイ'],
     kunyomi: ['の', 'すなわ', 'なんじ'],
+    commonWords: [
+      CommonWord(word: '乃至', reading: 'ないし', meaning: 'from ... to'),
+      CommonWord(word: '乃父', reading: 'だいふ', meaning: 'father'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0009',
@@ -12932,6 +17872,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シ'],
     kunyomi: ['の', 'これ', 'ゆく', 'この'],
+    commonWords: [
+      CommonWord(word: '之繞', reading: 'しんにょう', meaning: 'kanji "road" or "advance" radical'),
+      CommonWord(word: '熊之実', reading: 'くまのみ', meaning: 'clownfish'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0010',
@@ -12945,6 +17889,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ボウ'],
     kunyomi: ['とぼ', 'とも'],
+    commonWords: [
+      CommonWord(word: '貧乏', reading: 'びんぼう', meaning: 'poverty-stricken'),
+      CommonWord(word: '欠乏', reading: 'けつぼう', meaning: 'deficiency'),
+      CommonWord(word: '乏しい', reading: 'とぼしい', meaning: 'meagre'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0011',
@@ -12958,6 +17907,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['オツ', 'イツ'],
     kunyomi: ['おと', 'きのと'],
+    commonWords: [
+      CommonWord(word: '早乙女', reading: 'さおとめ', meaning: 'young female rice planter'),
+      CommonWord(word: '乙', reading: 'おつ', meaning: 'second'),
+      CommonWord(word: '甲乙', reading: 'こうおつ', meaning: 'first and second'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0012',
@@ -12971,6 +17925,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ヤ', 'エ'],
     kunyomi: ['なり', 'か', 'また'],
+    commonWords: [
+      CommonWord(word: '空也餅', reading: 'くうやもち', meaning: 'chunky mochi made with half-polished'),
+      CommonWord(word: '事実は小説より奇也', reading: 'じじつはしょうせつよりきなり', meaning: 'truth is stranger than fiction'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0013',
@@ -12984,6 +17942,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キ', 'キュウ', 'キン'],
     kunyomi: ['かめ'],
+    commonWords: [
+      CommonWord(word: '亀', reading: 'かめ', meaning: 'tortoise'),
+      CommonWord(word: '亀裂', reading: 'きれつ', meaning: 'crack'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0014',
@@ -12997,6 +17959,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['セイ', 'ショウ'],
     kunyomi: ['い'],
+    commonWords: [
+      CommonWord(word: '天井', reading: 'てんじょう', meaning: 'ceiling'),
+      CommonWord(word: '井戸', reading: 'いど', meaning: 'water well'),
+      CommonWord(word: '油井', reading: 'ゆせい', meaning: 'oil well'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0015',
@@ -13010,6 +17977,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['コウ', 'カン', 'セン'],
     kunyomi: ['わた', 'もと'],
+    commonWords: [
+      CommonWord(word: 'に亘り', reading: 'にわたり', meaning: 'throughout'),
+      CommonWord(word: '長きに亘る', reading: 'ながきにわたる', meaning: 'long'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0016',
@@ -13023,6 +17994,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ア'],
     kunyomi: ['つ'],
+    commonWords: [
+      CommonWord(word: '東亜', reading: 'とうあ', meaning: 'East Asia'),
+      CommonWord(word: '亜鉛', reading: 'あえん', meaning: 'zinc'),
+      CommonWord(word: '亜熱帯', reading: 'あねったい', meaning: 'subtropics'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0017',
@@ -13036,6 +18012,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ガイ', 'カイ'],
     kunyomi: ['い'],
+    commonWords: [
+      CommonWord(word: '亥', reading: 'い', meaning: 'the Boar'),
+      CommonWord(word: '亥年', reading: 'いどし', meaning: 'year of the Boar'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0018',
@@ -13049,6 +18029,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['エキ', 'ヤク'],
     kunyomi: ['また'],
+    commonWords: [
+      CommonWord(word: '吾亦紅', reading: 'われもこう', meaning: 'great burnet'),
+      CommonWord(word: '如露亦如電', reading: 'にょろやくにょでん', meaning: 'existence (as we perceive it) is as'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0019',
@@ -13062,6 +18046,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['コウ', 'キョウ', 'ホウ'],
     kunyomi: ['とお'],
+    commonWords: [
+      CommonWord(word: '亨通', reading: 'こうつう', meaning: 'doing well'),
+      CommonWord(word: '元亨', reading: 'げんこう', meaning: 'Genkō era'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0020',
@@ -13075,6 +18063,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キョウ', 'コウ'],
     kunyomi: ['う'],
+    commonWords: [
+      CommonWord(word: '享受', reading: 'きょうじゅ', meaning: 'enjoyment'),
+      CommonWord(word: '享年', reading: 'きょうねん', meaning: 'age at death'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0021',
@@ -13088,6 +18080,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['テイ', 'チン'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '亭主', reading: 'ていしゅ', meaning: 'household head'),
+      CommonWord(word: '料亭', reading: 'りょうてい', meaning: 'ryotei'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0022',
@@ -13101,6 +18097,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['リョウ'],
     kunyomi: ['あきらか'],
+    commonWords: [
+      CommonWord(word: '亮察', reading: 'りょうさつ', meaning: 'consideration'),
+      CommonWord(word: '亮闇', reading: 'りょうあん', meaning: 'court mourning'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0023',
@@ -13114,6 +18114,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ジン', 'ニ', 'ニン'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '仁', reading: 'じん', meaning: 'benevolence'),
+      CommonWord(word: '仁義', reading: 'じんぎ', meaning: 'humanity and justice'),
+      CommonWord(word: '仁王', reading: 'におう', meaning: 'two Deva kings'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0024',
@@ -13127,6 +18132,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['セン', 'セント'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '仙人', reading: 'せんにん', meaning: 'immortal mountain wizard'),
+      CommonWord(word: '仙台', reading: 'せんだい', meaning: 'Sendai'),
+      CommonWord(word: '水仙', reading: 'すいせん', meaning: 'daffodil'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0025',
@@ -13140,6 +18150,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['カ', 'ケ'],
     kunyomi: ['かり'],
+    commonWords: [
+      CommonWord(word: '仮に', reading: 'かりに', meaning: 'supposing'),
+      CommonWord(word: '仮面', reading: 'かめん', meaning: 'mask'),
+      CommonWord(word: '仮称', reading: 'かしょう', meaning: 'temporary name'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0026',
@@ -13153,6 +18168,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ギョウ', 'コウ'],
     kunyomi: ['あお', 'おお', 'お', 'おっしゃ'],
+    commonWords: [
+      CommonWord(word: '信仰', reading: 'しんこう', meaning: 'faith'),
+      CommonWord(word: '仰ぐ', reading: 'あおぐ', meaning: 'to look up'),
+      CommonWord(word: '仰向け', reading: 'あおむけ', meaning: 'facing upward'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0027',
@@ -13166,6 +18186,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キ'],
     kunyomi: ['くわだ', 'たくら'],
+    commonWords: [
+      CommonWord(word: '企業', reading: 'きぎょう', meaning: 'enterprise'),
+      CommonWord(word: '企画', reading: 'きかく', meaning: 'planning'),
+      CommonWord(word: '大企業', reading: 'だいきぎょう', meaning: 'large company'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0028',
@@ -13179,6 +18204,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['イ'],
     kunyomi: ['かれ'],
+    commonWords: [
+      CommonWord(word: '伊達', reading: 'だて', meaning: 'elegance'),
+      CommonWord(word: '伊', reading: 'い', meaning: 'Italy'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0029',
@@ -13192,6 +18221,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ゴ'],
     kunyomi: ['いつつ'],
+    commonWords: [
+      CommonWord(word: '伍長', reading: 'ごちょう', meaning: 'corporal'),
+      CommonWord(word: '伍する', reading: 'ごする', meaning: 'to rank with'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0030',
@@ -13205,6 +18238,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ギ', 'キ'],
     kunyomi: ['わざ', 'わざおぎ'],
+    commonWords: [
+      CommonWord(word: '歌舞伎', reading: 'かぶき', meaning: 'kabuki'),
+      CommonWord(word: '伎女', reading: 'ぎじょ', meaning: 'woman entertainer'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0031',
@@ -13218,6 +18255,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['フク'],
     kunyomi: ['ふ'],
+    commonWords: [
+      CommonWord(word: '降伏', reading: 'こうふく', meaning: 'surrender'),
+      CommonWord(word: '起伏', reading: 'きふく', meaning: 'undulation'),
+      CommonWord(word: '伏線', reading: 'ふくせん', meaning: 'foreshadowing'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0032',
@@ -13231,6 +18273,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['バツ', 'ハツ', 'カ', 'ボチ'],
     kunyomi: ['き', 'そむ', 'う'],
+    commonWords: [
+      CommonWord(word: '伐採', reading: 'ばっさい', meaning: 'felling timber'),
+      CommonWord(word: '間伐', reading: 'かんばつ', meaning: 'periodic thinning'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0033',
@@ -13244,6 +18290,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ハク'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '伯父', reading: 'おじ', meaning: 'uncle'),
+      CommonWord(word: '伯爵', reading: 'はくしゃく', meaning: 'count'),
+      CommonWord(word: '伯母', reading: 'おば', meaning: 'aunt'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0034',
@@ -13257,6 +18308,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ハン', 'バン'],
     kunyomi: ['ともな'],
+    commonWords: [
+      CommonWord(word: '同伴', reading: 'どうはん', meaning: 'accompanying'),
+      CommonWord(word: '伴奏', reading: 'ばんそう', meaning: 'accompaniment'),
+      CommonWord(word: '伴', reading: 'とも', meaning: 'companion'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0035',
@@ -13270,6 +18326,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['レイ', 'リョウ'],
     kunyomi: ['わざおぎ'],
+    commonWords: [
+      CommonWord(word: '伶人', reading: 'れいじん', meaning: 'court musician'),
+      CommonWord(word: '伶人草', reading: 'れいじんそう', meaning: 'Aconitum loczyanum'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0036',
@@ -13283,6 +18343,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['カ', 'ガ', 'キャ', 'ギャ'],
     kunyomi: ['とぎ'],
+    commonWords: [
+      CommonWord(word: '伽藍', reading: 'がらん', meaning: 'temple'),
+      CommonWord(word: '伽', reading: 'とぎ', meaning: 'nursing'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0037',
@@ -13296,6 +18360,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['タン'],
     kunyomi: ['ただ'],
+    commonWords: [
+      CommonWord(word: '但し', reading: 'ただし', meaning: 'but'),
+      CommonWord(word: '但書', reading: 'ただしがき', meaning: 'proviso'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0038',
@@ -13309,6 +18377,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['サ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '補佐', reading: 'ほさ', meaning: 'aid'),
+      CommonWord(word: '大佐', reading: 'たいさ', meaning: 'colonel'),
+      CommonWord(word: '少佐', reading: 'しょうさ', meaning: 'major'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0039',
@@ -13322,6 +18395,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ユウ', 'ウ'],
     kunyomi: ['たす'],
+    commonWords: [
+      CommonWord(word: '佑助', reading: 'ゆうじょ', meaning: 'assistance'),
+      CommonWord(word: '天佑', reading: 'てんゆう', meaning: 'divine aid'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0040',
@@ -13335,6 +18412,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['カ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '佳作', reading: 'かさく', meaning: 'fine (piece of) work'),
+      CommonWord(word: '佳境', reading: 'かきょう', meaning: 'most interesting part'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0041',
@@ -13348,6 +18429,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ヘイ'],
     kunyomi: ['あわ'],
+    commonWords: [
+      CommonWord(word: '合併', reading: 'がっぺい', meaning: 'merger'),
+      CommonWord(word: '併用', reading: 'へいよう', meaning: 'combined use'),
+      CommonWord(word: '併殺', reading: 'へいさつ', meaning: 'double play'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0042',
@@ -13361,6 +18447,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['カン'],
     kunyomi: ['つよ'],
+    commonWords: [
+      CommonWord(word: '侃々諤々', reading: 'かんかんがくがく', meaning: 'outspoken'),
+      CommonWord(word: '侃直', reading: 'かんちょく', meaning: 'firm and upright'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0043',
@@ -13374,6 +18464,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ジ', 'シ'],
     kunyomi: ['さむらい', 'はべ'],
+    commonWords: [
+      CommonWord(word: '侍従', reading: 'じじゅう', meaning: 'chamberlain'),
+      CommonWord(word: '侍医', reading: 'じい', meaning: 'court physician'),
+      CommonWord(word: '侍女', reading: 'じじょ', meaning: 'lady attendant'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0044',
@@ -13387,6 +18482,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ユウ', 'ウ'],
     kunyomi: ['すす', 'たす'],
+    commonWords: [
+      CommonWord(word: '侑觴', reading: 'ゆうしょう', meaning: 'urging a guest to drink'),
+      CommonWord(word: '侑子', reading: 'ゆうこ', meaning: 'Yūko (given name)'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0045',
@@ -13400,6 +18499,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['カ', 'ケ'],
     kunyomi: ['あたい'],
+    commonWords: [
+      CommonWord(word: '価格', reading: 'かかく', meaning: 'price'),
+      CommonWord(word: '評価', reading: 'ひょうか', meaning: 'valuation'),
+      CommonWord(word: '価値', reading: 'かち', meaning: 'value'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0046',
@@ -13413,6 +18517,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ブ'],
     kunyomi: ['あなど', 'あなず'],
+    commonWords: [
+      CommonWord(word: '侮辱', reading: 'ぶじょく', meaning: 'insult'),
+      CommonWord(word: '侮蔑', reading: 'ぶべつ', meaning: 'scorn'),
+      CommonWord(word: '侮る', reading: 'あなどる', meaning: 'to disdain'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0047',
@@ -13426,6 +18535,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['コウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '侯爵', reading: 'こうしゃく', meaning: 'marquis'),
+      CommonWord(word: '王侯', reading: 'おうこう', meaning: 'the king and his feudal lords'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0048',
@@ -13439,6 +18552,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シン'],
     kunyomi: ['おか'],
+    commonWords: [
+      CommonWord(word: '侵略', reading: 'しんりゃく', meaning: 'invasion'),
+      CommonWord(word: '侵す', reading: 'おかす', meaning: 'to invade'),
+      CommonWord(word: '侵害', reading: 'しんがい', meaning: 'infringement'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0049',
@@ -13452,6 +18570,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ソク'],
     kunyomi: ['うなが'],
+    commonWords: [
+      CommonWord(word: '促進', reading: 'そくしん', meaning: 'promotion'),
+      CommonWord(word: '促す', reading: 'うながす', meaning: 'to urge'),
+      CommonWord(word: '催促', reading: 'さいそく', meaning: 'pressing'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0050',
@@ -13465,6 +18588,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シュン'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '俊足', reading: 'しゅんそく', meaning: 'swiftness of foot'),
+      CommonWord(word: '俊英', reading: 'しゅんえい', meaning: 'excellence'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0051',
@@ -13478,6 +18605,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ゾク'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '風俗', reading: 'ふうぞく', meaning: 'manners'),
+      CommonWord(word: '俗', reading: 'ぞく', meaning: 'layman'),
+      CommonWord(word: '俗語', reading: 'ぞくご', meaning: 'colloquialism'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0052',
@@ -13491,6 +18623,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ホ', 'ホウ'],
     kunyomi: ['たも'],
+    commonWords: [
+      CommonWord(word: '保護', reading: 'ほご', meaning: 'protection'),
+      CommonWord(word: '確保', reading: 'かくほ', meaning: 'securing'),
+      CommonWord(word: '保険', reading: 'ほけん', meaning: 'insurance'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0053',
@@ -13504,6 +18641,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シュウ', 'シュ'],
     kunyomi: ['おさ'],
+    commonWords: [
+      CommonWord(word: '修正', reading: 'しゅうせい', meaning: 'amendment'),
+      CommonWord(word: '修理', reading: 'しゅうり', meaning: 'repair'),
+      CommonWord(word: '修了', reading: 'しゅうりょう', meaning: 'completion'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0054',
@@ -13517,6 +18659,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ハイ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '俳優', reading: 'はいゆう', meaning: 'actor'),
+      CommonWord(word: '俳句', reading: 'はいく', meaning: 'haiku'),
+      CommonWord(word: '俳人', reading: 'はいじん', meaning: 'haiku poet'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0055',
@@ -13530,6 +18677,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ヒョウ'],
     kunyomi: ['たわら'],
+    commonWords: [
+      CommonWord(word: '土俵', reading: 'どひょう', meaning: 'ring'),
+      CommonWord(word: '俵', reading: 'たわら', meaning: 'straw bag'),
+      CommonWord(word: '土俵際', reading: 'どひょうぎわ', meaning: 'edge of the ring'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0056',
@@ -13543,6 +18695,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ホウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '年俸', reading: 'ねんぽう', meaning: 'annual salary'),
+      CommonWord(word: '減俸', reading: 'げんぽう', meaning: 'salary reduction'),
+      CommonWord(word: '俸給', reading: 'ほうきゅう', meaning: 'salary'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0057',
@@ -13556,6 +18713,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ソウ'],
     kunyomi: ['くら'],
+    commonWords: [
+      CommonWord(word: '倉庫', reading: 'そうこ', meaning: 'storehouse'),
+      CommonWord(word: '倉', reading: 'くら', meaning: 'warehouse'),
+      CommonWord(word: '倉敷', reading: 'くらしき', meaning: 'Kurashiki'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0058',
@@ -13569,6 +18731,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['コウ'],
     kunyomi: ['しあわ', 'さいわ'],
+    commonWords: [
+      CommonWord(word: '僥倖', reading: 'ぎょうこう', meaning: 'luck'),
+      CommonWord(word: '薄倖', reading: 'はっこう', meaning: 'unfortunate'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0059',
@@ -13582,6 +18748,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ホウ'],
     kunyomi: ['なら'],
+    commonWords: [
+      CommonWord(word: '模倣', reading: 'もほう', meaning: 'imitation'),
+      CommonWord(word: '倣う', reading: 'ならう', meaning: 'to imitate'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0060',
@@ -13595,6 +18765,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['リン'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '倫理', reading: 'りんり', meaning: 'ethics'),
+      CommonWord(word: '不倫', reading: 'ふりん', meaning: 'adultery'),
+      CommonWord(word: '倫理的', reading: 'りんりてき', meaning: 'ethical'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0061',
@@ -13608,6 +18783,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ワ', 'イ'],
     kunyomi: ['やまと', 'したが'],
+    commonWords: [
+      CommonWord(word: '倭', reading: 'わ', meaning: 'sum'),
+      CommonWord(word: '倭語', reading: 'わご', meaning: 'Japanese language'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0062',
@@ -13621,6 +18800,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ケン'],
     kunyomi: ['つま', 'つづまやか'],
+    commonWords: [
+      CommonWord(word: '倹約', reading: 'けんやく', meaning: 'thrift'),
+      CommonWord(word: '勤倹', reading: 'きんけん', meaning: 'industry'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0063',
@@ -13634,6 +18817,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ヘン'],
     kunyomi: ['かたよ'],
+    commonWords: [
+      CommonWord(word: '偏差値', reading: 'へんさち', meaning: 'deviation value'),
+      CommonWord(word: '偏見', reading: 'へんけん', meaning: 'prejudice'),
+      CommonWord(word: '偏重', reading: 'へんちょう', meaning: 'attaching too much importance to'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0064',
@@ -13647,6 +18835,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ケン'],
     kunyomi: ['すこ'],
+    commonWords: [
+      CommonWord(word: '健康', reading: 'けんこう', meaning: 'health'),
+      CommonWord(word: '保健', reading: 'ほけん', meaning: 'preservation of health'),
+      CommonWord(word: '健全', reading: 'けんぜん', meaning: 'healthy'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0065',
@@ -13660,6 +18853,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['サイ', 'シ'],
     kunyomi: ['しの'],
+    commonWords: [
+      CommonWord(word: '偲ぶ', reading: 'しのぶ', meaning: 'to recollect'),
+      CommonWord(word: '偲ぶ会', reading: 'しのぶかい', meaning: 'gathering to remember a dead person'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0066',
@@ -13673,6 +18870,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['テイ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '偵察', reading: 'ていさつ', meaning: 'scouting'),
+      CommonWord(word: '探偵', reading: 'たんてい', meaning: 'detective'),
+      CommonWord(word: '内偵', reading: 'ないてい', meaning: 'secret investigation'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0067',
@@ -13686,6 +18888,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ギ', 'カ'],
     kunyomi: ['いつわ', 'にせ'],
+    commonWords: [
+      CommonWord(word: '偽造', reading: 'ぎぞう', meaning: 'forgery'),
+      CommonWord(word: '偽', reading: 'にせ', meaning: 'imitation'),
+      CommonWord(word: '真偽', reading: 'しんぎ', meaning: 'truth or falsehood'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0068',
@@ -13699,6 +18906,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ボウ'],
     kunyomi: ['かたわ', 'わき', 'おか', 'はた'],
+    commonWords: [
+      CommonWord(word: '傍聴', reading: 'ぼうちょう', meaning: 'listening'),
+      CommonWord(word: '傍ら', reading: 'かたわら', meaning: 'side'),
+      CommonWord(word: '傍観', reading: 'ぼうかん', meaning: 'looking on'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0069',
@@ -13712,6 +18924,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ケツ'],
     kunyomi: ['すぐ'],
+    commonWords: [
+      CommonWord(word: '傑作', reading: 'けっさく', meaning: 'masterpiece'),
+      CommonWord(word: '傑出', reading: 'けっしゅつ', meaning: 'being outstanding'),
+      CommonWord(word: '豪傑', reading: 'ごうけつ', meaning: 'hero'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0070',
@@ -13725,6 +18942,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['サン'],
     kunyomi: ['かさ'],
+    commonWords: [
+      CommonWord(word: '傘', reading: 'かさ', meaning: 'umbrella'),
+      CommonWord(word: '傘下', reading: 'さんか', meaning: 'affiliated with'),
+      CommonWord(word: '日傘', reading: 'ひがさ', meaning: 'parasol'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0071',
@@ -13738,6 +18960,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['サイ'],
     kunyomi: ['もよう', 'もよお'],
+    commonWords: [
+      CommonWord(word: '開催', reading: 'かいさい', meaning: 'holding'),
+      CommonWord(word: '主催', reading: 'しゅさい', meaning: 'sponsorship'),
+      CommonWord(word: '催し', reading: 'もよおし', meaning: 'event'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0072',
@@ -13751,6 +18978,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['サイ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '負債', reading: 'ふさい', meaning: 'debt'),
+      CommonWord(word: '国債', reading: 'こくさい', meaning: 'national debt'),
+      CommonWord(word: '債権', reading: 'さいけん', meaning: 'credit'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0073',
@@ -13764,6 +18996,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ショウ'],
     kunyomi: ['きず', 'いた'],
+    commonWords: [
+      CommonWord(word: '傷', reading: 'きず', meaning: 'wound'),
+      CommonWord(word: '重傷', reading: 'じゅうしょう', meaning: 'serious wound'),
+      CommonWord(word: '軽傷', reading: 'けいしょう', meaning: 'minor injury'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0074',
@@ -13777,6 +19014,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ボク'],
     kunyomi: ['しもべ'],
+    commonWords: [
+      CommonWord(word: '僕', reading: 'ぼく', meaning: 'I'),
+      CommonWord(word: '僕ら', reading: 'ぼくら', meaning: 'we'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0075',
@@ -13790,6 +19031,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['リョウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '閣僚', reading: 'かくりょう', meaning: 'cabinet ministers'),
+      CommonWord(word: '官僚', reading: 'かんりょう', meaning: 'bureaucrat'),
+      CommonWord(word: '同僚', reading: 'どうりょう', meaning: 'coworker'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0076',
@@ -13803,6 +19049,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ソウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '僧', reading: 'そう', meaning: 'monk'),
+      CommonWord(word: '小僧', reading: 'こぞう', meaning: 'youngster'),
+      CommonWord(word: '僧侶', reading: 'そうりょ', meaning: 'priest'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0077',
@@ -13816,6 +19067,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ギ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '儀式', reading: 'ぎしき', meaning: 'ceremony'),
+      CommonWord(word: '儀礼', reading: 'ぎれい', meaning: 'courtesy'),
+      CommonWord(word: '葬儀', reading: 'そうぎ', meaning: 'funeral'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0078',
@@ -13829,6 +19085,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ジュ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '儒教', reading: 'じゅきょう', meaning: 'Confucianism'),
+      CommonWord(word: '師儒', reading: 'しじゅ', meaning: 'teacher'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0079',
@@ -13842,6 +19102,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ショウ'],
     kunyomi: ['つぐな'],
+    commonWords: [
+      CommonWord(word: '賠償', reading: 'ばいしょう', meaning: 'compensation'),
+      CommonWord(word: '無償', reading: 'むしょう', meaning: 'without compensation'),
+      CommonWord(word: '償還', reading: 'しょうかん', meaning: 'repayment'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0080',
@@ -13855,6 +19120,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['イン'],
     kunyomi: ['じょう', 'まこと', 'ゆるす'],
+    commonWords: [
+      CommonWord(word: '允許', reading: 'いんきょ', meaning: 'permission'),
+      CommonWord(word: '允可', reading: 'いんか', meaning: 'approval'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0081',
@@ -13868,6 +19137,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ジュウ'],
     kunyomi: ['あ', 'み'],
+    commonWords: [
+      CommonWord(word: '充実', reading: 'じゅうじつ', meaning: 'fullness'),
+      CommonWord(word: '補充', reading: 'ほじゅう', meaning: 'replenishment'),
+      CommonWord(word: '拡充', reading: 'かくじゅう', meaning: 'expansion'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0082',
@@ -13881,6 +19155,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['コク'],
     kunyomi: ['か'],
+    commonWords: [
+      CommonWord(word: '克服', reading: 'こくふく', meaning: 'conquest'),
+      CommonWord(word: '克明', reading: 'こくめい', meaning: 'detailed'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0083',
@@ -13894,6 +19172,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['メン'],
     kunyomi: ['まぬか', 'まぬが'],
+    commonWords: [
+      CommonWord(word: '免許', reading: 'めんきょ', meaning: 'license'),
+      CommonWord(word: '免税', reading: 'めんぜい', meaning: 'tax exemption'),
+      CommonWord(word: '免疫', reading: 'めんえき', meaning: 'immunity'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0084',
@@ -13907,6 +19190,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['テン', 'デン'],
     kunyomi: ['ふみ', 'のり'],
+    commonWords: [
+      CommonWord(word: '古典', reading: 'こてん', meaning: 'classic'),
+      CommonWord(word: '典型', reading: 'てんけい', meaning: 'type'),
+      CommonWord(word: '辞典', reading: 'じてん', meaning: 'dictionary'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0085',
@@ -13920,6 +19208,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ケン'],
     kunyomi: ['か', '-か'],
+    commonWords: [
+      CommonWord(word: '兼', reading: 'けん', meaning: 'and'),
+      CommonWord(word: '兼ねる', reading: 'かねる', meaning: 'to be unable to'),
+      CommonWord(word: '兼務', reading: 'けんむ', meaning: 'serving concurrently as'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0086',
@@ -13933,6 +19226,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ボウ'],
     kunyomi: ['おか'],
+    commonWords: [
+      CommonWord(word: '冒頭', reading: 'ぼうとう', meaning: 'beginning'),
+      CommonWord(word: '冒険', reading: 'ぼうけん', meaning: 'adventure'),
+      CommonWord(word: '冒す', reading: 'おかす', meaning: 'to brave'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0087',
@@ -13946,6 +19244,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ジョウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '冗談', reading: 'じょうだん', meaning: 'joke'),
+      CommonWord(word: '冗舌', reading: 'じょうぜつ', meaning: 'talkativeness'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0088',
@@ -13959,6 +19261,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['カン'],
     kunyomi: ['かんむり'],
+    commonWords: [
+      CommonWord(word: '冠', reading: 'かんむり', meaning: 'traditional cap worn by Shinto clergy'),
+      CommonWord(word: '冠婚葬祭', reading: 'かんこんそうさい', meaning: 'important ceremonial occasions in'),
+      CommonWord(word: '栄冠', reading: 'えいかん', meaning: 'crown of victory'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0089',
@@ -13972,6 +19279,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ゴ', 'コ'],
     kunyomi: ['さ', 'こお', 'ひ'],
+    commonWords: [
+      CommonWord(word: '冴える', reading: 'さえる', meaning: 'to be clear'),
+      CommonWord(word: '冴え', reading: 'さえ', meaning: 'clearness'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0090',
@@ -13985,6 +19296,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ヤ'],
     kunyomi: ['い'],
+    commonWords: [
+      CommonWord(word: '冶金', reading: 'やきん', meaning: 'metallurgy'),
+      CommonWord(word: '鍛冶', reading: 'かじ', meaning: 'blacksmithing'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0091',
@@ -13998,6 +19313,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ジュン'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '批准', reading: 'ひじゅん', meaning: 'ratification'),
+      CommonWord(word: '准将', reading: 'じゅんしょう', meaning: 'commodore'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0092',
@@ -14011,6 +19330,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['リョウ'],
     kunyomi: ['しの'],
+    commonWords: [
+      CommonWord(word: '凌ぐ', reading: 'しのぐ', meaning: 'to endure'),
+      CommonWord(word: '凌ぎ', reading: 'しのぎ', meaning: 'enduring'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0093',
@@ -14024,6 +19347,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['リン'],
     kunyomi: ['きびし'],
+    commonWords: [
+      CommonWord(word: '凜', reading: 'りん', meaning: 'cold'),
+      CommonWord(word: '凜然', reading: 'りんぜん', meaning: 'commanding'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0094',
@@ -14037,6 +19364,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ギョウ'],
     kunyomi: ['こ', 'こご'],
+    commonWords: [
+      CommonWord(word: '凝縮', reading: 'ぎょうしゅく', meaning: 'condensation'),
+      CommonWord(word: '凝った', reading: 'こった', meaning: 'elaborate'),
+      CommonWord(word: '凝固', reading: 'ぎょうこ', meaning: 'coagulation'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0095',
@@ -14050,6 +19382,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ボン', 'ハン'],
     kunyomi: ['およ', 'おうよ', 'すべ'],
+    commonWords: [
+      CommonWord(word: '凡人', reading: 'ぼんじん', meaning: 'ordinary person'),
+      CommonWord(word: '平凡', reading: 'へいぼん', meaning: 'ordinary'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0096',
@@ -14063,6 +19399,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: [],
     kunyomi: ['なぎ', 'な'],
+    commonWords: [
+      CommonWord(word: '凪', reading: 'なぎ', meaning: 'calm'),
+      CommonWord(word: '凪ぐ', reading: 'なぐ', meaning: 'to become calm'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0097',
@@ -14076,6 +19416,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ガイ', 'カイ'],
     kunyomi: ['かちどき', 'やわらぐ'],
+    commonWords: [
+      CommonWord(word: '凱旋', reading: 'がいせん', meaning: 'triumphant return'),
+      CommonWord(word: '凱歌', reading: 'がいか', meaning: 'victory song'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0098',
@@ -14089,6 +19433,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キョウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '凶作', reading: 'きょうさく', meaning: 'bad harvest'),
+      CommonWord(word: '凶悪', reading: 'きょうあく', meaning: 'atrocious'),
+      CommonWord(word: '元凶', reading: 'げんきょう', meaning: 'ringleader'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0099',
@@ -14102,6 +19451,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['トツ'],
     kunyomi: ['でこ'],
+    commonWords: [
+      CommonWord(word: '凹凸', reading: 'おうとつ', meaning: 'unevenness'),
+      CommonWord(word: '凸版', reading: 'とっぱん', meaning: 'letterpress'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0100',
@@ -14115,6 +19468,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['オウ'],
     kunyomi: ['くぼ', 'へこ', 'ぼこ'],
+    commonWords: [
+      CommonWord(word: '凹凸', reading: 'おうとつ', meaning: 'unevenness'),
+      CommonWord(word: '凹む', reading: 'へこむ', meaning: 'to be dented'),
+      CommonWord(word: '凹み', reading: 'くぼみ', meaning: 'hollow'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0101',
@@ -14128,6 +19486,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['トウ'],
     kunyomi: ['かたな', 'そり'],
+    commonWords: [
+      CommonWord(word: '刀', reading: 'かたな', meaning: 'sword'),
+      CommonWord(word: '日本刀', reading: 'にほんとう', meaning: 'Japanese sword'),
+      CommonWord(word: '大刀', reading: 'だいとう', meaning: 'long sword'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0102',
@@ -14141,6 +19504,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ジン', 'ニン'],
     kunyomi: ['は', 'やいば', 'き'],
+    commonWords: [
+      CommonWord(word: '刃', reading: 'は', meaning: 'edge'),
+      CommonWord(word: '刃物', reading: 'はもの', meaning: 'edged tool'),
+      CommonWord(word: '刃渡り', reading: 'はわたり', meaning: 'length of a blade'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0103',
@@ -14154,6 +19522,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ガイ', 'カイ'],
     kunyomi: ['か'],
+    commonWords: [
+      CommonWord(word: '刈る', reading: 'かる', meaning: 'to cut'),
+      CommonWord(word: '丸刈り', reading: 'まるがり', meaning: 'buzz cut'),
+      CommonWord(word: '刈り込む', reading: 'かりこむ', meaning: 'to prune'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0104',
@@ -14167,6 +19540,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ケイ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '刑事', reading: 'けいじ', meaning: 'detective'),
+      CommonWord(word: '死刑', reading: 'しけい', meaning: 'death penalty'),
+      CommonWord(word: '刑', reading: 'けい', meaning: 'penalty'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0105',
@@ -14180,6 +19558,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['サク'],
     kunyomi: ['けず', 'はつ', 'そ'],
+    commonWords: [
+      CommonWord(word: '削減', reading: 'さくげん', meaning: 'cut'),
+      CommonWord(word: '削除', reading: 'さくじょ', meaning: 'deletion'),
+      CommonWord(word: '削る', reading: 'けずる', meaning: 'to shave'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0106',
@@ -14193,6 +19576,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ボウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '解剖', reading: 'かいぼう', meaning: 'dissection'),
+      CommonWord(word: '解剖学', reading: 'かいぼうがく', meaning: 'anatomy'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0107',
@@ -14206,6 +19593,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ゴウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '金剛', reading: 'こんごう', meaning: 'vajra'),
+      CommonWord(word: '剛健', reading: 'ごうけん', meaning: 'vigour'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0108',
@@ -14219,6 +19610,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ケン'],
     kunyomi: ['つるぎ'],
+    commonWords: [
+      CommonWord(word: '剣道', reading: 'けんどう', meaning: 'kendo'),
+      CommonWord(word: '剣', reading: 'けん', meaning: 'sword'),
+      CommonWord(word: '真剣', reading: 'しんけん', meaning: 'serious'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0109',
@@ -14232,6 +19628,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ザイ', 'スイ', 'セイ'],
     kunyomi: ['かる', 'けず'],
+    commonWords: [
+      CommonWord(word: '洗剤', reading: 'せんざい', meaning: 'detergent'),
+      CommonWord(word: '覚せい剤', reading: 'かくせいざい', meaning: 'stimulant'),
+      CommonWord(word: '薬剤', reading: 'やくざい', meaning: 'medicine'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0110',
@@ -14245,6 +19646,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ジョウ'],
     kunyomi: ['あまつさえ', 'あま'],
+    commonWords: [
+      CommonWord(word: '過剰', reading: 'かじょう', meaning: 'excess'),
+      CommonWord(word: '余剰', reading: 'よじょう', meaning: 'surplus'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0111',
@@ -14258,6 +19663,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ソウ', 'ショウ'],
     kunyomi: ['つく', 'はじ', 'きず', 'けず'],
+    commonWords: [
+      CommonWord(word: '創立', reading: 'そうりつ', meaning: 'establishment'),
+      CommonWord(word: '創刊', reading: 'そうかん', meaning: 'foundation'),
+      CommonWord(word: '創造', reading: 'そうぞう', meaning: 'creation'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0112',
@@ -14271,6 +19681,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['コウ', 'ク'],
     kunyomi: ['いさお'],
+    commonWords: [
+      CommonWord(word: '成功', reading: 'せいこう', meaning: 'success'),
+      CommonWord(word: '功績', reading: 'こうせき', meaning: 'achievement'),
+      CommonWord(word: '功労', reading: 'こうろう', meaning: 'meritorious deed'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0113',
@@ -14284,6 +19699,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['レツ'],
     kunyomi: ['おと'],
+    commonWords: [
+      CommonWord(word: '劣勢', reading: 'れっせい', meaning: 'inferiority'),
+      CommonWord(word: '卑劣', reading: 'ひれつ', meaning: 'mean'),
+      CommonWord(word: '劣悪', reading: 'れつあく', meaning: 'poor'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0114',
@@ -14297,6 +19717,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['レイ'],
     kunyomi: ['はげ'],
+    commonWords: [
+      CommonWord(word: '奨励', reading: 'しょうれい', meaning: 'encouragement'),
+      CommonWord(word: '励ます', reading: 'はげます', meaning: 'to encourage'),
+      CommonWord(word: '励む', reading: 'はげむ', meaning: 'to work hard'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0115',
@@ -14310,6 +19735,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ガイ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '弾劾', reading: 'だんがい', meaning: 'impeachment'),
+      CommonWord(word: '劾奏', reading: 'がいそう', meaning: 'report of an official\'s offence to the'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0116',
@@ -14323,6 +19752,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ケイ'],
     kunyomi: ['つよ'],
+    commonWords: [
+      CommonWord(word: '発勁', reading: 'はっけい', meaning: 'fa jin'),
+      CommonWord(word: '勁捷', reading: 'けいしょう', meaning: 'strong and nimble'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0117',
@@ -14336,6 +19769,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['チョク'],
     kunyomi: ['いまし', 'みことのり'],
+    commonWords: [
+      CommonWord(word: '勅', reading: 'みことのり', meaning: 'imperial decree'),
+      CommonWord(word: '詔勅', reading: 'しょうちょく', meaning: 'imperial edict'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0118',
@@ -14349,6 +19786,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['カン'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '勘定', reading: 'かんじょう', meaning: 'calculation'),
+      CommonWord(word: '勘', reading: 'かん', meaning: 'perception'),
+      CommonWord(word: '勘案', reading: 'かんあん', meaning: 'taking into consideration'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0119',
@@ -14362,6 +19804,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['カン', 'ケン'],
     kunyomi: ['すす'],
+    commonWords: [
+      CommonWord(word: '勧告', reading: 'かんこく', meaning: 'advice'),
+      CommonWord(word: '勧め', reading: 'すすめ', meaning: 'recommendation'),
+      CommonWord(word: '勧誘', reading: 'かんゆう', meaning: 'invitation'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0120',
@@ -14375,6 +19822,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['クン'],
     kunyomi: ['いさお'],
+    commonWords: [
+      CommonWord(word: '勲章', reading: 'くんしょう', meaning: 'decoration'),
+      CommonWord(word: '殊勲', reading: 'しゅくん', meaning: 'distinguished services'),
+      CommonWord(word: '叙勲', reading: 'じょくん', meaning: 'conferring of decorations'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0121',
@@ -14388,6 +19840,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シャク'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '勺', reading: 'しゃく', meaning: 'shaku'),
+      CommonWord(word: '一勺', reading: 'いっしゃく', meaning: 'one shaku'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0122',
@@ -14401,6 +19857,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: [],
     kunyomi: ['もんめ', 'め'],
+    commonWords: [
+      CommonWord(word: '匁', reading: 'もんめ', meaning: 'monme'),
+      CommonWord(word: '花一匁', reading: 'はないちもんめ', meaning: 'children\'s game in which two groups'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0123',
@@ -14414,6 +19874,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ショウ'],
     kunyomi: ['たくみ'],
+    commonWords: [
+      CommonWord(word: '師匠', reading: 'ししょう', meaning: 'master'),
+      CommonWord(word: '匠', reading: 'たくみ', meaning: 'craftsman'),
+      CommonWord(word: '意匠', reading: 'いしょう', meaning: 'design'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0124',
@@ -14427,6 +19892,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キョウ', 'オウ'],
     kunyomi: ['すく', 'ただ'],
+    commonWords: [
+      CommonWord(word: '匡正', reading: 'きょうせい', meaning: 'correction'),
+      CommonWord(word: '匡救', reading: 'きょうきゅう', meaning: 'delivering from sin'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0125',
@@ -14440,6 +19909,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['トク'],
     kunyomi: ['かくま'],
+    commonWords: [
+      CommonWord(word: '匿名', reading: 'とくめい', meaning: 'anonymity'),
+      CommonWord(word: '隠匿', reading: 'いんとく', meaning: 'concealment'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0126',
@@ -14453,6 +19926,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ショウ'],
     kunyomi: ['ます'],
+    commonWords: [
+      CommonWord(word: '升', reading: 'ます', meaning: 'measuring container'),
+      CommonWord(word: '一升', reading: 'いっしょう', meaning: 'one shō'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0127',
@@ -14466,6 +19943,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ヒ'],
     kunyomi: ['いや'],
+    commonWords: [
+      CommonWord(word: '卑劣', reading: 'ひれつ', meaning: 'mean'),
+      CommonWord(word: '卑怯', reading: 'ひきょう', meaning: 'cowardly'),
+      CommonWord(word: '卑屈', reading: 'ひくつ', meaning: 'servile'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0128',
@@ -14479,6 +19961,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['タク'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '食卓', reading: 'しょくたく', meaning: 'dining table'),
+      CommonWord(word: '卓球', reading: 'たっきゅう', meaning: 'table tennis'),
+      CommonWord(word: '電卓', reading: 'でんたく', meaning: 'calculator'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0129',
@@ -14492,6 +19979,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ハク', 'バク'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '博士', reading: 'はかせ', meaning: 'expert'),
+      CommonWord(word: '博物館', reading: 'はくぶつかん', meaning: 'museum'),
+      CommonWord(word: '博覧会', reading: 'はくらんかい', meaning: 'exhibition'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0130',
@@ -14505,6 +19997,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ボウ', 'モウ'],
     kunyomi: ['う'],
+    commonWords: [
+      CommonWord(word: '卯', reading: 'う', meaning: 'the Rabbit'),
+      CommonWord(word: '卯の花', reading: 'うのはな', meaning: 'bean curd lees'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0131',
@@ -14518,6 +20014,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ソク'],
     kunyomi: ['つ', 'すなわ'],
+    commonWords: [
+      CommonWord(word: '即座', reading: 'そくざ', meaning: 'immediate'),
+      CommonWord(word: '即時', reading: 'そくじ', meaning: 'prompt'),
+      CommonWord(word: '即席', reading: 'そくせき', meaning: 'impromptu'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0132',
@@ -14531,6 +20032,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キャク'],
     kunyomi: ['かえ', 'しりぞ'],
+    commonWords: [
+      CommonWord(word: '棄却', reading: 'ききゃく', meaning: 'rejection'),
+      CommonWord(word: '売却', reading: 'ばいきゃく', meaning: 'selling off'),
+      CommonWord(word: '冷却', reading: 'れいきゃく', meaning: 'cooling'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0133',
@@ -14544,6 +20050,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シャ'],
     kunyomi: ['おろ', 'おろし'],
+    commonWords: [
+      CommonWord(word: '卸売', reading: 'おろしうり', meaning: 'wholesale'),
+      CommonWord(word: '卸売物価', reading: 'おろしうりぶっか', meaning: 'wholesale price'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0134',
@@ -14557,6 +20067,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ヤク'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '厄介', reading: 'やっかい', meaning: 'trouble'),
+      CommonWord(word: '厄年', reading: 'やくどし', meaning: 'unlucky year'),
+      CommonWord(word: '厄', reading: 'やく', meaning: 'misfortune'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0135',
@@ -14570,6 +20085,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['リン'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '厘', reading: 'りん', meaning: 'one-hundredth'),
+      CommonWord(word: '厘毛', reading: 'りんもう', meaning: 'farthing'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0136',
@@ -14583,6 +20102,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ゲン', 'ゴン'],
     kunyomi: ['おごそ', 'きび', 'いか', 'いつくし'],
+    commonWords: [
+      CommonWord(word: '厳重', reading: 'げんじゅう', meaning: 'strict'),
+      CommonWord(word: '厳しい', reading: 'きびしい', meaning: 'severe'),
+      CommonWord(word: '厳しさ', reading: 'きびしさ', meaning: 'severity'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0137',
@@ -14596,6 +20120,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ユウ'],
     kunyomi: ['また'],
+    commonWords: [
+      CommonWord(word: '又は', reading: 'または', meaning: 'or'),
+      CommonWord(word: '三つ又', reading: 'みつまた', meaning: 'three-pronged'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0138',
@@ -14609,6 +20137,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キュウ'],
     kunyomi: ['およ', 'および'],
+    commonWords: [
+      CommonWord(word: '普及', reading: 'ふきゅう', meaning: 'diffusion'),
+      CommonWord(word: '追及', reading: 'ついきゅう', meaning: 'investigation'),
+      CommonWord(word: '及ぶ', reading: 'およぶ', meaning: 'to reach'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0139',
@@ -14622,6 +20155,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シュク'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '叔父', reading: 'おじ', meaning: 'uncle'),
+      CommonWord(word: '叔母', reading: 'おば', meaning: 'aunt'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0140',
@@ -14635,6 +20172,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ジョ'],
     kunyomi: ['つい', 'ついで'],
+    commonWords: [
+      CommonWord(word: '叙勲', reading: 'じょくん', meaning: 'conferring of decorations'),
+      CommonWord(word: '叙情', reading: 'じょじょう', meaning: 'lyricism'),
+      CommonWord(word: '叙事詩', reading: 'じょじし', meaning: 'epic'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0141',
@@ -14648,6 +20190,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['エイ'],
     kunyomi: ['あき'],
+    commonWords: [
+      CommonWord(word: '比叡山', reading: 'ひえいざん', meaning: 'Mt. Hiei'),
+      CommonWord(word: '叡智', reading: 'えいち', meaning: 'wisdom'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0142',
@@ -14661,6 +20207,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ク'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '俳句', reading: 'はいく', meaning: 'haiku'),
+      CommonWord(word: '文句', reading: 'もんく', meaning: 'complaint'),
+      CommonWord(word: '句', reading: 'く', meaning: 'section'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0143',
@@ -14674,6 +20225,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シ'],
     kunyomi: ['ただ'],
+    commonWords: [
+      CommonWord(word: '只今', reading: 'ただいま', meaning: 'I\'m home!'),
+      CommonWord(word: '只中', reading: 'ただなか', meaning: 'middle'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0144',
@@ -14687,6 +20242,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キョウ'],
     kunyomi: ['かな'],
+    commonWords: [
+      CommonWord(word: '叶う', reading: 'かなう', meaning: 'to come true'),
+      CommonWord(word: '叶える', reading: 'かなえる', meaning: 'to grant'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0145',
@@ -14700,6 +20259,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シ'],
     kunyomi: ['つかさど'],
+    commonWords: [
+      CommonWord(word: '司法', reading: 'しほう', meaning: 'administration of justice'),
+      CommonWord(word: '上司', reading: 'じょうし', meaning: 'superior'),
+      CommonWord(word: '司会', reading: 'しかい', meaning: 'leading a meeting'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0146',
@@ -14713,6 +20277,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キチ', 'キツ'],
     kunyomi: ['よし'],
+    commonWords: [
+      CommonWord(word: '不吉', reading: 'ふきつ', meaning: 'ominous'),
+      CommonWord(word: '吉兆', reading: 'きっちょう', meaning: 'lucky omen'),
+      CommonWord(word: '吉報', reading: 'きっぽう', meaning: 'good news'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0147',
@@ -14726,6 +20295,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['コウ', 'ゴ'],
     kunyomi: ['きさき'],
+    commonWords: [
+      CommonWord(word: '皇后', reading: 'こうごう', meaning: 'empress'),
+      CommonWord(word: '皇太后', reading: 'こうたいごう', meaning: 'Empress Dowager'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0148',
@@ -14739,6 +20312,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['リ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '下吏', reading: 'かり', meaning: 'lower official'),
+      CommonWord(word: '刑吏', reading: 'けいり', meaning: 'executioner'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0149',
@@ -14752,6 +20329,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ト'],
     kunyomi: ['は', 'つ'],
+    commonWords: [
+      CommonWord(word: '吐き気', reading: 'はきけ', meaning: 'nausea'),
+      CommonWord(word: '吐露', reading: 'とろ', meaning: 'expressing one\'s mind'),
+      CommonWord(word: '嘔吐', reading: 'おうと', meaning: 'vomiting'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0150',
@@ -14765,6 +20347,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ギン'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '吟味', reading: 'ぎんみ', meaning: 'close examination'),
+      CommonWord(word: '吟醸酒', reading: 'ぎんじょうしゅ', meaning: 'ginjō sake'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0151',
@@ -14778,6 +20364,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ロ', 'リョ'],
     kunyomi: ['せぼね'],
+    commonWords: [
+      CommonWord(word: '風呂', reading: 'ふろ', meaning: 'bath'),
+      CommonWord(word: '風呂屋', reading: 'ふろや', meaning: 'public bathhouse'),
+      CommonWord(word: '風呂場', reading: 'ふろば', meaning: 'bathroom'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0152',
@@ -14791,6 +20382,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['テイ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '贈呈', reading: 'ぞうてい', meaning: 'presentation'),
+      CommonWord(word: '露呈', reading: 'ろてい', meaning: 'exposure'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0153',
@@ -14804,6 +20399,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ゴ'],
     kunyomi: ['く', 'くれ'],
+    commonWords: [
+      CommonWord(word: '呉服', reading: 'ごふく', meaning: 'cloth'),
+      CommonWord(word: '呉越同舟', reading: 'ごえつどうしゅう', meaning: 'bitter enemies in the same boat'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0154',
@@ -14817,6 +20416,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['アイ'],
     kunyomi: ['あわ', 'かな'],
+    commonWords: [
+      CommonWord(word: '哀悼', reading: 'あいとう', meaning: 'condolence'),
+      CommonWord(word: '悲哀', reading: 'ひあい', meaning: 'sorrow'),
+      CommonWord(word: '哀愁', reading: 'あいしゅう', meaning: 'pathos'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0155',
@@ -14830,6 +20434,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['サイ'],
     kunyomi: ['かな', 'や'],
+    commonWords: [
+      CommonWord(word: '快哉', reading: 'かいさい', meaning: 'joy'),
+      CommonWord(word: '善哉', reading: 'ぜんざい', meaning: 'well done!'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0156',
@@ -14843,6 +20451,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['テツ'],
     kunyomi: ['さとい', 'あきらか'],
+    commonWords: [
+      CommonWord(word: '哲学', reading: 'てつがく', meaning: 'philosophy'),
+      CommonWord(word: '哲人', reading: 'てつじん', meaning: 'wise man'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0157',
@@ -14856,6 +20468,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['バイ'],
     kunyomi: ['うた'],
+    commonWords: [
+      CommonWord(word: '唄', reading: 'うた', meaning: 'song'),
+      CommonWord(word: '長唄', reading: 'ながうた', meaning: 'long epic song with shamisen'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0158',
@@ -14869,6 +20485,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['サ'],
     kunyomi: ['そそ', 'そそのか'],
+    commonWords: [
+      CommonWord(word: '示唆', reading: 'しさ', meaning: 'suggestion'),
+      CommonWord(word: '教唆', reading: 'きょうさ', meaning: 'instigation'),
+      CommonWord(word: '唆す', reading: 'そそのかす', meaning: 'to instigate'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0159',
@@ -14882,6 +20503,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シン'],
     kunyomi: ['くちびる'],
+    commonWords: [
+      CommonWord(word: '唇', reading: 'くちびる', meaning: 'lip'),
+      CommonWord(word: '下唇', reading: 'したくちびる', meaning: 'lower lip'),
+      CommonWord(word: '上唇', reading: 'うわくちびる', meaning: 'upper lip'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0160',
@@ -14895,6 +20521,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ユイ', 'イ'],
     kunyomi: ['ただ'],
+    commonWords: [
+      CommonWord(word: '唯一', reading: 'ゆいいつ', meaning: 'only'),
+      CommonWord(word: '唯物論', reading: 'ゆいぶつろん', meaning: 'materialism'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0161',
@@ -14908,6 +20538,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ショウ'],
     kunyomi: ['とな'],
+    commonWords: [
+      CommonWord(word: '合唱', reading: 'がっしょう', meaning: 'singing together'),
+      CommonWord(word: '合唱団', reading: 'がっしょうだん', meaning: 'chorus group'),
+      CommonWord(word: '提唱', reading: 'ていしょう', meaning: 'advocacy'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0162',
@@ -14921,6 +20556,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['タク', 'ツク', 'トク'],
     kunyomi: ['ついば', 'つつ'],
+    commonWords: [
+      CommonWord(word: '啄木', reading: 'たくぼく', meaning: 'woodpecker'),
+      CommonWord(word: '啄', reading: 'たく', meaning: 'seventh principle of the Eight'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0163',
@@ -14934,6 +20573,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ケイ'],
     kunyomi: ['ひら', 'さと'],
+    commonWords: [
+      CommonWord(word: '啓発', reading: 'けいはつ', meaning: 'enlightenment'),
+      CommonWord(word: '拝啓', reading: 'はいけい', meaning: 'Dear'),
+      CommonWord(word: '啓示', reading: 'けいじ', meaning: 'revelation'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0164',
@@ -14947,6 +20591,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ゼン'],
     kunyomi: ['よ', 'い', 'よし'],
+    commonWords: [
+      CommonWord(word: '改善', reading: 'かいぜん', meaning: 'betterment'),
+      CommonWord(word: '善', reading: 'ぜん', meaning: 'good'),
+      CommonWord(word: '親善', reading: 'しんぜん', meaning: 'friendship'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0165',
@@ -14960,6 +20609,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['カン'],
     kunyomi: ['わめ'],
+    commonWords: [
+      CommonWord(word: '喚問', reading: 'かんもん', meaning: 'summons'),
+      CommonWord(word: '喚起', reading: 'かんき', meaning: 'arousal'),
+      CommonWord(word: '喚く', reading: 'わめく', meaning: 'to shout'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0166',
@@ -14973,6 +20627,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['カツ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '恐喝', reading: 'きょうかつ', meaning: 'blackmail'),
+      CommonWord(word: '喝破', reading: 'かっぱ', meaning: 'arguing (someone) down'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0167',
@@ -14986,6 +20644,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ソウ'],
     kunyomi: ['も'],
+    commonWords: [
+      CommonWord(word: '喪失', reading: 'そうしつ', meaning: 'loss'),
+      CommonWord(word: '喪主', reading: 'もしゅ', meaning: 'chief mourner'),
+      CommonWord(word: '喪', reading: 'も', meaning: 'mourning'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0168',
@@ -14999,6 +20662,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キョウ'],
     kunyomi: ['たか'],
+    commonWords: [
+      CommonWord(word: '喬木', reading: 'きょうぼく', meaning: 'tall tree'),
+      CommonWord(word: '落葉喬木', reading: 'らくようきょうぼく', meaning: 'deciduous tall tree'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0169',
@@ -15012,6 +20679,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '後嗣', reading: 'こうし', meaning: 'heir'),
+      CommonWord(word: '嫡嗣', reading: 'ちゃくし', meaning: 'legitimate heir'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0170',
@@ -15025,6 +20696,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['タン'],
     kunyomi: ['なげ'],
+    commonWords: [
+      CommonWord(word: '嘆き', reading: 'なげき', meaning: 'grief'),
+      CommonWord(word: '感嘆', reading: 'かんたん', meaning: 'admiration'),
+      CommonWord(word: '嘆願', reading: 'たんがん', meaning: 'entreaty'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0171',
@@ -15038,6 +20714,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['カ'],
     kunyomi: ['よみ', 'よい'],
+    commonWords: [
+      CommonWord(word: '嘉納', reading: 'かのう', meaning: 'accepting with pleasure'),
+      CommonWord(word: '嘉言', reading: 'かげん', meaning: 'good words'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0172',
@@ -15051,6 +20731,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ショク'],
     kunyomi: ['しょく', 'たの'],
+    commonWords: [
+      CommonWord(word: '嘱託', reading: 'しょくたく', meaning: 'commission'),
+      CommonWord(word: '委嘱', reading: 'いしょく', meaning: 'commissioning'),
+      CommonWord(word: '嘱望', reading: 'しょくぼう', meaning: 'having great hopes for'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0173',
@@ -15064,6 +20749,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キ'],
     kunyomi: ['うつわ'],
+    commonWords: [
+      CommonWord(word: '核兵器', reading: 'かくへいき', meaning: 'nuclear weapon'),
+      CommonWord(word: '武器', reading: 'ぶき', meaning: 'weapon'),
+      CommonWord(word: '兵器', reading: 'へいき', meaning: 'arms'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0174',
@@ -15077,6 +20767,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['フン'],
     kunyomi: ['ふ'],
+    commonWords: [
+      CommonWord(word: '噴火', reading: 'ふんか', meaning: 'eruption'),
+      CommonWord(word: '噴出', reading: 'ふんしゅつ', meaning: 'spewing'),
+      CommonWord(word: '噴煙', reading: 'ふんえん', meaning: 'smoke'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0175',
@@ -15090,6 +20785,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['カク'],
     kunyomi: ['おど'],
+    commonWords: [
+      CommonWord(word: '威嚇', reading: 'いかく', meaning: 'threat'),
+      CommonWord(word: '嚇嚇', reading: 'かくかく', meaning: 'brilliant'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0176',
@@ -15103,6 +20802,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シュウ'],
     kunyomi: ['とら'],
+    commonWords: [
+      CommonWord(word: '死刑囚', reading: 'しけいしゅう', meaning: 'criminal condemned to death'),
+      CommonWord(word: '囚人', reading: 'しゅうじん', meaning: 'prisoner'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0177',
@@ -15116,6 +20819,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ケン'],
     kunyomi: ['かこ'],
+    commonWords: [
+      CommonWord(word: '首都圏', reading: 'しゅとけん', meaning: 'Greater Tokyo Metropolitan area'),
+      CommonWord(word: '圏内', reading: 'けんない', meaning: 'inside'),
+      CommonWord(word: '北極圏', reading: 'ほっきょくけん', meaning: 'Arctic Circle'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0178',
@@ -15129,6 +20837,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ケイ', 'ケ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '刀圭', reading: 'とうけい', meaning: 'medicine'),
+      CommonWord(word: '刀圭家', reading: 'とうけいか', meaning: 'doctor'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0179',
@@ -15142,6 +20854,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['コウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '坑道', reading: 'こうどう', meaning: 'tunnel'),
+      CommonWord(word: '廃坑', reading: 'はいこう', meaning: 'closure of a mine'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0180',
@@ -15155,6 +20871,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ヘイ'],
     kunyomi: ['つぼ'],
+    commonWords: [
+      CommonWord(word: '坪', reading: 'つぼ', meaning: 'tsubo'),
+      CommonWord(word: '坪数', reading: 'つぼすう', meaning: 'floor space'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0181',
@@ -15168,6 +20888,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['スイ'],
     kunyomi: ['た', '-た', 'なんなんと'],
+    commonWords: [
+      CommonWord(word: '垂直', reading: 'すいちょく', meaning: 'vertical'),
+      CommonWord(word: '垂れ幕', reading: 'たれまく', meaning: 'hanging banner'),
+      CommonWord(word: '垂らす', reading: 'たらす', meaning: 'to dribble'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0182',
@@ -15181,6 +20906,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['エン'],
     kunyomi: ['かき'],
+    commonWords: [
+      CommonWord(word: '垣根', reading: 'かきね', meaning: 'hedge'),
+      CommonWord(word: '石垣', reading: 'いしがき', meaning: 'stone wall'),
+      CommonWord(word: '垣', reading: 'かき', meaning: 'fence'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0183',
@@ -15194,6 +20924,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シツ', 'シュウ'],
     kunyomi: ['と'],
+    commonWords: [
+      CommonWord(word: '執行', reading: 'しっこう', meaning: 'execution'),
+      CommonWord(word: '執筆', reading: 'しっぴつ', meaning: 'writing'),
+      CommonWord(word: '執念', reading: 'しゅうねん', meaning: 'tenacity'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0184',
@@ -15207,6 +20942,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['バイ'],
     kunyomi: ['つちか'],
+    commonWords: [
+      CommonWord(word: '栽培', reading: 'さいばい', meaning: 'cultivation'),
+      CommonWord(word: '培養', reading: 'ばいよう', meaning: 'culture'),
+      CommonWord(word: '培う', reading: 'つちかう', meaning: 'to cultivate'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0185',
@@ -15220,6 +20960,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キ'],
     kunyomi: ['もと', 'もとい'],
+    commonWords: [
+      CommonWord(word: '基本', reading: 'きほん', meaning: 'basics'),
+      CommonWord(word: '基準', reading: 'きじゅん', meaning: 'standard'),
+      CommonWord(word: '基礎', reading: 'きそ', meaning: 'foundation'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0186',
@@ -15233,6 +20978,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['クツ'],
     kunyomi: ['ほり'],
+    commonWords: [
+      CommonWord(word: '堀', reading: 'ほり', meaning: 'moat'),
+      CommonWord(word: '堀江', reading: 'ほりえ', meaning: 'canal'),
+      CommonWord(word: '外堀', reading: 'そとぼり', meaning: 'outer moat'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0187',
@@ -15246,6 +20996,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ケン'],
     kunyomi: ['かた', '-がた'],
+    commonWords: [
+      CommonWord(word: '中堅', reading: 'ちゅうけん', meaning: 'nucleus'),
+      CommonWord(word: '堅実', reading: 'けんじつ', meaning: 'steady'),
+      CommonWord(word: '堅持', reading: 'けんじ', meaning: 'adhering to'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0188',
@@ -15259,6 +21014,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ダ'],
     kunyomi: ['お', 'くず'],
+    commonWords: [
+      CommonWord(word: '堕落', reading: 'だらく', meaning: 'depravity'),
+      CommonWord(word: '堕胎', reading: 'だたい', meaning: 'abortion'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0189',
@@ -15272,6 +21031,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['テイ'],
     kunyomi: ['つつみ'],
+    commonWords: [
+      CommonWord(word: '堤防', reading: 'ていぼう', meaning: 'bank'),
+      CommonWord(word: '防波堤', reading: 'ぼうはてい', meaning: 'breakwater'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0190',
@@ -15285,6 +21048,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['カン', 'タン'],
     kunyomi: ['た', 'たま', 'こら', 'こた'],
+    commonWords: [
+      CommonWord(word: '堪能', reading: 'かんのう', meaning: 'proficient'),
+      CommonWord(word: '堪える', reading: 'たえる', meaning: 'to bear'),
+      CommonWord(word: '堪らない', reading: 'たまらない', meaning: 'intolerable'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0191',
@@ -15298,6 +21066,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ヘイ', 'ベイ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '塀', reading: 'へい', meaning: 'wall'),
+      CommonWord(word: '土塀', reading: 'どべい', meaning: 'mud wall'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0192',
@@ -15311,6 +21083,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ルイ', 'ライ', 'スイ'],
     kunyomi: ['とりで'],
+    commonWords: [
+      CommonWord(word: '本塁打', reading: 'ほんるいだ', meaning: 'home run'),
+      CommonWord(word: '三塁', reading: 'さんるい', meaning: 'third base'),
+      CommonWord(word: '二塁', reading: 'にるい', meaning: 'second base'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0193',
@@ -15324,6 +21101,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['カイ', 'ケ'],
     kunyomi: ['かたまり', 'つちくれ'],
+    commonWords: [
+      CommonWord(word: '塊', reading: 'かたまり', meaning: 'lump'),
+      CommonWord(word: '団塊', reading: 'だんかい', meaning: 'mass'),
+      CommonWord(word: '金塊', reading: 'きんかい', meaning: 'gold nugget'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0194',
@@ -15337,6 +21119,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ソ'],
     kunyomi: ['でく'],
+    commonWords: [
+      CommonWord(word: '彫塑', reading: 'ちょうそ', meaning: 'carving'),
+      CommonWord(word: '可塑', reading: 'かそ', meaning: 'moldable'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0195',
@@ -15350,6 +21136,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['チョウ'],
     kunyomi: ['つか', '-づか'],
+    commonWords: [
+      CommonWord(word: '塚', reading: 'つか', meaning: 'mound'),
+      CommonWord(word: '一里塚', reading: 'いちりづか', meaning: 'milestone'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0196',
@@ -15363,6 +21153,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ジュク'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '塾', reading: 'じゅく', meaning: 'cram school'),
+      CommonWord(word: '塾長', reading: 'じゅくちょう', meaning: 'principal of a private school'),
+      CommonWord(word: '塾生', reading: 'じゅくせい', meaning: 'cram school student'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0197',
@@ -15376,6 +21171,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ボ'],
     kunyomi: ['はか'],
+    commonWords: [
+      CommonWord(word: '墓', reading: 'はか', meaning: 'grave'),
+      CommonWord(word: '墓地', reading: 'ぼち', meaning: 'cemetery'),
+      CommonWord(word: '墓参', reading: 'はかまいり', meaning: 'visit to a grave'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0198',
@@ -15389,6 +21189,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ツイ'],
     kunyomi: ['お'],
+    commonWords: [
+      CommonWord(word: '墜落', reading: 'ついらく', meaning: 'fall'),
+      CommonWord(word: '撃墜', reading: 'げきつい', meaning: 'shooting down'),
+      CommonWord(word: '失墜', reading: 'しっつい', meaning: 'abasement'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0199',
@@ -15402,6 +21207,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ボク'],
     kunyomi: ['すみ'],
+    commonWords: [
+      CommonWord(word: '墨', reading: 'すみ', meaning: 'sumi'),
+      CommonWord(word: '入れ墨', reading: 'いれずみ', meaning: 'tattoo'),
+      CommonWord(word: '水墨画', reading: 'すいぼくが', meaning: 'India-ink painting'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0200',
@@ -15415,6 +21225,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['フン'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '墳墓', reading: 'ふんぼ', meaning: 'grave'),
+      CommonWord(word: '前方後円墳', reading: 'ぜんぽうこうえんふん', meaning: 'keyhole-shaped ancient Japanese tumulus'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0201',
@@ -15428,6 +21242,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['コン'],
     kunyomi: ['は', 'ひら'],
+    commonWords: [
+      CommonWord(word: '開墾', reading: 'かいこん', meaning: 'cultivating new land'),
+      CommonWord(word: '開墾地', reading: 'かいこんち', meaning: 'cultivated land'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0202',
@@ -15441,6 +21259,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ヘキ'],
     kunyomi: ['かべ'],
+    commonWords: [
+      CommonWord(word: '壁', reading: 'かべ', meaning: 'wall'),
+      CommonWord(word: '障壁', reading: 'しょうへき', meaning: 'enclosing wall'),
+      CommonWord(word: '壁画', reading: 'へきが', meaning: 'fresco'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0203',
@@ -15454,6 +21277,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ダン', 'タン'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '壇', reading: 'だん', meaning: 'platform'),
+      CommonWord(word: '土壇場', reading: 'どたんば', meaning: 'last moment'),
+      CommonWord(word: '壇上', reading: 'だんじょう', meaning: 'on a stage'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0204',
@@ -15467,6 +21295,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['カイ', 'エ'],
     kunyomi: ['こわ', 'やぶ'],
+    commonWords: [
+      CommonWord(word: '崩壊', reading: 'ほうかい', meaning: 'collapse'),
+      CommonWord(word: '破壊', reading: 'はかい', meaning: 'destruction'),
+      CommonWord(word: '壊す', reading: 'こわす', meaning: 'to break'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0205',
@@ -15480,6 +21313,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ジョウ'],
     kunyomi: ['つち'],
+    commonWords: [
+      CommonWord(word: '土壌', reading: 'どじょう', meaning: 'soil'),
+      CommonWord(word: '平壌', reading: 'へいじょう', meaning: 'Pyongyang'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0206',
@@ -15493,6 +21330,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シ'],
     kunyomi: ['さむらい'],
+    commonWords: [
+      CommonWord(word: '弁護士', reading: 'べんごし', meaning: 'lawyer'),
+      CommonWord(word: '同士', reading: 'どうし', meaning: 'fellow'),
+      CommonWord(word: '兵士', reading: 'へいし', meaning: 'soldier'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0207',
@@ -15506,6 +21348,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ソウ'],
     kunyomi: ['さかん'],
+    commonWords: [
+      CommonWord(word: '壮大', reading: 'そうだい', meaning: 'magnificent'),
+      CommonWord(word: '悲壮', reading: 'ひそう', meaning: 'tragic but brave'),
+      CommonWord(word: '壮行', reading: 'そうこう', meaning: 'send-off'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0208',
@@ -15519,6 +21366,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['イチ', 'イツ'],
     kunyomi: ['ひとつ'],
+    commonWords: [
+      CommonWord(word: '壱', reading: 'いち', meaning: 'one'),
+      CommonWord(word: '壱拾萬', reading: 'じゅうまん', meaning: '100,000'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0209',
@@ -15532,6 +21383,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キ'],
     kunyomi: ['く', 'あや', 'くし', 'めずら'],
+    commonWords: [
+      CommonWord(word: '奇妙', reading: 'きみょう', meaning: 'strange'),
+      CommonWord(word: '奇跡', reading: 'きせき', meaning: 'miracle'),
+      CommonWord(word: '好奇心', reading: 'こうきしん', meaning: 'curiosity'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0210',
@@ -15545,6 +21401,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ナ', 'ナイ', 'ダイ'],
     kunyomi: ['いかん', 'からなし'],
+    commonWords: [
+      CommonWord(word: '奈良', reading: 'なら', meaning: 'Nara'),
+      CommonWord(word: '奈辺', reading: 'なへん', meaning: 'where'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0211',
@@ -15558,6 +21418,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ホウ', 'ブ'],
     kunyomi: ['たてまつ', 'まつ', 'ほう'],
+    commonWords: [
+      CommonWord(word: '奉仕', reading: 'ほうし', meaning: 'service'),
+      CommonWord(word: '奉公', reading: 'ほうこう', meaning: 'live-in domestic service'),
+      CommonWord(word: '信奉', reading: 'しんぽう', meaning: 'belief'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0212',
@@ -15571,6 +21436,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ケイ', 'キ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '奎', reading: 'けい', meaning: 'Legs constellation'),
+      CommonWord(word: '奎宿', reading: 'とかきぼし', meaning: 'Legs lunar mansion'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0213',
@@ -15584,6 +21453,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ソウ'],
     kunyomi: ['かな'],
+    commonWords: [
+      CommonWord(word: '演奏', reading: 'えんそう', meaning: 'musical performance'),
+      CommonWord(word: '協奏曲', reading: 'きょうそうきょく', meaning: 'concerto'),
+      CommonWord(word: '奏者', reading: 'そうしゃ', meaning: 'instrumentalist'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0214',
@@ -15597,6 +21471,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ケイ'],
     kunyomi: ['ちぎ'],
+    commonWords: [
+      CommonWord(word: '契約', reading: 'けいやく', meaning: 'contract'),
+      CommonWord(word: '契機', reading: 'けいき', meaning: 'opportunity'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0215',
@@ -15610,6 +21488,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ホン'],
     kunyomi: ['はし'],
+    commonWords: [
+      CommonWord(word: '奔放', reading: 'ほんぽう', meaning: 'wild'),
+      CommonWord(word: '狂奔', reading: 'きょうほん', meaning: 'rushing around'),
+      CommonWord(word: '奔走', reading: 'ほんそう', meaning: 'running about'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0216',
@@ -15623,6 +21506,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ショウ', 'ソウ'],
     kunyomi: ['すす'],
+    commonWords: [
+      CommonWord(word: '奨励', reading: 'しょうれい', meaning: 'encouragement'),
+      CommonWord(word: '奨学金', reading: 'しょうがくきん', meaning: 'scholarship'),
+      CommonWord(word: '奨学', reading: 'しょうがく', meaning: 'encouragement to study'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0217',
@@ -15636,6 +21524,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ダツ'],
     kunyomi: ['うば'],
+    commonWords: [
+      CommonWord(word: '奪う', reading: 'うばう', meaning: 'to take'),
+      CommonWord(word: '奪三振', reading: 'だつさんしん', meaning: 'striking a batter out'),
+      CommonWord(word: '奪回', reading: 'だっかい', meaning: 'recovery'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0218',
@@ -15649,6 +21542,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['フン'],
     kunyomi: ['ふる'],
+    commonWords: [
+      CommonWord(word: '興奮', reading: 'こうふん', meaning: 'excitement'),
+      CommonWord(word: '奮起', reading: 'ふんき', meaning: 'stirring'),
+      CommonWord(word: '奮闘', reading: 'ふんとう', meaning: 'strenuous effort'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0219',
@@ -15662,6 +21560,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ド'],
     kunyomi: ['やつ', 'やっこ'],
+    commonWords: [
+      CommonWord(word: '奴', reading: 'やつ', meaning: 'fellow'),
+      CommonWord(word: '奴隷', reading: 'どれい', meaning: 'slave'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0220',
@@ -15675,6 +21577,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ジョ', 'ニョ'],
     kunyomi: ['ごと'],
+    commonWords: [
+      CommonWord(word: '欠如', reading: 'けつじょ', meaning: 'lack'),
+      CommonWord(word: '如実', reading: 'にょじつ', meaning: 'reality'),
+      CommonWord(word: '突如', reading: 'とつじょ', meaning: 'suddenly'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0221',
@@ -15688,6 +21595,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ヒ'],
     kunyomi: ['きさき'],
+    commonWords: [
+      CommonWord(word: '妃', reading: 'ひ', meaning: 'princess'),
+      CommonWord(word: '王妃', reading: 'おうひ', meaning: 'queen'),
+      CommonWord(word: '皇太子妃', reading: 'こうたいしひ', meaning: 'crown princess'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0222',
@@ -15701,6 +21613,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['モウ', 'ボウ'],
     kunyomi: ['みだ'],
+    commonWords: [
+      CommonWord(word: '妄想', reading: 'もうそう', meaning: 'delusion'),
+      CommonWord(word: '妄信', reading: 'もうしん', meaning: 'blind acceptance'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0223',
@@ -15714,6 +21630,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ニン', 'ジン'],
     kunyomi: ['はら', 'みごも'],
+    commonWords: [
+      CommonWord(word: '妊娠', reading: 'にんしん', meaning: 'pregnancy'),
+      CommonWord(word: '避妊', reading: 'ひにん', meaning: 'contraception'),
+      CommonWord(word: '妊婦', reading: 'にんぷ', meaning: 'pregnant woman'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0224',
@@ -15727,6 +21648,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ミョウ', 'ビョウ'],
     kunyomi: ['たえ'],
+    commonWords: [
+      CommonWord(word: '微妙', reading: 'びみょう', meaning: 'subtle'),
+      CommonWord(word: '妙', reading: 'みょう', meaning: 'strange'),
+      CommonWord(word: '巧妙', reading: 'こうみょう', meaning: 'ingenious'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0225',
@@ -15740,6 +21666,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ダ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '妥協', reading: 'だきょう', meaning: 'compromise'),
+      CommonWord(word: '妥結', reading: 'だけつ', meaning: 'settlement'),
+      CommonWord(word: '妥当', reading: 'だとう', meaning: 'valid'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0226',
@@ -15753,6 +21684,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ボウ'],
     kunyomi: ['さまた'],
+    commonWords: [
+      CommonWord(word: '妨害', reading: 'ぼうがい', meaning: 'obstruction'),
+      CommonWord(word: '妨げる', reading: 'さまたげる', meaning: 'to disturb'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0227',
@@ -15766,6 +21701,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キ'],
     kunyomi: ['ひめ'],
+    commonWords: [
+      CommonWord(word: '姫', reading: 'ひめ', meaning: 'young lady of noble birth'),
+      CommonWord(word: '舞姫', reading: 'まいひめ', meaning: 'female dancer'),
+      CommonWord(word: '歌姫', reading: 'うたひめ', meaning: 'songstress'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0228',
@@ -15779,6 +21719,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['イン'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '婚姻', reading: 'こんいん', meaning: 'marriage'),
+      CommonWord(word: '姻戚', reading: 'いんせき', meaning: 'in-law'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0229',
@@ -15792,6 +21736,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シ'],
     kunyomi: ['すがた'],
+    commonWords: [
+      CommonWord(word: '姿', reading: 'すがた', meaning: 'figure'),
+      CommonWord(word: '姿勢', reading: 'しせい', meaning: 'posture'),
+      CommonWord(word: '後ろ姿', reading: 'うしろすがた', meaning: 'appearance from behind'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0230',
@@ -15805,6 +21754,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['イ'],
     kunyomi: ['おど'],
+    commonWords: [
+      CommonWord(word: '権威', reading: 'けんい', meaning: 'authority'),
+      CommonWord(word: '威嚇', reading: 'いかく', meaning: 'threat'),
+      CommonWord(word: '威勢', reading: 'いせい', meaning: 'power'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0231',
@@ -15818,6 +21772,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シン'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '妊娠', reading: 'にんしん', meaning: 'pregnancy'),
+      CommonWord(word: '偽妊娠', reading: 'ぎにんしん', meaning: 'pseudocyesis'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0232',
@@ -15831,6 +21789,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ゴ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '娯楽', reading: 'ごらく', meaning: 'amusement'),
+      CommonWord(word: '娯楽室', reading: 'ごらくしつ', meaning: 'recreation room'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0233',
@@ -15844,6 +21806,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['バ'],
     kunyomi: ['ばば', 'ばあ'],
+    commonWords: [
+      CommonWord(word: '老婆', reading: 'ろうば', meaning: 'old woman'),
+      CommonWord(word: '婆さん', reading: 'ばあさん', meaning: 'grandmother'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0234',
@@ -15857,6 +21823,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['セイ'],
     kunyomi: ['むこ'],
+    commonWords: [
+      CommonWord(word: '娘婿', reading: 'むすめむこ', meaning: 'son-in-law'),
+      CommonWord(word: '花婿', reading: 'はなむこ', meaning: 'bridegroom'),
+      CommonWord(word: '婿', reading: 'むこ', meaning: 'husband'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0235',
@@ -15870,6 +21841,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['バイ'],
     kunyomi: ['なこうど'],
+    commonWords: [
+      CommonWord(word: '媒体', reading: 'ばいたい', meaning: 'medium'),
+      CommonWord(word: '触媒', reading: 'しょくばい', meaning: 'catalyst'),
+      CommonWord(word: '媒介', reading: 'ばいかい', meaning: 'mediation'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0236',
@@ -15883,6 +21859,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['エン'],
     kunyomi: ['ひめ'],
+    commonWords: [
+      CommonWord(word: '愛媛県', reading: 'えひめけん', meaning: 'Ehime Prefecture'),
+      CommonWord(word: '才媛', reading: 'さいえん', meaning: 'literary woman'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0237',
@@ -15896,6 +21876,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['カ'],
     kunyomi: ['よめ', 'とつ', 'い', 'ゆ'],
+    commonWords: [
+      CommonWord(word: '嫁', reading: 'よめ', meaning: 'bride'),
+      CommonWord(word: '転嫁', reading: 'てんか', meaning: 'imputation'),
+      CommonWord(word: '嫁ぐ', reading: 'とつぐ', meaning: 'to marry'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0238',
@@ -15909,6 +21894,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ケン', 'ゲン'],
     kunyomi: ['きら', 'いや'],
+    commonWords: [
+      CommonWord(word: '嫌', reading: 'いや', meaning: 'disliking'),
+      CommonWord(word: '機嫌', reading: 'きげん', meaning: 'humour'),
+      CommonWord(word: '嫌う', reading: 'きらう', meaning: 'to hate'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0239',
@@ -15922,6 +21912,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['チャク', 'テキ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '嫡出', reading: 'ちゃくしゅつ', meaning: 'legitimate birth'),
+      CommonWord(word: '嫡子', reading: 'ちゃくし', meaning: 'heir'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0240',
@@ -15935,6 +21929,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キ'],
     kunyomi: ['うれ', 'たの'],
+    commonWords: [
+      CommonWord(word: '嬉しい', reading: 'うれしい', meaning: 'happy'),
+      CommonWord(word: '嬉々', reading: 'きき', meaning: 'merry'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0241',
@@ -15948,6 +21946,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ジョウ'],
     kunyomi: ['むすめ'],
+    commonWords: [
+      CommonWord(word: 'お嬢さん', reading: 'おじょうさん', meaning: 'daughter'),
+      CommonWord(word: '嬢', reading: 'じょう', meaning: 'unmarried woman'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0242',
@@ -15961,6 +21963,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['コウ', 'ク'],
     kunyomi: ['あな'],
+    commonWords: [
+      CommonWord(word: '孔子', reading: 'こうし', meaning: 'Confucius'),
+      CommonWord(word: '瞳孔', reading: 'どうこう', meaning: 'pupil'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0243',
@@ -15974,6 +21980,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['コウ', 'キョウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '孝行', reading: 'こうこう', meaning: 'filial piety'),
+      CommonWord(word: '親不孝', reading: 'おやふこう', meaning: 'lack of filial piety'),
+      CommonWord(word: '不孝', reading: 'ふこう', meaning: 'undutifulness to one\'s parents'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0244',
@@ -15987,6 +21998,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['モウ', 'ボウ', 'ミョウ'],
     kunyomi: ['かしら'],
+    commonWords: [
+      CommonWord(word: '孟子', reading: 'もうし', meaning: 'Mencius'),
+      CommonWord(word: '孔孟', reading: 'こうもう', meaning: 'Confucius and Mencius'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0245',
@@ -16000,6 +22015,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['コ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '孤立', reading: 'こりつ', meaning: 'isolation'),
+      CommonWord(word: '孤独', reading: 'こどく', meaning: 'solitude'),
+      CommonWord(word: '孤児', reading: 'こじ', meaning: 'orphan'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0246',
@@ -16013,6 +22033,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['コウ'],
     kunyomi: ['ひろ'],
+    commonWords: [
+      CommonWord(word: '宏遠', reading: 'こうえん', meaning: 'vast and far-reaching'),
+      CommonWord(word: '宏壮', reading: 'こうそう', meaning: 'grand'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0247',
@@ -16026,6 +22050,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シュウ', 'ソウ'],
     kunyomi: ['むね'],
+    commonWords: [
+      CommonWord(word: '宗教', reading: 'しゅうきょう', meaning: 'religion'),
+      CommonWord(word: '宗', reading: 'しゅう', meaning: 'sect'),
+      CommonWord(word: '宗門', reading: 'しゅうもん', meaning: 'denomination'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0248',
@@ -16039,6 +22068,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['チュウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '宇宙', reading: 'うちゅう', meaning: 'universe'),
+      CommonWord(word: '宙', reading: 'ちゅう', meaning: 'space'),
+      CommonWord(word: '宇宙開発', reading: 'うちゅうかいはつ', meaning: 'space development'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0249',
@@ -16052,6 +22086,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ギ'],
     kunyomi: ['よろ'],
+    commonWords: [
+      CommonWord(word: '便宜', reading: 'べんぎ', meaning: 'convenience'),
+      CommonWord(word: '適宜', reading: 'てきぎ', meaning: 'suitable'),
+      CommonWord(word: '時宜', reading: 'じぎ', meaning: 'right time'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0250',
@@ -16065,6 +22104,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['セン'],
     kunyomi: ['のたま'],
+    commonWords: [
+      CommonWord(word: '宣言', reading: 'せんげん', meaning: 'declaration'),
+      CommonWord(word: '宣伝', reading: 'せんでん', meaning: 'publicity'),
+      CommonWord(word: '宣告', reading: 'せんこく', meaning: 'sentencing'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0251',
@@ -16078,6 +22122,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ユウ'],
     kunyomi: ['なだ', 'ゆる'],
+    commonWords: [
+      CommonWord(word: '宥める', reading: 'なだめる', meaning: 'to soothe'),
+      CommonWord(word: '宥和', reading: 'ゆうわ', meaning: 'appeasement'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0252',
@@ -16091,6 +22139,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キュウ', 'グウ', 'ク', 'クウ'],
     kunyomi: ['みや'],
+    commonWords: [
+      CommonWord(word: '宮内庁', reading: 'くないちょう', meaning: 'Imperial Household Agency'),
+      CommonWord(word: '神宮', reading: 'じんぐう', meaning: 'high-status Shinto shrine with'),
+      CommonWord(word: '宮殿', reading: 'きゅうでん', meaning: 'palace'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0253',
@@ -16104,6 +22157,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['サイ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '主宰', reading: 'しゅさい', meaning: 'chairmanship'),
+      CommonWord(word: '宰相', reading: 'さいしょう', meaning: 'prime minister'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0254',
@@ -16117,6 +22174,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['エン'],
     kunyomi: ['うたげ'],
+    commonWords: [
+      CommonWord(word: '宴会', reading: 'えんかい', meaning: 'party'),
+      CommonWord(word: '宴', reading: 'えん', meaning: 'banquet'),
+      CommonWord(word: '饗宴', reading: 'きょうえん', meaning: 'feast'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0255',
@@ -16130,6 +22192,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ショウ'],
     kunyomi: ['よい'],
+    commonWords: [
+      CommonWord(word: '宵', reading: 'よい', meaning: 'evening'),
+      CommonWord(word: '今宵', reading: 'こよい', meaning: 'this evening'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0256',
@@ -16143,6 +22209,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ジャク', 'セキ'],
     kunyomi: ['さび', 'さみ'],
+    commonWords: [
+      CommonWord(word: '静寂', reading: 'せいじゃく', meaning: 'silence'),
+      CommonWord(word: '寂しい', reading: 'さびしい', meaning: 'lonely'),
+      CommonWord(word: '寂', reading: 'さび', meaning: 'patina'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0257',
@@ -16156,6 +22227,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['イン'],
     kunyomi: ['とら'],
+    commonWords: [
+      CommonWord(word: '寅', reading: 'とら', meaning: 'the Tiger'),
+      CommonWord(word: '寅年', reading: 'とらどし', meaning: 'year of the Tiger'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0258',
@@ -16169,6 +22244,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ミツ'],
     kunyomi: ['ひそ'],
+    commonWords: [
+      CommonWord(word: '秘密', reading: 'ひみつ', meaning: 'secret'),
+      CommonWord(word: '密接', reading: 'みっせつ', meaning: 'close'),
+      CommonWord(word: '密輸', reading: 'みつゆ', meaning: 'smuggling'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0259',
@@ -16182,6 +22262,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['カン'],
     kunyomi: ['くつろ', 'ひろ', 'ゆる'],
+    commonWords: [
+      CommonWord(word: '寛大', reading: 'かんだい', meaning: 'tolerant'),
+      CommonWord(word: '寛容', reading: 'かんよう', meaning: 'tolerance'),
+      CommonWord(word: '寛ぐ', reading: 'くつろぐ', meaning: 'to relax'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0260',
@@ -16195,6 +22280,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['カ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '寡占', reading: 'かせん', meaning: 'oligopoly'),
+      CommonWord(word: '寡黙', reading: 'かもく', meaning: 'untalkative'),
+      CommonWord(word: '寡婦', reading: 'かふ', meaning: 'widow'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0261',
@@ -16208,6 +22298,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ネイ'],
     kunyomi: ['むし'],
+    commonWords: [
+      CommonWord(word: '丁寧', reading: 'ていねい', meaning: 'polite'),
+      CommonWord(word: '寧ろ', reading: 'むしろ', meaning: 'rather'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0262',
@@ -16221,6 +22315,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シン'],
     kunyomi: ['つまび', 'つぶさ'],
+    commonWords: [
+      CommonWord(word: '審議', reading: 'しんぎ', meaning: 'deliberation'),
+      CommonWord(word: '審判', reading: 'しんぱん', meaning: 'judgement'),
+      CommonWord(word: '不審', reading: 'ふしん', meaning: 'doubt'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0263',
@@ -16234,6 +22333,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['リョウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '寮', reading: 'りょう', meaning: 'hostel'),
+      CommonWord(word: '寮生', reading: 'りょうせい', meaning: 'boarder'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0264',
@@ -16247,6 +22350,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['スン'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '寸法', reading: 'すんぽう', meaning: 'measurement'),
+      CommonWord(word: '寸前', reading: 'すんぜん', meaning: 'just before'),
+      CommonWord(word: '寸断', reading: 'すんだん', meaning: 'cutting to pieces'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0265',
@@ -16260,6 +22368,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シャ'],
     kunyomi: ['い', 'さ', 'う'],
+    commonWords: [
+      CommonWord(word: '放射能', reading: 'ほうしゃのう', meaning: 'radioactivity'),
+      CommonWord(word: '注射', reading: 'ちゅうしゃ', meaning: 'injection'),
+      CommonWord(word: '反射', reading: 'はんしゃ', meaning: 'reflection'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0266',
@@ -16273,6 +22386,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['イ', 'ジョウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '大尉', reading: 'たいい', meaning: 'captain'),
+      CommonWord(word: '中尉', reading: 'ちゅうい', meaning: 'first lieutenant'),
+      CommonWord(word: '少尉', reading: 'しょうい', meaning: 'second lieutenant'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0267',
@@ -16286,6 +22404,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ジン'],
     kunyomi: ['たず', 'ひろ'],
+    commonWords: [
+      CommonWord(word: '尋問', reading: 'じんもん', meaning: 'questioning'),
+      CommonWord(word: '尋ねる', reading: 'たずねる', meaning: 'to ask'),
+      CommonWord(word: '尋常', reading: 'じんじょう', meaning: 'common'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0268',
@@ -16299,6 +22422,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ショウ'],
     kunyomi: ['なお'],
+    commonWords: [
+      CommonWord(word: '尚', reading: 'なお', meaning: 'still'),
+      CommonWord(word: '時期尚早', reading: 'じきしょうそう', meaning: 'premature'),
+      CommonWord(word: '和尚', reading: 'おしょう', meaning: 'priestly teacher'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0269',
@@ -16312,6 +22440,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ギョウ'],
     kunyomi: ['たか'],
+    commonWords: [
+      CommonWord(word: '尭尭', reading: 'ぎょうぎょう', meaning: 'lofty'),
+      CommonWord(word: '尭舜', reading: 'ぎょうしゅん', meaning: 'Yao and Shun (sage emperors)'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0270',
@@ -16325,6 +22457,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シュウ', 'ジュ'],
     kunyomi: ['つ'],
+    commonWords: [
+      CommonWord(word: '就任', reading: 'しゅうにん', meaning: 'assumption'),
+      CommonWord(word: '就職', reading: 'しゅうしょく', meaning: 'finding employment'),
+      CommonWord(word: '就労', reading: 'しゅうろう', meaning: 'working'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0271',
@@ -16338,6 +22475,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シャク', 'セキ'],
     kunyomi: ['さし'],
+    commonWords: [
+      CommonWord(word: '尺度', reading: 'しゃくど', meaning: 'gauge'),
+      CommonWord(word: '尺八', reading: 'しゃくはち', meaning: 'shakuhachi'),
+      CommonWord(word: '尺', reading: 'しゃく', meaning: 'shaku'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0272',
@@ -16351,6 +22493,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ニ'],
     kunyomi: ['あま'],
+    commonWords: [
+      CommonWord(word: '尼', reading: 'あま', meaning: 'Buddhist nun'),
+      CommonWord(word: '僧尼', reading: 'そうに', meaning: 'monks and nuns'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0273',
@@ -16364,6 +22510,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ジン', 'サン'],
     kunyomi: ['つ', '-づ', '-ず', 'ことごと'],
+    commonWords: [
+      CommonWord(word: '尽くす', reading: 'つくす', meaning: 'to use up'),
+      CommonWord(word: '理不尽', reading: 'りふじん', meaning: 'unreasonable'),
+      CommonWord(word: '尽きる', reading: 'つきる', meaning: 'to be used up'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0274',
@@ -16377,6 +22528,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ビ'],
     kunyomi: ['お'],
+    commonWords: [
+      CommonWord(word: '尾', reading: 'お', meaning: 'tail'),
+      CommonWord(word: '尾根', reading: 'おね', meaning: 'ridge'),
+      CommonWord(word: '末尾', reading: 'まつび', meaning: 'end'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0275',
@@ -16390,6 +22546,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ニョウ'],
     kunyomi: ['ゆばり', 'いばり', 'しと'],
+    commonWords: [
+      CommonWord(word: '尿', reading: 'にょう', meaning: 'urine'),
+      CommonWord(word: '糖尿病', reading: 'とうにょうびょう', meaning: 'diabetes'),
+      CommonWord(word: '泌尿器', reading: 'ひにょうき', meaning: 'urinary organs'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0276',
@@ -16403,6 +22564,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['クツ'],
     kunyomi: ['かが'],
+    commonWords: [
+      CommonWord(word: '理屈', reading: 'りくつ', meaning: 'theory'),
+      CommonWord(word: '窮屈', reading: 'きゅうくつ', meaning: 'narrow'),
+      CommonWord(word: '屈辱', reading: 'くつじょく', meaning: 'disgrace'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0277',
@@ -16416,6 +22582,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['テン'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '展開', reading: 'てんかい', meaning: 'development'),
+      CommonWord(word: '展示', reading: 'てんじ', meaning: 'exhibition'),
+      CommonWord(word: '展望', reading: 'てんぼう', meaning: 'view'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0278',
@@ -16429,6 +22600,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ゾク', 'ショク'],
     kunyomi: ['さかん', 'つく', 'やから'],
+    commonWords: [
+      CommonWord(word: '金属', reading: 'きんぞく', meaning: 'metal'),
+      CommonWord(word: '所属', reading: 'しょぞく', meaning: 'belonging to'),
+      CommonWord(word: '付属', reading: 'ふぞく', meaning: 'being attached'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0279',
@@ -16442,6 +22618,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['リ'],
     kunyomi: ['は'],
+    commonWords: [
+      CommonWord(word: '履歴書', reading: 'りれきしょ', meaning: 'personal history document'),
+      CommonWord(word: '履行', reading: 'りこう', meaning: 'performance'),
+      CommonWord(word: '履物', reading: 'はきもの', meaning: 'footwear'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0280',
@@ -16455,6 +22636,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['トン'],
     kunyomi: ['たむろ'],
+    commonWords: [
+      CommonWord(word: '駐屯', reading: 'ちゅうとん', meaning: 'stationing'),
+      CommonWord(word: '駐屯所', reading: 'ちゅうとんじょ', meaning: 'military station'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0281',
@@ -16468,6 +22653,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キ', 'ギ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '岐阜', reading: 'ぎふ', meaning: 'Gifu'),
+      CommonWord(word: '多岐', reading: 'たき', meaning: 'diverse'),
+      CommonWord(word: '分岐点', reading: 'ぶんきてん', meaning: 'fork'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0282',
@@ -16481,6 +22671,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['コウ'],
     kunyomi: ['おか'],
+    commonWords: [
+      CommonWord(word: '福岡', reading: 'ふくおか', meaning: 'Fukuoka'),
+      CommonWord(word: '静岡', reading: 'しずおか', meaning: 'Shizuoka'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0283',
@@ -16494,6 +22688,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['コウ'],
     kunyomi: ['みさき'],
+    commonWords: [
+      CommonWord(word: '岬', reading: 'みさき', meaning: 'cape'),
+      CommonWord(word: '岬角', reading: 'こうかく', meaning: 'promontory'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0284',
@@ -16507,6 +22705,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ガク'],
     kunyomi: ['たけ'],
+    commonWords: [
+      CommonWord(word: '山岳', reading: 'さんがく', meaning: 'mountain chain'),
+      CommonWord(word: '岳', reading: 'たけ', meaning: 'mountain'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0285',
@@ -16520,6 +22722,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: [],
     kunyomi: ['とうげ'],
+    commonWords: [
+      CommonWord(word: '峠', reading: 'とうげ', meaning: 'pass'),
+      CommonWord(word: '碓氷峠', reading: 'うすいとうげ', meaning: 'Usui Pass'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0286',
@@ -16533,6 +22739,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キョウ', 'コウ'],
     kunyomi: ['はざま'],
+    commonWords: [
+      CommonWord(word: '海峡', reading: 'かいきょう', meaning: 'channel'),
+      CommonWord(word: '峡谷', reading: 'きょうこく', meaning: 'gorge'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0287',
@@ -16546,6 +22756,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ホウ'],
     kunyomi: ['みね', 'ね'],
+    commonWords: [
+      CommonWord(word: '峰', reading: 'みね', meaning: 'peak'),
+      CommonWord(word: '最高峰', reading: 'さいこうほう', meaning: 'highest peak'),
+      CommonWord(word: '連峰', reading: 'れんぽう', meaning: 'mountain range'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0288',
@@ -16559,6 +22774,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シュン'],
     kunyomi: ['けわ', 'たか'],
+    commonWords: [
+      CommonWord(word: '峻別', reading: 'しゅんべつ', meaning: 'rigorous distinction'),
+      CommonWord(word: '峻険', reading: 'しゅんけん', meaning: 'steep'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0289',
@@ -16572,6 +22791,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['スウ'],
     kunyomi: ['あが'],
+    commonWords: [
+      CommonWord(word: '崇拝', reading: 'すうはい', meaning: 'worship'),
+      CommonWord(word: '崇高', reading: 'すうこう', meaning: 'lofty'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0290',
@@ -16585,6 +22808,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キ'],
     kunyomi: ['さき', 'さい', 'みさき'],
+    commonWords: [
+      CommonWord(word: '崎', reading: 'さき', meaning: 'small peninsula'),
+      CommonWord(word: '川崎', reading: 'かわさき', meaning: 'Kawasaki'),
+      CommonWord(word: '長崎', reading: 'ながさき', meaning: 'Nagasaki'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0291',
@@ -16598,6 +22826,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['リョウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '崚嶒', reading: 'りょうそう', meaning: 'towering and rugged'),
+      CommonWord(word: '崚', reading: 'りょう', meaning: 'Ryō (given name)'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0292',
@@ -16611,6 +22843,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ホウ'],
     kunyomi: ['くず', '-くず'],
+    commonWords: [
+      CommonWord(word: '崩壊', reading: 'ほうかい', meaning: 'collapse'),
+      CommonWord(word: '崩れる', reading: 'くずれる', meaning: 'to collapse'),
+      CommonWord(word: '雪崩', reading: 'なだれ', meaning: 'avalanche'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0293',
@@ -16624,6 +22861,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ラン'],
     kunyomi: ['あらし'],
+    commonWords: [
+      CommonWord(word: '嵐', reading: 'あらし', meaning: 'storm'),
+      CommonWord(word: '青嵐', reading: 'あおあらし', meaning: 'wind blowing through fresh verdure'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0294',
@@ -16637,6 +22878,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['スウ', 'シュウ'],
     kunyomi: ['かさ', 'たか'],
+    commonWords: [
+      CommonWord(word: '嵩', reading: 'かさ', meaning: 'bulk'),
+      CommonWord(word: '水嵩', reading: 'みずかさ', meaning: 'volume of water'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0295',
@@ -16650,6 +22895,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['サ', 'シ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '嵯峨野線', reading: 'さがのせん', meaning: 'Sagano Line'),
+      CommonWord(word: '嵯峨美術大学', reading: 'さがびじゅつだいがく', meaning: 'Kyoto Saga University of Arts'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0296',
@@ -16663,6 +22912,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['レイ', 'リョウ'],
     kunyomi: ['みね'],
+    commonWords: [
+      CommonWord(word: '分水嶺', reading: 'ぶんすいれい', meaning: 'watershed'),
+      CommonWord(word: '高嶺', reading: 'たかね', meaning: 'high peak'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0297',
@@ -16676,6 +22929,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ガン'],
     kunyomi: ['いわ', 'いわお', 'けわ'],
+    commonWords: [
+      CommonWord(word: '巌', reading: 'いわ', meaning: 'rock'),
+      CommonWord(word: '巌窟', reading: 'がんくつ', meaning: 'cave'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0298',
@@ -16689,6 +22946,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ジュン'],
     kunyomi: ['めぐ'],
+    commonWords: [
+      CommonWord(word: '巡査', reading: 'じゅんさ', meaning: 'police officer'),
+      CommonWord(word: '巡回', reading: 'じゅんかい', meaning: 'going around'),
+      CommonWord(word: '巡り会う', reading: 'めぐりあう', meaning: 'to meet fortuitously'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0299',
@@ -16702,6 +22964,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ソウ'],
     kunyomi: ['す'],
+    commonWords: [
+      CommonWord(word: '巣', reading: 'す', meaning: 'nest'),
+      CommonWord(word: '古巣', reading: 'ふるす', meaning: 'old haunts'),
+      CommonWord(word: '卵巣', reading: 'らんそう', meaning: 'ovary'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0300',
@@ -16715,6 +22982,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['コウ'],
     kunyomi: ['たく', 'うま'],
+    commonWords: [
+      CommonWord(word: '巧み', reading: 'たくみ', meaning: 'skillful'),
+      CommonWord(word: '巧妙', reading: 'こうみょう', meaning: 'ingenious'),
+      CommonWord(word: '技巧', reading: 'ぎこう', meaning: 'technique'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0301',
@@ -16728,6 +23000,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['コ', 'キ'],
     kunyomi: ['おのれ', 'つちのと', 'な'],
+    commonWords: [
+      CommonWord(word: '自己', reading: 'じこ', meaning: 'self'),
+      CommonWord(word: '己', reading: 'おのれ', meaning: 'oneself'),
+      CommonWord(word: '自己資本', reading: 'じこしほん', meaning: 'net worth'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0302',
@@ -16741,6 +23018,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シ'],
     kunyomi: ['み'],
+    commonWords: [
+      CommonWord(word: '巳', reading: 'み', meaning: 'the Snake'),
+      CommonWord(word: '巳年', reading: 'みどし', meaning: 'year of the Snake'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0303',
@@ -16754,6 +23035,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ハ'],
     kunyomi: ['ともえ', 'うずまき'],
+    commonWords: [
+      CommonWord(word: '巴', reading: 'ともえ', meaning: 'tomoe'),
+      CommonWord(word: '三つ巴', reading: 'みつどもえ', meaning: 'three comma-shaped figures arranged to'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0304',
@@ -16767,6 +23052,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ソン'],
     kunyomi: ['たつみ'],
+    commonWords: [
+      CommonWord(word: '巽', reading: 'たつみ', meaning: 'southeast'),
+      CommonWord(word: '巽為風', reading: 'そんいふう', meaning: 'xun'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0305',
@@ -16780,6 +23069,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ハン'],
     kunyomi: ['ほ'],
+    commonWords: [
+      CommonWord(word: '帆', reading: 'ほ', meaning: 'sail'),
+      CommonWord(word: '帆船', reading: 'はんせん', meaning: 'sailing ship'),
+      CommonWord(word: '帆走', reading: 'はんそう', meaning: 'sailing'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0306',
@@ -16793,6 +23087,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['テイ'],
     kunyomi: ['みかど'],
+    commonWords: [
+      CommonWord(word: '帝国', reading: 'ていこく', meaning: 'empire'),
+      CommonWord(word: '皇帝', reading: 'こうてい', meaning: 'emperor'),
+      CommonWord(word: '帝国主義', reading: 'ていこくしゅぎ', meaning: 'imperialism'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0307',
@@ -16806,6 +23105,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['スイ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '元帥', reading: 'げんすい', meaning: 'marshal'),
+      CommonWord(word: '総帥', reading: 'そうすい', meaning: 'commander-in-chief'),
+      CommonWord(word: '統帥', reading: 'とうすい', meaning: 'supreme command'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0308',
@@ -16819,6 +23123,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['チョウ'],
     kunyomi: ['とばり'],
+    commonWords: [
+      CommonWord(word: '手帳', reading: 'てちょう', meaning: 'notebook'),
+      CommonWord(word: '通帳', reading: 'つうちょう', meaning: 'passbook'),
+      CommonWord(word: '帳簿', reading: 'ちょうぼ', meaning: 'account book'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0309',
@@ -16832,6 +23141,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['マク', 'バク'],
     kunyomi: ['とばり'],
+    commonWords: [
+      CommonWord(word: '開幕', reading: 'かいまく', meaning: 'raising the curtain'),
+      CommonWord(word: '幕', reading: 'まく', meaning: 'curtain'),
+      CommonWord(word: '内幕', reading: 'うちまく', meaning: 'lowdown'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0310',
@@ -16845,6 +23159,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ヘイ'],
     kunyomi: ['ぬさ'],
+    commonWords: [
+      CommonWord(word: '紙幣', reading: 'しへい', meaning: 'paper money'),
+      CommonWord(word: '貨幣', reading: 'かへい', meaning: 'money'),
+      CommonWord(word: '貨幣価値', reading: 'かへいかち', meaning: 'currency value'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0311',
@@ -16858,6 +23177,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['カン'],
     kunyomi: ['みき'],
+    commonWords: [
+      CommonWord(word: '幹事', reading: 'かんじ', meaning: 'executive secretary'),
+      CommonWord(word: '幹部', reading: 'かんぶ', meaning: 'management'),
+      CommonWord(word: '新幹線', reading: 'しんかんせん', meaning: 'Shinkansen'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0312',
@@ -16871,6 +23195,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ゲン'],
     kunyomi: ['まぼろし'],
+    commonWords: [
+      CommonWord(word: '幻想', reading: 'げんそう', meaning: 'fantasy'),
+      CommonWord(word: '幻', reading: 'まぼろし', meaning: 'phantom'),
+      CommonWord(word: '幻覚', reading: 'げんかく', meaning: 'hallucination'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0313',
@@ -16884,6 +23213,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ユウ'],
     kunyomi: ['ふか', 'かす', 'くら', 'しろ'],
+    commonWords: [
+      CommonWord(word: '幽霊', reading: 'ゆうれい', meaning: 'ghost'),
+      CommonWord(word: '幽閉', reading: 'ゆうへい', meaning: 'confinement'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0314',
@@ -16897,6 +23230,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ショウ', 'ソ', 'ソウ', 'ホウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '庄園', reading: 'しょうえん', meaning: 'manor'),
+      CommonWord(word: '村庄', reading: 'そんしょう', meaning: 'village'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0315',
@@ -16910,6 +23247,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ジョ'],
     kunyomi: ['つい', 'ついで'],
+    commonWords: [
+      CommonWord(word: '秩序', reading: 'ちつじょ', meaning: 'order'),
+      CommonWord(word: '序盤', reading: 'じょばん', meaning: 'opening'),
+      CommonWord(word: '序列', reading: 'じょれつ', meaning: 'rank'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0316',
@@ -16923,6 +23265,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ショ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '庶民', reading: 'しょみん', meaning: 'common people'),
+      CommonWord(word: '庶務', reading: 'しょむ', meaning: 'general affairs'),
+      CommonWord(word: '庶民的', reading: 'しょみんてき', meaning: 'popular'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0317',
@@ -16936,6 +23283,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['コウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '健康', reading: 'けんこう', meaning: 'health'),
+      CommonWord(word: '健康保険', reading: 'けんこうほけん', meaning: 'health insurance'),
+      CommonWord(word: '小康', reading: 'しょうこう', meaning: 'lull'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0318',
@@ -16949,6 +23301,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ヨウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '凡庸', reading: 'ぼんよう', meaning: 'mediocre'),
+      CommonWord(word: '中庸', reading: 'ちゅうよう', meaning: 'middle way'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0319',
@@ -16962,6 +23318,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ハイ'],
     kunyomi: ['すた'],
+    commonWords: [
+      CommonWord(word: '廃止', reading: 'はいし', meaning: 'abolition'),
+      CommonWord(word: '廃棄', reading: 'はいき', meaning: 'disposal'),
+      CommonWord(word: '廃案', reading: 'はいあん', meaning: 'rejected bill'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0320',
@@ -16975,6 +23336,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['レン'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '廉売', reading: 'れんばい', meaning: 'bargain sale'),
+      CommonWord(word: '廉価', reading: 'れんか', meaning: 'low price'),
+      CommonWord(word: '清廉', reading: 'せいれん', meaning: 'honest'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0321',
@@ -16988,6 +23354,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ロウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '廊下', reading: 'ろうか', meaning: 'corridor'),
+      CommonWord(word: '画廊', reading: 'がろう', meaning: 'art gallery'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0322',
@@ -17001,6 +23371,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['テイ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '法廷', reading: 'ほうてい', meaning: 'court'),
+      CommonWord(word: '宮廷', reading: 'きゅうてい', meaning: 'imperial court'),
+      CommonWord(word: '開廷', reading: 'かいてい', meaning: 'court session'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0323',
@@ -17014,6 +23389,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ベン', 'ヘン'],
     kunyomi: ['かんむり', 'わきま', 'わ', 'はなびら'],
+    commonWords: [
+      CommonWord(word: '弁護士', reading: 'べんごし', meaning: 'lawyer'),
+      CommonWord(word: '答弁', reading: 'とうべん', meaning: 'response'),
+      CommonWord(word: '弁護', reading: 'べんご', meaning: 'defense'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0324',
@@ -17027,6 +23407,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ヘイ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '弊害', reading: 'へいがい', meaning: 'harmful effect'),
+      CommonWord(word: '疲弊', reading: 'ひへい', meaning: 'exhaustion'),
+      CommonWord(word: '弊社', reading: 'へいしゃ', meaning: 'our company'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0325',
@@ -17040,6 +23425,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ニ', 'ジ'],
     kunyomi: ['ふた', 'そえ'],
+    commonWords: [
+      CommonWord(word: '弐', reading: 'に', meaning: 'two'),
+      CommonWord(word: '弐拾', reading: 'にじゅう', meaning: 'twenty'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0326',
@@ -17053,6 +23442,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キュウ'],
     kunyomi: ['ゆみ'],
+    commonWords: [
+      CommonWord(word: '弓', reading: 'ゆみ', meaning: 'bow'),
+      CommonWord(word: '弓道', reading: 'きゅうどう', meaning: 'kyūdō'),
+      CommonWord(word: '弓矢', reading: 'ゆみや', meaning: 'bow and arrow'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0327',
@@ -17066,6 +23460,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['チョウ'],
     kunyomi: ['とむら', 'とぶら'],
+    commonWords: [
+      CommonWord(word: '弔問', reading: 'ちょうもん', meaning: 'condolence call'),
+      CommonWord(word: '弔辞', reading: 'ちょうじ', meaning: 'memorial address'),
+      CommonWord(word: '弔意', reading: 'ちょうい', meaning: 'condolence'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0328',
@@ -17079,6 +23478,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['コウ', 'グ'],
     kunyomi: ['ひろ'],
+    commonWords: [
+      CommonWord(word: '弘まる', reading: 'ひろまる', meaning: 'to spread'),
+      CommonWord(word: '弘報', reading: 'こうほう', meaning: 'public relations'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0329',
@@ -17092,6 +23495,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ミ', 'ビ'],
     kunyomi: ['や', 'いや', 'いよ', 'わた'],
+    commonWords: [
+      CommonWord(word: '阿弥陀', reading: 'あみだ', meaning: 'Amitabha'),
+      CommonWord(word: '弥勒', reading: 'みろく', meaning: 'Maitreya'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0330',
@@ -17105,6 +23512,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ゲン'],
     kunyomi: ['つる'],
+    commonWords: [
+      CommonWord(word: '弦楽', reading: 'げんがく', meaning: 'music for strings'),
+      CommonWord(word: '弦', reading: 'つる', meaning: 'bowstring'),
+      CommonWord(word: '管弦楽', reading: 'かんげんがく', meaning: 'orchestral music'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0331',
@@ -17118,6 +23530,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['コ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '弧', reading: 'こ', meaning: 'arc'),
+      CommonWord(word: '括弧', reading: 'かっこ', meaning: 'brackets'),
+      CommonWord(word: '円弧', reading: 'えんこ', meaning: 'circular arc'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0332',
@@ -17131,6 +23548,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['チョウ'],
     kunyomi: ['は', '-は', '-ば'],
+    commonWords: [
+      CommonWord(word: '主張', reading: 'しゅちょう', meaning: 'claim'),
+      CommonWord(word: '緊張', reading: 'きんちょう', meaning: 'tension'),
+      CommonWord(word: '出張', reading: 'しゅっちょう', meaning: 'business trip'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0333',
@@ -17144,6 +23566,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ダン', 'タン'],
     kunyomi: ['ひ', '-ひ', 'はず', 'たま'],
+    commonWords: [
+      CommonWord(word: '爆弾', reading: 'ばくだん', meaning: 'bomb'),
+      CommonWord(word: '弾圧', reading: 'だんあつ', meaning: 'oppression'),
+      CommonWord(word: '弾み', reading: 'はずみ', meaning: 'bounce'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0334',
@@ -17157,6 +23584,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['スイ', 'エ', 'ケイ', 'セイ'],
     kunyomi: ['ほうき'],
+    commonWords: [
+      CommonWord(word: '彗星', reading: 'すいせい', meaning: 'comet'),
+      CommonWord(word: '大彗星', reading: 'だいすいせい', meaning: 'great comet'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0335',
@@ -17170,6 +23601,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ゲン'],
     kunyomi: ['ひこ'],
+    commonWords: [
+      CommonWord(word: '山彦', reading: 'やまびこ', meaning: 'echo'),
+      CommonWord(word: '彦星', reading: 'ひこぼし', meaning: 'Altair'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0336',
@@ -17183,6 +23618,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['サイ'],
     kunyomi: ['いろど'],
+    commonWords: [
+      CommonWord(word: '色彩', reading: 'しきさい', meaning: 'colour'),
+      CommonWord(word: '多彩', reading: 'たさい', meaning: 'colourful'),
+      CommonWord(word: '油彩', reading: 'ゆさい', meaning: 'oil painting'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0337',
@@ -17196,6 +23636,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ヒョウ', 'ヒュウ'],
     kunyomi: ['あや'],
+    commonWords: [
+      CommonWord(word: '彪', reading: 'ひょう', meaning: 'tiger stripes'),
+      CommonWord(word: '彪炳', reading: 'ひょうへい', meaning: 'brilliant'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0338',
@@ -17209,6 +23653,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['チョウ'],
     kunyomi: ['ほ', '-ぼ'],
+    commonWords: [
+      CommonWord(word: '彫刻', reading: 'ちょうこく', meaning: 'carving'),
+      CommonWord(word: '浮き彫り', reading: 'うきぼり', meaning: 'relief'),
+      CommonWord(word: '彫る', reading: 'ほる', meaning: 'to carve'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0339',
@@ -17222,6 +23671,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ヒン', 'フン'],
     kunyomi: ['うるわ', 'あき'],
+    commonWords: [
+      CommonWord(word: '文質彬彬', reading: 'ぶんしつひんぴん', meaning: 'harmony of beauty and substance'),
+      CommonWord(word: '彬蔚', reading: 'ひんうつ', meaning: 'erudite and refined'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0340',
@@ -17235,6 +23688,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ショウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '表彰', reading: 'ひょうしょう', meaning: 'commendation'),
+      CommonWord(word: '顕彰', reading: 'けんしょう', meaning: 'honouring'),
+      CommonWord(word: '表彰状', reading: 'ひょうしょうじょう', meaning: 'testimonial'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0341',
@@ -17248,6 +23706,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['エイ'],
     kunyomi: ['かげ'],
+    commonWords: [
+      CommonWord(word: '影響', reading: 'えいきょう', meaning: 'influence'),
+      CommonWord(word: '撮影', reading: 'さつえい', meaning: 'photography'),
+      CommonWord(word: '影', reading: 'かげ', meaning: 'shadow'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0342',
@@ -17261,6 +23724,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['オウ'],
     kunyomi: ['い', 'いにしえ', 'さき', 'ゆ'],
+    commonWords: [
+      CommonWord(word: '往復', reading: 'おうふく', meaning: 'making a round trip'),
+      CommonWord(word: '往来', reading: 'おうらい', meaning: 'coming and going'),
+      CommonWord(word: '往年', reading: 'おうねん', meaning: 'years gone by'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0343',
@@ -17274,6 +23742,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['セイ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '征服', reading: 'せいふく', meaning: 'conquest'),
+      CommonWord(word: '遠征', reading: 'えんせい', meaning: 'expedition'),
+      CommonWord(word: '出征', reading: 'しゅっせい', meaning: 'going to war'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0344',
@@ -17287,6 +23760,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ケイ'],
     kunyomi: ['みち', 'こみち', 'さしわたし', 'ただちに'],
+    commonWords: [
+      CommonWord(word: '直径', reading: 'ちょっけい', meaning: 'diameter'),
+      CommonWord(word: '半径', reading: 'はんけい', meaning: 'radius'),
+      CommonWord(word: '口径', reading: 'こうけい', meaning: 'aperture'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0345',
@@ -17300,6 +23778,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ジョ'],
     kunyomi: ['おもむ'],
+    commonWords: [
+      CommonWord(word: '徐々に', reading: 'じょじょに', meaning: 'gradually'),
+      CommonWord(word: '徐行', reading: 'じょこう', meaning: 'going slowly'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0346',
@@ -17313,6 +23795,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ジュウ', 'ショウ', 'ジュ'],
     kunyomi: ['したが', 'より'],
+    commonWords: [
+      CommonWord(word: '従来', reading: 'じゅうらい', meaning: 'up to now'),
+      CommonWord(word: '従業員', reading: 'じゅうぎょういん', meaning: 'employee'),
+      CommonWord(word: '従事', reading: 'じゅうじ', meaning: 'engaging in'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0347',
@@ -17326,6 +23813,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ジュン'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '循環', reading: 'じゅんかん', meaning: 'circulation'),
+      CommonWord(word: '悪循環', reading: 'あくじゅんかん', meaning: 'vicious circle'),
+      CommonWord(word: '循環器', reading: 'じゅんかんき', meaning: 'circulatory organ'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0348',
@@ -17339,6 +23831,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ビ'],
     kunyomi: ['かす'],
+    commonWords: [
+      CommonWord(word: '微妙', reading: 'びみょう', meaning: 'subtle'),
+      CommonWord(word: '顕微鏡', reading: 'けんびきょう', meaning: 'microscope'),
+      CommonWord(word: '微笑', reading: 'びしょう', meaning: 'smile'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0349',
@@ -17352,6 +23849,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['トク'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '道徳', reading: 'どうとく', meaning: 'morals'),
+      CommonWord(word: '悪徳', reading: 'あくとく', meaning: 'vice'),
+      CommonWord(word: '不徳', reading: 'ふとく', meaning: 'lack of virtue'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0350',
@@ -17365,6 +23867,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['チョウ', 'チ'],
     kunyomi: ['しるし'],
+    commonWords: [
+      CommonWord(word: '特徴', reading: 'とくちょう', meaning: 'feature'),
+      CommonWord(word: '象徴', reading: 'しょうちょう', meaning: 'symbol'),
+      CommonWord(word: '徴収', reading: 'ちょうしゅう', meaning: 'collection'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0351',
@@ -17378,6 +23885,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['テツ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '徹底', reading: 'てってい', meaning: 'thoroughness'),
+      CommonWord(word: '徹夜', reading: 'てつや', meaning: 'staying up all night'),
+      CommonWord(word: '徹する', reading: 'てっする', meaning: 'to penetrate'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0352',
@@ -17391,6 +23903,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キ'],
     kunyomi: ['い'],
+    commonWords: [
+      CommonWord(word: '回忌', reading: 'かいき', meaning: 'death anniversary'),
+      CommonWord(word: '忌避', reading: 'きひ', meaning: 'evasion'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0353',
@@ -17404,6 +23920,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ニン'],
     kunyomi: ['しの'],
+    commonWords: [
+      CommonWord(word: '忍耐', reading: 'にんたい', meaning: 'endurance'),
+      CommonWord(word: '忍ぶ', reading: 'しのぶ', meaning: 'to conceal oneself'),
+      CommonWord(word: '残忍', reading: 'ざんにん', meaning: 'brutal'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0354',
@@ -17417,6 +23938,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シ'],
     kunyomi: ['シリング', 'こころざ', 'こころざし'],
+    commonWords: [
+      CommonWord(word: '志', reading: 'こころざし', meaning: 'will'),
+      CommonWord(word: '同志', reading: 'どうし', meaning: 'like-mindedness'),
+      CommonWord(word: '志向', reading: 'しこう', meaning: 'intention'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0355',
@@ -17430,6 +23956,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['オウ', 'ヨウ', '-ノウ'],
     kunyomi: ['あた', 'まさに', 'こた'],
+    commonWords: [
+      CommonWord(word: '対応', reading: 'たいおう', meaning: 'correspondence'),
+      CommonWord(word: '応援', reading: 'おうえん', meaning: 'aid'),
+      CommonWord(word: '応募', reading: 'おうぼ', meaning: 'application'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0356',
@@ -17443,6 +23974,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['チュウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '忠実', reading: 'ちゅうじつ', meaning: 'faithful'),
+      CommonWord(word: '忠臣', reading: 'ちゅうしん', meaning: 'loyal retainer'),
+      CommonWord(word: '忠誠', reading: 'ちゅうせい', meaning: 'loyalty'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0357',
@@ -17456,6 +23992,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['レイ', 'レン', 'リョウ'],
     kunyomi: ['あわ', 'さと'],
+    commonWords: [
+      CommonWord(word: '怜悧', reading: 'れいり', meaning: 'clever'),
+      CommonWord(word: '怜悧狡猾', reading: 'れいりこうかつ', meaning: 'cunning'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0358',
@@ -17469,6 +24009,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['タイ'],
     kunyomi: ['おこた', 'なま'],
+    commonWords: [
+      CommonWord(word: '怠慢', reading: 'たいまん', meaning: 'negligence'),
+      CommonWord(word: '怠る', reading: 'おこたる', meaning: 'to neglect'),
+      CommonWord(word: '怠惰', reading: 'たいだ', meaning: 'lazy'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0359',
@@ -17482,6 +24027,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['カイ', 'ケ'],
     kunyomi: ['あや'],
+    commonWords: [
+      CommonWord(word: '怪獣', reading: 'かいじゅう', meaning: 'monster'),
+      CommonWord(word: '妖怪', reading: 'ようかい', meaning: 'ghost'),
+      CommonWord(word: '怪談', reading: 'かいだん', meaning: 'ghost story'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0360',
@@ -17495,6 +24045,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['コウ'],
     kunyomi: ['つね', 'つねに'],
+    commonWords: [
+      CommonWord(word: '恒例', reading: 'こうれい', meaning: 'established practice'),
+      CommonWord(word: '恒久', reading: 'こうきゅう', meaning: 'permanence'),
+      CommonWord(word: '恒常', reading: 'こうじょう', meaning: 'constancy'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0361',
@@ -17508,6 +24063,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ジョ', 'ショ'],
     kunyomi: ['ゆる'],
+    commonWords: [
+      CommonWord(word: '仁恕', reading: 'じんじょ', meaning: 'benevolence'),
+      CommonWord(word: '忠恕', reading: 'ちゅうじょ', meaning: 'sincerity and consideration'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0362',
@@ -17521,6 +24080,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['コン'],
     kunyomi: ['うら'],
+    commonWords: [
+      CommonWord(word: '恨み', reading: 'うらみ', meaning: 'resentment'),
+      CommonWord(word: '痛恨', reading: 'つうこん', meaning: 'deep regret'),
+      CommonWord(word: '恨む', reading: 'うらむ', meaning: 'to bear a grudge against'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0363',
@@ -17534,6 +24098,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['オン'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '恩恵', reading: 'おんけい', meaning: 'grace'),
+      CommonWord(word: '恩', reading: 'おん', meaning: 'favour'),
+      CommonWord(word: '恩返し', reading: 'おんがえし', meaning: 'paying back a favour'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0364',
@@ -17547,6 +24116,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キョウ'],
     kunyomi: ['うやうや'],
+    commonWords: [
+      CommonWord(word: '恭しい', reading: 'うやうやしい', meaning: 'polite'),
+      CommonWord(word: '恭敬', reading: 'きょうけい', meaning: 'respect'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0365',
@@ -17560,6 +24133,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ケイ', 'エ'],
     kunyomi: ['めぐ'],
+    commonWords: [
+      CommonWord(word: '知恵', reading: 'ちえ', meaning: 'wisdom'),
+      CommonWord(word: '恩恵', reading: 'おんけい', meaning: 'grace'),
+      CommonWord(word: '最恵国', reading: 'さいけいこく', meaning: 'most favored nation'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0366',
@@ -17573,6 +24151,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['テイ', 'ダイ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '孝悌', reading: 'こうてい', meaning: 'filial piety'),
+      CommonWord(word: '悌', reading: 'てい', meaning: 'respect for one\'s elders'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0367',
@@ -17586,6 +24168,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['カイ'],
     kunyomi: ['く', 'くや'],
+    commonWords: [
+      CommonWord(word: '悔い', reading: 'くい', meaning: 'regret'),
+      CommonWord(word: '悔し泣き', reading: 'くやしなき', meaning: 'crying from vexation'),
+      CommonWord(word: '悔しい', reading: 'くやしい', meaning: 'frustrated'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0368',
@@ -17599,6 +24186,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ゴ'],
     kunyomi: ['さと'],
+    commonWords: [
+      CommonWord(word: '覚悟', reading: 'かくご', meaning: 'readiness'),
+      CommonWord(word: '悟り', reading: 'さとり', meaning: 'comprehension'),
+      CommonWord(word: '悟る', reading: 'さとる', meaning: 'to sense'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0369',
@@ -17612,6 +24204,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ユウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '悠々', reading: 'ゆうゆう', meaning: 'quiet'),
+      CommonWord(word: '悠久', reading: 'ゆうきゅう', meaning: 'eternal'),
+      CommonWord(word: '悠長', reading: 'ゆうちょう', meaning: 'leisurely'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0370',
@@ -17625,6 +24222,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['エツ'],
     kunyomi: ['よろこ'],
+    commonWords: [
+      CommonWord(word: '満悦', reading: 'まんえつ', meaning: 'great delight'),
+      CommonWord(word: '悦楽', reading: 'えつらく', meaning: 'joy'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0371',
@@ -17638,6 +24239,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['トウ'],
     kunyomi: ['いた'],
+    commonWords: [
+      CommonWord(word: '追悼', reading: 'ついとう', meaning: 'mourning'),
+      CommonWord(word: '哀悼', reading: 'あいとう', meaning: 'condolence'),
+      CommonWord(word: '悼む', reading: 'いたむ', meaning: 'to grieve over'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0372',
@@ -17651,6 +24257,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シュン', 'ジュン', 'トン'],
     kunyomi: ['あつ'],
+    commonWords: [
+      CommonWord(word: '惇厚', reading: 'とんこう', meaning: 'sincere and kind'),
+      CommonWord(word: '惇朴', reading: 'とんぼく', meaning: 'honest and simple'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0373',
@@ -17664,6 +24274,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ワク'],
     kunyomi: ['まど'],
+    commonWords: [
+      CommonWord(word: '迷惑', reading: 'めいわく', meaning: 'trouble'),
+      CommonWord(word: '疑惑', reading: 'ぎわく', meaning: 'doubt'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0374',
@@ -17677,6 +24291,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['セキ'],
     kunyomi: ['お'],
+    commonWords: [
+      CommonWord(word: '惜しむ', reading: 'おしむ', meaning: 'to spare'),
+      CommonWord(word: '惜しい', reading: 'おしい', meaning: 'regrettable'),
+      CommonWord(word: '惜敗', reading: 'せきはい', meaning: 'regrettable defeat'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0375',
@@ -17690,6 +24309,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['イ', 'ユイ'],
     kunyomi: ['おも', 'これ'],
+    commonWords: [
+      CommonWord(word: '思惟', reading: 'しい', meaning: 'thought'),
+      CommonWord(word: '惟神', reading: 'かんながら', meaning: 'as a god'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0376',
@@ -17703,6 +24326,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ソウ'],
     kunyomi: ['すべ'],
+    commonWords: [
+      CommonWord(word: '惣菜', reading: 'そうざい', meaning: 'small dish'),
+      CommonWord(word: '惣領', reading: 'そうりょう', meaning: 'eldest child'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0377',
@@ -17716,6 +24343,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['サン', 'ザン'],
     kunyomi: ['みじ', 'いた', 'むご'],
+    commonWords: [
+      CommonWord(word: '悲惨', reading: 'ひさん', meaning: 'disastrous'),
+      CommonWord(word: '惨敗', reading: 'ざんぱい', meaning: 'ignominious defeat'),
+      CommonWord(word: '惨事', reading: 'さんじ', meaning: 'disaster'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0378',
@@ -17729,6 +24361,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ダ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '惰性', reading: 'だせい', meaning: 'force of habit'),
+      CommonWord(word: '怠惰', reading: 'たいだ', meaning: 'lazy'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0379',
@@ -17742,6 +24378,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シュウ'],
     kunyomi: ['うれ'],
+    commonWords: [
+      CommonWord(word: '郷愁', reading: 'きょうしゅう', meaning: 'nostalgia'),
+      CommonWord(word: '哀愁', reading: 'あいしゅう', meaning: 'pathos'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0380',
@@ -17755,6 +24395,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ユ'],
     kunyomi: ['たの'],
+    commonWords: [
+      CommonWord(word: '不愉快', reading: 'ふゆかい', meaning: 'unpleasant'),
+      CommonWord(word: '愉快', reading: 'ゆかい', meaning: 'pleasant'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0381',
@@ -17768,6 +24412,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['グ'],
     kunyomi: ['おろ'],
+    commonWords: [
+      CommonWord(word: '愚', reading: 'ぐ', meaning: 'foolishness'),
+      CommonWord(word: '愚痴', reading: 'ぐち', meaning: 'idle complaint'),
+      CommonWord(word: '愚か', reading: 'おろか', meaning: 'foolish'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0382',
@@ -17781,6 +24430,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ジ'],
     kunyomi: ['いつく'],
+    commonWords: [
+      CommonWord(word: '慈善', reading: 'じぜん', meaning: 'charity'),
+      CommonWord(word: '慈悲', reading: 'じひ', meaning: 'mercy'),
+      CommonWord(word: '慈愛', reading: 'じあい', meaning: 'affection'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0383',
@@ -17794,6 +24448,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['タイ'],
     kunyomi: ['わざ'],
+    commonWords: [
+      CommonWord(word: '状態', reading: 'じょうたい', meaning: 'state'),
+      CommonWord(word: '事態', reading: 'じたい', meaning: 'situation'),
+      CommonWord(word: '実態', reading: 'じったい', meaning: 'true state'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0384',
@@ -17807,6 +24466,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シン'],
     kunyomi: ['つつし', 'つつ'],
+    commonWords: [
+      CommonWord(word: '慎重', reading: 'しんちょう', meaning: 'careful'),
+      CommonWord(word: '謹慎', reading: 'きんしん', meaning: 'self restraint'),
+      CommonWord(word: '慎む', reading: 'つつしむ', meaning: 'to be careful'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0385',
@@ -17820,6 +24484,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ボ'],
     kunyomi: ['した'],
+    commonWords: [
+      CommonWord(word: '慕う', reading: 'したう', meaning: 'to yearn for'),
+      CommonWord(word: '思慕', reading: 'しぼ', meaning: 'yearning'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0386',
@@ -17833,6 +24501,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['マン'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '自慢', reading: 'じまん', meaning: 'pride'),
+      CommonWord(word: '慢性', reading: 'まんせい', meaning: 'chronic'),
+      CommonWord(word: '我慢', reading: 'がまん', meaning: 'endurance'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0387',
@@ -17846,6 +24519,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ケイ', 'エ'],
     kunyomi: ['さとい'],
+    commonWords: [
+      CommonWord(word: '智慧', reading: 'ちえ', meaning: 'wisdom'),
+      CommonWord(word: '慧眼', reading: 'けいがん', meaning: 'keen eye'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0388',
@@ -17859,6 +24536,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ガイ'],
     kunyomi: ['なげ'],
+    commonWords: [
+      CommonWord(word: '憤慨', reading: 'ふんがい', meaning: 'indignation'),
+      CommonWord(word: '感慨', reading: 'かんがい', meaning: 'deep emotion'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0389',
@@ -17872,6 +24553,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['リョ'],
     kunyomi: ['おもんぱく', 'おもんぱか'],
+    commonWords: [
+      CommonWord(word: '配慮', reading: 'はいりょ', meaning: 'consideration'),
+      CommonWord(word: '遠慮', reading: 'えんりょ', meaning: 'reserve'),
+      CommonWord(word: '苦慮', reading: 'くりょ', meaning: 'racking one\'s brains'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0390',
@@ -17885,6 +24571,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['イ'],
     kunyomi: ['なぐさ'],
+    commonWords: [
+      CommonWord(word: '慰安', reading: 'いあん', meaning: 'solace'),
+      CommonWord(word: '慰霊', reading: 'いれい', meaning: 'consoling the spirits of the dead'),
+      CommonWord(word: '慰謝', reading: 'いしゃ', meaning: 'consolation'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0391',
@@ -17898,6 +24589,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ケイ'],
     kunyomi: ['よろこ'],
+    commonWords: [
+      CommonWord(word: '弁慶', reading: 'べんけい', meaning: 'strong person'),
+      CommonWord(word: '慶祝', reading: 'けいしゅく', meaning: 'congratulation'),
+      CommonWord(word: '慶事', reading: 'けいじ', meaning: 'happy event'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0392',
@@ -17911,6 +24607,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ユウ'],
     kunyomi: ['うれ', 'う'],
+    commonWords: [
+      CommonWord(word: '憂慮', reading: 'ゆうりょ', meaning: 'anxiety'),
+      CommonWord(word: '憂える', reading: 'うれえる', meaning: 'to worry about'),
+      CommonWord(word: '一喜一憂', reading: 'いっきいちゆう', meaning: 'alternating between happiness and'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0393',
@@ -17924,6 +24625,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['フン'],
     kunyomi: ['いきどお'],
+    commonWords: [
+      CommonWord(word: '憤慨', reading: 'ふんがい', meaning: 'indignation'),
+      CommonWord(word: '憤り', reading: 'いきどおり', meaning: 'resentment'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0394',
@@ -17937,6 +24642,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ショウ', 'トウ', 'ドウ'],
     kunyomi: ['あこが'],
+    commonWords: [
+      CommonWord(word: '憧れ', reading: 'あこがれ', meaning: 'yearning'),
+      CommonWord(word: '憧れる', reading: 'あこがれる', meaning: 'to long for'),
+      CommonWord(word: '憧れの的', reading: 'あこがれのまと', meaning: 'object of adoration, longing'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0395',
@@ -17950,6 +24660,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ケイ'],
     kunyomi: ['いこ'],
+    commonWords: [
+      CommonWord(word: '休憩', reading: 'きゅうけい', meaning: 'rest'),
+      CommonWord(word: '休憩所', reading: 'きゅうけいじょ', meaning: 'rest area'),
+      CommonWord(word: '憩う', reading: 'いこう', meaning: 'to rest'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0396',
@@ -17963,6 +24678,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ケン'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '憲法', reading: 'けんぽう', meaning: 'constitution'),
+      CommonWord(word: '違憲', reading: 'いけん', meaning: 'unconstitutionality'),
+      CommonWord(word: '憲章', reading: 'けんしょう', meaning: 'charter'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0397',
@@ -17976,6 +24696,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['オク'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '記憶', reading: 'きおく', meaning: 'memory'),
+      CommonWord(word: '憶測', reading: 'おくそく', meaning: 'guess'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0398',
@@ -17989,6 +24713,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['カン'],
     kunyomi: ['うら'],
+    commonWords: [
+      CommonWord(word: '遺憾', reading: 'いかん', meaning: 'regrettable'),
+      CommonWord(word: '憾み', reading: 'うらみ', meaning: 'resentment'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0399',
@@ -18002,6 +24730,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['コン'],
     kunyomi: ['ねんご'],
+    commonWords: [
+      CommonWord(word: '懇談', reading: 'こんだん', meaning: 'friendly chat'),
+      CommonWord(word: '懇親', reading: 'こんしん', meaning: 'friendship'),
+      CommonWord(word: '懇話', reading: 'こんわ', meaning: 'friendly talk'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0400',
@@ -18015,6 +24748,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['カイ', 'エ'],
     kunyomi: ['ふところ', 'なつ', 'なず', 'いだ'],
+    commonWords: [
+      CommonWord(word: '懐', reading: 'ふところ', meaning: 'inside the breast of one\'s clothing'),
+      CommonWord(word: '懐疑', reading: 'かいぎ', meaning: 'doubt'),
+      CommonWord(word: '懐かしい', reading: 'なつかしい', meaning: 'dear'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0401',
@@ -18028,6 +24766,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['チョウ'],
     kunyomi: ['こ'],
+    commonWords: [
+      CommonWord(word: '懲役', reading: 'ちょうえき', meaning: 'penal servitude'),
+      CommonWord(word: '懲戒', reading: 'ちょうかい', meaning: 'discipline'),
+      CommonWord(word: '懲りる', reading: 'こりる', meaning: 'to learn by experience'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0402',
@@ -18041,6 +24784,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ケン', 'ケ'],
     kunyomi: ['か'],
+    commonWords: [
+      CommonWord(word: '懸念', reading: 'けねん', meaning: 'worry'),
+      CommonWord(word: '一生懸命', reading: 'いっしょうけんめい', meaning: 'very hard'),
+      CommonWord(word: '懸賞', reading: 'けんしょう', meaning: 'offering a prize'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0403',
@@ -18054,6 +24802,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ガ'],
     kunyomi: ['われ', 'わ', 'わが'],
+    commonWords: [
+      CommonWord(word: '我々', reading: 'われわれ', meaning: 'we'),
+      CommonWord(word: '我が国', reading: 'わがくに', meaning: 'our country'),
+      CommonWord(word: '我が', reading: 'わが', meaning: 'my'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0404',
@@ -18067,6 +24820,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['カイ'],
     kunyomi: ['いまし'],
+    commonWords: [
+      CommonWord(word: '警戒', reading: 'けいかい', meaning: 'vigilance'),
+      CommonWord(word: '懲戒', reading: 'ちょうかい', meaning: 'discipline'),
+      CommonWord(word: '戒告', reading: 'かいこく', meaning: 'admonition'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0405',
@@ -18080,6 +24838,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ギ', 'ゲ'],
     kunyomi: ['たわむ', 'ざ', 'じゃ'],
+    commonWords: [
+      CommonWord(word: '戯曲', reading: 'ぎきょく', meaning: 'drama'),
+      CommonWord(word: '遊戯', reading: 'ゆうぎ', meaning: 'play'),
+      CommonWord(word: '戯画', reading: 'ぎが', meaning: 'caricature'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0406',
@@ -18093,6 +24856,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ボウ'],
     kunyomi: ['ふさ'],
+    commonWords: [
+      CommonWord(word: '房', reading: 'ふさ', meaning: 'tuft'),
+      CommonWord(word: '女房', reading: 'にょうぼう', meaning: 'wife'),
+      CommonWord(word: '冷房', reading: 'れいぼう', meaning: 'air conditioning'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0407',
@@ -18106,6 +24874,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['セン'],
     kunyomi: ['おうぎ'],
+    commonWords: [
+      CommonWord(word: '扇', reading: 'おうぎ', meaning: 'folding fan'),
+      CommonWord(word: '扇風機', reading: 'せんぷうき', meaning: 'electric fan'),
+      CommonWord(word: '扇動', reading: 'せんどう', meaning: 'incitement'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0408',
@@ -18119,6 +24892,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ヒ'],
     kunyomi: ['とびら'],
+    commonWords: [
+      CommonWord(word: '扉', reading: 'とびら', meaning: 'door'),
+      CommonWord(word: '門扉', reading: 'もんぴ', meaning: 'door(s) of a gate'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0409',
@@ -18132,6 +24909,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ソウ', 'キュウ'],
     kunyomi: ['あつか', 'こ'],
+    commonWords: [
+      CommonWord(word: '取り扱い', reading: 'とりあつかい', meaning: 'treatment'),
+      CommonWord(word: '扱う', reading: 'あつかう', meaning: 'to deal with'),
+      CommonWord(word: '取り扱う', reading: 'とりあつかう', meaning: 'to handle'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0410',
@@ -18145,6 +24927,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['フ'],
     kunyomi: ['たす'],
+    commonWords: [
+      CommonWord(word: '扶養', reading: 'ふよう', meaning: 'support'),
+      CommonWord(word: '扶助', reading: 'ふじょ', meaning: 'aid'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0411',
@@ -18158,6 +24944,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ヒ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '批判', reading: 'ひはん', meaning: 'criticism'),
+      CommonWord(word: '批准', reading: 'ひじゅん', meaning: 'ratification'),
+      CommonWord(word: '批判的', reading: 'ひはんてき', meaning: 'critical'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0412',
@@ -18171,6 +24962,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ショウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '抄本', reading: 'しょうほん', meaning: 'excerpt'),
+      CommonWord(word: '抄録', reading: 'しょうろく', meaning: 'quotation'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0413',
@@ -18184,6 +24979,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ハ', 'ワ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '把握', reading: 'はあく', meaning: 'grasp'),
+      CommonWord(word: '把', reading: 'わ', meaning: 'counter for bundles'),
+      CommonWord(word: '大雑把', reading: 'おおざっぱ', meaning: 'rough'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0414',
@@ -18197,6 +24997,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ヨク'],
     kunyomi: ['おさ'],
+    commonWords: [
+      CommonWord(word: '抑制', reading: 'よくせい', meaning: 'control'),
+      CommonWord(word: '抑える', reading: 'おさえる', meaning: 'to keep within limits'),
+      CommonWord(word: '抑止', reading: 'よくし', meaning: 'keeping in check'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0415',
@@ -18210,6 +25015,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['コウ'],
     kunyomi: ['あらが'],
+    commonWords: [
+      CommonWord(word: '抵抗', reading: 'ていこう', meaning: 'resistance'),
+      CommonWord(word: '抗議', reading: 'こうぎ', meaning: 'protest'),
+      CommonWord(word: '対抗', reading: 'たいこう', meaning: 'opposition'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0416',
@@ -18223,6 +25033,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['タク'],
     kunyomi: ['えら'],
+    commonWords: [
+      CommonWord(word: '選択', reading: 'せんたく', meaning: 'choice'),
+      CommonWord(word: '採択', reading: 'さいたく', meaning: 'adoption'),
+      CommonWord(word: '選択肢', reading: 'せんたくし', meaning: 'choices'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0417',
@@ -18236,6 +25051,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ヒ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '披露', reading: 'ひろう', meaning: 'announcement'),
+      CommonWord(word: '披瀝', reading: 'ひれき', meaning: 'expressing one\'s opinion'),
+      CommonWord(word: '披露宴', reading: 'ひろうえん', meaning: 'reception'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0418',
@@ -18249,6 +25069,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['テイ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '抵抗', reading: 'ていこう', meaning: 'resistance'),
+      CommonWord(word: '大抵', reading: 'たいてい', meaning: 'mostly'),
+      CommonWord(word: '抵触', reading: 'ていしょく', meaning: 'infringement'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0419',
@@ -18262,6 +25087,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['マツ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '抹消', reading: 'まっしょう', meaning: 'erasure'),
+      CommonWord(word: '一抹', reading: 'いちまつ', meaning: 'a touch'),
+      CommonWord(word: '抹茶', reading: 'まっちゃ', meaning: 'matcha'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0420',
@@ -18275,6 +25105,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['チュウ'],
     kunyomi: ['ひき'],
+    commonWords: [
+      CommonWord(word: '抽選', reading: 'ちゅうせん', meaning: 'lottery'),
+      CommonWord(word: '抽象的', reading: 'ちゅうしょうてき', meaning: 'abstract'),
+      CommonWord(word: '抽象', reading: 'ちゅうしょう', meaning: 'abstraction'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0421',
@@ -18288,6 +25123,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ハク', 'ヒョウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '拍手', reading: 'はくしゅ', meaning: 'clapping hands'),
+      CommonWord(word: '拍車', reading: 'はくしゃ', meaning: 'spur'),
+      CommonWord(word: '拍子', reading: 'ひょうし', meaning: 'time'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0422',
@@ -18301,6 +25141,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['カイ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '誘拐', reading: 'ゆうかい', meaning: 'abduction'),
+      CommonWord(word: '拐帯', reading: 'かいたい', meaning: 'absconding with money'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0423',
@@ -18314,6 +25158,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キョ', 'ゴ'],
     kunyomi: ['こば'],
+    commonWords: [
+      CommonWord(word: '拒否', reading: 'きょひ', meaning: 'refusal'),
+      CommonWord(word: '拒否権', reading: 'きょひけん', meaning: 'right of veto'),
+      CommonWord(word: '拒絶反応', reading: 'きょぜつはんのう', meaning: 'rejection'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0424',
@@ -18327,6 +25176,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['タク'],
     kunyomi: ['ひら'],
+    commonWords: [
+      CommonWord(word: '開拓', reading: 'かいたく', meaning: 'reclamation'),
+      CommonWord(word: '拓殖', reading: 'たくしょく', meaning: 'colonization'),
+      CommonWord(word: '干拓', reading: 'かんたく', meaning: 'land reclamation'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0425',
@@ -18340,6 +25194,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['コウ'],
     kunyomi: ['かか'],
+    commonWords: [
+      CommonWord(word: '拘束', reading: 'こうそく', meaning: 'restriction'),
+      CommonWord(word: '拘置', reading: 'こうち', meaning: 'detention'),
+      CommonWord(word: '拘置所', reading: 'こうちしょ', meaning: 'prison'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0426',
@@ -18353,6 +25212,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['セツ'],
     kunyomi: ['つたな'],
+    commonWords: [
+      CommonWord(word: '拙速', reading: 'せっそく', meaning: 'rough-and-ready'),
+      CommonWord(word: '稚拙', reading: 'ちせつ', meaning: 'unskillful'),
+      CommonWord(word: '巧拙', reading: 'こうせつ', meaning: 'skill'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0427',
@@ -18366,6 +25230,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キョ', 'コ'],
     kunyomi: ['よ'],
+    commonWords: [
+      CommonWord(word: '根拠', reading: 'こんきょ', meaning: 'basis'),
+      CommonWord(word: '証拠', reading: 'しょうこ', meaning: 'evidence'),
+      CommonWord(word: '拠点', reading: 'きょてん', meaning: 'base'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0428',
@@ -18379,6 +25248,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['カク', 'コウ'],
     kunyomi: ['ひろ'],
+    commonWords: [
+      CommonWord(word: '拡大', reading: 'かくだい', meaning: 'expansion'),
+      CommonWord(word: '拡散', reading: 'かくさん', meaning: 'spreading'),
+      CommonWord(word: '軍拡', reading: 'ぐんかく', meaning: 'military expansion'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0429',
@@ -18392,6 +25266,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['カツ'],
     kunyomi: ['くく'],
+    commonWords: [
+      CommonWord(word: '包括', reading: 'ほうかつ', meaning: 'inclusion'),
+      CommonWord(word: '総括', reading: 'そうかつ', meaning: 'summarization'),
+      CommonWord(word: '一括', reading: 'いっかつ', meaning: 'lumping together'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0430',
@@ -18405,6 +25284,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ケン', 'ゲン'],
     kunyomi: ['こぶし'],
+    commonWords: [
+      CommonWord(word: '拳', reading: 'こぶし', meaning: 'fist'),
+      CommonWord(word: '拳銃', reading: 'けんじゅう', meaning: 'pistol'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0431',
@@ -18418,6 +25301,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ゴウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '拷問', reading: 'ごうもん', meaning: 'torture'),
+      CommonWord(word: '拷問具', reading: 'ごうもんぐ', meaning: 'torture device'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0432',
@@ -18431,6 +25318,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['チョウ'],
     kunyomi: ['いど'],
+    commonWords: [
+      CommonWord(word: '挑戦', reading: 'ちょうせん', meaning: 'challenge'),
+      CommonWord(word: '挑発', reading: 'ちょうはつ', meaning: 'provocation'),
+      CommonWord(word: '挑発的', reading: 'ちょうはつてき', meaning: 'provocative'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0433',
@@ -18444,6 +25336,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キョ'],
     kunyomi: ['あ', 'こぞ'],
+    commonWords: [
+      CommonWord(word: '選挙', reading: 'せんきょ', meaning: 'election'),
+      CommonWord(word: '総選挙', reading: 'そうせんきょ', meaning: 'general election'),
+      CommonWord(word: '一挙', reading: 'いっきょ', meaning: 'one effort'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0434',
@@ -18457,6 +25354,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シン'],
     kunyomi: ['ふ'],
+    commonWords: [
+      CommonWord(word: '振興', reading: 'しんこう', meaning: 'promotion'),
+      CommonWord(word: '不振', reading: 'ふしん', meaning: 'dullness'),
+      CommonWord(word: '振動', reading: 'しんどう', meaning: 'oscillation'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0435',
@@ -18470,6 +25372,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ソウ'],
     kunyomi: ['さ', 'はさ'],
+    commonWords: [
+      CommonWord(word: '挿絵', reading: 'さしえ', meaning: 'illustration'),
+      CommonWord(word: '挿入', reading: 'そうにゅう', meaning: 'insertion'),
+      CommonWord(word: '挿話', reading: 'そうわ', meaning: 'episode'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0436',
@@ -18483,6 +25390,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キョ'],
     kunyomi: ['す'],
+    commonWords: [
+      CommonWord(word: '据え置き', reading: 'すえおき', meaning: 'deferment'),
+      CommonWord(word: '据える', reading: 'すえる', meaning: 'to place'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0437',
@@ -18496,6 +25407,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ショウ', 'ソウ'],
     kunyomi: ['はや'],
+    commonWords: [
+      CommonWord(word: '奇捷', reading: 'きしょう', meaning: 'beauty spot'),
+      CommonWord(word: '捷径', reading: 'しょうけい', meaning: 'shortcut'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0438',
@@ -18509,6 +25424,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ナツ', 'ダツ'],
     kunyomi: ['さ', 'お'],
+    commonWords: [
+      CommonWord(word: '押捺', reading: 'おうなつ', meaning: 'stamping'),
+      CommonWord(word: '捺く', reading: 'つく', meaning: 'to prick'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0439',
@@ -18522,6 +25441,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ジュ'],
     kunyomi: ['さず'],
+    commonWords: [
+      CommonWord(word: '教授', reading: 'きょうじゅ', meaning: 'professor'),
+      CommonWord(word: '授業', reading: 'じゅぎょう', meaning: 'lesson'),
+      CommonWord(word: '助教授', reading: 'じょきょうじゅ', meaning: 'assistant professor'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0440',
@@ -18535,6 +25459,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ショウ'],
     kunyomi: ['てのひら', 'たなごころ'],
+    commonWords: [
+      CommonWord(word: '車掌', reading: 'しゃしょう', meaning: 'conductor'),
+      CommonWord(word: '掌握', reading: 'しょうあく', meaning: 'grasping'),
+      CommonWord(word: '掌', reading: 'てのひら', meaning: 'palm'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0441',
@@ -18548,6 +25477,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ハイ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '排除', reading: 'はいじょ', meaning: 'exclusion'),
+      CommonWord(word: '排水', reading: 'はいすい', meaning: 'drainage'),
+      CommonWord(word: '排出', reading: 'はいしゅつ', meaning: 'discharge'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0442',
@@ -18561,6 +25495,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['コウ'],
     kunyomi: ['ひか'],
+    commonWords: [
+      CommonWord(word: '控える', reading: 'ひかえる', meaning: 'to be temperate in'),
+      CommonWord(word: '控訴', reading: 'こうそ', meaning: 'appeal to a higher court'),
+      CommonWord(word: '控除', reading: 'こうじょ', meaning: 'subtraction'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0443',
@@ -18574,6 +25513,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['スイ'],
     kunyomi: ['お'],
+    commonWords: [
+      CommonWord(word: '推進', reading: 'すいしん', meaning: 'propulsion'),
+      CommonWord(word: '推薦', reading: 'すいせん', meaning: 'recommendation'),
+      CommonWord(word: '推定', reading: 'すいてい', meaning: 'presumption'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0444',
@@ -18587,6 +25531,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ソ'],
     kunyomi: ['お'],
+    commonWords: [
+      CommonWord(word: '措置', reading: 'そち', meaning: 'measure'),
+      CommonWord(word: '挙措', reading: 'きょそ', meaning: 'behavior'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0445',
@@ -18600,6 +25548,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ケイ'],
     kunyomi: ['かか'],
+    commonWords: [
+      CommonWord(word: '掲載', reading: 'けいさい', meaning: 'publication'),
+      CommonWord(word: '掲げる', reading: 'かかげる', meaning: 'to put up'),
+      CommonWord(word: '掲示', reading: 'けいじ', meaning: 'notice'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0446',
@@ -18613,6 +25566,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ビョウ'],
     kunyomi: ['えが', 'か'],
+    commonWords: [
+      CommonWord(word: '描写', reading: 'びょうしゃ', meaning: 'depiction'),
+      CommonWord(word: '素描', reading: 'そびょう', meaning: 'drawing'),
+      CommonWord(word: '描く', reading: 'えがく', meaning: 'to draw'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0447',
@@ -18626,6 +25584,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['テイ', 'チョウ', 'ダイ'],
     kunyomi: ['さ'],
+    commonWords: [
+      CommonWord(word: '前提', reading: 'ぜんてい', meaning: 'condition'),
+      CommonWord(word: '提案', reading: 'ていあん', meaning: 'proposal'),
+      CommonWord(word: '提供', reading: 'ていきょう', meaning: 'offer'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0448',
@@ -18639,6 +25602,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ヨウ'],
     kunyomi: ['あ', '-あ'],
+    commonWords: [
+      CommonWord(word: '浮揚', reading: 'ふよう', meaning: 'floating'),
+      CommonWord(word: '旗揚げ', reading: 'はたあげ', meaning: 'raising an army'),
+      CommonWord(word: '高揚', reading: 'こうよう', meaning: 'elevation'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0449',
@@ -18652,6 +25620,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['アク'],
     kunyomi: ['にぎ'],
+    commonWords: [
+      CommonWord(word: '握手', reading: 'あくしゅ', meaning: 'handshake'),
+      CommonWord(word: '握る', reading: 'にぎる', meaning: 'to clasp'),
+      CommonWord(word: '一握り', reading: 'ひとにぎり', meaning: 'a handful'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0450',
@@ -18665,6 +25638,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キ'],
     kunyomi: ['ふる'],
+    commonWords: [
+      CommonWord(word: '指揮', reading: 'しき', meaning: 'command'),
+      CommonWord(word: '発揮', reading: 'はっき', meaning: 'show'),
+      CommonWord(word: '指揮者', reading: 'しきしゃ', meaning: 'conductor'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0451',
@@ -18678,6 +25656,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['エン'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '援助', reading: 'えんじょ', meaning: 'assistance'),
+      CommonWord(word: '支援', reading: 'しえん', meaning: 'support'),
+      CommonWord(word: '応援', reading: 'おうえん', meaning: 'aid'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0452',
@@ -18691,6 +25674,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ヨウ'],
     kunyomi: ['ゆ', 'うご'],
+    commonWords: [
+      CommonWord(word: '動揺', reading: 'どうよう', meaning: 'shaking'),
+      CommonWord(word: '揺る', reading: 'ゆる', meaning: 'to shake'),
+      CommonWord(word: '揺らぐ', reading: 'ゆらぐ', meaning: 'to swing'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0453',
@@ -18704,6 +25692,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ハン'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '運搬', reading: 'うんぱん', meaning: 'transport'),
+      CommonWord(word: '搬入', reading: 'はんにゅう', meaning: 'carrying in'),
+      CommonWord(word: '搬送', reading: 'はんそう', meaning: 'transportation'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0454',
@@ -18717,6 +25710,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['トウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '搭乗', reading: 'とうじょう', meaning: 'embarkation'),
+      CommonWord(word: '搭載', reading: 'とうさい', meaning: 'loading'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0455',
@@ -18730,6 +25727,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ケイ'],
     kunyomi: ['たずさ'],
+    commonWords: [
+      CommonWord(word: '携帯', reading: 'けいたい', meaning: 'carrying'),
+      CommonWord(word: '提携', reading: 'ていけい', meaning: 'cooperation'),
+      CommonWord(word: '携わる', reading: 'たずさわる', meaning: 'to engage in'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0456',
@@ -18743,6 +25745,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['サク'],
     kunyomi: ['しぼ'],
+    commonWords: [
+      CommonWord(word: '搾取', reading: 'さくしゅ', meaning: 'exploitation'),
+      CommonWord(word: '搾り', reading: 'しぼり', meaning: 'shibori'),
+      CommonWord(word: '搾乳', reading: 'さくにゅう', meaning: 'milking'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0457',
@@ -18756,6 +25763,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['セツ', 'ショウ'],
     kunyomi: ['おさ', 'かね', 'と'],
+    commonWords: [
+      CommonWord(word: '摂取', reading: 'せっしゅ', meaning: 'intake'),
+      CommonWord(word: '摂理', reading: 'せつり', meaning: 'laws'),
+      CommonWord(word: '摂氏', reading: 'せっし', meaning: 'Celsius'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0458',
@@ -18769,6 +25781,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['テキ'],
     kunyomi: ['つ'],
+    commonWords: [
+      CommonWord(word: '指摘', reading: 'してき', meaning: 'pointing out'),
+      CommonWord(word: '摘発', reading: 'てきはつ', meaning: 'exposing'),
+      CommonWord(word: '摘出', reading: 'てきしゅつ', meaning: 'picking out'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0459',
@@ -18782,6 +25799,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['マ'],
     kunyomi: ['ま', 'さす', 'す'],
+    commonWords: [
+      CommonWord(word: '摩擦', reading: 'まさつ', meaning: 'friction'),
+      CommonWord(word: '摩天楼', reading: 'まてんろう', meaning: 'skyscraper'),
+      CommonWord(word: '薩摩芋', reading: 'さつまいも', meaning: 'sweet potato'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0460',
@@ -18795,6 +25817,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ゲキ'],
     kunyomi: ['う'],
+    commonWords: [
+      CommonWord(word: '攻撃', reading: 'こうげき', meaning: 'attack'),
+      CommonWord(word: '打撃', reading: 'だげき', meaning: 'blow'),
+      CommonWord(word: '衝撃', reading: 'しょうげき', meaning: 'impact'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0461',
@@ -18808,6 +25835,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['テツ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '撤回', reading: 'てっかい', meaning: 'withdrawal'),
+      CommonWord(word: '撤退', reading: 'てったい', meaning: 'evacuation'),
+      CommonWord(word: '撤廃', reading: 'てっぱい', meaning: 'annulment'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0462',
@@ -18821,6 +25853,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['サツ'],
     kunyomi: ['と', 'つま', '-ど'],
+    commonWords: [
+      CommonWord(word: '撮影', reading: 'さつえい', meaning: 'photography'),
+      CommonWord(word: '撮る', reading: 'とる', meaning: 'to take'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0463',
@@ -18834,6 +25870,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ボク'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '相撲', reading: 'すもう', meaning: 'sumo'),
+      CommonWord(word: '打撲', reading: 'だぼく', meaning: 'blow'),
+      CommonWord(word: '撲滅', reading: 'ぼくめつ', meaning: 'eradication'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0464',
@@ -18847,6 +25888,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ヨウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '擁護', reading: 'ようご', meaning: 'protection'),
+      CommonWord(word: '擁立', reading: 'ようりつ', meaning: 'backing'),
+      CommonWord(word: '擁する', reading: 'ようする', meaning: 'to embrace'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0465',
@@ -18860,6 +25906,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ソウ', 'サン'],
     kunyomi: ['みさお', 'あやつ'],
+    commonWords: [
+      CommonWord(word: '操作', reading: 'そうさ', meaning: 'operation'),
+      CommonWord(word: '操縦', reading: 'そうじゅう', meaning: 'steering'),
+      CommonWord(word: '体操', reading: 'たいそう', meaning: 'gymnastics'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0466',
@@ -18873,6 +25924,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['サツ'],
     kunyomi: ['す', '-ず', 'こす'],
+    commonWords: [
+      CommonWord(word: '摩擦', reading: 'まさつ', meaning: 'friction'),
+      CommonWord(word: '擦る', reading: 'する', meaning: 'to rub'),
+      CommonWord(word: '擦り傷', reading: 'すりきず', meaning: 'scratch'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0467',
@@ -18886,6 +25942,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ギ'],
     kunyomi: ['まが', 'もど'],
+    commonWords: [
+      CommonWord(word: '模擬', reading: 'もぎ', meaning: 'imitation'),
+      CommonWord(word: '模擬試験', reading: 'もぎしけん', meaning: 'mock exam'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0468',
@@ -18899,6 +25959,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['コウ'],
     kunyomi: ['せ'],
+    commonWords: [
+      CommonWord(word: '攻撃', reading: 'こうげき', meaning: 'attack'),
+      CommonWord(word: '専攻', reading: 'せんこう', meaning: 'major subject'),
+      CommonWord(word: '攻める', reading: 'せめる', meaning: 'to attack'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0469',
@@ -18912,6 +25977,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['コ'],
     kunyomi: ['ゆえ', 'ふる', 'もと'],
+    commonWords: [
+      CommonWord(word: '事故', reading: 'じこ', meaning: 'accident'),
+      CommonWord(word: '故障', reading: 'こしょう', meaning: 'fault'),
+      CommonWord(word: '交通事故', reading: 'こうつうじこ', meaning: 'traffic accident'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0470',
@@ -18925,6 +25995,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ビン'],
     kunyomi: ['さとい'],
+    commonWords: [
+      CommonWord(word: '敏感', reading: 'びんかん', meaning: 'sensitive'),
+      CommonWord(word: '機敏', reading: 'きびん', meaning: 'quick'),
+      CommonWord(word: '過敏', reading: 'かびん', meaning: 'nervousness'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0471',
@@ -18938,6 +26013,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キュウ'],
     kunyomi: ['すく'],
+    commonWords: [
+      CommonWord(word: '救援', reading: 'きゅうえん', meaning: 'relief'),
+      CommonWord(word: '救急車', reading: 'きゅうきゅうしゃ', meaning: 'ambulance'),
+      CommonWord(word: '救い', reading: 'すくい', meaning: 'help'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0472',
@@ -18951,6 +26031,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['カン'],
     kunyomi: ['あ'],
+    commonWords: [
+      CommonWord(word: '果敢', reading: 'かかん', meaning: 'resolute'),
+      CommonWord(word: '敢闘', reading: 'かんとう', meaning: 'fighting bravely'),
+      CommonWord(word: '敢行', reading: 'かんこう', meaning: 'decisive action'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0473',
@@ -18964,6 +26049,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['トン', 'タイ', 'ダン', 'チョウ'],
     kunyomi: ['あつ'],
+    commonWords: [
+      CommonWord(word: '敦厚', reading: 'とんこう', meaning: 'sincerity and kindheartedness'),
+      CommonWord(word: '敦盛草', reading: 'あつもりそう', meaning: 'large-flowered lady\'s slipper'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0474',
@@ -18977,6 +26066,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['セイ'],
     kunyomi: ['ととの'],
+    commonWords: [
+      CommonWord(word: '調整', reading: 'ちょうせい', meaning: 'adjustment'),
+      CommonWord(word: '整備', reading: 'せいび', meaning: 'maintenance'),
+      CommonWord(word: '整理', reading: 'せいり', meaning: 'sorting'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0475',
@@ -18990,6 +26084,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['テキ'],
     kunyomi: ['かたき', 'あだ', 'かな'],
+    commonWords: [
+      CommonWord(word: '敵', reading: 'てき', meaning: 'opponent'),
+      CommonWord(word: '匹敵', reading: 'ひってき', meaning: 'to be a match for'),
+      CommonWord(word: '敵対', reading: 'てきたい', meaning: 'hostility'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0476',
@@ -19003,6 +26102,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['フ'],
     kunyomi: ['し', '-し'],
+    commonWords: [
+      CommonWord(word: '敷地', reading: 'しきち', meaning: 'site'),
+      CommonWord(word: '下敷き', reading: 'したじき', meaning: 'desk pad'),
+      CommonWord(word: '敷き布団', reading: 'しきぶとん', meaning: 'futon'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0477',
@@ -19016,6 +26120,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['セイ', 'サイ'],
     kunyomi: ['そろ', 'ひと', 'あたる', 'はやい'],
+    commonWords: [
+      CommonWord(word: '一斉', reading: 'いっせい', meaning: 'simultaneous'),
+      CommonWord(word: '斉唱', reading: 'せいしょう', meaning: 'singing in unison'),
+      CommonWord(word: '一斉に', reading: 'いっせいに', meaning: 'simultaneously'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0478',
@@ -19029,6 +26138,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['サイ'],
     kunyomi: ['とき', 'つつし', 'ものいみ', 'い'],
+    commonWords: [
+      CommonWord(word: '書斎', reading: 'しょさい', meaning: 'study'),
+      CommonWord(word: '斎場', reading: 'さいじょう', meaning: 'funeral hall'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0479',
@@ -19042,6 +26155,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ヒ', 'イ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '生き甲斐', reading: 'いきがい', meaning: 'reason for living'),
+      CommonWord(word: '甲斐', reading: 'がい', meaning: 'result'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0480',
@@ -19055,6 +26172,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ト', 'トウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '斗', reading: 'と', meaning: 'to'),
+      CommonWord(word: '一斗', reading: 'いっと', meaning: '1 "to"'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0481',
@@ -19068,6 +26189,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シャ'],
     kunyomi: ['なな', 'はす'],
+    commonWords: [
+      CommonWord(word: '斜面', reading: 'しゃめん', meaning: 'slope'),
+      CommonWord(word: '傾斜', reading: 'けいしゃ', meaning: 'inclination'),
+      CommonWord(word: '斜め', reading: 'ななめ', meaning: 'slanting'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0482',
@@ -19081,6 +26207,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キン'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '一斤', reading: 'いっきん', meaning: '1 kin'),
+      CommonWord(word: '斤', reading: 'きん', meaning: 'kin'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0483',
@@ -19094,6 +26224,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['セキ'],
     kunyomi: ['しりぞ'],
+    commonWords: [
+      CommonWord(word: '排斥', reading: 'はいせき', meaning: 'rejection'),
+      CommonWord(word: '斥候', reading: 'せっこう', meaning: 'scout'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0484',
@@ -19107,6 +26241,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['オ', 'ヨ'],
     kunyomi: ['おい', 'お', 'ああ', 'より'],
+    commonWords: [
+      CommonWord(word: '信頼の於ける', reading: 'しんらいのおける', meaning: 'reliable'),
+      CommonWord(word: '全てに於いて', reading: 'すべてにおいて', meaning: 'in all aspects'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0485',
@@ -19120,6 +26258,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シ', 'セ'],
     kunyomi: ['ほどこ'],
+    commonWords: [
+      CommonWord(word: '施設', reading: 'しせつ', meaning: 'facility'),
+      CommonWord(word: '実施', reading: 'じっし', meaning: 'enforcement'),
+      CommonWord(word: '施行', reading: 'しこう', meaning: 'putting in force'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0486',
@@ -19133,6 +26276,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['セン'],
     kunyomi: ['め', 'いばり'],
+    commonWords: [
+      CommonWord(word: '旋律', reading: 'せんりつ', meaning: 'melody'),
+      CommonWord(word: '旋風', reading: 'せんぷう', meaning: 'whirlwind'),
+      CommonWord(word: '螺旋', reading: 'らせん', meaning: 'spiral'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0487',
@@ -19146,6 +26294,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キ'],
     kunyomi: ['はた'],
+    commonWords: [
+      CommonWord(word: '旗', reading: 'はた', meaning: 'flag'),
+      CommonWord(word: '国旗', reading: 'こっき', meaning: 'national flag'),
+      CommonWord(word: '旗印', reading: 'はたじるし', meaning: 'design'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0488',
@@ -19159,6 +26312,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キ'],
     kunyomi: ['すで'],
+    commonWords: [
+      CommonWord(word: '既に', reading: 'すでに', meaning: 'already'),
+      CommonWord(word: '既成', reading: 'きせい', meaning: 'established'),
+      CommonWord(word: '既存', reading: 'きそん', meaning: 'existing'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0489',
@@ -19172,6 +26330,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['タン', 'ダン'],
     kunyomi: ['あき', 'あきら', 'ただし', 'あさ'],
+    commonWords: [
+      CommonWord(word: '旦那', reading: 'だんな', meaning: 'master'),
+      CommonWord(word: '元旦', reading: 'がんたん', meaning: 'New Year\'s Day'),
+      CommonWord(word: '一旦', reading: 'いったん', meaning: 'once'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0490',
@@ -19185,6 +26348,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シ'],
     kunyomi: ['むね', 'うま'],
+    commonWords: [
+      CommonWord(word: '趣旨', reading: 'しゅし', meaning: 'meaning'),
+      CommonWord(word: '要旨', reading: 'ようし', meaning: 'point'),
+      CommonWord(word: '旨', reading: 'むね', meaning: 'principle'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0491',
@@ -19198,6 +26366,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ジュン', 'シュン'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '下旬', reading: 'げじゅん', meaning: 'last third of a month'),
+      CommonWord(word: '中旬', reading: 'ちゅうじゅん', meaning: 'middle ten days of a month'),
+      CommonWord(word: '上旬', reading: 'じょうじゅん', meaning: 'first third of a month'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0492',
@@ -19211,6 +26384,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キョク'],
     kunyomi: ['あさひ'],
+    commonWords: [
+      CommonWord(word: '旭日', reading: 'きょくじつ', meaning: 'rising sun'),
+      CommonWord(word: '旭', reading: 'あさひ', meaning: 'morning sun'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0493',
@@ -19224,6 +26401,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['オウ'],
     kunyomi: ['さかん'],
+    commonWords: [
+      CommonWord(word: '旺盛', reading: 'おうせい', meaning: 'lively'),
+      CommonWord(word: '旺文社', reading: 'おうぶんしゃ', meaning: 'Oubunsha'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0494',
@@ -19237,6 +26418,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['コウ', 'ゴウ'],
     kunyomi: ['あ', 'たか'],
+    commonWords: [
+      CommonWord(word: '昂揚', reading: 'こうよう', meaning: 'elevation'),
+      CommonWord(word: '軒昂', reading: 'けんこう', meaning: 'high-spirited'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0495',
@@ -19250,6 +26435,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['コン'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '昆虫', reading: 'こんちゅう', meaning: 'insect'),
+      CommonWord(word: '昆布', reading: 'こんぶ', meaning: 'kombu'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0496',
@@ -19263,6 +26452,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ショウ'],
     kunyomi: ['さかん'],
+    commonWords: [
+      CommonWord(word: '繁昌', reading: 'はんじょう', meaning: 'prosperity'),
+      CommonWord(word: '昌平', reading: 'しょうへい', meaning: 'peace'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0497',
@@ -19276,6 +26469,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ショウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '昭然', reading: 'しょうぜん', meaning: 'manifest'),
+      CommonWord(word: '昭代', reading: 'しょうだい', meaning: 'glorious reign'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0498',
@@ -19289,6 +26486,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ゼ', 'シ'],
     kunyomi: ['これ', 'この', 'ここ'],
+    commonWords: [
+      CommonWord(word: '是正', reading: 'ぜせい', meaning: 'correction'),
+      CommonWord(word: '是非', reading: 'ぜひ', meaning: 'certainly'),
+      CommonWord(word: '国是', reading: 'こくぜ', meaning: 'national policy'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0499',
@@ -19302,6 +26504,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['コウ', 'ボウ'],
     kunyomi: ['すばる'],
+    commonWords: [
+      CommonWord(word: '昴', reading: 'すばる', meaning: 'Pleiades'),
+      CommonWord(word: '昴星', reading: 'ぼうせい', meaning: 'Pleiades (Chinese astronomy)'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0500',
@@ -19315,6 +26521,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['コウ'],
     kunyomi: ['あきらか'],
+    commonWords: [
+      CommonWord(word: '晃々', reading: 'こうこう', meaning: 'brilliant'),
+      CommonWord(word: '晃曜', reading: 'こうよう', meaning: 'dazzling brightness'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0501',
@@ -19328,6 +26538,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シン'],
     kunyomi: ['すす'],
+    commonWords: [
+      CommonWord(word: '晋山', reading: 'しんざん', meaning: 'taking up a new position as chief'),
+      CommonWord(word: '晋書', reading: 'しんじょ', meaning: 'History of the Jin Dynasty'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0502',
@@ -19341,6 +26555,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['アン'],
     kunyomi: ['おそ'],
+    commonWords: [
+      CommonWord(word: '晏然', reading: 'あんぜん', meaning: 'calm'),
+      CommonWord(word: '晏如', reading: 'あんじょ', meaning: 'at peace'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0503',
@@ -19354,6 +26572,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['セイ', 'ジョウ'],
     kunyomi: ['あきらか'],
+    commonWords: [
+      CommonWord(word: '晟', reading: 'あきら', meaning: 'Akira (given name)'),
+      CommonWord(word: '晟子', reading: 'せいこ', meaning: 'Seiko (given name)'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0504',
@@ -19367,6 +26589,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シン'],
     kunyomi: ['あした', 'とき', 'あさ'],
+    commonWords: [
+      CommonWord(word: '晨朝', reading: 'じんじょう', meaning: 'around six o\'clock AM'),
+      CommonWord(word: '晨鴨', reading: 'しのりがも', meaning: 'harlequin duck'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0505',
@@ -19380,6 +26606,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ショウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '結晶', reading: 'けっしょう', meaning: 'crystal'),
+      CommonWord(word: '液晶', reading: 'えきしょう', meaning: 'liquid crystal'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0506',
@@ -19393,6 +26623,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['チ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '智恵', reading: 'ちえ', meaning: 'wisdom'),
+      CommonWord(word: '無智', reading: 'むち', meaning: 'ignorance'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0507',
@@ -19406,6 +26640,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ギョウ', 'キョウ'],
     kunyomi: ['あかつき', 'さと'],
+    commonWords: [
+      CommonWord(word: '暁', reading: 'あかつき', meaning: 'dawn'),
+      CommonWord(word: '暁星', reading: 'ぎょうせい', meaning: 'morning star'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0508',
@@ -19419,6 +26657,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['カ'],
     kunyomi: ['ひま', 'いとま'],
+    commonWords: [
+      CommonWord(word: '休暇', reading: 'きゅうか', meaning: 'holiday'),
+      CommonWord(word: '余暇', reading: 'よか', meaning: 'leisure'),
+      CommonWord(word: '暇', reading: 'ひま', meaning: 'spare time'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0509',
@@ -19432,6 +26675,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キ'],
     kunyomi: ['かが'],
+    commonWords: [
+      CommonWord(word: '旭暉', reading: 'きょっき', meaning: 'rays of the rising sun'),
+      CommonWord(word: '夕暉', reading: 'せっき', meaning: 'rays of the setting sun'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0510',
@@ -19445,6 +26692,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ショ'],
     kunyomi: ['あつ'],
+    commonWords: [
+      CommonWord(word: '暑さ', reading: 'あつさ', meaning: 'heat'),
+      CommonWord(word: '残暑', reading: 'ざんしょ', meaning: 'late summer heat'),
+      CommonWord(word: '猛暑', reading: 'もうしょ', meaning: 'heat wave'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0511',
@@ -19458,6 +26710,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ダン', 'ノン'],
     kunyomi: ['あたた'],
+    commonWords: [
+      CommonWord(word: '温暖', reading: 'おんだん', meaning: 'warm'),
+      CommonWord(word: '暖房', reading: 'だんぼう', meaning: 'heating'),
+      CommonWord(word: '暖冬', reading: 'だんとう', meaning: 'mild winter'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0512',
@@ -19471,6 +26728,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['チョウ'],
     kunyomi: ['のび'],
+    commonWords: [
+      CommonWord(word: '流暢', reading: 'りゅうちょう', meaning: 'fluent'),
+      CommonWord(word: '暢達', reading: 'ちょうたつ', meaning: 'fluency'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0513',
@@ -19484,6 +26745,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['レキ', 'リャク'],
     kunyomi: ['こよみ'],
+    commonWords: [
+      CommonWord(word: '暦', reading: 'こよみ', meaning: 'calendar'),
+      CommonWord(word: '西暦', reading: 'せいれき', meaning: 'Common Era'),
+      CommonWord(word: '還暦', reading: 'かんれき', meaning: 'kanreki'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0514',
@@ -19497,6 +26763,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ザン'],
     kunyomi: ['しばら'],
+    commonWords: [
+      CommonWord(word: '暫定', reading: 'ざんてい', meaning: 'provisional'),
+      CommonWord(word: '暫く', reading: 'しばらく', meaning: 'for a moment'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0515',
@@ -19510,6 +26780,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ショ'],
     kunyomi: ['あけぼの'],
+    commonWords: [
+      CommonWord(word: '曙', reading: 'あけぼの', meaning: 'dawn'),
+      CommonWord(word: '曙貴', reading: 'あけたか', meaning: 'era during mid-1990s dominated by grand'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0516',
@@ -19523,6 +26797,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ソウ', 'ゾウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '法曹', reading: 'ほうそう', meaning: 'legal profession'),
+      CommonWord(word: '法曹界', reading: 'ほうそうかい', meaning: 'legal circles'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0517',
@@ -19536,6 +26814,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ホウ'],
     kunyomi: ['とも'],
+    commonWords: [
+      CommonWord(word: '同朋', reading: 'どうぼう', meaning: 'companions'),
+      CommonWord(word: '朋友', reading: 'ほうゆう', meaning: 'friend'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0518',
@@ -19549,6 +26831,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['サク'],
     kunyomi: ['ついたち'],
+    commonWords: [
+      CommonWord(word: '正朔', reading: 'せいさく', meaning: 'beginning of the month or the year'),
+      CommonWord(word: '八朔', reading: 'はっさく', meaning: 'Hassaku orange'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0519',
@@ -19562,6 +26848,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['チン'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '朕', reading: 'ちん', meaning: 'We (imperial pronoun)'),
+      CommonWord(word: '朕兆', reading: 'ちんちょう', meaning: 'omen'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0520',
@@ -19575,6 +26865,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ロウ'],
     kunyomi: ['ほが', 'あき'],
+    commonWords: [
+      CommonWord(word: '朗読', reading: 'ろうどく', meaning: 'reading aloud'),
+      CommonWord(word: '明朗', reading: 'めいろう', meaning: 'cheerful'),
+      CommonWord(word: '朗報', reading: 'ろうほう', meaning: 'good news'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0521',
@@ -19588,6 +26883,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シュ'],
     kunyomi: ['あけ'],
+    commonWords: [
+      CommonWord(word: '朱', reading: 'あけ', meaning: 'red'),
+      CommonWord(word: '朱印', reading: 'しゅいん', meaning: 'red seal'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0522',
@@ -19601,6 +26900,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ボク'],
     kunyomi: ['ほう', 'ほお', 'えのき'],
+    commonWords: [
+      CommonWord(word: '素朴', reading: 'そぼく', meaning: 'simple'),
+      CommonWord(word: '純朴', reading: 'じゅんぼく', meaning: 'simple and honest'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0523',
@@ -19614,6 +26917,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キュウ'],
     kunyomi: ['く'],
+    commonWords: [
+      CommonWord(word: '老朽', reading: 'ろうきゅう', meaning: 'infirmity'),
+      CommonWord(word: '不朽', reading: 'ふきゅう', meaning: 'everlasting'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0524',
@@ -19627,6 +26934,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['サン'],
     kunyomi: ['すぎ'],
+    commonWords: [
+      CommonWord(word: '杉', reading: 'すぎ', meaning: 'Japanese cedar'),
+      CommonWord(word: '杉林', reading: 'すぎばやし', meaning: 'cryptomeria forest'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0525',
@@ -19640,6 +26951,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['リ'],
     kunyomi: ['すもも'],
+    commonWords: [
+      CommonWord(word: '行李', reading: 'こうり', meaning: 'wicker trunk'),
+      CommonWord(word: '桃李', reading: 'とうり', meaning: 'peach and plum'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0526',
@@ -19653,6 +26968,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キョウ', 'アン', 'コウ'],
     kunyomi: ['あんず'],
+    commonWords: [
+      CommonWord(word: '杏', reading: 'あんず', meaning: 'apricot'),
+      CommonWord(word: '杏林', reading: 'きょうりん', meaning: 'apricot grove'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0527',
@@ -19666,6 +26985,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ト', 'トウ', 'ズ'],
     kunyomi: ['もり', 'ふさ', 'やまなし'],
+    commonWords: [
+      CommonWord(word: '杜撰', reading: 'ずさん', meaning: 'careless'),
+      CommonWord(word: '杜', reading: 'もり', meaning: 'forest'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0528',
@@ -19679,6 +27002,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ジョウ', 'チョウ', 'デキ'],
     kunyomi: ['えだ', 'すじ'],
+    commonWords: [
+      CommonWord(word: '条件', reading: 'じょうけん', meaning: 'condition'),
+      CommonWord(word: '条約', reading: 'じょうやく', meaning: 'treaty'),
+      CommonWord(word: '条例', reading: 'じょうれい', meaning: 'regulations'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0529',
@@ -19692,6 +27020,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ショウ'],
     kunyomi: ['まつ'],
+    commonWords: [
+      CommonWord(word: '松', reading: 'まつ', meaning: 'pine tree'),
+      CommonWord(word: '赤松', reading: 'あかまつ', meaning: 'Japanese red pine'),
+      CommonWord(word: '松林', reading: 'まつばやし', meaning: 'pine forest'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0530',
@@ -19705,6 +27038,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['セキ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '分析', reading: 'ぶんせき', meaning: 'analysis'),
+      CommonWord(word: '透析', reading: 'とうせき', meaning: 'dialysis'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0531',
@@ -19718,6 +27055,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: [],
     kunyomi: ['わく'],
+    commonWords: [
+      CommonWord(word: '枠', reading: 'わく', meaning: 'frame'),
+      CommonWord(word: '枠内', reading: 'わくない', meaning: 'within the limits'),
+      CommonWord(word: '枠外', reading: 'わくがい', meaning: 'limits'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0532',
@@ -19731,6 +27073,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['スウ', 'シュ'],
     kunyomi: ['とぼそ', 'からくり'],
+    commonWords: [
+      CommonWord(word: '中枢', reading: 'ちゅうすう', meaning: 'centre'),
+      CommonWord(word: '枢軸', reading: 'すうじく', meaning: 'axle'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0533',
@@ -19744,6 +27090,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['カ'],
     kunyomi: ['か'],
+    commonWords: [
+      CommonWord(word: '架空', reading: 'かくう', meaning: 'fictitious'),
+      CommonWord(word: '十字架', reading: 'じゅうじか', meaning: 'cross'),
+      CommonWord(word: '高架', reading: 'こうか', meaning: 'elevated'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0534',
@@ -19757,6 +27108,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ヘイ'],
     kunyomi: ['がら', 'え', 'つか'],
+    commonWords: [
+      CommonWord(word: '柄', reading: 'え', meaning: 'handle'),
+      CommonWord(word: '人柄', reading: 'ひとがら', meaning: 'personality'),
+      CommonWord(word: '身柄', reading: 'みがら', meaning: 'one\'s person'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0535',
@@ -19770,6 +27126,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シュ', 'シュウ'],
     kunyomi: ['ひいらぎ'],
+    commonWords: [
+      CommonWord(word: '柊', reading: 'ひいらぎ', meaning: 'holly olive'),
+      CommonWord(word: '柊南天', reading: 'ひいらぎなんてん', meaning: 'Mahonia japonica'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0536',
@@ -19783,6 +27143,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ボウ'],
     kunyomi: ['それがし', 'なにがし'],
+    commonWords: [
+      CommonWord(word: '某', reading: 'ぼう', meaning: 'certain'),
+      CommonWord(word: '何の某', reading: 'なんのなにがし', meaning: 'certain person'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0537',
@@ -19796,6 +27160,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['セン'],
     kunyomi: ['そ', 'し'],
+    commonWords: [
+      CommonWord(word: '汚染', reading: 'おせん', meaning: 'pollution'),
+      CommonWord(word: '感染', reading: 'かんせん', meaning: 'infection'),
+      CommonWord(word: '染色', reading: 'せんしょく', meaning: 'dyeing'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0538',
@@ -19809,6 +27178,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ユ', 'ユウ', 'ジク'],
     kunyomi: ['ゆず'],
+    commonWords: [
+      CommonWord(word: '柚', reading: 'ゆず', meaning: 'yuzu'),
+      CommonWord(word: '晩白柚', reading: 'ばんぺいゆ', meaning: 'cultivar of pomelo'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0539',
@@ -19822,6 +27195,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['リュウ'],
     kunyomi: ['やなぎ'],
+    commonWords: [
+      CommonWord(word: '柳', reading: 'やなぎ', meaning: 'willow'),
+      CommonWord(word: '川柳', reading: 'せんりゅう', meaning: 'senryū'),
+      CommonWord(word: '青柳', reading: 'あおやぎ', meaning: 'green willow'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0540',
@@ -19835,6 +27213,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: [],
     kunyomi: ['まさ', 'まさめ', 'まさき'],
+    commonWords: [
+      CommonWord(word: '柾', reading: 'まさき', meaning: 'evergreen spindle'),
+      CommonWord(word: '柾目', reading: 'まさめ', meaning: 'straight grain'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0541',
@@ -19848,6 +27230,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['セン'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '栓', reading: 'せん', meaning: 'stopper'),
+      CommonWord(word: '栓抜き', reading: 'せんぬき', meaning: 'bottle opener'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0542',
@@ -19861,6 +27247,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['リツ', 'リ'],
     kunyomi: ['くり', 'おののく'],
+    commonWords: [
+      CommonWord(word: '栗', reading: 'くり', meaning: 'Japanese chestnut'),
+      CommonWord(word: '割栗', reading: 'わりぐり', meaning: 'crushed stone'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0543',
@@ -19874,6 +27264,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['カン'],
     kunyomi: ['しおり'],
+    commonWords: [
+      CommonWord(word: '栞', reading: 'しおり', meaning: 'bookmark'),
+      CommonWord(word: '栞紐', reading: 'しおりひも', meaning: 'ribbon bookmark'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0544',
@@ -19887,6 +27281,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シュ'],
     kunyomi: ['かぶ'],
+    commonWords: [
+      CommonWord(word: '株式', reading: 'かぶしき', meaning: 'share'),
+      CommonWord(word: '株', reading: 'かぶ', meaning: 'stock'),
+      CommonWord(word: '株主', reading: 'かぶぬし', meaning: 'shareholder'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0545',
@@ -19900,6 +27299,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['カク'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '核', reading: 'かく', meaning: 'stone'),
+      CommonWord(word: '核兵器', reading: 'かくへいき', meaning: 'nuclear weapon'),
+      CommonWord(word: '中核', reading: 'ちゅうかく', meaning: 'kernel'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0546',
@@ -19913,6 +27317,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['サイ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '栽培', reading: 'さいばい', meaning: 'cultivation'),
+      CommonWord(word: '盆栽', reading: 'ぼんさい', meaning: 'bonsai'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0547',
@@ -19926,6 +27334,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ケイ'],
     kunyomi: ['かつら'],
+    commonWords: [
+      CommonWord(word: '桂', reading: 'かつら', meaning: 'katsura'),
+      CommonWord(word: '月桂冠', reading: 'げっけいかん', meaning: 'laurel wreath'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0548',
@@ -19939,6 +27351,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['トウ'],
     kunyomi: ['もも'],
+    commonWords: [
+      CommonWord(word: '桃', reading: 'もも', meaning: 'peach'),
+      CommonWord(word: '桃色', reading: 'ももいろ', meaning: 'pink'),
+      CommonWord(word: '胡桃', reading: 'くるみ', meaning: 'walnut'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0549',
@@ -19952,6 +27369,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['アン'],
     kunyomi: ['つくえ'],
+    commonWords: [
+      CommonWord(word: '提案', reading: 'ていあん', meaning: 'proposal'),
+      CommonWord(word: '案内', reading: 'あんない', meaning: 'guidance'),
+      CommonWord(word: '案外', reading: 'あんがい', meaning: 'unexpectedly'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0550',
@@ -19965,6 +27387,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['トウ', 'ドウ'],
     kunyomi: ['きり'],
+    commonWords: [
+      CommonWord(word: '桐', reading: 'きり', meaning: 'paulownia'),
+      CommonWord(word: '桐油', reading: 'とうゆ', meaning: 'tung oil'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0551',
@@ -19978,6 +27404,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ソウ'],
     kunyomi: ['くわ'],
+    commonWords: [
+      CommonWord(word: '桑田', reading: 'そうでん', meaning: 'mulberry plantation'),
+      CommonWord(word: '桑原', reading: 'くわばら', meaning: 'mulberry field'),
+      CommonWord(word: '桑', reading: 'くわ', meaning: 'mulberry'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0552',
@@ -19991,6 +27422,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['オウ', 'ヨウ'],
     kunyomi: ['さくら'],
+    commonWords: [
+      CommonWord(word: '桜', reading: 'さくら', meaning: 'cherry tree'),
+      CommonWord(word: '桜花', reading: 'おうか', meaning: 'cherry blossom'),
+      CommonWord(word: '八重桜', reading: 'やえざくら', meaning: 'double-flowered cherry tree'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0553',
@@ -20004,6 +27440,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['サン', 'セン'],
     kunyomi: ['かけはし'],
+    commonWords: [
+      CommonWord(word: '桟橋', reading: 'さんばし', meaning: 'wharf'),
+      CommonWord(word: '桟敷', reading: 'さじき', meaning: 'dress circle'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0554',
@@ -20017,6 +27457,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['バイ'],
     kunyomi: ['うめ'],
+    commonWords: [
+      CommonWord(word: '梅', reading: 'うめ', meaning: 'Japanese apricot'),
+      CommonWord(word: '梅雨', reading: 'つゆ', meaning: 'rainy season'),
+      CommonWord(word: '梅雨明け', reading: 'つゆあけ', meaning: 'end of the rainy season'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0555',
@@ -20030,6 +27475,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シ'],
     kunyomi: ['あずさ'],
+    commonWords: [
+      CommonWord(word: '梓', reading: 'あずさ', meaning: 'Japanese cherry birch'),
+      CommonWord(word: '梓弓', reading: 'あずさゆみ', meaning: 'catalpa bow'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0556',
@@ -20043,6 +27492,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ショウ'],
     kunyomi: ['こずえ', 'くすのき'],
+    commonWords: [
+      CommonWord(word: '末梢', reading: 'まっしょう', meaning: 'tip of a twig'),
+      CommonWord(word: '黄梢', reading: 'こうしょう', meaning: 'spring of yellow buds'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0557',
@@ -20056,6 +27509,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ゴ'],
     kunyomi: ['あおぎり'],
+    commonWords: [
+      CommonWord(word: '梧桐', reading: 'あおぎり', meaning: 'Chinese parasol-tree'),
+      CommonWord(word: '梯梧', reading: 'でいご', meaning: 'Indian coral tree'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0558',
@@ -20069,6 +27526,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['リ'],
     kunyomi: ['なし'],
+    commonWords: [
+      CommonWord(word: '梨', reading: 'なし', meaning: 'nashi'),
+      CommonWord(word: '山梨県', reading: 'やまなしけん', meaning: 'Yamanashi Prefecture'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0559',
@@ -20082,6 +27543,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キ'],
     kunyomi: ['す'],
+    commonWords: [
+      CommonWord(word: '棄権', reading: 'きけん', meaning: 'abstention'),
+      CommonWord(word: '放棄', reading: 'ほうき', meaning: 'abandonment'),
+      CommonWord(word: '棄却', reading: 'ききゃく', meaning: 'rejection'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0560',
@@ -20095,6 +27561,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キ'],
     kunyomi: ['ご'],
+    commonWords: [
+      CommonWord(word: '将棋', reading: 'しょうぎ', meaning: 'shogi'),
+      CommonWord(word: '棋聖', reading: 'きせい', meaning: 'great master of go'),
+      CommonWord(word: '棋士', reading: 'きし', meaning: 'professional shogi player'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0561',
@@ -20108,6 +27579,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ホウ'],
     kunyomi: ['たな', '-だな'],
+    commonWords: [
+      CommonWord(word: '棚', reading: 'たな', meaning: 'shelf'),
+      CommonWord(word: '棚上げ', reading: 'たなあげ', meaning: 'shelving'),
+      CommonWord(word: '本棚', reading: 'ほんだな', meaning: 'bookshelves'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0562',
@@ -20121,6 +27597,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['トウ'],
     kunyomi: ['むね', 'むな'],
+    commonWords: [
+      CommonWord(word: '棟', reading: 'むね', meaning: 'ridge'),
+      CommonWord(word: '病棟', reading: 'びょうとう', meaning: 'ward'),
+      CommonWord(word: '別棟', reading: 'べつむね', meaning: 'separate building'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0563',
@@ -20134,6 +27615,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['カン'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '棺', reading: 'かん', meaning: 'coffin'),
+      CommonWord(word: '石棺', reading: 'せっかん', meaning: 'sarcophagus'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0564',
@@ -20147,6 +27632,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['リョウ'],
     kunyomi: ['むく'],
+    commonWords: [
+      CommonWord(word: '椋鳥', reading: 'むくどり', meaning: 'grey starling'),
+      CommonWord(word: '星椋鳥', reading: 'ほしむくどり', meaning: 'common starling'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0565',
@@ -20160,6 +27649,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ツイ', 'スイ'],
     kunyomi: ['つち', 'う'],
+    commonWords: [
+      CommonWord(word: '椎茸', reading: 'しいたけ', meaning: 'shiitake mushroom'),
+      CommonWord(word: '脊椎', reading: 'せきつい', meaning: 'spine'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0566',
@@ -20173,6 +27666,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ケン'],
     kunyomi: ['しら'],
+    commonWords: [
+      CommonWord(word: '検査', reading: 'けんさ', meaning: 'inspection'),
+      CommonWord(word: '検察', reading: 'けんさつ', meaning: 'criminal investigation'),
+      CommonWord(word: '検討', reading: 'けんとう', meaning: 'consideration'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0567',
@@ -20186,6 +27684,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ヤ'],
     kunyomi: ['やし'],
+    commonWords: [
+      CommonWord(word: '椰子', reading: 'やし', meaning: 'palm tree'),
+      CommonWord(word: '花椰菜', reading: 'はなやさい', meaning: 'cauliflower'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0568',
@@ -20199,6 +27701,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['チン', 'チュン'],
     kunyomi: ['つばき'],
+    commonWords: [
+      CommonWord(word: '椿', reading: 'つばき', meaning: 'common camellia'),
+      CommonWord(word: '寒椿', reading: 'かんつばき', meaning: 'camellia-like plant native to China'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0569',
@@ -20212,6 +27718,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ヨウ'],
     kunyomi: ['やなぎ'],
+    commonWords: [
+      CommonWord(word: '爪楊枝', reading: 'つまようじ', meaning: 'toothpick'),
+      CommonWord(word: '楊', reading: 'やなぎ', meaning: 'willow'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0570',
@@ -20225,6 +27735,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['フウ'],
     kunyomi: ['かえで'],
+    commonWords: [
+      CommonWord(word: '松楓', reading: 'しょうふう', meaning: 'maple'),
+      CommonWord(word: '楓子香', reading: 'ふうしこう', meaning: 'galbanum'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0571',
@@ -20238,6 +27752,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ナン', 'ダン', 'ゼン', 'ネン'],
     kunyomi: ['くす', 'くすのき'],
+    commonWords: [
+      CommonWord(word: '楠', reading: 'くすのき', meaning: 'camphor tree'),
+      CommonWord(word: '石楠花', reading: 'しゃくなげ', meaning: 'rhododendron'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0572',
@@ -20251,6 +27769,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ロウ'],
     kunyomi: ['たかどの'],
+    commonWords: [
+      CommonWord(word: '楼閣', reading: 'ろうかく', meaning: 'multistoried building'),
+      CommonWord(word: '摩天楼', reading: 'まてんろう', meaning: 'skyscraper'),
+      CommonWord(word: '鐘楼', reading: 'しょうろう', meaning: 'belfry'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0573',
@@ -20264,6 +27787,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ガイ'],
     kunyomi: ['おおむ'],
+    commonWords: [
+      CommonWord(word: '概念', reading: 'がいねん', meaning: 'general idea'),
+      CommonWord(word: '概算', reading: 'がいさん', meaning: 'approximation'),
+      CommonWord(word: '一概に', reading: 'いちがいに', meaning: 'unconditionally'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0574',
@@ -20277,6 +27805,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シン', 'ハン'],
     kunyomi: ['はしばみ', 'はり'],
+    commonWords: [
+      CommonWord(word: '榛の木', reading: 'はんのき', meaning: 'Japanese alder'),
+      CommonWord(word: '榛', reading: 'はしばみ', meaning: 'Asian hazel'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0575',
@@ -20290,6 +27822,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['テン', 'シン'],
     kunyomi: ['まき', 'こずえ'],
+    commonWords: [
+      CommonWord(word: '槙肌', reading: 'まいはだ', meaning: 'caulking'),
+      CommonWord(word: '槙', reading: 'まき', meaning: 'yew plum pine'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0576',
@@ -20303,6 +27839,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キ'],
     kunyomi: ['つき'],
+    commonWords: [
+      CommonWord(word: '槻', reading: 'けやき', meaning: 'Japanese zelkova'),
+      CommonWord(word: '若槻養護学校', reading: 'わかつきようごがっこう', meaning: 'Wakatsuki Special Needs School'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0577',
@@ -20316,6 +27856,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ソウ'],
     kunyomi: ['ふね'],
+    commonWords: [
+      CommonWord(word: '浴槽', reading: 'よくそう', meaning: 'bathtub'),
+      CommonWord(word: '水槽', reading: 'すいそう', meaning: 'water tank'),
+      CommonWord(word: '浄化槽', reading: 'じょうかそう', meaning: 'water-purification tank'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0578',
@@ -20329,6 +27874,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ヒョウ'],
     kunyomi: ['しるべ', 'しるし'],
+    commonWords: [
+      CommonWord(word: '目標', reading: 'もくひょう', meaning: 'goal'),
+      CommonWord(word: '標準', reading: 'ひょうじゅん', meaning: 'standard'),
+      CommonWord(word: '標識', reading: 'ひょうしき', meaning: 'sign'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0579',
@@ -20342,6 +27892,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['モ', 'ボ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '規模', reading: 'きぼ', meaning: 'scale'),
+      CommonWord(word: '模様', reading: 'もよう', meaning: 'pattern'),
+      CommonWord(word: '模型', reading: 'もけい', meaning: 'model'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0580',
@@ -20355,6 +27910,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ジュ'],
     kunyomi: ['き'],
+    commonWords: [
+      CommonWord(word: '樹木', reading: 'じゅもく', meaning: 'tree'),
+      CommonWord(word: '樹立', reading: 'じゅりつ', meaning: 'establishment'),
+      CommonWord(word: '樹脂', reading: 'じゅし', meaning: 'resin'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0581',
@@ -20368,6 +27928,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['カ'],
     kunyomi: ['かば', 'かんば'],
+    commonWords: [
+      CommonWord(word: '白樺', reading: 'しらかば', meaning: 'Japanese white birch'),
+      CommonWord(word: '樺', reading: 'かば', meaning: 'birch'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0582',
@@ -20381,6 +27945,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キツ'],
     kunyomi: ['たちばな'],
+    commonWords: [
+      CommonWord(word: '橘', reading: 'たちばな', meaning: 'tachibana orange'),
+      CommonWord(word: '柑橘類', reading: 'かんきつるい', meaning: 'citrus'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0583',
@@ -20394,6 +27962,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ダン', 'タン'],
     kunyomi: ['まゆみ'],
+    commonWords: [
+      CommonWord(word: '黒檀', reading: 'こくたん', meaning: 'ebony'),
+      CommonWord(word: '檀君', reading: 'だんくん', meaning: 'mythical founder of Korea'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0584',
@@ -20407,6 +27979,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ラン'],
     kunyomi: ['てすり'],
+    commonWords: [
+      CommonWord(word: '欄', reading: 'らん', meaning: 'section'),
+      CommonWord(word: '本欄', reading: 'ほんらん', meaning: 'this column'),
+      CommonWord(word: '空欄', reading: 'くうらん', meaning: 'blank column'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0585',
@@ -20420,6 +27997,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キン', 'ゴン', 'コン'],
     kunyomi: ['よろこ'],
+    commonWords: [
+      CommonWord(word: '欣快', reading: 'きんかい', meaning: 'pleasant'),
+      CommonWord(word: '欣懐', reading: 'きんかい', meaning: 'thinking happily of'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0586',
@@ -20433,6 +28014,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ギ'],
     kunyomi: ['あざむ'],
+    commonWords: [
+      CommonWord(word: '詐欺', reading: 'さぎ', meaning: 'fraud'),
+      CommonWord(word: '詐欺師', reading: 'さぎし', meaning: 'swindler'),
+      CommonWord(word: '欺く', reading: 'あざむく', meaning: 'to deceive'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0587',
@@ -20446,6 +28032,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キン', 'コン'],
     kunyomi: ['つつし'],
+    commonWords: [
+      CommonWord(word: '欽定', reading: 'きんてい', meaning: 'authorized'),
+      CommonWord(word: '欽慕', reading: 'きんぼ', meaning: 'adoration'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0588',
@@ -20459,6 +28049,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['カン'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '借款', reading: 'しゃっかん', meaning: 'loan'),
+      CommonWord(word: '定款', reading: 'ていかん', meaning: 'articles of incorporation'),
+      CommonWord(word: '約款', reading: 'やっかん', meaning: 'agreement'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0589',
@@ -20472,6 +28067,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['カン'],
     kunyomi: ['よろこ'],
+    commonWords: [
+      CommonWord(word: '歓迎', reading: 'かんげい', meaning: 'welcome'),
+      CommonWord(word: '歓声', reading: 'かんせい', meaning: 'cheer'),
+      CommonWord(word: '歓喜', reading: 'かんき', meaning: 'delight'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0590',
@@ -20485,6 +28085,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ジュン'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '殉職', reading: 'じゅんしょく', meaning: 'dying at one\'s post'),
+      CommonWord(word: '殉難', reading: 'じゅんなん', meaning: 'martyrdom'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0591',
@@ -20498,6 +28102,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シュ'],
     kunyomi: ['こと'],
+    commonWords: [
+      CommonWord(word: '特殊', reading: 'とくしゅ', meaning: 'special'),
+      CommonWord(word: '殊勲', reading: 'しゅくん', meaning: 'distinguished services'),
+      CommonWord(word: '特殊法人', reading: 'とくしゅほうじん', meaning: 'semigovernmental corporation'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0592',
@@ -20511,6 +28120,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ショク'],
     kunyomi: ['ふ'],
+    commonWords: [
+      CommonWord(word: '繁殖', reading: 'はんしょく', meaning: 'breeding'),
+      CommonWord(word: '養殖', reading: 'ようしょく', meaning: 'aquaculture'),
+      CommonWord(word: '増殖', reading: 'ぞうしょく', meaning: 'increase'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0593',
@@ -20524,6 +28138,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['オウ'],
     kunyomi: ['なぐ'],
+    commonWords: [
+      CommonWord(word: '殴る', reading: 'なぐる', meaning: 'to strike'),
+      CommonWord(word: '殴打', reading: 'おうだ', meaning: 'hit'),
+      CommonWord(word: '殴り込み', reading: 'なぐりこみ', meaning: 'raid'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0594',
@@ -20537,6 +28156,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['カク', 'コク', 'バイ'],
     kunyomi: ['から', 'がら'],
+    commonWords: [
+      CommonWord(word: '殻', reading: 'から', meaning: 'shell'),
+      CommonWord(word: '吸い殻', reading: 'すいがら', meaning: 'cigarette end'),
+      CommonWord(word: '地殻変動', reading: 'ちかくへんどう', meaning: 'diastrophism'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0595',
@@ -20550,6 +28174,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キ', 'ギ'],
     kunyomi: ['つよ'],
+    commonWords: [
+      CommonWord(word: '剛毅', reading: 'ごうき', meaning: 'fortitude'),
+      CommonWord(word: '毅然', reading: 'きぜん', meaning: 'resolute'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0596',
@@ -20563,6 +28191,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キュウ'],
     kunyomi: ['いが', 'まり'],
+    commonWords: [
+      CommonWord(word: '毬', reading: 'まり', meaning: 'ball'),
+      CommonWord(word: '松毬', reading: 'まつかさ', meaning: 'pinecone'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0597',
@@ -20576,6 +28208,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シ'],
     kunyomi: ['うじ', '-うじ'],
+    commonWords: [
+      CommonWord(word: '氏名', reading: 'しめい', meaning: 'name'),
+      CommonWord(word: '同氏', reading: 'どうし', meaning: 'the said person'),
+      CommonWord(word: '両氏', reading: 'りょうし', meaning: 'both persons'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0598',
@@ -20589,6 +28226,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ジュウ'],
     kunyomi: ['しる', '-しる', 'つゆ'],
+    commonWords: [
+      CommonWord(word: '汁', reading: 'しる', meaning: 'juice'),
+      CommonWord(word: '果汁', reading: 'かじゅう', meaning: 'fruit juice'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0599',
@@ -20602,6 +28243,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['セキ'],
     kunyomi: ['しお', 'うしお', 'せい'],
+    commonWords: [
+      CommonWord(word: '汐', reading: 'しお', meaning: 'tide'),
+      CommonWord(word: '血汐', reading: 'ちしお', meaning: 'spurt of blood'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0600',
@@ -20615,6 +28260,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['コウ'],
     kunyomi: ['え'],
+    commonWords: [
+      CommonWord(word: '江', reading: 'え', meaning: 'inlet'),
+      CommonWord(word: '堀江', reading: 'ほりえ', meaning: 'canal'),
+      CommonWord(word: '江戸っ子', reading: 'えどっこ', meaning: 'Tokyoite'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0601',
@@ -20628,6 +28278,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['タ', 'タイ'],
     kunyomi: ['おご', 'にご', 'よな'],
+    commonWords: [
+      CommonWord(word: 'ご無沙汰', reading: 'ごぶさた', meaning: 'not writing or contacting for a while'),
+      CommonWord(word: '淘汰', reading: 'とうた', meaning: 'weeding out'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0602',
@@ -20641,6 +28295,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '汽車', reading: 'きしゃ', meaning: 'steam locomotive'),
+      CommonWord(word: '汽船', reading: 'きせん', meaning: 'steamship'),
+      CommonWord(word: '汽笛', reading: 'きてき', meaning: 'steam whistle'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0603',
@@ -20654,6 +28313,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['チュウ'],
     kunyomi: ['おき', 'おきつ', 'ちゅう', 'わく'],
+    commonWords: [
+      CommonWord(word: '沖', reading: 'おき', meaning: 'open sea'),
+      CommonWord(word: '沖縄', reading: 'おきなわ', meaning: 'Okinawa'),
+      CommonWord(word: '沖合', reading: 'おきあい', meaning: 'off the coast'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0604',
@@ -20667,6 +28331,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['サ', 'シャ'],
     kunyomi: ['すな', 'よなげる'],
+    commonWords: [
+      CommonWord(word: 'ご無沙汰', reading: 'ごぶさた', meaning: 'not writing or contacting for a while'),
+      CommonWord(word: '沙汰', reading: 'さた', meaning: 'affair'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0605',
@@ -20680,6 +28348,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ボツ', 'モツ'],
     kunyomi: ['おぼ', 'しず', 'ない'],
+    commonWords: [
+      CommonWord(word: '没頭', reading: 'ぼっとう', meaning: 'immersing oneself in'),
+      CommonWord(word: '沈没', reading: 'ちんぼつ', meaning: 'sinking'),
+      CommonWord(word: '戦没', reading: 'せんぼつ', meaning: 'death in battle'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0606',
@@ -20693,6 +28366,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['タク'],
     kunyomi: ['さわ', 'うるお', 'つや'],
+    commonWords: [
+      CommonWord(word: '沢', reading: 'さわ', meaning: 'mountain stream'),
+      CommonWord(word: '光沢', reading: 'こうたく', meaning: 'brilliance'),
+      CommonWord(word: '贅沢', reading: 'ぜいたく', meaning: 'luxury'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0607',
@@ -20706,6 +28384,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ショウ'],
     kunyomi: ['ぬま'],
+    commonWords: [
+      CommonWord(word: '沼', reading: 'ぬま', meaning: 'marsh'),
+      CommonWord(word: '泥沼', reading: 'どろぬま', meaning: 'bog'),
+      CommonWord(word: '湖沼', reading: 'こしょう', meaning: 'lake'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0608',
@@ -20719,6 +28402,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['エン'],
     kunyomi: ['そ', '-ぞ'],
+    commonWords: [
+      CommonWord(word: '沿岸', reading: 'えんがん', meaning: 'coast'),
+      CommonWord(word: '沿い', reading: 'ぞい', meaning: 'along'),
+      CommonWord(word: '沿線', reading: 'えんせん', meaning: 'places alongside a railway line, bus'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0609',
@@ -20732,6 +28420,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ヒツ', 'ヒ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '分泌', reading: 'ぶんぴつ', meaning: 'secretion'),
+      CommonWord(word: '内分泌', reading: 'ないぶんぴ', meaning: 'endocrine'),
+      CommonWord(word: '泌尿器', reading: 'ひにょうき', meaning: 'urinary organs'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0610',
@@ -20745,6 +28438,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ホウ'],
     kunyomi: ['あわ'],
+    commonWords: [
+      CommonWord(word: '泡', reading: 'あわ', meaning: 'bubble'),
+      CommonWord(word: '発泡', reading: 'はっぽう', meaning: 'foaming'),
+      CommonWord(word: '水泡', reading: 'すいほう', meaning: 'foam'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0611',
@@ -20758,6 +28456,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キュウ'],
     kunyomi: ['な'],
+    commonWords: [
+      CommonWord(word: '悔し泣き', reading: 'くやしなき', meaning: 'crying from vexation'),
+      CommonWord(word: '泣き', reading: 'なき', meaning: 'weeping'),
+      CommonWord(word: '泣き声', reading: 'なきごえ', meaning: 'cry'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0612',
@@ -20771,6 +28474,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['タイ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '安泰', reading: 'あんたい', meaning: 'security'),
+      CommonWord(word: '泰然', reading: 'たいぜん', meaning: 'calm'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0613',
@@ -20784,6 +28491,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ドウ'],
     kunyomi: ['ほら'],
+    commonWords: [
+      CommonWord(word: '空洞', reading: 'くうどう', meaning: 'cavity'),
+      CommonWord(word: '洞', reading: 'ほら', meaning: 'hollow'),
+      CommonWord(word: '洞察', reading: 'どうさつ', meaning: 'discernment'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0614',
@@ -20797,6 +28509,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シン'],
     kunyomi: ['つ'],
+    commonWords: [
+      CommonWord(word: '津波', reading: 'つなみ', meaning: 'tsunami'),
+      CommonWord(word: '興味津々', reading: 'きょうみしんしん', meaning: 'very interesting'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0615',
@@ -20810,6 +28526,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['コウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '洪水', reading: 'こうずい', meaning: 'flood'),
+      CommonWord(word: '洪積', reading: 'こうせき', meaning: 'diluvial epoch'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0616',
@@ -20823,6 +28543,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シュウ', 'ス'],
     kunyomi: ['しま'],
+    commonWords: [
+      CommonWord(word: '洲', reading: 'しゅう', meaning: 'state'),
+      CommonWord(word: '濠洲', reading: 'ごうしゅう', meaning: 'Australia'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0617',
@@ -20836,6 +28560,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ジュン', 'シュン'],
     kunyomi: ['の', 'まこと'],
+    commonWords: [
+      CommonWord(word: '洵に', reading: 'まことに', meaning: 'truly'),
+      CommonWord(word: '洵美', reading: 'じゅんび', meaning: 'exquisite'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0618',
@@ -20849,6 +28577,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['コウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '洸洸', reading: 'こうこう', meaning: 'valiant'),
+      CommonWord(word: '洸洋', reading: 'こうよう', meaning: 'unfathomable'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0619',
@@ -20862,6 +28594,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ハ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '派遣', reading: 'はけん', meaning: 'dispatch'),
+      CommonWord(word: '派閥', reading: 'はばつ', meaning: 'clique'),
+      CommonWord(word: '立派', reading: 'りっぱ', meaning: 'splendid'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0620',
@@ -20875,6 +28612,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ジョウ', 'セイ'],
     kunyomi: ['きよ'],
+    commonWords: [
+      CommonWord(word: '浄化', reading: 'じょうか', meaning: 'purification'),
+      CommonWord(word: '洗浄', reading: 'せんじょう', meaning: 'washing'),
+      CommonWord(word: '浄水', reading: 'じょうすい', meaning: 'clean water'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0621',
@@ -20888,6 +28630,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ヒン'],
     kunyomi: ['はま'],
+    commonWords: [
+      CommonWord(word: '浜', reading: 'はま', meaning: 'beach'),
+      CommonWord(word: '砂浜', reading: 'すなはま', meaning: 'sandy beach'),
+      CommonWord(word: '海浜', reading: 'かいひん', meaning: 'seashore'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0622',
@@ -20901,6 +28648,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ホ'],
     kunyomi: ['うら'],
+    commonWords: [
+      CommonWord(word: '浦', reading: 'うら', meaning: 'inlet'),
+      CommonWord(word: '津々浦々', reading: 'つつうらうら', meaning: 'all over the country'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0623',
@@ -20914,6 +28665,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['コウ'],
     kunyomi: ['おおき', 'ひろ'],
+    commonWords: [
+      CommonWord(word: '浩然', reading: 'こうぜん', meaning: 'broadminded'),
+      CommonWord(word: '浩瀚', reading: 'こうかん', meaning: 'bulky'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0624',
@@ -20927,6 +28682,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ロウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '浪費', reading: 'ろうひ', meaning: 'waste'),
+      CommonWord(word: '放浪', reading: 'ほうろう', meaning: 'wandering'),
+      CommonWord(word: '浮浪者', reading: 'ふろうしゃ', meaning: 'vagrant'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0625',
@@ -20940,6 +28700,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シン'],
     kunyomi: ['ひた', 'つ'],
+    commonWords: [
+      CommonWord(word: '浸透', reading: 'しんとう', meaning: 'permeation'),
+      CommonWord(word: '浸水', reading: 'しんすい', meaning: 'inundation'),
+      CommonWord(word: '浸る', reading: 'ひたる', meaning: 'to be soaked in'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0626',
@@ -20953,6 +28718,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ガイ'],
     kunyomi: ['はて'],
+    commonWords: [
+      CommonWord(word: '生涯', reading: 'しょうがい', meaning: 'life'),
+      CommonWord(word: '生涯教育', reading: 'しょうがいきょういく', meaning: 'lifelong education'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0627',
@@ -20966,6 +28735,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シュク'],
     kunyomi: ['しと'],
+    commonWords: [
+      CommonWord(word: '淑女', reading: 'しゅくじょ', meaning: 'lady'),
+      CommonWord(word: '淑徳', reading: 'しゅくとく', meaning: 'womanly virtues'),
+      CommonWord(word: '淑やか', reading: 'しとやか', meaning: 'graceful'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0628',
@@ -20979,6 +28753,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['タン'],
     kunyomi: ['あわ'],
+    commonWords: [
+      CommonWord(word: '冷淡', reading: 'れいたん', meaning: 'cool'),
+      CommonWord(word: '淡々', reading: 'たんたん', meaning: 'uninterested'),
+      CommonWord(word: '淡水', reading: 'たんすい', meaning: 'fresh water'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0629',
@@ -20992,6 +28771,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ジュン', 'シュン'],
     kunyomi: ['あつ'],
+    commonWords: [
+      CommonWord(word: '淳良', reading: 'じゅんりょう', meaning: 'simple and kind'),
+      CommonWord(word: '淳久堂', reading: 'じゅんくどう', meaning: 'Junkudo'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0630',
@@ -21005,6 +28788,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['テン'],
     kunyomi: ['そ'],
+    commonWords: [
+      CommonWord(word: '添加', reading: 'てんか', meaning: 'addition'),
+      CommonWord(word: '添加物', reading: 'てんかぶつ', meaning: 'additive'),
+      CommonWord(word: '添付', reading: 'てんぷ', meaning: 'attaching'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0631',
@@ -21018,6 +28806,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['カツ'],
     kunyomi: ['かわ'],
+    commonWords: [
+      CommonWord(word: '渇水', reading: 'かっすい', meaning: 'water shortage'),
+      CommonWord(word: '渇き', reading: 'かわき', meaning: 'thirst'),
+      CommonWord(word: '枯渇', reading: 'こかつ', meaning: 'drying up'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0632',
@@ -21031,6 +28824,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ショウ'],
     kunyomi: ['わた'],
+    commonWords: [
+      CommonWord(word: '交渉', reading: 'こうしょう', meaning: 'negotiations'),
+      CommonWord(word: '干渉', reading: 'かんしょう', meaning: 'interference'),
+      CommonWord(word: '渉外', reading: 'しょうがい', meaning: 'public relations'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0633',
@@ -21044,6 +28842,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ジュウ', 'シュウ'],
     kunyomi: ['しぶ'],
+    commonWords: [
+      CommonWord(word: '渋滞', reading: 'じゅうたい', meaning: 'congestion'),
+      CommonWord(word: '苦渋', reading: 'くじゅう', meaning: 'bitterness'),
+      CommonWord(word: '渋い', reading: 'しぶい', meaning: 'astringent'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0634',
@@ -21057,6 +28860,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ケイ'],
     kunyomi: ['たに', 'たにがわ'],
+    commonWords: [
+      CommonWord(word: '渓谷', reading: 'けいこく', meaning: 'valley'),
+      CommonWord(word: '渓流', reading: 'けいりゅう', meaning: 'mountain stream'),
+      CommonWord(word: '雪渓', reading: 'せっけい', meaning: 'snowy valley'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0635',
@@ -21070,6 +28878,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ショ'],
     kunyomi: ['なぎさ'],
+    commonWords: [
+      CommonWord(word: '渚', reading: 'なぎさ', meaning: 'water\'s edge'),
+      CommonWord(word: '汀渚', reading: 'ていしょ', meaning: 'shore'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0636',
@@ -21083,6 +28895,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['アク'],
     kunyomi: ['あつ', 'うるお'],
+    commonWords: [
+      CommonWord(word: '渥地', reading: 'あくち', meaning: 'marshland'),
+      CommonWord(word: '優渥', reading: 'ゆうあく', meaning: 'gracious'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0637',
@@ -21096,6 +28912,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['カ'],
     kunyomi: ['うず'],
+    commonWords: [
+      CommonWord(word: '渦', reading: 'うず', meaning: 'whirlpool'),
+      CommonWord(word: '渦中', reading: 'かちゅう', meaning: 'vortex'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0638',
@@ -21109,6 +28929,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ユウ', 'ヨウ', 'ユ'],
     kunyomi: ['わ'],
+    commonWords: [
+      CommonWord(word: '湧水', reading: 'ゆうすい', meaning: 'welling of water'),
+      CommonWord(word: '湧く', reading: 'わく', meaning: 'to well'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0639',
@@ -21122,6 +28946,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ゲン'],
     kunyomi: ['みなもと'],
+    commonWords: [
+      CommonWord(word: '資源', reading: 'しげん', meaning: 'resources'),
+      CommonWord(word: '源', reading: 'みなもと', meaning: 'source'),
+      CommonWord(word: '電源', reading: 'でんげん', meaning: 'source of electricity'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0640',
@@ -21135,6 +28964,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['コウ'],
     kunyomi: ['みぞ'],
+    commonWords: [
+      CommonWord(word: '溝', reading: 'みぞ', meaning: 'ditch'),
+      CommonWord(word: '海溝', reading: 'かいこう', meaning: 'oceanic trench'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0641',
@@ -21148,6 +28981,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['メツ'],
     kunyomi: ['ほろ'],
+    commonWords: [
+      CommonWord(word: '消滅', reading: 'しょうめつ', meaning: 'extinction'),
+      CommonWord(word: '撲滅', reading: 'ぼくめつ', meaning: 'eradication'),
+      CommonWord(word: '破滅', reading: 'はめつ', meaning: 'ruin'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0642',
@@ -21161,6 +28999,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['コウ'],
     kunyomi: ['ひろ'],
+    commonWords: [
+      CommonWord(word: '滉瀁', reading: 'こうよう', meaning: 'wide and deep'),
+      CommonWord(word: '滉', reading: 'こう', meaning: 'Kō (given name)'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0643',
@@ -21174,6 +29016,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ジ', 'シ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '滋養', reading: 'じよう', meaning: 'nourishment'),
+      CommonWord(word: '滋賀県', reading: 'しがけん', meaning: 'Shiga Prefecture'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0644',
@@ -21187,6 +29033,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['カツ', 'コツ'],
     kunyomi: ['すべ', 'なめ'],
+    commonWords: [
+      CommonWord(word: '円滑', reading: 'えんかつ', meaning: 'smooth'),
+      CommonWord(word: '滑走', reading: 'かっそう', meaning: 'gliding'),
+      CommonWord(word: '滑降', reading: 'かっこう', meaning: 'descent'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0645',
@@ -21200,6 +29051,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ロウ', 'ソウ'],
     kunyomi: ['たき'],
+    commonWords: [
+      CommonWord(word: '滝', reading: 'たき', meaning: 'waterfall'),
+      CommonWord(word: '滝川', reading: 'たきがわ', meaning: 'rapids'),
+      CommonWord(word: '滝口', reading: 'たきぐち', meaning: 'top of a waterfall'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0646',
@@ -21213,6 +29069,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['タイ', 'テイ'],
     kunyomi: ['とどこお'],
+    commonWords: [
+      CommonWord(word: '滞在', reading: 'たいざい', meaning: 'stay'),
+      CommonWord(word: '渋滞', reading: 'じゅうたい', meaning: 'congestion'),
+      CommonWord(word: '停滞', reading: 'ていたい', meaning: 'stagnation'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0647',
@@ -21226,6 +29087,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ヒョウ'],
     kunyomi: ['ただよ'],
+    commonWords: [
+      CommonWord(word: '漂う', reading: 'ただよう', meaning: 'to drift'),
+      CommonWord(word: '漂流', reading: 'ひょうりゅう', meaning: 'drifting'),
+      CommonWord(word: '漂白剤', reading: 'ひょうはくざい', meaning: 'bleaching agent'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0648',
@@ -21239,6 +29105,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シツ'],
     kunyomi: ['うるし'],
+    commonWords: [
+      CommonWord(word: '漆', reading: 'うるし', meaning: 'East Asian lacquer'),
+      CommonWord(word: '漆器', reading: 'しっき', meaning: 'lacquer ware'),
+      CommonWord(word: '漆塗り', reading: 'うるしぬり', meaning: 'lacquering'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0649',
@@ -21252,6 +29123,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ロウ'],
     kunyomi: ['も'],
+    commonWords: [
+      CommonWord(word: '漏らす', reading: 'もらす', meaning: 'to let leak'),
+      CommonWord(word: '雨漏り', reading: 'あまもり', meaning: 'roof leak'),
+      CommonWord(word: '漏る', reading: 'もる', meaning: 'to leak'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0650',
@@ -21265,6 +29141,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['バク'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '砂漠', reading: 'さばく', meaning: 'desert'),
+      CommonWord(word: '漠然', reading: 'ばくぜん', meaning: 'vague'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0651',
@@ -21278,6 +29158,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['マン'],
     kunyomi: ['みだり', 'そぞ'],
+    commonWords: [
+      CommonWord(word: '漫画', reading: 'まんが', meaning: 'cartoon'),
+      CommonWord(word: '漫画家', reading: 'まんがか', meaning: 'cartoonist'),
+      CommonWord(word: '漫才', reading: 'まんざい', meaning: 'manzai'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0652',
@@ -21291,6 +29176,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シ'],
     kunyomi: ['つ', '-づ', '-づけ'],
+    commonWords: [
+      CommonWord(word: '漬ける', reading: 'つける', meaning: 'to soak'),
+      CommonWord(word: '漬物', reading: 'つけもの', meaning: 'tsukemono'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0653',
@@ -21304,6 +29193,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ソウ', 'シュウ', 'ス'],
     kunyomi: ['くちすす', 'くちそそ', 'うがい', 'すす'],
+    commonWords: [
+      CommonWord(word: '盥漱', reading: 'かんそう', meaning: 'washing one\'s hands and rinsing one\'s'),
+      CommonWord(word: '漱ぐ', reading: 'くちすすぐ', meaning: 'to gargle'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0654',
@@ -21317,6 +29210,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ゼン'],
     kunyomi: ['ようや', 'やや', 'ようよ', 'すす'],
+    commonWords: [
+      CommonWord(word: '漸進', reading: 'ぜんしん', meaning: 'gradual progress'),
+      CommonWord(word: '漸次', reading: 'ぜんじ', meaning: 'gradually'),
+      CommonWord(word: '漸減', reading: 'ぜんげん', meaning: 'gradual decrease'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0655',
@@ -21330,6 +29228,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ケツ'],
     kunyomi: ['いさぎよ'],
+    commonWords: [
+      CommonWord(word: '清潔', reading: 'せいけつ', meaning: 'clean'),
+      CommonWord(word: '潔白', reading: 'けっぱく', meaning: 'innocence'),
+      CommonWord(word: '簡潔', reading: 'かんけつ', meaning: 'concise'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0656',
@@ -21343,6 +29246,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['セン'],
     kunyomi: ['ひそ', 'もぐ', 'かく', 'くぐ'],
+    commonWords: [
+      CommonWord(word: '潜在', reading: 'せんざい', meaning: 'potentiality'),
+      CommonWord(word: '潜水艦', reading: 'せんすいかん', meaning: 'submarine'),
+      CommonWord(word: '潜む', reading: 'ひそむ', meaning: 'to lurk'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0657',
@@ -21356,6 +29264,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['セキ'],
     kunyomi: ['かた', '-がた'],
+    commonWords: [
+      CommonWord(word: '干潟', reading: 'ひがた', meaning: 'tidal flat'),
+      CommonWord(word: '潟', reading: 'かた', meaning: 'lagoon'),
+      CommonWord(word: '新潟', reading: 'にいがた', meaning: 'Niigata'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0658',
@@ -21369,6 +29282,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ジュン'],
     kunyomi: ['うるお', 'うる'],
+    commonWords: [
+      CommonWord(word: '潤い', reading: 'うるおい', meaning: 'moisture'),
+      CommonWord(word: '潤滑油', reading: 'じゅんかつゆ', meaning: 'lubricating oil'),
+      CommonWord(word: '利潤', reading: 'りじゅん', meaning: 'profit'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0659',
@@ -21382,6 +29300,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['チョウ'],
     kunyomi: ['しお', 'うしお'],
+    commonWords: [
+      CommonWord(word: '潮', reading: 'しお', meaning: 'tide'),
+      CommonWord(word: '黒潮', reading: 'くろしお', meaning: 'Kuroshio Current'),
+      CommonWord(word: '紅潮', reading: 'こうちょう', meaning: 'flush'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0660',
@@ -21395,6 +29318,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['チョウ'],
     kunyomi: ['す', '-す'],
+    commonWords: [
+      CommonWord(word: '澄む', reading: 'すむ', meaning: 'to become clear'),
+      CommonWord(word: '清澄', reading: 'せいちょう', meaning: 'clear'),
+      CommonWord(word: '澄ます', reading: 'すます', meaning: 'to clear'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0661',
@@ -21408,6 +29336,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['レイ'],
     kunyomi: ['みお'],
+    commonWords: [
+      CommonWord(word: '澪標', reading: 'みおつくし', meaning: 'marks in a water channel'),
+      CommonWord(word: '澪', reading: 'みお', meaning: 'waterway'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0662',
@@ -21421,6 +29353,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ゲキ'],
     kunyomi: ['はげ'],
+    commonWords: [
+      CommonWord(word: '急激', reading: 'きゅうげき', meaning: 'sudden'),
+      CommonWord(word: '刺激', reading: 'しげき', meaning: 'stimulus'),
+      CommonWord(word: '激動', reading: 'げきどう', meaning: 'violent shock'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0663',
@@ -21434,6 +29371,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ダク', 'ジョク'],
     kunyomi: ['にご'],
+    commonWords: [
+      CommonWord(word: '汚濁', reading: 'おだく', meaning: 'pollution'),
+      CommonWord(word: '濁る', reading: 'にごる', meaning: 'to become muddy'),
+      CommonWord(word: '濁す', reading: 'にごす', meaning: 'to make muddy'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0664',
@@ -21447,6 +29389,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ラン'],
     kunyomi: ['みだ'],
+    commonWords: [
+      CommonWord(word: '氾濫', reading: 'はんらん', meaning: 'overflowing'),
+      CommonWord(word: '濫伐', reading: 'らんばつ', meaning: 'reckless deforestation'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0665',
@@ -21460,6 +29406,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ライ'],
     kunyomi: ['せ'],
+    commonWords: [
+      CommonWord(word: '瀬', reading: 'せ', meaning: 'shallows'),
+      CommonWord(word: '瀬戸', reading: 'せと', meaning: 'strait'),
+      CommonWord(word: '瀬戸際', reading: 'せとぎわ', meaning: 'brink'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0666',
@@ -21473,6 +29424,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['サイ'],
     kunyomi: ['わざわ'],
+    commonWords: [
+      CommonWord(word: '災害', reading: 'さいがい', meaning: 'calamity'),
+      CommonWord(word: '火災', reading: 'かさい', meaning: 'conflagration'),
+      CommonWord(word: '防災', reading: 'ぼうさい', meaning: 'disaster preparedness'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0667',
@@ -21486,6 +29442,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ロ'],
     kunyomi: ['いろり'],
+    commonWords: [
+      CommonWord(word: '原子炉', reading: 'げんしろ', meaning: 'atomic reactor'),
+      CommonWord(word: '炉心', reading: 'ろしん', meaning: 'nuclear reactor core'),
+      CommonWord(word: '高炉', reading: 'こうろ', meaning: 'blast furnace'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0668',
@@ -21499,6 +29460,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['スイ'],
     kunyomi: ['た', '-だ'],
+    commonWords: [
+      CommonWord(word: '炊事', reading: 'すいじ', meaning: 'cooking'),
+      CommonWord(word: '炊飯器', reading: 'すいはんき', meaning: 'rice cooker'),
+      CommonWord(word: '自炊', reading: 'じすい', meaning: 'cooking for oneself'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0669',
@@ -21512,6 +29478,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['エン'],
     kunyomi: ['ほのお'],
+    commonWords: [
+      CommonWord(word: '肺炎', reading: 'はいえん', meaning: 'pneumonia'),
+      CommonWord(word: '炎', reading: 'ほのお', meaning: 'flame'),
+      CommonWord(word: '肝炎', reading: 'かんえん', meaning: 'hepatitis'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0670',
@@ -21525,6 +29496,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['イ'],
     kunyomi: ['ため', 'な', 'す', 'たり'],
+    commonWords: [
+      CommonWord(word: '行為', reading: 'こうい', meaning: 'act'),
+      CommonWord(word: '為替', reading: 'かわせ', meaning: 'money order'),
+      CommonWord(word: '為', reading: 'ため', meaning: 'good'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0671',
@@ -21538,6 +29514,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['レツ'],
     kunyomi: ['はげ'],
+    commonWords: [
+      CommonWord(word: '強烈', reading: 'きょうれつ', meaning: 'strong'),
+      CommonWord(word: '猛烈', reading: 'もうれつ', meaning: 'fierce'),
+      CommonWord(word: '痛烈', reading: 'つうれつ', meaning: 'severe'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0672',
@@ -21551,6 +29532,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ショウ'],
     kunyomi: ['こ', 'あせ', 'じ'],
+    commonWords: [
+      CommonWord(word: '焦点', reading: 'しょうてん', meaning: 'focus'),
+      CommonWord(word: '焦り', reading: 'あせり', meaning: 'impatience'),
+      CommonWord(word: '焦げる', reading: 'こげる', meaning: 'to burn'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0673',
@@ -21564,6 +29550,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ハン', 'ボン'],
     kunyomi: ['わずら', 'うるさ'],
+    commonWords: [
+      CommonWord(word: '煩雑', reading: 'はんざつ', meaning: 'complex'),
+      CommonWord(word: '煩い', reading: 'うるさい', meaning: 'noisy'),
+      CommonWord(word: '煩わしい', reading: 'わずらわしい', meaning: 'troublesome'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0674',
@@ -21577,6 +29568,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シャ'],
     kunyomi: ['に', '-に'],
+    commonWords: [
+      CommonWord(word: '煮る', reading: 'にる', meaning: 'to boil'),
+      CommonWord(word: '煮物', reading: 'にもの', meaning: 'nimono'),
+      CommonWord(word: '煮込む', reading: 'にこむ', meaning: 'to boil well'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0675',
@@ -21590,6 +29586,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ユウ'],
     kunyomi: ['くま'],
+    commonWords: [
+      CommonWord(word: '熊', reading: 'くま', meaning: 'bear'),
+      CommonWord(word: '熊手', reading: 'くまで', meaning: 'rake'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0676',
@@ -21603,6 +29603,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キ'],
     kunyomi: ['たのし', 'ひか', 'ひろ', 'よろこ'],
+    commonWords: [
+      CommonWord(word: '熙春茶', reading: 'ひちゅんちゃ', meaning: 'hyson'),
+      CommonWord(word: '康熙字典', reading: 'こうきじてん', meaning: 'Kangxi dictionary'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0677',
@@ -21616,6 +29620,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ジュク'],
     kunyomi: ['う'],
+    commonWords: [
+      CommonWord(word: '成熟', reading: 'せいじゅく', meaning: 'maturity'),
+      CommonWord(word: '未熟', reading: 'みじゅく', meaning: 'unripe'),
+      CommonWord(word: '熟知', reading: 'じゅくち', meaning: 'being familiar with'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0678',
@@ -21629,6 +29638,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['リョウ'],
     kunyomi: ['かがりび'],
+    commonWords: [
+      CommonWord(word: '燎原', reading: 'りょうげん', meaning: 'agricultural burning'),
+      CommonWord(word: '燎原の火', reading: 'りょうげんのひ', meaning: 'wildfire'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0679',
@@ -21642,6 +29655,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['サン'],
     kunyomi: ['さん', 'あき', 'きらめ', 'きら'],
+    commonWords: [
+      CommonWord(word: '燦然', reading: 'さんぜん', meaning: 'brilliant'),
+      CommonWord(word: '燦点', reading: 'さんてん', meaning: 'speculum'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0680',
@@ -21655,6 +29672,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ヨウ'],
     kunyomi: ['かがや', 'ひかり'],
+    commonWords: [
+      CommonWord(word: '黒燿石', reading: 'こくようせき', meaning: 'obsidian'),
+      CommonWord(word: '栄燿', reading: 'えいよう', meaning: 'splendor'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0681',
@@ -21668,6 +29689,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シャク'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '伯爵', reading: 'はくしゃく', meaning: 'count'),
+      CommonWord(word: '男爵', reading: 'だんしゃく', meaning: 'baron'),
+      CommonWord(word: '公爵', reading: 'こうしゃく', meaning: 'prince'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0682',
@@ -21681,6 +29707,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ソウ'],
     kunyomi: ['あき', 'さわ', 'たがう'],
+    commonWords: [
+      CommonWord(word: '爽快', reading: 'そうかい', meaning: 'refreshing'),
+      CommonWord(word: '爽やか', reading: 'さわやか', meaning: 'fresh'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0683',
@@ -21694,6 +29724,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ジ', 'ニ'],
     kunyomi: ['なんじ', 'しかり', 'その', 'のみ'],
+    commonWords: [
+      CommonWord(word: '爾後', reading: 'じご', meaning: 'thereafter'),
+      CommonWord(word: '爾来', reading: 'じらい', meaning: 'since then'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0684',
@@ -21707,6 +29741,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ボク'],
     kunyomi: ['まき'],
+    commonWords: [
+      CommonWord(word: '牧場', reading: 'ぼくじょう', meaning: 'farm'),
+      CommonWord(word: '牧師', reading: 'ぼくし', meaning: 'pastor'),
+      CommonWord(word: '牧野', reading: 'ぼくや', meaning: 'pasture land'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0685',
@@ -21720,6 +29759,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['セイ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '犠牲', reading: 'ぎせい', meaning: 'sacrifice'),
+      CommonWord(word: '犠牲者', reading: 'ぎせいしゃ', meaning: 'victim'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0686',
@@ -21733,6 +29776,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ギ', 'キ'],
     kunyomi: ['いけにえ'],
+    commonWords: [
+      CommonWord(word: '犠牲', reading: 'ぎせい', meaning: 'sacrifice'),
+      CommonWord(word: '犠牲者', reading: 'ぎせいしゃ', meaning: 'victim'),
+      CommonWord(word: '犠飛', reading: 'ぎひ', meaning: 'sacrifice fly'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0687',
@@ -21746,6 +29794,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キョウ'],
     kunyomi: ['くる', 'くるお'],
+    commonWords: [
+      CommonWord(word: '狂言', reading: 'きょうげん', meaning: 'kyogen'),
+      CommonWord(word: '熱狂', reading: 'ねっきょう', meaning: 'wild enthusiasm'),
+      CommonWord(word: '狂気', reading: 'きょうき', meaning: 'madness'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0688',
@@ -21759,6 +29812,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ソ', 'ショ'],
     kunyomi: ['ねら'],
+    commonWords: [
+      CommonWord(word: '狙い', reading: 'ねらい', meaning: 'aim'),
+      CommonWord(word: '狙う', reading: 'ねらう', meaning: 'to aim at'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0689',
@@ -21772,6 +29829,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シュ'],
     kunyomi: ['か', '-が'],
+    commonWords: [
+      CommonWord(word: '狩り', reading: 'かり', meaning: 'hunting'),
+      CommonWord(word: '狩人', reading: 'かりゅうど', meaning: 'hunter'),
+      CommonWord(word: '狩場', reading: 'かりば', meaning: 'hunting ground'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0690',
@@ -21785,6 +29847,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ドク', 'トク'],
     kunyomi: ['ひと'],
+    commonWords: [
+      CommonWord(word: '独自', reading: 'どくじ', meaning: 'original'),
+      CommonWord(word: '独立', reading: 'どくりつ', meaning: 'independence'),
+      CommonWord(word: '独特', reading: 'どくとく', meaning: 'peculiarity'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0691',
@@ -21798,6 +29865,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キョウ', 'コウ'],
     kunyomi: ['せま', 'せば', 'さ'],
+    commonWords: [
+      CommonWord(word: '狭心症', reading: 'きょうしんしょう', meaning: 'angina pectoris'),
+      CommonWord(word: '狭間', reading: 'はざま', meaning: 'gap'),
+      CommonWord(word: '狭める', reading: 'せばめる', meaning: 'to narrow'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0692',
@@ -21811,6 +29883,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['モウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '猛烈', reading: 'もうれつ', meaning: 'fierce'),
+      CommonWord(word: '猛暑', reading: 'もうしょ', meaning: 'heat wave'),
+      CommonWord(word: '猛攻', reading: 'もうこう', meaning: 'fierce attack'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0693',
@@ -21824,6 +29901,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['リョウ'],
     kunyomi: ['かり', 'か'],
+    commonWords: [
+      CommonWord(word: '猟', reading: 'りょう', meaning: 'hunting'),
+      CommonWord(word: '密猟', reading: 'みつりょう', meaning: 'poaching'),
+      CommonWord(word: '猟銃', reading: 'りょうじゅう', meaning: 'hunting gun'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0694',
@@ -21837,6 +29919,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['チョ'],
     kunyomi: ['い', 'いのしし'],
+    commonWords: [
+      CommonWord(word: '猪', reading: 'いのしし', meaning: 'wild boar'),
+      CommonWord(word: '猪口', reading: 'ちょこ', meaning: 'sake cup'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0695',
@@ -21850,6 +29936,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ケン', 'コン'],
     kunyomi: ['たてまつ'],
+    commonWords: [
+      CommonWord(word: '文献', reading: 'ぶんけん', meaning: 'literature'),
+      CommonWord(word: '献金', reading: 'けんきん', meaning: 'donation'),
+      CommonWord(word: '献血', reading: 'けんけつ', meaning: 'blood donation'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0696',
@@ -21863,6 +29954,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ユウ', 'ユ'],
     kunyomi: ['なお'],
+    commonWords: [
+      CommonWord(word: '猶予', reading: 'ゆうよ', meaning: 'postponement'),
+      CommonWord(word: '執行猶予', reading: 'しっこうゆうよ', meaning: 'stay of execution'),
+      CommonWord(word: '起訴猶予', reading: 'きそゆうよ', meaning: 'suspension of indictment'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0697',
@@ -21876,6 +29972,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['エン'],
     kunyomi: ['さる'],
+    commonWords: [
+      CommonWord(word: '猿', reading: 'さる', meaning: 'monkey'),
+      CommonWord(word: '類人猿', reading: 'るいじんえん', meaning: 'anthropoid ape'),
+      CommonWord(word: '犬猿の仲', reading: 'けんえんのなか', meaning: 'like cats and dogs'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0698',
@@ -21889,6 +29990,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ゴク'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '地獄', reading: 'じごく', meaning: 'hell realm'),
+      CommonWord(word: '獄中', reading: 'ごくちゅう', meaning: 'during imprisonment'),
+      CommonWord(word: '監獄', reading: 'かんごく', meaning: 'prison'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0699',
@@ -21902,6 +30008,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ジュウ'],
     kunyomi: ['けもの', 'けだもの'],
+    commonWords: [
+      CommonWord(word: '獣', reading: 'けもの', meaning: 'beast'),
+      CommonWord(word: '獣医', reading: 'じゅうい', meaning: 'veterinarian'),
+      CommonWord(word: '怪獣', reading: 'かいじゅう', meaning: 'monster'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0700',
@@ -21915,6 +30026,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['カク'],
     kunyomi: ['え'],
+    commonWords: [
+      CommonWord(word: '獲得', reading: 'かくとく', meaning: 'acquisition'),
+      CommonWord(word: '乱獲', reading: 'らんかく', meaning: 'overfishing'),
+      CommonWord(word: '捕獲', reading: 'ほかく', meaning: 'capture'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0701',
@@ -21928,6 +30044,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ゲン'],
     kunyomi: ['くろ'],
+    commonWords: [
+      CommonWord(word: '玄関', reading: 'げんかん', meaning: 'entrance'),
+      CommonWord(word: '玄米', reading: 'げんまい', meaning: 'unpolished rice'),
+      CommonWord(word: '玄人', reading: 'くろうと', meaning: 'expert'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0702',
@@ -21941,6 +30062,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ソツ', 'リツ', 'シュツ'],
     kunyomi: ['ひき'],
+    commonWords: [
+      CommonWord(word: '比率', reading: 'ひりつ', meaning: 'ratio'),
+      CommonWord(word: '効率', reading: 'こうりつ', meaning: 'efficiency'),
+      CommonWord(word: '率直', reading: 'そっちょく', meaning: 'frank'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0703',
@@ -21954,6 +30080,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キュウ', 'ク'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '玖', reading: 'きゅう', meaning: 'nine (formal)'),
+      CommonWord(word: '拾玖', reading: 'じゅうく', meaning: 'nineteen (formal)'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0704',
@@ -21967,6 +30097,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['レイ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '玲瓏', reading: 'れいろう', meaning: 'clear'),
+      CommonWord(word: '白玲', reading: 'はくれい', meaning: 'Hakurei'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0705',
@@ -21980,6 +30114,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シュ'],
     kunyomi: ['たま'],
+    commonWords: [
+      CommonWord(word: '真珠', reading: 'しんじゅ', meaning: 'pearl'),
+      CommonWord(word: '珠算', reading: 'しゅざん', meaning: 'calculation on an abacus'),
+      CommonWord(word: '数珠', reading: 'じゅず', meaning: 'rosary'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0706',
@@ -21993,6 +30132,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ハン'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '首班', reading: 'しゅはん', meaning: 'head'),
+      CommonWord(word: '班長', reading: 'はんちょう', meaning: 'squad leader'),
+      CommonWord(word: '班', reading: 'はん', meaning: 'group'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0707',
@@ -22006,6 +30150,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['リュウ', 'ル'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '琉球', reading: 'りゅうきゅう', meaning: 'Ryukyu'),
+      CommonWord(word: '琉球語', reading: 'りゅうきゅうご', meaning: 'Ryukyuan languages'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0708',
@@ -22019,6 +30167,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['タク'],
     kunyomi: ['みが'],
+    commonWords: [
+      CommonWord(word: '琢磨', reading: 'たくま', meaning: 'polish'),
+      CommonWord(word: '切磋琢磨', reading: 'せっさたくま', meaning: 'diligent application'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0709',
@@ -22032,6 +30184,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['リン'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '光琳派', reading: 'こうりんは', meaning: 'Korin school'),
+      CommonWord(word: '琳派', reading: 'りんぱ', meaning: 'Rimpa school'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0710',
@@ -22045,6 +30201,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キン', 'ゴン'],
     kunyomi: ['こと'],
+    commonWords: [
+      CommonWord(word: '琴', reading: 'こと', meaning: 'koto'),
+      CommonWord(word: '一弦琴', reading: 'いちげんきん', meaning: 'single-stringed Japanese zither'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0711',
@@ -22058,6 +30218,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['コ', 'ゴ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '珊瑚', reading: 'さんご', meaning: 'coral'),
+      CommonWord(word: '珊瑚礁', reading: 'さんごしょう', meaning: 'coral reef'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0712',
@@ -22071,6 +30235,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['エイ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '玉瑛', reading: 'ぎょくえい', meaning: 'crystal'),
+      CommonWord(word: '瑛', reading: 'えい', meaning: 'sparkle of a jewel'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0713',
@@ -22084,6 +30252,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ズイ', 'スイ'],
     kunyomi: ['みず', 'しるし'],
+    commonWords: [
+      CommonWord(word: '瑞宝章', reading: 'ずいほうしょう', meaning: 'Orders of the Sacred Treasure'),
+      CommonWord(word: '瑞々しい', reading: 'みずみずしい', meaning: 'fresh and youthful'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0714',
@@ -22097,6 +30269,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ル', 'リュウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '瑠璃', reading: 'るり', meaning: 'lapis lazuli'),
+      CommonWord(word: '浄瑠璃', reading: 'じょうるり', meaning: 'jōruri'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0715',
@@ -22110,6 +30286,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['サ'],
     kunyomi: ['みが'],
+    commonWords: [
+      CommonWord(word: '切瑳', reading: 'せっさ', meaning: 'working hard'),
+      CommonWord(word: '切瑳琢磨', reading: 'せっさたくま', meaning: 'diligent effort'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0716',
@@ -22123,6 +30303,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ヨウ'],
     kunyomi: ['たま'],
+    commonWords: [
+      CommonWord(word: '瑶緘', reading: 'ようかん', meaning: 'your letter'),
+      CommonWord(word: '瑶顔', reading: 'ようがん', meaning: 'beautiful face'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0717',
@@ -22136,6 +30320,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['リ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '瑠璃', reading: 'るり', meaning: 'lapis lazuli'),
+      CommonWord(word: '浄瑠璃', reading: 'じょうるり', meaning: 'jōruri'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0718',
@@ -22149,6 +30337,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['カン'],
     kunyomi: ['わ'],
+    commonWords: [
+      CommonWord(word: '環境', reading: 'かんきょう', meaning: 'environment'),
+      CommonWord(word: '循環', reading: 'じゅんかん', meaning: 'circulation'),
+      CommonWord(word: '悪循環', reading: 'あくじゅんかん', meaning: 'vicious circle'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0719',
@@ -22162,6 +30355,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ジン'],
     kunyomi: ['はなは'],
+    commonWords: [
+      CommonWord(word: '甚だ', reading: 'はなはだ', meaning: 'very'),
+      CommonWord(word: '甚大', reading: 'じんだい', meaning: 'very great'),
+      CommonWord(word: '激甚', reading: 'げきじん', meaning: 'intense'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0720',
@@ -22175,6 +30373,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ホ', 'フ'],
     kunyomi: ['はじ'],
+    commonWords: [
+      CommonWord(word: '年甫', reading: 'ねんぽ', meaning: 'beginning of the year'),
+      CommonWord(word: '新甫', reading: 'しんぽ', meaning: 'new futures on the first trading'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0721',
@@ -22188,6 +30390,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['コウ', 'カン'],
     kunyomi: ['きのえ'],
+    commonWords: [
+      CommonWord(word: '甲板', reading: 'かんぱん', meaning: 'deck'),
+      CommonWord(word: '甲', reading: 'こう', meaning: 'carapace'),
+      CommonWord(word: '装甲', reading: 'そうこう', meaning: 'armoring'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0722',
@@ -22201,6 +30408,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ハン'],
     kunyomi: ['あぜ', 'くろ', 'ほとり'],
+    commonWords: [
+      CommonWord(word: '湖畔', reading: 'こはん', meaning: 'lakeside'),
+      CommonWord(word: '河畔', reading: 'かはん', meaning: 'riverside'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0723',
@@ -22214,6 +30425,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ボウ', 'ホ', 'モ', 'ム'],
     kunyomi: ['せ', 'うね'],
+    commonWords: [
+      CommonWord(word: '畝', reading: 'うね', meaning: 'ridge'),
+      CommonWord(word: '畝間', reading: 'うねま', meaning: 'furrow'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0724',
@@ -22227,6 +30442,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['イ'],
     kunyomi: ['こと', 'け'],
+    commonWords: [
+      CommonWord(word: '異常', reading: 'いじょう', meaning: 'abnormal'),
+      CommonWord(word: '異動', reading: 'いどう', meaning: 'change'),
+      CommonWord(word: '特異', reading: 'とくい', meaning: 'unique'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0725',
@@ -22240,6 +30460,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ソ', 'ショ'],
     kunyomi: ['うと', 'まば'],
+    commonWords: [
+      CommonWord(word: '過疎', reading: 'かそ', meaning: 'underpopulation'),
+      CommonWord(word: '疎開', reading: 'そかい', meaning: 'evacuation'),
+      CommonWord(word: '疎通', reading: 'そつう', meaning: 'understanding'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0726',
@@ -22253,6 +30478,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['エキ', 'ヤク'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '免疫', reading: 'めんえき', meaning: 'immunity'),
+      CommonWord(word: '検疫', reading: 'けんえき', meaning: 'quarantine'),
+      CommonWord(word: '防疫', reading: 'ぼうえき', meaning: 'communicable disease control'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0727',
@@ -22266,6 +30496,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シツ'],
     kunyomi: ['はや'],
+    commonWords: [
+      CommonWord(word: '疾患', reading: 'しっかん', meaning: 'disease'),
+      CommonWord(word: '疾病', reading: 'しっぺい', meaning: 'illness'),
+      CommonWord(word: '疾走', reading: 'しっそう', meaning: 'sprint'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0728',
@@ -22279,6 +30514,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ショウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '症状', reading: 'しょうじょう', meaning: 'symptoms'),
+      CommonWord(word: '重症', reading: 'じゅうしょう', meaning: 'serious illness'),
+      CommonWord(word: '症', reading: 'しょう', meaning: 'illness'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0729',
@@ -22292,6 +30532,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['トウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '種痘', reading: 'しゅとう', meaning: 'smallpox vaccination'),
+      CommonWord(word: '天然痘', reading: 'てんねんとう', meaning: 'smallpox'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0730',
@@ -22305,6 +30549,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['リ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '下痢', reading: 'げり', meaning: 'diarrhea'),
+      CommonWord(word: '赤痢', reading: 'せきり', meaning: 'dysentery'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0731',
@@ -22318,6 +30566,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['チ'],
     kunyomi: ['し', 'おろか'],
+    commonWords: [
+      CommonWord(word: '愚痴', reading: 'ぐち', meaning: 'idle complaint'),
+      CommonWord(word: '痴呆', reading: 'ちほう', meaning: 'dementia'),
+      CommonWord(word: '痴漢', reading: 'ちかん', meaning: 'molester'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0732',
@@ -22331,6 +30584,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ユ'],
     kunyomi: ['い', 'いや'],
+    commonWords: [
+      CommonWord(word: '癒着', reading: 'ゆちゃく', meaning: 'adhesion'),
+      CommonWord(word: '治癒', reading: 'ちゆ', meaning: 'healing'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0733',
@@ -22344,6 +30601,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ヘキ'],
     kunyomi: ['くせ'],
+    commonWords: [
+      CommonWord(word: '口癖', reading: 'くちぐせ', meaning: 'pet saying'),
+      CommonWord(word: '癖', reading: 'くせ', meaning: 'habit'),
+      CommonWord(word: '潔癖', reading: 'けっぺき', meaning: 'fastidiousness'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0734',
@@ -22357,6 +30619,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['コウ', 'オウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '天皇', reading: 'てんのう', meaning: 'Emperor of Japan'),
+      CommonWord(word: '皇后', reading: 'こうごう', meaning: 'empress'),
+      CommonWord(word: '皇太子', reading: 'こうたいし', meaning: 'crown prince'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0735',
@@ -22370,6 +30637,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['コウ'],
     kunyomi: ['さつき'],
+    commonWords: [
+      CommonWord(word: '皐月鱒', reading: 'さつきます', meaning: 'sea-run variety of red-spotted masu'),
+      CommonWord(word: '皐月晴れ', reading: 'さつきばれ', meaning: 'fine weather during the rainy season'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0736',
@@ -22383,6 +30654,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['コウ'],
     kunyomi: ['しろ', 'ひか'],
+    commonWords: [
+      CommonWord(word: '皓歯', reading: 'こうし', meaning: 'pearly white teeth'),
+      CommonWord(word: '皓礬', reading: 'こうばん', meaning: 'zinc sulfate heptahydrate'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0737',
@@ -22396,6 +30671,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ボン'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '盆', reading: 'ぼん', meaning: 'tray'),
+      CommonWord(word: '盆地', reading: 'ぼんち', meaning: 'basin'),
+      CommonWord(word: '盆栽', reading: 'ぼんさい', meaning: 'bonsai'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0738',
@@ -22409,6 +30689,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['エキ', 'ヤク'],
     kunyomi: ['ま'],
+    commonWords: [
+      CommonWord(word: '利益', reading: 'りえき', meaning: 'profit'),
+      CommonWord(word: '損益', reading: 'そんえき', meaning: 'profit and loss'),
+      CommonWord(word: '有益', reading: 'ゆうえき', meaning: 'beneficial'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0739',
@@ -22422,6 +30707,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['セイ', 'ジョウ'],
     kunyomi: ['も', 'さか'],
+    commonWords: [
+      CommonWord(word: '盛ん', reading: 'さかん', meaning: 'prosperous'),
+      CommonWord(word: '盛り', reading: 'さかり', meaning: 'height'),
+      CommonWord(word: '盛る', reading: 'もる', meaning: 'to serve'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0740',
@@ -22435,6 +30725,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['メイ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '加盟', reading: 'かめい', meaning: 'joining'),
+      CommonWord(word: '同盟', reading: 'どうめい', meaning: 'alliance'),
+      CommonWord(word: '連盟', reading: 'れんめい', meaning: 'league'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0741',
@@ -22448,6 +30743,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['カン'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '監督', reading: 'かんとく', meaning: 'supervision'),
+      CommonWord(word: '監視', reading: 'かんし', meaning: 'monitoring'),
+      CommonWord(word: '監禁', reading: 'かんきん', meaning: 'confinement'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0742',
@@ -22461,6 +30761,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['バン'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '基盤', reading: 'きばん', meaning: 'base'),
+      CommonWord(word: '終盤', reading: 'しゅうばん', meaning: 'endgame'),
+      CommonWord(word: '中盤', reading: 'ちゅうばん', meaning: 'middle stage'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0743',
@@ -22474,6 +30779,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['モウ'],
     kunyomi: ['めくら'],
+    commonWords: [
+      CommonWord(word: '盲導犬', reading: 'もうどうけん', meaning: 'guide dog'),
+      CommonWord(word: '盲人', reading: 'もうじん', meaning: 'blind person'),
+      CommonWord(word: '盲学校', reading: 'もうがっこう', meaning: 'school for the blind'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0744',
@@ -22487,6 +30797,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ジュン'],
     kunyomi: ['たて'],
+    commonWords: [
+      CommonWord(word: '矛盾', reading: 'むじゅん', meaning: 'contradiction'),
+      CommonWord(word: '盾', reading: 'たて', meaning: 'shield'),
+      CommonWord(word: '後ろ盾', reading: 'うしろだて', meaning: 'backing'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0745',
@@ -22500,6 +30815,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ビ', 'ミ'],
     kunyomi: ['まゆ'],
+    commonWords: [
+      CommonWord(word: '眉', reading: 'まゆ', meaning: 'eyebrow'),
+      CommonWord(word: '焦眉', reading: 'しょうび', meaning: 'emergency'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0746',
@@ -22513,6 +30832,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['カン'],
     kunyomi: ['み'],
+    commonWords: [
+      CommonWord(word: '看護', reading: 'かんご', meaning: 'nursing'),
+      CommonWord(word: '看板', reading: 'かんばん', meaning: 'signboard'),
+      CommonWord(word: '看過', reading: 'かんか', meaning: 'overlooking'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0747',
@@ -22526,6 +30850,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ボウ', 'ム'],
     kunyomi: ['ひとみ'],
+    commonWords: [
+      CommonWord(word: '双眸', reading: 'そうぼう', meaning: 'one\'s eyes'),
+      CommonWord(word: '眸子', reading: 'ぼうし', meaning: 'pupil'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0748',
@@ -22539,6 +30867,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['チョウ'],
     kunyomi: ['なが'],
+    commonWords: [
+      CommonWord(word: '眺める', reading: 'ながめる', meaning: 'to look at'),
+      CommonWord(word: '眺め', reading: 'ながめ', meaning: 'scene'),
+      CommonWord(word: '眺望', reading: 'ちょうぼう', meaning: 'view'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0749',
@@ -22552,6 +30885,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ガン', 'ゲン'],
     kunyomi: ['まなこ', 'め'],
+    commonWords: [
+      CommonWord(word: '眼鏡', reading: 'めがね', meaning: 'glasses'),
+      CommonWord(word: '眼', reading: 'め', meaning: 'eye'),
+      CommonWord(word: '眼科', reading: 'がんか', meaning: 'ophthalmology'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0750',
@@ -22565,6 +30903,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['スイ'],
     kunyomi: ['ねむ'],
+    commonWords: [
+      CommonWord(word: '睡眠', reading: 'すいみん', meaning: 'sleep'),
+      CommonWord(word: '昏睡', reading: 'こんすい', meaning: 'coma'),
+      CommonWord(word: '熟睡', reading: 'じゅくすい', meaning: 'deep sleep'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0751',
@@ -22578,6 +30921,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['トク'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '監督', reading: 'かんとく', meaning: 'supervision'),
+      CommonWord(word: '総督', reading: 'そうとく', meaning: 'governor-general'),
+      CommonWord(word: '督促', reading: 'とくそく', meaning: 'urge'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0752',
@@ -22591,6 +30939,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ボク', 'モク'],
     kunyomi: ['むつ'],
+    commonWords: [
+      CommonWord(word: '親睦', reading: 'しんぼく', meaning: 'friendship'),
+      CommonWord(word: '親睦会', reading: 'しんぼくかい', meaning: 'informal social gathering'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0753',
@@ -22604,6 +30956,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シュン'],
     kunyomi: ['またた', 'まじろ'],
+    commonWords: [
+      CommonWord(word: '瞬間', reading: 'しゅんかん', meaning: 'moment'),
+      CommonWord(word: '一瞬', reading: 'いっしゅん', meaning: 'instant'),
+      CommonWord(word: '瞬く', reading: 'またたく', meaning: 'to twinkle'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0754',
@@ -22617,6 +30974,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['リョウ'],
     kunyomi: ['あきらか'],
+    commonWords: [
+      CommonWord(word: '明瞭', reading: 'めいりょう', meaning: 'clear'),
+      CommonWord(word: '不明瞭', reading: 'ふめいりょう', meaning: 'unclear'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0755',
@@ -22630,6 +30991,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ドウ', 'トウ'],
     kunyomi: ['ひとみ'],
+    commonWords: [
+      CommonWord(word: '瞳', reading: 'ひとみ', meaning: 'pupil'),
+      CommonWord(word: '散瞳', reading: 'さんどう', meaning: 'mydriasis'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0756',
@@ -22643,6 +31008,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ム', 'ボウ'],
     kunyomi: ['ほこ'],
+    commonWords: [
+      CommonWord(word: '矛盾', reading: 'むじゅん', meaning: 'contradiction'),
+      CommonWord(word: '矛先', reading: 'ほこさき', meaning: 'point of a spear'),
+      CommonWord(word: '矛', reading: 'ほこ', meaning: 'long-handled Chinese spear'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0757',
@@ -22656,6 +31026,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シ'],
     kunyomi: ['や'],
+    commonWords: [
+      CommonWord(word: '矢', reading: 'や', meaning: 'arrow'),
+      CommonWord(word: '矢先', reading: 'やさき', meaning: 'arrowhead'),
+      CommonWord(word: '弓矢', reading: 'ゆみや', meaning: 'bow and arrow'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0758',
@@ -22669,6 +31044,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キョウ'],
     kunyomi: ['た'],
+    commonWords: [
+      CommonWord(word: '矯正', reading: 'きょうせい', meaning: 'correction'),
+      CommonWord(word: '奇矯', reading: 'ききょう', meaning: 'eccentric'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0759',
@@ -22682,6 +31061,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['サイ'],
     kunyomi: ['くだ'],
+    commonWords: [
+      CommonWord(word: '火砕流', reading: 'かさいりゅう', meaning: 'pyroclastic flow'),
+      CommonWord(word: '粉砕', reading: 'ふんさい', meaning: 'pulverization'),
+      CommonWord(word: '玉砕', reading: 'ぎょくさい', meaning: 'honorable death'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0760',
@@ -22695,6 +31079,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ホウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '大砲', reading: 'たいほう', meaning: 'gun'),
+      CommonWord(word: '発砲', reading: 'はっぽう', meaning: 'firing'),
+      CommonWord(word: '砲撃', reading: 'ほうげき', meaning: 'bombarding'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0761',
@@ -22708,6 +31097,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ショウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '硝酸', reading: 'しょうさん', meaning: 'nitric acid'),
+      CommonWord(word: '硝煙', reading: 'しょうえん', meaning: 'gunpowder smoke'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0762',
@@ -22721,6 +31114,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['リュウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '硫黄', reading: 'いおう', meaning: 'sulfur'),
+      CommonWord(word: '脱硫', reading: 'だつりゅう', meaning: 'desulfurization'),
+      CommonWord(word: '硫酸', reading: 'りゅうさん', meaning: 'sulfuric acid'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0763',
@@ -22734,6 +31132,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ゴ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '囲碁', reading: 'いご', meaning: 'go'),
+      CommonWord(word: '碁盤', reading: 'ごばん', meaning: 'Go board'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0764',
@@ -22747,6 +31149,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ヒ'],
     kunyomi: ['いしぶみ'],
+    commonWords: [
+      CommonWord(word: '碑', reading: 'いしぶみ', meaning: 'stone monument bearing an inscription'),
+      CommonWord(word: '記念碑', reading: 'きねんひ', meaning: 'commemorative plaque'),
+      CommonWord(word: '碑文', reading: 'ひぶん', meaning: 'inscription'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0765',
@@ -22760,6 +31167,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ヘキ', 'ヒャク'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '紺碧', reading: 'こんぺき', meaning: 'deep blue'),
+      CommonWord(word: '碧', reading: 'あお', meaning: 'blue'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0766',
@@ -22773,6 +31184,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['セキ'],
     kunyomi: ['おお'],
+    commonWords: [
+      CommonWord(word: '碩学', reading: 'せきがく', meaning: 'great scholar'),
+      CommonWord(word: '碩儒', reading: 'せきじゅ', meaning: 'scholar'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0767',
@@ -22786,6 +31201,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ジ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '磁石', reading: 'じしゃく', meaning: 'magnet'),
+      CommonWord(word: '磁気', reading: 'じき', meaning: 'magnetism'),
+      CommonWord(word: '陶磁器', reading: 'とうじき', meaning: 'ceramics'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0768',
@@ -22799,6 +31219,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キ'],
     kunyomi: ['いそ'],
+    commonWords: [
+      CommonWord(word: '磯', reading: 'いそ', meaning: 'beach'),
+      CommonWord(word: '磯辺', reading: 'いそべ', meaning: 'seashore'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0769',
@@ -22812,6 +31236,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ショウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '暗礁', reading: 'あんしょう', meaning: 'reef'),
+      CommonWord(word: '環礁', reading: 'かんしょう', meaning: 'atoll'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0770',
@@ -22825,6 +31253,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ソ'],
     kunyomi: ['いしずえ'],
+    commonWords: [
+      CommonWord(word: '基礎', reading: 'きそ', meaning: 'foundation'),
+      CommonWord(word: '礎', reading: 'いしずえ', meaning: 'foundation stone'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0771',
@@ -22838,6 +31270,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '福祉', reading: 'ふくし', meaning: 'welfare'),
+      CommonWord(word: '社会福祉', reading: 'しゃかいふくし', meaning: 'social welfare'),
+      CommonWord(word: '老人福祉', reading: 'ろうじんふくし', meaning: 'welfare for the aged'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0772',
@@ -22851,6 +31288,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ユウ', 'ウ'],
     kunyomi: ['たす'],
+    commonWords: [
+      CommonWord(word: '祐助', reading: 'ゆうじょ', meaning: 'assistance'),
+      CommonWord(word: '天祐', reading: 'てんゆう', meaning: 'divine aid'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0773',
@@ -22864,6 +31305,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ショウ'],
     kunyomi: ['さいわ', 'きざ', 'よ', 'つまび'],
+    commonWords: [
+      CommonWord(word: '不祥事', reading: 'ふしょうじ', meaning: 'scandal'),
+      CommonWord(word: '発祥', reading: 'はっしょう', meaning: 'origin'),
+      CommonWord(word: '発祥地', reading: 'はっしょうち', meaning: 'birthplace'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0774',
@@ -22877,6 +31323,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ヒョウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '投票', reading: 'とうひょう', meaning: 'voting'),
+      CommonWord(word: '票', reading: 'ひょう', meaning: 'vote'),
+      CommonWord(word: '開票', reading: 'かいひょう', meaning: 'counting ballots'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0775',
@@ -22890,6 +31341,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ロク'],
     kunyomi: ['さいわ', 'ふち'],
+    commonWords: [
+      CommonWord(word: '加禄', reading: 'かろく', meaning: 'increase in a samurai\'s stipend'),
+      CommonWord(word: '貫禄', reading: 'かんろく', meaning: 'presence'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0776',
@@ -22903,6 +31358,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ゼン', 'セン'],
     kunyomi: ['しずか', 'ゆず'],
+    commonWords: [
+      CommonWord(word: '禅', reading: 'ぜん', meaning: 'dhyana'),
+      CommonWord(word: '禅寺', reading: 'ぜんでら', meaning: 'Zen temple'),
+      CommonWord(word: '座禅', reading: 'ざぜん', meaning: 'zazen'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0777',
@@ -22916,6 +31376,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['カ'],
     kunyomi: ['わざわい'],
+    commonWords: [
+      CommonWord(word: '禍根', reading: 'かこん', meaning: 'root of an evil'),
+      CommonWord(word: '戦禍', reading: 'せんか', meaning: 'war damage'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0778',
@@ -22929,6 +31393,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['テイ'],
     kunyomi: ['さいわ'],
+    commonWords: [
+      CommonWord(word: '禎祥', reading: 'ていしょう', meaning: 'good omen'),
+      CommonWord(word: '嘉禎', reading: 'かてい', meaning: 'Katei era'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0779',
@@ -22942,6 +31410,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シュウ'],
     kunyomi: ['ひい'],
+    commonWords: [
+      CommonWord(word: '優秀', reading: 'ゆうしゅう', meaning: 'superior'),
+      CommonWord(word: '秀作', reading: 'しゅうさく', meaning: 'excellent (piece of) work'),
+      CommonWord(word: '秀才', reading: 'しゅうさい', meaning: 'bright person'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0780',
@@ -22955,6 +31428,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ヒ'],
     kunyomi: ['ひ', 'ひそ', 'かく'],
+    commonWords: [
+      CommonWord(word: '秘書', reading: 'ひしょ', meaning: 'secretary'),
+      CommonWord(word: '秘密', reading: 'ひみつ', meaning: 'secret'),
+      CommonWord(word: '極秘', reading: 'ごくひ', meaning: 'absolute secrecy'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0781',
@@ -22968,6 +31446,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ソ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '租税', reading: 'そぜい', meaning: 'taxes'),
+      CommonWord(word: '公租', reading: 'こうそ', meaning: 'public tax'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0782',
@@ -22981,6 +31463,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シン'],
     kunyomi: ['はた'],
+    commonWords: [
+      CommonWord(word: '秦皮', reading: 'とねりこ', meaning: 'Japanese ash'),
+      CommonWord(word: '秦皮葉の楓', reading: 'とねりこばのかえで', meaning: 'box elder'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0783',
@@ -22994,6 +31480,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['チツ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '秩序', reading: 'ちつじょ', meaning: 'order'),
+      CommonWord(word: '無秩序', reading: 'むちつじょ', meaning: 'disorder'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0784',
@@ -23007,6 +31497,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ショウ'],
     kunyomi: ['たた', 'とな', 'あ', 'かな'],
+    commonWords: [
+      CommonWord(word: '名称', reading: 'めいしょう', meaning: 'name'),
+      CommonWord(word: '敬称', reading: 'けいしょう', meaning: 'honorific title'),
+      CommonWord(word: '称する', reading: 'しょうする', meaning: 'to call'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0785',
@@ -23020,6 +31515,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キ', 'ケ'],
     kunyomi: ['まれ', 'まばら'],
+    commonWords: [
+      CommonWord(word: '稀', reading: 'まれ', meaning: 'rare'),
+      CommonWord(word: '稀少', reading: 'きしょう', meaning: 'scarce'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0786',
@@ -23033,6 +31532,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ネン', 'ジン', 'ニン'],
     kunyomi: ['みの', 'みのり'],
+    commonWords: [
+      CommonWord(word: '稔性', reading: 'ねんせい', meaning: 'fertility'),
+      CommonWord(word: '不稔性', reading: 'ふねんせい', meaning: 'infertility'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0787',
@@ -23046,6 +31549,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['チ', 'ジ'],
     kunyomi: ['いとけない', 'おさない', 'おくて', 'おでる'],
+    commonWords: [
+      CommonWord(word: '幼稚園', reading: 'ようちえん', meaning: 'kindergarten'),
+      CommonWord(word: '稚魚', reading: 'ちぎょ', meaning: 'fry'),
+      CommonWord(word: '幼稚', reading: 'ようち', meaning: 'infancy'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0788',
@@ -23059,6 +31567,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['リョウ', 'ロウ'],
     kunyomi: ['いつ', 'かど'],
+    commonWords: [
+      CommonWord(word: '五稜郭', reading: 'ごりょうかく', meaning: 'five-sided fortification'),
+      CommonWord(word: '五稜堡', reading: 'ごりょうほ', meaning: 'five-sided fort'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0789',
@@ -23072,6 +31584,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['トウ', 'テ'],
     kunyomi: ['いね', 'いな'],
+    commonWords: [
+      CommonWord(word: '稲', reading: 'いね', meaning: 'rice plant'),
+      CommonWord(word: '稲作', reading: 'いなさく', meaning: 'rice cultivation'),
+      CommonWord(word: '水稲', reading: 'すいとう', meaning: 'wet-land rice'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0790',
@@ -23085,6 +31602,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['カ'],
     kunyomi: ['かせ'],
+    commonWords: [
+      CommonWord(word: '出稼ぎ', reading: 'でかせぎ', meaning: 'working away from home'),
+      CommonWord(word: '稼ぎ', reading: 'かせぎ', meaning: 'earnings'),
+      CommonWord(word: '稼働', reading: 'かどう', meaning: 'operation'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0791',
@@ -23098,6 +31620,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['コウ'],
     kunyomi: ['わら', 'したがき'],
+    commonWords: [
+      CommonWord(word: '原稿', reading: 'げんこう', meaning: 'manuscript'),
+      CommonWord(word: '原稿用紙', reading: 'げんこうようし', meaning: 'Japanese writing paper'),
+      CommonWord(word: '投稿', reading: 'とうこう', meaning: 'contribution'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0792',
@@ -23111,6 +31638,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['コク'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '穀物', reading: 'こくもつ', meaning: 'grain'),
+      CommonWord(word: '米穀', reading: 'べいこく', meaning: 'rice'),
+      CommonWord(word: '穀倉', reading: 'こくそう', meaning: 'granary'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0793',
@@ -23124,6 +31656,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['スイ'],
     kunyomi: ['ほ'],
+    commonWords: [
+      CommonWord(word: '穂', reading: 'ほ', meaning: 'ear'),
+      CommonWord(word: '稲穂', reading: 'いなほ', meaning: 'ear (head) of rice'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0794',
@@ -23137,6 +31673,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['オン'],
     kunyomi: ['おだ'],
+    commonWords: [
+      CommonWord(word: '穏健', reading: 'おんけん', meaning: 'moderate'),
+      CommonWord(word: '穏やか', reading: 'おだやか', meaning: 'calm'),
+      CommonWord(word: '平穏', reading: 'へいおん', meaning: 'tranquil'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0795',
@@ -23150,6 +31691,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ジョウ'],
     kunyomi: ['わら', 'ゆたか'],
+    commonWords: [
+      CommonWord(word: '豊穣', reading: 'ほうじょう', meaning: 'abundant (grain) crop'),
+      CommonWord(word: '穣', reading: 'じょう', meaning: '10^28'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0796',
@@ -23163,6 +31708,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['カク'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '収穫', reading: 'しゅうかく', meaning: 'harvest'),
+      CommonWord(word: '収穫期', reading: 'しゅうかくき', meaning: 'harvest time'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0797',
@@ -23176,6 +31725,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ケツ'],
     kunyomi: ['あな'],
+    commonWords: [
+      CommonWord(word: '穴', reading: 'あな', meaning: 'hole'),
+      CommonWord(word: '穴埋め', reading: 'あなうめ', meaning: 'filling (up) a hole'),
+      CommonWord(word: '風穴', reading: 'かざあな', meaning: 'air hole'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0798',
@@ -23189,6 +31743,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['セツ'],
     kunyomi: ['ぬす', 'ひそ'],
+    commonWords: [
+      CommonWord(word: '窃盗', reading: 'せっとう', meaning: 'theft'),
+      CommonWord(word: '剽窃', reading: 'ひょうせつ', meaning: 'plagiarism'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0799',
@@ -23202,6 +31760,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['チツ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '窒息', reading: 'ちっそく', meaning: 'suffocation'),
+      CommonWord(word: '窒素', reading: 'ちっそ', meaning: 'nitrogen'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0800',
@@ -23215,6 +31777,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キュウ', 'キョウ'],
     kunyomi: ['きわ'],
+    commonWords: [
+      CommonWord(word: '窮屈', reading: 'きゅうくつ', meaning: 'narrow'),
+      CommonWord(word: '窮地', reading: 'きゅうち', meaning: 'dilemma'),
+      CommonWord(word: '窮状', reading: 'きゅうじょう', meaning: 'distress'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0801',
@@ -23228,6 +31795,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ヨウ'],
     kunyomi: ['かま'],
+    commonWords: [
+      CommonWord(word: '窯', reading: 'かま', meaning: 'stove'),
+      CommonWord(word: '窯業', reading: 'ようぎょう', meaning: 'ceramics'),
+      CommonWord(word: '窯元', reading: 'かまもと', meaning: 'pottery'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0802',
@@ -23241,6 +31813,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['リュウ', 'リョウ', 'ロウ'],
     kunyomi: ['たつ', 'いせ'],
+    commonWords: [
+      CommonWord(word: '竜', reading: 'りゅう', meaning: 'dragon'),
+      CommonWord(word: '恐竜', reading: 'きょうりゅう', meaning: 'dinosaur'),
+      CommonWord(word: '竜王', reading: 'りゅうおう', meaning: 'Dragon King'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0803',
@@ -23254,6 +31831,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ドウ', 'シュン'],
     kunyomi: ['わらわ', 'わらべ', 'おわ'],
+    commonWords: [
+      CommonWord(word: '竣工', reading: 'しゅんこう', meaning: 'completion of construction'),
+      CommonWord(word: '竣成', reading: 'しゅんせい', meaning: 'completion'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0804',
@@ -23267,6 +31848,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['タン'],
     kunyomi: ['はし', 'は', 'はた', '-ばた'],
+    commonWords: [
+      CommonWord(word: '端', reading: 'はし', meaning: 'end'),
+      CommonWord(word: '極端', reading: 'きょくたん', meaning: 'extreme'),
+      CommonWord(word: '先端', reading: 'せんたん', meaning: 'pointed end'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0805',
@@ -23280,6 +31866,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ショウ', 'ソウ'],
     kunyomi: ['ふえ'],
+    commonWords: [
+      CommonWord(word: '笙', reading: 'しょう', meaning: 'traditional Japanese wind instrument'),
+      CommonWord(word: '笙の笛', reading: 'しょうのふえ', meaning: 'shō'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0806',
@@ -23293,6 +31883,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['テキ'],
     kunyomi: ['ふえ'],
+    commonWords: [
+      CommonWord(word: '笛', reading: 'ふえ', meaning: 'flute'),
+      CommonWord(word: '汽笛', reading: 'きてき', meaning: 'steam whistle'),
+      CommonWord(word: '口笛', reading: 'くちぶえ', meaning: 'whistle'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0807',
@@ -23306,6 +31901,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ダイ', 'テイ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '次第に', reading: 'しだいに', meaning: 'gradually'),
+      CommonWord(word: '次第', reading: 'しだい', meaning: 'depending on'),
+      CommonWord(word: '第一歩', reading: 'だいいっぽ', meaning: 'first step'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0808',
@@ -23319,6 +31919,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: [],
     kunyomi: ['ささ'],
+    commonWords: [
+      CommonWord(word: '笹', reading: 'ささ', meaning: 'bamboo grass'),
+      CommonWord(word: '笹原', reading: 'ささはら', meaning: 'field of bamboo grass'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0809',
@@ -23332,6 +31936,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キン'],
     kunyomi: ['すじ'],
+    commonWords: [
+      CommonWord(word: '筋', reading: 'すじ', meaning: 'muscle'),
+      CommonWord(word: '鉄筋', reading: 'てっきん', meaning: 'rebar'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0810',
@@ -23345,6 +31953,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['サク'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '政策', reading: 'せいさく', meaning: 'political measures'),
+      CommonWord(word: '対策', reading: 'たいさく', meaning: 'measure'),
+      CommonWord(word: '策', reading: 'さく', meaning: 'plan'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0811',
@@ -23358,6 +31971,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['カ', 'コ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '箇所', reading: 'かしょ', meaning: 'place'),
+      CommonWord(word: '箇月', reading: 'かげつ', meaning: 'counter for months'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0812',
@@ -23371,6 +31988,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['セツ', 'セチ'],
     kunyomi: ['ふし', '-ぶし', 'のっと'],
+    commonWords: [
+      CommonWord(word: '季節', reading: 'きせつ', meaning: 'season'),
+      CommonWord(word: '節', reading: 'せつ', meaning: 'occasion'),
+      CommonWord(word: '使節', reading: 'しせつ', meaning: 'envoy'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0813',
@@ -23384,6 +32006,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ハン'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '範囲', reading: 'はんい', meaning: 'extent'),
+      CommonWord(word: '規範', reading: 'きはん', meaning: 'model'),
+      CommonWord(word: '模範', reading: 'もはん', meaning: 'exemplar'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0814',
@@ -23397,6 +32024,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['トク'],
     kunyomi: ['あつ'],
+    commonWords: [
+      CommonWord(word: '危篤', reading: 'きとく', meaning: 'critical condition'),
+      CommonWord(word: '篤志家', reading: 'とくしか', meaning: 'charitable person'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0815',
@@ -23410,6 +32041,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ボ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '名簿', reading: 'めいぼ', meaning: 'register of names'),
+      CommonWord(word: '帳簿', reading: 'ちょうぼ', meaning: 'account book'),
+      CommonWord(word: '家計簿', reading: 'かけいぼ', meaning: 'household account book'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0816',
@@ -23423,6 +32059,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['スイ'],
     kunyomi: ['いき'],
+    commonWords: [
+      CommonWord(word: '純粋', reading: 'じゅんすい', meaning: 'pure'),
+      CommonWord(word: '粋', reading: 'いき', meaning: 'chic'),
+      CommonWord(word: '抜粋', reading: 'ばっすい', meaning: 'extract'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0817',
@@ -23436,6 +32077,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ソ'],
     kunyomi: ['あら'],
+    commonWords: [
+      CommonWord(word: '粗末', reading: 'そまつ', meaning: 'crude'),
+      CommonWord(word: '粗鋼', reading: 'そこう', meaning: 'crude steel'),
+      CommonWord(word: '粗大', reading: 'そだい', meaning: 'coarse'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0818',
@@ -23449,6 +32095,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ネン'],
     kunyomi: ['ねば'],
+    commonWords: [
+      CommonWord(word: '粘り', reading: 'ねばり', meaning: 'stickiness'),
+      CommonWord(word: '粘土', reading: 'ねんど', meaning: 'clay'),
+      CommonWord(word: '粘り強い', reading: 'ねばりづよい', meaning: 'tenacious'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0819',
@@ -23462,6 +32113,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シュク', 'スク'],
     kunyomi: ['つつし'],
+    commonWords: [
+      CommonWord(word: '自粛', reading: 'じしゅく', meaning: 'self-restraint'),
+      CommonWord(word: '厳粛', reading: 'げんしゅく', meaning: 'grave'),
+      CommonWord(word: '粛清', reading: 'しゅくせい', meaning: 'purge'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0820',
@@ -23475,6 +32131,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['トウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '砂糖', reading: 'さとう', meaning: 'sugar'),
+      CommonWord(word: '糖尿病', reading: 'とうにょうびょう', meaning: 'diabetes'),
+      CommonWord(word: '糖分', reading: 'とうぶん', meaning: 'amount of sugar'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0821',
@@ -23488,6 +32149,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['リョウ', 'ロウ'],
     kunyomi: ['かて'],
+    commonWords: [
+      CommonWord(word: '食糧', reading: 'しょくりょう', meaning: 'food'),
+      CommonWord(word: '食糧庁', reading: 'しょくりょうちょう', meaning: 'food agency'),
+      CommonWord(word: '兵糧', reading: 'ひょうろう', meaning: 'provisions'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0822',
@@ -23501,6 +32167,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ケイ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '系列', reading: 'けいれつ', meaning: 'series'),
+      CommonWord(word: '体系', reading: 'たいけい', meaning: 'system'),
+      CommonWord(word: '日系', reading: 'にっけい', meaning: 'Japanese descent'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0823',
@@ -23514,6 +32185,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キュウ'],
     kunyomi: ['ただ'],
+    commonWords: [
+      CommonWord(word: '紛糾', reading: 'ふんきゅう', meaning: 'complication'),
+      CommonWord(word: '糾弾', reading: 'きゅうだん', meaning: 'censure'),
+      CommonWord(word: '糾合', reading: 'きゅうごう', meaning: 'rally'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0824',
@@ -23527,6 +32203,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '世紀', reading: 'せいき', meaning: 'century'),
+      CommonWord(word: '世紀末', reading: 'せいきまつ', meaning: 'end of a century'),
+      CommonWord(word: '二十世紀', reading: 'にじっせいき', meaning: 'twentieth century'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0825',
@@ -23540,6 +32221,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['モン'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '指紋', reading: 'しもん', meaning: 'fingerprint'),
+      CommonWord(word: '波紋', reading: 'はもん', meaning: 'ripple'),
+      CommonWord(word: '紋', reading: 'もん', meaning: 'crest'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0826',
@@ -23553,6 +32239,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ノウ', 'ナッ', 'ナ', 'ナン'],
     kunyomi: ['おさ', '-おさ'],
+    commonWords: [
+      CommonWord(word: '納税', reading: 'のうぜい', meaning: 'payment of taxes'),
+      CommonWord(word: '納得', reading: 'なっとく', meaning: 'consent'),
+      CommonWord(word: '納入', reading: 'のうにゅう', meaning: 'payment'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0827',
@@ -23566,6 +32257,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['サ', 'シャ'],
     kunyomi: ['うすぎぬ'],
+    commonWords: [
+      CommonWord(word: '袱紗', reading: 'ふくさ', meaning: 'small silk wrapper'),
+      CommonWord(word: '紗の様', reading: 'しゃのよう', meaning: 'gauzy'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0828',
@@ -23579,6 +32274,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['コウ'],
     kunyomi: ['おおづな', 'つな', 'つなぐ'],
+    commonWords: [
+      CommonWord(word: '八紘', reading: 'はっこう', meaning: 'the eight directions'),
+      CommonWord(word: '八紘一宇', reading: 'はっこういちう', meaning: 'universal brotherhood'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0829',
@@ -23592,6 +32291,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キュウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '高級', reading: 'こうきゅう', meaning: 'high-class'),
+      CommonWord(word: '階級', reading: 'かいきゅう', meaning: 'class'),
+      CommonWord(word: '同級生', reading: 'どうきゅうせい', meaning: 'classmate'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0830',
@@ -23605,6 +32309,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['フン'],
     kunyomi: ['まぎ', '-まぎ'],
+    commonWords: [
+      CommonWord(word: '紛争', reading: 'ふんそう', meaning: 'dispute'),
+      CommonWord(word: '紛糾', reading: 'ふんきゅう', meaning: 'complication'),
+      CommonWord(word: '紛失', reading: 'ふんしつ', meaning: 'loss'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0831',
@@ -23618,6 +32327,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ソ', 'ス'],
     kunyomi: ['もと'],
+    commonWords: [
+      CommonWord(word: '素材', reading: 'そざい', meaning: 'ingredient'),
+      CommonWord(word: '要素', reading: 'ようそ', meaning: 'element'),
+      CommonWord(word: '素直', reading: 'すなお', meaning: 'obedient'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0832',
@@ -23631,6 +32345,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ボウ'],
     kunyomi: ['つむ'],
+    commonWords: [
+      CommonWord(word: '紡績', reading: 'ぼうせき', meaning: 'spinning'),
+      CommonWord(word: '紡ぐ', reading: 'つむぐ', meaning: 'to spin'),
+      CommonWord(word: '紡織', reading: 'ぼうしょく', meaning: 'spinning and weaving'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0833',
@@ -23644,6 +32363,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['サク'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '捜索', reading: 'そうさく', meaning: 'search'),
+      CommonWord(word: '索引', reading: 'さくいん', meaning: 'index'),
+      CommonWord(word: '模索', reading: 'もさく', meaning: 'groping'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0834',
@@ -23657,6 +32381,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シ'],
     kunyomi: ['むらさき'],
+    commonWords: [
+      CommonWord(word: '紫', reading: 'むらさき', meaning: 'purple'),
+      CommonWord(word: '紫外線', reading: 'しがいせん', meaning: 'ultraviolet rays'),
+      CommonWord(word: '紫陽花', reading: 'あじさい', meaning: 'bigleaf hydrangea'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0835',
@@ -23670,6 +32399,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['チュウ'],
     kunyomi: ['つむぎ', 'つむ'],
+    commonWords: [
+      CommonWord(word: '紬', reading: 'つむぎ', meaning: 'tsumugi'),
+      CommonWord(word: '絹紬', reading: 'けんちゅう', meaning: 'pongee'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0836',
@@ -23683,6 +32416,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ルイ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '累積', reading: 'るいせき', meaning: 'accumulation'),
+      CommonWord(word: '累計', reading: 'るいけい', meaning: 'cumulative total'),
+      CommonWord(word: '累進', reading: 'るいしん', meaning: 'successive promotion'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0837',
@@ -23696,6 +32434,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シン'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '紳士', reading: 'しんし', meaning: 'gentleman'),
+      CommonWord(word: '紳士協定', reading: 'しんしきょうてい', meaning: 'gentlemen\'s agreement'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0838',
@@ -23709,6 +32451,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['コン'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '紺', reading: 'こん', meaning: 'navy blue'),
+      CommonWord(word: '紺屋', reading: 'こうや', meaning: 'dyer'),
+      CommonWord(word: '濃紺', reading: 'のうこん', meaning: 'dark blue'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0839',
@@ -23722,6 +32469,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ゲン'],
     kunyomi: ['いと'],
+    commonWords: [
+      CommonWord(word: '管絃楽', reading: 'かんげんがく', meaning: 'orchestral music'),
+      CommonWord(word: '絃楽', reading: 'げんがく', meaning: 'music for strings'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0840',
@@ -23735,6 +32486,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ケツ', 'ケチ'],
     kunyomi: ['むす', 'ゆ'],
+    commonWords: [
+      CommonWord(word: '結果', reading: 'けっか', meaning: 'result'),
+      CommonWord(word: '結局', reading: 'けっきょく', meaning: 'after all'),
+      CommonWord(word: '結婚', reading: 'けっこん', meaning: 'marriage'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0841',
@@ -23748,6 +32504,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['コウ'],
     kunyomi: ['しぼ', 'し'],
+    commonWords: [
+      CommonWord(word: '絞る', reading: 'しぼる', meaning: 'to wring'),
+      CommonWord(word: '絞り', reading: 'しぼり', meaning: 'shibori'),
+      CommonWord(word: '絞める', reading: 'しめる', meaning: 'to strangle'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0842',
@@ -23761,6 +32522,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ケン'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '絢爛', reading: 'けんらん', meaning: 'gorgeous'),
+      CommonWord(word: '絢緞子', reading: 'あやどんす', meaning: 'damask'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0843',
@@ -23774,6 +32539,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['トウ'],
     kunyomi: ['す'],
+    commonWords: [
+      CommonWord(word: '大統領', reading: 'だいとうりょう', meaning: 'president'),
+      CommonWord(word: '統一', reading: 'とういつ', meaning: 'unity'),
+      CommonWord(word: '伝統', reading: 'でんとう', meaning: 'tradition'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0844',
@@ -23787,6 +32557,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ケン'],
     kunyomi: ['きぬ'],
+    commonWords: [
+      CommonWord(word: '絹', reading: 'きぬ', meaning: 'silk'),
+      CommonWord(word: '絹糸', reading: 'きぬいと', meaning: 'silk thread'),
+      CommonWord(word: '絹織物', reading: 'きぬおりもの', meaning: 'silk goods'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0845',
@@ -23800,6 +32575,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ケイ'],
     kunyomi: ['つ', 'まま'],
+    commonWords: [
+      CommonWord(word: '継続', reading: 'けいぞく', meaning: 'continuation'),
+      CommonWord(word: '中継', reading: 'ちゅうけい', meaning: 'relay'),
+      CommonWord(word: '中継ぎ', reading: 'なかつぎ', meaning: 'joining'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0846',
@@ -23813,6 +32593,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ソウ'],
     kunyomi: ['おさ', 'す'],
+    commonWords: [
+      CommonWord(word: '錯綜', reading: 'さくそう', meaning: 'becoming complicated'),
+      CommonWord(word: '綜覧', reading: 'そうらん', meaning: 'general survey'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0847',
@@ -23826,6 +32610,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['イ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '維持', reading: 'いじ', meaning: 'maintenance'),
+      CommonWord(word: '繊維', reading: 'せんい', meaning: 'fibre'),
+      CommonWord(word: '維新', reading: 'いしん', meaning: 'reformation'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0848',
@@ -23839,6 +32628,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['コウ'],
     kunyomi: ['つな'],
+    commonWords: [
+      CommonWord(word: '横綱', reading: 'よこづな', meaning: 'yokozuna'),
+      CommonWord(word: '綱', reading: 'つな', meaning: 'rope'),
+      CommonWord(word: '綱渡り', reading: 'つなわたり', meaning: 'tightrope walking'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0849',
@@ -23852,6 +32646,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['モウ'],
     kunyomi: ['あみ'],
+    commonWords: [
+      CommonWord(word: '網', reading: 'あみ', meaning: 'net'),
+      CommonWord(word: '通信網', reading: 'つうしんもう', meaning: 'communications network'),
+      CommonWord(word: '網膜', reading: 'もうまく', meaning: 'retina'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0850',
@@ -23865,6 +32664,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['リン', 'カン'],
     kunyomi: ['いと'],
+    commonWords: [
+      CommonWord(word: '綸子', reading: 'りんず', meaning: 'figured satin'),
+      CommonWord(word: '綸言', reading: 'りんげん', meaning: 'imperial words'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0851',
@@ -23878,6 +32681,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キ'],
     kunyomi: ['あや'],
+    commonWords: [
+      CommonWord(word: '綺麗', reading: 'きれい', meaning: 'pretty'),
+      CommonWord(word: '綺羅', reading: 'きら', meaning: 'fine clothes'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0852',
@@ -23891,6 +32698,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['リン'],
     kunyomi: ['あや'],
+    commonWords: [
+      CommonWord(word: '綾錦', reading: 'あやにしき', meaning: 'twill damask and brocade'),
+      CommonWord(word: '綾糸', reading: 'あやいと', meaning: 'colored thread'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0853',
@@ -23904,6 +32715,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キン'],
     kunyomi: ['し'],
+    commonWords: [
+      CommonWord(word: '緊急', reading: 'きんきゅう', meaning: 'urgency'),
+      CommonWord(word: '緊張', reading: 'きんちょう', meaning: 'tension'),
+      CommonWord(word: '緊密', reading: 'きんみつ', meaning: 'rigour'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0854',
@@ -23917,6 +32733,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ヒ'],
     kunyomi: ['あけ', 'あか'],
+    commonWords: [
+      CommonWord(word: '緋衣草', reading: 'ひごろもそう', meaning: 'scarlet sage'),
+      CommonWord(word: '緋鯉', reading: 'ひごい', meaning: 'red carp'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0855',
@@ -23930,6 +32750,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['テイ'],
     kunyomi: ['し', '-し', '-じ'],
+    commonWords: [
+      CommonWord(word: '取締役', reading: 'とりしまりやく', meaning: 'company director'),
+      CommonWord(word: '締め切り', reading: 'しめきり', meaning: 'deadline'),
+      CommonWord(word: '引き締め', reading: 'ひきしめ', meaning: 'tightening'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0856',
@@ -23943,6 +32768,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['カン'],
     kunyomi: ['ゆる'],
+    commonWords: [
+      CommonWord(word: '緩和', reading: 'かんわ', meaning: 'relief'),
+      CommonWord(word: '緩やか', reading: 'ゆるやか', meaning: 'loose'),
+      CommonWord(word: '緩急', reading: 'かんきゅう', meaning: 'high and low speed'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0857',
@@ -23956,6 +32786,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['イ'],
     kunyomi: ['よこいと', 'ぬき'],
+    commonWords: [
+      CommonWord(word: '経緯', reading: 'けいい', meaning: 'details'),
+      CommonWord(word: '北緯', reading: 'ほくい', meaning: 'north latitude'),
+      CommonWord(word: '緯度', reading: 'いど', meaning: 'latitude'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0858',
@@ -23969,6 +32804,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['エン', '-ネン'],
     kunyomi: ['ふち', 'ゆかり', 'よすが', 'へり'],
+    commonWords: [
+      CommonWord(word: '縁', reading: 'ふち', meaning: 'rim'),
+      CommonWord(word: '無縁', reading: 'むえん', meaning: 'unrelated'),
+      CommonWord(word: '血縁', reading: 'けつえん', meaning: 'blood relationship'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0859',
@@ -23982,6 +32822,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ジョウ'],
     kunyomi: ['なわ', 'ただ'],
+    commonWords: [
+      CommonWord(word: '沖縄', reading: 'おきなわ', meaning: 'Okinawa'),
+      CommonWord(word: '縄張り', reading: 'なわばり', meaning: 'stretching a rope around'),
+      CommonWord(word: '縄', reading: 'なわ', meaning: 'rope'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0860',
@@ -23995,6 +32840,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['バク'],
     kunyomi: ['しば'],
+    commonWords: [
+      CommonWord(word: '縛る', reading: 'しばる', meaning: 'to tie'),
+      CommonWord(word: '縛り首', reading: 'しばりくび', meaning: 'hanging'),
+      CommonWord(word: '束縛', reading: 'そくばく', meaning: 'restraint'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0861',
@@ -24008,6 +32858,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ジュウ'],
     kunyomi: ['たて'],
+    commonWords: [
+      CommonWord(word: '操縦', reading: 'そうじゅう', meaning: 'steering'),
+      CommonWord(word: '縦', reading: 'たて', meaning: 'the vertical'),
+      CommonWord(word: '縦横', reading: 'じゅうおう', meaning: 'length and width'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0862',
@@ -24021,6 +32876,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ホウ'],
     kunyomi: ['ぬ'],
+    commonWords: [
+      CommonWord(word: '縫製', reading: 'ほうせい', meaning: 'sewing'),
+      CommonWord(word: '縫う', reading: 'ぬう', meaning: 'to sew'),
+      CommonWord(word: '縫い目', reading: 'ぬいめ', meaning: 'seam'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0863',
@@ -24034,6 +32894,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シュク'],
     kunyomi: ['ちぢ'],
+    commonWords: [
+      CommonWord(word: '軍縮', reading: 'ぐんしゅく', meaning: 'reduction of armaments'),
+      CommonWord(word: '縮小', reading: 'しゅくしょう', meaning: 'reduction'),
+      CommonWord(word: '短縮', reading: 'たんしゅく', meaning: 'shortening'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0864',
@@ -24047,6 +32912,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ハン'],
     kunyomi: ['しげ'],
+    commonWords: [
+      CommonWord(word: '繁栄', reading: 'はんえい', meaning: 'prosperity'),
+      CommonWord(word: '頻繁', reading: 'ひんぱん', meaning: 'frequent'),
+      CommonWord(word: '繁殖', reading: 'はんしょく', meaning: 'breeding'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0865',
@@ -24060,6 +32930,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['セン'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '繊維', reading: 'せんい', meaning: 'fibre'),
+      CommonWord(word: '繊細', reading: 'せんさい', meaning: 'dainty'),
+      CommonWord(word: '合繊', reading: 'ごうせん', meaning: 'synthetic fiber'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0866',
@@ -24073,6 +32948,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ショク', 'シキ'],
     kunyomi: ['お', 'おり', '-おり', '-お'],
+    commonWords: [
+      CommonWord(word: '組織', reading: 'そしき', meaning: 'organization'),
+      CommonWord(word: '織物', reading: 'おりもの', meaning: 'textile'),
+      CommonWord(word: '組織的', reading: 'そしきてき', meaning: 'systematic'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0867',
@@ -24086,6 +32966,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ゼン'],
     kunyomi: ['つくろ'],
+    commonWords: [
+      CommonWord(word: '修繕', reading: 'しゅうぜん', meaning: 'repair'),
+      CommonWord(word: '繕う', reading: 'つくろう', meaning: 'to mend'),
+      CommonWord(word: '営繕', reading: 'えいぜん', meaning: 'maintenance and repair'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0868',
@@ -24099,6 +32984,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ケン'],
     kunyomi: ['まゆ', 'きぬ'],
+    commonWords: [
+      CommonWord(word: '繭', reading: 'まゆ', meaning: 'cocoon'),
+      CommonWord(word: '繭糸', reading: 'きぬいと', meaning: 'silk thread'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0869',
@@ -24112,6 +33001,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ソウ'],
     kunyomi: ['く'],
+    commonWords: [
+      CommonWord(word: '繰り返す', reading: 'くりかえす', meaning: 'to repeat'),
+      CommonWord(word: '繰り返し', reading: 'くりかえし', meaning: 'repetition'),
+      CommonWord(word: '資金繰り', reading: 'しきんぐり', meaning: 'fundraising'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0870',
@@ -24125,6 +33019,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['バツ', 'バチ', 'ハツ'],
     kunyomi: ['ばっ'],
+    commonWords: [
+      CommonWord(word: '罰金', reading: 'ばっきん', meaning: 'fine'),
+      CommonWord(word: '罰則', reading: 'ばっそく', meaning: 'punishment'),
+      CommonWord(word: '体罰', reading: 'たいばつ', meaning: 'corporal punishment'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0871',
@@ -24138,6 +33037,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ヒ'],
     kunyomi: ['まか', 'や'],
+    commonWords: [
+      CommonWord(word: '罷免', reading: 'ひめん', meaning: 'dismissal'),
+      CommonWord(word: '罷める', reading: 'やめる', meaning: 'to resign'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0872',
@@ -24151,6 +33054,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ラ'],
     kunyomi: ['うすもの'],
+    commonWords: [
+      CommonWord(word: '網羅', reading: 'もうら', meaning: 'encompassing'),
+      CommonWord(word: '羅列', reading: 'られつ', meaning: 'enumeration'),
+      CommonWord(word: '羅針盤', reading: 'らしんばん', meaning: 'compass'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0873',
@@ -24164,6 +33072,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ヨウ'],
     kunyomi: ['ひつじ'],
+    commonWords: [
+      CommonWord(word: '羊', reading: 'ひつじ', meaning: 'sheep'),
+      CommonWord(word: '羊毛', reading: 'ようもう', meaning: 'wool'),
+      CommonWord(word: '羊肉', reading: 'ようにく', meaning: 'mutton'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0874',
@@ -24177,6 +33090,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ギ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '主義', reading: 'しゅぎ', meaning: 'doctrine'),
+      CommonWord(word: '義務', reading: 'ぎむ', meaning: 'duty'),
+      CommonWord(word: '正義', reading: 'せいぎ', meaning: 'justice'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0875',
@@ -24190,6 +33108,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['オウ'],
     kunyomi: ['おきな'],
+    commonWords: [
+      CommonWord(word: '翁', reading: 'おきな', meaning: 'old man'),
+      CommonWord(word: '不倒翁', reading: 'ふとうおう', meaning: 'tumbler'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0876',
@@ -24203,6 +33125,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ショウ'],
     kunyomi: ['かけ', 'と'],
+    commonWords: [
+      CommonWord(word: '翔る', reading: 'かける', meaning: 'to soar'),
+      CommonWord(word: '飛翔', reading: 'ひしょう', meaning: 'flight'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0877',
@@ -24216,6 +33142,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['スイ'],
     kunyomi: ['かわせみ', 'みどり'],
+    commonWords: [
+      CommonWord(word: '翡翠色', reading: 'ひすいいろ', meaning: 'jade green'),
+      CommonWord(word: '翠玉', reading: 'すいぎょく', meaning: 'emerald'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0878',
@@ -24229,6 +33159,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ホン', 'ハン'],
     kunyomi: ['ひるがえ'],
+    commonWords: [
+      CommonWord(word: '翻訳', reading: 'ほんやく', meaning: 'translation'),
+      CommonWord(word: '翻す', reading: 'ひるがえす', meaning: 'to turn over'),
+      CommonWord(word: '翻意', reading: 'ほんい', meaning: 'changing one\'s mind'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0879',
@@ -24242,6 +33177,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ヨク'],
     kunyomi: ['つばさ'],
+    commonWords: [
+      CommonWord(word: '右翼', reading: 'うよく', meaning: 'right wing'),
+      CommonWord(word: '左翼', reading: 'さよく', meaning: 'left wing'),
+      CommonWord(word: '翼', reading: 'つばさ', meaning: 'wing'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0880',
@@ -24255,6 +33195,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ヨウ'],
     kunyomi: ['かがや', 'ひかり'],
+    commonWords: [
+      CommonWord(word: '耀き', reading: 'かがやき', meaning: 'brightness'),
+      CommonWord(word: '栄耀', reading: 'えいよう', meaning: 'luxury'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0881',
@@ -24268,6 +33212,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['タイ'],
     kunyomi: ['た'],
+    commonWords: [
+      CommonWord(word: '耐える', reading: 'たえる', meaning: 'to bear'),
+      CommonWord(word: '忍耐', reading: 'にんたい', meaning: 'endurance'),
+      CommonWord(word: '耐性', reading: 'たいせい', meaning: 'resistance'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0882',
@@ -24281,6 +33230,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['モウ', 'コウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '消耗', reading: 'しょうもう', meaning: 'exhaustion'),
+      CommonWord(word: '消耗品', reading: 'しょうもうひん', meaning: 'consumable goods'),
+      CommonWord(word: '心神耗弱', reading: 'しんしんこうじゃく', meaning: 'diminished capacity'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0883',
@@ -24294,6 +33248,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ヤ', 'ジャ'],
     kunyomi: ['か'],
+    commonWords: [
+      CommonWord(word: '耶蘇', reading: 'やそ', meaning: 'Jesus'),
+      CommonWord(word: '耶嬢', reading: 'やじょう', meaning: 'father and mother'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0884',
@@ -24307,6 +33265,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['セイ', 'ショウ'],
     kunyomi: ['ひじり'],
+    commonWords: [
+      CommonWord(word: '聖書', reading: 'せいしょ', meaning: 'Bible'),
+      CommonWord(word: '神聖', reading: 'しんせい', meaning: 'holiness'),
+      CommonWord(word: '棋聖', reading: 'きせい', meaning: 'great master of go'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0885',
@@ -24320,6 +33283,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ソウ'],
     kunyomi: ['さと', 'みみざと'],
+    commonWords: [
+      CommonWord(word: '聡明', reading: 'そうめい', meaning: 'wise'),
+      CommonWord(word: '聡敏', reading: 'そうびん', meaning: 'sagacity'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0886',
@@ -24333,6 +33300,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['チョウ', 'テイ'],
     kunyomi: ['き', 'ゆる'],
+    commonWords: [
+      CommonWord(word: '聴衆', reading: 'ちょうしゅう', meaning: 'audience'),
+      CommonWord(word: '傍聴', reading: 'ぼうちょう', meaning: 'listening'),
+      CommonWord(word: '聴覚', reading: 'ちょうかく', meaning: 'hearing'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0887',
@@ -24346,6 +33318,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['チョウ', 'ジョウ', 'トウ'],
     kunyomi: ['はじ', 'はじめ'],
+    commonWords: [
+      CommonWord(word: '肇国', reading: 'ちょうこく', meaning: 'founding of a state'),
+      CommonWord(word: '肇歳', reading: 'ちょうさい', meaning: 'beginning of the year'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0888',
@@ -24359,6 +33335,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ショウ'],
     kunyomi: ['あやか'],
+    commonWords: [
+      CommonWord(word: '肖像', reading: 'しょうぞう', meaning: 'portrait'),
+      CommonWord(word: '不肖', reading: 'ふしょう', meaning: 'unworthy'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0889',
@@ -24372,6 +33352,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['カン'],
     kunyomi: ['きも'],
+    commonWords: [
+      CommonWord(word: '肝', reading: 'きも', meaning: 'liver'),
+      CommonWord(word: '肝心', reading: 'かんじん', meaning: 'essential'),
+      CommonWord(word: '肝炎', reading: 'かんえん', meaning: 'hepatitis'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0890',
@@ -24385,6 +33370,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '選択肢', reading: 'せんたくし', meaning: 'choices'),
+      CommonWord(word: '肢体', reading: 'したい', meaning: 'limbs'),
+      CommonWord(word: '四肢', reading: 'しし', meaning: 'the (four) limbs'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0891',
@@ -24398,6 +33388,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ヒ'],
     kunyomi: ['こ', 'こえ', 'ふと'],
+    commonWords: [
+      CommonWord(word: '肥満', reading: 'ひまん', meaning: 'corpulence'),
+      CommonWord(word: '肥料', reading: 'ひりょう', meaning: 'manure'),
+      CommonWord(word: '肥大', reading: 'ひだい', meaning: 'swelling'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0892',
@@ -24411,6 +33406,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ボウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '脂肪', reading: 'しぼう', meaning: 'fat'),
+      CommonWord(word: '脂肪酸', reading: 'しぼうさん', meaning: 'fatty acid'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0893',
@@ -24424,6 +33423,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ハイ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '肺', reading: 'はい', meaning: 'lung'),
+      CommonWord(word: '肺炎', reading: 'はいえん', meaning: 'pneumonia'),
+      CommonWord(word: '肺結核', reading: 'はいけっかく', meaning: 'pulmonary tuberculosis'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0894',
@@ -24437,6 +33441,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['タン'],
     kunyomi: ['きも'],
+    commonWords: [
+      CommonWord(word: '大胆', reading: 'だいたん', meaning: 'bold'),
+      CommonWord(word: '胆', reading: 'きも', meaning: 'liver'),
+      CommonWord(word: '落胆', reading: 'らくたん', meaning: 'discouragement'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0895',
@@ -24450,6 +33459,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['タイ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '胎児', reading: 'たいじ', meaning: 'fetus'),
+      CommonWord(word: '胎動', reading: 'たいどう', meaning: 'fetal movement'),
+      CommonWord(word: '堕胎', reading: 'だたい', meaning: 'abortion'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0896',
@@ -24463,6 +33477,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ホウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '細胞', reading: 'さいぼう', meaning: 'cell'),
+      CommonWord(word: '同胞', reading: 'どうほう', meaning: 'brethren'),
+      CommonWord(word: '胞子', reading: 'ほうし', meaning: 'spore'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0897',
@@ -24476,6 +33495,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ウ', 'コ', 'ゴ'],
     kunyomi: ['なんぞ'],
+    commonWords: [
+      CommonWord(word: '胡坐', reading: 'あぐら', meaning: 'sitting cross-legged'),
+      CommonWord(word: '胡桃', reading: 'くるみ', meaning: 'walnut'),
+      CommonWord(word: '胡麻', reading: 'ごま', meaning: 'sesame seeds'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0898',
@@ -24489,6 +33513,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['イン'],
     kunyomi: ['たね'],
+    commonWords: [
+      CommonWord(word: '胤', reading: 'たね', meaning: 'issue'),
+      CommonWord(word: '後胤', reading: 'こういん', meaning: 'descendant'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0899',
@@ -24502,6 +33530,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ドウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '胴', reading: 'どう', meaning: 'trunk'),
+      CommonWord(word: '胴上げ', reading: 'どうあげ', meaning: 'tossing (someone) into the air'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0900',
@@ -24515,6 +33547,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キョウ'],
     kunyomi: ['おびや', 'おど'],
+    commonWords: [
+      CommonWord(word: '脅迫', reading: 'きょうはく', meaning: 'threat'),
+      CommonWord(word: '脅かす', reading: 'おどかす', meaning: 'to threaten'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0901',
@@ -24528,6 +33564,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ミャク'],
     kunyomi: ['すじ'],
+    commonWords: [
+      CommonWord(word: '山脈', reading: 'さんみゃく', meaning: 'mountain range'),
+      CommonWord(word: '動脈', reading: 'どうみゃく', meaning: 'artery'),
+      CommonWord(word: '文脈', reading: 'ぶんみゃく', meaning: 'context'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0902',
@@ -24541,6 +33582,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キャク', 'キャ', 'カク'],
     kunyomi: ['あし'],
+    commonWords: [
+      CommonWord(word: '脚本', reading: 'きゃくほん', meaning: 'script'),
+      CommonWord(word: '立脚', reading: 'りっきゃく', meaning: 'being based on'),
+      CommonWord(word: '脚', reading: 'あし', meaning: 'foot'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0903',
@@ -24554,6 +33600,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シュウ'],
     kunyomi: ['おさ', 'なが', 'ほじし'],
+    commonWords: [
+      CommonWord(word: '束脩', reading: 'そくしゅう', meaning: 'entrance fee'),
+      CommonWord(word: '脩竹', reading: 'しゅうちく', meaning: 'tall bamboo'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0904',
@@ -24567,6 +33617,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ダツ'],
     kunyomi: ['ぬ'],
+    commonWords: [
+      CommonWord(word: '脱税', reading: 'だつぜい', meaning: 'tax evasion'),
+      CommonWord(word: '脱出', reading: 'だっしゅつ', meaning: 'escape'),
+      CommonWord(word: '脱退', reading: 'だったい', meaning: 'withdrawal'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0905',
@@ -24580,6 +33635,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['チョウ'],
     kunyomi: ['は', 'ふく'],
+    commonWords: [
+      CommonWord(word: '膨脹', reading: 'ぼうちょう', meaning: 'expansion'),
+      CommonWord(word: '下脹れ', reading: 'しもぶくれ', meaning: 'round-faced'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0906',
@@ -24593,6 +33652,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['フ'],
     kunyomi: ['くさ', '-くさ'],
+    commonWords: [
+      CommonWord(word: '腐敗', reading: 'ふはい', meaning: 'decomposition'),
+      CommonWord(word: '豆腐', reading: 'とうふ', meaning: 'tofu'),
+      CommonWord(word: '腐心', reading: 'ふしん', meaning: 'taking great pains'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0907',
@@ -24606,6 +33670,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['チョウ'],
     kunyomi: ['はらわた', 'わた'],
+    commonWords: [
+      CommonWord(word: '腸', reading: 'ちょう', meaning: 'intestine'),
+      CommonWord(word: '胃腸', reading: 'いちょう', meaning: 'stomach and intestines'),
+      CommonWord(word: '大腸', reading: 'だいちょう', meaning: 'large intestine'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0908',
@@ -24619,6 +33688,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['マク'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '膜', reading: 'まく', meaning: 'membrane'),
+      CommonWord(word: '網膜', reading: 'もうまく', meaning: 'retina'),
+      CommonWord(word: '粘膜', reading: 'ねんまく', meaning: 'mucous membrane'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0909',
@@ -24632,6 +33706,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ボウ'],
     kunyomi: ['ふく'],
+    commonWords: [
+      CommonWord(word: '膨大', reading: 'ぼうだい', meaning: 'huge'),
+      CommonWord(word: '膨張', reading: 'ぼうちょう', meaning: 'expansion'),
+      CommonWord(word: '膨れる', reading: 'ふくれる', meaning: 'to swell'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0910',
@@ -24645,6 +33724,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['リン'],
     kunyomi: ['のぞ'],
+    commonWords: [
+      CommonWord(word: '臨時', reading: 'りんじ', meaning: 'temporary'),
+      CommonWord(word: '臨床', reading: 'りんしょう', meaning: 'clinical'),
+      CommonWord(word: '臨海', reading: 'りんかい', meaning: 'coastal'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0911',
@@ -24658,6 +33742,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シュウ'],
     kunyomi: ['くさ', '-くさ', 'にお'],
+    commonWords: [
+      CommonWord(word: '悪臭', reading: 'あくしゅう', meaning: 'bad smell'),
+      CommonWord(word: '生臭い', reading: 'なまぐさい', meaning: 'smelling of fish'),
+      CommonWord(word: '古臭い', reading: 'ふるくさい', meaning: 'stale'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0912',
@@ -24671,6 +33760,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シ'],
     kunyomi: ['いた'],
+    commonWords: [
+      CommonWord(word: '至って', reading: 'いたって', meaning: 'very much'),
+      CommonWord(word: '至上', reading: 'しじょう', meaning: 'supremacy'),
+      CommonWord(word: '至難', reading: 'しなん', meaning: 'most difficult'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0913',
@@ -24684,6 +33778,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['チ'],
     kunyomi: ['いた'],
+    commonWords: [
+      CommonWord(word: '一致', reading: 'いっち', meaning: 'agreement'),
+      CommonWord(word: '致命的', reading: 'ちめいてき', meaning: 'fatal'),
+      CommonWord(word: '招致', reading: 'しょうち', meaning: 'invitation'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0914',
@@ -24697,6 +33796,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['コウ', 'キョウ'],
     kunyomi: ['おこ'],
+    commonWords: [
+      CommonWord(word: '興味', reading: 'きょうみ', meaning: 'interest'),
+      CommonWord(word: '振興', reading: 'しんこう', meaning: 'promotion'),
+      CommonWord(word: '新興', reading: 'しんこう', meaning: 'rising'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0915',
@@ -24710,6 +33814,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ゼツ'],
     kunyomi: ['した'],
+    commonWords: [
+      CommonWord(word: '舌', reading: 'した', meaning: 'tongue'),
+      CommonWord(word: '弁舌', reading: 'べんぜつ', meaning: 'speech'),
+      CommonWord(word: '舌戦', reading: 'ぜっせん', meaning: 'war of words'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0916',
@@ -24723,6 +33832,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シャ', 'セキ'],
     kunyomi: ['やど'],
+    commonWords: [
+      CommonWord(word: '校舎', reading: 'こうしゃ', meaning: 'school building'),
+      CommonWord(word: '田舎', reading: 'いなか', meaning: 'rural area'),
+      CommonWord(word: '宿舎', reading: 'しゅくしゃ', meaning: 'lodging'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0917',
@@ -24736,6 +33850,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ホ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '店舗', reading: 'てんぽ', meaning: 'shop'),
+      CommonWord(word: '舗装', reading: 'ほそう', meaning: 'paving'),
+      CommonWord(word: '老舗', reading: 'しにせ', meaning: 'long-established shop'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0918',
@@ -24749,6 +33868,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シュン'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '尭舜', reading: 'ぎょうしゅん', meaning: 'Yao and Shun (sage emperors)'),
+      CommonWord(word: '舜', reading: 'しゅん', meaning: 'Shun (legendary emperor)'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0919',
@@ -24762,6 +33885,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ハク'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '船舶', reading: 'せんぱく', meaning: 'vessel'),
+      CommonWord(word: '舶来', reading: 'はくらい', meaning: 'imported'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0920',
@@ -24775,6 +33902,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['テイ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '艦艇', reading: 'かんてい', meaning: 'naval vessels'),
+      CommonWord(word: '競艇', reading: 'きょうてい', meaning: 'kyōtei'),
+      CommonWord(word: '舟艇', reading: 'しゅうてい', meaning: 'boat'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0921',
@@ -24788,6 +33920,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['カン'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '潜水艦', reading: 'せんすいかん', meaning: 'submarine'),
+      CommonWord(word: '軍艦', reading: 'ぐんかん', meaning: 'warship'),
+      CommonWord(word: '艦隊', reading: 'かんたい', meaning: 'fleet'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0922',
@@ -24801,6 +33938,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['エン'],
     kunyomi: ['つや', 'なま', 'あで'],
+    commonWords: [
+      CommonWord(word: '艶', reading: 'つや', meaning: 'gloss'),
+      CommonWord(word: '艶々', reading: 'つやつや', meaning: 'glossy'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0923',
@@ -24814,6 +33955,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ウ'],
     kunyomi: ['いも'],
+    commonWords: [
+      CommonWord(word: '芋', reading: 'いも', meaning: 'tuber'),
+      CommonWord(word: '焼き芋', reading: 'やきいも', meaning: 'roasted sweet potato'),
+      CommonWord(word: '薩摩芋', reading: 'さつまいも', meaning: 'sweet potato'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0924',
@@ -24827,6 +33973,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['フ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '芙蓉', reading: 'ふよう', meaning: 'cotton rose'),
+      CommonWord(word: '芙蓉峰', reading: 'ふようほう', meaning: 'Mount Fuji'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0925',
@@ -24840,6 +33990,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シ'],
     kunyomi: ['しば'],
+    commonWords: [
+      CommonWord(word: '芝居', reading: 'しばい', meaning: 'play'),
+      CommonWord(word: '芝生', reading: 'しばふ', meaning: 'lawn'),
+      CommonWord(word: '紙芝居', reading: 'かみしばい', meaning: 'kamishibai'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0926',
@@ -24853,6 +34008,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ホウ'],
     kunyomi: ['かんば'],
+    commonWords: [
+      CommonWord(word: '芳香', reading: 'ほうこう', meaning: 'perfume'),
+      CommonWord(word: '芳しい', reading: 'かんばしい', meaning: 'sweet-smelling'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0927',
@@ -24866,6 +34025,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キン'],
     kunyomi: ['せり'],
+    commonWords: [
+      CommonWord(word: '芹科', reading: 'せりか', meaning: 'Apiaceae'),
+      CommonWord(word: '芹', reading: 'せり', meaning: 'Java water dropwort'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0928',
@@ -24879,6 +34042,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ガ'],
     kunyomi: ['め'],
+    commonWords: [
+      CommonWord(word: '芽', reading: 'め', meaning: 'sprout'),
+      CommonWord(word: '発芽', reading: 'はつが', meaning: 'germination'),
+      CommonWord(word: '麦芽', reading: 'ばくが', meaning: 'malt'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0929',
@@ -24892,6 +34060,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['エン', 'オン'],
     kunyomi: ['その', 'う'],
+    commonWords: [
+      CommonWord(word: '御苑', reading: 'ぎょえん', meaning: 'imperial garden'),
+      CommonWord(word: '外苑', reading: 'がいえん', meaning: 'outer garden'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0930',
@@ -24905,6 +34077,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ビョウ', 'ミョウ'],
     kunyomi: ['なえ', 'なわ'],
+    commonWords: [
+      CommonWord(word: '苗', reading: 'なえ', meaning: 'seedling'),
+      CommonWord(word: '苗字', reading: 'みょうじ', meaning: 'surname'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0931',
@@ -24918,6 +34094,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['モ'],
     kunyomi: ['しげ'],
+    commonWords: [
+      CommonWord(word: '茂る', reading: 'しげる', meaning: 'to grow thickly'),
+      CommonWord(word: '繁茂', reading: 'はんも', meaning: 'flourishing'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0932',
@@ -24931,6 +34111,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['カ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '茄子', reading: 'なす', meaning: 'eggplant'),
+      CommonWord(word: '唐茄子', reading: 'とうなす', meaning: 'squash'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0933',
@@ -24944,6 +34128,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ボウ', 'ミョウ'],
     kunyomi: ['かや', 'ちがや'],
+    commonWords: [
+      CommonWord(word: '茅', reading: 'かや', meaning: 'grass used for thatching'),
+      CommonWord(word: '茅場', reading: 'かやば', meaning: 'hayfield'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0934',
@@ -24957,6 +34145,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['マツ', 'バツ', 'マ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '茉莉花', reading: 'まつりか', meaning: 'Arabian jasmine'),
+      CommonWord(word: '茉莉', reading: 'まつり', meaning: 'jasmine'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0935',
@@ -24970,6 +34162,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ケイ', 'キョウ'],
     kunyomi: ['くき'],
+    commonWords: [
+      CommonWord(word: '茎', reading: 'くき', meaning: 'stalk'),
+      CommonWord(word: '芋茎', reading: 'ずいき', meaning: 'taro stem'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0936',
@@ -24983,6 +34179,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['セン'],
     kunyomi: ['あかね'],
+    commonWords: [
+      CommonWord(word: '茜', reading: 'あかね', meaning: 'madder'),
+      CommonWord(word: '茜色', reading: 'あかねいろ', meaning: 'madder red'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0937',
@@ -24996,6 +34196,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ソウ', 'ショウ', 'チャン'],
     kunyomi: ['ほうき', 'おごそ'],
+    commonWords: [
+      CommonWord(word: '別荘', reading: 'べっそう', meaning: 'holiday house'),
+      CommonWord(word: '山荘', reading: 'さんそう', meaning: 'mountain villa'),
+      CommonWord(word: '荘厳', reading: 'そうごん', meaning: 'solemn'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0938',
@@ -25009,6 +34214,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['リ', 'ライ', 'レイ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '茉莉花', reading: 'まつりか', meaning: 'Arabian jasmine'),
+      CommonWord(word: '茉莉', reading: 'まつり', meaning: 'jasmine'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0939',
@@ -25022,6 +34231,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['カン'],
     kunyomi: ['い'],
+    commonWords: [
+      CommonWord(word: '莞爾', reading: 'かんじ', meaning: 'smiling'),
+      CommonWord(word: '莞', reading: 'ふとい', meaning: 'softstem bulrush'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0940',
@@ -25035,6 +34248,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キク'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '菊', reading: 'きく', meaning: 'chrysanthemum'),
+      CommonWord(word: '菊花', reading: 'きっか', meaning: 'chrysanthemum flower'),
+      CommonWord(word: '白菊', reading: 'しらぎく', meaning: 'white chrysanthemum'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0941',
@@ -25048,6 +34266,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キン'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '細菌', reading: 'さいきん', meaning: 'bacterium'),
+      CommonWord(word: '菌', reading: 'きん', meaning: 'fungus'),
+      CommonWord(word: '殺菌', reading: 'さっきん', meaning: 'sterilization'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0942',
@@ -25061,6 +34284,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ショウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '菖蒲', reading: 'しょうぶ', meaning: 'sweet flag'),
+      CommonWord(word: '黄菖蒲', reading: 'きしょうぶ', meaning: 'yellow iris'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0943',
@@ -25074,6 +34301,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キン'],
     kunyomi: ['すみれ'],
+    commonWords: [
+      CommonWord(word: '三色菫', reading: 'さんしきすみれ', meaning: 'pansy'),
+      CommonWord(word: '菫科', reading: 'すみれか', meaning: 'Violaceae'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0944',
@@ -25087,6 +34318,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['カ', 'ケ'],
     kunyomi: ['はな'],
+    commonWords: [
+      CommonWord(word: '豪華', reading: 'ごうか', meaning: 'extravagant'),
+      CommonWord(word: '中華', reading: 'ちゅうか', meaning: 'China'),
+      CommonWord(word: '華やか', reading: 'はなやか', meaning: 'bright and beautiful'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0945',
@@ -25100,6 +34336,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ホウ'],
     kunyomi: ['も', 'きざ', 'めばえ'],
+    commonWords: [
+      CommonWord(word: '萌芽', reading: 'ほうが', meaning: 'germination'),
+      CommonWord(word: '萌える', reading: 'もえる', meaning: 'to burst into bud'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0946',
@@ -25113,6 +34353,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シュウ'],
     kunyomi: ['はぎ'],
+    commonWords: [
+      CommonWord(word: '萩', reading: 'はぎ', meaning: 'bush clover'),
+      CommonWord(word: '萩原', reading: 'はぎはら', meaning: 'reedy field'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0947',
@@ -25126,6 +34370,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ソウ'],
     kunyomi: ['ほうむ'],
+    commonWords: [
+      CommonWord(word: '葬式', reading: 'そうしき', meaning: 'funeral'),
+      CommonWord(word: '冠婚葬祭', reading: 'かんこんそうさい', meaning: 'important ceremonial occasions in'),
+      CommonWord(word: '社葬', reading: 'しゃそう', meaning: 'company funeral'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0948',
@@ -25139,6 +34388,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キ'],
     kunyomi: ['あおい'],
+    commonWords: [
+      CommonWord(word: '山葵', reading: 'わさび', meaning: 'wasabi'),
+      CommonWord(word: '葵祭', reading: 'あおいまつり', meaning: 'Aoi Festival'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0949',
@@ -25152,6 +34405,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シ', 'ジ'],
     kunyomi: ['う', 'ま'],
+    commonWords: [
+      CommonWord(word: '蒔く', reading: 'まく', meaning: 'to sow'),
+      CommonWord(word: '蒔絵', reading: 'まきえ', meaning: 'gold or silver lacquer'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0950',
@@ -25165,6 +34422,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ソウ'],
     kunyomi: ['あお'],
+    commonWords: [
+      CommonWord(word: '蒼', reading: 'あお', meaning: 'blue'),
+      CommonWord(word: '蒼白い', reading: 'あおじろい', meaning: 'pale'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0951',
@@ -25178,6 +34439,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['チク'],
     kunyomi: ['たくわ'],
+    commonWords: [
+      CommonWord(word: '貯蓄', reading: 'ちょちく', meaning: 'savings'),
+      CommonWord(word: '蓄積', reading: 'ちくせき', meaning: 'accumulation'),
+      CommonWord(word: '備蓄', reading: 'びちく', meaning: 'stocking up'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0952',
@@ -25191,6 +34457,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ヨウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '芙蓉', reading: 'ふよう', meaning: 'cotton rose'),
+      CommonWord(word: '芙蓉峰', reading: 'ふようほう', meaning: 'Mount Fuji'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0953',
@@ -25204,6 +34474,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['レン'],
     kunyomi: ['はす', 'はちす'],
+    commonWords: [
+      CommonWord(word: '蓮', reading: 'はす', meaning: 'sacred lotus'),
+      CommonWord(word: '蓮華', reading: 'れんげ', meaning: 'lotus flower'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0954',
@@ -25217,6 +34491,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['チョウ'],
     kunyomi: ['つた'],
+    commonWords: [
+      CommonWord(word: '蔦', reading: 'つた', meaning: 'ivy'),
+      CommonWord(word: '蔦蔓', reading: 'つたかずら', meaning: 'ivy and vines'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0955',
@@ -25230,6 +34508,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ショウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '蕉風', reading: 'しょうふう', meaning: 'correct style in a haiku'),
+      CommonWord(word: '水芭蕉', reading: 'みずばしょう', meaning: 'Asian skunk cabbage'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0956',
@@ -25243,6 +34525,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ロ', 'ル'],
     kunyomi: ['ふき'],
+    commonWords: [
+      CommonWord(word: '蕗', reading: 'ふき', meaning: 'giant butterbur'),
+      CommonWord(word: '伽羅蕗', reading: 'きゃらぶき', meaning: 'stalks of butterbur boiled in soy sauce'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0957',
@@ -25256,6 +34542,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['セン'],
     kunyomi: ['すす'],
+    commonWords: [
+      CommonWord(word: '推薦', reading: 'すいせん', meaning: 'recommendation'),
+      CommonWord(word: '自薦', reading: 'じせん', meaning: 'self-recommendation'),
+      CommonWord(word: '薦める', reading: 'すすめる', meaning: 'to recommend'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0958',
@@ -25269,6 +34560,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シン'],
     kunyomi: ['たきぎ', 'まき'],
+    commonWords: [
+      CommonWord(word: '薪', reading: 'まき', meaning: 'piece(s) of firewood'),
+      CommonWord(word: '薪炭', reading: 'しんたん', meaning: 'wood and charcoal'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0959',
@@ -25282,6 +34577,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['クン'],
     kunyomi: ['かお'],
+    commonWords: [
+      CommonWord(word: '薫る', reading: 'かおる', meaning: 'to smell sweet'),
+      CommonWord(word: '薫香', reading: 'くんこう', meaning: 'incense'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0960',
@@ -25295,6 +34594,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ラン'],
     kunyomi: ['あい'],
+    commonWords: [
+      CommonWord(word: '藍', reading: 'あい', meaning: 'dyer\'s knotweed'),
+      CommonWord(word: '伽藍', reading: 'がらん', meaning: 'temple'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0961',
@@ -25308,6 +34611,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['トウ', 'ドウ'],
     kunyomi: ['ふじ'],
+    commonWords: [
+      CommonWord(word: '藤', reading: 'ふじ', meaning: 'wisteria'),
+      CommonWord(word: '葛藤', reading: 'かっとう', meaning: 'conflict'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0962',
@@ -25321,6 +34628,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ハン'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '旧藩', reading: 'きゅうはん', meaning: 'former (feudal) domain'),
+      CommonWord(word: '藩屏', reading: 'はんぺい', meaning: 'fence'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0963',
@@ -25334,6 +34645,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ソウ'],
     kunyomi: ['も'],
+    commonWords: [
+      CommonWord(word: '藻', reading: 'も', meaning: 'algae'),
+      CommonWord(word: '海藻', reading: 'かいそう', meaning: 'seaweed'),
+      CommonWord(word: '藻類', reading: 'そうるい', meaning: 'seaweeds'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0964',
@@ -25347,6 +34663,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ラン', 'ラ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '蘭', reading: 'らん', meaning: 'orchid'),
+      CommonWord(word: '蘭塔', reading: 'らんとう', meaning: 'oval tombstone'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0965',
@@ -25360,6 +34680,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['コ'],
     kunyomi: ['とら'],
+    commonWords: [
+      CommonWord(word: '虎', reading: 'とら', meaning: 'tiger'),
+      CommonWord(word: '虎の巻', reading: 'とらのまき', meaning: 'book of (trade) secrets'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0966',
@@ -25373,6 +34697,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ギャク'],
     kunyomi: ['しいた'],
+    commonWords: [
+      CommonWord(word: '虐殺', reading: 'ぎゃくさつ', meaning: 'slaughter'),
+      CommonWord(word: '虐待', reading: 'ぎゃくたい', meaning: 'abuse'),
+      CommonWord(word: '残虐', reading: 'ざんぎゃく', meaning: 'cruel'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0967',
@@ -25386,6 +34715,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キョ', 'コ'],
     kunyomi: ['むな', 'うつ'],
+    commonWords: [
+      CommonWord(word: '謙虚', reading: 'けんきょ', meaning: 'modest'),
+      CommonWord(word: '虚構', reading: 'きょこう', meaning: 'fiction'),
+      CommonWord(word: '虚偽', reading: 'きょぎ', meaning: 'falsehood'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0968',
@@ -25399,6 +34733,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['リョ', 'ロ'],
     kunyomi: ['とりこ', 'とりく'],
+    commonWords: [
+      CommonWord(word: '捕虜', reading: 'ほりょ', meaning: 'prisoner'),
+      CommonWord(word: '虜', reading: 'とりこ', meaning: 'captive'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0969',
@@ -25412,6 +34750,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['グ'],
     kunyomi: ['おそれ', 'おもんぱか', 'はか', 'うれ'],
+    commonWords: [
+      CommonWord(word: '憂虞', reading: 'ゆうぐ', meaning: 'anxiety'),
+      CommonWord(word: '虞犯', reading: 'ぐはん', meaning: 'being likely to commit a crime'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0970',
@@ -25425,6 +34767,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['コウ'],
     kunyomi: ['にじ'],
+    commonWords: [
+      CommonWord(word: '虹', reading: 'にじ', meaning: 'rainbow'),
+      CommonWord(word: '主虹', reading: 'しゅにじ', meaning: 'primary rainbow'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0971',
@@ -25438,6 +34784,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ブン'],
     kunyomi: ['か'],
+    commonWords: [
+      CommonWord(word: '蚊', reading: 'か', meaning: 'mosquito'),
+      CommonWord(word: '蚊帳', reading: 'かや', meaning: 'mosquito net'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0972',
@@ -25451,6 +34801,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['サン', 'テン'],
     kunyomi: ['かいこ', 'こ'],
+    commonWords: [
+      CommonWord(word: '蚕', reading: 'かいこ', meaning: 'silkworm'),
+      CommonWord(word: '養蚕', reading: 'ようさん', meaning: 'sericulture'),
+      CommonWord(word: '蚕糸', reading: 'さんし', meaning: 'silk thread'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0973',
@@ -25464,6 +34819,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ジャ', 'ダ', 'イ', 'ヤ'],
     kunyomi: ['へび'],
+    commonWords: [
+      CommonWord(word: '蛇', reading: 'へび', meaning: 'snake'),
+      CommonWord(word: '蛇口', reading: 'じゃぐち', meaning: 'faucet'),
+      CommonWord(word: '蛇の目', reading: 'じゃのめ', meaning: 'bull\'s-eye'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0974',
@@ -25477,6 +34837,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ケイ'],
     kunyomi: ['ほたる'],
+    commonWords: [
+      CommonWord(word: '蛍光灯', reading: 'けいこうとう', meaning: 'fluorescent lamp'),
+      CommonWord(word: '蛍', reading: 'ほたる', meaning: 'firefly'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0975',
@@ -25490,6 +34854,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['バン'],
     kunyomi: ['えびす'],
+    commonWords: [
+      CommonWord(word: '野蛮', reading: 'やばん', meaning: 'savage'),
+      CommonWord(word: '蛮行', reading: 'ばんこう', meaning: 'act of barbarity'),
+      CommonWord(word: '蛮勇', reading: 'ばんゆう', meaning: 'foolhardiness'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0976',
@@ -25503,6 +34872,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['チョウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '蝶', reading: 'ちょう', meaning: 'butterfly'),
+      CommonWord(word: '蝶番', reading: 'ちょうつがい', meaning: 'hinge'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0977',
@@ -25516,6 +34889,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ユウ'],
     kunyomi: ['と'],
+    commonWords: [
+      CommonWord(word: '金融', reading: 'きんゆう', meaning: 'finance'),
+      CommonWord(word: '融資', reading: 'ゆうし', meaning: 'financing'),
+      CommonWord(word: '融通', reading: 'ゆうずう', meaning: 'lending'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0978',
@@ -25529,6 +34907,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シュウ', 'シュ'],
     kunyomi: ['おお'],
+    commonWords: [
+      CommonWord(word: '大衆', reading: 'たいしゅう', meaning: 'general public'),
+      CommonWord(word: '民衆', reading: 'みんしゅう', meaning: 'people'),
+      CommonWord(word: '聴衆', reading: 'ちょうしゅう', meaning: 'audience'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0979',
@@ -25542,6 +34925,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ガイ', 'カイ'],
     kunyomi: ['まち'],
+    commonWords: [
+      CommonWord(word: '街頭', reading: 'がいとう', meaning: 'street'),
+      CommonWord(word: '市街', reading: 'しがい', meaning: 'urban areas'),
+      CommonWord(word: '街道', reading: 'かいどう', meaning: 'highway'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0980',
@@ -25555,6 +34943,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['エイ', 'エ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '自衛隊', reading: 'じえいたい', meaning: 'Japan Self-Defense Forces'),
+      CommonWord(word: '防衛', reading: 'ぼうえい', meaning: 'defense'),
+      CommonWord(word: '衛星', reading: 'えいせい', meaning: 'satellite'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0981',
@@ -25568,6 +34961,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ショウ'],
     kunyomi: ['つ'],
+    commonWords: [
+      CommonWord(word: '衝突', reading: 'しょうとつ', meaning: 'collision'),
+      CommonWord(word: '衝撃', reading: 'しょうげき', meaning: 'impact'),
+      CommonWord(word: '折衝', reading: 'せっしょう', meaning: 'negotiation'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0982',
@@ -25581,6 +34979,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['コウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '均衡', reading: 'きんこう', meaning: 'balance'),
+      CommonWord(word: '不均衡', reading: 'ふきんこう', meaning: 'imbalance'),
+      CommonWord(word: '拡大均衡', reading: 'かくだいきんこう', meaning: 'an expanded or expanding equilibrium'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0983',
@@ -25594,6 +34997,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['スイ'],
     kunyomi: ['おとろ'],
+    commonWords: [
+      CommonWord(word: '老衰', reading: 'ろうすい', meaning: 'senility'),
+      CommonWord(word: '衰退', reading: 'すいたい', meaning: 'decline'),
+      CommonWord(word: '衰え', reading: 'おとろえ', meaning: 'weakening'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0984',
@@ -25607,6 +35015,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['チュウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '折衷', reading: 'せっちゅう', meaning: 'compromise'),
+      CommonWord(word: '衷心', reading: 'ちゅうしん', meaning: 'innermost feelings'),
+      CommonWord(word: '和洋折衷', reading: 'わようせっちゅう', meaning: 'blending of Japanese and Western styles'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0985',
@@ -25620,6 +35033,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キン', 'コン'],
     kunyomi: ['えり'],
+    commonWords: [
+      CommonWord(word: '衿元', reading: 'えりもと', meaning: 'neck'),
+      CommonWord(word: '衿', reading: 'えり', meaning: 'collar'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0986',
@@ -25633,6 +35050,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ケ', 'カ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '大袈裟', reading: 'おおげさ', meaning: 'exaggerated'),
+      CommonWord(word: '袈裟', reading: 'けさ', meaning: 'kasaya'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0987',
@@ -25646,6 +35067,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['サイ'],
     kunyomi: ['た', 'さば'],
+    commonWords: [
+      CommonWord(word: '裁判', reading: 'さいばん', meaning: 'trial'),
+      CommonWord(word: '総裁', reading: 'そうさい', meaning: 'president'),
+      CommonWord(word: '制裁', reading: 'せいさい', meaning: 'sanctions'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0988',
@@ -25659,6 +35085,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['レツ'],
     kunyomi: ['さ', '-ぎ'],
+    commonWords: [
+      CommonWord(word: '分裂', reading: 'ぶんれつ', meaning: 'split'),
+      CommonWord(word: '破裂', reading: 'はれつ', meaning: 'bursting'),
+      CommonWord(word: '亀裂', reading: 'きれつ', meaning: 'crack'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0989',
@@ -25672,6 +35103,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ユウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '余裕', reading: 'よゆう', meaning: 'surplus'),
+      CommonWord(word: '裕福', reading: 'ゆうふく', meaning: 'wealthy'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0990',
@@ -25685,6 +35120,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['サ', 'シャ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '大袈裟', reading: 'おおげさ', meaning: 'exaggerated'),
+      CommonWord(word: '袈裟', reading: 'けさ', meaning: 'kasaya'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0991',
@@ -25698,6 +35137,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ラ'],
     kunyomi: ['はだか'],
+    commonWords: [
+      CommonWord(word: '裸', reading: 'はだか', meaning: 'nakedness'),
+      CommonWord(word: '裸婦', reading: 'らふ', meaning: 'nude woman'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0992',
@@ -25711,6 +35154,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['セイ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '製造', reading: 'せいぞう', meaning: 'manufacture'),
+      CommonWord(word: '製品', reading: 'せいひん', meaning: 'manufactured goods'),
+      CommonWord(word: '製薬', reading: 'せいやく', meaning: 'medicine manufacture'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0993',
@@ -25724,6 +35172,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['カツ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '褐色', reading: 'かっしょく', meaning: 'dark brown'),
+      CommonWord(word: '茶褐色', reading: 'ちゃかっしょく', meaning: 'dark reddish-brown'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0994',
@@ -25737,6 +35189,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ホウ'],
     kunyomi: ['ほ'],
+    commonWords: [
+      CommonWord(word: '褒める', reading: 'ほめる', meaning: 'to praise'),
+      CommonWord(word: '褒美', reading: 'ほうび', meaning: 'reward'),
+      CommonWord(word: '褒賞', reading: 'ほうしょう', meaning: 'prize'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0995',
@@ -25750,6 +35207,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キン'],
     kunyomi: ['えり'],
+    commonWords: [
+      CommonWord(word: '襟', reading: 'えり', meaning: 'collar'),
+      CommonWord(word: '襟元', reading: 'えりもと', meaning: 'neck'),
+      CommonWord(word: '襟巻き', reading: 'えりまき', meaning: 'scarf'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0996',
@@ -25763,6 +35225,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シュウ'],
     kunyomi: ['おそ', 'かさ'],
+    commonWords: [
+      CommonWord(word: '襲う', reading: 'おそう', meaning: 'to attack'),
+      CommonWord(word: '襲撃', reading: 'しゅうげき', meaning: 'attack'),
+      CommonWord(word: '空襲', reading: 'くうしゅう', meaning: 'air-raid'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0997',
@@ -25776,6 +35243,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['フク'],
     kunyomi: ['おお', 'くつがえ'],
+    commonWords: [
+      CommonWord(word: '覆う', reading: 'おおう', meaning: 'to cover'),
+      CommonWord(word: '転覆', reading: 'てんぷく', meaning: 'overturning'),
+      CommonWord(word: '覆面', reading: 'ふくめん', meaning: 'mask'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0998',
@@ -25789,6 +35261,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ハ', 'ハク'],
     kunyomi: ['はたがしら'],
+    commonWords: [
+      CommonWord(word: '連覇', reading: 'れんぱ', meaning: 'successive championships'),
+      CommonWord(word: '制覇', reading: 'せいは', meaning: 'conquest'),
+      CommonWord(word: '覇権', reading: 'はけん', meaning: 'hegemony'),
+    ],
   ),
   KanjiCard(
     id: 'n1-0999',
@@ -25802,6 +35279,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シ'],
     kunyomi: ['み'],
+    commonWords: [
+      CommonWord(word: '監視', reading: 'かんし', meaning: 'monitoring'),
+      CommonWord(word: '警視庁', reading: 'けいしちょう', meaning: 'Metropolitan Police Department'),
+      CommonWord(word: '視点', reading: 'してん', meaning: 'point of view'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1000',
@@ -25815,6 +35297,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ラン'],
     kunyomi: ['み'],
+    commonWords: [
+      CommonWord(word: '展覧会', reading: 'てんらんかい', meaning: 'exhibition'),
+      CommonWord(word: '閲覧', reading: 'えつらん', meaning: 'inspection'),
+      CommonWord(word: '一覧表', reading: 'いちらんひょう', meaning: 'list'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1001',
@@ -25828,6 +35315,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['テイ'],
     kunyomi: ['ただ'],
+    commonWords: [
+      CommonWord(word: '訂正', reading: 'ていせい', meaning: 'correction'),
+      CommonWord(word: '改訂', reading: 'かいてい', meaning: 'revision'),
+      CommonWord(word: '改訂版', reading: 'かいていばん', meaning: 'revised edition'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1002',
@@ -25841,6 +35333,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['トウ'],
     kunyomi: ['う'],
+    commonWords: [
+      CommonWord(word: '検討', reading: 'けんとう', meaning: 'consideration'),
+      CommonWord(word: '討論', reading: 'とうろん', meaning: 'debate'),
+      CommonWord(word: '再検討', reading: 'さいけんとう', meaning: 're-examination'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1003',
@@ -25854,6 +35351,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['タク'],
     kunyomi: ['かこつ', 'かこ'],
+    commonWords: [
+      CommonWord(word: '信託', reading: 'しんたく', meaning: 'trust'),
+      CommonWord(word: '託す', reading: 'たくす', meaning: 'to entrust (someone) with'),
+      CommonWord(word: '委託', reading: 'いたく', meaning: 'entrusting'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1004',
@@ -25867,6 +35369,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ショウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '訴訟', reading: 'そしょう', meaning: 'lawsuit'),
+      CommonWord(word: '行政訴訟', reading: 'ぎょうせいそしょう', meaning: 'administrative litigation'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1005',
@@ -25880,6 +35386,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ヤク'],
     kunyomi: ['わけ'],
+    commonWords: [
+      CommonWord(word: '翻訳', reading: 'ほんやく', meaning: 'translation'),
+      CommonWord(word: '通訳', reading: 'つうやく', meaning: 'interpretation'),
+      CommonWord(word: '言い訳', reading: 'いいわけ', meaning: 'excuse'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1006',
@@ -25893,6 +35404,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ソ'],
     kunyomi: ['うった'],
+    commonWords: [
+      CommonWord(word: '訴訟', reading: 'そしょう', meaning: 'lawsuit'),
+      CommonWord(word: '起訴', reading: 'きそ', meaning: 'prosecution'),
+      CommonWord(word: '控訴', reading: 'こうそ', meaning: 'appeal to a higher court'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1007',
@@ -25906,6 +35422,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シン'],
     kunyomi: ['み'],
+    commonWords: [
+      CommonWord(word: '診断', reading: 'しんだん', meaning: 'diagnosis'),
+      CommonWord(word: '診療', reading: 'しんりょう', meaning: 'diagnosis and treatment'),
+      CommonWord(word: '診察', reading: 'しんさつ', meaning: 'medical examination'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1008',
@@ -25919,6 +35440,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ショウ'],
     kunyomi: ['あかし'],
+    commonWords: [
+      CommonWord(word: '証券', reading: 'しょうけん', meaning: 'bond'),
+      CommonWord(word: '保証', reading: 'ほしょう', meaning: 'guarantee'),
+      CommonWord(word: '証拠', reading: 'しょうこ', meaning: 'evidence'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1009',
@@ -25932,6 +35458,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['サ'],
     kunyomi: ['いつわ'],
+    commonWords: [
+      CommonWord(word: '詐欺', reading: 'さぎ', meaning: 'fraud'),
+      CommonWord(word: '詐称', reading: 'さしょう', meaning: 'misrepresentation'),
+      CommonWord(word: '詐欺師', reading: 'さぎし', meaning: 'swindler'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1010',
@@ -25945,6 +35476,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ショウ'],
     kunyomi: ['みことのり'],
+    commonWords: [
+      CommonWord(word: '詔書', reading: 'しょうしょ', meaning: 'imperial edict'),
+      CommonWord(word: '詔', reading: 'みことのり', meaning: 'imperial decree'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1011',
@@ -25958,6 +35493,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ヒョウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '評価', reading: 'ひょうか', meaning: 'valuation'),
+      CommonWord(word: '評判', reading: 'ひょうばん', meaning: 'reputation'),
+      CommonWord(word: '評論', reading: 'ひょうろん', meaning: 'criticism'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1012',
@@ -25971,6 +35511,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['エイ'],
     kunyomi: ['よ', 'うた'],
+    commonWords: [
+      CommonWord(word: '詠む', reading: 'よむ', meaning: 'to compose'),
+      CommonWord(word: '朗詠', reading: 'ろうえい', meaning: 'recitation'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1013',
@@ -25984,6 +35528,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ジュン', 'シュン'],
     kunyomi: ['はか', 'まこと'],
+    commonWords: [
+      CommonWord(word: '交詢', reading: 'こうじゅん', meaning: 'promotion of social intercourse'),
+      CommonWord(word: '諮詢', reading: 'しじゅん', meaning: 'question'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1014',
@@ -25997,6 +35545,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シ'],
     kunyomi: ['うた'],
+    commonWords: [
+      CommonWord(word: '詩人', reading: 'しじん', meaning: 'poet'),
+      CommonWord(word: '詩', reading: 'し', meaning: 'poem'),
+      CommonWord(word: '詩歌', reading: 'しいか', meaning: 'Japanese and Chinese poetry'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1015',
@@ -26010,6 +35563,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ガイ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '該当', reading: 'がいとう', meaning: 'corresponding to'),
+      CommonWord(word: '当該', reading: 'とうがい', meaning: 'appropriate'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1016',
@@ -26023,6 +35580,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ショウ'],
     kunyomi: ['くわ', 'つまび'],
+    commonWords: [
+      CommonWord(word: '詳しい', reading: 'くわしい', meaning: 'detailed'),
+      CommonWord(word: '詳細', reading: 'しょうさい', meaning: 'details'),
+      CommonWord(word: '詳報', reading: 'しょうほう', meaning: 'detailed report'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1017',
@@ -26036,6 +35598,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['コ'],
     kunyomi: ['ほこ'],
+    commonWords: [
+      CommonWord(word: '誇り', reading: 'ほこり', meaning: 'pride'),
+      CommonWord(word: '誇る', reading: 'ほこる', meaning: 'to boast of'),
+      CommonWord(word: '誇張', reading: 'こちょう', meaning: 'exaggeration'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1018',
@@ -26049,6 +35616,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ヨ'],
     kunyomi: ['ほま', 'ほ'],
+    commonWords: [
+      CommonWord(word: '名誉', reading: 'めいよ', meaning: 'honor'),
+      CommonWord(word: '栄誉', reading: 'えいよ', meaning: 'honour'),
+      CommonWord(word: '名誉職', reading: 'めいよしょく', meaning: 'honorary position'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1019',
@@ -26062,6 +35634,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['セイ'],
     kunyomi: ['ちか'],
+    commonWords: [
+      CommonWord(word: '誓って', reading: 'ちかって', meaning: 'surely'),
+      CommonWord(word: '宣誓', reading: 'せんせい', meaning: 'oath'),
+      CommonWord(word: '誓う', reading: 'ちかう', meaning: 'to swear'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1020',
@@ -26075,6 +35652,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['タン'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '誕生', reading: 'たんじょう', meaning: 'birth'),
+      CommonWord(word: '誕生日', reading: 'たんじょうび', meaning: 'birthday'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1021',
@@ -26088,6 +35669,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ユウ'],
     kunyomi: ['さそ', 'いざな'],
+    commonWords: [
+      CommonWord(word: '誘拐', reading: 'ゆうかい', meaning: 'abduction'),
+      CommonWord(word: '誘導', reading: 'ゆうどう', meaning: 'guidance'),
+      CommonWord(word: '誘う', reading: 'さそう', meaning: 'to invite'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1022',
@@ -26101,6 +35687,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['セイ'],
     kunyomi: ['まこと'],
+    commonWords: [
+      CommonWord(word: '誠に', reading: 'まことに', meaning: 'really'),
+      CommonWord(word: '誠意', reading: 'せいい', meaning: 'sincerity'),
+      CommonWord(word: '誠実', reading: 'せいじつ', meaning: 'sincere'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1023',
@@ -26114,6 +35705,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ギ'],
     kunyomi: ['よしみ', 'よい'],
+    commonWords: [
+      CommonWord(word: '友誼', reading: 'ゆうぎ', meaning: 'friendship'),
+      CommonWord(word: '旧誼', reading: 'きゅうぎ', meaning: 'old friendship'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1024',
@@ -26127,6 +35722,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シュン'],
     kunyomi: ['ひちくど', 'くど', 'くどくど', 'ねんご'],
+    commonWords: [
+      CommonWord(word: '諄々', reading: 'じゅんじゅん', meaning: 'earnestly'),
+      CommonWord(word: '諄諄しい', reading: 'くどくどしい', meaning: 'wordy'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1025',
@@ -26140,6 +35739,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['セイ', 'シン', 'ショウ'],
     kunyomi: ['こ', 'う'],
+    commonWords: [
+      CommonWord(word: '要請', reading: 'ようせい', meaning: 'appeal'),
+      CommonWord(word: '申請', reading: 'しんせい', meaning: 'application'),
+      CommonWord(word: '請求', reading: 'せいきゅう', meaning: 'claim'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1026',
@@ -26153,6 +35757,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['リョウ'],
     kunyomi: ['あきら', 'まことに'],
+    commonWords: [
+      CommonWord(word: '諒察', reading: 'りょうさつ', meaning: 'consideration'),
+      CommonWord(word: '諒闇', reading: 'りょうあん', meaning: 'court mourning'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1027',
@@ -26166,6 +35774,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ユ'],
     kunyomi: ['さと'],
+    commonWords: [
+      CommonWord(word: '教諭', reading: 'きょうゆ', meaning: 'teacher'),
+      CommonWord(word: '諭す', reading: 'さとす', meaning: 'to make (someone) understand'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1028',
@@ -26179,6 +35791,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シ'],
     kunyomi: ['はか'],
+    commonWords: [
+      CommonWord(word: '諮問', reading: 'しもん', meaning: 'consultation'),
+      CommonWord(word: '諮る', reading: 'はかる', meaning: 'to consult with'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1029',
@@ -26192,6 +35808,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ダク'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '承諾', reading: 'しょうだく', meaning: 'consent'),
+      CommonWord(word: '受諾', reading: 'じゅだく', meaning: 'acceptance'),
+      CommonWord(word: '諾否', reading: 'だくひ', meaning: 'consent or refusal'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1030',
@@ -26205,6 +35826,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ボウ', 'ム'],
     kunyomi: ['はか', 'たばか', 'はかりごと'],
+    commonWords: [
+      CommonWord(word: '参謀', reading: 'さんぼう', meaning: 'staff officer'),
+      CommonWord(word: '無謀', reading: 'むぼう', meaning: 'reckless'),
+      CommonWord(word: '陰謀', reading: 'いんぼう', meaning: 'plot'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1031',
@@ -26218,6 +35844,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['エツ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '謁する', reading: 'えっする', meaning: 'to have an audience'),
+      CommonWord(word: '謁見', reading: 'えっけん', meaning: 'audience'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1032',
@@ -26231,6 +35861,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['トウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '謄本', reading: 'とうほん', meaning: 'certified copy'),
+      CommonWord(word: '戸籍謄本', reading: 'こせきとうほん', meaning: 'official copy of the family register'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1033',
@@ -26244,6 +35878,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ケン'],
     kunyomi: ['へりくだ'],
+    commonWords: [
+      CommonWord(word: '謙虚', reading: 'けんきょ', meaning: 'modest'),
+      CommonWord(word: '謙遜', reading: 'けんそん', meaning: 'modesty'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1034',
@@ -26257,6 +35895,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シャ'],
     kunyomi: ['あやま'],
+    commonWords: [
+      CommonWord(word: '謝罪', reading: 'しゃざい', meaning: 'apology'),
+      CommonWord(word: '感謝', reading: 'かんしゃ', meaning: 'thanks'),
+      CommonWord(word: '謝礼', reading: 'しゃれい', meaning: 'reward'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1035',
@@ -26270,6 +35913,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ヨウ'],
     kunyomi: ['うた'],
+    commonWords: [
+      CommonWord(word: '民謡', reading: 'みんよう', meaning: 'folk song'),
+      CommonWord(word: '歌謡曲', reading: 'かようきょく', meaning: 'kayōkyoku'),
+      CommonWord(word: '童謡', reading: 'どうよう', meaning: 'children\'s song'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1036',
@@ -26283,6 +35931,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キン'],
     kunyomi: ['つつし'],
+    commonWords: [
+      CommonWord(word: '謹慎', reading: 'きんしん', meaning: 'self restraint'),
+      CommonWord(word: '謹賀新年', reading: 'きんがしんねん', meaning: 'Happy New Year'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1037',
@@ -26296,6 +35948,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['フ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '楽譜', reading: 'がくふ', meaning: 'score'),
+      CommonWord(word: '系譜', reading: 'けいふ', meaning: 'genealogy'),
+      CommonWord(word: '譜面', reading: 'ふめん', meaning: 'sheet music'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1038',
@@ -26309,6 +35966,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ジョウ'],
     kunyomi: ['ゆず'],
+    commonWords: [
+      CommonWord(word: '譲歩', reading: 'じょうほ', meaning: 'concession'),
+      CommonWord(word: '譲渡', reading: 'じょうと', meaning: 'transfer'),
+      CommonWord(word: '分譲', reading: 'ぶんじょう', meaning: 'selling (real-estate) lots'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1039',
@@ -26322,6 +35984,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ゴ'],
     kunyomi: ['まも'],
+    commonWords: [
+      CommonWord(word: '保護', reading: 'ほご', meaning: 'protection'),
+      CommonWord(word: '弁護士', reading: 'べんごし', meaning: 'lawyer'),
+      CommonWord(word: '看護', reading: 'かんご', meaning: 'nursing'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1040',
@@ -26335,6 +36002,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['トウ', 'ズ'],
     kunyomi: ['まめ'],
+    commonWords: [
+      CommonWord(word: '大豆', reading: 'だいず', meaning: 'soya bean'),
+      CommonWord(word: '豆腐', reading: 'とうふ', meaning: 'tofu'),
+      CommonWord(word: '納豆', reading: 'なっとう', meaning: 'natto'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1041',
@@ -26348,6 +36020,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['トン'],
     kunyomi: ['ぶた'],
+    commonWords: [
+      CommonWord(word: '豚', reading: 'ぶた', meaning: 'pig'),
+      CommonWord(word: '豚肉', reading: 'ぶたにく', meaning: 'pork'),
+      CommonWord(word: '養豚', reading: 'ようとん', meaning: 'pig-keeping'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1042',
@@ -26361,6 +36038,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ゴウ'],
     kunyomi: ['えら'],
+    commonWords: [
+      CommonWord(word: '豪華', reading: 'ごうか', meaning: 'extravagant'),
+      CommonWord(word: '強豪', reading: 'きょうごう', meaning: 'overwhelming strength'),
+      CommonWord(word: '豪快', reading: 'ごうかい', meaning: 'hearty'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1043',
@@ -26374,6 +36056,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['テイ', 'ジョウ'],
     kunyomi: ['ただし', 'さだ'],
+    commonWords: [
+      CommonWord(word: '貞潔', reading: 'ていけつ', meaning: 'chastity'),
+      CommonWord(word: '貞女', reading: 'ていじょ', meaning: 'virtuous woman'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1044',
@@ -26387,6 +36073,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['コウ', 'ク'],
     kunyomi: ['みつ'],
+    commonWords: [
+      CommonWord(word: '貢献', reading: 'こうけん', meaning: 'contribution'),
+      CommonWord(word: '朝貢', reading: 'ちょうこう', meaning: 'bringing tribute'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1045',
@@ -26400,6 +36090,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['カン'],
     kunyomi: ['つらぬ', 'ぬ', 'ぬき'],
+    commonWords: [
+      CommonWord(word: '貫', reading: 'かん', meaning: 'kan'),
+      CommonWord(word: '一貫', reading: 'いっかん', meaning: 'consistency'),
+      CommonWord(word: '突貫', reading: 'とっかん', meaning: 'charging (at the enemy) with a shout'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1046',
@@ -26413,6 +36108,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キ'],
     kunyomi: ['たっと', 'とうと'],
+    commonWords: [
+      CommonWord(word: '貴重', reading: 'きちょう', meaning: 'precious'),
+      CommonWord(word: '貴族', reading: 'きぞく', meaning: 'nobility'),
+      CommonWord(word: '兄貴', reading: 'あにき', meaning: 'elder brother'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1047',
@@ -26426,6 +36126,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ガ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '年賀状', reading: 'ねんがじょう', meaning: 'New Year\'s card'),
+      CommonWord(word: '年賀', reading: 'ねんが', meaning: 'New Year\'s greetings'),
+      CommonWord(word: '祝賀', reading: 'しゅくが', meaning: 'celebration'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1048',
@@ -26439,6 +36144,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['チン'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '賃金', reading: 'ちんぎん', meaning: 'wages'),
+      CommonWord(word: '運賃', reading: 'うんちん', meaning: 'fare'),
+      CommonWord(word: '家賃', reading: 'やちん', meaning: 'rent'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1049',
@@ -26452,6 +36162,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ワイ'],
     kunyomi: ['まかな'],
+    commonWords: [
+      CommonWord(word: '収賄', reading: 'しゅうわい', meaning: 'accepting a bribe'),
+      CommonWord(word: '贈賄', reading: 'ぞうわい', meaning: 'giving a bribe'),
+      CommonWord(word: '賄う', reading: 'まかなう', meaning: 'to supply'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1050',
@@ -26465,6 +36180,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ゾク'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '海賊', reading: 'かいぞく', meaning: 'pirate'),
+      CommonWord(word: '盗賊', reading: 'とうぞく', meaning: 'thief'),
+      CommonWord(word: '山賊', reading: 'さんぞく', meaning: 'bandit'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1051',
@@ -26478,6 +36198,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ヒン'],
     kunyomi: ['まろうど', 'したがう'],
+    commonWords: [
+      CommonWord(word: '賓客', reading: 'ひんきゃく', meaning: 'guest of honour'),
+      CommonWord(word: '迎賓館', reading: 'げいひんかん', meaning: 'reception hall'),
+      CommonWord(word: '国賓', reading: 'こくひん', meaning: 'state guest'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1052',
@@ -26491,6 +36216,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シ'],
     kunyomi: ['たまわ', 'たま', 'たも'],
+    commonWords: [
+      CommonWord(word: '賜杯', reading: 'しはい', meaning: 'Emperor\'s cup'),
+      CommonWord(word: '恩賜', reading: 'おんし', meaning: 'Imperial gift'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1053',
@@ -26504,6 +36233,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['バイ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '賠償', reading: 'ばいしょう', meaning: 'compensation'),
+      CommonWord(word: '賠償金', reading: 'ばいしょうきん', meaning: 'indemnities'),
+      CommonWord(word: '損害賠償', reading: 'そんがいばいしょう', meaning: 'restitution'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1054',
@@ -26517,6 +36251,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['フ', 'ブ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '月賦', reading: 'げっぷ', meaning: 'monthly installment'),
+      CommonWord(word: '賦課', reading: 'ふか', meaning: 'levy'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1055',
@@ -26530,6 +36268,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['コウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '購入', reading: 'こうにゅう', meaning: 'purchase'),
+      CommonWord(word: '購買', reading: 'こうばい', meaning: 'procurement'),
+      CommonWord(word: '購読', reading: 'こうどく', meaning: 'buying and reading'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1056',
@@ -26543,6 +36286,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シャ'],
     kunyomi: ['ゆる'],
+    commonWords: [
+      CommonWord(word: '容赦', reading: 'ようしゃ', meaning: 'pardon'),
+      CommonWord(word: '恩赦', reading: 'おんしゃ', meaning: 'amnesty'),
+      CommonWord(word: '特赦', reading: 'とくしゃ', meaning: 'special pardon'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1057',
@@ -26556,6 +36304,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キュウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '赳赳', reading: 'きゅうきゅう', meaning: 'brave and valiant'),
+      CommonWord(word: '赳夫', reading: 'たけお', meaning: 'Takeo (given name)'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1058',
@@ -26569,6 +36321,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['フ'],
     kunyomi: ['おもむ'],
+    commonWords: [
+      CommonWord(word: '赴任', reading: 'ふにん', meaning: 'moving to a different location to start'),
+      CommonWord(word: '赴く', reading: 'おもむく', meaning: 'to go in the direction of'),
+      CommonWord(word: '単身赴任', reading: 'たんしんふにん', meaning: 'taking up a post away from one\'s family'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1059',
@@ -26582,6 +36339,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シュ'],
     kunyomi: ['おもむき', 'おもむ'],
+    commonWords: [
+      CommonWord(word: '趣旨', reading: 'しゅし', meaning: 'meaning'),
+      CommonWord(word: '趣味', reading: 'しゅみ', meaning: 'hobby'),
+      CommonWord(word: '趣向', reading: 'しゅこう', meaning: 'plan'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1060',
@@ -26595,6 +36357,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キョ'],
     kunyomi: ['へだ', 'けづめ'],
+    commonWords: [
+      CommonWord(word: '距離', reading: 'きょり', meaning: 'distance'),
+      CommonWord(word: '近距離', reading: 'きんきょり', meaning: 'short distance'),
+      CommonWord(word: '長距離', reading: 'ちょうきょり', meaning: 'long distance'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1061',
@@ -26608,6 +36375,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['チョウ'],
     kunyomi: ['は', 'と', '-と'],
+    commonWords: [
+      CommonWord(word: '跳躍', reading: 'ちょうやく', meaning: 'jump'),
+      CommonWord(word: '跳ぶ', reading: 'とぶ', meaning: 'to fly'),
+      CommonWord(word: '走り幅跳び', reading: 'はしりはばとび', meaning: 'long jump'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1062',
@@ -26621,6 +36393,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['セン'],
     kunyomi: ['ふ'],
+    commonWords: [
+      CommonWord(word: '実践', reading: 'じっせん', meaning: 'practice'),
+      CommonWord(word: '践む', reading: 'ふむ', meaning: 'to step on'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1063',
@@ -26634,6 +36410,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['トウ'],
     kunyomi: ['ふ'],
+    commonWords: [
+      CommonWord(word: '踏切', reading: 'ふみきり', meaning: 'railway crossing'),
+      CommonWord(word: '舞踏', reading: 'ぶとう', meaning: 'dance'),
+      CommonWord(word: '足踏み', reading: 'あしぶみ', meaning: 'stepping'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1064',
@@ -26647,6 +36428,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ヤク'],
     kunyomi: ['おど'],
+    commonWords: [
+      CommonWord(word: '活躍', reading: 'かつやく', meaning: 'activity'),
+      CommonWord(word: '飛躍', reading: 'ひやく', meaning: 'leap'),
+      CommonWord(word: '跳躍', reading: 'ちょうやく', meaning: 'jump'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1065',
@@ -26660,6 +36446,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '軌道', reading: 'きどう', meaning: 'orbit'),
+      CommonWord(word: '軌跡', reading: 'きせき', meaning: 'tire track'),
+      CommonWord(word: '常軌', reading: 'じょうき', meaning: 'normal course'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1066',
@@ -26673,6 +36464,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ジク'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '軸', reading: 'じく', meaning: 'axis'),
+      CommonWord(word: '主軸', reading: 'しゅじく', meaning: 'main spindle'),
+      CommonWord(word: '基軸', reading: 'きじく', meaning: 'basis'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1067',
@@ -26686,6 +36482,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['カク', 'コウ'],
     kunyomi: ['くら'],
+    commonWords: [
+      CommonWord(word: '比較', reading: 'ひかく', meaning: 'comparison'),
+      CommonWord(word: '比較的', reading: 'ひかくてき', meaning: 'comparatively'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1068',
@@ -26699,6 +36499,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['サイ'],
     kunyomi: ['の'],
+    commonWords: [
+      CommonWord(word: '掲載', reading: 'けいさい', meaning: 'publication'),
+      CommonWord(word: '連載', reading: 'れんさい', meaning: 'serialization'),
+      CommonWord(word: '記載', reading: 'きさい', meaning: 'mention'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1069',
@@ -26712,6 +36517,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ホ', 'フ'],
     kunyomi: ['たす'],
+    commonWords: [
+      CommonWord(word: '輔弼', reading: 'ほひつ', meaning: 'giving the Emperor advice on affairs of'),
+      CommonWord(word: '輔翼', reading: 'ほよく', meaning: 'aid'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1070',
@@ -26725,6 +36534,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キ'],
     kunyomi: ['かがや'],
+    commonWords: [
+      CommonWord(word: '輝かしい', reading: 'かがやかしい', meaning: 'brilliant'),
+      CommonWord(word: '輝き', reading: 'かがやき', meaning: 'brightness'),
+      CommonWord(word: '光り輝く', reading: 'ひかりかがやく', meaning: 'to shine'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1071',
@@ -26738,6 +36552,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ハイ'],
     kunyomi: ['-ばら', 'やから', 'やかい', 'ともがら'],
+    commonWords: [
+      CommonWord(word: '先輩', reading: 'せんぱい', meaning: 'senior'),
+      CommonWord(word: '後輩', reading: 'こうはい', meaning: 'junior'),
+      CommonWord(word: '輩出', reading: 'はいしゅつ', meaning: 'producing (people) in great numbers'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1072',
@@ -26751,6 +36570,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['カツ'],
     kunyomi: ['くさび'],
+    commonWords: [
+      CommonWord(word: '管轄', reading: 'かんかつ', meaning: 'jurisdiction'),
+      CommonWord(word: '直轄', reading: 'ちょっかつ', meaning: 'direct control'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1073',
@@ -26764,6 +36587,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シン', 'ジン'],
     kunyomi: ['たつ'],
+    commonWords: [
+      CommonWord(word: '辰', reading: 'たつ', meaning: 'the Dragon'),
+      CommonWord(word: '辰年', reading: 'たつどし', meaning: 'year of the Dragon'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1074',
@@ -26777,6 +36604,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ジョク'],
     kunyomi: ['はずかし'],
+    commonWords: [
+      CommonWord(word: '侮辱', reading: 'ぶじょく', meaning: 'insult'),
+      CommonWord(word: '屈辱', reading: 'くつじょく', meaning: 'disgrace'),
+      CommonWord(word: '雪辱', reading: 'せつじょく', meaning: 'vindication of honour'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1075',
@@ -26790,6 +36622,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ジン'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '迅速', reading: 'じんそく', meaning: 'quick'),
+      CommonWord(word: '迅雷', reading: 'じんらい', meaning: 'sudden peal of thunder'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1076',
@@ -26803,6 +36639,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['テキ'],
     kunyomi: ['みち', 'みちび', 'すす', 'いた'],
+    commonWords: [
+      CommonWord(word: '啓迪', reading: 'けいてき', meaning: 'edification'),
+      CommonWord(word: '訓迪', reading: 'くんてき', meaning: 'guidance'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1077',
@@ -26816,6 +36656,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ハク'],
     kunyomi: ['せま'],
+    commonWords: [
+      CommonWord(word: '迫る', reading: 'せまる', meaning: 'to approach'),
+      CommonWord(word: '迫力', reading: 'はくりょく', meaning: 'impressiveness'),
+      CommonWord(word: '脅迫', reading: 'きょうはく', meaning: 'threat'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1078',
@@ -26829,6 +36674,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['テツ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '更迭', reading: 'こうてつ', meaning: 'change'),
+      CommonWord(word: '迭立', reading: 'てつりつ', meaning: 'alternate succession'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1079',
@@ -26842,6 +36691,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['トウ'],
     kunyomi: ['す', 'とう'],
+    commonWords: [
+      CommonWord(word: '不透明', reading: 'ふとうめい', meaning: 'opaque'),
+      CommonWord(word: '透明', reading: 'とうめい', meaning: 'transparent'),
+      CommonWord(word: '浸透', reading: 'しんとう', meaning: 'permeation'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1080',
@@ -26855,6 +36709,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['チク'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '駆逐艦', reading: 'くちくかん', meaning: 'destroyer'),
+      CommonWord(word: '逐一', reading: 'ちくいち', meaning: 'one by one'),
+      CommonWord(word: '駆逐', reading: 'くちく', meaning: 'expulsion'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1081',
@@ -26868,6 +36727,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['テイ'],
     kunyomi: ['かわ', 'たがいに'],
+    commonWords: [
+      CommonWord(word: '逓減', reading: 'ていげん', meaning: 'gradual decrease'),
+      CommonWord(word: '逓送', reading: 'ていそう', meaning: 'forwarding'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1082',
@@ -26881,6 +36744,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['セイ'],
     kunyomi: ['ゆ', 'い'],
+    commonWords: [
+      CommonWord(word: '逝去', reading: 'せいきょ', meaning: 'death'),
+      CommonWord(word: '急逝', reading: 'きゅうせい', meaning: 'sudden death'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1083',
@@ -26894,6 +36761,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['タイ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '逮捕', reading: 'たいほ', meaning: 'arrest'),
+      CommonWord(word: '逮捕者', reading: 'たいほしゃ', meaning: 'arrestee'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1084',
@@ -26907,6 +36778,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['イツ'],
     kunyomi: ['そ', 'はぐ'],
+    commonWords: [
+      CommonWord(word: '逸脱', reading: 'いつだつ', meaning: 'deviation'),
+      CommonWord(word: '逸話', reading: 'いつわ', meaning: 'anecdote'),
+      CommonWord(word: '逸品', reading: 'いっぴん', meaning: 'excellent article'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1085',
@@ -26920,6 +36796,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['スイ'],
     kunyomi: ['と', 'つい'],
+    commonWords: [
+      CommonWord(word: '未遂', reading: 'みすい', meaning: 'failed attempt'),
+      CommonWord(word: '遂行', reading: 'すいこう', meaning: 'accomplishment'),
+      CommonWord(word: '遂げる', reading: 'とげる', meaning: 'to accomplish'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1086',
@@ -26933,6 +36814,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['グウ'],
     kunyomi: ['あ'],
+    commonWords: [
+      CommonWord(word: '待遇', reading: 'たいぐう', meaning: 'treatment'),
+      CommonWord(word: '境遇', reading: 'きょうぐう', meaning: 'one\'s circumstances'),
+      CommonWord(word: '優遇', reading: 'ゆうぐう', meaning: 'favorable treatment'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1087',
@@ -26946,6 +36832,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ヘン'],
     kunyomi: ['あまね'],
+    commonWords: [
+      CommonWord(word: '普遍', reading: 'ふへん', meaning: 'universal'),
+      CommonWord(word: '遍歴', reading: 'へんれき', meaning: 'travels'),
+      CommonWord(word: '何遍', reading: 'なんべん', meaning: 'how many times'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1088',
@@ -26959,6 +36850,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ケン'],
     kunyomi: ['つか', '-つか', '-づか', 'や'],
+    commonWords: [
+      CommonWord(word: '派遣', reading: 'はけん', meaning: 'dispatch'),
+      CommonWord(word: '小遣い', reading: 'こづかい', meaning: 'pocket money'),
+      CommonWord(word: '無駄遣い', reading: 'むだづかい', meaning: 'waste'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1089',
@@ -26972,6 +36868,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ヨウ'],
     kunyomi: ['はる'],
+    commonWords: [
+      CommonWord(word: '遥か', reading: 'はるか', meaning: 'far away'),
+      CommonWord(word: '逍遥', reading: 'しょうよう', meaning: 'ramble'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1090',
@@ -26985,6 +36885,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ソウ'],
     kunyomi: ['あ'],
+    commonWords: [
+      CommonWord(word: '遭難', reading: 'そうなん', meaning: 'disaster'),
+      CommonWord(word: '遭う', reading: 'あう', meaning: 'to meet'),
+      CommonWord(word: '遭遇', reading: 'そうぐう', meaning: 'encounter'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1091',
@@ -26998,6 +36903,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シャ'],
     kunyomi: ['さえぎ'],
+    commonWords: [
+      CommonWord(word: '遮断機', reading: 'しゃだんき', meaning: 'crossing gate'),
+      CommonWord(word: '遮断器', reading: 'しゃだんき', meaning: 'circuit breaker'),
+      CommonWord(word: '遮る', reading: 'さえぎる', meaning: 'to interrupt'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1092',
@@ -27011,6 +36921,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ジュン'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '遵守', reading: 'じゅんしゅ', meaning: 'observance'),
+      CommonWord(word: '遵行', reading: 'じゅんこう', meaning: 'obedience'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1093',
@@ -27024,6 +36938,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['セン'],
     kunyomi: ['うつ', 'みやこがえ'],
+    commonWords: [
+      CommonWord(word: '変遷', reading: 'へんせん', meaning: 'change'),
+      CommonWord(word: '遷都', reading: 'せんと', meaning: 'relocation of the capital'),
+      CommonWord(word: '左遷', reading: 'させん', meaning: 'demotion'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1094',
@@ -27037,6 +36956,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['イ', 'ユイ'],
     kunyomi: ['のこ'],
+    commonWords: [
+      CommonWord(word: '遺体', reading: 'いたい', meaning: 'body'),
+      CommonWord(word: '遺跡', reading: 'いせき', meaning: 'remains'),
+      CommonWord(word: '遺憾', reading: 'いかん', meaning: 'regrettable'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1095',
@@ -27050,6 +36974,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['リョウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '遼遠', reading: 'りょうえん', meaning: 'remote'),
+      CommonWord(word: '遼寧省', reading: 'りょうねいしょう', meaning: 'Liaoning Province'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1096',
@@ -27063,6 +36991,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ヒ'],
     kunyomi: ['さ', 'よ'],
+    commonWords: [
+      CommonWord(word: '避難', reading: 'ひなん', meaning: 'taking refuge'),
+      CommonWord(word: '避妊', reading: 'ひにん', meaning: 'contraception'),
+      CommonWord(word: '不可避', reading: 'ふかひ', meaning: 'inevitable'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1097',
@@ -27076,6 +37009,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['カン'],
     kunyomi: ['かえ'],
+    commonWords: [
+      CommonWord(word: '返還', reading: 'へんかん', meaning: 'return'),
+      CommonWord(word: '還元', reading: 'かんげん', meaning: 'restoration'),
+      CommonWord(word: '償還', reading: 'しょうかん', meaning: 'repayment'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1098',
@@ -27089,6 +37027,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ユウ'],
     kunyomi: ['むら'],
+    commonWords: [
+      CommonWord(word: '僻邑', reading: 'へきゆう', meaning: 'remote village'),
+      CommonWord(word: '都邑', reading: 'とゆう', meaning: 'city'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1099',
@@ -27102,6 +37044,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ナ', 'ダ'],
     kunyomi: ['なに', 'なんぞ', 'いかん'],
+    commonWords: [
+      CommonWord(word: '旦那', reading: 'だんな', meaning: 'master'),
+      CommonWord(word: '刹那', reading: 'せつな', meaning: 'moment'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1100',
@@ -27115,6 +37061,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ホウ'],
     kunyomi: ['くに'],
+    commonWords: [
+      CommonWord(word: '連邦', reading: 'れんぽう', meaning: 'federation'),
+      CommonWord(word: '邦人', reading: 'ほうじん', meaning: 'Japanese national'),
+      CommonWord(word: '邦楽', reading: 'ほうがく', meaning: 'Japanese music'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1101',
@@ -27128,6 +37079,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ジャ'],
     kunyomi: ['よこし'],
+    commonWords: [
+      CommonWord(word: '風邪', reading: 'かぜ', meaning: 'cold'),
+      CommonWord(word: '邪魔', reading: 'じゃま', meaning: 'hindrance'),
+      CommonWord(word: '邪', reading: 'よこしま', meaning: 'wicked'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1102',
@@ -27141,6 +37097,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['テイ'],
     kunyomi: ['やしき'],
+    commonWords: [
+      CommonWord(word: '官邸', reading: 'かんてい', meaning: 'official residence'),
+      CommonWord(word: '私邸', reading: 'してい', meaning: 'private residence'),
+      CommonWord(word: '邸宅', reading: 'ていたく', meaning: 'house'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1103',
@@ -27154,6 +37115,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['イク'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '郁郁', reading: 'いくいく', meaning: 'flourishing'),
+      CommonWord(word: '馥郁', reading: 'ふくいく', meaning: 'fragrant'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1104',
@@ -27167,6 +37132,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ロウ', 'リョウ'],
     kunyomi: ['おとこ'],
+    commonWords: [
+      CommonWord(word: '新郎', reading: 'しんろう', meaning: 'bridegroom'),
+      CommonWord(word: '野郎', reading: 'やろう', meaning: 'guy'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1105',
@@ -27180,6 +37149,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['グン'],
     kunyomi: ['こおり'],
+    commonWords: [
+      CommonWord(word: '郡', reading: 'ぐん', meaning: 'district'),
+      CommonWord(word: '郡部', reading: 'ぐんぶ', meaning: 'rural districts'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1106',
@@ -27193,6 +37166,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['カク'],
     kunyomi: ['くるわ'],
+    commonWords: [
+      CommonWord(word: '輪郭', reading: 'りんかく', meaning: 'contour'),
+      CommonWord(word: '外郭団体', reading: 'がいかくだんたい', meaning: 'auxiliary organization'),
+      CommonWord(word: '外郭', reading: 'がいかく', meaning: 'outer fence'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1107',
@@ -27206,6 +37184,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キョウ', 'ゴウ'],
     kunyomi: ['さと'],
+    commonWords: [
+      CommonWord(word: '郷里', reading: 'きょうり', meaning: 'hometown'),
+      CommonWord(word: '郷愁', reading: 'きょうしゅう', meaning: 'nostalgia'),
+      CommonWord(word: '郷土', reading: 'きょうど', meaning: 'native place'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1108',
@@ -27219,6 +37202,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ユウ'],
     kunyomi: ['とり'],
+    commonWords: [
+      CommonWord(word: '酉', reading: 'とり', meaning: 'the Rooster'),
+      CommonWord(word: '酉年', reading: 'とりどし', meaning: 'year of the Rooster'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1109',
@@ -27232,6 +37219,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シャク'],
     kunyomi: ['く'],
+    commonWords: [
+      CommonWord(word: '媒酌', reading: 'ばいしゃく', meaning: 'matchmaking'),
+      CommonWord(word: '晩酌', reading: 'ばんしゃく', meaning: 'drink at home with one\'s evening meal'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1110',
@@ -27245,6 +37236,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['スイ'],
     kunyomi: ['よ'],
+    commonWords: [
+      CommonWord(word: '麻酔', reading: 'ますい', meaning: 'anaesthesia'),
+      CommonWord(word: '酔い', reading: 'よい', meaning: 'drunkenness'),
+      CommonWord(word: '陶酔', reading: 'とうすい', meaning: 'intoxication'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1111',
@@ -27258,6 +37254,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['サク'],
     kunyomi: ['す'],
+    commonWords: [
+      CommonWord(word: '酢', reading: 'す', meaning: 'vinegar'),
+      CommonWord(word: '酢酸', reading: 'さくさん', meaning: 'acetic acid'),
+      CommonWord(word: '酢の物', reading: 'すのもの', meaning: 'vinegared dish'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1112',
@@ -27271,6 +37272,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ラク'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '酪農', reading: 'らくのう', meaning: 'dairy farming'),
+      CommonWord(word: '乾酪', reading: 'かんらく', meaning: 'cheese'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1113',
@@ -27284,6 +37289,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シュウ', 'シュ', 'トウ'],
     kunyomi: ['むく'],
+    commonWords: [
+      CommonWord(word: '報酬', reading: 'ほうしゅう', meaning: 'remuneration'),
+      CommonWord(word: '応酬', reading: 'おうしゅう', meaning: 'exchange'),
+      CommonWord(word: '無報酬', reading: 'むほうしゅう', meaning: 'unpaid'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1114',
@@ -27297,6 +37307,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['コウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '酵素', reading: 'こうそ', meaning: 'enzyme'),
+      CommonWord(word: '発酵', reading: 'はっこう', meaning: 'fermentation'),
+      CommonWord(word: '酵母', reading: 'こうぼ', meaning: 'yeast'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1115',
@@ -27310,6 +37325,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['コク'],
     kunyomi: ['ひど'],
+    commonWords: [
+      CommonWord(word: '残酷', reading: 'ざんこく', meaning: 'cruel'),
+      CommonWord(word: '過酷', reading: 'かこく', meaning: 'severe'),
+      CommonWord(word: '酷似', reading: 'こくじ', meaning: 'resembling closely'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1116',
@@ -27323,6 +37343,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['サン'],
     kunyomi: ['す'],
+    commonWords: [
+      CommonWord(word: '酸化', reading: 'さんか', meaning: 'oxidation'),
+      CommonWord(word: '酸性', reading: 'さんせい', meaning: 'acidity'),
+      CommonWord(word: '酸素', reading: 'さんそ', meaning: 'oxygen'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1117',
@@ -27336,6 +37361,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シュウ'],
     kunyomi: ['みにく', 'しこ'],
+    commonWords: [
+      CommonWord(word: '醜い', reading: 'みにくい', meaning: 'ugly'),
+      CommonWord(word: '醜態', reading: 'しゅうたい', meaning: 'disgraceful behavior'),
+      CommonWord(word: '醜聞', reading: 'しゅうぶん', meaning: 'scandal'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1118',
@@ -27349,6 +37379,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ジョウ'],
     kunyomi: ['かも'],
+    commonWords: [
+      CommonWord(word: '醸成', reading: 'じょうせい', meaning: 'brewing'),
+      CommonWord(word: '吟醸酒', reading: 'ぎんじょうしゅ', meaning: 'ginjō sake'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1119',
@@ -27362,6 +37396,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['サイ'],
     kunyomi: ['と', 'いろどり'],
+    commonWords: [
+      CommonWord(word: '納采', reading: 'のうさい', meaning: 'betrothal gift'),
+      CommonWord(word: '喝采', reading: 'かっさい', meaning: 'cheers'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1120',
@@ -27375,6 +37413,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シャク', 'セキ'],
     kunyomi: ['とく', 'す', 'ゆる'],
+    commonWords: [
+      CommonWord(word: '解釈', reading: 'かいしゃく', meaning: 'interpretation'),
+      CommonWord(word: '釈放', reading: 'しゃくほう', meaning: 'release'),
+      CommonWord(word: '釈迦', reading: 'しゃか', meaning: 'Gautama Buddha'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1121',
@@ -27388,6 +37431,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['チョウ'],
     kunyomi: ['つ'],
+    commonWords: [
+      CommonWord(word: '釣り', reading: 'つり', meaning: 'fishing'),
+      CommonWord(word: '釣る', reading: 'つる', meaning: 'to fish'),
+      CommonWord(word: '釣り銭', reading: 'つりせん', meaning: 'change'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1122',
@@ -27401,6 +37449,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['レイ', 'リン'],
     kunyomi: ['すず'],
+    commonWords: [
+      CommonWord(word: '鈴', reading: 'すず', meaning: 'bell'),
+      CommonWord(word: '風鈴', reading: 'ふうりん', meaning: 'wind chime'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1123',
@@ -27414,6 +37466,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['エン'],
     kunyomi: ['なまり'],
+    commonWords: [
+      CommonWord(word: '鉛筆', reading: 'えんぴつ', meaning: 'pencil'),
+      CommonWord(word: '鉛', reading: 'なまり', meaning: 'lead'),
+      CommonWord(word: '黒鉛', reading: 'こくえん', meaning: 'graphite'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1124',
@@ -27427,6 +37484,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ハチ', 'ハツ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '鉢', reading: 'はち', meaning: 'bowl'),
+      CommonWord(word: '鉢植え', reading: 'はちうえ', meaning: 'potted plant'),
+      CommonWord(word: '鉢巻き', reading: 'はちまき', meaning: 'headband'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1125',
@@ -27440,6 +37502,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ジュウ'],
     kunyomi: ['つつ'],
+    commonWords: [
+      CommonWord(word: '銃', reading: 'じゅう', meaning: 'gun'),
+      CommonWord(word: '銃撃', reading: 'じゅうげき', meaning: 'shooting'),
+      CommonWord(word: '銃弾', reading: 'じゅうだん', meaning: 'bullet'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1126',
@@ -27453,6 +37520,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['セン'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '銑鉄', reading: 'せんてつ', meaning: 'pig iron'),
+      CommonWord(word: '白銑', reading: 'はくせん', meaning: 'white pig iron'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1127',
@@ -27466,6 +37537,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['メイ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '感銘', reading: 'かんめい', meaning: 'deep impression'),
+      CommonWord(word: '銘柄', reading: 'めいがら', meaning: 'brand'),
+      CommonWord(word: '銘記', reading: 'めいき', meaning: 'keep in mind'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1128',
@@ -27479,6 +37555,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['セン', 'ゼン'],
     kunyomi: ['ぜに', 'すき'],
+    commonWords: [
+      CommonWord(word: '金銭', reading: 'きんせん', meaning: 'money'),
+      CommonWord(word: '銭湯', reading: 'せんとう', meaning: 'public bath'),
+      CommonWord(word: '銭', reading: 'せん', meaning: 'sen'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1129',
@@ -27492,6 +37573,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['チュウ', 'イ', 'シュ', 'シュウ'],
     kunyomi: ['い'],
+    commonWords: [
+      CommonWord(word: '鋳型', reading: 'いがた', meaning: 'mold'),
+      CommonWord(word: '鋳物', reading: 'いもの', meaning: 'casting'),
+      CommonWord(word: '鋳る', reading: 'いる', meaning: 'to cast'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1130',
@@ -27505,6 +37591,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['コウ'],
     kunyomi: ['はがね'],
+    commonWords: [
+      CommonWord(word: '鋼板', reading: 'こうはん', meaning: 'steel sheet'),
+      CommonWord(word: '鉄鋼', reading: 'てっこう', meaning: 'iron and steel'),
+      CommonWord(word: '製鋼', reading: 'せいこう', meaning: 'steel manufacture'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1131',
@@ -27518,6 +37609,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['スイ'],
     kunyomi: ['つむ', 'おもり'],
+    commonWords: [
+      CommonWord(word: '休錘', reading: 'きゅうすい', meaning: 'idle spindles'),
+      CommonWord(word: '錘', reading: 'おもり', meaning: 'weight'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1132',
@@ -27531,6 +37626,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ジョウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '手錠', reading: 'てじょう', meaning: 'handcuffs'),
+      CommonWord(word: '錠', reading: 'じょう', meaning: 'lock'),
+      CommonWord(word: '錠剤', reading: 'じょうざい', meaning: 'pill'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1133',
@@ -27544,6 +37644,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キン'],
     kunyomi: ['にしき'],
+    commonWords: [
+      CommonWord(word: '錦', reading: 'にしき', meaning: 'brocade'),
+      CommonWord(word: '綾錦', reading: 'あやにしき', meaning: 'twill damask and brocade'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1134',
@@ -27557,6 +37661,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['レン'],
     kunyomi: ['ね'],
+    commonWords: [
+      CommonWord(word: '錬金術', reading: 'れんきんじゅつ', meaning: 'alchemy'),
+      CommonWord(word: '鍛錬', reading: 'たんれん', meaning: 'tempering'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1135',
@@ -27570,6 +37678,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['サク', 'シャク'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '錯覚', reading: 'さっかく', meaning: 'illusion'),
+      CommonWord(word: '試行錯誤', reading: 'しこうさくご', meaning: 'trial and error'),
+      CommonWord(word: '時代錯誤', reading: 'じだいさくご', meaning: 'anachronism'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1136',
@@ -27583,6 +37696,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['タン'],
     kunyomi: ['きた'],
+    commonWords: [
+      CommonWord(word: '鍛える', reading: 'きたえる', meaning: 'to forge'),
+      CommonWord(word: '鍛錬', reading: 'たんれん', meaning: 'tempering'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1137',
@@ -27596,6 +37713,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['レン', 'ケン'],
     kunyomi: ['かま'],
+    commonWords: [
+      CommonWord(word: '鎌', reading: 'かま', meaning: 'sickle'),
+      CommonWord(word: '鎌倉', reading: 'かまくら', meaning: 'Kamakura'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1138',
@@ -27609,6 +37730,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['サ'],
     kunyomi: ['くさり', 'とざ'],
+    commonWords: [
+      CommonWord(word: '閉鎖', reading: 'へいさ', meaning: 'closing'),
+      CommonWord(word: '封鎖', reading: 'ふうさ', meaning: 'blockade'),
+      CommonWord(word: '鎖', reading: 'くさり', meaning: 'chain'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1139',
@@ -27622,6 +37748,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['チン'],
     kunyomi: ['しず', 'おさえ'],
+    commonWords: [
+      CommonWord(word: '鎮圧', reading: 'ちんあつ', meaning: 'suppression'),
+      CommonWord(word: '重鎮', reading: 'じゅうちん', meaning: 'leader'),
+      CommonWord(word: '鎮魂', reading: 'ちんこん', meaning: 'repose of a soul'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1140',
@@ -27635,6 +37766,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キョウ', 'ケイ'],
     kunyomi: ['かがみ'],
+    commonWords: [
+      CommonWord(word: '鏡', reading: 'かがみ', meaning: 'mirror'),
+      CommonWord(word: '望遠鏡', reading: 'ぼうえんきょう', meaning: 'telescope'),
+      CommonWord(word: '眼鏡', reading: 'めがね', meaning: 'glasses'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1141',
@@ -27648,6 +37784,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ショウ'],
     kunyomi: ['かね'],
+    commonWords: [
+      CommonWord(word: '鐘', reading: 'かね', meaning: 'bell'),
+      CommonWord(word: '警鐘', reading: 'けいしょう', meaning: 'alarm bell'),
+      CommonWord(word: '鐘楼', reading: 'しょうろう', meaning: 'belfry'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1142',
@@ -27661,6 +37802,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['カン'],
     kunyomi: ['かんが', 'かがみ'],
+    commonWords: [
+      CommonWord(word: '鑑定', reading: 'かんてい', meaning: 'judgement'),
+      CommonWord(word: '鑑賞', reading: 'かんしょう', meaning: 'appreciation'),
+      CommonWord(word: '印鑑', reading: 'いんかん', meaning: 'stamp'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1143',
@@ -27674,6 +37820,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['カン'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '閑散', reading: 'かんさん', meaning: 'deserted'),
+      CommonWord(word: '閑静', reading: 'かんせい', meaning: 'quiet'),
+      CommonWord(word: '農閑期', reading: 'のうかんき', meaning: 'slack season for farmers'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1144',
@@ -27687,6 +37838,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['カク'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '閣僚', reading: 'かくりょう', meaning: 'cabinet ministers'),
+      CommonWord(word: '内閣', reading: 'ないかく', meaning: 'cabinet'),
+      CommonWord(word: '組閣', reading: 'そかく', meaning: 'formation of a cabinet'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1145',
@@ -27700,6 +37856,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['バツ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '派閥', reading: 'はばつ', meaning: 'clique'),
+      CommonWord(word: '学閥', reading: 'がくばつ', meaning: 'alma mater clique'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1146',
@@ -27713,6 +37873,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['エツ'],
     kunyomi: ['けみ'],
+    commonWords: [
+      CommonWord(word: '検閲', reading: 'けんえつ', meaning: 'censorship'),
+      CommonWord(word: '閲覧', reading: 'えつらん', meaning: 'inspection'),
+      CommonWord(word: '校閲', reading: 'こうえつ', meaning: 'revision'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1147',
@@ -27726,6 +37891,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['トウ'],
     kunyomi: ['たたか', 'あらそ'],
+    commonWords: [
+      CommonWord(word: '戦闘', reading: 'せんとう', meaning: 'battle'),
+      CommonWord(word: '闘争', reading: 'とうそう', meaning: 'fight'),
+      CommonWord(word: '闘う', reading: 'たたかう', meaning: 'to make war'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1148',
@@ -27739,6 +37909,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ソ'],
     kunyomi: ['はば'],
+    commonWords: [
+      CommonWord(word: '阻む', reading: 'はばむ', meaning: 'to keep someone from doing'),
+      CommonWord(word: '阻止', reading: 'そし', meaning: 'obstruction'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1149',
@@ -27752,6 +37926,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ア', 'オ'],
     kunyomi: ['おもね', 'くま'],
+    commonWords: [
+      CommonWord(word: '阿弥陀', reading: 'あみだ', meaning: 'Amitabha'),
+      CommonWord(word: '阿片窟', reading: 'あへんくつ', meaning: 'opium den'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1150',
@@ -27765,6 +37943,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['フ'],
     kunyomi: ['つ'],
+    commonWords: [
+      CommonWord(word: '附属', reading: 'ふぞく', meaning: 'being attached'),
+      CommonWord(word: '附録', reading: 'ふろく', meaning: 'appendix'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1151',
@@ -27778,6 +37960,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ヘイ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '陛下', reading: 'へいか', meaning: 'Your Majesty'),
+      CommonWord(word: '天皇陛下', reading: 'てんのうへいか', meaning: 'His Majesty the Emperor'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1152',
@@ -27791,6 +37977,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ジン'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '陣営', reading: 'じんえい', meaning: 'camp'),
+      CommonWord(word: '報道陣', reading: 'ほうどうじん', meaning: 'press corps'),
+      CommonWord(word: '退陣', reading: 'たいじん', meaning: 'resignation'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1153',
@@ -27804,6 +37995,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['カン'],
     kunyomi: ['おちい', 'おとしい'],
+    commonWords: [
+      CommonWord(word: '欠陥', reading: 'けっかん', meaning: 'defect'),
+      CommonWord(word: '陥落', reading: 'かんらく', meaning: 'subsidence'),
+      CommonWord(word: '陥没', reading: 'かんぼつ', meaning: 'cave-in'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1154',
@@ -27817,6 +38013,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['バイ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '陪審', reading: 'ばいしん', meaning: 'jury'),
+      CommonWord(word: '大陪審', reading: 'だいばいしん', meaning: 'grand jury'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1155',
@@ -27830,6 +38030,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['イン'],
     kunyomi: ['かげ'],
+    commonWords: [
+      CommonWord(word: '日陰', reading: 'ひかげ', meaning: 'shade'),
+      CommonWord(word: '陰謀', reading: 'いんぼう', meaning: 'plot'),
+      CommonWord(word: '陰り', reading: 'かげり', meaning: 'shadow'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1156',
@@ -27843,6 +38048,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['チン'],
     kunyomi: ['ひ'],
+    commonWords: [
+      CommonWord(word: '陳列', reading: 'ちんれつ', meaning: 'exhibition'),
+      CommonWord(word: '陳述', reading: 'ちんじゅつ', meaning: 'statement'),
+      CommonWord(word: '陳情', reading: 'ちんじょう', meaning: 'petition'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1157',
@@ -27856,6 +38066,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['リョウ'],
     kunyomi: ['みささぎ'],
+    commonWords: [
+      CommonWord(word: '陵', reading: 'みささぎ', meaning: 'imperial mausoleum'),
+      CommonWord(word: '丘陵', reading: 'きゅうりょう', meaning: 'hill'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1158',
@@ -27869,6 +38083,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['トウ'],
     kunyomi: ['すえ'],
+    commonWords: [
+      CommonWord(word: '陶器', reading: 'とうき', meaning: 'pottery'),
+      CommonWord(word: '陶芸', reading: 'とうげい', meaning: 'ceramic art'),
+      CommonWord(word: '陶磁器', reading: 'とうじき', meaning: 'ceramics'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1159',
@@ -27882,6 +38101,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['リュウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '隆盛', reading: 'りゅうせい', meaning: 'prosperity'),
+      CommonWord(word: '隆起', reading: 'りゅうき', meaning: 'protuberance'),
+      CommonWord(word: '興隆', reading: 'こうりゅう', meaning: 'rise'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1160',
@@ -27895,6 +38119,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['タイ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '自衛隊', reading: 'じえいたい', meaning: 'Japan Self-Defense Forces'),
+      CommonWord(word: '軍隊', reading: 'ぐんたい', meaning: 'armed forces'),
+      CommonWord(word: '機動隊', reading: 'きどうたい', meaning: 'riot police'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1161',
@@ -27908,6 +38137,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ズイ'],
     kunyomi: ['まにま', 'したが'],
+    commonWords: [
+      CommonWord(word: '随筆', reading: 'ずいひつ', meaning: 'essays'),
+      CommonWord(word: '随時', reading: 'ずいじ', meaning: 'whenever necessary'),
+      CommonWord(word: '随所', reading: 'ずいしょ', meaning: 'everywhere'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1162',
@@ -27921,6 +38155,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['カク'],
     kunyomi: ['へだ'],
+    commonWords: [
+      CommonWord(word: '間隔', reading: 'かんかく', meaning: 'space'),
+      CommonWord(word: '隔てる', reading: 'へだてる', meaning: 'to separate'),
+      CommonWord(word: '隔離', reading: 'かくり', meaning: 'isolation'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1163',
@@ -27934,6 +38173,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ショウ'],
     kunyomi: ['さわ'],
+    commonWords: [
+      CommonWord(word: '障害', reading: 'しょうがい', meaning: 'obstacle'),
+      CommonWord(word: '故障', reading: 'こしょう', meaning: 'fault'),
+      CommonWord(word: '障害者', reading: 'しょうがいしゃ', meaning: 'disabled person'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1164',
@@ -27947,6 +38191,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['イン', 'オン'],
     kunyomi: ['かく', 'よ'],
+    commonWords: [
+      CommonWord(word: '隠す', reading: 'かくす', meaning: 'to hide'),
+      CommonWord(word: '隠滅', reading: 'いんめつ', meaning: 'destruction'),
+      CommonWord(word: '見え隠れ', reading: 'みえかくれ', meaning: 'appearing and disappearing'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1165',
@@ -27960,6 +38209,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['リン'],
     kunyomi: ['とな', 'となり'],
+    commonWords: [
+      CommonWord(word: '隣', reading: 'となり', meaning: 'next'),
+      CommonWord(word: '隣人', reading: 'りんじん', meaning: 'neighbour'),
+      CommonWord(word: '隣家', reading: 'りんか', meaning: 'neighbouring house'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1166',
@@ -27973,6 +38227,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['レイ'],
     kunyomi: ['したが', 'しもべ'],
+    commonWords: [
+      CommonWord(word: '奴隷', reading: 'どれい', meaning: 'slave'),
+      CommonWord(word: '隷書', reading: 'れいしょ', meaning: 'clerical script'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1167',
@@ -27986,6 +38244,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シュン', 'ジュン'],
     kunyomi: ['はやぶさ'],
+    commonWords: [
+      CommonWord(word: '隼', reading: 'はやぶさ', meaning: 'falcon'),
+      CommonWord(word: '隼科', reading: 'はやぶさか', meaning: 'Falconidae'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1168',
@@ -27999,6 +38261,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ユウ'],
     kunyomi: ['お', 'おす', 'おん'],
+    commonWords: [
+      CommonWord(word: '雄', reading: 'おす', meaning: 'male'),
+      CommonWord(word: '英雄', reading: 'えいゆう', meaning: 'hero'),
+      CommonWord(word: '雄大', reading: 'ゆうだい', meaning: 'grand'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1169',
@@ -28012,6 +38279,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ガ'],
     kunyomi: ['みや'],
+    commonWords: [
+      CommonWord(word: '優雅', reading: 'ゆうが', meaning: 'elegant'),
+      CommonWord(word: '雅楽', reading: 'ががく', meaning: 'gagaku'),
+      CommonWord(word: '雅致', reading: 'がち', meaning: 'artistry'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1170',
@@ -28025,6 +38297,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シ'],
     kunyomi: ['め', 'めす', 'めん'],
+    commonWords: [
+      CommonWord(word: '雌', reading: 'めす', meaning: 'female'),
+      CommonWord(word: '雌雄', reading: 'しゆう', meaning: 'male and female'),
+      CommonWord(word: '雌花', reading: 'めばな', meaning: 'female flower'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1171',
@@ -28038,6 +38315,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['スウ', 'ス', 'ジュ'],
     kunyomi: ['ひな', 'ひよこ'],
+    commonWords: [
+      CommonWord(word: '雛', reading: 'ひよこ', meaning: 'young bird'),
+      CommonWord(word: '雛祭り', reading: 'ひなまつり', meaning: 'Hinamatsuri'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1172',
@@ -28051,6 +38332,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['リ'],
     kunyomi: ['はな'],
+    commonWords: [
+      CommonWord(word: '距離', reading: 'きょり', meaning: 'distance'),
+      CommonWord(word: '分離', reading: 'ぶんり', meaning: 'separation'),
+      CommonWord(word: '離れる', reading: 'はなれる', meaning: 'to be separated'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1173',
@@ -28064,6 +38350,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['フン'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '雰囲気', reading: 'ふんいき', meaning: 'atmosphere'),
+      CommonWord(word: '雰囲気美人', reading: 'ふんいきびじん', meaning: 'woman who is not traditionally'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1174',
@@ -28077,6 +38367,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ライ'],
     kunyomi: ['かみなり', 'いかずち', 'いかづち'],
+    commonWords: [
+      CommonWord(word: '雷', reading: 'かみなり', meaning: 'lightning'),
+      CommonWord(word: '地雷', reading: 'じらい', meaning: 'land mine'),
+      CommonWord(word: '機雷', reading: 'きらい', meaning: 'mine'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1175',
@@ -28090,6 +38385,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ジュ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '需要', reading: 'じゅよう', meaning: 'demand'),
+      CommonWord(word: '内需', reading: 'ないじゅ', meaning: 'domestic demand'),
+      CommonWord(word: '需給', reading: 'じゅきゅう', meaning: 'supply and demand'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1176',
@@ -28103,6 +38403,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['レイ', 'リョウ'],
     kunyomi: ['たま'],
+    commonWords: [
+      CommonWord(word: '幽霊', reading: 'ゆうれい', meaning: 'ghost'),
+      CommonWord(word: '霊', reading: 'れい', meaning: 'soul'),
+      CommonWord(word: '慰霊', reading: 'いれい', meaning: 'consoling the spirits of the dead'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1177',
@@ -28116,6 +38421,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ソウ'],
     kunyomi: ['しも'],
+    commonWords: [
+      CommonWord(word: '霜', reading: 'しも', meaning: 'frost'),
+      CommonWord(word: '霜降り', reading: 'しもふり', meaning: 'speckled with white'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1178',
@@ -28129,6 +38438,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['カ', 'ゲ'],
     kunyomi: ['かすみ', 'かす'],
+    commonWords: [
+      CommonWord(word: '霞', reading: 'かすみ', meaning: 'haze'),
+      CommonWord(word: '霞む', reading: 'かすむ', meaning: 'to become misty'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1179',
@@ -28142,6 +38455,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ム', 'ボウ', 'ブ'],
     kunyomi: ['きり'],
+    commonWords: [
+      CommonWord(word: '霧', reading: 'きり', meaning: 'fog'),
+      CommonWord(word: '濃霧', reading: 'のうむ', meaning: 'heavy fog'),
+      CommonWord(word: '霧雨', reading: 'きりさめ', meaning: 'drizzle'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1180',
@@ -28155,6 +38473,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ロ', 'ロウ'],
     kunyomi: ['つゆ'],
+    commonWords: [
+      CommonWord(word: '露骨', reading: 'ろこつ', meaning: 'open'),
+      CommonWord(word: '暴露', reading: 'ばくろ', meaning: 'disclosure'),
+      CommonWord(word: '披露', reading: 'ひろう', meaning: 'announcement'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1181',
@@ -28168,6 +38491,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['セイ', 'ジョウ'],
     kunyomi: ['やす'],
+    commonWords: [
+      CommonWord(word: '靖国神社', reading: 'やすくにじんじゃ', meaning: 'Yasukuni Shrine'),
+      CommonWord(word: '靖国', reading: 'せいこく', meaning: 'pacifying the nation'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1182',
@@ -28181,6 +38508,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キク', 'キュウ'],
     kunyomi: ['まり'],
+    commonWords: [
+      CommonWord(word: '鞠', reading: 'まり', meaning: 'ball'),
+      CommonWord(word: '手鞠', reading: 'てまり', meaning: 'traditional Japanese handball'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1183',
@@ -28194,6 +38525,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['イン'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '余韻', reading: 'よいん', meaning: 'reverberation'),
+      CommonWord(word: '韻律', reading: 'いんりつ', meaning: 'metre'),
+      CommonWord(word: '韻', reading: 'いん', meaning: 'rhyme'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1184',
@@ -28207,6 +38543,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キョウ'],
     kunyomi: ['ひび'],
+    commonWords: [
+      CommonWord(word: '影響', reading: 'えいきょう', meaning: 'influence'),
+      CommonWord(word: '反響', reading: 'はんきょう', meaning: 'echo'),
+      CommonWord(word: '音響', reading: 'おんきょう', meaning: 'sound'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1185',
@@ -28220,6 +38561,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['コウ'],
     kunyomi: ['うなじ'],
+    commonWords: [
+      CommonWord(word: '項目', reading: 'こうもく', meaning: 'item'),
+      CommonWord(word: '要項', reading: 'ようこう', meaning: 'important points'),
+      CommonWord(word: '条項', reading: 'じょうこう', meaning: 'clause'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1186',
@@ -28233,6 +38579,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ス', 'シュ'],
     kunyomi: ['すべから', 'すべし', 'ひげ', 'まつ'],
+    commonWords: [
+      CommonWord(word: '必須', reading: 'ひっす', meaning: 'indispensable'),
+      CommonWord(word: '必須条件', reading: 'ひっすじょうけん', meaning: 'essential condition'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1187',
@@ -28246,6 +38596,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ショウ', 'ジュ', 'ヨウ'],
     kunyomi: ['かたち', 'たた', 'ほめ'],
+    commonWords: [
+      CommonWord(word: '奉献頌', reading: 'ほうけんしょう', meaning: 'offertory'),
+      CommonWord(word: '頌栄', reading: 'しょうえい', meaning: 'doxology'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1188',
@@ -28259,6 +38613,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ガン'],
     kunyomi: ['かたく'],
+    commonWords: [
+      CommonWord(word: '頑固', reading: 'がんこ', meaning: 'stubborn'),
+      CommonWord(word: '頑張って', reading: 'がんばって', meaning: 'do your best'),
+      CommonWord(word: '頑張り', reading: 'がんばり', meaning: 'tenacity'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1189',
@@ -28272,6 +38631,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ハン'],
     kunyomi: ['わ'],
+    commonWords: [
+      CommonWord(word: '頒布', reading: 'はんぷ', meaning: 'distribution'),
+      CommonWord(word: '頒価', reading: 'はんか', meaning: 'distribution price'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1190',
@@ -28285,6 +38648,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ヒン'],
     kunyomi: ['しき'],
+    commonWords: [
+      CommonWord(word: '頻繁', reading: 'ひんぱん', meaning: 'frequent'),
+      CommonWord(word: '頻度', reading: 'ひんど', meaning: 'frequency'),
+      CommonWord(word: '頻発', reading: 'ひんぱつ', meaning: 'frequent occurrence'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1191',
@@ -28298,6 +38666,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ケン'],
     kunyomi: ['あきらか', 'あらわ'],
+    commonWords: [
+      CommonWord(word: '顕微鏡', reading: 'けんびきょう', meaning: 'microscope'),
+      CommonWord(word: '顕著', reading: 'けんちょ', meaning: 'remarkable'),
+      CommonWord(word: '顕彰', reading: 'けんしょう', meaning: 'honouring'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1192',
@@ -28311,6 +38684,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['コ'],
     kunyomi: ['かえり'],
+    commonWords: [
+      CommonWord(word: '顧客', reading: 'こきゃく', meaning: 'customer'),
+      CommonWord(word: '回顧', reading: 'かいこ', meaning: 'recollecting'),
+      CommonWord(word: '顧問', reading: 'こもん', meaning: 'adviser'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1193',
@@ -28324,6 +38702,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['サツ', 'ソウ'],
     kunyomi: ['さっ'],
+    commonWords: [
+      CommonWord(word: '颯爽', reading: 'さっそう', meaning: 'gallant'),
+      CommonWord(word: '颯々', reading: 'さっさつ', meaning: 'rustling'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1194',
@@ -28337,6 +38719,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キ'],
     kunyomi: ['う'],
+    commonWords: [
+      CommonWord(word: '飢餓', reading: 'きが', meaning: 'starvation'),
+      CommonWord(word: '飢える', reading: 'うえる', meaning: 'to starve'),
+      CommonWord(word: '飢え', reading: 'うえ', meaning: 'hunger'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1195',
@@ -28350,6 +38737,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シ'],
     kunyomi: ['か'],
+    commonWords: [
+      CommonWord(word: '飼育', reading: 'しいく', meaning: 'breeding'),
+      CommonWord(word: '飼料', reading: 'しりょう', meaning: 'fodder'),
+      CommonWord(word: '飼い主', reading: 'かいぬし', meaning: 'owner'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1196',
@@ -28363,6 +38755,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ホウ'],
     kunyomi: ['あ'],
+    commonWords: [
+      CommonWord(word: '飽和', reading: 'ほうわ', meaning: 'saturation'),
+      CommonWord(word: '飽きる', reading: 'あきる', meaning: 'to get tired of'),
+      CommonWord(word: '飽食', reading: 'ほうしょく', meaning: 'eating until one is full'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1197',
@@ -28376,6 +38773,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ショク'],
     kunyomi: ['かざ'],
+    commonWords: [
+      CommonWord(word: '飾り', reading: 'かざり', meaning: 'decoration'),
+      CommonWord(word: '装飾', reading: 'そうしょく', meaning: 'ornament'),
+      CommonWord(word: '飾る', reading: 'かざる', meaning: 'to decorate'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1198',
@@ -28389,6 +38791,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ヨウ', 'リョウ'],
     kunyomi: ['やしな'],
+    commonWords: [
+      CommonWord(word: '栄養', reading: 'えいよう', meaning: 'nutrition'),
+      CommonWord(word: '養成', reading: 'ようせい', meaning: 'training'),
+      CommonWord(word: '教養', reading: 'きょうよう', meaning: 'culture'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1199',
@@ -28402,6 +38809,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ガ'],
     kunyomi: ['う'],
+    commonWords: [
+      CommonWord(word: '飢餓', reading: 'きが', meaning: 'starvation'),
+      CommonWord(word: '餓え', reading: 'うえ', meaning: 'hunger'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1200',
@@ -28415,6 +38826,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ケイ', 'キョウ'],
     kunyomi: ['かお', 'かおり'],
+    commonWords: [
+      CommonWord(word: '馨しい', reading: 'かんばしい', meaning: 'sweet-smelling'),
+      CommonWord(word: '馨香', reading: 'けいこう', meaning: 'fragrance'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1201',
@@ -28428,6 +38843,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ダ', 'タ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '無駄遣い', reading: 'むだづかい', meaning: 'waste'),
+      CommonWord(word: '駄目', reading: 'だめ', meaning: 'no good'),
+      CommonWord(word: '下駄', reading: 'げた', meaning: 'geta'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1202',
@@ -28441,6 +38861,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ク'],
     kunyomi: ['か'],
+    commonWords: [
+      CommonWord(word: '駆ける', reading: 'かける', meaning: 'to run'),
+      CommonWord(word: '駆使', reading: 'くし', meaning: 'using freely'),
+      CommonWord(word: '駆動', reading: 'くどう', meaning: 'drive'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1203',
@@ -28454,6 +38879,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ク'],
     kunyomi: ['こま'],
+    commonWords: [
+      CommonWord(word: '駒', reading: 'こま', meaning: 'piece'),
+      CommonWord(word: '荒駒', reading: 'あらごま', meaning: 'wild or untamed horse'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1204',
@@ -28467,6 +38896,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['シュン', 'スン'],
     kunyomi: ['すぐ'],
+    commonWords: [
+      CommonWord(word: '優駿', reading: 'ゆうしゅん', meaning: 'fine racehorse'),
+      CommonWord(word: '駿足', reading: 'しゅんそく', meaning: 'swiftness of foot'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1205',
@@ -28480,6 +38913,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '騎手', reading: 'きしゅ', meaning: 'horseman'),
+      CommonWord(word: '一騎打ち', reading: 'いっきうち', meaning: 'single combat'),
+      CommonWord(word: '騎馬', reading: 'きば', meaning: 'horse riding'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1206',
@@ -28493,6 +38931,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ソウ'],
     kunyomi: ['さわ', 'うれい'],
+    commonWords: [
+      CommonWord(word: '騒ぎ', reading: 'さわぎ', meaning: 'uproar'),
+      CommonWord(word: '騒音', reading: 'そうおん', meaning: 'noise'),
+      CommonWord(word: '騒動', reading: 'そうどう', meaning: 'riot'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1207',
@@ -28506,6 +38949,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['トウ'],
     kunyomi: ['あが', 'のぼ'],
+    commonWords: [
+      CommonWord(word: '沸騰', reading: 'ふっとう', meaning: 'boiling'),
+      CommonWord(word: '高騰', reading: 'こうとう', meaning: 'sharp rise'),
+      CommonWord(word: '急騰', reading: 'きゅうとう', meaning: 'sudden rise'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1208',
@@ -28519,6 +38967,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キョウ'],
     kunyomi: ['おどろ'],
+    commonWords: [
+      CommonWord(word: '驚き', reading: 'おどろき', meaning: 'surprise'),
+      CommonWord(word: '驚かす', reading: 'おどろかす', meaning: 'to surprise'),
+      CommonWord(word: '驚異', reading: 'きょうい', meaning: 'wonder'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1209',
@@ -28532,6 +38985,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ズイ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '骨髄', reading: 'こつずい', meaning: 'bone marrow'),
+      CommonWord(word: '神髄', reading: 'しんずい', meaning: 'essence'),
+      CommonWord(word: '脊髄', reading: 'せきずい', meaning: 'spinal cord'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1210',
@@ -28545,6 +39003,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キ'],
     kunyomi: ['おに'],
+    commonWords: [
+      CommonWord(word: '鬼', reading: 'おに', meaning: 'ogre'),
+      CommonWord(word: '吸血鬼', reading: 'きゅうけつき', meaning: 'vampire'),
+      CommonWord(word: '鬼才', reading: 'きさい', meaning: 'wizard'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1211',
@@ -28558,6 +39021,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['カイ'],
     kunyomi: ['さきがけ', 'かしら'],
+    commonWords: [
+      CommonWord(word: '魁', reading: 'さきがけ', meaning: 'pioneer'),
+      CommonWord(word: '魁偉', reading: 'かいい', meaning: 'brawny'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1212',
@@ -28571,6 +39038,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['コン'],
     kunyomi: ['たましい', 'たま'],
+    commonWords: [
+      CommonWord(word: '魂', reading: 'たましい', meaning: 'soul'),
+      CommonWord(word: '鎮魂', reading: 'ちんこん', meaning: 'repose of a soul'),
+      CommonWord(word: '商魂', reading: 'しょうこん', meaning: 'commercial spirit'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1213',
@@ -28584,6 +39056,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ミ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '魅力', reading: 'みりょく', meaning: 'charm'),
+      CommonWord(word: '魅惑', reading: 'みわく', meaning: 'fascination'),
+      CommonWord(word: '魅力的', reading: 'みりょくてき', meaning: 'charming'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1214',
@@ -28597,6 +39074,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['マ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '悪魔', reading: 'あくま', meaning: 'devil'),
+      CommonWord(word: '邪魔', reading: 'じゃま', meaning: 'hindrance'),
+      CommonWord(word: '魔法', reading: 'まほう', meaning: 'magic'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1215',
@@ -28610,6 +39092,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['デン', 'ネン'],
     kunyomi: ['あゆ', 'なまず'],
+    commonWords: [
+      CommonWord(word: '鮎', reading: 'あゆ', meaning: 'ayu'),
+      CommonWord(word: '落ち鮎', reading: 'おちあゆ', meaning: 'sweetfish going downstream to spawn'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1216',
@@ -28623,6 +39109,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['セン'],
     kunyomi: ['あざ'],
+    commonWords: [
+      CommonWord(word: '新鮮', reading: 'しんせん', meaning: 'fresh'),
+      CommonWord(word: '鮮やか', reading: 'あざやか', meaning: 'vivid'),
+      CommonWord(word: '北朝鮮', reading: 'きたちょうせん', meaning: 'North Korea'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1217',
@@ -28636,6 +39127,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['リ'],
     kunyomi: ['こい'],
+    commonWords: [
+      CommonWord(word: '鯉', reading: 'こい', meaning: 'common carp'),
+      CommonWord(word: '錦鯉', reading: 'にしきごい', meaning: 'coloured carp'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1218',
@@ -28649,6 +39144,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['チョウ'],
     kunyomi: ['たい'],
+    commonWords: [
+      CommonWord(word: '鯛', reading: 'たい', meaning: 'sea bream'),
+      CommonWord(word: '鯛焼き', reading: 'たいやき', meaning: 'fish-shaped pancake filled with bean jam'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1219',
@@ -28662,6 +39161,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ゲイ'],
     kunyomi: ['くじら'],
+    commonWords: [
+      CommonWord(word: '鯨', reading: 'くじら', meaning: 'whale'),
+      CommonWord(word: '捕鯨', reading: 'ほげい', meaning: 'whaling'),
+      CommonWord(word: '鯨肉', reading: 'げいにく', meaning: 'whale meat'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1220',
@@ -28675,6 +39179,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['キュウ', 'ク'],
     kunyomi: ['はと', 'あつ'],
+    commonWords: [
+      CommonWord(word: '鳩', reading: 'はと', meaning: 'pigeon'),
+      CommonWord(word: '鳩首', reading: 'きゅうしゅ', meaning: 'going into a huddle'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1221',
@@ -28688,6 +39196,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ホウ', 'フウ'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '鳳凰', reading: 'ほうおう', meaning: 'Chinese firebird'),
+      CommonWord(word: '鳳駕', reading: 'ほうが', meaning: 'imperial carriage'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1222',
@@ -28701,6 +39213,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['コウ', 'ゴウ'],
     kunyomi: ['おおとり', 'ひしくい', 'おおがり'],
+    commonWords: [
+      CommonWord(word: '鴻大', reading: 'こうだい', meaning: 'great'),
+      CommonWord(word: '鴻', reading: 'おおとり', meaning: 'large bird'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1223',
@@ -28714,6 +39230,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ホウ'],
     kunyomi: ['おおとり'],
+    commonWords: [
+      CommonWord(word: '鵬程', reading: 'ほうてい', meaning: 'long cruise'),
+      CommonWord(word: '鵬翼', reading: 'ほうよく', meaning: 'phoenix wings'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1224',
@@ -28727,6 +39247,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ケイ'],
     kunyomi: ['にわとり', 'とり'],
+    commonWords: [
+      CommonWord(word: '鶏', reading: 'にわとり', meaning: 'chicken'),
+      CommonWord(word: '鶏肉', reading: 'とりにく', meaning: 'chicken meat'),
+      CommonWord(word: '養鶏', reading: 'ようけい', meaning: 'poultry raising'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1225',
@@ -28740,6 +39265,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['カク'],
     kunyomi: ['つる'],
+    commonWords: [
+      CommonWord(word: '鶴', reading: 'つる', meaning: 'crane'),
+      CommonWord(word: '千羽鶴', reading: 'せんばづる', meaning: 'many (traditionally 1000) paper cranes'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1226',
@@ -28753,6 +39282,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ヨウ', 'オウ'],
     kunyomi: ['たか'],
+    commonWords: [
+      CommonWord(word: '鷹', reading: 'たか', meaning: 'hawk'),
+      CommonWord(word: '鷹匠', reading: 'たかじょう', meaning: 'falconer'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1227',
@@ -28766,6 +39299,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['ロク'],
     kunyomi: ['しか', 'か'],
+    commonWords: [
+      CommonWord(word: '鹿', reading: 'しか', meaning: 'deer'),
+      CommonWord(word: '馬鹿らしい', reading: 'ばからしい', meaning: 'absurd'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1228',
@@ -28779,6 +39316,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['レイ'],
     kunyomi: ['うるわ', 'うら'],
+    commonWords: [
+      CommonWord(word: '華麗', reading: 'かれい', meaning: 'splendid'),
+      CommonWord(word: '綺麗', reading: 'きれい', meaning: 'pretty'),
+      CommonWord(word: '美辞麗句', reading: 'びじれいく', meaning: 'flowery words'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1229',
@@ -28792,6 +39334,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['リン'],
     kunyomi: [],
+    commonWords: [
+      CommonWord(word: '麒麟', reading: 'きりん', meaning: 'giraffe'),
+      CommonWord(word: '麒麟児', reading: 'きりんじ', meaning: 'child prodigy'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1230',
@@ -28805,6 +39351,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['マ', 'マア'],
     kunyomi: ['あさ'],
+    commonWords: [
+      CommonWord(word: '麻薬', reading: 'まやく', meaning: 'narcotic'),
+      CommonWord(word: '麻酔', reading: 'ますい', meaning: 'anaesthesia'),
+      CommonWord(word: '麻', reading: 'あさ', meaning: 'cannabis'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1231',
@@ -28818,6 +39369,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: [],
     kunyomi: ['まろ'],
+    commonWords: [
+      CommonWord(word: '麿', reading: 'まろ', meaning: 'I (archaic)'),
+      CommonWord(word: '麿崖仏', reading: 'まがいぶつ', meaning: 'Buddha carved on a rock face'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1232',
@@ -28831,6 +39386,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['レイ', 'リ'],
     kunyomi: ['くろ'],
+    commonWords: [
+      CommonWord(word: '黎明', reading: 'れいめい', meaning: 'daybreak'),
+      CommonWord(word: '黎明期', reading: 'れいめいき', meaning: 'dawn'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1233',
@@ -28844,6 +39403,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['モク', 'ボク'],
     kunyomi: ['だま', 'もだ'],
+    commonWords: [
+      CommonWord(word: '沈黙', reading: 'ちんもく', meaning: 'silence'),
+      CommonWord(word: '黙る', reading: 'だまる', meaning: 'to be silent'),
+      CommonWord(word: '暗黙', reading: 'あんもく', meaning: 'tacit'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1234',
@@ -28857,6 +39421,10 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['タイ'],
     kunyomi: ['まゆずみ'],
+    commonWords: [
+      CommonWord(word: '黛青', reading: 'たいせい', meaning: 'blackish blue'),
+      CommonWord(word: '黛', reading: 'まゆずみ', meaning: 'eyebrow makeup'),
+    ],
   ),
   KanjiCard(
     id: 'n1-1235',
@@ -28870,6 +39438,11 @@ const hardcodedKanjiCards = <KanjiCard>[
     jlptLevel: JlptLevel.n1,
     onyomi: ['コ'],
     kunyomi: ['つづみ'],
+    commonWords: [
+      CommonWord(word: '太鼓', reading: 'たいこ', meaning: 'drum'),
+      CommonWord(word: '鼓舞', reading: 'こぶ', meaning: 'encouragement'),
+      CommonWord(word: '鼓動', reading: 'こどう', meaning: 'beat'),
+    ],
   ),
 ];
 

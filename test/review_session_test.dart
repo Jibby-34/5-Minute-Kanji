@@ -86,6 +86,30 @@ void main() {
     },
   );
 
+  test(
+    'continueWith appends one new card and ignores ones already in play',
+    () {
+      final session = ReviewSession(
+        config: ReviewSessionConfig.fiveMinute,
+        cards: [_cards[0]],
+      );
+
+      expect(session.continueWith(_cards[0]), isFalse);
+      session.recordRating(ReviewResult.again);
+      expect(session.continueWith(_cards[0]), isFalse);
+      expect(session.queued.map((card) => card.id), ['a']);
+
+      session.recordRating(ReviewResult.good);
+      expect(session.isComplete, isTrue);
+      expect(session.continueWith(_cards[0]), isFalse);
+      expect(session.continueWith(_cards[1]), isTrue);
+      expect(session.current?.id, 'b');
+      expect(session.continueWith(_cards[1]), isFalse);
+      expect(session.continueWith(_cards[2]), isTrue);
+      expect(session.queued.map((card) => card.id), ['b', 'c']);
+    },
+  );
+
   test('session config drives max cards, not a hardcoded five', () {
     const config = ReviewSessionConfig(
       duration: Duration(minutes: 2),

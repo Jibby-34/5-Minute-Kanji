@@ -14,7 +14,9 @@ import '../../core/models/study_phase.dart';
 import '../../core/navigation/app_routes.dart';
 import '../../core/theme/app_theme.dart';
 import '../../core/utils/clock.dart';
+import '../../repositories/kanji_repository.dart';
 import '../../repositories/progress_repository.dart';
+import '../../services/daily_workload.dart';
 import '../../services/srs_scheduler.dart';
 import '../../widgets/bottom_action_inset.dart';
 import '../../widgets/primary_button.dart';
@@ -30,6 +32,21 @@ import 'widgets/handwriting_pad.dart';
 /// [ReviewScreen.onSessionComplete].
 typedef SessionCompleteBuilder =
     Widget Function(SessionSummary summary, StartOfDay startOfDay);
+
+/// The deck is absent in a few widget tests that host a session directly.
+DailyWorkloadService? _workloadService(
+  BuildContext context,
+  ProgressRepository progressRepository,
+) {
+  try {
+    return DailyWorkloadService(
+      kanjiRepository: context.read<KanjiRepository>(),
+      progressRepository: progressRepository,
+    );
+  } on ProviderNotFoundException {
+    return null;
+  }
+}
 
 class ReviewScreen extends StatelessWidget {
   const ReviewScreen({
@@ -79,14 +96,16 @@ class ReviewScreen extends StatelessWidget {
 
     return ChangeNotifierProvider(
       create: (context) {
+        final progressRepository = context.read<ProgressRepository>();
         final controller = ReviewController(
-          progressRepository: context.read<ProgressRepository>(),
+          progressRepository: progressRepository,
           srsEngine: context.read<SrsScheduler>(),
           cards: cards,
           config: config,
           isPractice: isPractice,
           isStudyAnyway: isStudyAnyway,
           clock: clock,
+          workloadService: _workloadService(context, progressRepository),
         );
         controller.hydrate();
         return controller;

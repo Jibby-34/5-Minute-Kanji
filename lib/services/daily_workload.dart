@@ -224,6 +224,46 @@ class DailyWorkloadService {
     );
   }
 
+  /// Eligible cards for today, highest priority first.
+  ///
+  /// This is the same ranking Study Anyway uses once the planned sitting is
+  /// finished. A card is included only when today's SRS rules already allow
+  /// it: a review available today, or a new kanji still inside the daily
+  /// allowance. Cards already chosen for the open sitting stay in this list
+  /// until their schedules change; the session drops those itself.
+  Future<List<KanjiCard>> eligibleByPriority({required DateTime now}) async {
+    final cards = await kanjiRepository.getAll();
+    final schedules = await progressRepository.getSchedules();
+    final settings = await progressRepository.getSettings();
+    final dayBoundary = settings.startOfDay;
+    final daily = (await progressRepository.getDailyNewKanji()).forDay(
+      now,
+      startOfDay: dayBoundary,
+    );
+    final remainingNew = math.min(
+      selector.countNew(cards: cards, schedules: schedules),
+      daily.remainingAllowance(settings.newKanjiPerDay),
+    );
+    final curriculum = CurriculumPriorityService(cards);
+    final knownCardIds = {
+      for (final card in cards)
+        if (!selector.isNew(schedules[card.id])) card.id,
+    };
+    return _byPriority(
+      _candidates(
+        cards: cards,
+        schedules: schedules,
+        now: now,
+        startOfDay: dayBoundary,
+        maxNewCards: remainingNew,
+        compareNewCards: curriculum.comparer(
+          mode: settings.curriculumMode,
+          knownCardIds: knownCardIds,
+        ),
+      ),
+    );
+  }
+
   List<SessionCandidate> _candidates({
     required List<KanjiCard> cards,
     required Map<String, CardSchedule> schedules,
