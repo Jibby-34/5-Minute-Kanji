@@ -10,6 +10,7 @@ import '../../core/models/study_phase.dart';
 import '../../core/utils/clock.dart';
 import '../../repositories/progress_repository.dart';
 import '../../services/answer_grader.dart';
+import '../../services/daily_review_clock.dart';
 import '../../services/due_card_selector.dart';
 import '../../services/kanji_status_resolver.dart';
 import '../../services/mark_as_known.dart';
@@ -45,9 +46,13 @@ class ReviewController extends ChangeNotifier {
          config: config,
          cards: cards,
          isPractice: isPractice,
-         startTime: startTime,
+         startTime: startTime ?? (clock ?? DateTime.now)(),
        ) {
     _cardShownAt = this.clock();
+    reviewClock = DailyReviewClock(
+      startedAt: session.startTime,
+      startOfDay: _startOfDay,
+    );
     if (schedules != null) {
       _schedules = Map<String, CardSchedule>.from(schedules);
       _applyPhaseForCurrent();
@@ -66,6 +71,7 @@ class ReviewController extends ChangeNotifier {
   final bool isPractice;
   final bool isStudyAnyway;
   final ReviewSession session;
+  late final DailyReviewClock reviewClock;
 
   bool ready = false;
   bool busy = false;
@@ -79,6 +85,9 @@ class ReviewController extends ChangeNotifier {
   Map<String, CardSchedule> _schedules = {};
   int padGeneration = 0;
   bool _disposed = false;
+  bool _reviewTimeReady = false;
+  bool _deferredReviewTimeSave = false;
+  Future<void> _reviewTimeWrites = Future<void>.value();
   StartOfDay _startOfDay = StartOfDay.defaults;
 
   KanjiCard? get current => session.current ?? _visibleCard;
@@ -103,20 +112,68 @@ class ReviewController extends ChangeNotifier {
   bool get submitted => phase == StudyPhase.compare;
 
   Future<void> hydrate() async {
-    if (ready || _disposed) return;
-    final schedules = await progressRepository.getSchedules();
+    if (_disposed || _reviewTimeReady) return;
     final settings = await progressRepository.getSettings();
-    if (_disposed || ready) return;
-    _schedules = Map<String, CardSchedule>.from(schedules);
+    if (_reviewTimeReady) return;
+    if (_disposed && !_deferredReviewTimeSave) return;
     _startOfDay = settings.startOfDay;
-    _applyPhaseForCurrent();
-    ready = true;
-    notifyListeners();
+    reviewClock.startOfDay = _startOfDay;
+
+    final stored = await progressRepository.getDailyReviewTime();
+    if (_reviewTimeReady) return;
+    if (_disposed && !_deferredReviewTimeSave) return;
+    final normalized = stored.forDay(clock(), startOfDay: _startOfDay);
+    reviewClock.accrued = normalized.duration;
+    reviewClock.accruedDay = normalized.date;
+    _reviewTimeReady = true;
+
+    if (!_disposed && !ready) {
+      final schedules = await progressRepository.getSchedules();
+      if (!_disposed && !ready) {
+        _schedules = Map<String, CardSchedule>.from(schedules);
+        _applyPhaseForCurrent();
+        ready = true;
+      }
+    }
+
+    if (_deferredReviewTimeSave) await checkpointReviewTime();
+    if (!_disposed) notifyListeners();
+  }
+
+  /// Freezes the daily clock. Time until the app is open again is not review.
+  void pauseReviewTime() {
+    reviewClock.pause(clock());
+  }
+
+  /// Continues the daily clock from [clock], leaving the gap uncounted.
+  void resumeReviewTime() {
+    reviewClock.resume(clock());
+  }
+
+  /// Writes today's review time. Safe to call again; each save replaces the
+  /// day's total with the clock's current value.
+  Future<void> checkpointReviewTime([DateTime? at]) {
+    if (!_reviewTimeReady) {
+      _deferredReviewTimeSave = true;
+      return Future<void>.value();
+    }
+    _deferredReviewTimeSave = false;
+    final now = at ?? clock();
+    final snapshot = DailyReviewTime(
+      date: _startOfDay.studyDate(now),
+      duration: reviewClock.totalAt(now),
+    );
+    final run = _reviewTimeWrites.then(
+      (_) => progressRepository.saveDailyReviewTime(snapshot),
+    );
+    _reviewTimeWrites = run.catchError((Object _) {});
+    return run;
   }
 
   Future<StartOfDay> _loadStartOfDay() async {
     final settings = await progressRepository.getSettings();
     _startOfDay = settings.startOfDay;
+    reviewClock.startOfDay = _startOfDay;
     return _startOfDay;
   }
 
@@ -185,10 +242,7 @@ class ReviewController extends ChangeNotifier {
 
       if (session.isComplete) {
         await _recordFinishedSession(now, dayBoundary);
-        summary = session.toSummary(
-          now: now,
-          nextReviewAt: await _soonestDue(now),
-        );
+        summary = await _summarize(now);
         return summary;
       }
 
@@ -222,10 +276,7 @@ class ReviewController extends ChangeNotifier {
 
       if (session.isComplete) {
         await _recordFinishedSession(now, dayBoundary);
-        summary = session.toSummary(
-          now: now,
-          nextReviewAt: await _soonestDue(now),
-        );
+        summary = await _summarize(now);
         return summary;
       }
 
@@ -296,10 +347,7 @@ class ReviewController extends ChangeNotifier {
 
       if (session.isComplete) {
         await _recordFinishedSession(now, dayBoundary);
-        summary = session.toSummary(
-          now: now,
-          nextReviewAt: await _soonestDue(now),
-        );
+        summary = await _summarize(now);
         busy = false;
         notifyListeners();
         return summary;
@@ -312,6 +360,15 @@ class ReviewController extends ChangeNotifier {
     }
 
     return null;
+  }
+
+  Future<SessionSummary> _summarize(DateTime now) async {
+    await checkpointReviewTime(now);
+    return session.toSummary(
+      now: now,
+      nextReviewAt: await _soonestDue(now),
+      duration: reviewClock.totalAt(now),
+    );
   }
 
   Future<void> _recordFinishedSession(

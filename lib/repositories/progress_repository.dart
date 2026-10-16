@@ -29,6 +29,10 @@ abstract class ProgressRepository {
 
   Future<void> saveDailyNewKanji(DailyNewKanjiProgress progress);
 
+  Future<DailyReviewTime> getDailyReviewTime();
+
+  Future<void> saveDailyReviewTime(DailyReviewTime progress);
+
   Future<DailySessionPlan> getDailySessionPlan();
 
   Future<void> saveDailySessionPlan(DailySessionPlan plan);

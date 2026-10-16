@@ -10,6 +10,7 @@ import '../../repositories/stroke_data_repository.dart';
 import '../../services/kanji_status_resolver.dart';
 import '../../services/mark_as_known.dart';
 import '../../widgets/bottom_action_inset.dart';
+import '../../widgets/common_words_section.dart';
 import '../../widgets/mnemonic_text.dart';
 import '../../widgets/primary_button.dart';
 import '../stroke_order/kanji_stroke_animation.dart';
@@ -259,6 +260,18 @@ class _KanjiDetailScreenState extends State<KanjiDetailScreen> {
                         ),
                       ),
                     ),
+                    if (card.hasCommonWords) ...[
+                      const SizedBox(height: _cardGap),
+                      _infoCard(
+                        theme: theme,
+                        tone: palette.vocabulary,
+                        label: 'Common Words',
+                        child: CommonWordsSection(
+                          words: card.commonWords,
+                          showHeading: false,
+                        ),
+                      ),
+                    ],
                     const SizedBox(height: _cardGap),
                     _infoCard(
                       theme: theme,
@@ -668,6 +681,7 @@ class _DetailPalette {
     required this.status,
     required this.components,
     required this.memory,
+    required this.vocabulary,
     required this.stats,
     required this.readingChip,
     required this.readingChipText,
@@ -680,6 +694,7 @@ class _DetailPalette {
   final _CardTone status;
   final _CardTone components;
   final _CardTone memory;
+  final _CardTone vocabulary;
   final _CardTone stats;
   final Color readingChip;
   final Color readingChipText;
@@ -724,6 +739,13 @@ class _DetailPalette {
           icon: Icons.lightbulb_outline,
           iconBackground: const Color(0xFF383448),
           iconColor: const Color(0xFFB3A8C8),
+        ),
+        vocabulary: _CardTone(
+          background: const Color(0xFF262420),
+          border: const Color(0xFF3A3832),
+          icon: Icons.translate,
+          iconBackground: const Color(0xFF33302A),
+          iconColor: const Color(0xFFC4B8A4),
         ),
         stats: _CardTone(
           background: const Color(0xFF242320),
@@ -774,6 +796,13 @@ class _DetailPalette {
         icon: Icons.lightbulb_outline,
         iconBackground: Color(0xFFE7E2F3),
         iconColor: Color(0xFF7A6E96),
+      ),
+      vocabulary: const _CardTone(
+        background: Color(0xFFF7F5F0),
+        border: Color(0xFFE6E0D4),
+        icon: Icons.translate,
+        iconBackground: Color(0xFFE7E2D6),
+        iconColor: Color(0xFF5C564C),
       ),
       stats: const _CardTone(
         background: Color(0xFFFCFBF8),

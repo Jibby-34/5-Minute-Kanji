@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
@@ -90,8 +91,68 @@ class ReviewScreen extends StatelessWidget {
         controller.hydrate();
         return controller;
       },
-      child: _ReviewView(onSessionComplete: onSessionComplete),
+      child: _ReviewHost(onSessionComplete: onSessionComplete),
     );
+  }
+}
+
+/// Keeps today's review clock in step with the app lifecycle. Background time
+/// is paused and written out so a later sitting continues the same day.
+class _ReviewHost extends StatefulWidget {
+  const _ReviewHost({this.onSessionComplete});
+
+  final SessionCompleteBuilder? onSessionComplete;
+
+  @override
+  State<_ReviewHost> createState() => _ReviewHostState();
+}
+
+class _ReviewHostState extends State<_ReviewHost> with WidgetsBindingObserver {
+  ReviewController? _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _controller = context.read<ReviewController>();
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    final controller = _controller;
+    if (controller != null) {
+      controller.pauseReviewTime();
+      unawaited(controller.checkpointReviewTime());
+    }
+    super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    final controller = _controller;
+    if (controller == null) return;
+    switch (state) {
+      case AppLifecycleState.paused:
+      case AppLifecycleState.detached:
+      case AppLifecycleState.hidden:
+        controller.pauseReviewTime();
+        unawaited(controller.checkpointReviewTime());
+      case AppLifecycleState.resumed:
+        controller.resumeReviewTime();
+      case AppLifecycleState.inactive:
+        break;
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return _ReviewView(onSessionComplete: widget.onSessionComplete);
   }
 }
 
@@ -181,7 +242,13 @@ class _ReviewView extends StatelessWidget {
                   const Spacer(),
                   IconButton(
                     tooltip: 'Close',
-                    onPressed: () => Navigator.of(context).maybePop(),
+                    onPressed: () async {
+                      final controller = context.read<ReviewController>();
+                      controller.pauseReviewTime();
+                      await controller.checkpointReviewTime();
+                      if (!context.mounted) return;
+                      Navigator.of(context).maybePop();
+                    },
                     icon: const Icon(Icons.close),
                   ),
                 ],

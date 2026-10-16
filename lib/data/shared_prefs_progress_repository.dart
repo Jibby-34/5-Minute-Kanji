@@ -137,6 +137,19 @@ class SharedPrefsProgressRepository implements ProgressRepository {
   }
 
   @override
+  Future<DailyReviewTime> getDailyReviewTime() async {
+    await _ensureLoaded();
+    return _blob.dailyReviewTime;
+  }
+
+  @override
+  Future<void> saveDailyReviewTime(DailyReviewTime progress) async {
+    await _ensureLoaded();
+    _blob = _blob.copyWith(dailyReviewTime: progress);
+    await _persist();
+  }
+
+  @override
   Future<DailySessionPlan> getDailySessionPlan() async {
     await _ensureLoaded();
     return _blob.dailySessionPlan;
@@ -282,6 +295,7 @@ class _ProgressBlob {
     this.streak = StreakInfo.empty,
     this.settings = const AppSettings(),
     this.dailyNewKanji = DailyNewKanjiProgress.empty,
+    this.dailyReviewTime = DailyReviewTime.empty,
     this.dailySessionPlan = DailySessionPlan.empty,
     this.placement = PlacementProgress.empty,
     this.onboarding = OnboardingProgress.empty,
@@ -293,6 +307,7 @@ class _ProgressBlob {
   final StreakInfo streak;
   final AppSettings settings;
   final DailyNewKanjiProgress dailyNewKanji;
+  final DailyReviewTime dailyReviewTime;
   final DailySessionPlan dailySessionPlan;
   final PlacementProgress placement;
   final OnboardingProgress onboarding;
@@ -307,6 +322,7 @@ class _ProgressBlob {
     StreakInfo? streak,
     AppSettings? settings,
     DailyNewKanjiProgress? dailyNewKanji,
+    DailyReviewTime? dailyReviewTime,
     DailySessionPlan? dailySessionPlan,
     PlacementProgress? placement,
     OnboardingProgress? onboarding,
@@ -318,6 +334,7 @@ class _ProgressBlob {
       streak: streak ?? this.streak,
       settings: settings ?? this.settings,
       dailyNewKanji: dailyNewKanji ?? this.dailyNewKanji,
+      dailyReviewTime: dailyReviewTime ?? this.dailyReviewTime,
       dailySessionPlan: dailySessionPlan ?? this.dailySessionPlan,
       placement: placement ?? this.placement,
       onboarding: onboarding ?? this.onboarding,
@@ -334,6 +351,7 @@ class _ProgressBlob {
       'streak': streak.toJson(),
       'settings': settings.toJson(),
       'dailyNewKanji': dailyNewKanji.toJson(),
+      'dailyReviewTime': dailyReviewTime.toJson(),
       'dailySessionPlan': dailySessionPlan.toJson(),
       'placement': placement.toJson(),
       'onboarding': onboarding.toJson(),
@@ -372,6 +390,9 @@ class _ProgressBlob {
       settings: AppSettings.fromJson(_asStringKeyMap(json['settings'])),
       dailyNewKanji: DailyNewKanjiProgress.fromJson(
         _asStringKeyMap(json['dailyNewKanji']),
+      ),
+      dailyReviewTime: DailyReviewTime.fromJson(
+        _asStringKeyMap(json['dailyReviewTime']),
       ),
       dailySessionPlan: DailySessionPlan.fromJson(
         _asStringKeyMap(json['dailySessionPlan']),

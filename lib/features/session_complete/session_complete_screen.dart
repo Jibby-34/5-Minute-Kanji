@@ -184,7 +184,7 @@ class _CompletionHeader extends StatelessWidget {
         ),
         SizedBox(height: step),
         Text(
-          formatSessionDuration(duration),
+          '${formatSessionDuration(duration)} today',
           textAlign: TextAlign.center,
           style: theme.textTheme.titleMedium?.copyWith(
             color: theme.mutedText,

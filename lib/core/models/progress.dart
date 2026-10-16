@@ -144,6 +144,50 @@ class DailyNewKanjiProgress {
   }
 }
 
+/// Active time spent reviewing on one study day.
+///
+/// Earlier sittings stay in [duration] until the study day changes. Closing
+/// the app does not clear it.
+class DailyReviewTime {
+  const DailyReviewTime({this.date, this.duration = Duration.zero});
+
+  static const empty = DailyReviewTime();
+
+  final DateTime? date;
+  final Duration duration;
+
+  /// Stored time for [now]'s study day. A previous day's total becomes zero.
+  DailyReviewTime forDay(
+    DateTime now, {
+    StartOfDay startOfDay = StartOfDay.defaults,
+  }) {
+    final today = startOfDay.studyDate(now);
+    if (date != null && calendarDay(date!) == today) return this;
+    return DailyReviewTime(date: today);
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'date': date == null ? null : calendarDayKey(date!),
+      'durationMs': duration.inMilliseconds < 0 ? 0 : duration.inMilliseconds,
+    };
+  }
+
+  static DailyReviewTime fromJson(Map<String, dynamic>? json) {
+    if (json == null) return empty;
+    try {
+      final rawDate = json['date'] as String?;
+      final milliseconds = (json['durationMs'] as num?)?.toInt() ?? 0;
+      return DailyReviewTime(
+        date: rawDate == null ? null : DateTime.parse(rawDate),
+        duration: Duration(milliseconds: milliseconds < 0 ? 0 : milliseconds),
+      );
+    } catch (_) {
+      return empty;
+    }
+  }
+}
+
 class AppSettings {
   const AppSettings({
     this.averageSecondsPerCard = 12,

@@ -78,6 +78,7 @@ class MemoryProgressRepository implements ProgressRepository {
     Map<String, CardSchedule>? schedules,
     this.settings = const AppSettings(),
     this.dailyNewKanji = DailyNewKanjiProgress.empty,
+    this.dailyReviewTime = DailyReviewTime.empty,
     this.dailySessionPlan = DailySessionPlan.empty,
   }) : schedules = schedules ?? {};
 
@@ -86,6 +87,7 @@ class MemoryProgressRepository implements ProgressRepository {
   StreakInfo streak = StreakInfo.empty;
   AppSettings settings;
   DailyNewKanjiProgress dailyNewKanji;
+  DailyReviewTime dailyReviewTime;
   DailySessionPlan dailySessionPlan;
   PlacementProgress placement = PlacementProgress.empty;
   OnboardingProgress onboarding = OnboardingProgress.empty;
@@ -140,6 +142,14 @@ class MemoryProgressRepository implements ProgressRepository {
   @override
   Future<void> saveDailyNewKanji(DailyNewKanjiProgress next) async {
     dailyNewKanji = next;
+  }
+
+  @override
+  Future<DailyReviewTime> getDailyReviewTime() async => dailyReviewTime;
+
+  @override
+  Future<void> saveDailyReviewTime(DailyReviewTime next) async {
+    dailyReviewTime = next;
   }
 
   @override

@@ -12,6 +12,7 @@ import 'package:fiveminutekanji/core/models/kanji_status.dart';
 import 'package:fiveminutekanji/core/models/stroke_data.dart';
 import 'package:fiveminutekanji/core/theme/app_theme.dart';
 import 'package:fiveminutekanji/features/kanji_list/kanji_detail_screen.dart';
+import 'package:fiveminutekanji/widgets/common_words_section.dart';
 import 'package:fiveminutekanji/features/stroke_order/kanji_stroke_animation.dart';
 import 'package:fiveminutekanji/repositories/progress_repository.dart';
 import 'package:fiveminutekanji/repositories/stroke_data_repository.dart';
@@ -124,6 +125,7 @@ void main() {
     expect(find.text('N5'), findsOneWidget);
     expect(find.text('MEMORY TIP'), findsOneWidget);
     expect(find.text('One horizontal stroke.'), findsOneWidget);
+    expect(find.text('COMMON WORDS'), findsNothing);
     expect(find.text('REVIEW STATS'), findsOneWidget);
     expect(find.text('Reviews'), findsOneWidget);
     expect(find.text('Mark as Known'), findsOneWidget);
@@ -199,6 +201,109 @@ void main() {
     );
     await tester.pumpAndSettle();
     expect(find.text('REVIEW STATS'), findsOneWidget);
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets(
+    'detail shows common words and replaces them with the next kanji',
+    (tester) async {
+      usePhoneViewport(tester);
+      const school = KanjiCard(
+        id: 'school',
+        character: '学',
+        meaning: 'study',
+        keyword: 'study',
+        mnemonic: 'A child studies under a roof.',
+        commonWords: [
+          CommonWord(word: '学校', reading: 'がっこう', meaning: 'school'),
+          CommonWord(word: '学生', reading: 'がくせい', meaning: 'student'),
+        ],
+      );
+      const life = KanjiCard(
+        id: 'life',
+        character: '生',
+        meaning: 'life',
+        keyword: 'life',
+        mnemonic: 'A sprout pushing up through the soil.',
+        commonWords: [
+          CommonWord(word: '先生', reading: 'せんせい', meaning: 'teacher'),
+          CommonWord(word: '生活', reading: 'せいかつ', meaning: 'life'),
+        ],
+      );
+
+      await pumpDetail(tester, kanji: school);
+      expect(find.text('COMMON WORDS'), findsOneWidget);
+      expect(find.text('学校'), findsOneWidget);
+      expect(find.text('がっこう'), findsOneWidget);
+      expect(find.text('school'), findsOneWidget);
+      expect(find.text('学生'), findsOneWidget);
+      expect(find.text('がくせい'), findsOneWidget);
+      expect(find.text('student'), findsOneWidget);
+
+      final memoryTop = tester.getTopLeft(find.text('MEMORY TIP')).dy;
+      final wordsTop = tester.getTopLeft(find.text('COMMON WORDS')).dy;
+      final statsTop = tester.getTopLeft(find.text('REVIEW STATS')).dy;
+      expect(wordsTop, greaterThan(memoryTop));
+      expect(statsTop, greaterThan(wordsTop));
+
+      await pumpDetail(tester, kanji: life);
+      expect(find.text('学校'), findsNothing);
+      expect(find.text('school'), findsNothing);
+      expect(find.text('先生'), findsOneWidget);
+      expect(find.text('せんせい'), findsOneWidget);
+      expect(find.text('teacher'), findsOneWidget);
+      expect(find.text('生活'), findsOneWidget);
+      expect(find.text('せいかつ'), findsOneWidget);
+      expect(find.text('life'), findsOneWidget);
+    },
+  );
+
+  testWidgets('detail hides blank vocabulary instead of an empty section', (
+    tester,
+  ) async {
+    usePhoneViewport(tester);
+    const blank = KanjiCard(
+      id: 'blank-words',
+      character: '一',
+      meaning: 'one',
+      keyword: 'one',
+      mnemonic: 'One horizontal stroke.',
+      commonWords: [CommonWord(word: ' ', reading: '', meaning: '  ')],
+    );
+
+    await pumpDetail(tester, kanji: blank);
+    expect(find.text('COMMON WORDS'), findsNothing);
+    expect(find.byType(CommonWordsSection), findsNothing);
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('detail wraps long vocabulary on a narrow phone', (tester) async {
+    tester.view.physicalSize = const Size(320, 568);
+    tester.view.devicePixelRatio = 1.0;
+    addTearDown(tester.view.resetPhysicalSize);
+    addTearDown(tester.view.resetDevicePixelRatio);
+
+    const longMeaning =
+        'an extremely long definition used to confirm that vocabulary text wraps inside a narrow phone layout without overflowing the screen';
+    const longCard = KanjiCard(
+      id: 'long-words',
+      character: '学',
+      meaning: 'study',
+      keyword: 'study',
+      mnemonic: 'A child studies under a roof.',
+      commonWords: [
+        CommonWord(
+          word: '超長期学校教育制度改善推進委員会',
+          reading: 'ちょうちょうき',
+          meaning: longMeaning,
+        ),
+      ],
+    );
+
+    await pumpDetail(tester, kanji: longCard);
+    expect(find.text('超長期学校教育制度改善推進委員会'), findsOneWidget);
+    expect(find.text(longMeaning), findsOneWidget);
+    expect(tester.getSize(find.text(longMeaning)).height, greaterThan(36));
     expect(tester.takeException(), isNull);
   });
 }

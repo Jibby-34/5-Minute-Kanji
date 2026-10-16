@@ -94,9 +94,13 @@ class ReviewSession {
     return card;
   }
 
-  SessionSummary toSummary({required DateTime now, DateTime? nextReviewAt}) {
+  SessionSummary toSummary({
+    required DateTime now,
+    DateTime? nextReviewAt,
+    Duration? duration,
+  }) {
     return SessionSummary(
-      duration: elapsedAt(now),
+      duration: duration ?? elapsedAt(now),
       reviewedCount: reviewedCount,
       successfulCount: successfulCount < 0 ? 0 : successfulCount,
       againCount: againCount,

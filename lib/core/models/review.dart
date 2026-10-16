@@ -53,6 +53,7 @@ class SessionSummary {
     this.nextReviewAt,
   });
 
+  /// Active review time for the current study day, including earlier sittings.
   final Duration duration;
   final int reviewedCount;
   final int successfulCount;

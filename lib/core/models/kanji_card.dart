@@ -75,6 +75,27 @@ class KanjiComponent {
   }
 }
 
+/// A common Japanese word that uses a kanji.
+///
+/// [word] is the written form, [reading] is the full hiragana pronunciation,
+/// and [meaning] is a short English definition. Cards with no vocabulary leave
+/// [KanjiCard.commonWords] empty.
+class CommonWord {
+  const CommonWord({
+    required this.word,
+    required this.reading,
+    required this.meaning,
+  });
+
+  final String word;
+  final String reading;
+  final String meaning;
+
+  /// True when every field is missing or only whitespace.
+  bool get isBlank =>
+      word.trim().isEmpty && reading.trim().isEmpty && meaning.trim().isEmpty;
+}
+
 /// A single kanji study card. Content-agnostic: RTK, Anki, JLPT, or custom later.
 class KanjiCard {
   const KanjiCard({
@@ -91,6 +112,7 @@ class KanjiCard {
     this.onyomi = const [],
     this.kunyomi = const [],
     this.vocabulary = const [],
+    this.commonWords = const [],
     this.source = ContentSource.rtk,
     this.sourceDeckId,
     this.access = ContentAccess.free,
@@ -115,6 +137,9 @@ class KanjiCard {
   final List<String> onyomi;
   final List<String> kunyomi;
   final List<String> vocabulary;
+
+  /// Everyday words that use this kanji. Empty when the dataset has none.
+  final List<CommonWord> commonWords;
   final ContentSource source;
   final String? sourceDeckId;
   final ContentAccess access;
@@ -153,4 +178,7 @@ class KanjiCard {
   String get kunyomiLabel => kunyomi.join('・');
 
   bool get hasReadings => onyomi.isNotEmpty || kunyomi.isNotEmpty;
+
+  /// Whether [commonWords] has at least one word with visible text.
+  bool get hasCommonWords => commonWords.any((word) => !word.isBlank);
 }

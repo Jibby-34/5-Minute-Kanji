@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../core/models/kanji_card.dart';
 import '../../core/theme/app_theme.dart';
 import '../../core/theme/app_typography.dart';
+import '../../widgets/common_words_section.dart';
 import '../../widgets/mnemonic_text.dart';
 import '../../widgets/section_label.dart';
 import '../../widgets/soft_card.dart';
@@ -91,6 +92,10 @@ class LearnKanjiBody extends StatelessWidget {
                   ],
                   const SizedBox(height: 22),
                   _mnemonic(theme),
+                  if (card.hasCommonWords) ...[
+                    const SizedBox(height: 18),
+                    CommonWordsSection(words: card.commonWords),
+                  ],
                 ],
               ),
             ),

@@ -72,7 +72,7 @@ void main() {
     );
 
     expect(find.text('Nice work.'), findsOneWidget);
-    expect(find.text('4m 12s'), findsOneWidget);
+    expect(find.text('4m 12s today'), findsOneWidget);
     expect(find.text('A little progress goes a long way.'), findsOneWidget);
     expect(find.text('12'), findsOneWidget);
     expect(find.text('kanji reviewed'), findsOneWidget);
@@ -113,7 +113,7 @@ void main() {
           nextReviewAt: due,
         ),
       );
-      expect(find.text('75m 03s'), findsOneWidget);
+      expect(find.text('75m 03s today'), findsOneWidget);
       expect(find.text(timing), findsOneWidget);
     }
 
@@ -137,7 +137,7 @@ void main() {
       ),
     );
 
-    expect(find.text('0m 12s'), findsOneWidget);
+    expect(find.text('0m 12s today'), findsOneWidget);
     expect(find.text('A little progress goes a long way.'), findsOneWidget);
     expect(find.text('4'), findsNWidgets(2));
     expect(find.text('0'), findsOneWidget);
@@ -159,7 +159,7 @@ void main() {
     );
 
     expect(find.text('Nice work.'), findsOneWidget);
-    expect(find.text('0m 00s'), findsOneWidget);
+    expect(find.text('0m 00s today'), findsOneWidget);
     expect(find.text('Nothing to review this time.'), findsOneWidget);
     expect(find.text('A little progress goes a long way.'), findsNothing);
     expect(find.text('0'), findsNWidgets(3));
