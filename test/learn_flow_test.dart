@@ -274,8 +274,8 @@ void main() {
       expect(find.text(first.character), findsOneWidget);
       expect(find.text('MEANING'), findsOneWidget);
       expect(find.text(first.keyword), findsOneWidget);
-      expect(find.text('COMPONENTS'), findsOneWidget);
-      expect(find.text(first.componentsLabel), findsOneWidget);
+      expect(find.text('COMPONENTS'), findsNothing);
+      expect(find.text(first.componentsLabel), findsNothing);
       expect(
         find.bySemanticsLabel('Memory aid: ${first.mnemonic}'),
         findsOneWidget,

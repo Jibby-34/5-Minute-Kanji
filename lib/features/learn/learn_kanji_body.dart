@@ -2,15 +2,17 @@ import 'package:flutter/material.dart';
 
 import '../../core/models/kanji_card.dart';
 import '../../core/theme/app_theme.dart';
-import '../../core/theme/app_typography.dart';
 import '../../widgets/common_words_section.dart';
 import '../../widgets/mnemonic_text.dart';
 import '../../widgets/section_label.dart';
 import '../../widgets/soft_card.dart';
 import '../stroke_order/kanji_stroke_animation.dart';
 
-/// First meeting with a kanji: the character, then what it means, then the
-/// details that help it stick.
+/// First meeting with a kanji: the character, what it means, and the story
+/// that makes it stick.
+///
+/// Component characters are not listed here. The mnemonic already links each
+/// building block, and a second list only repeated that.
 class LearnKanjiBody extends StatelessWidget {
   const LearnKanjiBody({super.key, required this.card});
 
@@ -19,127 +21,110 @@ class LearnKanjiBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final showComponents = card.hasComponentBreakdown;
     final showMeaning =
         card.meaning.trim().isNotEmpty &&
         card.meaning.toLowerCase() != card.keyword.toLowerCase();
 
     return LayoutBuilder(
       builder: (context, constraints) {
-        final kanjiSide = _kanjiSide(constraints);
-
-        return SingleChildScrollView(
-          physics: const BouncingScrollPhysics(),
-          child: ConstrainedBox(
-            constraints: BoxConstraints(minHeight: constraints.maxHeight),
-            child: Padding(
-              padding: const EdgeInsets.only(top: 8, bottom: 4),
-              child: Column(
-                // Spare height is shared above and below rather than left as
-                // a gap under the card.
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  KanjiStrokeAnimation(
-                    character: card.character,
-                    size: kanjiSide,
-                    showFrame: false,
-                    showStrokeNumbers: false,
-                    showFallbackCharacter: true,
-                  ),
-                  const SizedBox(height: 22),
-                  const SectionLabel('Meaning'),
-                  const SizedBox(height: 8),
-                  Text(
-                    card.keyword,
-                    style: theme.textTheme.headlineMedium?.copyWith(
-                      fontSize: 28,
-                      fontWeight: FontWeight.w600,
-                      letterSpacing: -0.5,
-                      height: 1.15,
-                    ),
-                  ),
-                  if (showMeaning) ...[
-                    const SizedBox(height: 6),
-                    Text(
-                      card.meaning,
-                      style: theme.textTheme.titleMedium?.copyWith(
-                        color: theme.mutedText,
-                        height: 1.3,
-                      ),
-                    ),
-                  ],
-                  if (card.hasReadings) ...[
-                    const SizedBox(height: 22),
-                    const SectionLabel('Readings'),
-                    const SizedBox(height: 8),
-                    if (card.onyomi.isNotEmpty)
-                      _readingRow(theme, 'On', card.onyomiLabel),
-                    if (card.kunyomi.isNotEmpty)
-                      _readingRow(theme, 'Kun', card.kunyomiLabel),
-                  ],
-                  if (showComponents) ...[
-                    const SizedBox(height: 20),
-                    const SectionLabel('Components'),
-                    const SizedBox(height: 6),
-                    Text(
-                      card.componentsLabel,
-                      style: AppTypography.kanji(
-                        color: theme.colorScheme.onSurface,
-                        size: 24,
-                      ),
-                    ),
-                  ],
-                  const SizedBox(height: 22),
-                  _mnemonic(theme),
-                  if (card.hasCommonWords) ...[
-                    const SizedBox(height: 18),
-                    CommonWordsSection(words: card.commonWords),
-                  ],
-                ],
+        final body = Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Center(
+              child: KanjiStrokeAnimation(
+                character: card.character,
+                size: _kanjiSide(constraints.maxHeight),
+                showFrame: false,
+                showStrokeNumbers: false,
+                showFallbackCharacter: true,
               ),
             ),
-          ),
+            const SizedBox(height: 8),
+            const SectionLabel('Meaning'),
+            const SizedBox(height: 4),
+            Text(
+              card.keyword,
+              style: theme.textTheme.headlineMedium?.copyWith(
+                fontSize: 26,
+                fontWeight: FontWeight.w600,
+                letterSpacing: -0.5,
+                height: 1.15,
+              ),
+            ),
+            if (showMeaning) ...[
+              const SizedBox(height: 2),
+              Text(
+                card.meaning,
+                style: theme.textTheme.titleMedium?.copyWith(
+                  color: theme.mutedText,
+                  height: 1.25,
+                ),
+              ),
+            ],
+            if (card.hasReadings) ...[
+              const SizedBox(height: 10),
+              const SectionLabel('Readings'),
+              const SizedBox(height: 4),
+              _readings(theme),
+            ],
+            const SizedBox(height: 10),
+            _mnemonic(theme),
+            if (card.hasCommonWords) ...[
+              const SizedBox(height: 10),
+              CommonWordsSection(words: card.commonWords, compact: true),
+            ],
+          ],
+        );
+
+        if (!constraints.hasBoundedHeight || !constraints.hasBoundedWidth) {
+          return body;
+        }
+
+        // Scale the whole card down only when the phone is too short to show
+        // it at full size. Nothing is tucked into a scroll view.
+        return FittedBox(
+          fit: BoxFit.scaleDown,
+          alignment: Alignment.center,
+          child: SizedBox(width: constraints.maxWidth, child: body),
         );
       },
     );
   }
 
-  double _kanjiSide(BoxConstraints constraints) {
-    final height = constraints.maxHeight;
-    if (!height.isFinite || height <= 0) return 160;
+  /// Glyph size, not including the stroke-order control under it.
+  double _kanjiSide(double height) {
     const replay = 44.0;
-    return (height * 0.3 - replay).clamp(132.0, 176.0);
+    if (!height.isFinite || height <= 0) return 148;
+    return (height * 0.28 - replay).clamp(72.0, 156.0);
   }
 
-  Widget _readingRow(ThemeData theme, String kind, String value) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 4),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.baseline,
-        textBaseline: TextBaseline.alphabetic,
+  /// On and kun on one line. A second row repeated the same two facts.
+  Widget _readings(ThemeData theme) {
+    final value = theme.textTheme.titleMedium?.copyWith(
+      fontSize: 18,
+      fontWeight: FontWeight.w500,
+      height: 1.25,
+    );
+    final kind = value?.copyWith(
+      fontSize: 13,
+      fontWeight: FontWeight.w600,
+      color: theme.mutedText,
+    );
+
+    return Text.rich(
+      TextSpan(
         children: [
-          SizedBox(
-            width: 44,
-            child: Text(
-              kind,
-              style: theme.textTheme.bodyMedium?.copyWith(
-                color: theme.mutedText,
-                fontWeight: FontWeight.w600,
-                height: 1.25,
-              ),
-            ),
-          ),
-          Expanded(
-            child: Text(
-              value,
-              style: theme.textTheme.titleLarge?.copyWith(
-                fontSize: 19,
-                fontWeight: FontWeight.w500,
-                height: 1.25,
-              ),
-            ),
-          ),
+          if (card.onyomi.isNotEmpty) ...[
+            TextSpan(text: 'On ', style: kind),
+            TextSpan(text: card.onyomiLabel, style: value),
+          ],
+          if (card.onyomi.isNotEmpty && card.kunyomi.isNotEmpty)
+            TextSpan(text: '    ', style: kind),
+          if (card.kunyomi.isNotEmpty) ...[
+            TextSpan(text: 'Kun ', style: kind),
+            TextSpan(text: card.kunyomiLabel, style: value),
+          ],
         ],
       ),
     );
@@ -149,7 +134,7 @@ class LearnKanjiBody extends StatelessWidget {
   /// surface of its own rather than trailing off as a footnote.
   Widget _mnemonic(ThemeData theme) {
     return SoftCard(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -165,7 +150,7 @@ class LearnKanjiBody extends StatelessWidget {
             child: MnemonicText(
               mnemonic: card.mnemonic,
               components: card.componentModels,
-              style: theme.textTheme.titleMedium!.copyWith(height: 1.4),
+              style: theme.textTheme.titleMedium!.copyWith(height: 1.35),
             ),
           ),
         ],

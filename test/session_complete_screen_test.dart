@@ -99,6 +99,59 @@ void main() {
     expect(next.dy, lessThan(done.dy));
   });
 
+  testWidgets('time left offers Continue and keeps Done', (tester) async {
+    bool? result;
+    await tester.pumpWidget(
+      MaterialApp(
+        theme: AppTheme.light,
+        home: Builder(
+          builder: (context) {
+            return TextButton(
+              onPressed: () async {
+                result = await Navigator.of(context).push<bool>(
+                  MaterialPageRoute(
+                    builder: (_) => SessionCompleteScreen(
+                      summary: const SessionSummary(
+                        duration: Duration(minutes: 3),
+                        reviewedCount: 4,
+                        successfulCount: 4,
+                        againCount: 0,
+                        canContinue: true,
+                      ),
+                      clock: () => clockNow,
+                    ),
+                  ),
+                );
+              },
+              child: const Text('Open'),
+            );
+          },
+        ),
+      ),
+    );
+    await tester.tap(find.text('Open'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Nice work.'), findsOneWidget);
+    expect(find.text('3m 00s today'), findsOneWidget);
+    expect(
+      find.text(
+        "You haven't reached today's time goal yet. "
+        'Press Continue to keep going.',
+      ),
+      findsOneWidget,
+    );
+    expect(find.text('A little progress goes a long way.'), findsNothing);
+    expect(find.widgetWithText(PrimaryButton, 'Continue'), findsOneWidget);
+    expect(find.widgetWithText(SecondaryButton, 'Done'), findsOneWidget);
+    expect(find.widgetWithText(PrimaryButton, 'Done'), findsNothing);
+
+    await tester.tap(find.text('Continue'));
+    await tester.pumpAndSettle();
+    expect(result, isTrue);
+    expect(find.text('Open'), findsOneWidget);
+  });
+
   testWidgets('phrases later today, a future date, soon, and now', (
     tester,
   ) async {

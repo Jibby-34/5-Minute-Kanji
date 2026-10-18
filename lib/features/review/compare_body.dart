@@ -44,67 +44,62 @@ class _CompareBodyState extends State<CompareBody> {
     return LayoutBuilder(
       builder: (context, constraints) {
         final side = _compareSide(constraints);
-
-        return SingleChildScrollView(
-          physics: const BouncingScrollPhysics(),
-          child: ConstrainedBox(
-            constraints: BoxConstraints(minHeight: constraints.maxHeight),
-            child: Padding(
-              padding: const EdgeInsets.only(top: 4, bottom: 8),
-              child: Column(
-                // Spare height is shared above and below rather than left as
-                // a gap under the mnemonic.
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  const SectionLabel(
-                    'How did you do?',
-                    align: TextAlign.center,
-                  ),
-                  const OnboardingHintText(
-                    OnboardingHint.compareDrawing,
-                    padding: EdgeInsets.only(top: 8),
-                  ),
-                  const SizedBox(height: 20),
-                  _comparison(theme, side),
-                  const SizedBox(height: 28),
-                  Text(
-                    card.keyword,
-                    textAlign: TextAlign.center,
-                    style: theme.textTheme.headlineMedium?.copyWith(
-                      fontSize: 34,
-                      fontWeight: FontWeight.w600,
-                      letterSpacing: -0.5,
-                      height: 1.15,
-                    ),
-                  ),
-                  if (showSecondaryMeaning) ...[
-                    const SizedBox(height: 6),
-                    Text(
-                      card.meaning,
-                      textAlign: TextAlign.center,
-                      style: theme.textTheme.titleMedium?.copyWith(
-                        color: theme.mutedText,
-                        height: 1.3,
-                      ),
-                    ),
-                  ],
-                  if (card.hasReadings) ...[
-                    const SizedBox(height: 12),
-                    _readings(theme),
-                  ],
-                  const SizedBox(height: 6),
-                  Center(child: _strokeOrderButton(theme)),
-                  const SizedBox(height: 10),
-                  _mnemonic(theme),
-                  if (card.hasCommonWords) ...[
-                    const SizedBox(height: 16),
-                    CommonWordsSection(words: card.commonWords),
-                  ],
-                ],
+        final body = Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            const SectionLabel('How did you do?', align: TextAlign.center),
+            const OnboardingHintText(
+              OnboardingHint.compareDrawing,
+              padding: EdgeInsets.only(top: 6),
+            ),
+            const SizedBox(height: 8),
+            _comparison(theme, side),
+            const SizedBox(height: 12),
+            Text(
+              card.keyword,
+              textAlign: TextAlign.center,
+              style: theme.textTheme.headlineMedium?.copyWith(
+                fontSize: 30,
+                fontWeight: FontWeight.w600,
+                letterSpacing: -0.5,
+                height: 1.1,
               ),
             ),
-          ),
+            if (showSecondaryMeaning) ...[
+              const SizedBox(height: 2),
+              Text(
+                card.meaning,
+                textAlign: TextAlign.center,
+                style: theme.textTheme.titleMedium?.copyWith(
+                  color: theme.mutedText,
+                  height: 1.25,
+                ),
+              ),
+            ],
+            if (card.hasReadings) ...[
+              const SizedBox(height: 6),
+              _readings(theme),
+            ],
+            Center(child: _strokeOrderButton(theme)),
+            _mnemonic(theme),
+            if (card.hasCommonWords) ...[
+              const SizedBox(height: 10),
+              CommonWordsSection(words: card.commonWords, compact: true),
+            ],
+          ],
+        );
+
+        if (!constraints.hasBoundedHeight || !constraints.hasBoundedWidth) {
+          return body;
+        }
+
+        // The drawing, the answer, and the vocabulary stay on one screen.
+        // Short phones scale the card down instead of scrolling it.
+        return FittedBox(
+          fit: BoxFit.scaleDown,
+          alignment: Alignment.center,
+          child: SizedBox(width: constraints.maxWidth, child: body),
         );
       },
     );
@@ -217,7 +212,7 @@ class _CompareBodyState extends State<CompareBody> {
   /// than trailing off as a footnote.
   Widget _mnemonic(ThemeData theme) {
     return SoftCard(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -233,7 +228,7 @@ class _CompareBodyState extends State<CompareBody> {
             child: MnemonicText(
               mnemonic: card.mnemonic,
               components: card.componentModels,
-              style: theme.textTheme.titleMedium!.copyWith(height: 1.4),
+              style: theme.textTheme.titleMedium!.copyWith(height: 1.35),
             ),
           ),
         ],
@@ -244,13 +239,11 @@ class _CompareBodyState extends State<CompareBody> {
   double _compareSide(BoxConstraints constraints) {
     final maxWidth = constraints.maxWidth;
     final maxHeight = constraints.maxHeight;
-    final widthBudget = ((maxWidth - 14) / 2).clamp(104.0, 162.0);
+    final widthBudget = maxWidth.isFinite
+        ? ((maxWidth - 14) / 2).clamp(72.0, 136.0)
+        : 120.0;
     if (!maxHeight.isFinite || maxHeight <= 0) return widthBudget;
-    const headingAndLabels = 52.0;
-    final heightBudget = (maxHeight * 0.34 - headingAndLabels).clamp(
-      104.0,
-      162.0,
-    );
+    final heightBudget = (maxHeight * 0.24).clamp(72.0, 136.0);
     return math.min(widthBudget, heightBudget);
   }
 }

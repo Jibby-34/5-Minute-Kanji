@@ -51,6 +51,7 @@ class SessionSummary {
     required this.successfulCount,
     required this.againCount,
     this.nextReviewAt,
+    this.canContinue = false,
   });
 
   /// Active review time for the current study day, including earlier sittings.
@@ -59,4 +60,7 @@ class SessionSummary {
   final int successfulCount;
   final int againCount;
   final DateTime? nextReviewAt;
+
+  /// The day's time goal is still ahead and another due card can be studied.
+  final bool canContinue;
 }

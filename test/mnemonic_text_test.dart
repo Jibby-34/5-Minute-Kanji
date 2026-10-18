@@ -228,7 +228,8 @@ void main() {
 
     expect(find.text('rest'), findsOneWidget);
     expect(find.text('A person rests against a tree.'), findsNothing);
-    expect(find.text(card.componentsLabel), findsOneWidget);
+    expect(find.text('COMPONENTS'), findsNothing);
+    expect(find.text(card.componentsLabel), findsNothing);
     expect(
       find.descendant(
         of: find.byType(MnemonicText),

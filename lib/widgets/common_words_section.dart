@@ -14,6 +14,7 @@ class CommonWordsSection extends StatelessWidget {
     super.key,
     required this.words,
     this.showHeading = true,
+    this.compact = false,
   });
 
   final List<CommonWord> words;
@@ -21,6 +22,10 @@ class CommonWordsSection extends StatelessWidget {
   /// When false, only the entries are drawn. The kanji detail screen supplies
   /// its own section heading.
   final bool showHeading;
+
+  /// Puts the word, reading, and meaning on one line when they fit. Used on
+  /// the learn and answer screens, where the whole card has to stay in view.
+  final bool compact;
 
   @override
   Widget build(BuildContext context) {
@@ -37,12 +42,14 @@ class CommonWordsSection extends StatelessWidget {
       children: [
         if (showHeading) ...[
           const SectionLabel('Common Words'),
-          const SizedBox(height: 8),
+          SizedBox(height: compact ? 4 : 8),
         ],
         for (var index = 0; index < entries.length; index++) ...[
           if (index > 0)
-            Divider(height: 13, thickness: 1, color: theme.hairline),
-          _CommonWordEntry(entry: entries[index]),
+            compact
+                ? const SizedBox(height: 4)
+                : Divider(height: 13, thickness: 1, color: theme.hairline),
+          _CommonWordEntry(entry: entries[index], compact: compact),
         ],
       ],
     );
@@ -50,9 +57,10 @@ class CommonWordsSection extends StatelessWidget {
 }
 
 class _CommonWordEntry extends StatelessWidget {
-  const _CommonWordEntry({required this.entry});
+  const _CommonWordEntry({required this.entry, required this.compact});
 
   final CommonWord entry;
+  final bool compact;
 
   @override
   Widget build(BuildContext context) {
@@ -74,37 +82,46 @@ class _CommonWordEntry extends StatelessWidget {
       color: theme.colorScheme.onSurface.withValues(alpha: 0.82),
     );
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        if (word.isNotEmpty || reading.isNotEmpty)
-          LayoutBuilder(
-            builder: (context, constraints) {
-              final maxWidth = constraints.maxWidth;
-              return Wrap(
-                crossAxisAlignment: WrapCrossAlignment.center,
-                spacing: 8,
-                runSpacing: 2,
-                children: [
-                  if (word.isNotEmpty)
-                    ConstrainedBox(
-                      constraints: BoxConstraints(maxWidth: maxWidth),
-                      child: Text(word, style: wordStyle),
-                    ),
-                  if (reading.isNotEmpty)
-                    ConstrainedBox(
-                      constraints: BoxConstraints(maxWidth: maxWidth),
-                      child: Text(reading, style: readingStyle),
-                    ),
-                ],
-              );
-            },
-          ),
-        if (meaning.isNotEmpty) ...[
-          if (word.isNotEmpty || reading.isNotEmpty) const SizedBox(height: 2),
-          Text(meaning, style: meaningStyle),
-        ],
-      ],
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final maxWidth = constraints.maxWidth;
+        final wordAndReading = Wrap(
+          crossAxisAlignment: WrapCrossAlignment.center,
+          spacing: 8,
+          runSpacing: 2,
+          children: [
+            if (word.isNotEmpty)
+              ConstrainedBox(
+                constraints: BoxConstraints(maxWidth: maxWidth),
+                child: Text(word, style: wordStyle),
+              ),
+            if (reading.isNotEmpty)
+              ConstrainedBox(
+                constraints: BoxConstraints(maxWidth: maxWidth),
+                child: Text(reading, style: readingStyle),
+              ),
+            if (compact && meaning.isNotEmpty)
+              ConstrainedBox(
+                constraints: BoxConstraints(maxWidth: maxWidth),
+                child: Text(meaning, style: meaningStyle),
+              ),
+          ],
+        );
+
+        if (compact || meaning.isEmpty) return wordAndReading;
+
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            if (word.isNotEmpty || reading.isNotEmpty) wordAndReading,
+            if (meaning.isNotEmpty) ...[
+              if (word.isNotEmpty || reading.isNotEmpty)
+                const SizedBox(height: 2),
+              Text(meaning, style: meaningStyle),
+            ],
+          ],
+        );
+      },
     );
   }
 }

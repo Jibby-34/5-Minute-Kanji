@@ -95,6 +95,8 @@ class ReviewController extends ChangeNotifier {
   Map<String, CardSchedule> _schedules = {};
   int padGeneration = 0;
   bool _disposed = false;
+  bool _acceptedExtraTime = false;
+  bool _holdingForContinue = false;
   bool _reviewTimeReady = false;
   bool _deferredReviewTimeSave = false;
   Future<void> _reviewTimeWrites = Future<void>.value();
@@ -160,9 +162,39 @@ class ReviewController extends ChangeNotifier {
 
   /// Continues the daily clock from [clock], leaving the gap uncounted.
   void resumeReviewTime() {
+    if (_holdingForContinue) return;
     final now = clock();
     reviewClock.resume(now);
     _cardTimer.resume(now);
+  }
+
+  /// Starts the extra cards after the learner chooses Continue.
+  ///
+  /// Returns the final summary when nothing is left to study. A null return
+  /// means the next card is ready.
+  Future<SessionSummary?> continuePastAllotment() async {
+    if (summary?.canContinue != true || busy || _disposed) return summary;
+    _acceptedExtraTime = true;
+    _holdingForContinue = false;
+    busy = true;
+    _visibleCard = null;
+    notifyListeners();
+
+    final now = clock();
+    resumeReviewTime();
+    try {
+      if (await _continueForTimeGoal(now)) {
+        summary = null;
+        _visibleCard = session.current;
+        _resetForNextCard();
+        return null;
+      }
+      final dayBoundary = await _loadStartOfDay();
+      return _closeSession(now, dayBoundary);
+    } finally {
+      busy = false;
+      if (!_disposed) notifyListeners();
+    }
   }
 
   /// Writes today's review time. Safe to call again; each save replaces the
@@ -262,9 +294,7 @@ class ReviewController extends ChangeNotifier {
       }
 
       if (session.isComplete) {
-        await _recordFinishedSession(now, dayBoundary);
-        summary = await _summarize(now);
-        return summary;
+        return _closeSession(now, dayBoundary);
       }
 
       _resetForNextCard();
@@ -300,9 +330,7 @@ class ReviewController extends ChangeNotifier {
       }
 
       if (session.isComplete) {
-        await _recordFinishedSession(now, dayBoundary);
-        summary = await _summarize(now);
-        return summary;
+        return _closeSession(now, dayBoundary);
       }
 
       _resetForNextCard();
@@ -380,8 +408,7 @@ class ReviewController extends ChangeNotifier {
       }
 
       if (session.isComplete) {
-        await _recordFinishedSession(now, dayBoundary);
-        summary = await _summarize(now);
+        summary = await _closeSession(now, dayBoundary);
         busy = false;
         notifyListeners();
         return summary;
@@ -394,6 +421,29 @@ class ReviewController extends ChangeNotifier {
     }
 
     return null;
+  }
+
+  Future<SessionSummary> _closeSession(
+    DateTime now,
+    StartOfDay dayBoundary,
+  ) async {
+    final offerContinue = await _canOfferContinue(now);
+    if (offerContinue) {
+      _holdingForContinue = true;
+      reviewClock.pause(now);
+      _cardTimer.pause(now);
+    }
+    await _recordFinishedSession(now, dayBoundary);
+    final base = await _summarize(now);
+    summary = SessionSummary(
+      duration: base.duration,
+      reviewedCount: base.reviewedCount,
+      successfulCount: base.successfulCount,
+      againCount: base.againCount,
+      nextReviewAt: base.nextReviewAt,
+      canContinue: offerContinue,
+    );
+    return summary!;
   }
 
   Future<SessionSummary> _summarize(DateTime now) async {
@@ -439,35 +489,46 @@ class ReviewController extends ChangeNotifier {
     return schedule == null || schedule.state == CardLearningState.newCard;
   }
 
-  /// When the allotted queue is empty, pull the next priority card if today's
-  /// study-time goal is still ahead and another eligible card remains.
+  /// After Continue, pull the next priority card while today's goal is ahead.
   ///
   /// Checked only between cards, using [reviewClock], so the current card is
   /// never cut off and background time stays uncounted.
   Future<bool> _continueForTimeGoal(DateTime now) async {
+    if (!_acceptedExtraTime) return false;
+    final next = await _nextContinuationCard(now);
+    if (next == null) return false;
+    return session.continueWith(next);
+  }
+
+  Future<bool> _canOfferContinue(DateTime now) async {
+    if (_acceptedExtraTime) return false;
+    return await _nextContinuationCard(now) != null;
+  }
+
+  Future<KanjiCard?> _nextContinuationCard(DateTime now) async {
     final workload = workloadService;
     if (workload == null || isPractice || isStudyAnyway || _disposed) {
-      return false;
+      return null;
     }
     if (!_reviewTimeReady) await hydrate();
-    if (_disposed || !session.isComplete) return false;
+    if (_disposed || !session.isComplete) return null;
 
     final settings = await progressRepository.getSettings();
     _startOfDay = settings.startOfDay;
     reviewClock.startOfDay = _startOfDay;
     final goal = Duration(minutes: settings.dailyStudyMinutes);
-    if (reviewClock.totalAt(now) >= goal) return false;
+    if (reviewClock.totalAt(now) >= goal) return null;
 
     final ranked = await workload.eligibleByPriority(now: now);
-    if (_disposed || !session.isComplete) return false;
+    if (_disposed || !session.isComplete) return null;
     final latest = await progressRepository.getSchedules();
     _schedules.addAll(latest);
 
     for (final card in ranked) {
       if (!_canContinueWith(card, now)) continue;
-      if (session.continueWith(card)) return true;
+      return card;
     }
-    return false;
+    return null;
   }
 
   bool _canContinueWith(KanjiCard card, DateTime now) {

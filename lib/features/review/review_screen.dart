@@ -218,12 +218,36 @@ class _ReviewView extends StatelessWidget {
     await _showSummary(context, summary);
   }
 
-  Future<void> _showSummary(BuildContext context, SessionSummary summary) {
+  Future<void> _showSummary(
+    BuildContext context,
+    SessionSummary summary,
+  ) async {
     final startOfDay = context.read<ReviewController>().startOfDay;
-    return Navigator.of(context).pushReplacement(
+    final replacement = onSessionComplete?.call(summary, startOfDay);
+    if (summary.canContinue && replacement == null) {
+      final keepGoing = await Navigator.of(context).push<bool>(
+        AppRoutes.session(
+          context,
+          SessionCompleteScreen(summary: summary, startOfDay: startOfDay),
+        ),
+      );
+      if (!context.mounted) return;
+      if (keepGoing == true) {
+        final next = await context
+            .read<ReviewController>()
+            .continuePastAllotment();
+        if (!context.mounted || next == null) return;
+        await _showSummary(context, next);
+        return;
+      }
+      Navigator.of(context).pop();
+      return;
+    }
+
+    await Navigator.of(context).pushReplacement(
       AppRoutes.session(
         context,
-        onSessionComplete?.call(summary, startOfDay) ??
+        replacement ??
             SessionCompleteScreen(summary: summary, startOfDay: startOfDay),
       ),
     );

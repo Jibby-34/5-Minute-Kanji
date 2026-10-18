@@ -279,4 +279,87 @@ void main() {
     expect(wordSize.height, greaterThan(28));
     expect(tester.takeException(), isNull);
   });
+
+  testWidgets('learn card fits without scrolling', (tester) async {
+    tester.view.physicalSize = const Size(320, 568);
+    tester.view.devicePixelRatio = 1.0;
+    addTearDown(tester.view.resetPhysicalSize);
+    addTearDown(tester.view.resetDevicePixelRatio);
+
+    final card = KanjiCard(
+      id: 'fit-kyuu',
+      character: '休',
+      meaning: 'rest',
+      keyword: 'rest',
+      mnemonic: 'A person rests against a tree.',
+      components: const ['亻 — person', '木 — tree'],
+      onyomi: const ['キュウ'],
+      kunyomi: const ['やすむ'],
+      commonWords: const [
+        CommonWord(word: '夏休み', reading: 'なつやすみ', meaning: 'summer vacation'),
+        CommonWord(word: '休み', reading: 'やすみ', meaning: 'rest'),
+        CommonWord(word: '休暇', reading: 'きゅうか', meaning: 'holiday'),
+      ],
+      difficulty: 18,
+      frequency: 10,
+    );
+    final progress = MemoryProgressRepository();
+    await progress.seedIfNeeded([card.id], now: now);
+
+    await pumpReview(tester, cards: [card], progress: progress);
+
+    expect(find.text('COMPONENTS'), findsNothing);
+    expect(find.text(card.componentsLabel), findsNothing);
+    expect(find.text('person'), findsOneWidget);
+    expect(find.text('休み'), findsOneWidget);
+    expect(find.byType(SingleChildScrollView), findsNothing);
+    expect(
+      tester.getRect(find.text('休暇')).bottom,
+      lessThanOrEqualTo(tester.getRect(find.text('Practice Writing')).top),
+    );
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('answer card fits without scrolling', (tester) async {
+    tester.view.physicalSize = const Size(320, 568);
+    tester.view.devicePixelRatio = 1.0;
+    addTearDown(tester.view.resetPhysicalSize);
+    addTearDown(tester.view.resetDevicePixelRatio);
+
+    final card = KanjiCard(
+      id: 'fit-kyuu-review',
+      character: '休',
+      meaning: 'rest',
+      keyword: 'rest',
+      mnemonic: 'A person rests against a tree.',
+      components: const ['亻 — person', '木 — tree'],
+      onyomi: const ['キュウ'],
+      kunyomi: const ['やすむ'],
+      commonWords: const [
+        CommonWord(word: '夏休み', reading: 'なつやすみ', meaning: 'summer vacation'),
+        CommonWord(word: '休み', reading: 'やすみ', meaning: 'rest'),
+        CommonWord(word: '休暇', reading: 'きゅうか', meaning: 'holiday'),
+      ],
+      difficulty: 18,
+      frequency: 10,
+    );
+    final reviewProgress = MemoryProgressRepository(
+      schedules: {card.id: reviewing(card.id)},
+    );
+
+    await pumpReview(tester, cards: [card], progress: reviewProgress);
+    await tester.tap(find.text('Submit'));
+    await tester.pumpAndSettle();
+
+    expect(find.byType(CompareBody), findsOneWidget);
+    expect(find.text('COMPONENTS'), findsNothing);
+    expect(find.text('休暇'), findsOneWidget);
+    expect(find.text('person'), findsOneWidget);
+    expect(find.byType(SingleChildScrollView), findsNothing);
+    expect(
+      tester.getRect(find.text('休暇')).bottom,
+      lessThanOrEqualTo(tester.getRect(find.text('Again')).top),
+    );
+    expect(tester.takeException(), isNull);
+  });
 }

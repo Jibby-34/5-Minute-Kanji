@@ -52,10 +52,25 @@ class SessionCompleteScreen extends StatelessWidget {
               ),
             ),
             BottomActionInset(
-              child: PrimaryButton(
-                label: 'Done',
-                onPressed: () => Navigator.of(context).pop(),
-              ),
+              child: summary.canContinue
+                  ? Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        PrimaryButton(
+                          label: 'Continue',
+                          onPressed: () => Navigator.of(context).pop(true),
+                        ),
+                        const SizedBox(height: 10),
+                        SecondaryButton(
+                          label: 'Done',
+                          onPressed: () => Navigator.of(context).pop(false),
+                        ),
+                      ],
+                    )
+                  : PrimaryButton(
+                      label: 'Done',
+                      onPressed: () => Navigator.of(context).pop(),
+                    ),
             ),
           ],
         ),
@@ -401,6 +416,10 @@ class _NextReview extends StatelessWidget {
 }
 
 String _completionNote(SessionSummary summary) {
+  if (summary.canContinue) {
+    return "You haven't reached today's time goal yet. "
+        'Press Continue to keep going.';
+  }
   if (summary.reviewedCount == 0) return 'Nothing to review this time.';
   return 'A little progress goes a long way.';
 }

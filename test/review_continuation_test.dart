@@ -75,7 +75,7 @@ void main() {
   }
 
   test(
-    'allotted cards finished under the goal continue with the next priority card',
+    'allotted cards under the goal offer Continue, then study the next card',
     () async {
       final deck = [testCard('allotted'), testCard('next'), testCard('later')];
       final progress = progressFor({
@@ -92,9 +92,10 @@ void main() {
         clock: () => current,
       );
 
-      expect(await pass(controller), isNull);
-      expect(controller.isComplete, isFalse);
-      expect(controller.current?.id, 'next');
+      final prompt = await pass(controller);
+      expect(prompt, isNotNull);
+      expect(prompt!.canContinue, isTrue);
+      expect(controller.isComplete, isTrue);
       expect(controller.session.startTime, now);
       expect(
         controller.reviewClock.totalAt(current),
@@ -103,9 +104,15 @@ void main() {
       expect(progress.schedules['next']!.toJson(), before);
       expect(progress.history.map((entry) => entry.cardId), ['allotted']);
 
+      expect(await controller.continuePastAllotment(), isNull);
+      expect(controller.isComplete, isFalse);
+      expect(controller.current?.id, 'next');
+      expect(progress.schedules['next']!.toJson(), before);
+
       final summary = await pass(controller);
       expect(summary, isNotNull);
-      expect(summary!.reviewedCount, 2);
+      expect(summary!.canContinue, isFalse);
+      expect(summary.reviewedCount, 2);
       expect(summary.duration, const Duration(minutes: 3));
       expect(progress.history.map((entry) => entry.cardId), [
         'allotted',
@@ -137,8 +144,9 @@ void main() {
 
       final summary = await pass(controller);
       expect(summary, isNotNull);
+      expect(summary!.canContinue, isFalse);
       expect(controller.isComplete, isTrue);
-      expect(summary!.reviewedCount, 1);
+      expect(summary.reviewedCount, 1);
       expect(summary.duration, const Duration(minutes: 1));
       expect(progress.history.single.cardId, 'only');
       expect(progress.schedules['tomorrow']!.dueAt, tomorrow);
@@ -171,15 +179,21 @@ void main() {
         clock: () => current,
       );
 
-      expect(await pass(controller), isNull);
-      expect(controller.current?.id, 'second');
-      expect(progress.dailySessionPlan.completed, isFalse);
+      final prompt = await pass(controller);
+      expect(prompt, isNotNull);
+      expect(prompt!.canContinue, isTrue);
+      expect(controller.isComplete, isTrue);
       expect(progress.schedules['third']!.reviewCount, 3);
+      expect(progress.dailySessionPlan.completed, isTrue);
+
+      expect(await controller.continuePastAllotment(), isNull);
+      expect(controller.current?.id, 'second');
 
       current = now.add(goal);
       final summary = await pass(controller);
 
       expect(summary, isNotNull);
+      expect(summary!.canContinue, isFalse);
       expect(controller.isComplete, isTrue);
       expect(controller.session.startTime, now);
       expect(summary!.duration, goal);
@@ -222,10 +236,11 @@ void main() {
       final summary = await pass(controller);
 
       expect(summary, isNotNull);
+      expect(summary!.canContinue, isFalse);
       expect(controller.isComplete, isTrue);
       expect(progress.history.map((entry) => entry.cardId), ['a', 'b']);
       expect(progress.schedules['extra']!.incorrectCount, 5);
-      expect(summary!.duration, goal);
+      expect(summary.duration, goal);
     },
   );
 
@@ -273,6 +288,18 @@ void main() {
         summary = await controller.rate(ReviewResult.good);
       }
 
+      expect(shown, ['mid', 'low']);
+      expect(summary, isNotNull);
+      expect(summary!.canContinue, isTrue);
+      expect(await controller.continuePastAllotment(), isNull);
+      summary = null;
+
+      while (summary == null && shown.length < 8) {
+        shown.add(controller.current!.id);
+        controller.submit();
+        summary = await controller.rate(ReviewResult.good);
+      }
+
       expect(shown, ['mid', 'low', 'top', 'high']);
       expect(shown.toSet(), hasLength(shown.length));
       expect(shown, isNot(contains('future')));
@@ -296,7 +323,10 @@ void main() {
         clock: () => now.add(const Duration(minutes: 1)),
       );
 
-      expect(await pass(controller), isNull);
+      final prompt = await pass(controller);
+      expect(prompt, isNotNull);
+      expect(prompt!.canContinue, isTrue);
+      expect(await controller.continuePastAllotment(), isNull);
       expect(controller.current?.id, 'keep');
       await progress.saveSchedule(
         reviewCard('drop', dueAt: now.add(const Duration(days: 3))),
@@ -334,7 +364,10 @@ void main() {
         clock: () => current,
       );
 
-      expect(await pass(controller), isNull);
+      final prompt = await pass(controller);
+      expect(prompt, isNotNull);
+      expect(prompt!.canContinue, isTrue);
+      expect(await controller.continuePastAllotment(), isNull);
       expect(controller.current?.id, 'retry');
       controller.submit();
       expect(await controller.rate(ReviewResult.again), isNull);
@@ -382,6 +415,7 @@ void main() {
     expect(await pass(underGoal), isNull);
     final finished = await pass(underGoal);
     expect(finished, isNotNull);
+    expect(finished!.canContinue, isFalse);
     expect(underGoal.isComplete, isTrue);
     expect(progress.history.map((entry) => entry.cardId), ['given', 'also']);
     expect(progress.schedules['left-out']!.incorrectCount, 4);
@@ -426,8 +460,9 @@ void main() {
 
     final summary = await pass(controller);
     expect(summary, isNotNull);
+    expect(summary!.canContinue, isFalse);
     expect(controller.isComplete, isTrue);
-    expect(summary!.duration, const Duration(minutes: 6));
+    expect(summary.duration, const Duration(minutes: 6));
     expect(progress.history.single.cardId, 'allotted');
     expect(progress.schedules['extra']!.incorrectCount, 2);
   });
