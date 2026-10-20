@@ -328,9 +328,15 @@ void main() {
       expect(find.text('A single horizontal stroke.'), findsOneWidget);
       expect(find.byType(KanjiStrokeAnimation), findsOneWidget);
 
-      final animationSize = tester.getSize(find.byType(KanjiStrokeAnimation));
+      final animation = find.byType(KanjiStrokeAnimation);
+      final animationSize = tester.getSize(animation);
       expect(animationSize.height, greaterThan(150));
       expect(animationSize.height, lessThan(230));
+      expect(tester.getTopLeft(animation).dy, lessThan(16));
+      expect(
+        tester.getTopLeft(find.text('MEANING')).dy,
+        greaterThan(tester.getTopLeft(animation).dy),
+      );
     });
   });
 }

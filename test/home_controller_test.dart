@@ -288,6 +288,7 @@ void main() {
     expect(controller.newRemainingToday, 5);
     expect(controller.isCaughtUp, isFalse);
     expect(session.map((card) => card.id), ['n1', 'n2', 'n3', 'n4', 'n5']);
+    expect(controller.studyItemCount, 10);
   });
 
   test('1 review and 5 new still queues every new kanji', () async {
@@ -335,6 +336,7 @@ void main() {
     expect(session.where((card) => card.id.startsWith('n')).length, 5);
     expect(session.where((card) => card.id == 'r1').length, 1);
     expect(session.last.id, 'r1');
+    expect(controller.studyItemCount, 11);
   });
 
   test(

@@ -283,7 +283,7 @@ void main() {
     }
 
     /// Home, whether or not there is anything left to do today.
-    Finder homeScreen() => find.text('kanji remaining today');
+    Finder homeScreen() => find.text('study items today');
 
     testWidgets('welcome, placement, goal, first session, then Home', (
       tester,

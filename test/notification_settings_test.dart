@@ -216,7 +216,7 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(find.byType(SettingsScreen), findsNothing);
-      expect(find.text('kanji remaining today'), findsOneWidget);
+      expect(find.text('study items today'), findsOneWidget);
       expect(find.text('Start Review'), findsOneWidget);
     });
   });

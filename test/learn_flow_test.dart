@@ -19,8 +19,12 @@ import 'package:fiveminutekanji/core/models/study_phase.dart';
 import 'package:fiveminutekanji/core/theme/app_theme.dart';
 import 'package:fiveminutekanji/data/hardcoded_kanji_repository.dart';
 import 'package:fiveminutekanji/data/shared_prefs_progress_repository.dart';
+import 'package:fiveminutekanji/features/learn/practice_writing_body.dart';
 import 'package:fiveminutekanji/features/review/review_controller.dart';
 import 'package:fiveminutekanji/features/review/review_screen.dart';
+import 'package:fiveminutekanji/features/review/widgets/handwriting_pad.dart';
+import 'package:fiveminutekanji/features/stroke_order/kanji_stroke_animation.dart';
+import 'package:fiveminutekanji/widgets/writing_sheet_layout.dart';
 import 'package:fiveminutekanji/repositories/progress_repository.dart';
 import 'package:fiveminutekanji/repositories/stroke_data_repository.dart';
 import 'package:fiveminutekanji/services/initial_known_card_schedule.dart';
@@ -395,6 +399,15 @@ void main() {
       expect(find.text(first.keyword), findsOneWidget);
       expect(find.text(first.character), findsNothing);
       expect(find.text('Submit'), findsOneWidget);
+
+      final sheetTop = tester.getTopLeft(find.byType(WritingSheetLayout)).dy;
+      final keywordTop = tester.getTopLeft(find.text(first.keyword)).dy;
+      final keywordBottom = tester.getBottomLeft(find.text(first.keyword)).dy;
+      final padTop = tester.getTopLeft(find.byType(HandwritingPad)).dy;
+      final above = keywordTop - sheetTop;
+      expect(above, greaterThan(8));
+      expect(above, lessThan(24));
+      expect(padTop - keywordBottom, greaterThan(above));
     });
 
     testWidgets('kanji list turns learning after finishing learn', (
@@ -422,7 +435,7 @@ void main() {
       await tester.pump();
       await tester.pump(const Duration(milliseconds: 50));
 
-      await tester.tap(find.byTooltip('Kanji List'));
+      await tester.tap(find.byTooltip('Kanji list'));
       await tester.pumpAndSettle();
       await tester.tap(find.text(first.character));
       await tester.pumpAndSettle();
@@ -497,6 +510,27 @@ void main() {
       await tester.tap(find.text('Practice Writing'));
       await tester.pumpAndSettle();
       expect(find.text('Done'), findsOneWidget);
+      expect(find.text('COPY IT BELOW'), findsOneWidget);
+      expect(find.text('Stroke Order'), findsOneWidget);
+      expect(find.text('一'), findsNothing);
+      expect(find.byType(KanjiStrokeAnimation), findsOneWidget);
+      expect(find.byType(HandwritingPad), findsOneWidget);
+
+      final bodyTop = tester.getTopLeft(find.byType(PracticeWritingBody)).dy;
+      final promptTop = tester.getTopLeft(find.text('COPY IT BELOW')).dy;
+      final promptBottom = tester
+          .getBottomLeft(find.byType(KanjiStrokeAnimation))
+          .dy;
+      final padTop = tester.getTopLeft(find.byType(HandwritingPad)).dy;
+      final above = promptTop - bodyTop;
+      expect(above, greaterThan(8));
+      expect(above, lessThan(24));
+      expect(padTop, greaterThan(promptBottom));
+      expect(padTop - promptBottom, greaterThan(above));
+      expect(
+        tester.getTopLeft(find.text('Stroke Order')).dy,
+        greaterThan(tester.getTopLeft(find.byType(KanjiStrokeAnimation)).dy),
+      );
     });
   });
 }

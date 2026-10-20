@@ -69,7 +69,7 @@ void main() {
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 50));
 
-    await tester.tap(find.byTooltip('Kanji List'));
+    await tester.tap(find.byTooltip('Kanji list'));
     await tester.pumpAndSettle();
 
     expect(find.text('Kanji List'), findsOneWidget);
@@ -136,7 +136,7 @@ void main() {
     );
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 50));
-    await tester.tap(find.byTooltip('Kanji List'));
+    await tester.tap(find.byTooltip('Kanji list'));
     await tester.pumpAndSettle();
     await tester.tap(find.text(first.character));
     await tester.pumpAndSettle();
@@ -177,7 +177,7 @@ void main() {
     );
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 50));
-    await tester.tap(find.byTooltip('Kanji List'));
+    await tester.tap(find.byTooltip('Kanji list'));
     await tester.pumpAndSettle();
     await tester.tap(find.text(first.character));
     await tester.pumpAndSettle();
@@ -206,7 +206,7 @@ void main() {
     );
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 50));
-    await tester.tap(find.byTooltip('Kanji List'));
+    await tester.tap(find.byTooltip('Kanji list'));
     await tester.pumpAndSettle();
     await tester.tap(find.text(first.character));
     await tester.pumpAndSettle();
@@ -277,7 +277,7 @@ void main() {
       );
       await tester.pump();
       await tester.pump(const Duration(milliseconds: 50));
-      await tester.tap(find.byTooltip('Kanji List'));
+      await tester.tap(find.byTooltip('Kanji list'));
       await tester.pumpAndSettle();
 
       await tester.tap(find.text('Select'));

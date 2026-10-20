@@ -60,14 +60,14 @@ void main() {
       find.byWidgetPredicate(
         (widget) =>
             widget is Text &&
-            (widget.data == 'Good morning' ||
-                widget.data == 'Good afternoon' ||
-                widget.data == 'Good evening'),
+            (widget.data == 'Good Morning' ||
+                widget.data == 'Good Afternoon' ||
+                widget.data == 'Good Evening'),
       ),
       findsOneWidget,
     );
-    expect(find.text('5'), findsOneWidget);
-    expect(find.text('kanji remaining today'), findsOneWidget);
+    expect(find.text('10'), findsOneWidget);
+    expect(find.text('study items today'), findsOneWidget);
     expect(find.text('Start Review'), findsOneWidget);
     expect(find.textContaining('day streak'), findsOneWidget);
   });
@@ -229,7 +229,7 @@ void main() {
     await tester.tap(find.text('Good'));
     await tester.pumpAndSettle();
 
-    expect(find.text('Nice work.'), findsOneWidget);
+    expect(find.text("You're done for today!"), findsOneWidget);
   });
 
   testWidgets('finishing a session persists progress and streak', (
@@ -274,7 +274,7 @@ void main() {
     await tester.tap(find.text('Good'));
     await tester.pumpAndSettle();
 
-    expect(find.text('Nice work.'), findsOneWidget);
+    expect(find.text("You're done for today!"), findsOneWidget);
     expect(find.text('kanji reviewed'), findsOneWidget);
     expect(find.text('Done'), findsOneWidget);
 
@@ -291,7 +291,7 @@ void main() {
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 50));
 
-    expect(find.text('kanji remaining today'), findsOneWidget);
+    expect(find.text('study items today'), findsOneWidget);
     expect(find.text('1'), findsWidgets);
     expect(find.text('day streak'), findsOneWidget);
   });
@@ -329,7 +329,7 @@ void main() {
     await tester.pump(const Duration(milliseconds: 50));
 
     expect(find.text('0'), findsWidgets);
-    expect(find.text('kanji remaining today'), findsOneWidget);
+    expect(find.text('study items today'), findsOneWidget);
     expect(find.text("You're all caught up."), findsOneWidget);
     expect(find.text('Start Review'), findsNothing);
     expect(find.text('Practice Anyway'), findsNothing);
@@ -389,7 +389,7 @@ void main() {
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 50));
 
-    expect(find.text('kanji remaining today'), findsOneWidget);
+    expect(find.text('study items today'), findsOneWidget);
     expect(find.text('Start Review'), findsOneWidget);
     expect(find.text('0'), findsOneWidget);
     expect(find.text('day streak'), findsOneWidget);
@@ -417,6 +417,8 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.text('Daily study time'), findsOneWidget);
+    expect(find.text('Keep extra reviews optional'), findsOneWidget);
+    expect(find.textContaining('due kanji'), findsNothing);
     expect(find.text('5 minutes'), findsOneWidget);
     expect(find.text('New kanji per day'), findsOneWidget);
     expect(find.text('5'), findsWidgets);
@@ -433,6 +435,6 @@ void main() {
 
     await tester.tap(find.byTooltip('Back'));
     await tester.pumpAndSettle();
-    expect(find.text('kanji remaining today'), findsOneWidget);
+    expect(find.text('study items today'), findsOneWidget);
   });
 }

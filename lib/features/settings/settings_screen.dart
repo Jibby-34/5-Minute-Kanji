@@ -239,10 +239,7 @@ class _StudySection extends StatelessWidget {
                 const SizedBox(height: 14),
                 _StudyTimeChoices(controller: controller),
                 const SizedBox(height: 12),
-                Text(
-                  'Plans your normal session. Extra due kanji stay optional.',
-                  style: quiet,
-                ),
+                Text('Keep extra reviews optional', style: quiet),
               ],
             ),
           ),

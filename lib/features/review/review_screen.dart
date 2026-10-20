@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -20,13 +19,13 @@ import '../../services/daily_workload.dart';
 import '../../services/srs_scheduler.dart';
 import '../../widgets/bottom_action_inset.dart';
 import '../../widgets/primary_button.dart';
+import '../../widgets/writing_sheet_layout.dart';
 import '../learn/learn_kanji_body.dart';
 import '../learn/practice_writing_body.dart';
 import '../onboarding/widgets/onboarding_hint_text.dart';
 import '../session_complete/session_complete_screen.dart';
 import 'compare_body.dart';
 import 'review_controller.dart';
-import 'widgets/handwriting_pad.dart';
 
 /// Builds what replaces the session when it ends. See
 /// [ReviewScreen.onSessionComplete].
@@ -431,49 +430,36 @@ class _PromptBody extends StatelessWidget {
   final HandwritingInput drawing;
   final ValueChanged<HandwritingInput> onDrawingChanged;
 
+  /// Original keyword block: 34px line plus the gap before the square.
+  static const _originalHeader = 57.0;
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    return Column(
-      children: [
-        Text(
-          card.keyword,
-          textAlign: TextAlign.center,
-          style: theme.textTheme.headlineMedium?.copyWith(
-            fontSize: 34,
-            fontWeight: FontWeight.w600,
-            letterSpacing: -0.5,
-            height: 1.15,
+    return WritingSheetLayout(
+      drawing: drawing,
+      onDrawingChanged: onDrawingChanged,
+      headerHeight: _originalHeader,
+      prompt: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            card.keyword,
+            textAlign: TextAlign.center,
+            style: theme.textTheme.headlineMedium?.copyWith(
+              fontSize: 42,
+              fontWeight: FontWeight.w600,
+              letterSpacing: -0.5,
+              height: 1.15,
+            ),
           ),
-        ),
-        const OnboardingHintText(
-          OnboardingHint.drawFromMemory,
-          padding: EdgeInsets.only(top: 8),
-        ),
-        const SizedBox(height: 18),
-        Expanded(
-          child: LayoutBuilder(
-            builder: (context, constraints) {
-              final side = math.min(
-                constraints.maxWidth,
-                constraints.maxHeight,
-              );
-              return Center(
-                child: SizedBox(
-                  width: side,
-                  height: side,
-                  child: HandwritingPad(
-                    value: drawing,
-                    onChanged: onDrawingChanged,
-                    showClear: true,
-                  ),
-                ),
-              );
-            },
+          const OnboardingHintText(
+            OnboardingHint.drawFromMemory,
+            padding: EdgeInsets.only(top: 8),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

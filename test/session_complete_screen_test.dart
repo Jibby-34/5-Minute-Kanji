@@ -71,9 +71,10 @@ void main() {
       ),
     );
 
-    expect(find.text('Nice work.'), findsOneWidget);
+    expect(find.text("You're done for today!"), findsOneWidget);
+    expect(find.text('Nice work!'), findsOneWidget);
     expect(find.text('4m 12s today'), findsOneWidget);
-    expect(find.text('A little progress goes a long way.'), findsOneWidget);
+    expect(find.text('A little progress goes a long way.'), findsNothing);
     expect(find.text('12'), findsOneWidget);
     expect(find.text('kanji reviewed'), findsOneWidget);
     expect(find.text('Successful'), findsOneWidget);
@@ -89,7 +90,7 @@ void main() {
     expect(find.byIcon(Icons.schedule_rounded), findsOneWidget);
     expect(tester.takeException(), isNull);
 
-    final header = tester.getCenter(find.text('Nice work.'));
+    final header = tester.getCenter(find.text("You're done for today!"));
     final total = tester.getCenter(find.text('kanji reviewed'));
     final next = tester.getCenter(find.text('Next review.'));
     final done = tester.getCenter(find.text('Done'));
@@ -99,7 +100,9 @@ void main() {
     expect(next.dy, lessThan(done.dy));
   });
 
-  testWidgets('time left offers Continue and keeps Done', (tester) async {
+  testWidgets('extra cards stay optional after the plan is done', (
+    tester,
+  ) async {
     bool? result;
     await tester.pumpWidget(
       MaterialApp(
@@ -132,21 +135,25 @@ void main() {
     await tester.tap(find.text('Open'));
     await tester.pumpAndSettle();
 
-    expect(find.text('Nice work.'), findsOneWidget);
+    expect(find.text("You're done for today!"), findsOneWidget);
+    expect(find.text('Nice work!'), findsOneWidget);
     expect(find.text('3m 00s today'), findsOneWidget);
+    expect(find.text('Have a little extra time?'), findsNothing);
     expect(
       find.text(
         "You haven't reached today's time goal yet. "
         'Press Continue to keep going.',
       ),
+      findsNothing,
+    );
+    expect(find.widgetWithText(PrimaryButton, 'Done'), findsOneWidget);
+    expect(
+      find.widgetWithText(SecondaryButton, 'Optional Practice'),
       findsOneWidget,
     );
-    expect(find.text('A little progress goes a long way.'), findsNothing);
-    expect(find.widgetWithText(PrimaryButton, 'Continue'), findsOneWidget);
-    expect(find.widgetWithText(SecondaryButton, 'Done'), findsOneWidget);
-    expect(find.widgetWithText(PrimaryButton, 'Done'), findsNothing);
+    expect(find.widgetWithText(PrimaryButton, 'Continue'), findsNothing);
 
-    await tester.tap(find.text('Continue'));
+    await tester.tap(find.text('Optional Practice'));
     await tester.pumpAndSettle();
     expect(result, isTrue);
     expect(find.text('Open'), findsOneWidget);
@@ -191,7 +198,7 @@ void main() {
     );
 
     expect(find.text('0m 12s today'), findsOneWidget);
-    expect(find.text('A little progress goes a long way.'), findsOneWidget);
+    expect(find.text('Nice work!'), findsOneWidget);
     expect(find.text('4'), findsNWidgets(2));
     expect(find.text('0'), findsOneWidget);
     expect(find.text('All caught up.'), findsOneWidget);
@@ -211,7 +218,8 @@ void main() {
       ),
     );
 
-    expect(find.text('Nice work.'), findsOneWidget);
+    expect(find.text("You're done for today!"), findsOneWidget);
+    expect(find.text('Nice work!'), findsNothing);
     expect(find.text('0m 00s today'), findsOneWidget);
     expect(find.text('Nothing to review this time.'), findsOneWidget);
     expect(find.text('A little progress goes a long way.'), findsNothing);
@@ -285,7 +293,7 @@ void main() {
     await tester.tap(find.text('Done'));
     await tester.pumpAndSettle();
 
-    expect(find.text('Nice work.'), findsNothing);
+    expect(find.text("You're done for today!"), findsNothing);
     expect(find.text('Open'), findsOneWidget);
   });
 
@@ -304,7 +312,8 @@ void main() {
       ),
     );
 
-    expect(find.text('Nice work.'), findsOneWidget);
+    expect(find.text("You're done for today!"), findsOneWidget);
+    expect(find.text('Nice work!'), findsOneWidget);
     expect(find.text('Need another look'), findsOneWidget);
     expect(find.text('All caught up.'), findsNothing);
     expect(tester.takeException(), isNull);

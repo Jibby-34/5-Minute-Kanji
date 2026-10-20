@@ -5,10 +5,16 @@ import '../core/theme/app_theme.dart';
 /// Small tracked caps used to name a block of content without competing
 /// with it.
 class SectionLabel extends StatelessWidget {
-  const SectionLabel(this.label, {super.key, this.align = TextAlign.start});
+  const SectionLabel(
+    this.label, {
+    super.key,
+    this.align = TextAlign.start,
+    this.fontSize = 12,
+  });
 
   final String label;
   final TextAlign align;
+  final double fontSize;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +25,7 @@ class SectionLabel extends StatelessWidget {
       textAlign: align,
       style: theme.textTheme.labelLarge?.copyWith(
         color: theme.mutedText,
-        fontSize: 12,
+        fontSize: fontSize,
         fontWeight: FontWeight.w600,
         letterSpacing: 1.4,
         height: 1.2,

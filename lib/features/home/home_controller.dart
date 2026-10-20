@@ -41,6 +41,10 @@ class HomeController extends ChangeNotifier {
   int estimatedMinutes = 0;
   int streak = 0;
   int recommendedCount = 0;
+
+  /// Showings in today's sitting. Reviews count once; each new kanji counts
+  /// twice because the sitting introduces it and then asks for it again.
+  int studyItemCount = 0;
   bool recommendedComplete = false;
   bool studyAnywayAvailable = false;
   DateTime? nextReviewAt;
@@ -66,6 +70,7 @@ class HomeController extends ChangeNotifier {
       newRemainingToday = workload.newRemainingToday;
       estimatedMinutes = workload.estimatedMinutes;
       recommendedCount = workload.sessionCards.length;
+      studyItemCount = workload.studyItemCount;
       recommendedComplete = workload.recommendedComplete;
       studyAnywayAvailable = workload.studyAnywayAvailable;
       streak = streakInfo.current;
@@ -76,6 +81,7 @@ class HomeController extends ChangeNotifier {
       newRemainingToday = 0;
       estimatedMinutes = 0;
       recommendedCount = 0;
+      studyItemCount = 0;
       recommendedComplete = false;
       studyAnywayAvailable = false;
       streak = 0;

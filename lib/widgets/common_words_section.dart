@@ -24,7 +24,7 @@ class CommonWordsSection extends StatelessWidget {
   final bool showHeading;
 
   /// Puts the word, reading, and meaning on one line when they fit. Used on
-  /// the learn and answer screens, where the whole card has to stay in view.
+  /// the learn and answer screens.
   final bool compact;
 
   @override
@@ -42,12 +42,12 @@ class CommonWordsSection extends StatelessWidget {
       children: [
         if (showHeading) ...[
           const SectionLabel('Common Words'),
-          SizedBox(height: compact ? 4 : 8),
+          const SizedBox(height: 8),
         ],
         for (var index = 0; index < entries.length; index++) ...[
           if (index > 0)
             compact
-                ? const SizedBox(height: 4)
+                ? const SizedBox(height: 8)
                 : Divider(height: 13, thickness: 1, color: theme.hairline),
           _CommonWordEntry(entry: entries[index], compact: compact),
         ],

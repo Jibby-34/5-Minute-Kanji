@@ -4,17 +4,20 @@ import 'package:provider/provider.dart';
 import '../../core/models/start_of_day.dart';
 import '../../core/navigation/app_routes.dart';
 import '../../core/theme/app_colors.dart';
-import '../../core/theme/app_theme.dart';
 import '../../core/theme/app_typography.dart';
 import '../../core/utils/time_format.dart';
-import '../../widgets/primary_button.dart';
-import '../../widgets/section_label.dart';
-import '../../widgets/soft_card.dart';
-import '../../widgets/streak_mark.dart';
 import '../kanji_list/kanji_list_screen.dart';
 import '../review/review_screen.dart';
 import '../settings/settings_screen.dart';
 import 'home_controller.dart';
+
+const _page = Color(0xFFF3EFE7);
+const _ink = Color(0xFF1C1A17);
+const _muted = Color(0xFF5C574E);
+const _line = Color(0xFFD9D2C3);
+const _chip = Color(0xFFE9E2D2);
+const _flame = Color(0xFFC9622B);
+const _card = Color(0xFFEDE6D8);
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -89,60 +92,106 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
   Widget build(BuildContext context) {
     final home = context.watch<HomeController>();
     final now = DateTime.now();
+    final bottomInset = MediaQuery.viewPaddingOf(context).bottom;
 
     return Scaffold(
+      backgroundColor: _page,
       body: SafeArea(
         bottom: false,
         child: home.loading
             ? const Center(child: CircularProgressIndicator(strokeWidth: 2))
-            : Column(
-                children: [
-                  _HomeHeader(
-                    onOpenSettings: _openSettings,
-                    onOpenKanjiList: _openKanjiList,
-                  ),
-                  Expanded(
-                    child: _HomeCanvas(
-                      home: home,
-                      now: now,
-                      onStart: () =>
-                          _startReview(studyAnyway: home.studyAnywayAvailable),
-                    ),
-                  ),
-                ],
+            : Padding(
+                padding: EdgeInsets.fromLTRB(20, 20, 20, 32 + bottomInset),
+                child: _HomeBody(
+                  home: home,
+                  now: now,
+                  onOpenSettings: _openSettings,
+                  onOpenKanjiList: _openKanjiList,
+                  onStart: () =>
+                      _startReview(studyAnyway: home.studyAnywayAvailable),
+                ),
               ),
       ),
     );
   }
 }
 
-/// Settings and the kanji list sit in the corners as quiet icon buttons, so
-/// nothing competes with today's study action.
+class _HomeBody extends StatelessWidget {
+  const _HomeBody({
+    required this.home,
+    required this.now,
+    required this.onOpenSettings,
+    required this.onOpenKanjiList,
+    required this.onStart,
+  });
+
+  final HomeController home;
+  final DateTime now;
+  final VoidCallback onOpenSettings;
+  final VoidCallback onOpenKanjiList;
+  final VoidCallback onStart;
+
+  @override
+  Widget build(BuildContext context) {
+    final workload = _Workload.of(home);
+
+    return Column(
+      children: [
+        _HomeHeader(
+          streak: home.streak,
+          onOpenSettings: onOpenSettings,
+          onOpenKanjiList: onOpenKanjiList,
+        ),
+        Expanded(
+          child: _HomeMiddle(home: home, now: now, workload: workload),
+        ),
+        if (workload.action case final action?)
+          _StartButton(label: action, onPressed: onStart),
+      ],
+    );
+  }
+}
+
+/// Settings, the streak, and the kanji list. The streak lives here so the
+/// study card can stay about today's sitting.
 class _HomeHeader extends StatelessWidget {
   const _HomeHeader({
+    required this.streak,
     required this.onOpenSettings,
     required this.onOpenKanjiList,
   });
 
+  final int streak;
   final VoidCallback onOpenSettings;
   final VoidCallback onOpenKanjiList;
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(20, 8, 20, 0),
+    return SizedBox(
+      height: 48,
       child: Row(
         children: [
           _NavIconButton(
-            icon: Icons.settings_outlined,
             tooltip: 'Settings',
             onPressed: onOpenSettings,
+            icon: const Icon(Icons.settings_outlined, size: 22, color: _ink),
           ),
-          const Spacer(),
+          Expanded(
+            child: Center(
+              child: FittedBox(
+                fit: BoxFit.scaleDown,
+                child: _StreakChip(streak: streak),
+              ),
+            ),
+          ),
           _NavIconButton(
-            icon: Icons.grid_view_rounded,
-            tooltip: 'Kanji List',
+            tooltip: 'Kanji list',
             onPressed: onOpenKanjiList,
+            icon: const SizedBox(
+              width: 22,
+              height: 22,
+              child: CustomPaint(painter: _KanjiListIconPainter()),
+            ),
           ),
         ],
       ),
@@ -157,26 +206,29 @@ class _NavIconButton extends StatelessWidget {
     required this.onPressed,
   });
 
-  final IconData icon;
+  final Widget icon;
   final String tooltip;
   final VoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
     return SizedBox.square(
-      dimension: 44,
+      dimension: 48,
       child: IconButton(
         tooltip: tooltip,
         onPressed: onPressed,
-        icon: Icon(icon, size: 20),
+        icon: icon,
         style: IconButton.styleFrom(
-          backgroundColor: theme.cardWash,
-          foregroundColor: theme.colorScheme.onSurface.withValues(alpha: 0.75),
+          backgroundColor: Colors.transparent,
+          foregroundColor: _ink,
+          fixedSize: const Size(48, 48),
+          minimumSize: const Size(48, 48),
+          maximumSize: const Size(48, 48),
+          padding: EdgeInsets.zero,
+          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+          side: const BorderSide(color: _line),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(13),
-            side: BorderSide(color: theme.hairline),
+            borderRadius: BorderRadius.circular(14),
           ),
         ),
       ),
@@ -184,83 +236,125 @@ class _NavIconButton extends StatelessWidget {
   }
 }
 
-/// Greeting, today's study card and the streak, composed around the middle of
-/// the screen. Extra height becomes even whitespace; short screens shrink the
-/// gaps first and scroll only as a last resort.
-class _HomeCanvas extends StatelessWidget {
-  const _HomeCanvas({
-    required this.home,
-    required this.now,
-    required this.onStart,
-  });
+class _StreakChip extends StatelessWidget {
+  const _StreakChip({required this.streak});
 
-  final HomeController home;
-  final DateTime now;
-  final VoidCallback onStart;
+  final int streak;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final bottomInset = MediaQuery.viewPaddingOf(context).bottom;
+    final value = theme.textTheme.titleMedium?.copyWith(
+      fontSize: 16,
+      fontWeight: FontWeight.w600,
+      color: _ink,
+      height: 1,
+    );
+    final caption = theme.textTheme.bodyMedium?.copyWith(
+      fontSize: 16,
+      fontWeight: FontWeight.w400,
+      color: _muted,
+      height: 1,
+    );
 
+    return Container(
+      height: 40,
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      alignment: Alignment.center,
+      decoration: BoxDecoration(
+        color: _chip,
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          const ExcludeSemantics(
+            child: Icon(Icons.local_fire_department, size: 18, color: _flame),
+          ),
+          const SizedBox(width: 7),
+          Text('$streak', style: value),
+          const SizedBox(width: 7),
+          Text('day streak', style: caption),
+        ],
+      ),
+    );
+  }
+}
+
+/// Four rounded squares. A stroke icon, so it matches the settings outline.
+class _KanjiListIconPainter extends CustomPainter {
+  const _KanjiListIconPainter();
+
+  static const _stroke = 1.6;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint()
+      ..color = _ink
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = _stroke
+      ..strokeJoin = StrokeJoin.round;
+
+    const gap = 3.0;
+    final box = (size.shortestSide - gap) / 2;
+    final radius = Radius.circular(box * 0.28);
+    for (var row = 0; row < 2; row++) {
+      for (var column = 0; column < 2; column++) {
+        final rect = Rect.fromLTWH(
+          column * (box + gap),
+          row * (box + gap),
+          box,
+          box,
+        ).deflate(_stroke / 2);
+        canvas.drawRRect(RRect.fromRectAndRadius(rect, radius), paint);
+      }
+    }
+  }
+
+  @override
+  bool shouldRepaint(covariant _KanjiListIconPainter oldDelegate) => false;
+}
+
+/// Greeting and today's card, centered in whatever height is left. Short
+/// screens scroll instead of overflowing.
+class _HomeMiddle extends StatelessWidget {
+  const _HomeMiddle({
+    required this.home,
+    required this.now,
+    required this.workload,
+  });
+
+  final HomeController home;
+  final DateTime now;
+  final _Workload workload;
+
+  @override
+  Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        final height = constraints.maxHeight;
-        final textScale = MediaQuery.textScalerOf(context).scale(16) / 16;
-        final compact = height < 540 || textScale > 1.25;
-        final greetingGap = (height * (compact ? 0.022 : 0.032)).clamp(
-          12.0,
-          28.0,
-        );
-        final streakGap = (height * (compact ? 0.03 : 0.045)).clamp(18.0, 38.0);
-        final numberSize = (height * (compact ? 0.11 : 0.125)).clamp(
-          60.0,
-          100.0,
-        );
-        final verticalPadding = compact ? 8.0 : 16.0;
-        // Sitting a little above the geometric centre keeps the count in the
-        // reading zone instead of floating in the middle of the page.
-        final topBias = compact ? 0.0 : (height * 0.07).clamp(0.0, 64.0);
-        final freeHeight = height - verticalPadding * 2 - bottomInset - topBias;
-
         return SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
-          padding: EdgeInsets.fromLTRB(
-            24,
-            verticalPadding,
-            24,
-            verticalPadding + bottomInset + topBias,
-          ),
           child: ConstrainedBox(
-            constraints: BoxConstraints(minHeight: freeHeight),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  greetingFor(now),
-                  textAlign: TextAlign.center,
-                  style: theme.textTheme.titleMedium?.copyWith(
-                    color: theme.mutedText,
-                    fontSize: 15,
-                    fontWeight: FontWeight.w400,
-                    letterSpacing: 0.2,
-                    height: 1.3,
+            constraints: BoxConstraints(minHeight: constraints.maxHeight),
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 24),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    greetingFor(now),
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                      color: _muted,
+                      fontSize: 21,
+                      fontWeight: FontWeight.w400,
+                      height: 1.2,
+                    ),
                   ),
-                ),
-                SizedBox(height: greetingGap),
-                ConstrainedBox(
-                  constraints: const BoxConstraints(maxWidth: 400),
-                  child: _DailyStudyCard(
-                    home: home,
-                    now: now,
-                    compact: compact,
-                    numberSize: numberSize,
-                    onStart: onStart,
-                  ),
-                ),
-                SizedBox(height: streakGap),
-                StreakMark(streak: home.streak),
-              ],
+                  const SizedBox(height: 60),
+                  _DailyStudyCard(home: home, now: now, workload: workload),
+                ],
+              ),
             ),
           ),
         );
@@ -269,87 +363,88 @@ class _HomeCanvas extends StatelessWidget {
   }
 }
 
-/// Everything about today in one place: how much is left, the one action to
-/// take, and when the next review lands.
 class _DailyStudyCard extends StatelessWidget {
   const _DailyStudyCard({
     required this.home,
     required this.now,
-    required this.compact,
-    required this.numberSize,
-    required this.onStart,
+    required this.workload,
   });
 
   final HomeController home;
   final DateTime now;
-  final bool compact;
-  final double numberSize;
-  final VoidCallback onStart;
+  final _Workload workload;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final workload = _Workload.of(home);
-    // The line earns its place once today's planned sitting is finished and
-    // there is nothing optional left.
     final showNextReview =
         !home.studyAnywayAvailable && home.recommendedCount == 0;
 
-    return SoftCard(
-      padding: EdgeInsets.symmetric(
-        horizontal: 20,
-        vertical: compact ? 18 : 24,
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.fromLTRB(20, 36, 20, 40),
+      decoration: BoxDecoration(
+        color: _card,
+        borderRadius: BorderRadius.circular(28),
+        border: Border.all(color: _line),
       ),
       child: Column(
         children: [
-          const SectionLabel('Today', align: TextAlign.center),
-          SizedBox(height: compact ? 12 : 18),
-          _DailyCount(
-            count: workload.count,
-            size: numberSize,
-            caughtUp: home.recommendedCount == 0,
-          ),
-          SizedBox(height: compact ? 4 : 6),
-          Text(
-            workload.label,
-            textAlign: TextAlign.center,
-            style: theme.textTheme.titleLarge?.copyWith(
-              fontSize: compact ? 19 : 20,
-              fontWeight: FontWeight.w500,
-              letterSpacing: -0.2,
-              height: 1.3,
-            ),
-          ),
-          SizedBox(height: compact ? 6 : 8),
-          Text(
-            workload.meta,
-            textAlign: TextAlign.center,
-            style: theme.textTheme.bodyMedium?.copyWith(
-              color: theme.mutedText,
-              fontSize: 14,
-              height: 1.35,
-            ),
-          ),
-          if (workload.action case final action?) ...[
-            SizedBox(height: compact ? 18 : 24),
-            PrimaryButton(label: action, onPressed: onStart),
-            if (workload.footnote case final footnote?) ...[
-              SizedBox(height: compact ? 10 : 12),
-              Text(
-                footnote,
-                textAlign: TextAlign.center,
-                style: theme.textTheme.bodyMedium?.copyWith(
-                  color: theme.mutedText,
-                  fontSize: 14,
-                  height: 1.35,
+          if (workload.title case final title?)
+            Text(
+              title,
+              textAlign: TextAlign.center,
+              style: theme.textTheme.headlineMedium?.copyWith(
+                color: _ink,
+                fontSize: 30,
+                fontWeight: FontWeight.w600,
+                letterSpacing: -0.5,
+                height: 1.15,
+              ),
+            )
+          else ...[
+            Padding(
+              padding: const EdgeInsets.only(top: 12, bottom: 28),
+              child: FittedBox(
+                fit: BoxFit.scaleDown,
+                child: Text(
+                  '${workload.count}',
+                  textAlign: TextAlign.center,
+                  style: AppTypography.kanji(
+                    color: _ink,
+                    size: 176,
+                  ).copyWith(fontWeight: FontWeight.w400, height: 0.85),
                 ),
               ),
-            ],
+            ),
+            Text(
+              workload.label!,
+              textAlign: TextAlign.center,
+              style: theme.textTheme.titleMedium?.copyWith(
+                color: _ink,
+                fontSize: 20,
+                fontWeight: FontWeight.w500,
+                height: 1.2,
+              ),
+            ),
           ],
+          Padding(
+            padding: const EdgeInsets.only(top: 6),
+            child: Text(
+              workload.meta,
+              textAlign: TextAlign.center,
+              style: theme.textTheme.bodyMedium?.copyWith(
+                color: _muted,
+                fontSize: 16,
+                fontWeight: FontWeight.w400,
+                height: 1.3,
+              ),
+            ),
+          ),
           if (showNextReview) ...[
-            SizedBox(height: compact ? 14 : 18),
-            Divider(height: 1, thickness: 1, color: theme.hairline),
-            SizedBox(height: compact ? 12 : 14),
+            const SizedBox(height: 18),
+            Divider(height: 1, thickness: 1, color: _line),
+            const SizedBox(height: 14),
             _NextReviewLine(
               nextReviewAt: home.nextReviewAt,
               now: now,
@@ -362,58 +457,38 @@ class _DailyStudyCard extends StatelessWidget {
   }
 }
 
-/// The one number the screen is built around, on a faint paper circle.
-class _DailyCount extends StatelessWidget {
-  const _DailyCount({
-    required this.count,
-    required this.size,
-    required this.caughtUp,
-  });
+class _StartButton extends StatelessWidget {
+  const _StartButton({required this.label, required this.onPressed});
 
-  final int count;
-  final double size;
-  final bool caughtUp;
+  final String label;
+  final VoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final dark = theme.brightness == Brightness.dark;
-    // Done for the day reads green; work left reads indigo.
-    final wash = caughtUp
-        ? (dark ? AppColors.darkIndigoWash : AppColors.masteredWash)
-        : theme.accentWash;
-    final diameter = size * 1.45;
 
-    return Stack(
-      alignment: Alignment.center,
-      children: [
-        SizedBox.square(
-          dimension: diameter,
-          child: DecoratedBox(
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              gradient: RadialGradient(
-                colors: [
-                  wash.withValues(alpha: 0.55),
-                  wash.withValues(alpha: 0),
-                ],
-                stops: const [0.5, 1],
-              ),
-            ),
+    return SizedBox(
+      width: double.infinity,
+      height: 60,
+      child: FilledButton(
+        onPressed: onPressed,
+        style: FilledButton.styleFrom(
+          backgroundColor: AppColors.indigo,
+          foregroundColor: Colors.white,
+          elevation: 0,
+          shadowColor: Colors.transparent,
+          minimumSize: const Size.fromHeight(60),
+          textStyle: theme.textTheme.titleMedium?.copyWith(
+            fontSize: 18,
+            fontWeight: FontWeight.w600,
+            height: 1.1,
+          ),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(18),
           ),
         ),
-        FittedBox(
-          fit: BoxFit.scaleDown,
-          child: Text(
-            '$count',
-            textAlign: TextAlign.center,
-            style: AppTypography.kanji(
-              color: theme.colorScheme.onSurface,
-              size: size,
-            ),
-          ),
-        ),
-      ],
+        child: Text(label),
+      ),
     );
   }
 }
@@ -438,8 +513,8 @@ class _NextReviewLine extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        ExcludeSemantics(
-          child: Icon(Icons.schedule_rounded, size: 15, color: theme.mutedText),
+        const ExcludeSemantics(
+          child: Icon(Icons.schedule_rounded, size: 15, color: _muted),
         ),
         const SizedBox(width: 7),
         Flexible(
@@ -448,7 +523,7 @@ class _NextReviewLine extends StatelessWidget {
             '${formatNextReview(nextReviewAt, now, startOfDay: startOfDay)}',
             textAlign: TextAlign.center,
             style: theme.textTheme.bodyMedium?.copyWith(
-              color: theme.mutedText,
+              color: _muted,
               fontSize: 14,
               height: 1.3,
             ),
@@ -459,45 +534,48 @@ class _NextReviewLine extends StatelessWidget {
   }
 }
 
-/// Today's numbers turned into the words the card shows. New kanji lead;
-/// reviews take over once the day's new cards are done.
+/// Words for the home card. A finished plan reads as done for the day;
+/// anything still eligible is optional practice, not remaining work.
 class _Workload {
   const _Workload({
-    required this.count,
-    required this.label,
     required this.meta,
+    this.count,
+    this.label,
+    this.title,
     this.action,
-    this.footnote,
   });
 
-  final int count;
-  final String label;
+  final int? count;
+  final String? label;
+  final String? title;
   final String meta;
   final String? action;
-  final String? footnote;
+
+  static String itemsLabel(int count) {
+    return count == 1 ? 'study item today' : 'study items today';
+  }
 
   static _Workload of(HomeController home) {
     if (home.studyAnywayAvailable) {
       return const _Workload(
-        count: 0,
-        label: 'kanji remaining today',
-        meta: "You're done for today!",
-        action: 'Study Anyway',
-        footnote: 'Keep going with other due kanji',
+        title: "You're done for today!",
+        meta: 'Nice work!',
+        action: 'Optional Practice',
       );
     }
 
     if (home.recommendedCount <= 0) {
-      return const _Workload(
+      return _Workload(
         count: 0,
-        label: 'kanji remaining today',
+        label: itemsLabel(0),
         meta: "You're all caught up.",
       );
     }
 
+    final count = home.studyItemCount;
     return _Workload(
-      count: home.recommendedCount,
-      label: 'kanji remaining today',
+      count: count,
+      label: itemsLabel(count),
       meta: '~${home.estimatedMinutes} min',
       action: 'Start Review',
     );

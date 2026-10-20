@@ -7,9 +7,10 @@ import '../../core/models/kanji_card.dart';
 import '../../core/models/onboarding.dart';
 import '../../core/theme/app_theme.dart';
 import '../../widgets/common_words_section.dart';
-import '../../widgets/mnemonic_text.dart';
+import '../../widgets/meaning_and_readings.dart';
+import '../../widgets/mnemonic_card.dart';
 import '../../widgets/section_label.dart';
-import '../../widgets/soft_card.dart';
+import '../../widgets/study_content_scroll.dart';
 import '../onboarding/widgets/onboarding_hint_text.dart';
 import '../stroke_order/kanji_stroke_animation.dart';
 import 'widgets/handwriting_pad.dart';
@@ -17,8 +18,8 @@ import 'widgets/handwriting_pad.dart';
 /// Post-submit self-evaluation: compare the frozen drawing to the correct
 /// kanji.
 ///
-/// The answer is the point of this screen, so the two squares, the meaning and
-/// the mnemonic carry the weight; the question above them is just a label.
+/// The two sheets lead. Meaning, readings, and stroke order sit just
+/// underneath, then the same mnemonic and vocabulary as the learn screen.
 class CompareBody extends StatefulWidget {
   const CompareBody({super.key, required this.card, required this.drawing});
 
@@ -34,105 +35,72 @@ class _CompareBodyState extends State<CompareBody> {
 
   KanjiCard get card => widget.card;
 
+  static const _groupGap = 20.0;
+  static const _panelGap = 12.0;
+  static const _maxPanelSide = 196.0;
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final showSecondaryMeaning =
-        card.meaning.trim().isNotEmpty &&
-        card.meaning.toLowerCase() != card.keyword.toLowerCase();
 
     return LayoutBuilder(
       builder: (context, constraints) {
-        final side = _compareSide(constraints);
-        final body = Column(
+        final side = _compareSide(constraints.maxWidth);
+        final content = Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const SectionLabel('How did you do?', align: TextAlign.center),
             const OnboardingHintText(
               OnboardingHint.compareDrawing,
-              padding: EdgeInsets.only(top: 6),
+              padding: EdgeInsets.only(top: 8),
             ),
             const SizedBox(height: 8),
             _comparison(theme, side),
-            const SizedBox(height: 12),
-            Text(
-              card.keyword,
-              textAlign: TextAlign.center,
-              style: theme.textTheme.headlineMedium?.copyWith(
-                fontSize: 30,
-                fontWeight: FontWeight.w600,
-                letterSpacing: -0.5,
-                height: 1.1,
-              ),
+            const SizedBox(height: _groupGap),
+            MeaningAndReadings(card: card, trailing: _strokeOrderButton(theme)),
+            const SizedBox(height: _groupGap),
+            MnemonicCard(
+              mnemonic: card.mnemonic,
+              components: card.componentModels,
             ),
-            if (showSecondaryMeaning) ...[
-              const SizedBox(height: 2),
-              Text(
-                card.meaning,
-                textAlign: TextAlign.center,
-                style: theme.textTheme.titleMedium?.copyWith(
-                  color: theme.mutedText,
-                  height: 1.25,
-                ),
-              ),
-            ],
-            if (card.hasReadings) ...[
-              const SizedBox(height: 6),
-              _readings(theme),
-            ],
-            Center(child: _strokeOrderButton(theme)),
-            _mnemonic(theme),
             if (card.hasCommonWords) ...[
-              const SizedBox(height: 10),
+              const SizedBox(height: _groupGap),
               CommonWordsSection(words: card.commonWords, compact: true),
             ],
           ],
         );
 
-        if (!constraints.hasBoundedHeight || !constraints.hasBoundedWidth) {
-          return body;
-        }
-
-        // The drawing, the answer, and the vocabulary stay on one screen.
-        // Short phones scale the card down instead of scrolling it.
-        return FittedBox(
-          fit: BoxFit.scaleDown,
-          alignment: Alignment.center,
-          child: SizedBox(width: constraints.maxWidth, child: body),
-        );
+        return StudyContentScroll(child: content);
       },
     );
   }
 
   Widget _comparison(ThemeData theme, double side) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Expanded(
-          child: _labeledSquare(
-            label: 'Your drawing',
-            side: side,
-            child: HandwritingPad(value: widget.drawing, readOnly: true),
-          ),
+        _labeledSquare(
+          label: 'Your drawing',
+          side: side,
+          child: HandwritingPad(value: widget.drawing, readOnly: true),
         ),
-        const SizedBox(width: 14),
-        Expanded(
-          child: _labeledSquare(
-            label: 'Correct',
-            side: side,
-            child: _PaperFrame(
-              child: KanjiStrokeAnimation(
-                key: _strokeOrder,
-                character: card.character,
-                autoPlay: false,
-                startCompleted: true,
-                size: side - 20,
-                showReplay: false,
-                showFrame: false,
-                showStrokeNumbers: false,
-                showFallbackCharacter: true,
-              ),
+        const SizedBox(width: _panelGap),
+        _labeledSquare(
+          label: 'Correct',
+          side: side,
+          child: _PaperFrame(
+            child: KanjiStrokeAnimation(
+              key: _strokeOrder,
+              character: card.character,
+              autoPlay: false,
+              startCompleted: true,
+              size: math.max(0.0, side - 16),
+              showReplay: false,
+              showFrame: false,
+              showStrokeNumbers: false,
+              showFallbackCharacter: true,
             ),
           ),
         ),
@@ -145,46 +113,15 @@ class _CompareBodyState extends State<CompareBody> {
     required double side,
     required Widget child,
   }) {
-    return Column(
-      children: [
-        SectionLabel(label, align: TextAlign.center),
-        const SizedBox(height: 10),
-        Center(
-          child: SizedBox(width: side, height: side, child: child),
-        ),
-      ],
-    );
-  }
-
-  /// On and kun readings on one line, big enough to actually read.
-  Widget _readings(ThemeData theme) {
-    final value = theme.textTheme.titleLarge?.copyWith(
-      fontSize: 19,
-      fontWeight: FontWeight.w500,
-      height: 1.35,
-    );
-    final kind = value?.copyWith(
-      fontSize: 13,
-      fontWeight: FontWeight.w600,
-      color: theme.mutedText,
-    );
-
-    return Text.rich(
-      TextSpan(
+    return SizedBox(
+      width: side,
+      child: Column(
         children: [
-          if (card.onyomi.isNotEmpty) ...[
-            TextSpan(text: 'On ', style: kind),
-            TextSpan(text: card.onyomiLabel, style: value),
-          ],
-          if (card.onyomi.isNotEmpty && card.kunyomi.isNotEmpty)
-            TextSpan(text: '  ·  ', style: kind),
-          if (card.kunyomi.isNotEmpty) ...[
-            TextSpan(text: 'Kun ', style: kind),
-            TextSpan(text: card.kunyomiLabel, style: value),
-          ],
+          SectionLabel(label, align: TextAlign.center),
+          const SizedBox(height: 8),
+          SizedBox(width: side, height: side, child: child),
         ],
       ),
-      textAlign: TextAlign.center,
     );
   }
 
@@ -193,58 +130,29 @@ class _CompareBodyState extends State<CompareBody> {
       message: 'Replay stroke order',
       child: TextButton.icon(
         onPressed: () => _strokeOrder.currentState?.restart(),
-        icon: const Icon(Icons.replay, size: 17),
+        icon: const Icon(Icons.replay, size: 16),
         label: const Text('Stroke Order'),
         style: TextButton.styleFrom(
           foregroundColor: theme.colorScheme.primary,
+          padding: const EdgeInsets.fromLTRB(0, 4, 12, 4),
+          minimumSize: const Size(48, 40),
+          tapTargetSize: MaterialTapTargetSize.padded,
+          visualDensity: VisualDensity.compact,
           textStyle: theme.textTheme.bodyLarge?.copyWith(
             fontWeight: FontWeight.w600,
           ),
-          minimumSize: const Size(48, 44),
-          tapTargetSize: MaterialTapTargetSize.padded,
-          visualDensity: VisualDensity.compact,
         ),
       ),
     );
   }
 
-  /// The mnemonic is learning content, so it gets a surface of its own rather
-  /// than trailing off as a footnote.
-  Widget _mnemonic(ThemeData theme) {
-    return SoftCard(
-      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          ExcludeSemantics(
-            child: Icon(
-              Icons.lightbulb_outline,
-              size: 20,
-              color: theme.colorScheme.primary,
-            ),
-          ),
-          const SizedBox(width: 10),
-          Expanded(
-            child: MnemonicText(
-              mnemonic: card.mnemonic,
-              components: card.componentModels,
-              style: theme.textTheme.titleMedium!.copyWith(height: 1.35),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  double _compareSide(BoxConstraints constraints) {
-    final maxWidth = constraints.maxWidth;
-    final maxHeight = constraints.maxHeight;
-    final widthBudget = maxWidth.isFinite
-        ? ((maxWidth - 14) / 2).clamp(72.0, 136.0)
-        : 120.0;
-    if (!maxHeight.isFinite || maxHeight <= 0) return widthBudget;
-    final heightBudget = (maxHeight * 0.24).clamp(72.0, 136.0);
-    return math.min(widthBudget, heightBudget);
+  /// Two equal sheets. Width sets the size; a cap keeps a tablet from
+  /// turning the comparison into the whole page.
+  double _compareSide(double maxWidth) {
+    if (!maxWidth.isFinite || maxWidth <= _panelGap) return 48;
+    final fitted = (maxWidth - _panelGap) / 2;
+    // Floor so the pair cannot overflow the row by a fraction of a pixel.
+    return math.min(fitted, _maxPanelSide).floorToDouble();
   }
 }
 

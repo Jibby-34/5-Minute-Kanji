@@ -29,6 +29,7 @@ class DailyWorkload {
     this.overflowCards = const [],
     this.recommendedComplete = false,
     this.plannedRemaining,
+    this.studyItemCount = 0,
   });
 
   static const empty = DailyWorkload(
@@ -64,6 +65,10 @@ class DailyWorkload {
   /// every due or new card. Null keeps the older count for callers that
   /// build a workload by hand.
   final int? plannedRemaining;
+
+  /// Card showings in today's sitting. A review counts once. A new kanji
+  /// counts twice, because the sitting introduces it and then retrieves it.
+  final int studyItemCount;
 
   bool get isCaughtUp => dueCount == 0 && newRemainingToday == 0;
 
@@ -223,6 +228,7 @@ class DailyWorkloadService {
       overflowCards: overflow,
       recommendedComplete: complete,
       plannedRemaining: session.length,
+      studyItemCount: _studyItemCount(session, candidates),
     );
   }
 
@@ -344,6 +350,23 @@ class DailyWorkloadService {
       ),
       estimated: estimator.estimate(schedule, isNew: isNew),
     );
+  }
+
+  /// Priority reviews once, plus two showings for each new kanji still in
+  /// [session]. Cards that are no longer new have already been introduced.
+  int _studyItemCount(
+    List<KanjiCard> session,
+    List<SessionCandidate> candidates,
+  ) {
+    if (session.isEmpty) return 0;
+    final isNew = {
+      for (final candidate in candidates) candidate.card.id: candidate.isNew,
+    };
+    var count = 0;
+    for (final card in session) {
+      count += isNew[card.id] == true ? 2 : 1;
+    }
+    return count;
   }
 
   List<KanjiCard> _outstanding(

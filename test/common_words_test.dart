@@ -8,9 +8,11 @@ import 'package:fiveminutekanji/core/models/handwriting.dart';
 import 'package:fiveminutekanji/core/models/kanji_card.dart';
 import 'package:fiveminutekanji/core/models/review.dart';
 import 'package:fiveminutekanji/core/theme/app_theme.dart';
+import 'package:fiveminutekanji/features/learn/learn_kanji_body.dart';
 import 'package:fiveminutekanji/features/review/compare_body.dart';
 import 'package:fiveminutekanji/features/review/review_screen.dart';
 import 'package:fiveminutekanji/features/review/widgets/handwriting_pad.dart';
+import 'package:fiveminutekanji/features/stroke_order/kanji_stroke_animation.dart';
 import 'package:fiveminutekanji/repositories/progress_repository.dart';
 import 'package:fiveminutekanji/services/srs_engine.dart';
 import 'package:fiveminutekanji/services/srs_scheduler.dart';
@@ -280,7 +282,9 @@ void main() {
     expect(tester.takeException(), isNull);
   });
 
-  testWidgets('learn card fits without scrolling', (tester) async {
+  testWidgets('learn card scrolls vocabulary without covering the actions', (
+    tester,
+  ) async {
     tester.view.physicalSize = const Size(320, 568);
     tester.view.devicePixelRatio = 1.0;
     addTearDown(tester.view.resetPhysicalSize);
@@ -312,7 +316,25 @@ void main() {
     expect(find.text(card.componentsLabel), findsNothing);
     expect(find.text('person'), findsOneWidget);
     expect(find.text('休み'), findsOneWidget);
-    expect(find.byType(SingleChildScrollView), findsNothing);
+    expect(find.text('MEANING'), findsOneWidget);
+    expect(find.text('READINGS'), findsOneWidget);
+
+    final learnTop = tester.getTopLeft(find.byType(LearnKanjiBody)).dy;
+    expect(
+      tester.getTopLeft(find.byType(KanjiStrokeAnimation)).dy,
+      lessThan(learnTop + 16),
+    );
+    expect(
+      tester.getRect(find.text('Practice Writing')).bottom,
+      lessThanOrEqualTo(568),
+    );
+
+    await tester.scrollUntilVisible(
+      find.text('休暇'),
+      48,
+      scrollable: find.byType(Scrollable),
+    );
+    expect(find.text('休暇').hitTestable(), findsOneWidget);
     expect(
       tester.getRect(find.text('休暇')).bottom,
       lessThanOrEqualTo(tester.getRect(find.text('Practice Writing')).top),
@@ -320,7 +342,9 @@ void main() {
     expect(tester.takeException(), isNull);
   });
 
-  testWidgets('answer card fits without scrolling', (tester) async {
+  testWidgets('answer card scrolls vocabulary without covering the actions', (
+    tester,
+  ) async {
     tester.view.physicalSize = const Size(320, 568);
     tester.view.devicePixelRatio = 1.0;
     addTearDown(tester.view.resetPhysicalSize);
@@ -355,7 +379,43 @@ void main() {
     expect(find.text('COMPONENTS'), findsNothing);
     expect(find.text('休暇'), findsOneWidget);
     expect(find.text('person'), findsOneWidget);
-    expect(find.byType(SingleChildScrollView), findsNothing);
+    expect(find.text('HOW DID YOU DO?'), findsOneWidget);
+    expect(find.text('YOUR DRAWING'), findsOneWidget);
+    expect(find.text('CORRECT'), findsOneWidget);
+
+    final compareTop = tester.getTopLeft(find.byType(CompareBody)).dy;
+    expect(
+      tester.getTopLeft(find.text('HOW DID YOU DO?')).dy,
+      lessThan(compareTop + 16),
+    );
+
+    final drawing = tester.getSize(find.byType(HandwritingPad));
+    expect(drawing.width, closeTo(drawing.height, 0.5));
+    expect(drawing.width, greaterThan(100));
+    Size? correct;
+    tester.element(find.byType(KanjiStrokeAnimation)).visitAncestorElements((
+      ancestor,
+    ) {
+      final render = ancestor.renderObject;
+      if (ancestor.widget is DecoratedBox && render is RenderBox) {
+        correct = render.size;
+        return false;
+      }
+      return true;
+    });
+    expect(correct, drawing);
+
+    expect(tester.getRect(find.text('Again')).bottom, lessThanOrEqualTo(568));
+    final again = tester.getSize(find.widgetWithText(OutlinedButton, 'Again'));
+    final good = tester.getSize(find.widgetWithText(FilledButton, 'Good'));
+    expect(again.width, closeTo(good.width, 1));
+
+    await tester.scrollUntilVisible(
+      find.text('休暇'),
+      48,
+      scrollable: find.byType(Scrollable),
+    );
+    expect(find.text('休暇').hitTestable(), findsOneWidget);
     expect(
       tester.getRect(find.text('休暇')).bottom,
       lessThanOrEqualTo(tester.getRect(find.text('Again')).top),

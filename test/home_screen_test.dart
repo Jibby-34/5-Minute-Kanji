@@ -48,9 +48,9 @@ void main() {
     return find.byWidgetPredicate(
       (widget) =>
           widget is Text &&
-          (widget.data == 'Good morning' ||
-              widget.data == 'Good afternoon' ||
-              widget.data == 'Good evening'),
+          (widget.data == 'Good Morning' ||
+              widget.data == 'Good Afternoon' ||
+              widget.data == 'Good Evening'),
     );
   }
 
@@ -61,21 +61,26 @@ void main() {
 
     expect(find.byType(HomeScreen), findsOneWidget);
     expect(greeting(), findsOneWidget);
-    expect(find.text('kanji remaining today'), findsOneWidget);
+    expect(find.text('YOUR STUDY PLAN'), findsNothing);
+    expect(find.text('study items today'), findsOneWidget);
+    expect(find.text('10'), findsOneWidget);
     expect(find.text('Start Review'), findsOneWidget);
     expect(find.textContaining('day streak'), findsOneWidget);
     expect(find.textContaining('min'), findsOneWidget);
     // Work is waiting, so the next review is now and the line stays out.
     expect(find.textContaining('Next review:'), findsNothing);
+    expect(find.byTooltip('Settings'), findsOneWidget);
+    expect(find.byTooltip('Kanji list'), findsOneWidget);
     expect(tester.takeException(), isNull);
 
-    // Reading order: today's count, the action it leads to, then the streak.
-    final number = tester.getCenter(find.text('5'));
+    // Streak sits in the top bar. The count leads down to the start button.
+    final number = tester.getCenter(find.text('10'));
     final start = tester.getCenter(find.text('Start Review'));
     final streak = tester.getCenter(find.textContaining('day streak'));
-    expect(number.dy, lessThan(844 * 0.45));
-    expect(start.dy, greaterThan(number.dy));
-    expect(streak.dy, greaterThan(start.dy));
+    final hello = tester.getCenter(greeting());
+    expect(streak.dy, lessThan(hello.dy));
+    expect(hello.dy, lessThan(number.dy));
+    expect(number.dy, lessThan(start.dy));
   });
 
   testWidgets('home layout does not overflow common phone sizes', (
@@ -98,11 +103,12 @@ void main() {
       );
       expect(greeting(), findsOneWidget);
       expect(find.text('Start Review'), findsOneWidget);
+      expect(find.text('10'), findsOneWidget);
       expect(
-        tester.getCenter(find.text('5')).dy,
-        lessThan(size.height * 0.45),
+        tester.getCenter(find.text('10')).dy,
+        lessThan(tester.getCenter(find.text('Start Review')).dy),
         reason:
-            'workload should stay upper-middle on ${size.width}x${size.height}',
+            'count should sit above the button on ${size.width}x${size.height}',
       );
     }
   });
@@ -114,7 +120,7 @@ void main() {
 
     expect(tester.takeException(), isNull);
     expect(greeting(), findsOneWidget);
-    expect(find.text('kanji remaining today'), findsOneWidget);
+    expect(find.text('study items today'), findsOneWidget);
     expect(find.text('Start Review'), findsOneWidget);
   });
 }

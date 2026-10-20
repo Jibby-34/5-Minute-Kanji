@@ -57,13 +57,13 @@ class SessionCompleteScreen extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         PrimaryButton(
-                          label: 'Continue',
-                          onPressed: () => Navigator.of(context).pop(true),
+                          label: 'Done',
+                          onPressed: () => Navigator.of(context).pop(false),
                         ),
                         const SizedBox(height: 10),
                         SecondaryButton(
-                          label: 'Done',
-                          onPressed: () => Navigator.of(context).pop(false),
+                          label: 'Optional Practice',
+                          onPressed: () => Navigator.of(context).pop(true),
                         ),
                       ],
                     )
@@ -188,7 +188,7 @@ class _CompletionHeader extends StatelessWidget {
         ),
         SizedBox(height: step),
         Text(
-          'Nice work.',
+          "You're done for today!",
           textAlign: TextAlign.center,
           style: theme.textTheme.headlineMedium?.copyWith(
             fontSize: 30,
@@ -416,12 +416,8 @@ class _NextReview extends StatelessWidget {
 }
 
 String _completionNote(SessionSummary summary) {
-  if (summary.canContinue) {
-    return "You haven't reached today's time goal yet. "
-        'Press Continue to keep going.';
-  }
   if (summary.reviewedCount == 0) return 'Nothing to review this time.';
-  return 'A little progress goes a long way.';
+  return 'Nice work!';
 }
 
 String? _againNote(SessionSummary summary) {
