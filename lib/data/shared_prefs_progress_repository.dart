@@ -82,6 +82,16 @@ class SharedPrefsProgressRepository implements ProgressRepository {
   }
 
   @override
+  Future<void> deleteSchedule(String cardId) async {
+    await _ensureLoaded();
+    if (!_blob.schedules.containsKey(cardId)) return;
+    final next = Map<String, CardSchedule>.from(_blob.schedules)
+      ..remove(cardId);
+    _blob = _blob.copyWith(schedules: next);
+    await _persist();
+  }
+
+  @override
   Future<List<ReviewHistoryEntry>> getHistory() async {
     await _ensureLoaded();
     return List.unmodifiable(_blob.history);
@@ -95,6 +105,30 @@ class SharedPrefsProgressRepository implements ProgressRepository {
       next.removeRange(0, next.length - _maxHistoryEntries);
     }
     _blob = _blob.copyWith(history: next);
+    await _persist();
+  }
+
+  @override
+  Future<bool> removeLastHistory(ReviewHistoryEntry entry) async {
+    await _ensureLoaded();
+    final history = _blob.history;
+    if (history.isEmpty || !history.last.sameAs(entry)) return false;
+    _blob = _blob.copyWith(history: history.sublist(0, history.length - 1));
+    await _persist();
+    return true;
+  }
+
+  @override
+  Future<bool> hasSeenShakeUndoHint() async {
+    await _ensureLoaded();
+    return _blob.shakeUndoHintSeen;
+  }
+
+  @override
+  Future<void> markShakeUndoHintSeen() async {
+    await _ensureLoaded();
+    if (_blob.shakeUndoHintSeen) return;
+    _blob = _blob.copyWith(shakeUndoHintSeen: true);
     await _persist();
   }
 
@@ -315,6 +349,7 @@ class _ProgressBlob {
     this.placement = PlacementProgress.empty,
     this.onboarding = OnboardingProgress.empty,
     this.kanjiCatalogVersion = 0,
+    this.shakeUndoHintSeen = false,
   });
 
   final Map<String, CardSchedule> schedules;
@@ -332,6 +367,9 @@ class _ProgressBlob {
   /// N5–N1 list, after any id remap has run.
   final int kanjiCatalogVersion;
 
+  /// The shake-to-undo hint has already been shown.
+  final bool shakeUndoHintSeen;
+
   _ProgressBlob copyWith({
     Map<String, CardSchedule>? schedules,
     List<ReviewHistoryEntry>? history,
@@ -344,6 +382,7 @@ class _ProgressBlob {
     PlacementProgress? placement,
     OnboardingProgress? onboarding,
     int? kanjiCatalogVersion,
+    bool? shakeUndoHintSeen,
   }) {
     return _ProgressBlob(
       schedules: schedules ?? this.schedules,
@@ -357,6 +396,7 @@ class _ProgressBlob {
       placement: placement ?? this.placement,
       onboarding: onboarding ?? this.onboarding,
       kanjiCatalogVersion: kanjiCatalogVersion ?? this.kanjiCatalogVersion,
+      shakeUndoHintSeen: shakeUndoHintSeen ?? this.shakeUndoHintSeen,
     );
   }
 
@@ -375,6 +415,7 @@ class _ProgressBlob {
       'placement': placement.toJson(),
       'onboarding': onboarding.toJson(),
       'kanjiCatalogVersion': kanjiCatalogVersion,
+      'shakeUndoHintSeen': shakeUndoHintSeen,
     };
   }
 
@@ -422,6 +463,7 @@ class _ProgressBlob {
         _asStringKeyMap(json['onboarding']),
       ),
       kanjiCatalogVersion: (json['kanjiCatalogVersion'] as num?)?.toInt() ?? 0,
+      shakeUndoHintSeen: json['shakeUndoHintSeen'] as bool? ?? false,
     );
   }
 }

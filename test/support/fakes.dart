@@ -95,6 +95,7 @@ class MemoryProgressRepository implements ProgressRepository {
   ReviewDurationModel reviewDurations;
   PlacementProgress placement = PlacementProgress.empty;
   OnboardingProgress onboarding = OnboardingProgress.empty;
+  bool shakeUndoHintSeen = false;
 
   @override
   Future<Map<String, CardSchedule>> getSchedules() async =>
@@ -116,12 +117,32 @@ class MemoryProgressRepository implements ProgressRepository {
   }
 
   @override
+  Future<void> deleteSchedule(String cardId) async {
+    schedules.remove(cardId);
+  }
+
+  @override
   Future<List<ReviewHistoryEntry>> getHistory() async =>
       List.unmodifiable(history);
 
   @override
   Future<void> addHistory(ReviewHistoryEntry entry) async {
     history.add(entry);
+  }
+
+  @override
+  Future<bool> removeLastHistory(ReviewHistoryEntry entry) async {
+    if (history.isEmpty || !history.last.sameAs(entry)) return false;
+    history.removeLast();
+    return true;
+  }
+
+  @override
+  Future<bool> hasSeenShakeUndoHint() async => shakeUndoHintSeen;
+
+  @override
+  Future<void> markShakeUndoHintSeen() async {
+    shakeUndoHintSeen = true;
   }
 
   @override

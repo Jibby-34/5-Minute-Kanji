@@ -11,11 +11,13 @@ import '../../core/models/review.dart';
 import '../../core/models/start_of_day.dart';
 import '../../core/models/study_phase.dart';
 import '../../core/navigation/app_routes.dart';
+import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_theme.dart';
 import '../../core/utils/clock.dart';
 import '../../repositories/kanji_repository.dart';
 import '../../repositories/progress_repository.dart';
 import '../../services/daily_workload.dart';
+import '../../services/shake_detector.dart';
 import '../../services/srs_scheduler.dart';
 import '../../widgets/bottom_action_inset.dart';
 import '../../widgets/primary_button.dart';
@@ -56,6 +58,7 @@ class ReviewScreen extends StatelessWidget {
     this.isStudyAnyway = false,
     this.clock,
     this.onSessionComplete,
+    this.shakeEvents,
   });
 
   final List<KanjiCard> cards;
@@ -68,6 +71,10 @@ class ReviewScreen extends StatelessWidget {
 
   /// Replaces the usual summary screen. Used once, for the first session.
   final SessionCompleteBuilder? onSessionComplete;
+
+  /// Shake source for undo. When null, phones listen to the accelerometer
+  /// and every other platform stays quiet.
+  final ShakeEvents? shakeEvents;
 
   @override
   Widget build(BuildContext context) {
@@ -109,7 +116,10 @@ class ReviewScreen extends StatelessWidget {
         controller.hydrate();
         return controller;
       },
-      child: _ReviewHost(onSessionComplete: onSessionComplete),
+      child: _ReviewHost(
+        onSessionComplete: onSessionComplete,
+        shakeEvents: shakeEvents,
+      ),
     );
   }
 }
@@ -117,9 +127,10 @@ class ReviewScreen extends StatelessWidget {
 /// Keeps today's review clock in step with the app lifecycle. Background time
 /// is paused and written out so a later sitting continues the same day.
 class _ReviewHost extends StatefulWidget {
-  const _ReviewHost({this.onSessionComplete});
+  const _ReviewHost({this.onSessionComplete, this.shakeEvents});
 
   final SessionCompleteBuilder? onSessionComplete;
+  final ShakeEvents? shakeEvents;
 
   @override
   State<_ReviewHost> createState() => _ReviewHostState();
@@ -170,14 +181,18 @@ class _ReviewHostState extends State<_ReviewHost> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
-    return _ReviewView(onSessionComplete: widget.onSessionComplete);
+    return _ReviewView(
+      onSessionComplete: widget.onSessionComplete,
+      shakeEvents: widget.shakeEvents,
+    );
   }
 }
 
 class _ReviewView extends StatelessWidget {
-  const _ReviewView({this.onSessionComplete});
+  const _ReviewView({this.onSessionComplete, this.shakeEvents});
 
   final SessionCompleteBuilder? onSessionComplete;
+  final ShakeEvents? shakeEvents;
 
   Future<void> _submit(BuildContext context) async {
     HapticFeedback.lightImpact();
@@ -199,7 +214,11 @@ class _ReviewView extends StatelessWidget {
     ]);
     final controller = context.read<ReviewController>();
     final summary = await controller.rate(result);
-    if (!context.mounted || summary == null) return;
+    if (!context.mounted) return;
+    if (controller.takeShakeUndoHint()) {
+      _showReviewNotice(context, _shakeUndoDiscoveryMessage);
+    }
+    if (summary == null) return;
     await _showSummary(context, summary);
   }
 
@@ -265,89 +284,92 @@ class _ReviewView extends StatelessWidget {
     }
 
     return Scaffold(
-      body: SafeArea(
-        bottom: false,
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(8, 4, 4, 0),
-              child: Row(
-                children: [
-                  const SizedBox(width: 12),
-                  Text(
-                    '${controller.remainingToDraw} remaining',
-                    style: theme.textTheme.bodyMedium?.copyWith(
-                      color: theme.mutedText,
-                      letterSpacing: 0.4,
-                    ),
-                  ),
-                  const Spacer(),
-                  IconButton(
-                    tooltip: 'Close',
-                    onPressed: () async {
-                      final controller = context.read<ReviewController>();
-                      controller.pauseReviewTime();
-                      await controller.checkpointReviewTime();
-                      if (!context.mounted) return;
-                      Navigator.of(context).maybePop();
-                    },
-                    icon: const Icon(Icons.close),
-                  ),
-                ],
-              ),
-            ),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(20, 0, 20, 8),
-                child: LayoutBuilder(
-                  builder: (context, constraints) {
-                    return AnimatedSwitcher(
-                      duration: const Duration(milliseconds: 220),
-                      switchInCurve: Curves.easeOut,
-                      switchOutCurve: Curves.easeIn,
-                      child: SizedBox(
-                        key: ValueKey(
-                          '${controller.phase}-${card.id}-${controller.padGeneration}',
-                        ),
-                        width: constraints.maxWidth,
-                        height: constraints.maxHeight,
-                        child: switch (controller.phase) {
-                          StudyPhase.learn => LearnKanjiBody(
-                            key: ValueKey('learn-${card.id}'),
-                            card: card,
-                          ),
-                          StudyPhase.practice => PracticeWritingBody(
-                            key: ValueKey(
-                              'practice-${card.id}-${controller.padGeneration}',
-                            ),
-                            card: card,
-                            drawing: controller.drawing,
-                            onDrawingChanged: controller.updateDrawing,
-                          ),
-                          StudyPhase.compare => CompareBody(
-                            key: ValueKey('compare-${card.id}'),
-                            card: card,
-                            drawing:
-                                controller.answer?.drawing ??
-                                controller.drawing,
-                          ),
-                          StudyPhase.recall => _PromptBody(
-                            key: ValueKey(
-                              'prompt-${card.id}-${controller.padGeneration}',
-                            ),
-                            card: card,
-                            drawing: controller.drawing,
-                            onDrawingChanged: controller.updateDrawing,
-                          ),
-                        },
+      body: _ShakeUndoRegion(
+        shakeEvents: shakeEvents,
+        child: SafeArea(
+          bottom: false,
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(8, 4, 4, 0),
+                child: Row(
+                  children: [
+                    const SizedBox(width: 12),
+                    Text(
+                      '${controller.remainingToDraw} remaining',
+                      style: theme.textTheme.bodyMedium?.copyWith(
+                        color: theme.mutedText,
+                        letterSpacing: 0.4,
                       ),
-                    );
-                  },
+                    ),
+                    const Spacer(),
+                    IconButton(
+                      tooltip: 'Close',
+                      onPressed: () async {
+                        final controller = context.read<ReviewController>();
+                        controller.pauseReviewTime();
+                        await controller.checkpointReviewTime();
+                        if (!context.mounted) return;
+                        Navigator.of(context).maybePop();
+                      },
+                      icon: const Icon(Icons.close),
+                    ),
+                  ],
                 ),
               ),
-            ),
-            BottomActionInset(child: _actions(context, controller)),
-          ],
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(20, 0, 20, 8),
+                  child: LayoutBuilder(
+                    builder: (context, constraints) {
+                      return AnimatedSwitcher(
+                        duration: const Duration(milliseconds: 220),
+                        switchInCurve: Curves.easeOut,
+                        switchOutCurve: Curves.easeIn,
+                        child: SizedBox(
+                          key: ValueKey(
+                            '${controller.phase}-${card.id}-${controller.padGeneration}',
+                          ),
+                          width: constraints.maxWidth,
+                          height: constraints.maxHeight,
+                          child: switch (controller.phase) {
+                            StudyPhase.learn => LearnKanjiBody(
+                              key: ValueKey('learn-${card.id}'),
+                              card: card,
+                            ),
+                            StudyPhase.practice => PracticeWritingBody(
+                              key: ValueKey(
+                                'practice-${card.id}-${controller.padGeneration}',
+                              ),
+                              card: card,
+                              drawing: controller.drawing,
+                              onDrawingChanged: controller.updateDrawing,
+                            ),
+                            StudyPhase.compare => CompareBody(
+                              key: ValueKey('compare-${card.id}'),
+                              card: card,
+                              drawing:
+                                  controller.answer?.drawing ??
+                                  controller.drawing,
+                            ),
+                            StudyPhase.recall => _PromptBody(
+                              key: ValueKey(
+                                'prompt-${card.id}-${controller.padGeneration}',
+                              ),
+                              card: card,
+                              drawing: controller.drawing,
+                              onDrawingChanged: controller.updateDrawing,
+                            ),
+                          },
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ),
+              BottomActionInset(child: _actions(context, controller)),
+            ],
+          ),
         ),
       ),
     );
@@ -416,6 +438,108 @@ class _ReviewView extends StatelessWidget {
         );
     }
   }
+}
+
+const _shakeUndoDiscoveryMessage =
+    'Made a mistake? Shake your phone to undo your last answer.';
+
+const _shakeUndoConfirmationMessage = 'Last answer undone';
+
+const _shakeUndoDiscoveryDuration = Duration(milliseconds: 4500);
+
+const _shakeUndoConfirmationDuration = Duration(seconds: 2);
+
+void _showReviewNotice(
+  BuildContext context,
+  String message, {
+  Duration duration = _shakeUndoDiscoveryDuration,
+}) {
+  final theme = Theme.of(context);
+  final messenger = ScaffoldMessenger.of(context);
+  final bottom = MediaQuery.viewPaddingOf(context).bottom;
+  messenger.clearSnackBars();
+  messenger.showSnackBar(
+    SnackBar(
+      content: Text(
+        message,
+        style: theme.textTheme.bodyMedium?.copyWith(
+          color: theme.colorScheme.onSurface,
+          height: 1.35,
+        ),
+      ),
+      duration: duration,
+      behavior: SnackBarBehavior.floating,
+      elevation: 0,
+      backgroundColor: theme.brightness == Brightness.dark
+          ? AppColors.darkSurface
+          : AppColors.paperDeep,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16),
+        side: BorderSide(color: theme.hairline),
+      ),
+      // Sits above the action bar so Again / Good stay tappable.
+      margin: EdgeInsets.fromLTRB(20, 0, 20, 128 + bottom),
+    ),
+  );
+}
+
+/// Listens for shakes while this review is on screen, and stops when it goes.
+class _ShakeUndoRegion extends StatefulWidget {
+  const _ShakeUndoRegion({required this.child, this.shakeEvents});
+
+  final Widget child;
+  final ShakeEvents? shakeEvents;
+
+  @override
+  State<_ShakeUndoRegion> createState() => _ShakeUndoRegionState();
+}
+
+class _ShakeUndoRegionState extends State<_ShakeUndoRegion> {
+  StreamSubscription<void>? _shakes;
+
+  @override
+  void initState() {
+    super.initState();
+    final events = widget.shakeEvents ?? sensorShakeEventsForPlatform();
+    if (events == null) return;
+    try {
+      _shakes = events.watch().listen(
+        (_) => unawaited(_onShake()),
+        onError: (Object _) {},
+        cancelOnError: true,
+      );
+    } catch (_) {
+      _shakes = null;
+    }
+  }
+
+  @override
+  void dispose() {
+    final shakes = _shakes;
+    _shakes = null;
+    if (shakes != null) unawaited(shakes.cancel());
+    super.dispose();
+  }
+
+  Future<void> _onShake() async {
+    if (!mounted) return;
+    final route = ModalRoute.of(context);
+    if (route != null && !route.isCurrent) return;
+    final controller = context.read<ReviewController>();
+    final undone = await controller.undoLastAnswer();
+    if (!mounted || !undone) return;
+    final routeAfter = ModalRoute.of(context);
+    if (routeAfter != null && !routeAfter.isCurrent) return;
+    HapticFeedback.lightImpact();
+    _showReviewNotice(
+      context,
+      _shakeUndoConfirmationMessage,
+      duration: _shakeUndoConfirmationDuration,
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) => widget.child;
 }
 
 class _PromptBody extends StatelessWidget {

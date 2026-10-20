@@ -278,6 +278,11 @@ class _StudySection extends StatelessWidget {
             showChevron: true,
             onTap: onPickStartOfDay,
           ),
+          const _CardDivider(),
+          const _SettingsRow(
+            label: 'Undo last answer',
+            subtitle: 'Shake your phone during reviews',
+          ),
         ],
       ),
     );

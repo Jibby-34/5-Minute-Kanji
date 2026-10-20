@@ -6,6 +6,7 @@ import '../../core/models/kanji_card.dart';
 import '../../core/models/progress.dart';
 import '../../core/models/start_of_day.dart';
 import '../../core/models/review.dart';
+import '../../core/models/review_duration.dart';
 import '../../core/models/study_phase.dart';
 import '../../core/utils/clock.dart';
 import '../../repositories/progress_repository.dart';
@@ -101,6 +102,10 @@ class ReviewController extends ChangeNotifier {
   bool _deferredReviewTimeSave = false;
   Future<void> _reviewTimeWrites = Future<void>.value();
   StartOfDay _startOfDay = StartOfDay.defaults;
+  final List<_AnswerUndo> _undo = [];
+  bool _shakeHintLoaded = false;
+  bool _shakeHintSeen = false;
+  bool _shakeHintArmed = false;
 
   KanjiCard? get current => session.current ?? _visibleCard;
 
@@ -369,10 +374,10 @@ class ReviewController extends ChangeNotifier {
 
     try {
       final dayBoundary = await _loadStartOfDay();
+      final previousSchedule = await progressRepository.getSchedule(card.id);
+      final previousPace = await progressRepository.getReviewDurationModel();
       if (!isPractice) {
-        final existing =
-            await progressRepository.getSchedule(card.id) ??
-            CardSchedule.fresh(card.id, now);
+        final existing = previousSchedule ?? CardSchedule.fresh(card.id, now);
         final updated = srsEngine.schedule(
           current: existing,
           result: result,
@@ -387,16 +392,16 @@ class ReviewController extends ChangeNotifier {
         );
       }
 
-      await progressRepository.addHistory(
-        ReviewHistoryEntry(
-          cardId: card.id,
-          rating: result,
-          timestamp: now,
-          timeOnCard: timeOnCard,
-          isPractice: isPractice,
-        ),
+      final historyEntry = ReviewHistoryEntry(
+        cardId: card.id,
+        rating: result,
+        timestamp: now,
+        timeOnCard: timeOnCard,
+        isPractice: isPractice,
       );
+      await progressRepository.addHistory(historyEntry);
 
+      final beforeAnswer = session.checkpoint();
       session.recordRating(result);
       if (!isPractice) {
         _offerDueCards(now);
@@ -414,7 +419,22 @@ class ReviewController extends ChangeNotifier {
         return summary;
       }
 
+      _undo.add(
+        _AnswerUndo(
+          session: beforeAnswer,
+          cardId: card.id,
+          schedule: previousSchedule,
+          hadSchedule: previousSchedule != null,
+          pace: previousPace,
+          historyEntry: historyEntry,
+          drawing: drawing,
+          answer: answer,
+          suggestedResult: suggestedResult,
+          phase: phase,
+        ),
+      );
       _resetForNextCard();
+      await _noteAnswerForShakeHint();
     } finally {
       busy = false;
       notifyListeners();
@@ -423,10 +443,89 @@ class ReviewController extends ChangeNotifier {
     return null;
   }
 
+  /// Reverses the most recent Again or Good, including its saved schedule.
+  ///
+  /// Returns false when there is nothing to undo, an answer is still being
+  /// saved, or the sitting has already ended.
+  Future<bool> undoLastAnswer() async {
+    if (_disposed || busy || !ready || session.isComplete || _undo.isEmpty) {
+      return false;
+    }
+
+    busy = true;
+    final snapshot = _undo.removeLast();
+    notifyListeners();
+
+    try {
+      if (snapshot.hadSchedule && snapshot.schedule != null) {
+        await progressRepository.saveSchedule(snapshot.schedule!);
+      } else {
+        await progressRepository.deleteSchedule(snapshot.cardId);
+      }
+      await progressRepository.saveReviewDurationModel(snapshot.pace);
+      await progressRepository.removeLastHistory(snapshot.historyEntry);
+      if (_disposed) return true;
+      _restoreAnsweredCard(snapshot);
+      return true;
+    } catch (_) {
+      _undo.add(snapshot);
+      return false;
+    } finally {
+      busy = false;
+      if (!_disposed) notifyListeners();
+    }
+  }
+
+  /// True once, after the first answer that left the sitting in progress.
+  ///
+  /// The hint is stored as seen before this returns, so a later launch does
+  /// not show it again.
+  bool takeShakeUndoHint() {
+    if (!_shakeHintArmed) return false;
+    _shakeHintArmed = false;
+    return true;
+  }
+
+  Future<void> _noteAnswerForShakeHint() async {
+    if (_shakeHintSeen || _disposed) return;
+    if (!_shakeHintLoaded) {
+      try {
+        final seen = await progressRepository.hasSeenShakeUndoHint();
+        if (!_shakeHintSeen) _shakeHintSeen = seen;
+      } catch (_) {}
+      _shakeHintLoaded = true;
+    }
+    if (_shakeHintSeen || _disposed || session.isComplete) return;
+    _shakeHintSeen = true;
+    _shakeHintArmed = true;
+    try {
+      await progressRepository.markShakeUndoHintSeen();
+    } catch (_) {}
+  }
+
+  void _restoreAnsweredCard(_AnswerUndo snapshot) {
+    session.restore(snapshot.session);
+    if (snapshot.hadSchedule && snapshot.schedule != null) {
+      _schedules[snapshot.cardId] = snapshot.schedule!;
+    } else {
+      _schedules.remove(snapshot.cardId);
+    }
+    _visibleCard = session.current;
+    drawing = snapshot.drawing;
+    answer = snapshot.answer;
+    suggestedResult = snapshot.suggestedResult;
+    phase = snapshot.phase;
+    padGeneration++;
+    summary = null;
+    _holdingForContinue = false;
+    _beginCardTiming();
+  }
+
   Future<SessionSummary> _closeSession(
     DateTime now,
     StartOfDay dayBoundary,
   ) async {
+    _undo.clear();
     final offerContinue = await _canOfferContinue(now);
     if (offerContinue) {
       _holdingForContinue = true;
@@ -612,4 +711,31 @@ class ReviewController extends ChangeNotifier {
     }
     return next;
   }
+}
+
+/// One committed Again or Good, and the state from just before it.
+class _AnswerUndo {
+  const _AnswerUndo({
+    required this.session,
+    required this.cardId,
+    required this.schedule,
+    required this.hadSchedule,
+    required this.pace,
+    required this.historyEntry,
+    required this.drawing,
+    required this.answer,
+    required this.suggestedResult,
+    required this.phase,
+  });
+
+  final ReviewSessionCheckpoint session;
+  final String cardId;
+  final CardSchedule? schedule;
+  final bool hadSchedule;
+  final ReviewDurationModel pace;
+  final ReviewHistoryEntry historyEntry;
+  final HandwritingInput drawing;
+  final ReviewAnswer? answer;
+  final ReviewResult? suggestedResult;
+  final StudyPhase phase;
 }

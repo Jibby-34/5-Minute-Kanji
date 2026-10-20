@@ -29,6 +29,15 @@ class ReviewHistoryEntry {
     );
   }
 
+  /// True when both entries are the same recorded answer.
+  bool sameAs(ReviewHistoryEntry other) {
+    return cardId == other.cardId &&
+        rating == other.rating &&
+        timestamp == other.timestamp &&
+        timeOnCard == other.timeOnCard &&
+        isPractice == other.isPractice;
+  }
+
   Map<String, dynamic> toJson() {
     return {
       'cardId': cardId,

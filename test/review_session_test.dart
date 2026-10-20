@@ -110,6 +110,29 @@ void main() {
     },
   );
 
+  test('a checkpoint restores the queue from before a rating', () {
+    final session = ReviewSession(
+      config: ReviewSessionConfig.fiveMinute,
+      cards: _cards,
+    );
+
+    final saved = session.checkpoint();
+    session.recordRating(ReviewResult.again);
+    expect(session.current?.id, 'b');
+    expect(session.againCount, 1);
+
+    session.restore(saved);
+    expect(session.current?.id, 'a');
+    expect(session.reviewedCount, 0);
+    expect(session.againCount, 0);
+    expect(session.queued.map((card) => card.id), ['a', 'b', 'c']);
+
+    session.recordRating(ReviewResult.good);
+    expect(session.current?.id, 'b');
+    expect(session.againCount, 0);
+    expect(session.reviewedCount, 1);
+  });
+
   test('session config drives max cards, not a hardcoded five', () {
     const config = ReviewSessionConfig(
       duration: Duration(minutes: 2),

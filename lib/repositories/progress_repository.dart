@@ -14,9 +14,21 @@ abstract class ProgressRepository {
 
   Future<void> saveSchedules(Iterable<CardSchedule> schedules);
 
+  /// Removes one card's schedule. No-op when it was never stored.
+  Future<void> deleteSchedule(String cardId);
+
   Future<List<ReviewHistoryEntry>> getHistory();
 
   Future<void> addHistory(ReviewHistoryEntry entry);
+
+  /// Drops the newest history entry when it is [entry]. Returns false when
+  /// the newest entry is something else, so an undo cannot erase the wrong
+  /// answer.
+  Future<bool> removeLastHistory(ReviewHistoryEntry entry);
+
+  Future<bool> hasSeenShakeUndoHint();
+
+  Future<void> markShakeUndoHintSeen();
 
   Future<StreakInfo> getStreak();
 

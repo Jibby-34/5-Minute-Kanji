@@ -108,6 +108,34 @@ class ReviewSession {
     return card;
   }
 
+  /// Queue, pool, and counts as they are right now.
+  ReviewSessionCheckpoint checkpoint() {
+    return ReviewSessionCheckpoint(
+      pool: List<KanjiCard>.from(_pool),
+      queue: List<KanjiCard>.from(_queue),
+      seenIds: Set<String>.from(_seenIds),
+      againIds: Set<String>.from(_againIds),
+      passedCount: _passedCount,
+    );
+  }
+
+  /// Puts a previous [checkpoint] back. Later queue edits are discarded.
+  void restore(ReviewSessionCheckpoint checkpoint) {
+    _pool
+      ..clear()
+      ..addAll(checkpoint.pool);
+    _queue
+      ..clear()
+      ..addAll(checkpoint.queue);
+    _seenIds
+      ..clear()
+      ..addAll(checkpoint.seenIds);
+    _againIds
+      ..clear()
+      ..addAll(checkpoint.againIds);
+    _passedCount = checkpoint.passedCount;
+  }
+
   SessionSummary toSummary({
     required DateTime now,
     DateTime? nextReviewAt,
@@ -121,4 +149,21 @@ class ReviewSession {
       nextReviewAt: nextReviewAt,
     );
   }
+}
+
+/// In-memory copy of a [ReviewSession], used to undo one answer.
+class ReviewSessionCheckpoint {
+  const ReviewSessionCheckpoint({
+    required this.pool,
+    required this.queue,
+    required this.seenIds,
+    required this.againIds,
+    required this.passedCount,
+  });
+
+  final List<KanjiCard> pool;
+  final List<KanjiCard> queue;
+  final Set<String> seenIds;
+  final Set<String> againIds;
+  final int passedCount;
 }
