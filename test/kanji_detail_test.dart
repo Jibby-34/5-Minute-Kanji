@@ -9,6 +9,7 @@ import 'package:provider/provider.dart';
 import 'package:fiveminutekanji/core/models/card_schedule.dart';
 import 'package:fiveminutekanji/core/models/kanji_card.dart';
 import 'package:fiveminutekanji/core/models/kanji_status.dart';
+import 'package:fiveminutekanji/core/models/review_duration.dart';
 import 'package:fiveminutekanji/core/models/stroke_data.dart';
 import 'package:fiveminutekanji/core/theme/app_theme.dart';
 import 'package:fiveminutekanji/features/kanji_list/kanji_detail_screen.dart';
@@ -128,7 +129,46 @@ void main() {
     expect(find.text('COMMON WORDS'), findsNothing);
     expect(find.text('REVIEW STATS'), findsOneWidget);
     expect(find.text('Reviews'), findsOneWidget);
+    expect(find.text('Time estimate'), findsOneWidget);
+    expect(find.text('21s'), findsOneWidget);
     expect(find.text('Mark as Known'), findsOneWidget);
+  });
+
+  testWidgets('debug detail uses the learned pace for a studied card', (
+    tester,
+  ) async {
+    usePhoneViewport(tester);
+    final mature = CardSchedule(
+      cardId: card.id,
+      state: CardLearningState.review,
+      reviewCount: 8,
+      correctCount: 8,
+      incorrectCount: 0,
+      dueAt: DateTime(2026, 9, 2),
+      interval: const Duration(days: 40),
+      ease: 2.5,
+      lastReviewedAt: DateTime(2026, 8, 1),
+      consecutiveGoodCount: 8,
+    );
+    final progress = MemoryProgressRepository(
+      reviewDurations: const ReviewDurationModel(
+        global: PaceStats(ewmaMs: 30000, count: 20),
+        mature: PaceStats(ewmaMs: 30000, count: 20),
+      ),
+    );
+
+    await pumpDetail(
+      tester,
+      kanji: card,
+      status: KanjiProgressStatus.mastered,
+      schedule: mature,
+      progress: progress,
+    );
+    await tester.pump();
+
+    expect(find.text('Time estimate'), findsOneWidget);
+    expect(find.text('30s'), findsOneWidget);
+    expect(find.text('21s'), findsNothing);
   });
 
   testWidgets('detail replay starts the stroke animation from the beginning', (

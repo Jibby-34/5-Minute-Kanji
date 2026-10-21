@@ -1,12 +1,16 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../core/models/card_schedule.dart';
 import '../../core/models/kanji_card.dart';
 import '../../core/models/kanji_status.dart';
+import '../../core/models/review_duration.dart';
 import '../../core/theme/app_theme.dart';
 import '../../core/theme/app_typography.dart';
+import '../../repositories/progress_repository.dart';
 import '../../repositories/stroke_data_repository.dart';
+import '../../services/card_time_estimator.dart';
 import '../../services/kanji_status_resolver.dart';
 import '../../services/mark_as_known.dart';
 import '../../widgets/bottom_action_inset.dart';
@@ -43,6 +47,8 @@ class _KanjiDetailScreenState extends State<KanjiDetailScreen> {
   bool _busy = false;
   int? _strokeCount;
   var _strokeLookupStarted = false;
+  ReviewDurationModel _durations = ReviewDurationModel.empty;
+  var _durationLookupStarted = false;
 
   @override
   void initState() {
@@ -57,6 +63,7 @@ class _KanjiDetailScreenState extends State<KanjiDetailScreen> {
     if (_strokeLookupStarted) return;
     _strokeLookupStarted = true;
     _loadStrokeCount();
+    _loadDurations();
   }
 
   @override
@@ -86,6 +93,22 @@ class _KanjiDetailScreenState extends State<KanjiDetailScreen> {
         ? null
         : data.strokeCount;
     setState(() => _strokeCount = count);
+  }
+
+  /// Debug-only. Release and profile builds never read or show this.
+  Future<void> _loadDurations() async {
+    if (!kDebugMode || _durationLookupStarted) return;
+    _durationLookupStarted = true;
+    ProgressRepository? repo;
+    try {
+      repo = Provider.of<ProgressRepository>(context, listen: false);
+    } on ProviderNotFoundException {
+      repo = null;
+    }
+    if (repo == null) return;
+    final model = await repo.getReviewDurationModel();
+    if (!mounted) return;
+    setState(() => _durations = model);
   }
 
   Future<void> _markAsKnown() async {
@@ -302,6 +325,10 @@ class _KanjiDetailScreenState extends State<KanjiDetailScreen> {
                             'Last reviewed',
                             _formatLastReviewed(_schedule?.lastReviewedAt),
                           ),
+                          if (kDebugMode) ...[
+                            _statDivider(theme),
+                            _statRow(theme, 'Time estimate', _formatEstimate()),
+                          ],
                         ],
                       ),
                     ),
@@ -653,6 +680,17 @@ class _KanjiDetailScreenState extends State<KanjiDetailScreen> {
   String _formatLastReviewed(DateTime? at) {
     if (at == null) return '—';
     return '${at.month}/${at.day}';
+  }
+
+  String _formatEstimate() {
+    final schedule = _schedule;
+    final isNew =
+        schedule == null || schedule.state == CardLearningState.newCard;
+    final seconds = const CardTimeEstimator()
+        .withModel(_durations)
+        .estimate(schedule, isNew: isNew)
+        .inSeconds;
+    return '${seconds}s';
   }
 }
 
