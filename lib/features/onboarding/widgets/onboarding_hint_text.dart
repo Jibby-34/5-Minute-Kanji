@@ -42,6 +42,7 @@ class OnboardingHintText extends StatelessWidget {
     }
 
     final theme = Theme.of(context);
+    final draw = hint == OnboardingHint.drawFromMemory;
 
     return TweenAnimationBuilder<double>(
       tween: Tween(begin: 0, end: 1),
@@ -51,12 +52,22 @@ class OnboardingHintText extends StatelessWidget {
       child: Padding(
         padding: padding ?? EdgeInsets.zero,
         child: Text(
-          _message(hint),
+          draw ? _message(hint).toUpperCase() : _message(hint),
           textAlign: TextAlign.center,
-          style: theme.textTheme.bodyMedium?.copyWith(
-            color: theme.mutedText,
-            height: 1.3,
-          ),
+          style: draw
+              ? theme.textTheme.labelLarge?.copyWith(
+                  color: theme.colorScheme.onSurface,
+                  fontSize: 15,
+                  fontWeight: FontWeight.w600,
+                  letterSpacing: 1.4,
+                  height: 1.2,
+                )
+              : theme.textTheme.bodyMedium?.copyWith(
+                  color: theme.mutedText,
+                  fontSize: 15,
+                  fontWeight: FontWeight.w500,
+                  height: 1.4,
+                ),
         ),
       ),
     );
@@ -65,8 +76,7 @@ class OnboardingHintText extends StatelessWidget {
   static String _message(OnboardingHint hint) {
     return switch (hint) {
       OnboardingHint.drawFromMemory => 'Draw the kanji from memory.',
-      OnboardingHint.compareDrawing =>
-        'Compare your drawing with the real kanji.',
+      OnboardingHint.compareDrawing => 'Compare, then rate honestly.',
       OnboardingHint.rateRecall =>
         'Good = you remembered it · Again = see it sooner',
     };

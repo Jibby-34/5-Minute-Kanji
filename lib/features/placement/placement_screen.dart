@@ -205,6 +205,7 @@ class _AssessmentCard extends StatelessWidget {
                         option.detail,
                         style: theme.textTheme.bodyMedium?.copyWith(
                           color: theme.mutedText,
+                          fontSize: 15,
                           height: 1.35,
                         ),
                       ),
@@ -270,7 +271,8 @@ class _PlacementIntro extends StatelessWidget {
               title: "Let's find your starting point",
               subtitle: resuming
                   ? 'Pick up where you left off.'
-                  : 'A few kanji. A couple of minutes.',
+                  : 'Just tell us which kanji you can write from memory. '
+                        'No pressure, there\'s nothing to fail.',
             ),
           ],
         );
@@ -286,7 +288,7 @@ class _LevelRamp extends StatelessWidget {
   final double size;
 
   static const _characters = ['日', '校', '議'];
-  static const _alphas = [1.0, 0.45, 0.18];
+  static const _alphas = [1.0, 0.58, 0.40];
 
   @override
   Widget build(BuildContext context) {
@@ -421,8 +423,9 @@ class _PlacementProgress extends StatelessWidget {
                 '${controller.answeredCount + 1} / ~${controller.estimatedTotal}',
                 style: theme.textTheme.bodyMedium?.copyWith(
                   color: theme.mutedText,
+                  fontSize: 15,
                   fontWeight: FontWeight.w600,
-                  letterSpacing: 0.4,
+                  letterSpacing: 0.2,
                 ),
               ),
               const Spacer(),
@@ -506,6 +509,7 @@ class _PlacementResults extends StatelessWidget {
                       textAlign: TextAlign.center,
                       style: theme.textTheme.bodyMedium?.copyWith(
                         color: theme.mutedText,
+                        fontSize: 15,
                         height: 1.4,
                       ),
                     ),
@@ -520,6 +524,7 @@ class _PlacementResults extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: theme.textTheme.bodyMedium?.copyWith(
                   color: theme.mutedText,
+                  fontSize: 15,
                   height: 1.4,
                 ),
               ),

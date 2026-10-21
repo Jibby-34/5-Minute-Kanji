@@ -10,6 +10,7 @@ import 'package:fiveminutekanji/core/models/review.dart';
 import 'package:fiveminutekanji/core/theme/app_theme.dart';
 import 'package:fiveminutekanji/features/learn/learn_kanji_body.dart';
 import 'package:fiveminutekanji/features/review/compare_body.dart';
+import 'package:fiveminutekanji/widgets/mnemonic_card.dart';
 import 'package:fiveminutekanji/features/review/review_screen.dart';
 import 'package:fiveminutekanji/features/review/widgets/handwriting_pad.dart';
 import 'package:fiveminutekanji/features/stroke_order/kanji_stroke_animation.dart';
@@ -420,6 +421,127 @@ void main() {
       tester.getRect(find.text('休暇')).bottom,
       lessThanOrEqualTo(tester.getRect(find.text('Again')).top),
     );
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('first rating grows both sheets, including an empty drawing', (
+    tester,
+  ) async {
+    const card = KanjiCard(
+      id: 'onboard-gi',
+      character: '義',
+      meaning: 'righteousness',
+      keyword: 'righteousness',
+      mnemonic: 'A cow stands for righteousness.',
+      structuredComponents: [
+        KanjiComponent(
+          id: 'cow',
+          character: '牛',
+          name: 'cow',
+          mnemonicText: 'cow',
+        ),
+        KanjiComponent(
+          id: 'right',
+          character: '義',
+          name: 'righteousness',
+          mnemonicText: 'righteousness',
+        ),
+      ],
+    );
+
+    tester.view.physicalSize = const Size(390, 700);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(tester.view.resetPhysicalSize);
+    addTearDown(tester.view.resetDevicePixelRatio);
+
+    Rect paperRect() {
+      late Rect rect;
+      tester.element(find.byType(KanjiStrokeAnimation)).visitAncestorElements((
+        ancestor,
+      ) {
+        final render = ancestor.renderObject;
+        if (ancestor.widget is DecoratedBox &&
+            render is RenderBox &&
+            render.hasSize) {
+          rect = render.localToGlobal(Offset.zero) & render.size;
+          return false;
+        }
+        return true;
+      });
+      return rect;
+    }
+
+    Future<void> pumpCompare(HandwritingInput drawing) {
+      return tester.pumpWidget(
+        MaterialApp(
+          theme: AppTheme.light,
+          home: Scaffold(
+            body: CompareBody(card: card, drawing: drawing, isOnboarding: true),
+          ),
+        ),
+      );
+    }
+
+    await pumpCompare(HandwritingInput.empty);
+    await tester.pumpAndSettle();
+
+    expect(find.text('YOUR DRAWING'), findsOneWidget);
+    expect(find.text('CORRECT'), findsOneWidget);
+    expect(find.byType(HandwritingPad), findsOneWidget);
+    expect(find.text('Compare, then rate honestly.'), findsOneWidget);
+
+    final full = paperRect();
+    final emptyPad = tester.getSize(find.byType(HandwritingPad));
+    expect(emptyPad.width, greaterThan(150));
+    expect(emptyPad.width, lessThan(220));
+    expect(emptyPad.height, closeTo(emptyPad.width, 1));
+    expect(full.width, closeTo(emptyPad.width, 1));
+    expect(full.height, closeTo(emptyPad.height, 1));
+
+    final meaningTop = tester.getTopLeft(find.text('MEANING')).dy;
+    expect(meaningTop - full.bottom, closeTo(32, 2));
+    final keywordBottom = tester
+        .getRect(find.text('righteousness').first)
+        .bottom;
+    final mnemonicTop = tester.getTopLeft(find.byType(MnemonicCard)).dy;
+    expect(mnemonicTop - keywordBottom, closeTo(32, 2));
+
+    final moreBottom = tester.getRect(find.text('More')).bottom;
+    expect(700 - moreBottom, greaterThan(48));
+
+    await tester.tap(find.text('More'));
+    await tester.pumpAndSettle();
+    expect(find.text('Stroke Order'), findsOneWidget);
+    expect(tester.takeException(), isNull);
+
+    final cow = tester.getSize(find.bySemanticsLabel('Show the cow component'));
+    expect(cow.width, greaterThanOrEqualTo(44));
+    expect(cow.height, greaterThanOrEqualTo(44));
+    final icons = tester.widgetList<Icon>(find.byIcon(Icons.lightbulb_outline));
+    expect(icons, isNotEmpty);
+    for (final icon in icons) {
+      expect(icon.size, greaterThanOrEqualTo(20));
+    }
+    expect(tester.takeException(), isNull);
+
+    await pumpCompare(
+      const HandwritingInput(
+        strokes: [
+          HandwritingStroke([StrokePoint(0.2, 0.2), StrokePoint(0.6, 0.7)]),
+        ],
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    expect(find.text('YOUR DRAWING'), findsOneWidget);
+    expect(find.text('CORRECT'), findsOneWidget);
+    final drawing = tester.getSize(find.byType(HandwritingPad));
+    expect(drawing.width, greaterThan(150));
+    expect(drawing.width, lessThan(220));
+    expect(drawing.height, closeTo(drawing.width, 1));
+    final paired = paperRect();
+    expect(paired.width, closeTo(drawing.width, 1));
+    expect(paired.height, closeTo(drawing.height, 1));
     expect(tester.takeException(), isNull);
   });
 }

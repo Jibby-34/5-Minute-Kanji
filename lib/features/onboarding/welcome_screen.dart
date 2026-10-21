@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import '../../core/theme/app_theme.dart';
 import '../../widgets/kanji_mark.dart';
 import '../../widgets/primary_button.dart';
-import '../../widgets/section_label.dart';
 import 'widgets/onboarding_scaffold.dart';
 
 /// First thing a new user sees. Says what the app is in one line and gets out
@@ -28,7 +27,7 @@ class WelcomeScreen extends StatelessWidget {
           children: [
             // 字 — the character in "kanji". Stands in for the whole app.
             ExcludeSemantics(
-              child: KanjiMark(character: '字', size: glyph),
+              child: KanjiMark(character: '字', size: glyph, halo: false),
             ),
             SizedBox(height: height * 0.06),
             Text(
@@ -41,25 +40,15 @@ class WelcomeScreen extends StatelessWidget {
                 height: 1.1,
               ),
             ),
-            const SizedBox(height: 20),
-            const HairlineMark(),
-            const SizedBox(height: 20),
+            const SizedBox(height: 16),
             Text(
-              'Learn kanji in 5 minutes a day.',
+              "A few minutes a day is all it takes. We'll track what to review.",
               textAlign: TextAlign.center,
-              style: theme.textTheme.titleLarge?.copyWith(
-                fontSize: 21,
+              style: theme.textTheme.titleMedium?.copyWith(
+                color: theme.mutedText,
+                fontSize: 18,
                 fontWeight: FontWeight.w500,
                 height: 1.35,
-              ),
-            ),
-            const SizedBox(height: 10),
-            Text(
-              'Short sessions. Spaced repetition.',
-              textAlign: TextAlign.center,
-              style: theme.textTheme.bodyMedium?.copyWith(
-                color: theme.mutedText,
-                height: 1.4,
               ),
             ),
           ],

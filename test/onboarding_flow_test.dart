@@ -4,6 +4,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:fiveminutekanji/app.dart';
+import 'package:fiveminutekanji/core/theme/app_theme.dart';
+import 'package:fiveminutekanji/features/review/widgets/handwriting_pad.dart';
 import 'package:fiveminutekanji/core/models/daily_goal.dart';
 import 'package:fiveminutekanji/core/models/kanji_card.dart';
 import 'package:fiveminutekanji/core/models/notification_settings.dart';
@@ -272,6 +274,8 @@ void main() {
           await tester.tap(find.text('Done'));
         } else if (find.text('Submit').evaluate().isNotEmpty) {
           await tester.tap(find.text('Submit'));
+        } else if (find.text('Got it').evaluate().isNotEmpty) {
+          await tester.tap(find.text('Got it'));
         } else if (find.text('Good').evaluate().isNotEmpty) {
           await tester.tap(find.text('Good'));
         } else {
@@ -294,7 +298,16 @@ void main() {
 
       // 1. Welcome.
       expect(find.text('5-Minute Kanji'), findsOneWidget);
-      expect(find.text('Learn kanji in 5 minutes a day.'), findsOneWidget);
+      expect(
+        find.text(
+          "A few minutes a day is all it takes. We'll track what to review.",
+        ),
+        findsOneWidget,
+      );
+      expect(
+        find.text('A few minutes a day is enough for kanji to stick.'),
+        findsNothing,
+      );
       expect(find.text('Get Started'), findsOneWidget);
       expect(find.textContaining('Skip'), findsNothing);
       expect(find.text('Start Review'), findsNothing);
@@ -333,35 +346,61 @@ void main() {
 
       // 5. The real learning screen, with its first-time pointers.
       expect(find.text('Practice Writing'), findsOneWidget);
-      expect(find.text('Draw the kanji from memory.'), findsNothing);
+      expect(find.text('DRAW THE KANJI FROM MEMORY.'), findsNothing);
 
       // Learn the new kanji until the first one comes back to be recalled.
       await finishSession(tester, until: find.text('Submit'));
 
       expect(find.text('Submit'), findsOneWidget);
-      expect(find.text('Draw the kanji from memory.'), findsOneWidget);
+      expect(find.text('DRAW THE KANJI FROM MEMORY.'), findsOneWidget);
 
       await tester.tap(find.text('Submit'));
       await tester.pumpAndSettle();
 
-      expect(
-        find.text('Compare your drawing with the real kanji.'),
-        findsOneWidget,
-      );
+      expect(find.text('Compare, then rate honestly.'), findsOneWidget);
+      expect(find.text('Missed it'), findsOneWidget);
+      expect(find.text('Got it'), findsOneWidget);
+      expect(find.text('YOUR DRAWING'), findsOneWidget);
+      expect(find.text('CORRECT'), findsOneWidget);
+      expect(find.text('Show me this sooner'), findsNothing);
+      expect(find.text('I remembered it'), findsNothing);
+      expect(find.text('Again'), findsNothing);
+      expect(find.text('Good'), findsNothing);
+      expect(find.byType(HandwritingPad), findsOneWidget);
       expect(
         find.text('Good = you remembered it · Again = see it sooner'),
-        findsOneWidget,
+        findsNothing,
+      );
+      final missed = tester.getSize(
+        find.widgetWithText(OutlinedButton, 'Missed it'),
+      );
+      final gotIt = tester.getSize(find.widgetWithText(FilledButton, 'Got it'));
+      expect(missed.width, closeTo(gotIt.width, 1));
+      expect(missed.height, closeTo(gotIt.height, 1));
+      final missedButton = tester.widget<OutlinedButton>(
+        find.widgetWithText(OutlinedButton, 'Missed it'),
+      );
+      expect(
+        missedButton.style?.side?.resolve(const <WidgetState>{}),
+        isNotNull,
+      );
+      expect(
+        missedButton.style?.side?.resolve(const <WidgetState>{})!.color,
+        Theme.of(
+          tester.element(find.widgetWithText(OutlinedButton, 'Missed it')),
+        ).mutedText,
       );
 
-      await tester.tap(find.text('Good'));
+      await tester.tap(find.text('Got it'));
       await tester.pumpAndSettle();
 
       // Each pointer is shown once, and remembered.
-      expect(find.text('Draw the kanji from memory.'), findsNothing);
-      expect(
-        find.text('Compare your drawing with the real kanji.'),
-        findsNothing,
-      );
+      expect(find.text('DRAW THE KANJI FROM MEMORY.'), findsNothing);
+      expect(find.text('Compare, then rate honestly.'), findsNothing);
+      expect(find.text('Missed it'), findsNothing);
+      expect(find.text('Got it'), findsNothing);
+      expect(find.text('Show me this sooner'), findsNothing);
+      expect(find.text('I remembered it'), findsNothing);
       expect((await progress.getOnboarding()).seenHints, {
         OnboardingHint.drawFromMemory,
         OnboardingHint.compareDrawing,

@@ -299,7 +299,9 @@ class _ReviewView extends StatelessWidget {
                       '${controller.remainingToDraw} remaining',
                       style: theme.textTheme.bodyMedium?.copyWith(
                         color: theme.mutedText,
-                        letterSpacing: 0.4,
+                        fontSize: 15,
+                        fontWeight: FontWeight.w600,
+                        letterSpacing: 0.2,
                       ),
                     ),
                     const Spacer(),
@@ -351,6 +353,7 @@ class _ReviewView extends StatelessWidget {
                               drawing:
                                   controller.answer?.drawing ??
                                   controller.drawing,
+                              isOnboarding: _isOnboardingRating(context),
                             ),
                             StudyPhase.recall => _PromptBody(
                               key: ValueKey(
@@ -410,34 +413,49 @@ class _ReviewView extends StatelessWidget {
           onPressed: controller.busy ? null : () => _submit(context),
         );
       case StudyPhase.compare:
-        return Column(
-          mainAxisSize: MainAxisSize.min,
+        final again = controller.busy
+            ? null
+            : () => _rate(context, ReviewResult.again);
+        final good = controller.busy
+            ? null
+            : () => _rate(context, ReviewResult.good);
+        if (_isOnboardingRating(context)) {
+          return Row(
+            children: [
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 5),
+                  child: _MissedItButton(onPressed: again),
+                ),
+              ),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 5),
+                  child: PrimaryButton(label: 'Got it', onPressed: good),
+                ),
+              ),
+            ],
+          );
+        }
+        return Row(
           children: [
-            const OnboardingHintText(
-              OnboardingHint.rateRecall,
-              padding: EdgeInsets.only(left: 8, right: 8, bottom: 12),
-            ),
-            Row(
-              children: [
-                RatingButton(
-                  label: 'Again',
-                  onPressed: controller.busy
-                      ? null
-                      : () => _rate(context, ReviewResult.again),
-                ),
-                RatingButton(
-                  label: 'Good',
-                  isPrimary: true,
-                  onPressed: controller.busy
-                      ? null
-                      : () => _rate(context, ReviewResult.good),
-                ),
-              ],
-            ),
+            RatingButton(label: 'Again', onPressed: again),
+            RatingButton(label: 'Good', isPrimary: true, onPressed: good),
           ],
         );
     }
   }
+}
+
+/// True only while the first compare / first rating is still owed.
+///
+/// Both hints are cleared by the same tap, so later cards in the session and
+/// every later session use the normal rating screen.
+bool _isOnboardingRating(BuildContext context) {
+  final hints = OnboardingHintScope.maybeOf(context);
+  if (hints == null) return false;
+  return hints.shouldShow(OnboardingHint.compareDrawing) ||
+      hints.shouldShow(OnboardingHint.rateRecall);
 }
 
 const _shakeUndoDiscoveryMessage =
@@ -542,6 +560,42 @@ class _ShakeUndoRegionState extends State<_ShakeUndoRegion> {
   Widget build(BuildContext context) => widget.child;
 }
 
+/// Outlined peer of the filled "Got it" button. Same height and type, with
+/// the secondary ink for the stroke so it does not read as a warning.
+class _MissedItButton extends StatelessWidget {
+  const _MissedItButton({required this.onPressed});
+
+  final VoidCallback? onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return SizedBox(
+      width: double.infinity,
+      height: AppTheme.buttonHeight,
+      child: OutlinedButton(
+        onPressed: onPressed,
+        style: OutlinedButton.styleFrom(
+          foregroundColor: theme.colorScheme.onSurface,
+          disabledForegroundColor: theme.mutedText,
+          backgroundColor: theme.colorScheme.surface,
+          side: BorderSide(color: theme.mutedText, width: 1.5),
+          minimumSize: const Size.fromHeight(AppTheme.buttonHeight),
+          textStyle: theme.textTheme.titleMedium?.copyWith(
+            fontSize: 17,
+            fontWeight: FontWeight.w600,
+            letterSpacing: 0.1,
+          ),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(AppTheme.buttonRadius),
+          ),
+        ),
+        child: const Text('Missed it'),
+      ),
+    );
+  }
+}
+
 class _PromptBody extends StatelessWidget {
   const _PromptBody({
     super.key,
@@ -568,6 +622,10 @@ class _PromptBody extends StatelessWidget {
       prompt: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
+          const OnboardingHintText(
+            OnboardingHint.drawFromMemory,
+            padding: EdgeInsets.only(bottom: 10),
+          ),
           Text(
             card.keyword,
             textAlign: TextAlign.center,
@@ -577,10 +635,6 @@ class _PromptBody extends StatelessWidget {
               letterSpacing: -0.5,
               height: 1.15,
             ),
-          ),
-          const OnboardingHintText(
-            OnboardingHint.drawFromMemory,
-            padding: EdgeInsets.only(top: 8),
           ),
         ],
       ),

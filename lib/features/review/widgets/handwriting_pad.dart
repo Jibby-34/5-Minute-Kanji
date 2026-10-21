@@ -163,11 +163,18 @@ class _HandwritingPadState extends State<HandwritingPad> {
                 onPressed: _input.isEmpty ? null : _clear,
                 style: TextButton.styleFrom(
                   foregroundColor: theme.mutedText,
+                  textStyle: theme.textTheme.bodyMedium?.copyWith(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                  ),
                   minimumSize: const Size(48, 40),
                   tapTargetSize: MaterialTapTargetSize.padded,
                   visualDensity: VisualDensity.compact,
                 ),
-                child: const Text('Clear'),
+                child: const Text(
+                  'Clear',
+                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+                ),
               ),
             ),
         ],

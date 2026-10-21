@@ -6,7 +6,10 @@ class AppColors {
   static const Color paper = Color(0xFFF4EFE6);
   static const Color charcoal = Color(0xFF1C1917);
   static const Color indigo = Color(0xFF2F3A63);
-  static const Color muted = Color(0xFF8A8478);
+
+  /// Secondary ink. A darker step of the old warm gray, about 4.8:1 on [paper],
+  /// so helper text stays quieter than [charcoal] and still readable.
+  static const Color muted = Color(0xFF6E685C);
   static const Color hairline = Color(0xFFD9D2C5);
   static const Color paperDeep = Color(0xFFE8E1D4);
 

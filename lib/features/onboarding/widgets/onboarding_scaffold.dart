@@ -97,7 +97,8 @@ class OnboardingScaffold extends StatelessWidget {
   }
 }
 
-/// Quiet dot sequence: filled for finished and current steps.
+/// Step dots. Only the current step is a navy pill, so the last step does
+/// not collapse into a row of identical marks.
 class OnboardingProgress extends StatelessWidget {
   const OnboardingProgress(
     this.step, {
@@ -111,6 +112,10 @@ class OnboardingProgress extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final inactive = Color.alphaBlend(
+      theme.mutedText.withValues(alpha: 0.7),
+      theme.scaffoldBackgroundColor,
+    );
 
     return Semantics(
       label: 'Step $step of $total',
@@ -120,14 +125,14 @@ class OnboardingProgress extends StatelessWidget {
           for (var index = 1; index <= total; index++)
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 4),
-              child: Container(
-                width: 7,
+              child: AnimatedContainer(
+                duration: const Duration(milliseconds: 180),
+                curve: Curves.easeOut,
+                width: index == step ? 18 : 7,
                 height: 7,
                 decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: index <= step
-                      ? theme.colorScheme.primary
-                      : theme.hairline,
+                  borderRadius: BorderRadius.circular(7),
+                  color: index == step ? theme.colorScheme.primary : inactive,
                 ),
               ),
             ),
@@ -183,6 +188,7 @@ class OnboardingHeadline extends StatelessWidget {
             textAlign: align,
             style: theme.textTheme.bodyMedium?.copyWith(
               color: theme.mutedText,
+              fontSize: 15,
               height: 1.4,
             ),
           ),

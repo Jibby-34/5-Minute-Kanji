@@ -17,11 +17,15 @@ class MnemonicText extends StatefulWidget {
     required this.mnemonic,
     required this.components,
     required this.style,
+    this.prominentLinks = false,
   });
 
   final String mnemonic;
   final List<KanjiComponent> components;
   final TextStyle style;
+
+  /// Draws each linked word with a larger mark and at least a 44px target.
+  final bool prominentLinks;
 
   @override
   State<MnemonicText> createState() => _MnemonicTextState();
@@ -210,7 +214,7 @@ class _MnemonicTextState extends State<MnemonicText> {
         children.add(TextSpan(text: segment.text, semanticsLabel: ''));
         continue;
       }
-      final link = _link(index, segment.text, component);
+      final link = _link(index, segment.text, component, widget.prominentLinks);
       children.add(
         WidgetSpan(
           alignment: PlaceholderAlignment.middle,
@@ -224,12 +228,18 @@ class _MnemonicTextState extends State<MnemonicText> {
     return Text.rich(TextSpan(style: widget.style, children: children));
   }
 
-  Widget _link(int index, String text, KanjiComponent component) {
+  Widget _link(
+    int index,
+    String text,
+    KanjiComponent component,
+    bool prominent,
+  ) {
     return _MnemonicLink(
       key: _keyFor(index),
       text: text,
       component: component,
       style: widget.style,
+      prominent: prominent,
       onTap: () => _toggle(index),
     );
   }
@@ -242,17 +252,41 @@ class _MnemonicLink extends StatelessWidget {
     required this.component,
     required this.style,
     required this.onTap,
+    this.prominent = false,
   });
 
   final String text;
   final KanjiComponent component;
   final TextStyle style;
   final VoidCallback onTap;
+  final bool prominent;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final accent = theme.colorScheme.primary;
+    final mark = Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text(
+          text,
+          style: style.copyWith(
+            color: accent,
+            fontWeight: FontWeight.w600,
+            decoration: TextDecoration.underline,
+            decorationColor: accent.withValues(alpha: prominent ? 0.7 : 0.45),
+            decorationThickness: prominent ? 1.5 : 1,
+          ),
+        ),
+        SizedBox(width: prominent ? 4 : 2),
+        Icon(
+          Icons.lightbulb_outline,
+          size: prominent ? 20 : 12,
+          color: accent.withValues(alpha: prominent ? 1 : 0.85),
+        ),
+      ],
+    );
+
     return Semantics(
       button: true,
       label: 'Show the ${component.name} component',
@@ -260,27 +294,20 @@ class _MnemonicLink extends StatelessWidget {
         onTap: onTap,
         behavior: HitTestBehavior.opaque,
         child: ExcludeSemantics(
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(
-                text,
-                style: style.copyWith(
-                  color: accent,
-                  fontWeight: FontWeight.w600,
-                  decoration: TextDecoration.underline,
-                  decorationColor: accent.withValues(alpha: 0.45),
-                  decorationThickness: 1,
-                ),
-              ),
-              const SizedBox(width: 2),
-              Icon(
-                Icons.lightbulb_outline,
-                size: 12,
-                color: accent.withValues(alpha: 0.85),
-              ),
-            ],
-          ),
+          child: prominent
+              ? ConstrainedBox(
+                  constraints: const BoxConstraints(
+                    minWidth: 44,
+                    minHeight: 44,
+                  ),
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    widthFactor: 1,
+                    heightFactor: 1,
+                    child: mark,
+                  ),
+                )
+              : mark,
         ),
       ),
     );

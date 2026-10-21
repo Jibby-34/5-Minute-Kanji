@@ -11,10 +11,15 @@ class MnemonicCard extends StatelessWidget {
     super.key,
     required this.mnemonic,
     required this.components,
+    this.prominentLinks = false,
   });
 
   final String mnemonic;
   final List<KanjiComponent> components;
+
+  /// Larger link marks and a 44px tap target. Used on the first rating
+  /// screen, where the small inline bulbs are hard to see.
+  final bool prominentLinks;
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +45,12 @@ class MnemonicCard extends StatelessWidget {
             child: MnemonicText(
               mnemonic: mnemonic,
               components: components,
-              style: theme.textTheme.titleMedium!.copyWith(height: 1.35),
+              prominentLinks: prominentLinks,
+              style: theme.textTheme.titleMedium!.copyWith(
+                fontSize: 16,
+                height: 1.35,
+                color: theme.colorScheme.onSurface,
+              ),
             ),
           ),
         ],

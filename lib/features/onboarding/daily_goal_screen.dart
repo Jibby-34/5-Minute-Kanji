@@ -109,11 +109,12 @@ class _DailyGoalScreenState extends State<DailyGoalScreen> {
             SizedBox(height: _custom ? 12 : 24),
             Text(
               'About ${newPerDay == 1 ? '1 new kanji' : '$newPerDay new kanji'} '
-              'a day.\nYou can change this in Settings.',
+              'a day.\nYou can change this anytime in Settings.',
               textAlign: TextAlign.center,
               style: theme.textTheme.bodyMedium?.copyWith(
                 color: theme.mutedText,
-                height: 1.4,
+                fontSize: 15,
+                height: 1.45,
               ),
             ),
           ],
@@ -180,6 +181,7 @@ class _GoalOption extends StatelessWidget {
                     style: theme.textTheme.bodyMedium?.copyWith(
                       color: selected ? primary : theme.mutedText,
                       fontWeight: FontWeight.w600,
+                      fontSize: 14,
                     ),
                   ),
                 SizedBox(width: selected ? 12 : 0),

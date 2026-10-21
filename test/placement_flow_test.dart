@@ -118,7 +118,13 @@ void main() {
 
     await chooseAssessment(tester, 'Beginner');
     expect(find.text("Let's find your starting point"), findsOneWidget);
-    expect(find.text('A few kanji. A couple of minutes.'), findsOneWidget);
+    expect(
+      find.text(
+        "Just tell us which kanji you can write from memory. "
+        "No pressure, there's nothing to fail.",
+      ),
+      findsOneWidget,
+    );
     expect(find.text('Start Placement Test'), findsOneWidget);
   });
 
