@@ -11,7 +11,7 @@ const String fullCurriculumMonthly = 'full_curriculum_monthly';
 const String monthlyBasePlanId = 'monthly';
 
 /// Must match `applicationId` in android/app/build.gradle.kts.
-const String androidApplicationId = 'com.example.fiveminutekanji';
+const String androidApplicationId = 'com.blinklabsapps.fiveminutekanji';
 
 /// Unique kanji that can be learned before the full curriculum is purchased.
 const int freeKanjiLimit = 50;
