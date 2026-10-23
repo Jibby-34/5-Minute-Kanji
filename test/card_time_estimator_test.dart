@@ -85,18 +85,18 @@ void main() {
 
   test('no history keeps the fixed paces', () {
     final fresh = CardSchedule.fresh('n', now);
-    expect(estimator.estimate(fresh, isNew: true), const Duration(seconds: 21));
+    expect(estimator.estimate(fresh, isNew: true), const Duration(seconds: 26));
     expect(
       estimator.estimate(learning(), isNew: false),
-      const Duration(seconds: 17),
+      const Duration(seconds: 21),
     );
     expect(
       estimator.estimate(youngReview(), isNew: false),
-      const Duration(seconds: 14),
+      const Duration(seconds: 18),
     );
     expect(
       estimator.estimate(mature(), isNew: false),
-      const Duration(seconds: 10),
+      const Duration(seconds: 13),
     );
     expect(estimator.model, ReviewDurationModel.empty);
   });
@@ -157,15 +157,15 @@ void main() {
 
     expect(
       paced.estimate(CardSchedule.fresh('n', now), isNew: true),
-      const Duration(seconds: 21),
+      const Duration(seconds: 26),
     );
     expect(
       paced.estimate(learning(), isNew: false),
-      const Duration(seconds: 17),
+      const Duration(seconds: 21),
     );
     expect(
       paced.estimate(youngReview(), isNew: false),
-      const Duration(seconds: 14),
+      const Duration(seconds: 18),
     );
     expect(paced.estimate(mature(), isNew: false).inSeconds, lessThan(10));
   });
@@ -205,11 +205,11 @@ void main() {
 
     expect(
       slow.estimate(mature(), isNew: false).inSeconds,
-      inInclusiveRange(10, 12),
+      inInclusiveRange(12, 14),
     );
     expect(
       fast.estimate(mature(), isNew: false).inSeconds,
-      inInclusiveRange(8, 10),
+      inInclusiveRange(12, 14),
     );
   });
 
@@ -317,7 +317,7 @@ void main() {
     expect(schedule.dueAt, fresh.dueAt);
     expect(
       estimator.estimate(schedule, isNew: true),
-      const Duration(seconds: 21),
+      const Duration(seconds: 26),
     );
   });
 

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -13,6 +15,9 @@ import 'features/onboarding/widgets/onboarding_hint_text.dart';
 import 'repositories/kanji_repository.dart';
 import 'repositories/progress_repository.dart';
 import 'repositories/stroke_data_repository.dart';
+import 'services/curriculum/curriculum_access.dart';
+import 'services/curriculum/curriculum_billing.dart';
+import 'services/curriculum/curriculum_repository.dart';
 import 'services/mark_as_known.dart';
 import 'services/onboarding_service.dart';
 import 'services/placement_service.dart';
@@ -28,6 +33,7 @@ class FiveMinuteKanjiApp extends StatelessWidget {
     this.srsEngine = const SrsEngine(),
     this.strokeDataRepository,
     this.reminderScheduler,
+    this.curriculumAccess,
   });
 
   final KanjiRepository kanjiRepository;
@@ -37,6 +43,9 @@ class FiveMinuteKanjiApp extends StatelessWidget {
 
   /// Absent in tests and on platforms without local notifications.
   final ReminderScheduler? reminderScheduler;
+
+  /// Store-backed entitlement. Tests omit it and get an offline billing stub.
+  final CurriculumAccess? curriculumAccess;
 
   @override
   Widget build(BuildContext context) {
@@ -66,6 +75,19 @@ class FiveMinuteKanjiApp extends StatelessWidget {
           create: (_) =>
               OnboardingService(progressRepository: progressRepository),
         ),
+        ChangeNotifierProvider<CurriculumAccess>(
+          create: (_) {
+            final access =
+                curriculumAccess ??
+                CurriculumAccess(
+                  progressRepository: progressRepository,
+                  repository: MemoryCurriculumRepository(),
+                  billing: const UnavailableCurriculumBilling(),
+                );
+            if (!access.isLoaded) unawaited(access.load());
+            return access;
+          },
+        ),
         ChangeNotifierProvider<OnboardingHintController>(
           create: (context) => OnboardingHintController(
             service: context.read<OnboardingService>(),
@@ -76,6 +98,7 @@ class FiveMinuteKanjiApp extends StatelessWidget {
             kanjiRepository: kanjiRepository,
             progressRepository: progressRepository,
             reminderScheduler: reminderScheduler,
+            curriculumAccess: context.read<CurriculumAccess>(),
           )..load(),
         ),
       ],
@@ -96,7 +119,7 @@ class FiveMinuteKanjiApp extends StatelessWidget {
             notifier: context.read<OnboardingHintController>(),
             child: AnnotatedRegion<SystemUiOverlayStyle>(
               value: overlay,
-              child: child ?? const SizedBox.shrink(),
+              child: _EntitlementRefresh(child: child ?? const SizedBox.shrink()),
             ),
           );
         },
@@ -104,4 +127,39 @@ class FiveMinuteKanjiApp extends StatelessWidget {
       ),
     );
   }
+}
+
+/// Asks the store for the lifetime unlock and monthly subscription again
+/// when the app returns to the foreground. Launch already refreshes once.
+class _EntitlementRefresh extends StatefulWidget {
+  const _EntitlementRefresh({required this.child});
+
+  final Widget child;
+
+  @override
+  State<_EntitlementRefresh> createState() => _EntitlementRefreshState();
+}
+
+class _EntitlementRefreshState extends State<_EntitlementRefresh>
+    with WidgetsBindingObserver {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state != AppLifecycleState.resumed) return;
+    unawaited(context.read<CurriculumAccess>().refresh());
+  }
+
+  @override
+  Widget build(BuildContext context) => widget.child;
 }

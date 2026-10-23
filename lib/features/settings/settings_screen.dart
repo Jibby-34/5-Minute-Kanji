@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -7,11 +9,14 @@ import '../../core/models/start_of_day.dart';
 import '../../core/theme/app_theme.dart';
 import '../../core/utils/time_format.dart';
 import '../../repositories/progress_repository.dart';
+import '../../services/curriculum/curriculum_access.dart';
+import '../../services/curriculum/curriculum_links.dart';
 import '../../services/placement_service.dart';
 import '../../services/reminder_scheduler.dart';
 import '../../widgets/section_label.dart';
 import '../../widgets/soft_card.dart';
 import '../placement/placement_screen.dart';
+import '../purchase/review_limit_prompt.dart';
 import 'open_source_licenses_screen.dart';
 import 'settings_controller.dart';
 
@@ -142,6 +147,7 @@ class _SettingsViewState extends State<_SettingsView>
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
+                          const _FullVersionSection(),
                           _StudySection(
                             controller: controller,
                             onPickStartOfDay: () =>
@@ -201,6 +207,62 @@ class _SettingsHeader extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class _FullVersionSection extends StatelessWidget {
+  const _FullVersionSection();
+
+  @override
+  Widget build(BuildContext context) {
+    CurriculumAccess? access;
+    try {
+      access = Provider.of<CurriculumAccess>(context);
+    } on ProviderNotFoundException {
+      access = null;
+    }
+    if (access == null || !access.isLoaded) return const SizedBox.shrink();
+    final showUpgrade = !access.lifetimeOwned;
+    final showManage = access.subscriptionActive;
+    if (!showUpgrade && !showManage) return const SizedBox.shrink();
+
+    return Padding(
+      padding: const EdgeInsets.only(bottom: _sectionGap),
+      child: _SettingsSection(
+        label: 'Full version',
+        child: _GroupedCard(
+          children: [
+            if (showUpgrade)
+              _SettingsRow(
+                label: 'Unlock full version',
+                subtitle: access.subscriptionActive
+                    ? 'Subscribed monthly'
+                    : access.trialProgressLabel,
+                showChevron: true,
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute<void>(
+                      builder: (_) => const UnlockCurriculumScreen(),
+                    ),
+                  );
+                },
+              ),
+            if (showUpgrade && showManage) const _CardDivider(),
+            if (showManage)
+              _SettingsRow(
+                label: 'Manage subscription',
+                subtitle: access.promptCancelMonthly
+                    ? 'Cancel monthly in your store settings'
+                    : 'Opens your store account',
+                showChevron: true,
+                onTap: () {
+                  unawaited(openSubscriptionManagement());
+                },
+              ),
+          ],
+        ),
       ),
     );
   }

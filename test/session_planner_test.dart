@@ -703,21 +703,21 @@ void main() {
       estimator.estimate(learning, isNew: false),
       greaterThan(estimator.estimate(mature, isNew: false)),
     );
-    expect(estimator.estimate(fresh, isNew: true), const Duration(seconds: 21));
+    expect(estimator.estimate(fresh, isNew: true), const Duration(seconds: 26));
     expect(
       estimator.estimate(learning, isNew: false),
-      const Duration(seconds: 17),
+      const Duration(seconds: 21),
     );
     expect(
       estimator.estimate(
         reviewCard('r', interval: const Duration(days: 1)),
         isNew: false,
       ),
-      const Duration(seconds: 14),
+      const Duration(seconds: 18),
     );
     expect(
       estimator.estimate(mature, isNew: false),
-      const Duration(seconds: 10),
+      const Duration(seconds: 13),
     );
   });
 

@@ -14,6 +14,7 @@ class DailySessionPlan {
     this.newKanjiPerDay = 0,
     this.startOfDay = StartOfDay.defaults,
     this.curriculumMode = CurriculumMode.defaultMode,
+    this.allowsNewKanji = true,
     this.cardIds = const [],
     this.completed = false,
   });
@@ -28,6 +29,13 @@ class DailySessionPlan {
   /// The learning order this queue was built with.
   final CurriculumMode curriculumMode;
 
+  /// False when the queue was built after the free trial had blocked new kanji.
+  ///
+  /// Buying the full version makes today's plan stop matching, so the next
+  /// load can include new kanji again. Older saves omit the field and stay
+  /// open to new kanji.
+  final bool allowsNewKanji;
+
   final List<String> cardIds;
   final bool completed;
 
@@ -37,6 +45,7 @@ class DailySessionPlan {
     required int newKanjiPerDay,
     required StartOfDay startOfDay,
     CurriculumMode curriculumMode = CurriculumMode.defaultMode,
+    bool allowsNewKanji = true,
   }) {
     final stored = this.studyDate;
     if (stored == null) return false;
@@ -44,7 +53,8 @@ class DailySessionPlan {
         this.budgetMinutes == budgetMinutes &&
         this.newKanjiPerDay == newKanjiPerDay &&
         this.startOfDay == startOfDay &&
-        this.curriculumMode == curriculumMode;
+        this.curriculumMode == curriculumMode &&
+        this.allowsNewKanji == allowsNewKanji;
   }
 
   DailySessionPlan copyWith({bool? completed}) {
@@ -54,6 +64,7 @@ class DailySessionPlan {
       newKanjiPerDay: newKanjiPerDay,
       startOfDay: startOfDay,
       curriculumMode: curriculumMode,
+      allowsNewKanji: allowsNewKanji,
       cardIds: cardIds,
       completed: completed ?? this.completed,
     );
@@ -67,6 +78,7 @@ class DailySessionPlan {
       'startOfDayHour': startOfDay.hour,
       'startOfDayMinute': startOfDay.minute,
       'curriculumMode': curriculumMode.name,
+      'allowsNewKanji': allowsNewKanji,
       'cardIds': cardIds,
       'completed': completed,
     };
@@ -98,6 +110,7 @@ class DailySessionPlan {
         curriculumMode: CurriculumMode.fromStorage(
           json['curriculumMode'] as String?,
         ),
+        allowsNewKanji: json['allowsNewKanji'] as bool? ?? true,
         cardIds: ids,
         completed: json['completed'] as bool? ?? false,
       );

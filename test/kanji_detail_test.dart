@@ -130,7 +130,7 @@ void main() {
     expect(find.text('REVIEW STATS'), findsOneWidget);
     expect(find.text('Reviews'), findsOneWidget);
     expect(find.text('Time estimate'), findsOneWidget);
-    expect(find.text('21s'), findsOneWidget);
+    expect(find.text('26s'), findsOneWidget);
     expect(find.text('Mark as Known'), findsOneWidget);
   });
 
@@ -168,7 +168,7 @@ void main() {
 
     expect(find.text('Time estimate'), findsOneWidget);
     expect(find.text('30s'), findsOneWidget);
-    expect(find.text('21s'), findsNothing);
+    expect(find.text('26s'), findsNothing);
   });
 
   testWidgets('detail replay starts the stroke animation from the beginning', (

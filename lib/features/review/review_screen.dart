@@ -16,6 +16,7 @@ import '../../core/theme/app_theme.dart';
 import '../../core/utils/clock.dart';
 import '../../repositories/kanji_repository.dart';
 import '../../repositories/progress_repository.dart';
+import '../../services/curriculum/curriculum_access.dart';
 import '../../services/daily_workload.dart';
 import '../../services/shake_detector.dart';
 import '../../services/srs_scheduler.dart';
@@ -25,6 +26,7 @@ import '../../widgets/writing_sheet_layout.dart';
 import '../learn/learn_kanji_body.dart';
 import '../learn/practice_writing_body.dart';
 import '../onboarding/widgets/onboarding_hint_text.dart';
+import '../purchase/review_limit_prompt.dart';
 import '../session_complete/session_complete_screen.dart';
 import 'compare_body.dart';
 import 'review_controller.dart';
@@ -43,7 +45,16 @@ DailyWorkloadService? _workloadService(
     return DailyWorkloadService(
       kanjiRepository: context.read<KanjiRepository>(),
       progressRepository: progressRepository,
+      curriculumAccess: _curriculumAccess(context),
     );
+  } on ProviderNotFoundException {
+    return null;
+  }
+}
+
+CurriculumAccess? _curriculumAccess(BuildContext context) {
+  try {
+    return context.read<CurriculumAccess>();
   } on ProviderNotFoundException {
     return null;
   }
@@ -112,11 +123,13 @@ class ReviewScreen extends StatelessWidget {
           isStudyAnyway: isStudyAnyway,
           clock: clock,
           workloadService: _workloadService(context, progressRepository),
+          curriculumAccess: _curriculumAccess(context),
         );
         controller.hydrate();
         return controller;
       },
       child: _ReviewHost(
+        isPractice: isPractice,
         onSessionComplete: onSessionComplete,
         shakeEvents: shakeEvents,
       ),
@@ -127,8 +140,13 @@ class ReviewScreen extends StatelessWidget {
 /// Keeps today's review clock in step with the app lifecycle. Background time
 /// is paused and written out so a later sitting continues the same day.
 class _ReviewHost extends StatefulWidget {
-  const _ReviewHost({this.onSessionComplete, this.shakeEvents});
+  const _ReviewHost({
+    required this.isPractice,
+    this.onSessionComplete,
+    this.shakeEvents,
+  });
 
+  final bool isPractice;
   final SessionCompleteBuilder? onSessionComplete;
   final ShakeEvents? shakeEvents;
 
@@ -138,11 +156,27 @@ class _ReviewHost extends StatefulWidget {
 
 class _ReviewHostState extends State<_ReviewHost> with WidgetsBindingObserver {
   ReviewController? _controller;
+  bool _limitPromptRequested = false;
 
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
+    if (!widget.isPractice) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        unawaited(_maybeShowLimitPrompt());
+      });
+    }
+  }
+
+  Future<void> _maybeShowLimitPrompt() async {
+    if (_limitPromptRequested || !mounted) return;
+    final access = _curriculumAccess(context);
+    if (access == null) return;
+    _limitPromptRequested = true;
+    await access.ensureLoaded();
+    if (!mounted || !access.trialLimitReached) return;
+    await showReviewLimitPrompt(context, access);
   }
 
   @override
@@ -277,9 +311,31 @@ class _ReviewView extends StatelessWidget {
     final card = controller.current;
     final theme = Theme.of(context);
 
-    if (!controller.ready || card == null) {
+    if (!controller.ready) {
       return const Scaffold(
         body: Center(child: CircularProgressIndicator(strokeWidth: 2)),
+      );
+    }
+
+    if (card == null) {
+      return Scaffold(
+        body: SafeArea(
+          child: Column(
+            children: [
+              Align(
+                alignment: Alignment.centerRight,
+                child: IconButton(
+                  tooltip: 'Close',
+                  onPressed: () => Navigator.of(context).maybePop(),
+                  icon: const Icon(Icons.close),
+                ),
+              ),
+              const Expanded(
+                child: Center(child: Text('Nothing to review right now.')),
+              ),
+            ],
+          ),
+        ),
       );
     }
 

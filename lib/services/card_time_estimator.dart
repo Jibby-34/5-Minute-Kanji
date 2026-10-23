@@ -5,10 +5,10 @@ import '../core/models/review_duration.dart';
 
 /// How long a card is expected to take. Separate from how important it is.
 ///
-/// With no recorded reviews, the original fixed paces are used: 21s for a new
-/// kanji, 17s while it is still in learning, 14s for a short-interval review,
-/// and 10s once the interval reaches [matureInterval]. Those defaults are the
-/// previous timings reduced by 30% and rounded to the nearest second.
+/// With no recorded reviews, the fixed paces are 26s for a new kanji, 21s
+/// while it is still in learning, 18s for a short-interval review, and 13s
+/// once the interval reaches [matureInterval]. Each is the previous default
+/// raised by 25% and rounded to the nearest second.
 ///
 /// Completed reviews replace those defaults gradually. Each pace keeps an
 /// exponentially weighted duration. A pace with only a few samples is pulled
@@ -16,10 +16,10 @@ import '../core/models/review_duration.dart';
 /// kinds of cards have been timed too.
 class CardTimeEstimator {
   const CardTimeEstimator({
-    this.newCard = const Duration(seconds: 21),
-    this.learningCard = const Duration(seconds: 17),
-    this.reviewCard = const Duration(seconds: 14),
-    this.matureCard = const Duration(seconds: 10),
+    this.newCard = const Duration(seconds: 26),
+    this.learningCard = const Duration(seconds: 21),
+    this.reviewCard = const Duration(seconds: 18),
+    this.matureCard = const Duration(seconds: 13),
     this.matureInterval = const Duration(days: 21),
     this.model = ReviewDurationModel.empty,
   });

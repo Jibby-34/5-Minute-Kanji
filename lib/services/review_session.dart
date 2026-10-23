@@ -64,6 +64,17 @@ class ReviewSession {
     return card;
   }
 
+  /// Drop the current card without learning it or counting it as reviewed.
+  ///
+  /// Used when the free trial blocks a new kanji that is already queued.
+  /// Removing it from the pool keeps the due-card pass from offering it again
+  /// in this sitting.
+  void discardCurrent() {
+    if (_queue.isEmpty) return;
+    final card = _queue.removeAt(0);
+    _pool.removeWhere((pooled) => pooled.id == card.id);
+  }
+
   /// Adds the next card after the allotted queue has emptied.
   ///
   /// The card joins the pool so the usual due-card pass can offer it again

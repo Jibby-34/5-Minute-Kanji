@@ -2,6 +2,8 @@
     <!-- Lets the study reminder survive a reboot. POST_NOTIFICATIONS comes
          from the flutter_local_notifications manifest. -->
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <!-- Play Billing for the one-time full-curriculum unlock. -->
+    <uses-permission android:name="com.android.vending.BILLING"/>
     <application
         android:label="5-Minute Kanji"
         android:name="${applicationName}"
@@ -62,6 +64,10 @@
         <intent>
             <action android:name="android.intent.action.PROCESS_TEXT"/>
             <data android:mimeType="text/plain"/>
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.VIEW"/>
+            <data android:scheme="https"/>
         </intent>
     </queries>
 </manifest>

@@ -14,6 +14,7 @@ import '../../services/active_duration_timer.dart';
 import '../../services/answer_grader.dart';
 import '../../services/card_time_estimator.dart';
 import '../../services/daily_review_clock.dart';
+import '../../services/curriculum/curriculum_access.dart';
 import '../../services/daily_workload.dart';
 import '../../services/due_card_selector.dart';
 import '../../services/kanji_status_resolver.dart';
@@ -36,6 +37,7 @@ class ReviewController extends ChangeNotifier {
     this.selector = const DueCardSelector(),
     this.timeEstimator = const CardTimeEstimator(),
     this.workloadService,
+    this.curriculumAccess,
     MarkAsKnownService? markAsKnown,
     Map<String, CardSchedule>? schedules,
     DateTime? startTime,
@@ -78,6 +80,9 @@ class ReviewController extends ChangeNotifier {
 
   /// When set, an unfinished daily time goal can draw the next priority card.
   final DailyWorkloadService? workloadService;
+
+  /// When set, new kanji stop once the free trial is used up.
+  final CurriculumAccess? curriculumAccess;
   final bool isPractice;
   final bool isStudyAnyway;
   final ReviewSession session;
@@ -145,12 +150,26 @@ class ReviewController extends ChangeNotifier {
     _reviewTimeReady = true;
 
     if (!_disposed && !ready) {
+      await curriculumAccess?.ensureLoaded();
+      if (_disposed) return;
       final schedules = await progressRepository.getSchedules();
       if (!_disposed && !ready) {
         _schedules = Map<String, CardSchedule>.from(schedules);
-        _applyPhaseForCurrent();
         ready = true;
+        _applyPhaseForCurrent();
         _beginCardTiming();
+      }
+    }
+
+    if (!_disposed && ready && curriculumAccess != null) {
+      await curriculumAccess!.ensureLoaded();
+      if (!_disposed) {
+        final before = session.remaining;
+        _dropBlockedNewCards();
+        if (session.remaining != before) {
+          _applyPhaseForCurrent();
+          if (session.current != null) _beginCardTiming();
+        }
       }
     }
 
@@ -278,10 +297,25 @@ class ReviewController extends ChangeNotifier {
       final existing =
           await progressRepository.getSchedule(card.id) ??
           CardSchedule.fresh(card.id, now);
+      final wasNew = existing.state == CardLearningState.newCard;
+      final access = curriculumAccess;
+      var recorded = false;
+      if (wasNew && access != null) {
+        final decision = await access.tryRecordStudy(card.id);
+        if (!decision.allowed) {
+          return _skipBlockedNewCard(now, dayBoundary);
+        }
+        recorded = decision.newlyRecorded;
+      }
       final updated = srsEngine.introduce(current: existing, now: now);
-      await progressRepository.saveSchedule(updated);
+      try {
+        await progressRepository.saveSchedule(updated);
+      } catch (error) {
+        if (recorded && access != null) await access.forgetStudy(card.id);
+        rethrow;
+      }
       _schedules[card.id] = updated;
-      if (existing.state == CardLearningState.newCard) {
+      if (wasNew) {
         await _recordPace(schedule: existing, isNew: true, duration: active);
         final daily = (await progressRepository.getDailyNewKanji()).forDay(
           now,
@@ -303,6 +337,7 @@ class ReviewController extends ChangeNotifier {
       }
 
       _resetForNextCard();
+      if (session.isComplete) return _closeSession(now, dayBoundary);
       return null;
     } finally {
       busy = false;
@@ -339,6 +374,7 @@ class ReviewController extends ChangeNotifier {
       }
 
       _resetForNextCard();
+      if (session.isComplete) return _closeSession(now, dayBoundary);
       return null;
     } finally {
       busy = false;
@@ -434,6 +470,10 @@ class ReviewController extends ChangeNotifier {
         ),
       );
       _resetForNextCard();
+      if (session.isComplete) {
+        summary = await _closeSession(now, dayBoundary);
+        return summary;
+      }
       await _noteAnswerForShakeHint();
     } finally {
       busy = false;
@@ -573,6 +613,7 @@ class ReviewController extends ChangeNotifier {
       newKanjiPerDay: settings.newKanjiPerDay,
       startOfDay: settings.startOfDay,
       curriculumMode: settings.curriculumMode,
+      allowsNewKanji: await _allowsNewKanji(),
     )) {
       return;
     }
@@ -580,6 +621,47 @@ class ReviewController extends ChangeNotifier {
     await progressRepository.saveDailySessionPlan(
       plan.copyWith(completed: true),
     );
+  }
+
+  Future<bool> _allowsNewKanji() async {
+    final access = curriculumAccess;
+    if (access == null) return true;
+    await access.ensureLoaded();
+    return access.canLearnNewKanji;
+  }
+
+  bool _introductionBlocked(KanjiCard card) {
+    final access = curriculumAccess;
+    if (access == null || !access.isLoaded || isPractice) return false;
+    if (!_needsLearn(card)) return false;
+    return !access.canIntroduce(card.id);
+  }
+
+  void _dropBlockedNewCards() {
+    while (session.current != null && _introductionBlocked(session.current!)) {
+      session.discardCurrent();
+    }
+  }
+
+  Future<SessionSummary?> _skipBlockedNewCard(
+    DateTime now,
+    StartOfDay dayBoundary,
+  ) async {
+    session.discardCurrent();
+    _dropBlockedNewCards();
+    _offerDueCards(now);
+    _visibleCard = session.current;
+
+    if (session.isComplete && await _continueForTimeGoal(now)) {
+      _visibleCard = session.current ?? _visibleCard;
+    }
+
+    if (session.isComplete) {
+      return _closeSession(now, dayBoundary);
+    }
+
+    _resetForNextCard();
+    return null;
   }
 
   bool _needsLearn(KanjiCard card) {
@@ -634,6 +716,7 @@ class ReviewController extends ChangeNotifier {
     if (session.hasReviewed(card.id)) return false;
     if (session.queued.any((queued) => queued.id == card.id)) return false;
     if (session.pool.any((pooled) => pooled.id == card.id)) return false;
+    if (_introductionBlocked(card)) return false;
     return selector.isDue(_schedules[card.id], now, startOfDay: _startOfDay);
   }
 
@@ -651,7 +734,9 @@ class ReviewController extends ChangeNotifier {
 
     // A sitting must not report done while pooled new kanji are still
     // unlearned — including the 0-review case where the queue is only news.
-    final unlearned = session.pool.where(_needsLearn).toList();
+    final unlearned = session.pool
+        .where((card) => _needsLearn(card) && !_introductionBlocked(card))
+        .toList();
     if (unlearned.isNotEmpty) {
       session.offerDue(unlearned);
     }
@@ -692,6 +777,7 @@ class ReviewController extends ChangeNotifier {
   }
 
   void _resetForNextCard() {
+    _dropBlockedNewCards();
     drawing = HandwritingInput.empty;
     answer = null;
     suggestedResult = null;

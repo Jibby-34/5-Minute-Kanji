@@ -441,6 +441,20 @@ class _DailyStudyCard extends StatelessWidget {
               ),
             ),
           ),
+          if (home.trialProgressLabel case final trial?)
+            Padding(
+              padding: const EdgeInsets.only(top: 10),
+              child: Text(
+                trial,
+                textAlign: TextAlign.center,
+                style: theme.textTheme.bodyMedium?.copyWith(
+                  color: _muted,
+                  fontSize: 14,
+                  fontWeight: FontWeight.w400,
+                  height: 1.3,
+                ),
+              ),
+            ),
           if (showNextReview) ...[
             const SizedBox(height: 18),
             Divider(height: 1, thickness: 1, color: _line),

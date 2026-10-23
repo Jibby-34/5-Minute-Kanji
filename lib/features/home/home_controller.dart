@@ -6,6 +6,7 @@ import '../../core/models/start_of_day.dart';
 import '../../core/utils/clock.dart';
 import '../../repositories/kanji_repository.dart';
 import '../../repositories/progress_repository.dart';
+import '../../services/curriculum/curriculum_access.dart';
 import '../../services/daily_workload.dart';
 import '../../services/due_card_selector.dart';
 import '../../services/reminder_scheduler.dart';
@@ -17,12 +18,14 @@ class HomeController extends ChangeNotifier {
     this.config = ReviewSessionConfig.fiveMinute,
     this.selector = const DueCardSelector(),
     this.reminderScheduler,
+    this.curriculumAccess,
     Clock? clock,
   }) : clock = clock ?? DateTime.now,
        workloadService = DailyWorkloadService(
          kanjiRepository: kanjiRepository,
          progressRepository: progressRepository,
          selector: selector,
+         curriculumAccess: curriculumAccess,
        );
 
   final KanjiRepository kanjiRepository;
@@ -33,6 +36,7 @@ class HomeController extends ChangeNotifier {
 
   /// Absent in tests and on platforms without notifications.
   final ReminderScheduler? reminderScheduler;
+  final CurriculumAccess? curriculumAccess;
   final Clock clock;
 
   bool loading = true;
@@ -49,6 +53,9 @@ class HomeController extends ChangeNotifier {
   bool studyAnywayAvailable = false;
   DateTime? nextReviewAt;
   StartOfDay startOfDay = StartOfDay.defaults;
+
+  /// Set while the full version is locked, for example `37 / 50 free kanji learned`.
+  String? trialProgressLabel;
 
   /// New kanji still left in today's allowance. Decreases when a card is
   /// learned, not when it is retrieved for the first time.
@@ -76,6 +83,13 @@ class HomeController extends ChangeNotifier {
       streak = streakInfo.current;
       startOfDay = workload.startOfDay;
       nextReviewAt = workload.nextReviewAt;
+      final access = curriculumAccess;
+      if (access != null) {
+        await access.ensureLoaded();
+        trialProgressLabel = access.unlocked ? null : access.trialProgressLabel;
+      } else {
+        trialProgressLabel = null;
+      }
     } catch (_) {
       dueCount = 0;
       newRemainingToday = 0;
@@ -87,6 +101,7 @@ class HomeController extends ChangeNotifier {
       streak = 0;
       startOfDay = StartOfDay.defaults;
       nextReviewAt = null;
+      trialProgressLabel = null;
     }
 
     loading = false;

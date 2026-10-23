@@ -6,7 +6,10 @@ import 'app.dart';
 import 'core/licenses/third_party_licenses.dart';
 import 'core/navigation/app_navigator.dart';
 import 'data/hardcoded_kanji_repository.dart';
+import 'data/shared_prefs_curriculum_repository.dart';
 import 'data/shared_prefs_progress_repository.dart';
+import 'services/curriculum/curriculum_access.dart';
+import 'services/curriculum/store_curriculum_billing.dart';
 import 'services/daily_workload.dart';
 import 'services/local_notification_gateway.dart';
 import 'services/reminder_scheduler.dart';
@@ -21,9 +24,15 @@ Future<void> main() async {
   const kanjiRepository = HardcodedKanjiRepository();
   final prefs = await SharedPreferences.getInstance();
   final progressRepository = SharedPrefsProgressRepository(prefs);
+  final curriculumAccess = CurriculumAccess(
+    progressRepository: progressRepository,
+    repository: SharedPrefsCurriculumRepository(prefs),
+    billing: StoreCurriculumBilling(),
+  );
 
   final cards = await kanjiRepository.getAll();
   await progressRepository.seedIfNeeded(cards.map((card) => card.id).toList());
+  await curriculumAccess.load();
 
   // The notification plugin initialises lazily on first use, so startup is not
   // held up by it. Home's first load schedules the reminder.
@@ -33,6 +42,7 @@ Future<void> main() async {
     workloadService: DailyWorkloadService(
       kanjiRepository: kanjiRepository,
       progressRepository: progressRepository,
+      curriculumAccess: curriculumAccess,
     ),
   );
 
@@ -41,6 +51,7 @@ Future<void> main() async {
       kanjiRepository: kanjiRepository,
       progressRepository: progressRepository,
       reminderScheduler: reminderScheduler,
+      curriculumAccess: curriculumAccess,
     ),
   );
 }
