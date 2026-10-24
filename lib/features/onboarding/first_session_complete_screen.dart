@@ -128,7 +128,7 @@ class _FirstSessionCompleteScreenState
   }
 }
 
-/// The streak, set apart so it reads as a reward rather than another stat.
+/// Days studied, set apart so it reads as a reward rather than another stat.
 class _StreakChip extends StatelessWidget {
   const _StreakChip({required this.streak});
 

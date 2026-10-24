@@ -414,7 +414,7 @@ void main() {
       expect(find.text('3'), findsOneWidget);
       expect(find.text('kanji learned'), findsOneWidget);
       expect(find.text('🔥'), findsOneWidget);
-      expect(find.text('day streak'), findsOneWidget);
+      expect(find.text('day studied'), findsOneWidget);
       expect(find.text('Continue'), findsOneWidget);
 
       await tester.tap(find.text('Continue'));

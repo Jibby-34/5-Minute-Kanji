@@ -151,9 +151,7 @@ void main() {
       config: config,
       clock: () => now,
       startTime: now,
-      schedules: {
-        'k50': (await progress.getSchedule('k50'))!,
-      },
+      schedules: {'k50': (await progress.getSchedule('k50'))!},
       curriculumAccess: access,
     );
     gate.beginPractice();
@@ -197,11 +195,7 @@ void main() {
 
   test('placement test results do not consume trial credits', () async {
     final progress = MemoryProgressRepository();
-    final cards = [
-      testCard('known'),
-      testCard('confirm'),
-      testCard('left'),
-    ];
+    final cards = [testCard('known'), testCard('confirm'), testCard('left')];
     final placement = PlacementService(
       kanjiRepository: FakeKanjiRepository(cards),
       progressRepository: progress,
@@ -234,40 +228,43 @@ void main() {
     expect(await progress.getSchedule('left'), isNull);
   });
 
-  test('learning the same kanji more than once does not increase the count', () async {
-    final progress = MemoryProgressRepository();
-    final access = accessFor(
-      progress: progress,
-      record: const CurriculumRecord(backfillCompleted: true),
-    );
-    await access.ensureLoaded();
-    final controller = await learner(
-      progress: progress,
-      access: access,
-      ids: ['once'],
-    );
-    await learnCurrent(controller);
-    expect(access.studiedCount, 1);
+  test(
+    'learning the same kanji more than once does not increase the count',
+    () async {
+      final progress = MemoryProgressRepository();
+      final access = accessFor(
+        progress: progress,
+        record: const CurriculumRecord(backfillCompleted: true),
+      );
+      await access.ensureLoaded();
+      final controller = await learner(
+        progress: progress,
+        access: access,
+        ids: ['once'],
+      );
+      await learnCurrent(controller);
+      expect(access.studiedCount, 1);
 
-    final again = await access.tryRecordStudy('once');
-    expect(again.allowed, isTrue);
-    expect(again.newlyRecorded, isFalse);
-    expect(access.studiedCount, 1);
+      final again = await access.tryRecordStudy('once');
+      expect(again.allowed, isTrue);
+      expect(again.newlyRecorded, isFalse);
+      expect(access.studiedCount, 1);
 
-    final review = ReviewController(
-      progressRepository: progress,
-      srsEngine: engine,
-      cards: [testCard('once')],
-      config: config,
-      clock: () => now,
-      startTime: now,
-      schedules: Map<String, CardSchedule>.from(progress.schedules),
-      curriculumAccess: access,
-    );
-    review.submit();
-    await review.rate(ReviewResult.good);
-    expect(access.studiedCount, 1);
-  });
+      final review = ReviewController(
+        progressRepository: progress,
+        srsEngine: engine,
+        cards: [testCard('once')],
+        config: config,
+        clock: () => now,
+        startTime: now,
+        schedules: Map<String, CardSchedule>.from(progress.schedules),
+        curriculumAccess: access,
+      );
+      review.submit();
+      await review.rate(ReviewResult.good);
+      expect(access.studiedCount, 1);
+    },
+  );
 
   test('retaking the placement test does not reset the trial', () async {
     final progress = MemoryProgressRepository();
@@ -338,46 +335,50 @@ void main() {
     expect(access.canLearnNewKanji, isTrue);
   });
 
-  test('users at the limit can still review previously learned cards', () async {
-    final progress = MemoryProgressRepository();
-    final studied = {
-      for (var i = 0; i < 50; i++) 'done-$i',
-    };
-    final due = CardSchedule(
-      cardId: 'done-0',
-      state: CardLearningState.review,
-      reviewCount: 2,
-      correctCount: 2,
-      incorrectCount: 0,
-      dueAt: now,
-      interval: const Duration(days: 1),
-      ease: 2.5,
-      lastReviewedAt: now.subtract(const Duration(days: 1)),
-      consecutiveGoodCount: 2,
-    );
-    await progress.saveSchedule(due);
-    final access = accessFor(
-      progress: progress,
-      record: CurriculumRecord(studiedIds: studied, backfillCompleted: true),
-    );
-    await access.ensureLoaded();
-    final controller = await learner(
-      progress: progress,
-      access: access,
-      ids: ['done-0', 'brand-new'],
-    );
+  test(
+    'users at the limit can still review previously learned cards',
+    () async {
+      final progress = MemoryProgressRepository();
+      final studied = {for (var i = 0; i < 50; i++) 'done-$i'};
+      final due = CardSchedule(
+        cardId: 'done-0',
+        state: CardLearningState.review,
+        reviewCount: 2,
+        correctCount: 2,
+        incorrectCount: 0,
+        dueAt: now,
+        interval: const Duration(days: 1),
+        ease: 2.5,
+        lastReviewedAt: now.subtract(const Duration(days: 1)),
+        consecutiveGoodCount: 2,
+      );
+      await progress.saveSchedule(due);
+      final access = accessFor(
+        progress: progress,
+        record: CurriculumRecord(studiedIds: studied, backfillCompleted: true),
+      );
+      await access.ensureLoaded();
+      final controller = await learner(
+        progress: progress,
+        access: access,
+        ids: ['done-0', 'brand-new'],
+      );
 
-    expect(controller.current?.id, 'done-0');
-    expect(controller.phase.name, 'recall');
-    controller.submit();
-    await controller.rate(ReviewResult.good);
+      expect(controller.current?.id, 'done-0');
+      expect(controller.phase.name, 'recall');
+      controller.submit();
+      await controller.rate(ReviewResult.good);
 
-    final updated = await progress.getSchedule('done-0');
-    expect(updated!.reviewCount, 3);
-    expect(updated.interval, isNot(due.interval));
-    expect(access.studiedCount, 50);
-    expect((await progress.getSchedule('brand-new'))!.state, CardLearningState.newCard);
-  });
+      final updated = await progress.getSchedule('done-0');
+      expect(updated!.reviewCount, 3);
+      expect(updated.interval, isNot(due.interval));
+      expect(access.studiedCount, 50);
+      expect(
+        (await progress.getSchedule('brand-new'))!.state,
+        CardLearningState.newCard,
+      );
+    },
+  );
 
   test('every path to a new kanji respects the cap', () async {
     final progress = MemoryProgressRepository(
@@ -403,11 +404,7 @@ void main() {
       record: CurriculumRecord(studiedIds: studied, backfillCompleted: true),
     );
     await access.ensureLoaded();
-    final cards = [
-      testCard('due'),
-      testCard('new-a'),
-      testCard('new-b'),
-    ];
+    final cards = [testCard('due'), testCard('new-a'), testCard('new-b')];
     final workload = DailyWorkloadService(
       kanjiRepository: FakeKanjiRepository(cards),
       progressRepository: progress,
@@ -415,8 +412,14 @@ void main() {
     );
 
     final sitting = await workload.read(now: now);
-    expect(sitting.sessionCards.map((card) => card.id), isNot(contains('new-a')));
-    expect(sitting.sessionCards.map((card) => card.id), isNot(contains('new-b')));
+    expect(
+      sitting.sessionCards.map((card) => card.id),
+      isNot(contains('new-a')),
+    );
+    expect(
+      sitting.sessionCards.map((card) => card.id),
+      isNot(contains('new-b')),
+    );
     expect(sitting.sessionCards.map((card) => card.id), contains('due'));
 
     final eligible = await workload.eligibleByPriority(now: now);
@@ -470,52 +473,56 @@ void main() {
     expect(access.canLearnNewKanji, isFalse);
   });
 
-  test('purchasing unlocks new kanji immediately and a tap alone does not', () async {
-    final progress = MemoryProgressRepository(
-      settings: const AppSettings(dailyStudyMinutes: 30, newKanjiPerDay: 5),
-    );
-    final billing = FakeCurriculumBilling(
-      product: const CurriculumProduct(
-        id: fullCurriculumUnlock,
-        price: r'CA$79.99',
-        raw: Object(),
-      ),
-    );
-    final studied = {for (var i = 0; i < 50; i++) 'done-$i'};
-    final access = accessFor(
-      progress: progress,
-      record: CurriculumRecord(studiedIds: studied, backfillCompleted: true),
-      billing: billing,
-    );
-    await access.ensureLoaded();
-    await pumpEventQueue();
-    expect(access.localizedPrice, r'CA$79.99');
-    expect(access.purchaseButtonLabel, r'Unlock full version · CA$79.99');
+  test(
+    'purchasing unlocks new kanji immediately and a tap alone does not',
+    () async {
+      final progress = MemoryProgressRepository(
+        settings: const AppSettings(dailyStudyMinutes: 30, newKanjiPerDay: 5),
+      );
+      final billing = FakeCurriculumBilling(
+        product: const CurriculumProduct(
+          id: fullCurriculumUnlock,
+          price: r'CA$79.99',
+          raw: Object(),
+        ),
+      );
+      final studied = {for (var i = 0; i < 50; i++) 'done-$i'};
+      final access = accessFor(
+        progress: progress,
+        record: CurriculumRecord(studiedIds: studied, backfillCompleted: true),
+        billing: billing,
+      );
+      await access.ensureLoaded();
+      await pumpEventQueue();
+      expect(access.localizedPrice, r'CA$79.99');
+      expect(access.purchaseButtonLabel, r'Unlock full version · CA$79.99');
 
-    final buying = access.buy();
-    expect(access.unlocked, isFalse);
-    await buying;
-    expect(billing.buyCalls, 1);
-    expect(access.unlocked, isFalse);
+      final buying = access.buy();
+      expect(access.unlocked, isFalse);
+      await buying;
+      expect(billing.buyCalls, 1);
+      expect(access.unlocked, isFalse);
 
-    billing.emit(_purchase());
-    await pumpEventQueue();
+      billing.emit(_purchase());
+      await pumpEventQueue();
 
-    expect(access.unlocked, isTrue);
-    expect(access.trialLimitReached, isFalse);
-    expect(billing.completed, isNotEmpty);
-    expect(await access.tryRecordStudy('after-purchase'), isAllowed(newly: true));
+      expect(access.unlocked, isTrue);
+      expect(access.trialLimitReached, isFalse);
+      expect(billing.completed, isNotEmpty);
+      expect(
+        await access.tryRecordStudy('after-purchase'),
+        isAllowed(newly: true),
+      );
 
-    final workload = DailyWorkloadService(
-      kanjiRepository: FakeKanjiRepository([
-        testCard('fresh'),
-      ]),
-      progressRepository: progress,
-      curriculumAccess: access,
-    );
-    final sitting = await workload.read(now: now);
-    expect(sitting.sessionCards.map((card) => card.id), contains('fresh'));
-  });
+      final workload = DailyWorkloadService(
+        kanjiRepository: FakeKanjiRepository([testCard('fresh')]),
+        progressRepository: progress,
+        curriculumAccess: access,
+      );
+      final sitting = await workload.read(now: now);
+      expect(sitting.sessionCards.map((card) => card.id), contains('fresh'));
+    },
+  );
 
   test('canceled and failed purchases do not unlock the curriculum', () async {
     final progress = MemoryProgressRepository();
@@ -545,7 +552,9 @@ void main() {
     expect(access.unlocked, isFalse);
     expect(access.purchaseMessage, 'Billing unavailable');
 
-    billing.emit(_purchase(status: CurriculumPurchaseStatus.pending, verification: ''));
+    billing.emit(
+      _purchase(status: CurriculumPurchaseStatus.pending, verification: ''),
+    );
     await pumpEventQueue();
     expect(access.unlocked, isFalse);
     expect(access.activity, CurriculumActivity.pending);
@@ -560,7 +569,9 @@ void main() {
     final progress = MemoryProgressRepository();
     final billing = FakeCurriculumBilling()
       ..queryResult = EntitlementQueryResult.owned
-      ..restoredOnRestore = _purchase(status: CurriculumPurchaseStatus.restored);
+      ..restoredOnRestore = _purchase(
+        status: CurriculumPurchaseStatus.restored,
+      );
     final access = accessFor(
       progress: progress,
       record: const CurriculumRecord(backfillCompleted: true),
@@ -577,21 +588,24 @@ void main() {
     expect(access.canLearnNewKanji, isTrue);
   });
 
-  test('a refund query clears a cached unlock when the store can answer', () async {
-    final progress = MemoryProgressRepository();
-    final billing = FakeCurriculumBilling()
-      ..available = true
-      ..queryResult = EntitlementQueryResult.notOwned;
-    final access = accessFor(
-      progress: progress,
-      record: const CurriculumRecord(backfillCompleted: true, unlocked: true),
-      billing: billing,
-    );
-    await access.ensureLoaded();
-    await pumpEventQueue();
+  test(
+    'a refund query clears a cached unlock when the store can answer',
+    () async {
+      final progress = MemoryProgressRepository();
+      final billing = FakeCurriculumBilling()
+        ..available = true
+        ..queryResult = EntitlementQueryResult.notOwned;
+      final access = accessFor(
+        progress: progress,
+        record: const CurriculumRecord(backfillCompleted: true, unlocked: true),
+        billing: billing,
+      );
+      await access.ensureLoaded();
+      await pumpEventQueue();
 
-    expect(access.unlocked, isFalse);
-  });
+      expect(access.unlocked, isFalse);
+    },
+  );
 
   test('an unreachable store keeps the cached unlock', () async {
     final progress = MemoryProgressRepository();
@@ -610,37 +624,40 @@ void main() {
     expect(access.canLearnNewKanji, isTrue);
   });
 
-  test('purchase state and trial progress persist across app restarts', () async {
-    SharedPreferences.setMockInitialValues({});
-    final prefs = await SharedPreferences.getInstance();
-    final progress = MemoryProgressRepository();
-    final first = CurriculumAccess(
-      progressRepository: progress,
-      repository: SharedPrefsCurriculumRepository(prefs),
-      billing: FakeCurriculumBilling(),
-    );
-    await first.ensureLoaded();
-    expect(await first.tryRecordStudy('kept'), isAllowed(newly: true));
-    await SharedPrefsCurriculumRepository(prefs).write(
-      const CurriculumRecord(
-        studiedIds: {'kept'},
-        backfillCompleted: true,
-        unlocked: true,
-      ),
-    );
+  test(
+    'purchase state and trial progress persist across app restarts',
+    () async {
+      SharedPreferences.setMockInitialValues({});
+      final prefs = await SharedPreferences.getInstance();
+      final progress = MemoryProgressRepository();
+      final first = CurriculumAccess(
+        progressRepository: progress,
+        repository: SharedPrefsCurriculumRepository(prefs),
+        billing: FakeCurriculumBilling(),
+      );
+      await first.ensureLoaded();
+      expect(await first.tryRecordStudy('kept'), isAllowed(newly: true));
+      await SharedPrefsCurriculumRepository(prefs).write(
+        const CurriculumRecord(
+          studiedIds: {'kept'},
+          backfillCompleted: true,
+          unlocked: true,
+        ),
+      );
 
-    final reopened = CurriculumAccess(
-      progressRepository: progress,
-      repository: SharedPrefsCurriculumRepository(prefs),
-      billing: FakeCurriculumBilling()..available = false,
-    );
-    await reopened.ensureLoaded();
-    await pumpEventQueue();
+      final reopened = CurriculumAccess(
+        progressRepository: progress,
+        repository: SharedPrefsCurriculumRepository(prefs),
+        billing: FakeCurriculumBilling()..available = false,
+      );
+      await reopened.ensureLoaded();
+      await pumpEventQueue();
 
-    expect(reopened.studiedIds, {'kept'});
-    expect(reopened.unlocked, isTrue);
-    expect(reopened.canLearnNewKanji, isTrue);
-  });
+      expect(reopened.studiedIds, {'kept'});
+      expect(reopened.unlocked, isTrue);
+      expect(reopened.canLearnNewKanji, isTrue);
+    },
+  );
 
   test('historical backfill ignores known and placement cards', () {
     final introduced = engine.introduce(
@@ -720,93 +737,101 @@ void main() {
     );
     await access.ensureLoaded();
 
-    await tester.pumpWidget(_sessionApp(progress: progress, access: access, now: now));
-    await _pumpUntil(
-      tester,
-      find.text("You've learned your first 50 kanji!"),
+    await tester.pumpWidget(
+      _sessionApp(progress: progress, access: access, now: now),
     );
+    await _pumpUntil(tester, find.text("You've learned your first 50 kanji"));
 
-    expect(find.text("You've learned your first 50 kanji!"), findsOneWidget);
-    expect(find.text('Unlock full version · ¥8,800'), findsOneWidget);
+    expect(find.text("You've learned your first 50 kanji"), findsOneWidget);
+    expect(find.text('Go to purchase screen'), findsOneWidget);
     expect(find.text('Keep reviewing'), findsOneWidget);
+    expect(find.text('Unlock full version · ¥8,800'), findsNothing);
 
-    await tester.tap(find.text('Unlock full version · ¥8,800'));
-    await tester.pump();
-    expect(billing.buyCalls, 1);
+    await tester.tap(find.text('Go to purchase screen'));
+    await _pumpUntil(tester, find.text('Unlock the full curriculum'));
+    expect(billing.buyCalls, 0);
     expect(access.unlocked, isFalse);
 
-    await tester.tap(find.text('Keep reviewing'));
+    await tester.tap(
+      find.descendant(
+        of: find.ancestor(
+          of: find.text('Unlock the full curriculum'),
+          matching: find.byType(Scaffold),
+        ),
+        matching: find.byTooltip('Close'),
+      ),
+    );
     await _pumpUntil(tester, find.text('Submit'));
-    expect(find.text("You've learned your first 50 kanji!"), findsNothing);
+    expect(find.text("You've learned your first 50 kanji"), findsNothing);
     expect(find.text('Submit'), findsOneWidget);
 
     await tester.pump(const Duration(milliseconds: 400));
-    expect(find.text("You've learned your first 50 kanji!"), findsNothing);
+    expect(find.text("You've learned your first 50 kanji"), findsNothing);
 
     await tester.pumpWidget(const SizedBox.shrink());
-    await tester.pumpWidget(_sessionApp(progress: progress, access: access, now: now));
-    await _pumpUntil(
-      tester,
-      find.text("You've learned your first 50 kanji!"),
-    );
-    expect(find.text("You've learned your first 50 kanji!"), findsOneWidget);
-  });
-
-  testWidgets('a purchased user does not see the trial prompt or restrictions', (
-    tester,
-  ) async {
-    final progress = MemoryProgressRepository(
-      settings: const AppSettings(dailyStudyMinutes: 30, newKanjiPerDay: 5),
-    );
-    await progress.saveSchedule(
-      CardSchedule(
-        cardId: 'due',
-        state: CardLearningState.review,
-        reviewCount: 1,
-        correctCount: 1,
-        incorrectCount: 0,
-        dueAt: now,
-        interval: const Duration(days: 1),
-        ease: 2.5,
-        lastReviewedAt: now.subtract(const Duration(days: 1)),
-        consecutiveGoodCount: 1,
-      ),
-    );
-    final access = accessFor(
-      progress: progress,
-      record: CurriculumRecord(
-        studiedIds: {for (var i = 0; i < 50; i++) 'done-$i'},
-        backfillCompleted: true,
-        unlocked: true,
-      ),
-    );
-    await access.ensureLoaded();
-
     await tester.pumpWidget(
-      _sessionApp(
-        progress: progress,
-        access: access,
-        now: now,
-        cards: [testCard('due'), testCard('fresh')],
-      ),
+      _sessionApp(progress: progress, access: access, now: now),
     );
-    await _pumpFrames(tester);
-
-    expect(find.text("You've learned your first 50 kanji!"), findsNothing);
-    expect(find.text('Submit'), findsOneWidget);
-    expect(access.trialLimitReached, isFalse);
-
-    final workload = DailyWorkloadService(
-      kanjiRepository: FakeKanjiRepository([
-        testCard('due'),
-        testCard('fresh'),
-      ]),
-      progressRepository: progress,
-      curriculumAccess: access,
-    );
-    final sitting = await workload.read(now: now);
-    expect(sitting.sessionCards.map((card) => card.id), contains('fresh'));
+    await _pumpUntil(tester, find.text("You've learned your first 50 kanji"));
+    expect(find.text("You've learned your first 50 kanji"), findsOneWidget);
   });
+
+  testWidgets(
+    'a purchased user does not see the trial prompt or restrictions',
+    (tester) async {
+      final progress = MemoryProgressRepository(
+        settings: const AppSettings(dailyStudyMinutes: 30, newKanjiPerDay: 5),
+      );
+      await progress.saveSchedule(
+        CardSchedule(
+          cardId: 'due',
+          state: CardLearningState.review,
+          reviewCount: 1,
+          correctCount: 1,
+          incorrectCount: 0,
+          dueAt: now,
+          interval: const Duration(days: 1),
+          ease: 2.5,
+          lastReviewedAt: now.subtract(const Duration(days: 1)),
+          consecutiveGoodCount: 1,
+        ),
+      );
+      final access = accessFor(
+        progress: progress,
+        record: CurriculumRecord(
+          studiedIds: {for (var i = 0; i < 50; i++) 'done-$i'},
+          backfillCompleted: true,
+          unlocked: true,
+        ),
+      );
+      await access.ensureLoaded();
+
+      await tester.pumpWidget(
+        _sessionApp(
+          progress: progress,
+          access: access,
+          now: now,
+          cards: [testCard('due'), testCard('fresh')],
+        ),
+      );
+      await _pumpFrames(tester);
+
+      expect(find.text("You've learned your first 50 kanji"), findsNothing);
+      expect(find.text('Submit'), findsOneWidget);
+      expect(access.trialLimitReached, isFalse);
+
+      final workload = DailyWorkloadService(
+        kanjiRepository: FakeKanjiRepository([
+          testCard('due'),
+          testCard('fresh'),
+        ]),
+        progressRepository: progress,
+        curriculumAccess: access,
+      );
+      final sitting = await workload.read(now: now);
+      expect(sitting.sessionCards.map((card) => card.id), contains('fresh'));
+    },
+  );
 
   testWidgets('settings shows trial progress and the price is not hardcoded', (
     tester,
@@ -835,10 +860,7 @@ void main() {
           Provider<ReminderScheduler?>.value(value: null),
           ChangeNotifierProvider<CurriculumAccess>.value(value: access),
         ],
-        child: MaterialApp(
-          theme: AppTheme.light,
-          home: const SettingsScreen(),
-        ),
+        child: MaterialApp(theme: AppTheme.light, home: const SettingsScreen()),
       ),
     );
     await tester.pumpAndSettle();
@@ -851,7 +873,10 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.text('Unlock the full curriculum'), findsOneWidget);
-    expect(find.text('Learn every kanji, with no subscription.'), findsOneWidget);
+    expect(
+      find.text('Learn every kanji, with no subscription.'),
+      findsOneWidget,
+    );
     expect(find.text('€59.99'), findsOneWidget);
     expect(find.text('Restore Purchases'), findsOneWidget);
     expect(find.text(r'$59.99'), findsNothing);

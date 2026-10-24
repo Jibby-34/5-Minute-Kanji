@@ -6,6 +6,7 @@ import '../../core/navigation/app_routes.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_typography.dart';
 import '../../core/utils/time_format.dart';
+import '../../widgets/streak_mark.dart';
 import '../kanji_list/kanji_list_screen.dart';
 import '../review/review_screen.dart';
 import '../settings/settings_screen.dart';
@@ -152,7 +153,7 @@ class _HomeBody extends StatelessWidget {
   }
 }
 
-/// Settings, the streak, and the kanji list. The streak lives here so the
+/// Settings, days studied, and the kanji list. The count lives here so the
 /// study card can stay about today's sitting.
 class _HomeHeader extends StatelessWidget {
   const _HomeHeader({
@@ -274,7 +275,7 @@ class _StreakChip extends StatelessWidget {
           const SizedBox(width: 7),
           Text('$streak', style: value),
           const SizedBox(width: 7),
-          Text('day streak', style: caption),
+          Text(daysStudiedLabel(streak), style: caption),
         ],
       ),
     );

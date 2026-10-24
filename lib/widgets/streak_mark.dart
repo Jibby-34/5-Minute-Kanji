@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 
 import '../core/theme/app_theme.dart';
 
-/// The streak line used on Home and after a finished session.
+/// Caption beside the count: "day studied" for one, "days studied" otherwise.
+String daysStudiedLabel(int count) =>
+    count == 1 ? 'day studied' : 'days studied';
+
+/// The days-studied line used on Home and after a finished session.
 class StreakMark extends StatelessWidget {
   const StreakMark({super.key, required this.streak});
 
@@ -35,7 +39,7 @@ class StreakMark extends StatelessWidget {
         ),
         const SizedBox(width: 6),
         Text(
-          'day streak',
+          daysStudiedLabel(streak),
           style: theme.textTheme.bodyLarge?.copyWith(
             fontSize: 16,
             color: theme.mutedText,

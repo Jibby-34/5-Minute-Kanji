@@ -65,7 +65,7 @@ void main() {
     expect(find.text('study items today'), findsOneWidget);
     expect(find.text('10'), findsOneWidget);
     expect(find.text('Start Review'), findsOneWidget);
-    expect(find.textContaining('day streak'), findsOneWidget);
+    expect(find.text('days studied'), findsOneWidget);
     expect(find.textContaining('min'), findsOneWidget);
     // Work is waiting, so the next review is now and the line stays out.
     expect(find.textContaining('Next review:'), findsNothing);
@@ -76,7 +76,7 @@ void main() {
     // Streak sits in the top bar. The count leads down to the start button.
     final number = tester.getCenter(find.text('10'));
     final start = tester.getCenter(find.text('Start Review'));
-    final streak = tester.getCenter(find.textContaining('day streak'));
+    final streak = tester.getCenter(find.text('days studied'));
     final hello = tester.getCenter(greeting());
     expect(streak.dy, lessThan(hello.dy));
     expect(hello.dy, lessThan(number.dy));

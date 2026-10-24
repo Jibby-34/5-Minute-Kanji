@@ -69,7 +69,7 @@ void main() {
     expect(find.text('10'), findsOneWidget);
     expect(find.text('study items today'), findsOneWidget);
     expect(find.text('Start Review'), findsOneWidget);
-    expect(find.textContaining('day streak'), findsOneWidget);
+    expect(find.text('days studied'), findsOneWidget);
   });
 
   testWidgets('review flow shows meaning then another mixed card', (
@@ -293,7 +293,7 @@ void main() {
 
     expect(find.text('study items today'), findsOneWidget);
     expect(find.text('1'), findsWidgets);
-    expect(find.text('day streak'), findsOneWidget);
+    expect(find.text('day studied'), findsOneWidget);
   });
 
   testWidgets('caught-up home shows an empty state instead of a session', (
@@ -392,7 +392,7 @@ void main() {
     expect(find.text('study items today'), findsOneWidget);
     expect(find.text('Start Review'), findsOneWidget);
     expect(find.text('0'), findsOneWidget);
-    expect(find.text('day streak'), findsOneWidget);
+    expect(find.text('days studied'), findsOneWidget);
   });
 
   testWidgets('settings screen shows new-kanji limit and a workload estimate', (

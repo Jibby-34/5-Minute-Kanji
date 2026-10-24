@@ -52,71 +52,48 @@ class _ReviewLimitDialogState extends State<_ReviewLimitDialog> {
     final access = widget.access;
     if (access.unlocked && !access.promptCancelMonthly) {
       Navigator.of(context).maybePop();
-      return;
     }
-    setState(() {});
+  }
+
+  void _openPurchaseScreen() {
+    final navigator = Navigator.of(context);
+    navigator.pop();
+    navigator.push(
+      MaterialPageRoute<void>(builder: (_) => const UnlockCurriculumScreen()),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    final access = widget.access;
     final theme = Theme.of(context);
-    final message = _statusMessage(access);
 
     return AlertDialog(
-      title: const Text("You've learned your first 50 kanji!"),
-      content: SingleChildScrollView(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            const Text(
-              'You can keep reviewing what you\'ve learned. '
-              'Unlock the full curriculum to learn new kanji.',
-            ),
-            if (message != null) ...[
-              const SizedBox(height: 12),
-              Text(message, style: _messageStyle(theme, access)),
-            ],
-            if (access.promptCancelMonthly) ...[
-              const SizedBox(height: 12),
-              const Text(_cancelMonthlyCopy),
-              _ManageSubscriptionButton(access: access),
-            ],
-            if (!access.lifetimeOwned) ...[
-              const SizedBox(height: 20),
-              PrimaryButton(
-                label: access.purchaseButtonLabel,
-                onPressed: access.purchaseInProgress ? null : access.buy,
-              ),
-              if (!access.subscriptionActive) ...[
-                const SizedBox(height: 4),
-                TextButton(
-                  onPressed: access.purchaseInProgress
-                      ? null
-                      : access.buyMonthly,
-                  child: Text(access.monthlyButtonLabel),
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  access.monthlyDisclosure,
-                  style: theme.textTheme.bodySmall?.copyWith(
-                    color: theme.mutedText,
-                    height: 1.35,
-                  ),
-                ),
-                const _LegalLinks(),
-              ],
-            ],
-            const SizedBox(height: 4),
-            TextButton(
-              onPressed: access.purchaseInProgress
-                  ? null
-                  : () => Navigator.of(context).maybePop(),
-              child: const Text('Keep reviewing'),
-            ),
-          ],
+      title: Text(
+        "You've learned your first 50 kanji",
+        style: theme.textTheme.titleLarge?.copyWith(
+          fontWeight: FontWeight.w700,
+          height: 1.15,
         ),
+      ),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Text(
+            'Reviews stay free. New kanji are in the full curriculum.',
+            style: theme.textTheme.bodyLarge?.copyWith(height: 1.35),
+          ),
+          const SizedBox(height: 20),
+          PrimaryButton(
+            label: 'Go to purchase screen',
+            onPressed: _openPurchaseScreen,
+          ),
+          const SizedBox(height: 4),
+          TextButton(
+            onPressed: () => Navigator.of(context).maybePop(),
+            child: const Text('Keep reviewing'),
+          ),
+        ],
       ),
     );
   }
@@ -665,39 +642,6 @@ class _PaywallLink extends StatelessWidget {
         textStyle: style,
       ),
       child: Text(label),
-    );
-  }
-}
-
-class _LegalLinks extends StatelessWidget {
-  const _LegalLinks();
-
-  @override
-  Widget build(BuildContext context) {
-    return Wrap(
-      crossAxisAlignment: WrapCrossAlignment.center,
-      children: [
-        TextButton(
-          onPressed: () {
-            Navigator.of(context).push(
-              MaterialPageRoute<void>(
-                builder: (_) => const TermsOfUsePlaceholder(),
-              ),
-            );
-          },
-          child: const Text('Terms of Use'),
-        ),
-        TextButton(
-          onPressed: () {
-            Navigator.of(context).push(
-              MaterialPageRoute<void>(
-                builder: (_) => const PrivacyPolicyPlaceholder(),
-              ),
-            );
-          },
-          child: const Text('Privacy Policy'),
-        ),
-      ],
     );
   }
 }
