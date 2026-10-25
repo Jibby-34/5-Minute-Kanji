@@ -1,4 +1,4 @@
-package com.example.fiveminutekanji
+package com.blinklabsapps.fiveminutekanji
 
 import io.flutter.embedding.android.FlutterActivity
 
