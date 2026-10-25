@@ -37,7 +37,7 @@ void main() {
     expect(controller.dueCount, 0);
     expect(controller.newRemainingToday, 2);
     expect(controller.remainingToday, 2);
-    expect(controller.estimatedMinutes, 1);
+    expect(controller.estimatedMinutes, 2);
     expect(controller.isCaughtUp, isFalse);
     expect(controller.streak, 0);
   });

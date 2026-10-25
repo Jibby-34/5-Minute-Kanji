@@ -5,8 +5,8 @@ import 'start_of_day.dart';
 /// The recommended queue for one study day.
 ///
 /// Frozen until the study day, time budget, new-kanji allowance, start of
-/// day, or curriculum mode changes. Cards left out of [cardIds] stay eligible;
-/// they are not failed, skipped, or rescheduled.
+/// day, or curriculum mode changes, or Settings clears it. Cards left out of
+/// [cardIds] stay eligible; they are not failed, skipped, or rescheduled.
 class DailySessionPlan {
   const DailySessionPlan({
     this.studyDate,

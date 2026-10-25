@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 
+import '../../core/models/daily_session_plan.dart';
 import '../../core/models/notification_settings.dart';
 import '../../core/models/progress.dart';
 import '../../core/models/start_of_day.dart';
@@ -22,6 +23,10 @@ class SettingsController extends ChangeNotifier {
   final DailyWorkloadEstimator estimator;
 
   bool loading = true;
+  bool replanning = false;
+
+  /// True after today's saved queue has been cleared in this visit.
+  bool replanDone = false;
   AppSettings settings = const AppSettings();
   DailyWorkloadEstimate estimate = const DailyWorkloadEstimate(
     minMinutes: 0,
@@ -147,6 +152,26 @@ class SettingsController extends ChangeNotifier {
 
   /// Picks up a permission change made in system settings while the app was in
   /// the background.
+  /// Drops today's frozen queue. The next workload read chooses the cards again.
+  ///
+  /// Learned schedules are left alone. This is for an app update or a change
+  /// in the kanji data, which do not otherwise rebuild the day's plan.
+  Future<void> replanToday() async {
+    if (replanning) return;
+    replanning = true;
+    notifyListeners();
+    try {
+      await progressRepository.saveDailySessionPlan(DailySessionPlan.empty);
+      await reminderScheduler?.reschedule();
+      replanDone = true;
+    } catch (_) {
+      replanDone = false;
+    } finally {
+      replanning = false;
+      notifyListeners();
+    }
+  }
+
   Future<void> refreshPermission() async {
     await _refreshPermission();
     notifyListeners();

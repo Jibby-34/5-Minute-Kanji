@@ -257,7 +257,7 @@ class _PlacementIntro extends StatelessWidget {
     return OnboardingScaffold(
       step: 2,
       action: PrimaryButton(
-        label: resuming ? 'Continue' : 'Start Placement Test',
+        label: resuming ? 'Continue' : 'Find My Level',
         onPressed: controller.start,
       ),
       content: (context, height) {
@@ -267,12 +267,12 @@ class _PlacementIntro extends StatelessWidget {
             _LevelRamp(size: (height * 0.15).clamp(48.0, 88.0)),
             SizedBox(height: height * 0.08),
             OnboardingHeadline(
-              label: 'Placement',
-              title: "Let's find your starting point",
+              label: 'Your starting point',
+              title: 'Already know some kanji?',
               subtitle: resuming
                   ? 'Pick up where you left off.'
-                  : 'Just tell us which kanji you can write from memory. '
-                        'No pressure, there\'s nothing to fail.',
+                  : "We'll find your level. Skip what you know and "
+                        'start where you belong.',
             ),
           ],
         );

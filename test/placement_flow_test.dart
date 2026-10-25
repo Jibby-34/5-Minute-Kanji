@@ -112,20 +112,21 @@ void main() {
     expect(find.text('Expert'), findsOneWidget);
     expect(find.text('I haven\'t studied kanji yet.'), findsOneWidget);
     expect(find.text('Some common kanji.'), findsOneWidget);
-    expect(find.text('Start Placement Test'), findsNothing);
+    expect(find.text('Find My Level'), findsNothing);
     expect(find.text('Start Review'), findsNothing);
     expect(find.text('study items today'), findsNothing);
 
     await chooseAssessment(tester, 'Beginner');
-    expect(find.text("Let's find your starting point"), findsOneWidget);
+    expect(find.text('Already know some kanji?'), findsOneWidget);
+    expect(find.text('YOUR STARTING POINT'), findsOneWidget);
     expect(
       find.text(
-        "Just tell us which kanji you can write from memory. "
-        "No pressure, there's nothing to fail.",
+        "We'll find your level. Skip what you know and "
+        'start where you belong.',
       ),
       findsOneWidget,
     );
-    expect(find.text('Start Placement Test'), findsOneWidget);
+    expect(find.text('Find My Level'), findsOneWidget);
   });
 
   testWidgets("I'm new skips the questions and starts from zero", (
@@ -169,7 +170,7 @@ void main() {
     usePhoneViewport(tester);
     await pumpApp(tester, await freshProgress());
     await chooseAssessment(tester, 'Beginner');
-    await tester.tap(find.text('Start Placement Test'));
+    await tester.tap(find.text('Find My Level'));
     await tester.pumpAndSettle();
 
     final card = controllerOf(tester).question!;
@@ -214,7 +215,7 @@ void main() {
     final now = DateTime.now();
     await pumpApp(tester, progress);
     await chooseAssessment(tester, 'Beginner');
-    await tester.tap(find.text('Start Placement Test'));
+    await tester.tap(find.text('Find My Level'));
     await tester.pumpAndSettle();
 
     // Knows the early part of the Learning Path and misses what comes later.
@@ -265,7 +266,7 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.text('How long each day?'), findsOneWidget);
-    expect(find.text("Let's find your starting point"), findsNothing);
+    expect(find.text("Already know some kanji?"), findsNothing);
   });
 
   testWidgets('the test does not come back on the next launch', (tester) async {
@@ -273,7 +274,7 @@ void main() {
     final progress = await freshProgress();
     await pumpApp(tester, progress);
     await chooseAssessment(tester, 'Beginner');
-    await tester.tap(find.text('Start Placement Test'));
+    await tester.tap(find.text('Find My Level'));
     await tester.pumpAndSettle();
     await answerAll(tester, knows: (card) => false);
     await tester.tap(find.text('Start Learning'));
@@ -286,7 +287,7 @@ void main() {
       SharedPrefsProgressRepository(await SharedPreferences.getInstance()),
     );
 
-    expect(find.text("Let's find your starting point"), findsNothing);
+    expect(find.text("Already know some kanji?"), findsNothing);
     expect(find.text('How long each day?'), findsOneWidget);
   });
 
@@ -297,7 +298,7 @@ void main() {
     final progress = await freshProgress();
     await pumpApp(tester, progress);
     await chooseAssessment(tester, 'Beginner');
-    await tester.tap(find.text('Start Placement Test'));
+    await tester.tap(find.text('Find My Level'));
     await tester.pumpAndSettle();
 
     for (var i = 0; i < 4; i++) {
@@ -313,7 +314,7 @@ void main() {
     );
 
     expect(find.text('Continue'), findsOneWidget);
-    expect(find.text('Start Placement Test'), findsNothing);
+    expect(find.text('Find My Level'), findsNothing);
 
     await tester.tap(find.text('Continue'));
     await tester.pumpAndSettle();
@@ -330,7 +331,7 @@ void main() {
     final progress = await freshProgress();
     await pumpApp(tester, progress);
     await chooseAssessment(tester, 'Expert');
-    await tester.tap(find.text('Start Placement Test'));
+    await tester.tap(find.text('Find My Level'));
     await tester.pumpAndSettle();
 
     await answerAll(tester, knows: (card) => true);
@@ -372,12 +373,12 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.text('Where should we start?'), findsOneWidget);
-    expect(find.text("Let's find your starting point"), findsNothing);
+    expect(find.text("Already know some kanji?"), findsNothing);
 
     await chooseAssessment(tester, 'Beginner');
-    expect(find.text('Start Placement Test'), findsOneWidget);
+    expect(find.text('Find My Level'), findsOneWidget);
 
-    await tester.tap(find.text('Start Placement Test'));
+    await tester.tap(find.text('Find My Level'));
     await tester.pumpAndSettle();
     expect(find.text('Yes'), findsOneWidget);
     expect(find.text("Not yet"), findsOneWidget);
@@ -407,7 +408,7 @@ void main() {
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 50));
 
-    expect(find.text("Let's find your starting point"), findsNothing);
+    expect(find.text("Already know some kanji?"), findsNothing);
     expect(find.text('How long each day?'), findsOneWidget);
     expect((await progress.getPlacement()).completed, isFalse);
   });

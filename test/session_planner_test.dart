@@ -243,7 +243,7 @@ void main() {
       'n3',
     ]);
     expect(plan.selected.where((item) => !item.isNew), isEmpty);
-    expect(plan.estimated.inSeconds, greaterThan(50));
+    expect(plan.estimated.inSeconds, 4 * 30 * 2);
     expect(plan.overflow.map((item) => item.card.id), [
       'r0',
       'r1',
@@ -280,13 +280,13 @@ void main() {
           isNew: true,
         ),
       ],
-      budget: const Duration(seconds: 80),
+      budget: const Duration(seconds: 140),
       maxNewCards: 2,
     );
 
     expect(plan.selected.map((item) => item.card.id), ['n0', 'n1', 'r-high']);
     expect(plan.overflow.map((item) => item.card.id), ['r-low']);
-    expect(plan.estimated.inSeconds, lessThanOrEqualTo((80 * 1.05).round()));
+    expect(plan.estimated.inSeconds, 2 * 30 * 2 + 20);
   });
 
   test('new-card limits stay in force even when the time budget is large', () {
@@ -393,7 +393,15 @@ void main() {
           .toSet(),
       {'n0', 'n1', 'n2', 'n3'},
     );
-    expect(workload.sessionCards.length, greaterThan(4));
+    // Four introductions plus four same-sitting retrievals already pass a
+    // 3-minute budget, so the review pile waits. A second read uses the
+    // stored plan and must keep that same doubled estimate.
+    expect(workload.sessionCards, hasLength(4));
+    expect(workload.estimatedMinutes, 4);
+
+    final again = await service(progress, [...reviews, ...news]).read(now: now);
+    expect(again.sessionCards, hasLength(4));
+    expect(again.estimatedMinutes, workload.estimatedMinutes);
   });
 
   test('missing days do not grow the session past the time budget', () async {

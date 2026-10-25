@@ -150,7 +150,10 @@ void main() {
     ) async {
       await openSettings(tester, size: const Size(320, 568));
 
-      await tester.scrollUntilVisible(find.text('Open source licenses'), 400);
+      await tester.scrollUntilVisible(
+        find.text('Replan today\'s cards'),
+        400,
+      );
       expect(find.text('Placement test'), findsOneWidget);
       expect(find.text('4:00 AM'), findsOneWidget);
       expect(tester.takeException(), isNull);

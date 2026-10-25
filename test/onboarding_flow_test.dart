@@ -255,7 +255,7 @@ void main() {
       await tester.pumpAndSettle();
       await tester.tap(find.text('Continue'));
       await tester.pumpAndSettle();
-      await tester.tap(find.text('Start Placement Test'));
+      await tester.tap(find.text('Find My Level'));
       await tester.pumpAndSettle();
       while (find.text("Not yet").evaluate().isNotEmpty) {
         await tester.tap(find.text("Not yet"));
@@ -297,13 +297,21 @@ void main() {
       await pumpApp(tester, progress);
 
       // 1. Welcome.
-      expect(find.text('5-Minute Kanji'), findsOneWidget);
+      expect(find.text('Kanji study that fits your day.'), findsOneWidget);
       expect(
         find.text(
-          "A few minutes a day is all it takes. We'll track what to review.",
+          "Make the most of your time. We'll prioritize your reviews "
+          'to fit the time you have.',
         ),
         findsOneWidget,
       );
+      expect(find.text('YOUR 5-MINUTE PLAN'), findsOneWidget);
+      expect(find.text('Example plan'), findsOneWidget);
+      expect(find.text('5 min'), findsOneWidget);
+      expect(find.text('Priority reviews'), findsOneWidget);
+      expect(find.text('3 min 10 sec'), findsOneWidget);
+      expect(find.text('New kanji'), findsOneWidget);
+      expect(find.text('1 min 50 sec'), findsOneWidget);
       expect(
         find.text('A few minutes a day is enough for kanji to stick.'),
         findsNothing,
@@ -434,7 +442,7 @@ void main() {
       await pumpApp(tester, progress);
 
       expect(find.text('Get Started'), findsNothing);
-      expect(find.text("Let's find your starting point"), findsNothing);
+      expect(find.text("Already know some kanji?"), findsNothing);
       expect(find.text('Start Review'), findsOneWidget);
     });
 
@@ -449,7 +457,7 @@ void main() {
       await pumpApp(tester, progress);
 
       expect(find.text('Get Started'), findsNothing);
-      expect(find.text("Let's find your starting point"), findsNothing);
+      expect(find.text("Already know some kanji?"), findsNothing);
       expect(find.text('Start Review'), findsOneWidget);
     });
 

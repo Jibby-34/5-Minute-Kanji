@@ -424,7 +424,7 @@ class DailyWorkloadService {
     };
     var seconds = 0;
     for (final card in cards) {
-      seconds += byId[card.id]?.estimated.inSeconds ?? 0;
+      seconds += byId[card.id]?.reservedSeconds ?? 0;
     }
     return Duration(seconds: seconds);
   }

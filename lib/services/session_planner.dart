@@ -14,8 +14,18 @@ class SessionCandidate {
 
   final KanjiCard card;
   final double priority;
+
+  /// Expected time for one showing.
   final Duration estimated;
   final bool isNew;
+
+  /// Seconds reserved in the sitting. A new kanji is introduced and then
+  /// retrieved before the sitting ends, so its one-showing estimate counts
+  /// twice. A non-positive estimate still reserves one second per showing.
+  int get reservedSeconds {
+    final showing = math.max(1, estimated.inSeconds);
+    return isNew ? showing * 2 : showing;
+  }
 }
 
 /// The recommended sitting and the eligible cards that did not fit.
@@ -44,11 +54,12 @@ class PlannedSession {
 /// Picks cards for a time budget.
 ///
 /// Every new kanji allowed today is included, even when that pushes the
-/// sitting past the budget. Reviews then fill whatever time is left, highest
-/// priority first. Greedy, not optimal. A review is skipped when it would
-/// push the sitting past the upper tolerance, unless it is the only card and
-/// leaving it out would drop an important review forever. Scoring stays
-/// outside this class.
+/// sitting past the budget. Each new kanji reserves two showings — the
+/// introduction and the retrieval later in the same sitting — and reviews
+/// then fill whatever time is left, highest priority first. Greedy, not
+/// optimal. A review is skipped when it would push the sitting past the
+/// upper tolerance, unless it is the only card and leaving it out would drop
+/// an important review forever. Scoring stays outside this class.
 class SessionPlanner {
   const SessionPlanner({
     this.upperTolerance = 1.05,
@@ -82,11 +93,11 @@ class SessionPlanner {
 
     for (final candidate in news) {
       chosen.add(candidate);
-      used += math.max(1, candidate.estimated.inSeconds);
+      used += candidate.reservedSeconds;
     }
 
     for (final candidate in reviews) {
-      final seconds = math.max(1, candidate.estimated.inSeconds);
+      final seconds = candidate.reservedSeconds;
       if (chosen.isEmpty && seconds > upper) {
         chosen.add(candidate);
         used += seconds;
@@ -159,7 +170,7 @@ class SessionPlanner {
   Duration _sum(List<SessionCandidate> chosen) {
     var seconds = 0;
     for (final candidate in chosen) {
-      seconds += math.max(0, candidate.estimated.inSeconds);
+      seconds += candidate.reservedSeconds;
     }
     return Duration(seconds: seconds);
   }

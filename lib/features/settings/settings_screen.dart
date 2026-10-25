@@ -168,6 +168,8 @@ class _SettingsViewState extends State<_SettingsView>
                               );
                             },
                           ),
+                          const SizedBox(height: _sectionGap),
+                          _ReplanToday(controller: controller),
                         ],
                       ),
                     ),
@@ -601,6 +603,43 @@ class _OtherSection extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class _ReplanToday extends StatelessWidget {
+  const _ReplanToday({required this.controller});
+
+  final SettingsController controller;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Text(
+          'For app updates and changes in the kanji data. Clears today\'s saved queue so the cards are chosen again. Kanji you have already learned stay learned.',
+          style: _quietText(theme),
+        ),
+        const SizedBox(height: 12),
+        OutlinedButton(
+          onPressed: controller.replanning
+              ? null
+              : () {
+                  controller.replanToday();
+                },
+          child: const Text('Replan today\'s cards'),
+        ),
+        if (controller.replanDone) ...[
+          const SizedBox(height: 8),
+          Text(
+            'Today\'s cards will be chosen again.',
+            style: _quietText(theme),
+          ),
+        ],
+      ],
     );
   }
 }
