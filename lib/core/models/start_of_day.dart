@@ -1,6 +1,6 @@
 /// When the user's study day begins. Default is 4:00 AM.
 ///
-/// All daily study logic (new-kanji limits, review windows, streaks)
+/// All daily study logic (new-kanji limits, review windows, days studied)
 /// should go through this type instead of assuming midnight.
 class StartOfDay {
   const StartOfDay({this.hour = defaultHour, this.minute = defaultMinute});

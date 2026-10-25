@@ -381,6 +381,7 @@ void main() {
     expect(schedule!.dueAt, now.add(SrsEngine.newLearnInterval));
     expect(schedule.isDueAt(now), isFalse);
     expect((await restarted.getDailyNewKanji()).count, 1);
+    expect((await restarted.getStreak()).current, 1);
 
     await completeOnboarding(restarted);
     await tester.pumpWidget(
@@ -391,8 +392,8 @@ void main() {
 
     expect(find.text('study items today'), findsOneWidget);
     expect(find.text('Start Review'), findsOneWidget);
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('days studied'), findsOneWidget);
+    expect(find.text('1'), findsOneWidget);
+    expect(find.text('day studied'), findsOneWidget);
   });
 
   testWidgets('settings screen shows new-kanji limit and a workload estimate', (

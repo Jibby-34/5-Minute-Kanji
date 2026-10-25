@@ -6,7 +6,7 @@ import 'package:fiveminutekanji/services/streak_service.dart';
 void main() {
   const service = StreakService();
 
-  test('first completed session starts a streak of one', () {
+  test('the first study day counts as one', () {
     final next = service.recordCompletion(
       StreakInfo.empty,
       DateTime(2026, 9, 2, 8),
@@ -21,19 +21,20 @@ void main() {
     expect(next.current, 3);
   });
 
-  test('studying the next calendar day increments the streak', () {
+  test('studying the next calendar day adds one', () {
     final current = StreakInfo(current: 3, lastStudyDate: DateTime(2026, 9, 1));
     final next = service.recordCompletion(current, DateTime(2026, 9, 2, 8));
     expect(next.current, 4);
   });
 
-  test('a skipped day resets the streak', () {
+  test('a skipped day keeps the total and adds the new study day', () {
     final current = StreakInfo(
       current: 8,
       lastStudyDate: DateTime(2026, 8, 30),
     );
     final next = service.recordCompletion(current, DateTime(2026, 9, 2, 8));
-    expect(next.current, 1);
+    expect(next.current, 9);
+    expect(next.lastStudyDate, DateTime(2026, 9, 2));
   });
 
   test('3:59 AM is still the previous study day', () {
@@ -47,7 +48,7 @@ void main() {
     expect(next.lastStudyDate, DateTime(2026, 9, 8));
   });
 
-  test('4:00 AM begins a new streak day', () {
+  test('4:00 AM begins a new study day', () {
     final current = StreakInfo(current: 3, lastStudyDate: DateTime(2026, 9, 8));
     final next = service.recordCompletion(
       current,

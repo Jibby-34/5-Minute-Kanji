@@ -111,6 +111,7 @@ class ReviewController extends ChangeNotifier {
   bool _shakeHintLoaded = false;
   bool _shakeHintSeen = false;
   bool _shakeHintArmed = false;
+  bool _countedStudyDay = false;
 
   KanjiCard? get current => session.current ?? _visibleCard;
 
@@ -322,6 +323,7 @@ class ReviewController extends ChangeNotifier {
           startOfDay: dayBoundary,
         );
         await progressRepository.saveDailyNewKanji(daily.increment());
+        await _countStudyDay(now, dayBoundary);
       }
 
       session.completeIntroduction();
@@ -436,6 +438,7 @@ class ReviewController extends ChangeNotifier {
         isPractice: isPractice,
       );
       await progressRepository.addHistory(historyEntry);
+      await _countStudyDay(now, dayBoundary);
 
       final beforeAnswer = session.checkpoint();
       session.recordRating(result);
@@ -594,14 +597,19 @@ class ReviewController extends ChangeNotifier {
     );
   }
 
-  Future<void> _recordFinishedSession(
-    DateTime now,
-    StartOfDay dayBoundary,
-  ) async {
+  Future<void> _countStudyDay(DateTime now, StartOfDay dayBoundary) async {
+    if (_countedStudyDay) return;
     final streak = await progressRepository.getStreak();
     await progressRepository.saveStreak(
       streakService.recordCompletion(streak, now, startOfDay: dayBoundary),
     );
+    _countedStudyDay = true;
+  }
+
+  Future<void> _recordFinishedSession(
+    DateTime now,
+    StartOfDay dayBoundary,
+  ) async {
     if (isPractice || isStudyAnyway) return;
 
     final settings = await progressRepository.getSettings();

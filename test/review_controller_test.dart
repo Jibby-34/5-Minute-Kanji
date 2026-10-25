@@ -1,5 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fiveminutekanji/core/models/card_schedule.dart';
+import 'package:fiveminutekanji/core/models/progress.dart';
 import 'package:fiveminutekanji/core/models/review.dart';
 import 'package:fiveminutekanji/core/models/study_phase.dart';
 import 'package:fiveminutekanji/features/review/review_controller.dart';
@@ -112,7 +113,44 @@ void main() {
     expect(schedule.incorrectCount, 1);
     expect(schedule.correctCount, 1);
     expect(schedule.lastReviewedAt, now);
-    expect(progress.streak.current, 0);
+    expect(progress.streak.current, 1);
+  });
+
+  test('a missed day adds one study day and does not reset', () async {
+    final progress = MemoryProgressRepository();
+    progress.streak = StreakInfo(
+      current: 8,
+      lastStudyDate: DateTime(2026, 8, 30),
+    );
+    final controller = await controllerFor(
+      progress: progress,
+      ids: ['a', 'b'],
+      alreadyReviewed: true,
+    );
+
+    controller.submit();
+    expect(await controller.rate(ReviewResult.good), isNull);
+    expect(progress.streak.current, 9);
+    expect(progress.streak.lastStudyDate, DateTime(2026, 9, 2));
+
+    controller.submit();
+    final summary = await controller.rate(ReviewResult.good);
+    expect(summary, isNotNull);
+    expect(progress.streak.current, 9);
+  });
+
+  test('marking a kanji known does not change days studied', () async {
+    final progress = MemoryProgressRepository();
+    progress.streak = StreakInfo(
+      current: 4,
+      lastStudyDate: DateTime(2026, 8, 1),
+    );
+    final controller = await controllerFor(progress: progress, ids: ['a']);
+
+    expect(controller.phase, StudyPhase.learn);
+    await controller.markCurrentAsKnown();
+    expect(progress.streak.current, 4);
+    expect(progress.streak.lastStudyDate, DateTime(2026, 8, 1));
   });
 
   test(
@@ -297,6 +335,7 @@ void main() {
       final learned = await progress.getSchedule('a');
       expect(learned!.state, CardLearningState.learning);
       expect(learned.isDueAt(now), isFalse);
+      expect(progress.streak.current, 1);
 
       controller.submit();
       final summary = await controller.rate(ReviewResult.good);
