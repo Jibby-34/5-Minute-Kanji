@@ -1,12 +1,15 @@
 import 'curriculum_mode.dart';
 import 'progress.dart';
 import 'start_of_day.dart';
+import 'study_day_type.dart';
 
 /// The recommended queue for one study day.
 ///
 /// Frozen until the study day, time budget, new-kanji allowance, start of
-/// day, or curriculum mode changes, or Settings clears it. Cards left out of
-/// [cardIds] stay eligible; they are not failed, skipped, or rescheduled.
+/// day, or curriculum mode changes, or Settings clears it. [dayType] is
+/// chosen with the queue and stays with it, so later reviews do not switch
+/// the day. Cards left out of [cardIds] stay eligible; they are not failed,
+/// skipped, or rescheduled.
 class DailySessionPlan {
   const DailySessionPlan({
     this.studyDate,
@@ -15,6 +18,7 @@ class DailySessionPlan {
     this.startOfDay = StartOfDay.defaults,
     this.curriculumMode = CurriculumMode.defaultMode,
     this.allowsNewKanji = true,
+    this.dayType = StudyDayType.normal,
     this.cardIds = const [],
     this.completed = false,
   });
@@ -35,6 +39,10 @@ class DailySessionPlan {
   /// load can include new kanji again. Older saves omit the field and stay
   /// open to new kanji.
   final bool allowsNewKanji;
+
+  /// Normal or Reinforcement for this plan. Older saves omit it and stay
+  /// on a Normal Day.
+  final StudyDayType dayType;
 
   final List<String> cardIds;
   final bool completed;
@@ -65,6 +73,7 @@ class DailySessionPlan {
       startOfDay: startOfDay,
       curriculumMode: curriculumMode,
       allowsNewKanji: allowsNewKanji,
+      dayType: dayType,
       cardIds: cardIds,
       completed: completed ?? this.completed,
     );
@@ -79,6 +88,7 @@ class DailySessionPlan {
       'startOfDayMinute': startOfDay.minute,
       'curriculumMode': curriculumMode.name,
       'allowsNewKanji': allowsNewKanji,
+      'dayType': dayType.name,
       'cardIds': cardIds,
       'completed': completed,
     };
@@ -111,6 +121,7 @@ class DailySessionPlan {
           json['curriculumMode'] as String?,
         ),
         allowsNewKanji: json['allowsNewKanji'] as bool? ?? true,
+        dayType: StudyDayType.fromStorage(json['dayType'] as String?),
         cardIds: ids,
         completed: json['completed'] as bool? ?? false,
       );

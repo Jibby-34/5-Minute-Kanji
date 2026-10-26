@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../../core/models/start_of_day.dart';
 import '../../core/models/study_allocation.dart';
+import '../../core/models/study_day_type.dart';
 import '../../core/navigation/app_routes.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_theme.dart';
@@ -398,6 +399,7 @@ class _DailyStudyCard extends StatelessWidget {
 
     return _StudyPlanCard(
       allocation: home.studyAllocation,
+      dayType: home.studyDayType,
       trial: home.trialProgressLabel,
     );
   }
@@ -487,9 +489,14 @@ class _StatusCard extends StatelessWidget {
 /// Today's sitting: total time, the split between reviews and new kanji,
 /// and the count and estimate for each.
 class _StudyPlanCard extends StatelessWidget {
-  const _StudyPlanCard({required this.allocation, this.trial});
+  const _StudyPlanCard({
+    required this.allocation,
+    required this.dayType,
+    this.trial,
+  });
 
   final StudyAllocation allocation;
+  final StudyDayType dayType;
   final String? trial;
 
   @override
@@ -504,10 +511,12 @@ class _StudyPlanCard extends StatelessWidget {
         : _unavailableTime;
 
     return _HomeCard(
-      padding: const EdgeInsets.fromLTRB(20, 20, 20, 18),
+      padding: const EdgeInsets.fromLTRB(20, 16, 20, 18),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
+          _DayTypeHeader(dayType: dayType),
+          const SizedBox(height: 12),
           LayoutBuilder(
             builder: (context, constraints) {
               final width = constraints.maxWidth;
@@ -559,6 +568,49 @@ class _StudyPlanCard extends StatelessWidget {
       ),
     );
   }
+}
+
+class _DayTypeHeader extends StatelessWidget {
+  const _DayTypeHeader({required this.dayType});
+
+  final StudyDayType dayType;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final reinforcement = dayType == StudyDayType.reinforcement;
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text('DAY TYPE', style: _headingStyle(theme)),
+        const SizedBox(height: 2),
+        Text(dayType.label, style: _dayTypeStyle(theme)),
+        if (reinforcement) ...[
+          const SizedBox(height: 3),
+          Text(StudyDayType.reinforcementNote, style: _dayNoteStyle(theme)),
+        ],
+      ],
+    );
+  }
+}
+
+TextStyle _dayTypeStyle(ThemeData theme) {
+  return (theme.textTheme.titleMedium ?? const TextStyle()).copyWith(
+    color: _ink,
+    fontSize: 16,
+    fontWeight: FontWeight.w600,
+    height: 1.2,
+  );
+}
+
+TextStyle _dayNoteStyle(ThemeData theme) {
+  return (theme.textTheme.bodyMedium ?? const TextStyle()).copyWith(
+    color: _muted,
+    fontSize: 13,
+    fontWeight: FontWeight.w400,
+    height: 1.3,
+  );
 }
 
 TextStyle _headingStyle(ThemeData theme) {

@@ -379,7 +379,16 @@ void main() {
     final news = [for (var i = 0; i < 4; i++) testCard('n$i')];
     final progress = MemoryProgressRepository(
       settings: const AppSettings(dailyStudyMinutes: 3, newKanjiPerDay: 4),
-      schedules: {for (final card in reviews) card.id: reviewCard(card.id)},
+      // Still comfortable to recall, so the pile stays a Normal Day.
+      schedules: {
+        for (final card in reviews)
+          card.id: reviewCard(
+            card.id,
+            interval: const Duration(days: 40),
+            consecutive: 6,
+            lastReviewedAt: now.subtract(const Duration(hours: 12)),
+          ),
+      },
     );
 
     final workload = await service(progress, [

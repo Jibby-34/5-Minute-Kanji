@@ -4,6 +4,7 @@ import '../../core/models/kanji_card.dart';
 import '../../core/models/review.dart';
 import '../../core/models/start_of_day.dart';
 import '../../core/models/study_allocation.dart';
+import '../../core/models/study_day_type.dart';
 import '../../core/utils/clock.dart';
 import '../../repositories/kanji_repository.dart';
 import '../../repositories/progress_repository.dart';
@@ -54,6 +55,9 @@ class HomeController extends ChangeNotifier {
   /// Reviews and new kanji in the recommended sitting, with the time each
   /// group reserves. The home plan draws its counts and bar from this.
   StudyAllocation studyAllocation = StudyAllocation.empty;
+
+  /// Normal or Reinforcement for the plan already stored for today.
+  StudyDayType studyDayType = StudyDayType.normal;
   bool recommendedComplete = false;
   bool studyAnywayAvailable = false;
   DateTime? nextReviewAt;
@@ -84,6 +88,7 @@ class HomeController extends ChangeNotifier {
       recommendedCount = workload.sessionCards.length;
       studyItemCount = workload.studyItemCount;
       studyAllocation = workload.allocation;
+      studyDayType = workload.dayType;
       recommendedComplete = workload.recommendedComplete;
       studyAnywayAvailable = workload.studyAnywayAvailable;
       streak = streakInfo.current;
@@ -103,6 +108,7 @@ class HomeController extends ChangeNotifier {
       recommendedCount = 0;
       studyItemCount = 0;
       studyAllocation = StudyAllocation.empty;
+      studyDayType = StudyDayType.normal;
       recommendedComplete = false;
       studyAnywayAvailable = false;
       streak = 0;

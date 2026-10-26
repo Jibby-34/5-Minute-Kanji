@@ -6,6 +6,7 @@ import '../core/models/kanji_card.dart';
 import '../core/models/progress.dart';
 import '../core/models/start_of_day.dart';
 import '../core/models/study_allocation.dart';
+import '../core/models/study_day_type.dart';
 import '../repositories/kanji_repository.dart';
 import '../repositories/progress_repository.dart';
 import 'card_priority_scorer.dart';
@@ -13,6 +14,7 @@ import 'card_time_estimator.dart';
 import 'curriculum/curriculum_access.dart';
 import 'curriculum_priority_service.dart';
 import 'due_card_selector.dart';
+import 'reinforcement_day.dart';
 import 'session_planner.dart';
 
 /// One reading of what is left in the current study day.
@@ -33,6 +35,7 @@ class DailyWorkload {
     this.plannedRemaining,
     this.studyItemCount = 0,
     this.allocation = StudyAllocation.empty,
+    this.dayType = StudyDayType.normal,
   });
 
   static const empty = DailyWorkload(
@@ -78,6 +81,9 @@ class DailyWorkload {
   /// each group reserves. Empty once that sitting is finished.
   final StudyAllocation allocation;
 
+  /// Day type stored with today's plan. A Reinforcement Day plans no new kanji.
+  final StudyDayType dayType;
+
   bool get isCaughtUp => dueCount == 0 && newRemainingToday == 0;
 
   bool get studyAnywayAvailable =>
@@ -112,6 +118,7 @@ class DailyWorkloadService {
     this.scorer = const CardPriorityScorer(),
     this.timeEstimator = const CardTimeEstimator(),
     this.planner = const SessionPlanner(),
+    this.dayPolicy = const ReinforcementDayPolicy(),
     this.curriculumAccess,
   });
 
@@ -121,6 +128,9 @@ class DailyWorkloadService {
   final CardPriorityScorer scorer;
   final CardTimeEstimator timeEstimator;
   final SessionPlanner planner;
+
+  /// Recall thresholds for a Reinforcement Day. The estimator is [scorer]'s.
+  final ReinforcementDayPolicy dayPolicy;
 
   /// When set, new kanji are left out once the free trial is used up.
   final CurriculumAccess? curriculumAccess;
@@ -154,25 +164,29 @@ class DailyWorkloadService {
       knownCardIds: knownCardIds,
     );
     final estimator = await _estimator();
+    final studyDate = dayBoundary.studyDate(now);
+    final stored = await progressRepository.getDailySessionPlan();
+    final day = _resolveDay(
+      stored: stored,
+      studyDate: studyDate,
+      settings: settings,
+      startOfDay: dayBoundary,
+      allowNew: allowNew,
+      remainingNew: remainingNew,
+      cards: cards,
+      schedules: schedules,
+      now: now,
+    );
     final candidates = _candidates(
       cards: cards,
       schedules: schedules,
       now: now,
       startOfDay: dayBoundary,
-      maxNewCards: remainingNew,
+      maxNewCards: day.maxNewCards,
       compareNewCards: compareNewCards,
       estimator: estimator,
     );
-    final studyDate = dayBoundary.studyDate(now);
-    final stored = await progressRepository.getDailySessionPlan();
-    final planMatches = stored.matches(
-      studyDate: studyDate,
-      budgetMinutes: settings.dailyStudyMinutes,
-      newKanjiPerDay: settings.newKanjiPerDay,
-      startOfDay: dayBoundary,
-      curriculumMode: settings.curriculumMode,
-      allowsNewKanji: allowNew,
-    );
+    final planMatches = day.matches;
 
     final List<KanjiCard> session;
     final List<KanjiCard> overflow;
@@ -204,7 +218,7 @@ class DailyWorkloadService {
       final planned = planner.plan(
         candidates: candidates,
         budget: Duration(minutes: settings.dailyStudyMinutes),
-        maxNewCards: remainingNew,
+        maxNewCards: day.maxNewCards,
         compareNewCards: compareNewCards,
       );
       final next = DailySessionPlan(
@@ -214,6 +228,7 @@ class DailyWorkloadService {
         startOfDay: dayBoundary,
         curriculumMode: settings.curriculumMode,
         allowsNewKanji: allowNew,
+        dayType: day.dayType,
         cardIds: planned.selected
             .map((candidate) => candidate.card.id)
             .toList(),
@@ -237,7 +252,7 @@ class DailyWorkloadService {
         settings: settings,
         dueCount: due,
         unencountered: unencountered,
-        remainingNew: remainingNew,
+        remainingNew: day.maxNewCards,
         allowNewKanji: allowNew,
       ),
       sessionCards: session,
@@ -246,6 +261,7 @@ class DailyWorkloadService {
       plannedRemaining: session.length,
       studyItemCount: _studyItemCount(session, candidates),
       allocation: _allocation(session, candidates),
+      dayType: day.dayType,
     );
   }
 
@@ -254,8 +270,9 @@ class DailyWorkloadService {
   /// This is the same ranking Study Anyway uses once the planned sitting is
   /// finished. A card is included only when today's SRS rules already allow
   /// it: a review available today, or a new kanji still inside the daily
-  /// allowance. Cards already chosen for the open sitting stay in this list
-  /// until their schedules change; the session drops those itself.
+  /// allowance. A Reinforcement Day leaves the new kanji out. Cards already
+  /// chosen for the open sitting stay in this list until their schedules
+  /// change; the session drops those itself.
   Future<List<KanjiCard>> eligibleByPriority({required DateTime now}) async {
     final cards = await kanjiRepository.getAll();
     final schedules = await progressRepository.getSchedules();
@@ -277,13 +294,25 @@ class DailyWorkloadService {
       for (final card in cards)
         if (!selector.isNew(schedules[card.id])) card.id,
     };
+    final stored = await progressRepository.getDailySessionPlan();
+    final day = _resolveDay(
+      stored: stored,
+      studyDate: dayBoundary.studyDate(now),
+      settings: settings,
+      startOfDay: dayBoundary,
+      allowNew: allowNew,
+      remainingNew: remainingNew,
+      cards: cards,
+      schedules: schedules,
+      now: now,
+    );
     return _byPriority(
       _candidates(
         cards: cards,
         schedules: schedules,
         now: now,
         startOfDay: dayBoundary,
-        maxNewCards: remainingNew,
+        maxNewCards: day.maxNewCards,
         compareNewCards: curriculum.comparer(
           mode: settings.curriculumMode,
           knownCardIds: knownCardIds,
@@ -291,6 +320,46 @@ class DailyWorkloadService {
         estimator: await _estimator(),
       ),
     );
+  }
+
+  /// The day type already saved for this study day, or a fresh decision.
+  ///
+  /// A matching plan is not asked again. Reviews finished later in the day
+  /// therefore cannot turn new kanji back on. The next study day, or any
+  /// other change that makes the plan stop matching, decides again.
+  ({bool matches, StudyDayType dayType, int maxNewCards}) _resolveDay({
+    required DailySessionPlan stored,
+    required DateTime studyDate,
+    required AppSettings settings,
+    required StartOfDay startOfDay,
+    required bool allowNew,
+    required int remainingNew,
+    required List<KanjiCard> cards,
+    required Map<String, CardSchedule> schedules,
+    required DateTime now,
+  }) {
+    final matches = stored.matches(
+      studyDate: studyDate,
+      budgetMinutes: settings.dailyStudyMinutes,
+      newKanjiPerDay: settings.newKanjiPerDay,
+      startOfDay: startOfDay,
+      curriculumMode: settings.curriculumMode,
+      allowsNewKanji: allowNew,
+    );
+    final dayType = matches
+        ? stored.dayType
+        : dayPolicy.dayTypeForCards(
+            cards: cards,
+            schedules: schedules,
+            now: now,
+            startOfDay: startOfDay,
+            recall: scorer.recall,
+            dueCards: selector,
+          );
+    final maxNewCards = dayType == StudyDayType.reinforcement
+        ? 0
+        : remainingNew;
+    return (matches: matches, dayType: dayType, maxNewCards: maxNewCards);
   }
 
   Future<bool> _allowsNewKanji() async {

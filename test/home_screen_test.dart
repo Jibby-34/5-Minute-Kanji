@@ -8,6 +8,7 @@ import 'package:fiveminutekanji/app.dart';
 import 'package:fiveminutekanji/core/models/card_schedule.dart';
 import 'package:fiveminutekanji/core/models/progress.dart';
 import 'package:fiveminutekanji/core/models/study_allocation.dart';
+import 'package:fiveminutekanji/core/models/study_day_type.dart';
 import 'package:fiveminutekanji/core/theme/app_colors.dart';
 import 'package:fiveminutekanji/core/theme/app_theme.dart';
 import 'package:fiveminutekanji/core/utils/time_format.dart';
@@ -77,6 +78,9 @@ void main() {
       expect(find.byType(HomeScreen), findsOneWidget);
       expect(greeting(), findsOneWidget);
       expect(find.text('STUDY PLAN'), findsOneWidget);
+      expect(find.text('DAY TYPE'), findsOneWidget);
+      expect(find.text('Normal Day'), findsOneWidget);
+      expect(find.text(StudyDayType.reinforcementNote), findsNothing);
       expect(find.text('study items today'), findsNothing);
       expect(find.text('10'), findsNothing);
       expect(find.text('~5 min'), findsNothing);
@@ -116,11 +120,13 @@ void main() {
       expect(fresh.single.size.width, greaterThan(200));
 
       final total = tester.getCenter(find.text('STUDY PLAN'));
+      final dayType = tester.getCenter(find.text('DAY TYPE'));
       final start = tester.getCenter(find.text('Start Review'));
       final streak = tester.getCenter(find.text('days studied'));
       final hello = tester.getCenter(greeting());
       expect(streak.dy, lessThan(hello.dy));
-      expect(hello.dy, lessThan(total.dy));
+      expect(hello.dy, lessThan(dayType.dy));
+      expect(dayType.dy, lessThan(total.dy));
       expect(total.dy, lessThan(start.dy));
     } finally {
       semantics.dispose();
@@ -203,6 +209,8 @@ void main() {
     );
     expect(find.text('3 cards'), findsOneWidget);
     expect(find.text('2 cards'), findsOneWidget);
+    expect(find.text('Normal Day'), findsOneWidget);
+    expect(find.text(StudyDayType.reinforcementNote), findsNothing);
     expect(find.text('Start Review'), findsOneWidget);
 
     final reviewBar = barSegments(tester, AppColors.indigo);
@@ -242,6 +250,8 @@ void main() {
     expect(plan.newCards, 0);
     expect(find.text('3 cards'), findsOneWidget);
     expect(find.text('0 cards'), findsOneWidget);
+    expect(find.text('Normal Day'), findsOneWidget);
+    expect(find.text(StudyDayType.reinforcementNote), findsNothing);
     expect(find.text(_shownTotal(plan)), findsNWidgets(2));
     expect(find.text('0 min'), findsOneWidget);
     expect(barSegments(tester, AppColors.indigo), hasLength(1));
@@ -364,6 +374,48 @@ void main() {
     expect(find.textContaining('null'), findsNothing);
     expect(barSegments(tester, AppColors.indigo), isEmpty);
     expect(barSegments(tester, const Color(0xFF8E96C4)), isEmpty);
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('a reinforcement day shows reviews only', (tester) async {
+    final now = DateTime(2026, 10, 26, 9);
+    final reviews = [for (var i = 0; i < 8; i++) testCard('r$i')];
+    final news = [testCard('n1'), testCard('n2')];
+    final progress = MemoryProgressRepository(
+      settings: const AppSettings(dailyStudyMinutes: 5, newKanjiPerDay: 5),
+      schedules: {for (final card in reviews) card.id: dueReview(card.id, now)},
+    );
+    final controller = HomeController(
+      kanjiRepository: FakeKanjiRepository([...reviews, ...news]),
+      progressRepository: progress,
+      clock: () => now,
+    );
+    await controller.load();
+    await pumpController(tester, controller);
+
+    final plan = controller.studyAllocation;
+    expect(controller.studyDayType, StudyDayType.reinforcement);
+    expect(progress.dailySessionPlan.dayType, StudyDayType.reinforcement);
+    expect(plan.newCards, 0);
+    expect(plan.reviewCards, 8);
+    expect(plan.newSeconds, 0);
+    expect(find.text('DAY TYPE'), findsOneWidget);
+    expect(find.text('Reinforcement Day'), findsOneWidget);
+    expect(find.text('Normal Day'), findsNothing);
+    expect(find.text(StudyDayType.reinforcementNote), findsOneWidget);
+    expect(find.text('0 cards'), findsOneWidget);
+    expect(find.text('8 cards'), findsOneWidget);
+    expect(find.text('New kanji'), findsOneWidget);
+    expect(find.text('Reviews'), findsOneWidget);
+    expect(find.text('Start Review'), findsOneWidget);
+    expect(find.text(_shownTotal(plan)), findsNWidgets(2));
+    expect(find.text('0 min'), findsOneWidget);
+    expect(barSegments(tester, AppColors.indigo), hasLength(1));
+    expect(barSegments(tester, const Color(0xFF8E96C4)), isEmpty);
+    expect(
+      tester.getTopLeft(find.text('DAY TYPE')).dy,
+      lessThan(tester.getTopLeft(find.text('STUDY PLAN')).dy),
+    );
     expect(tester.takeException(), isNull);
   });
 }
