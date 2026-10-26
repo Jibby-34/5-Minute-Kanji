@@ -211,48 +211,49 @@ void main() {
     },
   );
 
-  test('today\'s new kanji are included even when they pass the time budget', () {
-    final news = [
-      for (var i = 0; i < 4; i++)
-        candidate(
-          id: 'n$i',
-          priority: 0.5,
-          estimated: const Duration(seconds: 30),
-          isNew: true,
-        ),
-    ];
-    final reviews = [
-      for (var i = 0; i < 6; i++)
-        candidate(
-          id: 'r$i',
-          priority: 10 - i.toDouble(),
-          estimated: const Duration(seconds: 20),
-        ),
-    ];
+  test(
+    'today\'s new kanji are included even when they pass the time budget',
+    () {
+      final news = [
+        for (var i = 0; i < 4; i++)
+          candidate(
+            id: 'n$i',
+            priority: 0.5,
+            estimated: const Duration(seconds: 30),
+            isNew: true,
+          ),
+      ];
+      final reviews = [
+        for (var i = 0; i < 6; i++)
+          candidate(
+            id: 'r$i',
+            priority: 10 - i.toDouble(),
+            estimated: const Duration(seconds: 20),
+          ),
+      ];
 
-    final plan = planner.plan(
-      candidates: [...reviews, ...news],
-      budget: const Duration(seconds: 50),
-      maxNewCards: 4,
-    );
+      final plan = planner.plan(
+        candidates: [...reviews, ...news],
+        budget: const Duration(seconds: 50),
+        maxNewCards: 4,
+      );
 
-    expect(plan.selected.where((item) => item.isNew).map((item) => item.card.id), [
-      'n0',
-      'n1',
-      'n2',
-      'n3',
-    ]);
-    expect(plan.selected.where((item) => !item.isNew), isEmpty);
-    expect(plan.estimated.inSeconds, 4 * 30 * 2);
-    expect(plan.overflow.map((item) => item.card.id), [
-      'r0',
-      'r1',
-      'r2',
-      'r3',
-      'r4',
-      'r5',
-    ]);
-  });
+      expect(
+        plan.selected.where((item) => item.isNew).map((item) => item.card.id),
+        ['n0', 'n1', 'n2', 'n3'],
+      );
+      expect(plan.selected.where((item) => !item.isNew), isEmpty);
+      expect(plan.estimated.inSeconds, 4 * 30 * 2);
+      expect(plan.overflow.map((item) => item.card.id), [
+        'r0',
+        'r1',
+        'r2',
+        'r3',
+        'r4',
+        'r5',
+      ]);
+    },
+  );
 
   test('reviews fill only the time left after today\'s new kanji', () {
     final plan = planner.plan(
@@ -402,6 +403,41 @@ void main() {
     final again = await service(progress, [...reviews, ...news]).read(now: now);
     expect(again.sessionCards, hasLength(4));
     expect(again.estimatedMinutes, workload.estimatedMinutes);
+    expect(again.allocation.newCards, workload.allocation.newCards);
+    expect(again.allocation.newSeconds, workload.allocation.newSeconds);
+  });
+
+  test('the plan split follows reserved time, not card counts', () async {
+    final reviews = [for (var i = 0; i < 3; i++) testCard('r$i')];
+    final news = [for (var i = 0; i < 2; i++) testCard('n$i')];
+    final progress = MemoryProgressRepository(
+      settings: const AppSettings(dailyStudyMinutes: 5, newKanjiPerDay: 2),
+      schedules: {for (final card in reviews) card.id: reviewCard(card.id)},
+    );
+
+    final workload = await service(progress, [
+      ...reviews,
+      ...news,
+    ]).read(now: now);
+
+    expect(workload.allocation.reviewCards, 3);
+    expect(workload.allocation.newCards, 2);
+    expect(
+      workload.allocation.reviewCards,
+      greaterThan(workload.allocation.newCards),
+    );
+    expect(
+      workload.allocation.reviewSeconds,
+      lessThan(workload.allocation.newSeconds),
+    );
+    expect(
+      workload.allocation.totalSeconds,
+      workload.allocation.reviewSeconds + workload.allocation.newSeconds,
+    );
+    expect(
+      workload.estimatedMinutes,
+      estimatedMinutesFor(Duration(seconds: workload.allocation.totalSeconds)),
+    );
   });
 
   test('missing days do not grow the session past the time budget', () async {

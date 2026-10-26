@@ -150,10 +150,7 @@ void main() {
     ) async {
       await openSettings(tester, size: const Size(320, 568));
 
-      await tester.scrollUntilVisible(
-        find.text('Replan today\'s cards'),
-        400,
-      );
+      await tester.scrollUntilVisible(find.text('Replan today\'s cards'), 400);
       expect(find.text('Placement test'), findsOneWidget);
       expect(find.text('4:00 AM'), findsOneWidget);
       expect(tester.takeException(), isNull);
@@ -219,7 +216,7 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(find.byType(SettingsScreen), findsNothing);
-      expect(find.text('study items today'), findsOneWidget);
+      expect(find.text('STUDY PLAN'), findsOneWidget);
       expect(find.text('Start Review'), findsOneWidget);
     });
   });

@@ -5,6 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:fiveminutekanji/app.dart';
 import 'package:fiveminutekanji/core/theme/app_theme.dart';
+import 'package:fiveminutekanji/features/home/home_screen.dart';
 import 'package:fiveminutekanji/features/review/widgets/handwriting_pad.dart';
 import 'package:fiveminutekanji/core/models/daily_goal.dart';
 import 'package:fiveminutekanji/core/models/kanji_card.dart';
@@ -287,7 +288,7 @@ void main() {
     }
 
     /// Home, whether or not there is anything left to do today.
-    Finder homeScreen() => find.text('study items today');
+    Finder homeScreen() => find.byType(HomeScreen);
 
     testWidgets('welcome, placement, goal, first session, then Home', (
       tester,

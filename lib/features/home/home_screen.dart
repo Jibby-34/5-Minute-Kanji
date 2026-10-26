@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../core/models/start_of_day.dart';
+import '../../core/models/study_allocation.dart';
 import '../../core/navigation/app_routes.dart';
 import '../../core/theme/app_colors.dart';
-import '../../core/theme/app_typography.dart';
+import '../../core/theme/app_theme.dart';
 import '../../core/utils/time_format.dart';
 import '../../widgets/streak_mark.dart';
 import '../kanji_list/kanji_list_screen.dart';
@@ -18,7 +19,12 @@ const _muted = Color(0xFF5C574E);
 const _line = Color(0xFFD9D2C3);
 const _chip = Color(0xFFE9E2D2);
 const _flame = Color(0xFFC9622B);
-const _card = Color(0xFFEDE6D8);
+
+/// A step lighter than the page, matching the welcome plan card.
+const _planFill = Color(0xFFFBF9F5);
+
+/// New-kanji share of the plan bar. The same indigo as the welcome example.
+const _newKanji = Color(0xFF8E96C4);
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -134,7 +140,11 @@ class _HomeBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final workload = _Workload.of(home);
+    final action = home.studyAnywayAvailable
+        ? 'Optional Practice'
+        : home.recommendedCount > 0
+        ? 'Start Review'
+        : null;
 
     return Column(
       children: [
@@ -144,10 +154,9 @@ class _HomeBody extends StatelessWidget {
           onOpenKanjiList: onOpenKanjiList,
         ),
         Expanded(
-          child: _HomeMiddle(home: home, now: now, workload: workload),
+          child: _HomeMiddle(home: home, now: now),
         ),
-        if (workload.action case final action?)
-          _StartButton(label: action, onPressed: onStart),
+        if (action != null) _StartButton(label: action, onPressed: onStart),
       ],
     );
   }
@@ -319,15 +328,10 @@ class _KanjiListIconPainter extends CustomPainter {
 /// Greeting and today's card, centered in whatever height is left. Short
 /// screens scroll instead of overflowing.
 class _HomeMiddle extends StatelessWidget {
-  const _HomeMiddle({
-    required this.home,
-    required this.now,
-    required this.workload,
-  });
+  const _HomeMiddle({required this.home, required this.now});
 
   final HomeController home;
   final DateTime now;
-  final _Workload workload;
 
   @override
   Widget build(BuildContext context) {
@@ -352,8 +356,8 @@ class _HomeMiddle extends StatelessWidget {
                       height: 1.2,
                     ),
                   ),
-                  const SizedBox(height: 60),
-                  _DailyStudyCard(home: home, now: now, workload: workload),
+                  const SizedBox(height: 32),
+                  _DailyStudyCard(home: home, now: now),
                 ],
               ),
             ),
@@ -365,74 +369,92 @@ class _HomeMiddle extends StatelessWidget {
 }
 
 class _DailyStudyCard extends StatelessWidget {
-  const _DailyStudyCard({
-    required this.home,
-    required this.now,
-    required this.workload,
-  });
+  const _DailyStudyCard({required this.home, required this.now});
 
   final HomeController home;
   final DateTime now;
-  final _Workload workload;
+
+  @override
+  Widget build(BuildContext context) {
+    if (home.studyAnywayAvailable) {
+      return _StatusCard(
+        title: "You're done for today!",
+        meta: 'Nice work!',
+        trial: home.trialProgressLabel,
+      );
+    }
+
+    if (home.recommendedCount <= 0) {
+      return _StatusCard(
+        title: "You're all caught up.",
+        trial: home.trialProgressLabel,
+        footer: _NextReviewLine(
+          nextReviewAt: home.nextReviewAt,
+          now: now,
+          startOfDay: home.startOfDay,
+        ),
+      );
+    }
+
+    return _StudyPlanCard(
+      allocation: home.studyAllocation,
+      trial: home.trialProgressLabel,
+    );
+  }
+}
+
+class _HomeCard extends StatelessWidget {
+  const _HomeCard({required this.child, required this.padding});
+
+  final Widget child;
+  final EdgeInsetsGeometry padding;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      padding: padding,
+      decoration: BoxDecoration(
+        color: _planFill,
+        borderRadius: BorderRadius.circular(AppTheme.cardRadius),
+        border: Border.all(color: _line, width: 1.5),
+      ),
+      child: child,
+    );
+  }
+}
+
+class _StatusCard extends StatelessWidget {
+  const _StatusCard({required this.title, this.meta, this.trial, this.footer});
+
+  final String title;
+  final String? meta;
+  final String? trial;
+  final Widget? footer;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final showNextReview =
-        !home.studyAnywayAvailable && home.recommendedCount == 0;
 
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.fromLTRB(20, 36, 20, 40),
-      decoration: BoxDecoration(
-        color: _card,
-        borderRadius: BorderRadius.circular(28),
-        border: Border.all(color: _line),
-      ),
+    return _HomeCard(
+      padding: const EdgeInsets.fromLTRB(20, 28, 20, 24),
       child: Column(
         children: [
-          if (workload.title case final title?)
-            Text(
-              title,
-              textAlign: TextAlign.center,
-              style: theme.textTheme.headlineMedium?.copyWith(
-                color: _ink,
-                fontSize: 30,
-                fontWeight: FontWeight.w600,
-                letterSpacing: -0.5,
-                height: 1.15,
-              ),
-            )
-          else ...[
-            Padding(
-              padding: const EdgeInsets.only(top: 12, bottom: 28),
-              child: FittedBox(
-                fit: BoxFit.scaleDown,
-                child: Text(
-                  '${workload.count}',
-                  textAlign: TextAlign.center,
-                  style: AppTypography.kanji(
-                    color: _ink,
-                    size: 176,
-                  ).copyWith(fontWeight: FontWeight.w400, height: 0.85),
-                ),
-              ),
+          Text(
+            title,
+            textAlign: TextAlign.center,
+            style: theme.textTheme.headlineMedium?.copyWith(
+              color: _ink,
+              fontSize: 30,
+              fontWeight: FontWeight.w600,
+              letterSpacing: -0.5,
+              height: 1.15,
             ),
+          ),
+          if (meta != null) ...[
+            const SizedBox(height: 6),
             Text(
-              workload.label!,
-              textAlign: TextAlign.center,
-              style: theme.textTheme.titleMedium?.copyWith(
-                color: _ink,
-                fontSize: 20,
-                fontWeight: FontWeight.w500,
-                height: 1.2,
-              ),
-            ),
-          ],
-          Padding(
-            padding: const EdgeInsets.only(top: 6),
-            child: Text(
-              workload.meta,
+              meta!,
               textAlign: TextAlign.center,
               style: theme.textTheme.bodyMedium?.copyWith(
                 color: _muted,
@@ -441,32 +463,346 @@ class _DailyStudyCard extends StatelessWidget {
                 height: 1.3,
               ),
             ),
-          ),
-          if (home.trialProgressLabel case final trial?)
-            Padding(
-              padding: const EdgeInsets.only(top: 10),
-              child: Text(
-                trial,
-                textAlign: TextAlign.center,
-                style: theme.textTheme.bodyMedium?.copyWith(
-                  color: _muted,
-                  fontSize: 14,
-                  fontWeight: FontWeight.w400,
-                  height: 1.3,
-                ),
-              ),
-            ),
-          if (showNextReview) ...[
-            const SizedBox(height: 18),
-            Divider(height: 1, thickness: 1, color: _line),
-            const SizedBox(height: 14),
-            _NextReviewLine(
-              nextReviewAt: home.nextReviewAt,
-              now: now,
-              startOfDay: home.startOfDay,
+          ],
+          if (trial != null) ...[
+            const SizedBox(height: 10),
+            Text(
+              trial!,
+              textAlign: TextAlign.center,
+              style: _trialStyle(theme),
             ),
           ],
+          if (footer != null) ...[
+            const SizedBox(height: 18),
+            const Divider(height: 1, thickness: 1, color: _line),
+            const SizedBox(height: 14),
+            footer!,
+          ],
         ],
+      ),
+    );
+  }
+}
+
+/// Today's sitting: total time, the split between reviews and new kanji,
+/// and the count and estimate for each.
+class _StudyPlanCard extends StatelessWidget {
+  const _StudyPlanCard({required this.allocation, this.trial});
+
+  final StudyAllocation allocation;
+  final String? trial;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final plan = allocation;
+    final total = plan.totalKnown
+        ? formatPlanDuration(
+            roundPlanSeconds(plan.reviewSeconds) +
+                roundPlanSeconds(plan.newSeconds),
+          )
+        : _unavailableTime;
+
+    return _HomeCard(
+      padding: const EdgeInsets.fromLTRB(20, 20, 20, 18),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          LayoutBuilder(
+            builder: (context, constraints) {
+              final width = constraints.maxWidth;
+              return FittedBox(
+                fit: BoxFit.scaleDown,
+                alignment: Alignment.centerLeft,
+                child: ConstrainedBox(
+                  constraints: BoxConstraints(
+                    minWidth: width.isFinite ? width : 0,
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text('STUDY PLAN', style: _headingStyle(theme)),
+                      const SizedBox(width: 16),
+                      Text(total, style: _totalStyle(theme)),
+                    ],
+                  ),
+                ),
+              );
+            },
+          ),
+          const SizedBox(height: 18),
+          _PlanBar(allocation: plan),
+          const SizedBox(height: 16),
+          _PlanCategory(
+            color: AppColors.indigo,
+            label: 'Reviews',
+            count: _cardsLabel(plan.reviewCards),
+            time: _categoryTime(
+              plan.reviewSeconds,
+              known: plan.reviewTimeKnown,
+            ),
+          ),
+          const SizedBox(height: 10),
+          _PlanCategory(
+            color: _newKanji,
+            label: 'New kanji',
+            count: _cardsLabel(plan.newCards),
+            time: _categoryTime(plan.newSeconds, known: plan.newTimeKnown),
+          ),
+          if (trial != null) ...[
+            const SizedBox(height: 12),
+            const Divider(height: 1, thickness: 1, color: _line),
+            const SizedBox(height: 10),
+            _TrialProgress(label: trial!),
+          ],
+        ],
+      ),
+    );
+  }
+}
+
+TextStyle _headingStyle(ThemeData theme) {
+  return (theme.textTheme.labelLarge ?? const TextStyle()).copyWith(
+    color: _muted,
+    fontSize: 12,
+    fontWeight: FontWeight.w700,
+    letterSpacing: 1.4,
+    height: 1.2,
+  );
+}
+
+TextStyle _totalStyle(ThemeData theme) {
+  return (theme.textTheme.displaySmall ?? const TextStyle()).copyWith(
+    color: AppColors.indigo,
+    fontSize: 30,
+    fontWeight: FontWeight.w700,
+    letterSpacing: -0.6,
+    height: 1,
+  );
+}
+
+TextStyle _trialStyle(ThemeData theme) {
+  return (theme.textTheme.bodyMedium ?? const TextStyle()).copyWith(
+    color: _muted,
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+    height: 1.3,
+  );
+}
+
+const _unavailableTime = '\u2014';
+
+String _cardsLabel(int count) {
+  final cards = count < 0 ? 0 : count;
+  return cards == 1 ? '1 card' : '$cards cards';
+}
+
+String _categoryTime(int seconds, {required bool known}) {
+  if (!known) return _unavailableTime;
+  return formatPlanDuration(seconds < 0 ? 0 : seconds);
+}
+
+class _PlanCategory extends StatelessWidget {
+  const _PlanCategory({
+    required this.color,
+    required this.label,
+    required this.count,
+    required this.time,
+  });
+
+  final Color color;
+  final String label;
+  final String count;
+  final String time;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final name = theme.textTheme.bodyLarge?.copyWith(
+      color: _ink,
+      fontSize: 16,
+      fontWeight: FontWeight.w600,
+      height: 1.2,
+    );
+    final countStyle = theme.textTheme.bodyLarge?.copyWith(
+      color: _ink,
+      fontSize: 16,
+      fontWeight: FontWeight.w700,
+      height: 1.2,
+    );
+    final timeStyle = theme.textTheme.bodyMedium?.copyWith(
+      color: _muted,
+      fontSize: 13,
+      fontWeight: FontWeight.w400,
+      height: 1.2,
+    );
+
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(top: 5),
+          child: _PlanDot(color: color),
+        ),
+        const SizedBox(width: 8),
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.only(top: 1),
+            child: Text(
+              label,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: name,
+            ),
+          ),
+        ),
+        const SizedBox(width: 8),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            Text(count, maxLines: 1, softWrap: false, style: countStyle),
+            const SizedBox(height: 1),
+            Text(time, maxLines: 1, softWrap: false, style: timeStyle),
+          ],
+        ),
+      ],
+    );
+  }
+}
+
+/// The stored trial line is `0 / 50 free kanji learned`. The plan shows the
+/// words and the fraction on one row. An unexpected string stays intact.
+class _TrialProgress extends StatelessWidget {
+  const _TrialProgress({required this.label});
+
+  final String label;
+
+  static final _count = RegExp(r'^(\d+ / \d+) free kanji learned$');
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final match = _count.firstMatch(label);
+    final style = _trialStyle(theme);
+    if (match == null) {
+      return Text(label, style: style);
+    }
+
+    return Row(
+      children: [
+        Expanded(
+          child: Text(
+            'Free kanji learned',
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: style,
+          ),
+        ),
+        const SizedBox(width: 8),
+        Text(match.group(1)!, maxLines: 1, softWrap: false, style: style),
+      ],
+    );
+  }
+}
+
+class _PlanDot extends StatelessWidget {
+  const _PlanDot({required this.color});
+
+  final Color color;
+
+  @override
+  Widget build(BuildContext context) {
+    return Semantics(
+      excludeSemantics: true,
+      child: SizedBox(
+        width: 10,
+        height: 10,
+        child: DecoratedBox(
+          decoration: BoxDecoration(
+            color: color,
+            borderRadius: BorderRadius.circular(3),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/// Time split for the sitting. Segments follow estimated seconds, and a
+/// category with no time is left out so the bar does not invent a share.
+class _PlanBar extends StatelessWidget {
+  const _PlanBar({required this.allocation});
+
+  final StudyAllocation allocation;
+
+  static const gap = 3.0;
+  static const minimum = 8.0;
+  static const height = 12.0;
+
+  @override
+  Widget build(BuildContext context) {
+    final plan = allocation;
+    final described = !plan.totalKnown || plan.totalSeconds <= 0
+        ? 'Estimated time split unavailable'
+        : 'Estimated time split. '
+              'Reviews ${formatPlanDurationSpoken(plan.reviewSeconds)}. '
+              'New kanji ${formatPlanDurationSpoken(plan.newSeconds)}.';
+
+    return Semantics(
+      label: described,
+      child: SizedBox(
+        height: height,
+        width: double.infinity,
+        child: plan.totalKnown && plan.totalSeconds > 0
+            ? LayoutBuilder(
+                builder: (context, constraints) {
+                  final widths = plan.segmentWidths(
+                    width: constraints.maxWidth,
+                    gap: gap,
+                    minimum: minimum,
+                  );
+                  return Row(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      if (widths.reviews > 0)
+                        _BarSegment(
+                          width: widths.reviews,
+                          color: AppColors.indigo,
+                        ),
+                      if (widths.reviews > 0 && widths.fresh > 0)
+                        const SizedBox(width: gap),
+                      if (widths.fresh > 0)
+                        _BarSegment(width: widths.fresh, color: _newKanji),
+                    ],
+                  );
+                },
+              )
+            : const DecoratedBox(
+                decoration: BoxDecoration(
+                  color: _line,
+                  borderRadius: BorderRadius.all(Radius.circular(6)),
+                ),
+              ),
+      ),
+    );
+  }
+}
+
+class _BarSegment extends StatelessWidget {
+  const _BarSegment({required this.width, required this.color});
+
+  final double width;
+  final Color color;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: width,
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          color: color,
+          borderRadius: BorderRadius.circular(6),
+        ),
       ),
     );
   }
@@ -545,54 +881,6 @@ class _NextReviewLine extends StatelessWidget {
           ),
         ),
       ],
-    );
-  }
-}
-
-/// Words for the home card. A finished plan reads as done for the day;
-/// anything still eligible is optional practice, not remaining work.
-class _Workload {
-  const _Workload({
-    required this.meta,
-    this.count,
-    this.label,
-    this.title,
-    this.action,
-  });
-
-  final int? count;
-  final String? label;
-  final String? title;
-  final String meta;
-  final String? action;
-
-  static String itemsLabel(int count) {
-    return count == 1 ? 'study item today' : 'study items today';
-  }
-
-  static _Workload of(HomeController home) {
-    if (home.studyAnywayAvailable) {
-      return const _Workload(
-        title: "You're done for today!",
-        meta: 'Nice work!',
-        action: 'Optional Practice',
-      );
-    }
-
-    if (home.recommendedCount <= 0) {
-      return _Workload(
-        count: 0,
-        label: itemsLabel(0),
-        meta: "You're all caught up.",
-      );
-    }
-
-    final count = home.studyItemCount;
-    return _Workload(
-      count: count,
-      label: itemsLabel(count),
-      meta: '~${home.estimatedMinutes} min',
-      action: 'Start Review',
     );
   }
 }

@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import '../../core/models/kanji_card.dart';
 import '../../core/models/review.dart';
 import '../../core/models/start_of_day.dart';
+import '../../core/models/study_allocation.dart';
 import '../../core/utils/clock.dart';
 import '../../repositories/kanji_repository.dart';
 import '../../repositories/progress_repository.dart';
@@ -49,6 +50,10 @@ class HomeController extends ChangeNotifier {
   /// Showings in today's sitting. Reviews count once; each new kanji counts
   /// twice because the sitting introduces it and then asks for it again.
   int studyItemCount = 0;
+
+  /// Reviews and new kanji in the recommended sitting, with the time each
+  /// group reserves. The home plan draws its counts and bar from this.
+  StudyAllocation studyAllocation = StudyAllocation.empty;
   bool recommendedComplete = false;
   bool studyAnywayAvailable = false;
   DateTime? nextReviewAt;
@@ -78,6 +83,7 @@ class HomeController extends ChangeNotifier {
       estimatedMinutes = workload.estimatedMinutes;
       recommendedCount = workload.sessionCards.length;
       studyItemCount = workload.studyItemCount;
+      studyAllocation = workload.allocation;
       recommendedComplete = workload.recommendedComplete;
       studyAnywayAvailable = workload.studyAnywayAvailable;
       streak = streakInfo.current;
@@ -96,6 +102,7 @@ class HomeController extends ChangeNotifier {
       estimatedMinutes = 0;
       recommendedCount = 0;
       studyItemCount = 0;
+      studyAllocation = StudyAllocation.empty;
       recommendedComplete = false;
       studyAnywayAvailable = false;
       streak = 0;

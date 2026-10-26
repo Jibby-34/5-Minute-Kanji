@@ -5,6 +5,7 @@ import 'package:fiveminutekanji/core/models/review.dart';
 import 'package:fiveminutekanji/core/models/start_of_day.dart';
 import 'package:fiveminutekanji/core/models/study_phase.dart';
 import 'package:fiveminutekanji/features/home/home_controller.dart';
+import 'package:fiveminutekanji/services/card_time_estimator.dart';
 import 'package:fiveminutekanji/features/review/review_controller.dart';
 import 'package:fiveminutekanji/services/srs_engine.dart';
 
@@ -40,6 +41,18 @@ void main() {
     expect(controller.estimatedMinutes, 2);
     expect(controller.isCaughtUp, isFalse);
     expect(controller.streak, 0);
+
+    const estimator = CardTimeEstimator();
+    final reserved = estimator.estimate(null, isNew: true).inSeconds * 2;
+    expect(controller.studyAllocation.reviewCards, 0);
+    expect(controller.studyAllocation.newCards, 2);
+    expect(controller.studyAllocation.reviewSeconds, 0);
+    expect(controller.studyAllocation.newSeconds, reserved * 2);
+    expect(
+      controller.studyAllocation.totalSeconds,
+      controller.studyAllocation.reviewSeconds +
+          controller.studyAllocation.newSeconds,
+    );
   });
 
   test(
@@ -289,6 +302,16 @@ void main() {
     expect(controller.isCaughtUp, isFalse);
     expect(session.map((card) => card.id), ['n1', 'n2', 'n3', 'n4', 'n5']);
     expect(controller.studyItemCount, 10);
+    expect(controller.studyAllocation.reviewCards, 0);
+    expect(controller.studyAllocation.newCards, 5);
+    expect(controller.studyAllocation.reviewSeconds, 0);
+    expect(controller.studyAllocation.newSeconds, greaterThan(0));
+    expect(
+      controller.estimatedMinutes,
+      estimatedMinutesFor(
+        Duration(seconds: controller.studyAllocation.totalSeconds),
+      ),
+    );
   });
 
   test('1 review and 5 new still queues every new kanji', () async {
@@ -337,6 +360,18 @@ void main() {
     expect(session.where((card) => card.id == 'r1').length, 1);
     expect(session.last.id, 'r1');
     expect(controller.studyItemCount, 11);
+    expect(controller.studyAllocation.reviewCards, 1);
+    expect(controller.studyAllocation.newCards, 5);
+    expect(
+      controller.studyAllocation.totalSeconds,
+      controller.studyAllocation.reviewSeconds +
+          controller.studyAllocation.newSeconds,
+    );
+    expect(controller.studyAllocation.reviewSeconds, greaterThan(0));
+    expect(
+      controller.studyAllocation.newSeconds,
+      greaterThan(controller.studyAllocation.reviewSeconds),
+    );
   });
 
   test(

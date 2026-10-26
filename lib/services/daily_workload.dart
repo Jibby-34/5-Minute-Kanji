@@ -5,6 +5,7 @@ import '../core/models/daily_session_plan.dart';
 import '../core/models/kanji_card.dart';
 import '../core/models/progress.dart';
 import '../core/models/start_of_day.dart';
+import '../core/models/study_allocation.dart';
 import '../repositories/kanji_repository.dart';
 import '../repositories/progress_repository.dart';
 import 'card_priority_scorer.dart';
@@ -31,6 +32,7 @@ class DailyWorkload {
     this.recommendedComplete = false,
     this.plannedRemaining,
     this.studyItemCount = 0,
+    this.allocation = StudyAllocation.empty,
   });
 
   static const empty = DailyWorkload(
@@ -45,7 +47,8 @@ class DailyWorkload {
   /// New kanji still left in today's allowance.
   final int newRemainingToday;
 
-  /// Home's `~n min` estimate for the recommended sitting.
+  /// Ceiled minutes for the recommended sitting. Reminders still use this.
+  /// Home shows [allocation], whose seconds add up without that rounding.
   final int estimatedMinutes;
 
   final StartOfDay startOfDay;
@@ -70,6 +73,10 @@ class DailyWorkload {
   /// Card showings in today's sitting. A review counts once. A new kanji
   /// counts twice, because the sitting introduces it and then retrieves it.
   final int studyItemCount;
+
+  /// Review cards and new kanji in the recommended sitting, with the seconds
+  /// each group reserves. Empty once that sitting is finished.
+  final StudyAllocation allocation;
 
   bool get isCaughtUp => dueCount == 0 && newRemainingToday == 0;
 
@@ -136,9 +143,7 @@ class DailyWorkloadService {
       startOfDay: dayBoundary,
     );
     final allowNew = await _allowsNewKanji();
-    final remainingNew = allowNew
-        ? math.min(unencountered, remainingDaily)
-        : 0;
+    final remainingNew = allowNew ? math.min(unencountered, remainingDaily) : 0;
     final curriculum = CurriculumPriorityService(cards);
     final knownCardIds = {
       for (final card in cards)
@@ -240,6 +245,7 @@ class DailyWorkloadService {
       recommendedComplete: complete,
       plannedRemaining: session.length,
       studyItemCount: _studyItemCount(session, candidates),
+      allocation: _allocation(session, candidates),
     );
   }
 
@@ -370,6 +376,42 @@ class DailyWorkloadService {
         level: card.jlptLevel,
       ),
       estimated: estimator.estimate(schedule, isNew: isNew),
+    );
+  }
+
+  /// Cards and reserved seconds for the sitting Home draws.
+  ///
+  /// A card with no timing is left out rather than given a made-up pace.
+  /// The session only includes cards that were timed, so this stays in step
+  /// with [_estimateCards].
+  StudyAllocation _allocation(
+    List<KanjiCard> session,
+    List<SessionCandidate> candidates,
+  ) {
+    if (session.isEmpty) return StudyAllocation.empty;
+    final byId = {
+      for (final candidate in candidates) candidate.card.id: candidate,
+    };
+    var reviewCards = 0;
+    var reviewSeconds = 0;
+    var newCards = 0;
+    var newSeconds = 0;
+    for (final card in session) {
+      final candidate = byId[card.id];
+      if (candidate == null) continue;
+      if (candidate.isNew) {
+        newCards += 1;
+        newSeconds += candidate.reservedSeconds;
+      } else {
+        reviewCards += 1;
+        reviewSeconds += candidate.reservedSeconds;
+      }
+    }
+    return StudyAllocation(
+      reviewCards: reviewCards,
+      reviewSeconds: reviewSeconds,
+      newCards: newCards,
+      newSeconds: newSeconds,
     );
   }
 

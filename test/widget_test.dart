@@ -66,8 +66,9 @@ void main() {
       ),
       findsOneWidget,
     );
-    expect(find.text('10'), findsOneWidget);
-    expect(find.text('study items today'), findsOneWidget);
+    expect(find.text('STUDY PLAN'), findsOneWidget);
+    expect(find.text('New kanji'), findsOneWidget);
+    expect(find.text('study items today'), findsNothing);
     expect(find.text('Start Review'), findsOneWidget);
     expect(find.text('days studied'), findsOneWidget);
   });
@@ -291,7 +292,7 @@ void main() {
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 50));
 
-    expect(find.text('study items today'), findsOneWidget);
+    expect(find.text('STUDY PLAN'), findsOneWidget);
     expect(find.text('1'), findsWidgets);
     expect(find.text('day studied'), findsOneWidget);
   });
@@ -329,7 +330,7 @@ void main() {
     await tester.pump(const Duration(milliseconds: 50));
 
     expect(find.text('0'), findsWidgets);
-    expect(find.text('study items today'), findsOneWidget);
+    expect(find.text('STUDY PLAN'), findsNothing);
     expect(find.text("You're all caught up."), findsOneWidget);
     expect(find.text('Start Review'), findsNothing);
     expect(find.text('Practice Anyway'), findsNothing);
@@ -390,7 +391,7 @@ void main() {
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 50));
 
-    expect(find.text('study items today'), findsOneWidget);
+    expect(find.text('STUDY PLAN'), findsOneWidget);
     expect(find.text('Start Review'), findsOneWidget);
     expect(find.text('1'), findsOneWidget);
     expect(find.text('day studied'), findsOneWidget);
@@ -436,6 +437,6 @@ void main() {
 
     await tester.tap(find.byTooltip('Back'));
     await tester.pumpAndSettle();
-    expect(find.text('study items today'), findsOneWidget);
+    expect(find.text('STUDY PLAN'), findsOneWidget);
   });
 }

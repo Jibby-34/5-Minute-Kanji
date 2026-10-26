@@ -114,7 +114,7 @@ void main() {
     expect(find.text('Some common kanji.'), findsOneWidget);
     expect(find.text('Find My Level'), findsNothing);
     expect(find.text('Start Review'), findsNothing);
-    expect(find.text('study items today'), findsNothing);
+    expect(find.text('STUDY PLAN'), findsNothing);
 
     await chooseAssessment(tester, 'Beginner');
     expect(find.text('Already know some kanji?'), findsOneWidget);

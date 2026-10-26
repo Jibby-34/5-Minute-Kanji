@@ -25,6 +25,33 @@ void main() {
     expect(formatStartOfDay(const StartOfDay(hour: 16, minute: 30)), '4:30 PM');
   });
 
+  test('plan durations keep seconds and add up in words', () {
+    expect(roundPlanSeconds(0), 0);
+    expect(roundPlanSeconds(-4), 0);
+    expect(roundPlanSeconds(4), 0);
+    expect(roundPlanSeconds(5), 10);
+    expect(roundPlanSeconds(13), 10);
+    expect(roundPlanSeconds(14), 10);
+    expect(roundPlanSeconds(15), 20);
+    expect(roundPlanSeconds(54), 50);
+    expect(roundPlanSeconds(158), 160);
+    expect(formatPlanDuration(0), '0 min');
+    expect(formatPlanDuration(-4), '0 min');
+    expect(formatPlanDuration(1), '0 min');
+    expect(formatPlanDuration(13), '10 sec');
+    expect(formatPlanDuration(40), '40 sec');
+    expect(formatPlanDuration(54), '50 sec');
+    expect(formatPlanDuration(60), '1 min');
+    expect(formatPlanDuration(90), '1 min 30 sec');
+    expect(formatPlanDuration(260), '4 min 20 sec');
+    expect(formatPlanDurationSpoken(0), '0 minutes');
+    expect(formatPlanDurationSpoken(1), '0 minutes');
+    expect(formatPlanDurationSpoken(10), '10 seconds');
+    expect(formatPlanDurationSpoken(60), '1 minute');
+    expect(formatPlanDurationSpoken(260), '4 minutes 20 seconds');
+    expect(formatPlanDuration(560 + 160), '12 min');
+  });
+
   test('next review labels follow the study-day boundary', () {
     const start = StartOfDay(hour: 4);
     final evening = DateTime(2026, 9, 8, 22);
