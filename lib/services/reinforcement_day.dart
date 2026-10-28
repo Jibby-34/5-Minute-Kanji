@@ -12,8 +12,8 @@ import 'recall_estimator.dart';
 class ReinforcementDayConfig {
   const ReinforcementDayConfig({
     this.minimumDueCards = 8,
-    this.averageRecallThreshold = 0.70,
-    this.lowRecallThreshold = 0.40,
+    this.averageRecallThreshold = 0.40,
+    this.lowRecallThreshold = 0.20,
     this.lowRecallFractionThreshold = 0.25,
   });
 
@@ -259,7 +259,7 @@ class ReinforcementDayPolicy {
       var total = 0.0;
       for (final value in usable) {
         total += value;
-        if (value < config.lowRecallThreshold) lowCount++;
+        if (_isBelow(value, config.lowRecallThreshold)) lowCount++;
       }
       average = total / usableCount;
       lowFraction = lowCount / usableCount;
@@ -268,7 +268,7 @@ class ReinforcementDayPolicy {
     final minimumMet = usableCount > 0 && usableCount >= config.minimumDueCards;
     final reasons = <ReinforcementTriggerReason>[];
     if (minimumMet) {
-      if (average! < config.averageRecallThreshold) {
+      if (_isBelow(average!, config.averageRecallThreshold)) {
         reasons.add(ReinforcementTriggerReason.averageRecall);
       }
       if (lowFraction! >= config.lowRecallFractionThreshold) {
@@ -301,6 +301,12 @@ class ReinforcementDayPolicy {
   /// A probability the estimator could actually return.
   static bool isUsableRecall(double value) {
     return value.isFinite && value >= 0 && value <= 1;
+  }
+
+  /// Strictly below [line]. A gap that is only float noise does not count,
+  /// so a queue sitting on the threshold stays a Normal Day.
+  static bool _isBelow(double value, double line) {
+    return line - value > 1e-9;
   }
 
   bool _isEligibleDue(

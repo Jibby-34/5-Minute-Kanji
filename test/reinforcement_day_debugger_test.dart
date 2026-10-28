@@ -39,9 +39,9 @@ void main() {
   group('synthetic scenarios', () {
     final cases = {
       ReinforcementDiagnosticSource.healthy: StudyDayType.normal,
-      ReinforcementDiagnosticSource.lowAverage: StudyDayType.reinforcement,
-      ReinforcementDiagnosticSource.fragileTail: StudyDayType.reinforcement,
-      ReinforcementDiagnosticSource.borderline: StudyDayType.reinforcement,
+      ReinforcementDiagnosticSource.lowAverage: StudyDayType.normal,
+      ReinforcementDiagnosticSource.fragileTail: StudyDayType.normal,
+      ReinforcementDiagnosticSource.borderline: StudyDayType.normal,
       ReinforcementDiagnosticSource.smallQueue: StudyDayType.normal,
       ReinforcementDiagnosticSource.empty: StudyDayType.normal,
     };
@@ -71,59 +71,48 @@ void main() {
       expect(diagnosis.dayType, StudyDayType.normal);
     });
 
-    test('a low average is Reinforcement Day from the average alone', () {
+    test('a 0.65 queue stays Normal under the production average', () {
       final diagnosis = policy.diagnose(
         ReinforcementDiagnosticSource.lowAverage.probabilities,
       );
 
       expect(diagnosis.average, closeTo(0.65, 1e-9));
       expect(diagnosis.lowCount, 0);
-      expect(diagnosis.reasons, [ReinforcementTriggerReason.averageRecall]);
-      expect(diagnosis.dayType, StudyDayType.reinforcement);
+      expect(diagnosis.reasons, isEmpty);
+      expect(diagnosis.dayType, StudyDayType.normal);
     });
 
-    test('a fragile tail reports the average and the low-recall share', () {
+    test('a fragile tail stays Normal when 0.30 is above the low line', () {
       final diagnosis = policy.diagnose(
         ReinforcementDiagnosticSource.fragileTail.probabilities,
       );
 
-      expect(diagnosis.lowCount, 6);
-      expect(diagnosis.lowFraction, closeTo(0.30, 1e-9));
-      expect(diagnosis.average, lessThan(0.70));
-      expect(diagnosis.average, greaterThan(0.68));
-      expect(diagnosis.reasons, [
-        ReinforcementTriggerReason.averageRecall,
-        ReinforcementTriggerReason.lowRecallFraction,
-      ]);
-      expect(
-        diagnosis.triggerLabel(policy.config),
-        'Average recall is below 0.70. '
-        'The share of cards below 0.40 is at least 0.25.',
-      );
+      expect(diagnosis.lowCount, 0);
+      expect(diagnosis.lowFraction, 0);
+      expect(diagnosis.average, greaterThan(0.40));
+      expect(diagnosis.reasons, isEmpty);
+      expect(diagnosis.dayType, StudyDayType.normal);
     });
 
-    test('a borderline queue meets both thresholds exactly where required', () {
+    test('a borderline queue stays Normal under the production thresholds', () {
       final diagnosis = policy.diagnose(
         ReinforcementDiagnosticSource.borderline.probabilities,
       );
 
-      expect(diagnosis.average, lessThan(0.70));
-      expect(diagnosis.lowCount, 5);
-      expect(diagnosis.lowFraction, closeTo(0.25, 1e-9));
-      expect(diagnosis.reasons, [
-        ReinforcementTriggerReason.averageRecall,
-        ReinforcementTriggerReason.lowRecallFraction,
-      ]);
+      expect(diagnosis.average, greaterThan(0.40));
+      expect(diagnosis.lowCount, 0);
+      expect(diagnosis.reasons, isEmpty);
+      expect(diagnosis.dayType, StudyDayType.normal);
     });
 
-    test('a small queue stays Normal even when every card is low', () {
+    test('a small queue stays Normal', () {
       final diagnosis = policy.diagnose(
         ReinforcementDiagnosticSource.smallQueue.probabilities,
       );
 
       expect(diagnosis.eligibleCount, 5);
       expect(diagnosis.average, closeTo(0.20, 1e-9));
-      expect(diagnosis.lowCount, 5);
+      expect(diagnosis.lowCount, 0);
       expect(diagnosis.minimumMet, isFalse);
       expect(diagnosis.reasons, isEmpty);
       expect(diagnosis.dayType, StudyDayType.normal);
@@ -185,7 +174,10 @@ void main() {
 
     test('the fragile tail can fire from the fraction alone', () {
       final diagnosis = ReinforcementDayPolicy(
-        config: const ReinforcementDayConfig(averageRecallThreshold: 0.50),
+        config: const ReinforcementDayConfig(
+          averageRecallThreshold: 0.50,
+          lowRecallThreshold: 0.35,
+        ),
       ).diagnose(ReinforcementDiagnosticSource.fragileTail.probabilities);
 
       expect(diagnosis.reasons, [ReinforcementTriggerReason.lowRecallFraction]);
@@ -207,15 +199,15 @@ void main() {
 
   group('boundaries', () {
     test('an average equal to the threshold stays Normal', () {
-      final diagnosis = policy.diagnose(List<double>.filled(8, 0.70));
+      final diagnosis = policy.diagnose(List<double>.filled(8, 0.40));
 
-      expect(diagnosis.average, closeTo(0.70, 1e-9));
+      expect(diagnosis.average, closeTo(0.40, 1e-9));
       expect(diagnosis.dayType, StudyDayType.normal);
       expect(diagnosis.reasons, isEmpty);
     });
 
     test('an average just under the threshold is Reinforcement Day', () {
-      final diagnosis = policy.diagnose(List<double>.filled(8, 0.69));
+      final diagnosis = policy.diagnose(List<double>.filled(8, 0.39));
 
       expect(diagnosis.reasons, [ReinforcementTriggerReason.averageRecall]);
     });
@@ -223,7 +215,7 @@ void main() {
     test('recall equal to the low threshold is not a low card', () {
       final diagnosis = policy.diagnose([
         ...List<double>.filled(6, 1),
-        ...List<double>.filled(2, 0.40),
+        ...List<double>.filled(2, 0.20),
       ]);
 
       expect(diagnosis.lowCount, 0);
@@ -233,7 +225,7 @@ void main() {
     test('two cards just under the low threshold are exactly a quarter', () {
       final diagnosis = policy.diagnose([
         ...List<double>.filled(6, 1),
-        ...List<double>.filled(2, 0.399),
+        ...List<double>.filled(2, 0.199),
       ]);
 
       expect(diagnosis.lowFraction, closeTo(0.25, 1e-9));
@@ -362,7 +354,8 @@ void main() {
 
       expect(harness.snapshot(), before);
       expect(controller.workload.dayPolicy.config.minimumDueCards, 8);
-      expect(controller.workload.dayPolicy.config.averageRecallThreshold, 0.70);
+      expect(controller.workload.dayPolicy.config.averageRecallThreshold, 0.40);
+      expect(controller.workload.dayPolicy.config.lowRecallThreshold, 0.20);
       expect(harness.curriculum.record.studiedIds, {'kept'});
       expect(harness.curriculum.record.backfillCompleted, isFalse);
       expect(harness.access.studiedCount, 0);
@@ -471,8 +464,13 @@ void main() {
         find.text('Simulation. These probabilities are sample data.'),
         findsOneWidget,
       );
-      expect(find.text('Predicted: Reinforcement Day'), findsOneWidget);
+      expect(find.text('Predicted: Normal Day'), findsOneWidget);
       expect(find.text('Eligible due cards: 20'), findsOneWidget);
+
+      await _reveal(tester, find.byKey(const Key('debug-average')));
+      await tester.enterText(find.byKey(const Key('debug-average')), '0.90');
+      await tester.pump();
+      expect(find.text('Predicted: Reinforcement Day'), findsOneWidget);
       await _scrollTo(tester, find.text('STUDY PLAN'));
       expect(find.text('0 cards'), findsOneWidget);
       expect(find.text('4 cards'), findsOneWidget);

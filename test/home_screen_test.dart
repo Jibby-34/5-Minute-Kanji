@@ -383,7 +383,13 @@ void main() {
     final news = [testCard('n1'), testCard('n2')];
     final progress = MemoryProgressRepository(
       settings: const AppSettings(dailyStudyMinutes: 5, newKanjiPerDay: 5),
-      schedules: {for (final card in reviews) card.id: dueReview(card.id, now)},
+      schedules: {
+        for (final card in reviews)
+          card.id: dueReview(card.id, now).copyWith(
+            interval: const Duration(days: 10),
+            lastReviewedAt: now.subtract(const Duration(days: 17)),
+          ),
+      },
     );
     final controller = HomeController(
       kanjiRepository: FakeKanjiRepository([...reviews, ...news]),

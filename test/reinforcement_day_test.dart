@@ -50,20 +50,26 @@ void main() {
     test('a healthy average and a small low-recall share stay normal', () {
       final recall = [...filled(7, 0.95), 0.1];
       expect(policy.dayTypeFor(recall), StudyDayType.normal);
-      expect(_average(recall), greaterThanOrEqualTo(0.70));
+      expect(
+        _average(recall),
+        greaterThanOrEqualTo(config.averageRecallThreshold),
+      );
       expect(_lowFraction(recall), lessThan(0.25));
     });
 
     test('a low average triggers reinforcement on its own', () {
-      final recall = filled(8, 0.62);
-      expect(_average(recall), lessThan(0.70));
+      final recall = filled(8, 0.30);
+      expect(_average(recall), lessThan(config.averageRecallThreshold));
       expect(_lowFraction(recall), lessThan(0.25));
       expect(policy.dayTypeFor(recall), StudyDayType.reinforcement);
     });
 
     test('the low-recall fraction triggers reinforcement on its own', () {
       final recall = [...filled(6, 1), ...filled(2, 0)];
-      expect(_average(recall), greaterThanOrEqualTo(0.70));
+      expect(
+        _average(recall),
+        greaterThanOrEqualTo(config.averageRecallThreshold),
+      );
       expect(_lowFraction(recall), 0.25);
       expect(policy.dayTypeFor(recall), StudyDayType.reinforcement);
     });
@@ -73,10 +79,10 @@ void main() {
     });
 
     test('thresholds use strict probability checks and an inclusive share', () {
-      expect(policy.dayTypeFor(filled(8, 0.70)), StudyDayType.normal);
-      expect(policy.dayTypeFor(filled(8, 0.69)), StudyDayType.reinforcement);
+      expect(policy.dayTypeFor(filled(8, 0.40)), StudyDayType.normal);
+      expect(policy.dayTypeFor(filled(8, 0.39)), StudyDayType.reinforcement);
 
-      final onLowLine = [...filled(6, 1), ...filled(2, 0.40)];
+      final onLowLine = [...filled(6, 1), ...filled(2, 0.20)];
       expect(_lowFraction(onLowLine), 0);
       expect(policy.dayTypeFor(onLowLine), StudyDayType.normal);
 
@@ -84,8 +90,11 @@ void main() {
       expect(_lowFraction(justUnderShare), lessThan(0.25));
       expect(policy.dayTypeFor(justUnderShare), StudyDayType.normal);
 
-      final exactShare = [...filled(6, 1), ...filled(2, 0.399)];
-      expect(_average(exactShare), greaterThanOrEqualTo(0.70));
+      final exactShare = [...filled(6, 1), ...filled(2, 0.199)];
+      expect(
+        _average(exactShare),
+        greaterThanOrEqualTo(config.averageRecallThreshold),
+      );
       expect(_lowFraction(exactShare), 0.25);
       expect(policy.dayTypeFor(exactShare), StudyDayType.reinforcement);
 
@@ -183,7 +192,10 @@ void main() {
       () async {
         final built = _deck(count: 8, schedule: (id) => _moderate(id, now));
         final probabilities = _probabilities(built.schedules, now);
-        expect(_average(probabilities), lessThan(0.70));
+        expect(
+          _average(probabilities),
+          lessThan(config.averageRecallThreshold),
+        );
         expect(_lowFraction(probabilities), lessThan(0.25));
 
         final workload = await serviceFor(
@@ -226,7 +238,10 @@ void main() {
               : _strong(id, now),
         );
         final probabilities = _probabilities(built.schedules, now);
-        expect(_average(probabilities), greaterThanOrEqualTo(0.70));
+        expect(
+          _average(probabilities),
+          greaterThanOrEqualTo(config.averageRecallThreshold),
+        );
         expect(_lowFraction(probabilities), greaterThanOrEqualTo(0.25));
 
         final workload = await serviceFor(
@@ -246,7 +261,10 @@ void main() {
     test('healthy recall keeps today\'s new kanji', () async {
       final built = _deck(count: 8, schedule: (id) => _strong(id, now));
       final probabilities = _probabilities(built.schedules, now);
-      expect(_average(probabilities), greaterThanOrEqualTo(0.70));
+      expect(
+        _average(probabilities),
+        greaterThanOrEqualTo(config.averageRecallThreshold),
+      );
       expect(_lowFraction(probabilities), lessThan(0.25));
       final before = _snapshot(built.progress);
 
@@ -383,11 +401,11 @@ void main() {
         StudyDayType.normal,
       );
       expect(
-        await day({for (var i = 0; i < 8; i++) 'r$i': 0.70}),
+        await day({for (var i = 0; i < 8; i++) 'r$i': 0.40}),
         StudyDayType.normal,
       );
       expect(
-        await day({for (var i = 0; i < 8; i++) 'r$i': 0.69}),
+        await day({for (var i = 0; i < 8; i++) 'r$i': 0.39}),
         StudyDayType.reinforcement,
       );
       expect(
@@ -401,8 +419,8 @@ void main() {
       expect(
         await day({
           for (var i = 0; i < 6; i++) 'h$i': 1,
-          'l0': 0.40,
-          'l1': 0.40,
+          'l0': 0.20,
+          'l1': 0.20,
         }),
         StudyDayType.normal,
       );
@@ -533,7 +551,7 @@ void main() {
       );
       expect(
         _average(_probabilities(built.progress.schedules, later)),
-        greaterThanOrEqualTo(0.70),
+        greaterThanOrEqualTo(config.averageRecallThreshold),
       );
 
       final restarted = await serviceFor(
@@ -746,6 +764,7 @@ CardSchedule _due(String id, DateTime now) {
   );
 }
 
+/// About 0.31 recall: below the average threshold, and above the low line.
 CardSchedule _moderate(String id, DateTime now) {
   return CardSchedule(
     cardId: id,
@@ -756,7 +775,7 @@ CardSchedule _moderate(String id, DateTime now) {
     dueAt: now,
     interval: const Duration(days: 10),
     ease: 2.5,
-    lastReviewedAt: now.subtract(const Duration(days: 7)),
+    lastReviewedAt: now.subtract(const Duration(days: 17)),
   );
 }
 
@@ -833,7 +852,8 @@ double _average(List<double> values) {
 }
 
 double _lowFraction(List<double> values) {
-  final low = values.where((value) => value < 0.40).length;
+  final line = ReinforcementDayConfig.production.lowRecallThreshold;
+  final low = values.where((value) => value < line).length;
   return low / values.length;
 }
 
