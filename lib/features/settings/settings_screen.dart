@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -13,11 +14,13 @@ import '../../services/curriculum/curriculum_access.dart';
 import '../../services/curriculum/curriculum_links.dart';
 import '../../services/placement_service.dart';
 import '../../services/reminder_scheduler.dart';
+import '../../services/test_flight.dart';
 import '../../widgets/section_label.dart';
 import '../../widgets/soft_card.dart';
 import '../placement/placement_screen.dart';
 import '../purchase/review_limit_prompt.dart';
 import 'open_source_licenses_screen.dart';
+import 'reinforcement_day_debugger_screen.dart';
 import 'settings_controller.dart';
 
 const _sectionGap = 36.0;
@@ -47,10 +50,26 @@ class _SettingsView extends StatefulWidget {
 
 class _SettingsViewState extends State<_SettingsView>
     with WidgetsBindingObserver {
+  /// Debug runs show the tools immediately. A TestFlight release adds them
+  /// once iOS reports a sandbox receipt. An App Store install leaves this off.
+  bool _showDeveloperTools = kDebugMode;
+
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
+    unawaited(_loadDeveloperTools());
+  }
+
+  Future<void> _loadDeveloperTools() async {
+    final testFlight = await installedFromTestFlight();
+    if (!mounted) return;
+    final visible = reinforcementDebuggerVisible(
+      debugMode: kDebugMode,
+      testFlight: testFlight,
+    );
+    if (visible == _showDeveloperTools) return;
+    setState(() => _showDeveloperTools = visible);
   }
 
   @override
@@ -170,6 +189,10 @@ class _SettingsViewState extends State<_SettingsView>
                           ),
                           const SizedBox(height: _sectionGap),
                           _ReplanToday(controller: controller),
+                          if (_showDeveloperTools) ...[
+                            const SizedBox(height: _sectionGap),
+                            const _DeveloperSection(),
+                          ],
                         ],
                       ),
                     ),
@@ -600,6 +623,33 @@ class _OtherSection extends StatelessWidget {
             subtitle: 'View the licenses for libraries used by 5-Minute Kanji.',
             showChevron: true,
             onTap: onOpenLicenses,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _DeveloperSection extends StatelessWidget {
+  const _DeveloperSection();
+
+  @override
+  Widget build(BuildContext context) {
+    return _SettingsSection(
+      label: 'Developer',
+      child: _GroupedCard(
+        children: [
+          _SettingsRow(
+            label: 'Reinforcement Day Debugger',
+            subtitle: 'Tune thresholds and preview day types.',
+            showChevron: true,
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute<void>(
+                  builder: (_) => const ReinforcementDayDebuggerScreen(),
+                ),
+              );
+            },
           ),
         ],
       ),

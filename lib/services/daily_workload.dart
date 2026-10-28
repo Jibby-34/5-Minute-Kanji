@@ -135,6 +135,24 @@ class DailyWorkloadService {
   /// When set, new kanji are left out once the free trial is used up.
   final CurriculumAccess? curriculumAccess;
 
+  /// Recall probabilities for cards due today.
+  ///
+  /// Reads the queue and does not save a plan, a schedule, a setting, or
+  /// trial progress. The debugger predicts from this sample.
+  Future<List<double>> dueRecallProbabilities({required DateTime now}) async {
+    final cards = await kanjiRepository.getAll();
+    final schedules = await progressRepository.getSchedules();
+    final settings = await progressRepository.getSettings();
+    return dayPolicy.recallProbabilities(
+      cards: cards,
+      schedules: schedules,
+      now: now,
+      startOfDay: settings.startOfDay,
+      recall: scorer.recall,
+      dueCards: selector,
+    );
+  }
+
   Future<DailyWorkload> read({required DateTime now}) async {
     final cards = await kanjiRepository.getAll();
     final schedules = await progressRepository.getSchedules();
