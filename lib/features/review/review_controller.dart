@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer' as developer;
 
 import 'package:flutter/foundation.dart';
 
@@ -14,9 +15,11 @@ import '../../core/models/study_phase.dart';
 import '../../core/utils/clock.dart';
 import '../../repositories/progress_repository.dart';
 import '../../services/active_duration_timer.dart';
+import '../../services/adaptive_session_adjuster.dart';
 import '../../services/analytics/analytics_service.dart';
 import '../../services/analytics/study_review_classification.dart';
 import '../../services/answer_grader.dart';
+import '../../services/card_priority_scorer.dart';
 import '../../services/card_time_estimator.dart';
 import '../../services/daily_review_clock.dart';
 import '../../services/curriculum/curriculum_access.dart';
@@ -41,6 +44,9 @@ class ReviewController extends ChangeNotifier {
     this.statusResolver = const KanjiStatusResolver(),
     this.selector = const DueCardSelector(),
     this.timeEstimator = const CardTimeEstimator(),
+    this.priorityScorer = const CardPriorityScorer(),
+    this.queueAdjuster = const AdaptiveSessionAdjuster(),
+    this.extraDueReviews,
     this.workloadService,
     this.curriculumAccess,
     AnalyticsService? analytics,
@@ -85,6 +91,14 @@ class ReviewController extends ChangeNotifier {
   final KanjiStatusResolver statusResolver;
   final DueCardSelector selector;
   final CardTimeEstimator timeEstimator;
+  final CardPriorityScorer priorityScorer;
+
+  /// Drops or swaps future reviews when this sitting is running long.
+  final AdaptiveSessionAdjuster queueAdjuster;
+
+  /// Due reviews that may replace a longer card. Null loads them from
+  /// [workloadService] the first time the sitting runs long.
+  final List<KanjiCard>? extraDueReviews;
 
   /// When set, an unfinished daily time goal can draw the next priority card.
   final DailyWorkloadService? workloadService;
@@ -104,8 +118,12 @@ class ReviewController extends ChangeNotifier {
   ReviewAnswer? answer;
   ReviewResult? suggestedResult;
   final ActiveDurationTimer _cardTimer = ActiveDurationTimer();
+  final SessionPaceTracker _pace = SessionPaceTracker();
   bool _cardTimingOpen = false;
   SessionSummary? summary;
+
+  /// The latest time the remaining queue was shortened. Null until then.
+  AdaptiveQueueDecision? lastQueueAdjustment;
   KanjiCard? _visibleCard;
   Map<String, CardSchedule> _schedules = {};
   int padGeneration = 0;
@@ -335,20 +353,29 @@ class ReviewController extends ChangeNotifier {
         rethrow;
       }
       _schedules[card.id] = updated;
+      final Duration? predicted;
       if (wasNew) {
         _newCardsLearned++;
         _introducedIds.add(card.id);
-        await _recordPace(schedule: existing, isNew: true, duration: active);
+        predicted = await _recordPace(
+          schedule: existing,
+          isNew: true,
+          duration: active,
+        );
         final daily = (await progressRepository.getDailyNewKanji()).forDay(
           now,
           startOfDay: dayBoundary,
         );
         await progressRepository.saveDailyNewKanji(daily.increment());
         await _countStudyDay(now, dayBoundary);
+      } else {
+        predicted = null;
       }
 
       session.completeIntroduction();
       _offerDueCards(now);
+      if (predicted != null) _pace.record(predicted, active);
+      await _adaptAssignedQueue(now);
       _visibleCard = session.current ?? card;
 
       if (session.isComplete && await _continueForTimeGoal(now)) {
@@ -386,6 +413,7 @@ class ReviewController extends ChangeNotifier {
 
       session.completeIntroduction();
       _offerDueCards(now);
+      await _adaptAssignedQueue(now);
       _visibleCard = session.current ?? card;
 
       if (session.isComplete && await _continueForTimeGoal(now)) {
@@ -435,6 +463,8 @@ class ReviewController extends ChangeNotifier {
       final dayBoundary = await _loadStartOfDay();
       final previousSchedule = await progressRepository.getSchedule(card.id);
       final previousPace = await progressRepository.getReviewDurationModel();
+      final paceBefore = _pace.snapshot();
+      final Duration? predicted;
       if (!isPractice) {
         final existing = previousSchedule ?? CardSchedule.fresh(card.id, now);
         final updated = srsEngine.schedule(
@@ -444,11 +474,13 @@ class ReviewController extends ChangeNotifier {
         );
         await progressRepository.saveSchedule(updated);
         _schedules[card.id] = updated;
-        await _recordPace(
+        predicted = await _recordPace(
           schedule: existing,
           isNew: false,
           duration: timeOnCard,
         );
+      } else {
+        predicted = null;
       }
 
       final historyEntry = ReviewHistoryEntry(
@@ -475,6 +507,8 @@ class ReviewController extends ChangeNotifier {
       if (classification != null) _pendingReviews.add(classification);
       if (!isPractice) {
         _offerDueCards(now);
+        if (predicted != null) _pace.record(predicted, timeOnCard);
+        await _adaptAssignedQueue(now);
       }
       _visibleCard = session.current ?? card;
 
@@ -496,6 +530,7 @@ class ReviewController extends ChangeNotifier {
           schedule: previousSchedule,
           hadSchedule: previousSchedule != null,
           pace: previousPace,
+          paceTracker: paceBefore,
           historyEntry: historyEntry,
           drawing: drawing,
           answer: answer,
@@ -583,6 +618,8 @@ class ReviewController extends ChangeNotifier {
 
   void _restoreAnsweredCard(_AnswerUndo snapshot) {
     session.restore(snapshot.session);
+    _pace.restore(snapshot.paceTracker);
+    lastQueueAdjustment = null;
     if (snapshot.hadSchedule && snapshot.schedule != null) {
       _schedules[snapshot.cardId] = snapshot.schedule!;
     } else {
@@ -759,6 +796,7 @@ class ReviewController extends ChangeNotifier {
   }
 
   bool _canContinueWith(KanjiCard card, DateTime now) {
+    if (session.isDropped(card.id)) return false;
     if (session.hasReviewed(card.id)) return false;
     if (session.queued.any((queued) => queued.id == card.id)) return false;
     if (session.pool.any((pooled) => pooled.id == card.id)) return false;
@@ -803,23 +841,188 @@ class ReviewController extends ChangeNotifier {
 
   /// One finished card updates the pace model once. A repeat of the same
   /// showing finds the timer closed and is ignored.
-  Future<void> _recordPace({
+  ///
+  /// The returned duration is the estimate from before this sample was folded
+  /// in, so the sitting can compare it with the time just spent.
+  Future<Duration?> _recordPace({
     required CardSchedule? schedule,
     required bool isNew,
     required Duration duration,
   }) async {
     final active = _cardTimingOpen ? duration : Duration.zero;
     _cardTimingOpen = false;
-    if (!CardTimeEstimator.isUsableDuration(active)) return;
+    if (!CardTimeEstimator.isUsableDuration(active)) return null;
     final current = await progressRepository.getReviewDurationModel();
-    final next = timeEstimator.learn(
+    final estimator = timeEstimator.withModel(current);
+    final predicted = estimator.estimate(schedule, isNew: isNew);
+    final next = estimator.learn(
       current,
       schedule: schedule,
       isNew: isNew,
       duration: active,
     );
-    if (next == null) return;
+    if (next == null) return null;
     await progressRepository.saveReviewDurationModel(next);
+    return predicted;
+  }
+
+  /// Shortens the remaining assigned queue when this sitting is running past
+  /// its goal. Practice and Study Anyway sittings are left as opened.
+  Future<void> _adaptAssignedQueue(DateTime now) async {
+    if (isPractice || isStudyAnyway || _disposed) return;
+    try {
+      final settings = await progressRepository.getSettings();
+      final goal = Duration(minutes: settings.dailyStudyMinutes);
+      final estimator = timeEstimator.withModel(
+        await progressRepository.getReviewDurationModel(),
+      );
+      final queue = _queueSnapshots(estimator, now);
+      final elapsed = reviewClock.sittingAt(now);
+      if (!queueAdjuster.needsAdjustment(
+        elapsed: elapsed,
+        goal: goal,
+        queue: queue,
+        adjustmentsUsed: session.adjustmentsMade,
+      )) {
+        return;
+      }
+      final replacements = await _replacementSnapshots(estimator, now);
+      if (_disposed) return;
+      final decision = queueAdjuster.decide(
+        elapsed: elapsed,
+        goal: goal,
+        queue: queue,
+        replacements: replacements,
+        droppedIds: session.droppedIds,
+        adjustmentsUsed: session.adjustmentsMade,
+        maxQueueLength: session.initialCount,
+      );
+      if (!decision.changed) return;
+      session.applyAdaptiveSteps(decision.steps);
+      lastQueueAdjustment = decision;
+      _logAdaptiveQueue(decision);
+    } catch (error) {
+      if (kDebugMode) debugPrint('Adaptive queue skipped: $error');
+    }
+  }
+
+  List<AdaptiveQueueCard> _queueSnapshots(
+    CardTimeEstimator estimator,
+    DateTime now,
+  ) {
+    final queued = session.queued;
+    return [
+      for (var i = 0; i < queued.length; i++)
+        _queueSnapshot(queued[i], estimator, now, isCurrent: i == 0),
+    ];
+  }
+
+  AdaptiveQueueCard _queueSnapshot(
+    KanjiCard card,
+    CardTimeEstimator estimator,
+    DateTime now, {
+    required bool isCurrent,
+  }) {
+    final schedule = _schedules[card.id];
+    final isNew = selector.isNew(schedule);
+    final learning = schedule?.state == CardLearningState.learning;
+    final failed = session.isRelearningProtected(card.id);
+    return AdaptiveQueueCard(
+      id: card.id,
+      card: card,
+      priority: priorityScorer.score(
+        schedule: schedule,
+        now: now,
+        isNew: isNew,
+        level: card.jlptLevel,
+      ),
+      estimated: _reservedEstimate(estimator, schedule, isNew: isNew),
+      protected: isCurrent || failed || isNew || learning,
+      isCurrent: isCurrent,
+    );
+  }
+
+  Future<List<AdaptiveQueueCard>> _replacementSnapshots(
+    CardTimeEstimator estimator,
+    DateTime now,
+  ) async {
+    final List<KanjiCard> source;
+    if (extraDueReviews != null) {
+      source = extraDueReviews!;
+    } else if (workloadService != null) {
+      source = await workloadService!.eligibleByPriority(now: now);
+      final latest = await progressRepository.getSchedules();
+      _schedules.addAll(latest);
+    } else {
+      return const [];
+    }
+    final snapshots = <AdaptiveQueueCard>[];
+    final seen = <String>{};
+    for (final card in source) {
+      if (!seen.add(card.id)) continue;
+      if (!_canReplaceWith(card, now)) continue;
+      final schedule = _schedules[card.id];
+      snapshots.add(
+        AdaptiveQueueCard(
+          id: card.id,
+          card: card,
+          priority: priorityScorer.score(
+            schedule: schedule,
+            now: now,
+            isNew: false,
+            level: card.jlptLevel,
+          ),
+          estimated: _reservedEstimate(estimator, schedule, isNew: false),
+          protected: false,
+        ),
+      );
+    }
+    return snapshots;
+  }
+
+  bool _canReplaceWith(KanjiCard card, DateTime now) {
+    if (session.isDropped(card.id) || session.isRelearningProtected(card.id)) {
+      return false;
+    }
+    if (session.hasReviewed(card.id)) return false;
+    if (session.queued.any((queued) => queued.id == card.id)) return false;
+    if (session.pool.any((pooled) => pooled.id == card.id)) return false;
+    final schedule = _schedules[card.id];
+    if (selector.isNew(schedule)) return false;
+    if (schedule?.state == CardLearningState.learning) return false;
+    return selector.isDue(schedule, now, startOfDay: _startOfDay);
+  }
+
+  /// One showing from the historical estimator, doubled for a kanji that
+  /// still has to be introduced and then retrieved. [SessionPaceTracker]
+  /// raises that when this sitting is slower than those estimates.
+  Duration _reservedEstimate(
+    CardTimeEstimator estimator,
+    CardSchedule? schedule, {
+    required bool isNew,
+  }) {
+    final showing = estimator.estimate(schedule, isNew: isNew);
+    final seconds = showing.inSeconds < 1 ? 1 : showing.inSeconds;
+    return _pace.scale(Duration(seconds: isNew ? seconds * 2 : seconds));
+  }
+
+  void _logAdaptiveQueue(AdaptiveQueueDecision decision) {
+    if (!kDebugMode) return;
+    for (final step in decision.steps) {
+      developer.log(
+        'elapsed=${decision.elapsed.inSeconds}s '
+        'estimatedRemainingBefore=${decision.estimatedRemainingBefore.inSeconds}s '
+        'projected=${decision.projectedBefore.inSeconds}s '
+        'goal=${decision.goal.inSeconds}s '
+        'protected=${decision.protectedCount} '
+        'eligible=${decision.eligibleIds.join(',')} '
+        'removed=${step.removedId} '
+        'swappedIn=${step.replacementId ?? '-'} '
+        'saved=${step.estimatedSaved.inSeconds}s '
+        'projectedAfter=${decision.projectedAfter.inSeconds}s',
+        name: 'adaptive_queue',
+      );
+    }
   }
 
   void _resetForNextCard() {
@@ -950,6 +1153,7 @@ class _AnswerUndo {
     required this.schedule,
     required this.hadSchedule,
     required this.pace,
+    required this.paceTracker,
     required this.historyEntry,
     required this.drawing,
     required this.answer,
@@ -963,6 +1167,7 @@ class _AnswerUndo {
   final CardSchedule? schedule;
   final bool hadSchedule;
   final ReviewDurationModel pace;
+  final SessionPaceSnapshot paceTracker;
   final ReviewHistoryEntry historyEntry;
   final HandwritingInput drawing;
   final ReviewAnswer? answer;

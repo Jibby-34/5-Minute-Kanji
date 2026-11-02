@@ -1,5 +1,6 @@
 import '../core/models/kanji_card.dart';
 import '../core/models/review.dart';
+import 'adaptive_session_adjuster.dart';
 
 /// In-memory queue for one study sitting. Duration comes from [config], not a hardcoded 5.
 class ReviewSession {
@@ -23,7 +24,10 @@ class ReviewSession {
   final List<KanjiCard> _queue;
   final Set<String> _seenIds = {};
   final Set<String> _againIds = {};
+  final Set<String> _droppedIds = {};
+  final Set<String> _relearningProtected = {};
   int _passedCount = 0;
+  int _adjustmentsMade = 0;
 
   /// Cards originally selected for this sitting. Used to re-offer due cards.
   List<KanjiCard> get pool => List<KanjiCard>.unmodifiable(_pool);
@@ -43,6 +47,18 @@ class ReviewSession {
   int get againCount => _againIds.length;
 
   int get successfulCount => reviewedCount - againCount;
+
+  /// Reviews taken out of this sitting. They stay due for a later one.
+  Set<String> get droppedIds => Set.unmodifiable(_droppedIds);
+
+  /// Again answers from this sitting. The follow-up review stays in the queue.
+  bool isRelearningProtected(String cardId) =>
+      _relearningProtected.contains(cardId);
+
+  bool isDropped(String cardId) => _droppedIds.contains(cardId);
+
+  /// Remove or swap steps already applied in this sitting.
+  int get adjustmentsMade => _adjustmentsMade;
 
   /// 1-based index shown as `n / total`. Requeued cards cap at [initialCount].
   int get displayIndex {
@@ -81,6 +97,7 @@ class ReviewSession {
   /// when SRS still wants it. Cards already queued, pooled, or reviewed in
   /// this sitting are left untouched.
   bool continueWith(KanjiCard card) {
+    if (_droppedIds.contains(card.id)) return false;
     if (_seenIds.contains(card.id)) return false;
     if (_queue.any((queued) => queued.id == card.id)) return false;
     if (_pool.any((pooled) => pooled.id == card.id)) return false;
@@ -96,7 +113,10 @@ class ReviewSession {
     if (dueCards.isEmpty) return;
     final queuedIds = _queue.map((card) => card.id).toSet();
     final missing = dueCards
-        .where((card) => !queuedIds.contains(card.id))
+        .where(
+          (card) =>
+              !queuedIds.contains(card.id) && !_droppedIds.contains(card.id),
+        )
         .toList();
     if (missing.isEmpty) return;
     final insertAt = requeueOffset.clamp(0, _queue.length);
@@ -111,12 +131,39 @@ class ReviewSession {
 
     if (result == ReviewResult.again) {
       _againIds.add(card.id);
+      _relearningProtected.add(card.id);
       final insertAt = requeueOffset.clamp(0, _queue.length);
       _queue.insert(insertAt, card);
     } else {
       _passedCount++;
     }
     return card;
+  }
+
+  /// Drops or replaces future cards. The card on screen stays where it is.
+  ///
+  /// A dropped card remains in the pool, so a later sitting can still draw
+  /// it, and leaves SRS, due dates, and history untouched. [steps] come from
+  /// the adaptive queue adjuster.
+  void applyAdaptiveSteps(List<AdaptiveQueueStep> steps) {
+    for (final step in steps) {
+      if (_queue.isEmpty || step.removedId == _queue.first.id) continue;
+      final index = _queue.indexWhere((card) => card.id == step.removedId);
+      if (index <= 0) continue;
+      _droppedIds.add(step.removedId);
+      final replacement = step.replacement;
+      if (replacement == null ||
+          _droppedIds.contains(replacement.id) ||
+          _queue.any((card) => card.id == replacement.id)) {
+        _queue.removeAt(index);
+      } else {
+        _queue[index] = replacement;
+        if (!_pool.any((card) => card.id == replacement.id)) {
+          _pool.add(replacement);
+        }
+      }
+      _adjustmentsMade++;
+    }
   }
 
   /// Queue, pool, and counts as they are right now.
@@ -126,7 +173,10 @@ class ReviewSession {
       queue: List<KanjiCard>.from(_queue),
       seenIds: Set<String>.from(_seenIds),
       againIds: Set<String>.from(_againIds),
+      droppedIds: Set<String>.from(_droppedIds),
+      relearningProtectedIds: Set<String>.from(_relearningProtected),
       passedCount: _passedCount,
+      adjustmentsMade: _adjustmentsMade,
     );
   }
 
@@ -144,7 +194,14 @@ class ReviewSession {
     _againIds
       ..clear()
       ..addAll(checkpoint.againIds);
+    _droppedIds
+      ..clear()
+      ..addAll(checkpoint.droppedIds);
+    _relearningProtected
+      ..clear()
+      ..addAll(checkpoint.relearningProtectedIds);
     _passedCount = checkpoint.passedCount;
+    _adjustmentsMade = checkpoint.adjustmentsMade;
   }
 
   SessionSummary toSummary({
@@ -169,12 +226,18 @@ class ReviewSessionCheckpoint {
     required this.queue,
     required this.seenIds,
     required this.againIds,
+    required this.droppedIds,
+    required this.relearningProtectedIds,
     required this.passedCount,
+    required this.adjustmentsMade,
   });
 
   final List<KanjiCard> pool;
   final List<KanjiCard> queue;
   final Set<String> seenIds;
   final Set<String> againIds;
+  final Set<String> droppedIds;
+  final Set<String> relearningProtectedIds;
   final int passedCount;
+  final int adjustmentsMade;
 }
