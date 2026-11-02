@@ -8,6 +8,7 @@ import '../../core/models/study_day_type.dart';
 import '../../core/utils/clock.dart';
 import '../../repositories/kanji_repository.dart';
 import '../../repositories/progress_repository.dart';
+import '../../services/analytics/analytics_service.dart';
 import '../../services/curriculum/curriculum_access.dart';
 import '../../services/daily_workload.dart';
 import '../../services/due_card_selector.dart';
@@ -21,6 +22,7 @@ class HomeController extends ChangeNotifier {
     this.selector = const DueCardSelector(),
     this.reminderScheduler,
     this.curriculumAccess,
+    AnalyticsService? analytics,
     Clock? clock,
   }) : clock = clock ?? DateTime.now,
        workloadService = DailyWorkloadService(
@@ -28,6 +30,7 @@ class HomeController extends ChangeNotifier {
          progressRepository: progressRepository,
          selector: selector,
          curriculumAccess: curriculumAccess,
+         analytics: analytics,
        );
 
   final KanjiRepository kanjiRepository;

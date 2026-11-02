@@ -15,7 +15,7 @@ Future<void> showReviewLimitPrompt(
   BuildContext context,
   CurriculumAccess access,
 ) {
-  access.analytics.paywallViewed();
+  access.analytics.paywallViewed(placement: 'review_limit_prompt');
   return showDialog<void>(
     context: context,
     barrierDismissible: true,
@@ -59,7 +59,9 @@ class _ReviewLimitDialogState extends State<_ReviewLimitDialog> {
     final navigator = Navigator.of(context);
     navigator.pop();
     navigator.push(
-      MaterialPageRoute<void>(builder: (_) => const UnlockCurriculumScreen()),
+      MaterialPageRoute<void>(
+        builder: (_) => const UnlockCurriculumScreen(placement: 'review_limit'),
+      ),
     );
   }
 
@@ -101,7 +103,10 @@ class _ReviewLimitDialogState extends State<_ReviewLimitDialog> {
 
 /// Purchase screen opened from Settings.
 class UnlockCurriculumScreen extends StatefulWidget {
-  const UnlockCurriculumScreen({super.key});
+  const UnlockCurriculumScreen({super.key, this.placement = 'settings'});
+
+  /// Where this paywall was opened from, such as `settings` or `review_limit`.
+  final String placement;
 
   @override
   State<UnlockCurriculumScreen> createState() => _UnlockCurriculumScreenState();
@@ -116,7 +121,9 @@ class _UnlockCurriculumScreenState extends State<UnlockCurriculumScreen> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
-      context.read<CurriculumAccess>().analytics.paywallViewed();
+      context.read<CurriculumAccess>().analytics.paywallViewed(
+        placement: widget.placement,
+      );
     });
   }
 

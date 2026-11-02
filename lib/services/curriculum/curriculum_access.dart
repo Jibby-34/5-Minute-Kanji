@@ -26,10 +26,7 @@ enum StoreReachability { unknown, available, unavailable }
 
 /// Whether a new learn was allowed, and whether this call added the kanji.
 class StudyRecordResult {
-  const StudyRecordResult({
-    required this.allowed,
-    required this.newlyRecorded,
-  });
+  const StudyRecordResult({required this.allowed, required this.newlyRecorded});
 
   final bool allowed;
   final bool newlyRecorded;
@@ -50,9 +47,10 @@ class CurriculumAccess extends ChangeNotifier {
     required this.progressRepository,
     required this.repository,
     required this.billing,
-    this.analytics = const CurriculumAnalytics(),
+    CurriculumAnalytics? analytics,
     DateTime Function()? clock,
-  }) : clock = clock ?? DateTime.now;
+  }) : analytics = analytics ?? CurriculumAnalytics(),
+       clock = clock ?? DateTime.now;
 
   final ProgressRepository progressRepository;
   final CurriculumRepository repository;
@@ -75,6 +73,7 @@ class CurriculumAccess extends ChangeNotifier {
   bool _disposed = false;
   bool _listening = false;
   int _entitlementEpoch = 0;
+  String? _checkoutProductId;
 
   bool get isLoaded => _loaded;
 
@@ -240,6 +239,7 @@ class CurriculumAccess extends ChangeNotifier {
       return;
     }
     await ensureLoaded();
+    _checkoutProductId = productId;
     analytics.purchaseStarted(productId);
     _activity = CurriculumActivity.purchasing;
     _notice = CurriculumNotice.none;
@@ -252,12 +252,20 @@ class CurriculumAccess extends ChangeNotifier {
           _store == StoreReachability.unavailable
               ? 'The store is unavailable right now.'
               : 'The store products could not be loaded.',
+          productId: productId,
+          errorCategory: _store == StoreReachability.unavailable
+              ? 'store_unavailable'
+              : 'product_unavailable',
         );
         return;
       }
       final started = await billing.startPurchase(product);
       if (!started) {
-        _fail('The store could not start the purchase.');
+        _fail(
+          'The store could not start the purchase.',
+          productId: productId,
+          errorCategory: 'checkout_failed',
+        );
         return;
       }
       // The store sheet owns the next step. Leave the app usable if that
@@ -268,7 +276,11 @@ class CurriculumAccess extends ChangeNotifier {
         _notify();
       }
     } catch (_) {
-      _fail('The store could not start the purchase.');
+      _fail(
+        'The store could not start the purchase.',
+        productId: productId,
+        errorCategory: 'checkout_failed',
+      );
     }
   }
 
@@ -330,7 +342,11 @@ class CurriculumAccess extends ChangeNotifier {
       onError: (_) {
         if (_activity == CurriculumActivity.purchasing ||
             _activity == CurriculumActivity.restoring) {
-          _fail('The store could not finish the purchase.');
+          _fail(
+            'The store could not finish the purchase.',
+            productId: _checkoutProductId,
+            errorCategory: 'store_error',
+          );
         }
       },
     );
@@ -413,7 +429,9 @@ class CurriculumAccess extends ChangeNotifier {
     );
   }
 
-  Future<void> _onPurchaseUpdates(List<CurriculumPurchaseUpdate> updates) async {
+  Future<void> _onPurchaseUpdates(
+    List<CurriculumPurchaseUpdate> updates,
+  ) async {
     for (final update in updates) {
       if (!update.isFullCurriculum && !update.isMonthly) continue;
       if (update.grantsEntitlement) {
@@ -437,6 +455,7 @@ class CurriculumAccess extends ChangeNotifier {
       }
       if (update.isCancellation) {
         analytics.purchaseCancelled(update.productId);
+        _checkoutProductId = null;
         _activity = CurriculumActivity.idle;
         _notice = CurriculumNotice.cancelled;
         _purchaseMessage = 'Purchase cancelled.';
@@ -445,13 +464,21 @@ class CurriculumAccess extends ChangeNotifier {
         continue;
       }
       if (update.status == CurriculumPurchaseStatus.error) {
-        _fail(_failureMessage(update));
+        _fail(
+          _failureMessage(update),
+          productId: update.productId,
+          errorCategory: purchaseErrorCategory(update.errorCode),
+        );
         await _completeQuietly(update);
         continue;
       }
       if (update.status == CurriculumPurchaseStatus.purchased ||
           update.status == CurriculumPurchaseStatus.restored) {
-        _fail('Purchase could not be verified.');
+        _fail(
+          'Purchase could not be verified.',
+          productId: update.productId,
+          errorCategory: 'verification_failed',
+        );
       }
     }
   }
@@ -468,9 +495,10 @@ class CurriculumAccess extends ChangeNotifier {
 
   Future<void> _grantLifetime(CurriculumPurchaseUpdate update) async {
     final epoch = ++_entitlementEpoch;
+    final newlyOwned = !lifetimeOwned;
     await _persistEntitlement(epoch: epoch, lifetime: true);
     if (_disposed) return;
-    analytics.purchaseSucceeded(update.productId);
+    if (newlyOwned) _reportVerified(update);
     _activity = CurriculumActivity.idle;
     if (entitlement.subscriptionGrantsAccess(clock())) {
       _notice = CurriculumNotice.cancelMonthly;
@@ -493,7 +521,10 @@ class CurriculumAccess extends ChangeNotifier {
     required bool grants,
   }) async {
     final epoch = ++_entitlementEpoch;
-    final state = update.subscriptionState ??
+    final beforeState = _record.subscription;
+    final beforeExpiry = _record.subscriptionExpiresAt;
+    final state =
+        update.subscriptionState ??
         (grants
             ? MonthlySubscriptionState.active
             : MonthlySubscriptionState.expired);
@@ -506,8 +537,11 @@ class CurriculumAccess extends ChangeNotifier {
     );
     if (_disposed) return;
     _activity = CurriculumActivity.idle;
-    if (grants && entitlement.subscriptionGrantsAccess(clock())) {
-      analytics.purchaseSucceeded(update.productId);
+    final changed =
+        beforeState != _record.subscription ||
+        !_sameInstant(beforeExpiry, _record.subscriptionExpiresAt);
+    if (grants && changed && entitlement.subscriptionGrantsAccess(clock())) {
+      _reportVerified(update);
       _notice = CurriculumNotice.unlocked;
       _purchaseMessage = null;
     } else {
@@ -573,8 +607,31 @@ class CurriculumAccess extends ChangeNotifier {
     }
   }
 
-  void _fail(String message) {
+  void _reportVerified(CurriculumPurchaseUpdate update) {
+    _checkoutProductId = null;
+    final key = purchaseTransactionKey(
+      productId: update.productId,
+      purchaseId: update.purchaseId,
+      expiresAt: update.subscriptionExpiresAt,
+    );
+    if (update.status == CurriculumPurchaseStatus.restored) {
+      analytics.purchaseRestored(update.productId, transactionKey: key);
+      return;
+    }
+    analytics.purchaseSucceeded(update.productId, transactionKey: key);
+  }
+
+  void _fail(
+    String message, {
+    String? productId,
+    String errorCategory = 'store_error',
+  }) {
     if (_disposed) return;
+    final id = productId ?? _checkoutProductId;
+    _checkoutProductId = null;
+    if (id != null && id.isNotEmpty) {
+      analytics.purchaseFailed(id, errorCategory: errorCategory);
+    }
     _activity = CurriculumActivity.idle;
     _notice = CurriculumNotice.failed;
     _purchaseMessage = message;

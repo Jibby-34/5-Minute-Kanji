@@ -34,6 +34,14 @@ class DailyReviewClock {
     _openStart ??= now;
   }
 
+  /// Active time added by this sitting, excluding time saved earlier today.
+  ///
+  /// Uses the same segments as [totalAt]. There is no second timer.
+  Duration sittingAt(DateTime now) {
+    final sitting = totalAt(now) - _accruedOn(now);
+    return sitting.isNegative ? Duration.zero : sitting;
+  }
+
   /// Review time that belongs to the study day containing [now].
   Duration totalAt(DateTime now) {
     var total = _accruedOn(now);

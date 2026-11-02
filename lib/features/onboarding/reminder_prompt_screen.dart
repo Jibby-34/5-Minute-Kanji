@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../../core/theme/app_theme.dart';
 import '../../repositories/progress_repository.dart';
+import '../../services/analytics/analytics_scope.dart';
 import '../../services/notification_gateway.dart';
 import '../../services/reminder_scheduler.dart';
 import '../../widgets/primary_button.dart';
@@ -24,6 +25,7 @@ class ReminderPromptScreen extends StatelessWidget {
       create: (context) => SettingsController(
         progressRepository: context.read<ProgressRepository>(),
         reminderScheduler: context.read<ReminderScheduler?>(),
+        analytics: readAnalytics(context),
       )..load(),
       child: _ReminderPromptView(onDone: onDone),
     );

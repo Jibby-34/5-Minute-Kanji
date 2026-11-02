@@ -6,6 +6,7 @@ import '../../core/models/kanji_card.dart';
 import '../../core/models/placement.dart';
 import '../../core/theme/app_theme.dart';
 import '../../core/theme/app_typography.dart';
+import '../../services/analytics/analytics_scope.dart';
 import '../../services/placement_service.dart';
 import '../../widgets/kanji_mark.dart';
 import '../../widgets/primary_button.dart';
@@ -27,9 +28,10 @@ class PlacementScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) =>
-          PlacementController(service: context.read<PlacementService>())
-            ..load(),
+      create: (context) => PlacementController(
+        service: context.read<PlacementService>(),
+        analytics: readAnalytics(context),
+      )..load(),
       child: _PlacementView(onFinished: onFinished),
     );
   }

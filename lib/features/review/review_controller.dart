@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/foundation.dart';
 
 import '../../core/models/card_schedule.dart';
@@ -7,10 +9,13 @@ import '../../core/models/progress.dart';
 import '../../core/models/start_of_day.dart';
 import '../../core/models/review.dart';
 import '../../core/models/review_duration.dart';
+import '../../core/models/study_day_type.dart';
 import '../../core/models/study_phase.dart';
 import '../../core/utils/clock.dart';
 import '../../repositories/progress_repository.dart';
 import '../../services/active_duration_timer.dart';
+import '../../services/analytics/analytics_service.dart';
+import '../../services/analytics/study_review_classification.dart';
 import '../../services/answer_grader.dart';
 import '../../services/card_time_estimator.dart';
 import '../../services/daily_review_clock.dart';
@@ -38,6 +43,7 @@ class ReviewController extends ChangeNotifier {
     this.timeEstimator = const CardTimeEstimator(),
     this.workloadService,
     this.curriculumAccess,
+    AnalyticsService? analytics,
     MarkAsKnownService? markAsKnown,
     Map<String, CardSchedule>? schedules,
     DateTime? startTime,
@@ -50,6 +56,7 @@ class ReviewController extends ChangeNotifier {
              srsEngine: srsEngine,
              clock: clock,
            ),
+       analytics = analytics ?? AnalyticsService(),
        session = ReviewSession(
          config: config,
          cards: cards,
@@ -65,6 +72,7 @@ class ReviewController extends ChangeNotifier {
       _applyPhaseForCurrent();
       ready = true;
       _beginCardTiming();
+      _scheduleSessionStart();
     }
   }
 
@@ -83,6 +91,7 @@ class ReviewController extends ChangeNotifier {
 
   /// When set, new kanji stop once the free trial is used up.
   final CurriculumAccess? curriculumAccess;
+  final AnalyticsService analytics;
   final bool isPractice;
   final bool isStudyAnyway;
   final ReviewSession session;
@@ -112,6 +121,15 @@ class ReviewController extends ChangeNotifier {
   bool _shakeHintSeen = false;
   bool _shakeHintArmed = false;
   bool _countedStudyDay = false;
+  bool _sessionStartScheduled = false;
+  bool _sessionStarted = false;
+  bool _analyticsFinished = false;
+  bool _goalCompleted = false;
+  int _newCardsLearned = 0;
+  String _sessionType = 'normal';
+  Future<void>? _startFuture;
+  final Set<String> _introducedIds = {};
+  final List<StudyReviewClassification> _pendingReviews = [];
 
   KanjiCard? get current => session.current ?? _visibleCard;
 
@@ -175,6 +193,7 @@ class ReviewController extends ChangeNotifier {
     }
 
     if (_deferredReviewTimeSave) await checkpointReviewTime();
+    _scheduleSessionStart();
     if (!_disposed) notifyListeners();
   }
 
@@ -317,6 +336,8 @@ class ReviewController extends ChangeNotifier {
       }
       _schedules[card.id] = updated;
       if (wasNew) {
+        _newCardsLearned++;
+        _introducedIds.add(card.id);
         await _recordPace(schedule: existing, isNew: true, duration: active);
         final daily = (await progressRepository.getDailyNewKanji()).forDay(
           now,
@@ -442,6 +463,16 @@ class ReviewController extends ChangeNotifier {
 
       final beforeAnswer = session.checkpoint();
       session.recordRating(result);
+      final classification = isPractice
+          ? null
+          : classifyStudyReview(
+              result: result,
+              scheduleBeforeAnswer: previousSchedule,
+              introducedThisSession: _introducedIds.contains(card.id),
+              now: now,
+              startOfDay: dayBoundary,
+            );
+      if (classification != null) _pendingReviews.add(classification);
       if (!isPractice) {
         _offerDueCards(now);
       }
@@ -470,6 +501,7 @@ class ReviewController extends ChangeNotifier {
           answer: answer,
           suggestedResult: suggestedResult,
           phase: phase,
+          trackedReview: classification != null,
         ),
       );
       _resetForNextCard();
@@ -507,6 +539,9 @@ class ReviewController extends ChangeNotifier {
       }
       await progressRepository.saveReviewDurationModel(snapshot.pace);
       await progressRepository.removeLastHistory(snapshot.historyEntry);
+      if (snapshot.trackedReview && _pendingReviews.isNotEmpty) {
+        _pendingReviews.removeLast();
+      }
       if (_disposed) return true;
       _restoreAnsweredCard(snapshot);
       return true;
@@ -569,6 +604,7 @@ class ReviewController extends ChangeNotifier {
     StartOfDay dayBoundary,
   ) async {
     _undo.clear();
+    _flushPendingReviews();
     final offerContinue = await _canOfferContinue(now);
     if (offerContinue) {
       _holdingForContinue = true;
@@ -576,6 +612,7 @@ class ReviewController extends ChangeNotifier {
       _cardTimer.pause(now);
     }
     await _recordFinishedSession(now, dayBoundary);
+    if (!offerContinue) completeHeldSession();
     final base = await _summarize(now);
     summary = SessionSummary(
       duration: base.duration,
@@ -629,6 +666,7 @@ class ReviewController extends ChangeNotifier {
     await progressRepository.saveDailySessionPlan(
       plan.copyWith(completed: true),
     );
+    _goalCompleted = true;
   }
 
   Future<bool> _allowsNewKanji() async {
@@ -805,6 +843,103 @@ class ReviewController extends ChangeNotifier {
     }
     return next;
   }
+
+  void _scheduleSessionStart() {
+    if (_sessionStartScheduled || isPractice || !ready) return;
+    if (session.current == null) return;
+    _sessionStartScheduled = true;
+    _startFuture = _emitSessionStart();
+  }
+
+  Future<void> _emitSessionStart() async {
+    if (_sessionStarted) return;
+    _sessionType = await _resolveSessionType();
+    if (_sessionStarted) return;
+    _sessionStarted = true;
+    analytics.studySessionStarted(
+      sessionType: _sessionType,
+      availableCards: session.initialCount,
+    );
+  }
+
+  Future<String> _resolveSessionType() async {
+    if (isStudyAnyway) return 'study_anyway';
+    try {
+      final plan = await progressRepository.getDailySessionPlan();
+      if (plan.dayType == StudyDayType.reinforcement) return 'reinforcement';
+    } catch (_) {}
+    return 'normal';
+  }
+
+  /// Ends analytics for a sitting that reached its real completion state.
+  ///
+  /// The continue prompt is not completion. Leaving that prompt, or finishing
+  /// with nothing left to study, is.
+  void completeHeldSession() {
+    if (isPractice || _analyticsFinished) return;
+    _analyticsFinished = true;
+    unawaited(_emitCompleted());
+  }
+
+  /// Leaves an open sitting. Backgrounding does not call this.
+  ///
+  /// A sitting already paused on the continue prompt is completed: the
+  /// planned queue is done and its answers can no longer be undone.
+  void abandonIfUnfinished() {
+    if (isPractice || _analyticsFinished) return;
+    if (_holdingForContinue) {
+      completeHeldSession();
+      return;
+    }
+    _analyticsFinished = true;
+    unawaited(_emitAbandoned());
+  }
+
+  Future<void> _emitCompleted() async {
+    await _startFuture;
+    if (!_sessionStarted) return;
+    _flushPendingReviews();
+    analytics.studySessionCompleted(
+      durationSeconds: _sessionDurationSeconds(),
+      cardsReviewed: session.reviewedCount,
+      newCardsLearned: _newCardsLearned,
+      goalCompleted: _goalCompleted,
+      sessionType: _sessionType,
+    );
+  }
+
+  Future<void> _emitAbandoned() async {
+    await _startFuture;
+    if (!_sessionStarted) return;
+    _flushPendingReviews();
+    analytics.studySessionAbandoned(
+      durationSeconds: _sessionDurationSeconds(),
+      cardsReviewed: session.reviewedCount,
+      sessionType: _sessionType,
+    );
+  }
+
+  int _sessionDurationSeconds() {
+    final seconds = reviewClock.sittingAt(clock()).inSeconds;
+    return seconds < 0 ? 0 : seconds;
+  }
+
+  /// Sends reviews whose undo window has closed. An undone answer is removed
+  /// from [_pendingReviews] and is not sent.
+  void _flushPendingReviews() {
+    if (isPractice) {
+      _pendingReviews.clear();
+      return;
+    }
+    for (final review in _pendingReviews) {
+      analytics.kanjiReviewed(
+        result: review.result,
+        isNew: review.isNew,
+        reviewCategory: review.reviewCategory,
+      );
+    }
+    _pendingReviews.clear();
+  }
 }
 
 /// One committed Again or Good, and the state from just before it.
@@ -820,6 +955,7 @@ class _AnswerUndo {
     required this.answer,
     required this.suggestedResult,
     required this.phase,
+    required this.trackedReview,
   });
 
   final ReviewSessionCheckpoint session;
@@ -832,4 +968,5 @@ class _AnswerUndo {
   final ReviewAnswer? answer;
   final ReviewResult? suggestedResult;
   final StudyPhase phase;
+  final bool trackedReview;
 }

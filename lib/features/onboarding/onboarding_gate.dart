@@ -5,6 +5,9 @@ import '../../core/models/daily_goal.dart';
 import '../../core/models/kanji_card.dart';
 import '../../core/models/onboarding.dart';
 import '../../core/navigation/app_routes.dart';
+import '../../repositories/progress_repository.dart';
+import '../../services/analytics/analytics_scope.dart';
+import '../../services/analytics/onboarding_completion.dart';
 import '../../services/notification_gateway.dart';
 import '../../services/onboarding_service.dart';
 import '../../services/placement_service.dart';
@@ -80,6 +83,7 @@ class _OnboardingGateState extends State<OnboardingGate> {
   }
 
   Future<void> _getStarted() async {
+    readAnalytics(context).onboardingStarted();
     _apply(await _advance(OnboardingStage.placementInProgress));
   }
 
@@ -183,7 +187,30 @@ class _OnboardingGateState extends State<OnboardingGate> {
     if (!mounted) return;
     await _askAboutReminders();
     if (!mounted) return;
+    await _reportOnboardingCompleted();
     _apply(await _advance(OnboardingStage.completed));
+  }
+
+  Future<void> _reportOnboardingCompleted() async {
+    final analytics = readAnalytics(context);
+    final progressRepository = context.read<ProgressRepository>();
+    final placementService = context.read<PlacementService>();
+    try {
+      final settings = await progressRepository.getSettings();
+      final placement = await placementService.progress();
+      final details = OnboardingCompletion.assemble(
+        dailyGoalMinutes: settings.dailyStudyMinutes,
+        selfAssessment: placement.selfAssessment,
+        estimatedLevel: placementService.lastEstimatedLevel,
+      );
+      analytics.onboardingCompleted(
+        dailyGoalMinutes: details.dailyGoalMinutes,
+        startingLevel: details.startingLevel,
+        startingMethod: details.startingMethod,
+      );
+    } catch (_) {
+      analytics.onboardingCompleted();
+    }
   }
 
   /// Only worth asking when the OS has something left to grant.

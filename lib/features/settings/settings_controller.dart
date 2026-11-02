@@ -5,6 +5,7 @@ import '../../core/models/notification_settings.dart';
 import '../../core/models/progress.dart';
 import '../../core/models/start_of_day.dart';
 import '../../repositories/progress_repository.dart';
+import '../../services/analytics/analytics_service.dart';
 import '../../services/daily_workload_estimator.dart';
 import '../../services/notification_gateway.dart';
 import '../../services/reminder_scheduler.dart';
@@ -14,13 +15,15 @@ class SettingsController extends ChangeNotifier {
     required this.progressRepository,
     this.reminderScheduler,
     this.estimator = const DailyWorkloadEstimator(),
-  });
+    AnalyticsService? analytics,
+  }) : analytics = analytics ?? AnalyticsService();
 
   final ProgressRepository progressRepository;
 
   /// Absent in tests and on platforms without notifications.
   final ReminderScheduler? reminderScheduler;
   final DailyWorkloadEstimator estimator;
+  final AnalyticsService analytics;
 
   bool loading = true;
   bool replanning = false;
@@ -102,6 +105,7 @@ class SettingsController extends ChangeNotifier {
     settings = settings.copyWith(dailyStudyMinutes: clamped);
     notifyListeners();
     await progressRepository.saveSettings(settings);
+    analytics.dailyGoalChanged(dailyGoalMinutes: clamped);
     await reminderScheduler?.reschedule();
   }
 
@@ -182,6 +186,11 @@ class SettingsController extends ChangeNotifier {
     settings = settings.copyWith(notifications: next);
     notifyListeners();
     await progressRepository.saveSettings(settings);
+    analytics.reminderSettingsChanged(
+      enabled: next.dailyReminderEnabled,
+      reminderHour: next.reminderTime.hour,
+      reminderMinute: next.reminderTime.minute,
+    );
     await reminderScheduler?.reschedule();
   }
 

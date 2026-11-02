@@ -36,10 +36,7 @@ void main() {
 
   test('lifetime alone unlocks the curriculum', () {
     expect(entitlement(lifetime: true).hasFullAccess(now), isTrue);
-    expect(
-      entitlement(lifetime: true).subscriptionGrantsAccess(now),
-      isFalse,
-    );
+    expect(entitlement(lifetime: true).subscriptionGrantsAccess(now), isFalse);
   });
 
   test('an active monthly subscription unlocks the curriculum', () {
@@ -120,7 +117,10 @@ void main() {
       expiresAt: later,
     );
     expect(cached.hasFullAccess(now), isTrue);
-    expect(cached.hasFullAccess(later.add(const Duration(minutes: 1))), isFalse);
+    expect(
+      cached.hasFullAccess(later.add(const Duration(minutes: 1))),
+      isFalse,
+    );
   });
 
   test('Play grace is a returned subscription past its paid period', () {
@@ -176,143 +176,156 @@ void main() {
     expect(refunded.state, MonthlySubscriptionState.refunded);
   });
 
-  test('cached subscription survives restart and expiry locks only new kanji', () async {
-    final studied = {for (var i = 0; i < 50; i++) 'done-$i'};
-    final repository = MemoryCurriculumRepository(
-      record: CurriculumRecord(
-        studiedIds: studied,
-        backfillCompleted: true,
-        subscription: MonthlySubscriptionState.active,
-        subscriptionExpiresAt: later,
-      ),
-    );
-    var clock = now;
-    final access = CurriculumAccess(
-      progressRepository: MemoryProgressRepository(),
-      repository: repository,
-      billing: const UnavailableCurriculumBilling(),
-      clock: () => clock,
-    );
-    await access.ensureLoaded();
-    await pumpEventQueue();
-
-    expect(access.lifetimeOwned, isFalse);
-    expect(access.unlocked, isTrue);
-    expect(access.storeUnavailable, isTrue);
-    expect(
-      await access.tryRecordStudy('new-one'),
-      isA<StudyRecordResult>().having((result) => result.allowed, 'allowed', isTrue),
-    );
-
-    clock = later.add(const Duration(days: 1));
-    await access.refresh();
-
-    expect(access.unlocked, isFalse);
-    expect(access.studiedIds, contains('new-one'));
-    expect(repository.record.studiedIds, containsAll(studied));
-    final blocked = await access.tryRecordStudy('past-the-cap');
-    expect(blocked.allowed, isFalse);
-    expect(
-      (await access.tryRecordStudy('done-0')).newlyRecorded,
-      isFalse,
-    );
-    expect(repository.record.studiedIds, isNot(contains('past-the-cap')));
-  });
-
-  test('monthly purchase, pending, and lifetime together follow the store', () async {
-    final billing = _Billing(
-      lifetime: const CurriculumProduct(
-        id: fullCurriculumUnlock,
-        price: r'CA$79.99',
-        raw: Object(),
-      ),
-      monthly: const CurriculumProduct(
-        id: fullCurriculumMonthly,
-        price: r'CA$8.99',
-        raw: Object(),
-        billingPeriod: 'P1M',
-      ),
-    );
-    final events = _RecordingAnalytics();
-    final access = CurriculumAccess(
-      progressRepository: MemoryProgressRepository(),
-      repository: MemoryCurriculumRepository(
-        record: const CurriculumRecord(backfillCompleted: true),
-      ),
-      billing: billing,
-      analytics: events,
-      clock: () => now,
-    );
-    await access.ensureLoaded();
-    await access.buyMonthly();
-    expect(events.started, [fullCurriculumMonthly]);
-    expect(access.unlocked, isFalse);
-
-    billing.emit(
-      CurriculumPurchaseUpdate(
-        productId: fullCurriculumMonthly,
-        status: CurriculumPurchaseStatus.pending,
-        pendingComplete: false,
-        verificationData: '',
-      ),
-    );
-    await pumpEventQueue();
-    expect(access.unlocked, isFalse);
-    expect(access.purchaseMessage, 'Purchase pending approval.');
-
-    billing.emit(
-      CurriculumPurchaseUpdate(
-        productId: fullCurriculumMonthly,
-        status: CurriculumPurchaseStatus.purchased,
-        verificationData: 'signed-receipt',
-        subscriptionState: MonthlySubscriptionState.active,
-        subscriptionExpiresAt: later,
-      ),
-    );
-    await pumpEventQueue();
-    expect(access.unlocked, isTrue);
-    expect(access.lifetimeOwned, isFalse);
-    expect(events.succeeded, [fullCurriculumMonthly]);
-
-    await access.buy();
-    billing.emit(
-      const CurriculumPurchaseUpdate(
-        productId: fullCurriculumUnlock,
-        status: CurriculumPurchaseStatus.purchased,
-        verificationData: 'signed-receipt',
-      ),
-    );
-    await pumpEventQueue();
-    expect(access.lifetimeOwned, isTrue);
-    expect(access.promptCancelMonthly, isTrue);
-    expect(access.notice, CurriculumNotice.cancelMonthly);
-    expect(access.purchaseMessage, contains('Cancel the monthly subscription'));
-  });
-
-  test('a lifetime refund query does not clear an active subscription', () async {
-    final billing = _Billing()
-      ..snapshot = const StoreEntitlementSnapshot(
-        lifetime: EntitlementQueryResult.notOwned,
-      );
-    final access = CurriculumAccess(
-      progressRepository: MemoryProgressRepository(),
-      repository: MemoryCurriculumRepository(
+  test(
+    'cached subscription survives restart and expiry locks only new kanji',
+    () async {
+      final studied = {for (var i = 0; i < 50; i++) 'done-$i'};
+      final repository = MemoryCurriculumRepository(
         record: CurriculumRecord(
+          studiedIds: studied,
           backfillCompleted: true,
           subscription: MonthlySubscriptionState.active,
           subscriptionExpiresAt: later,
         ),
-      ),
-      billing: billing,
-      clock: () => now,
-    );
-    await access.ensureLoaded();
-    await pumpEventQueue();
+      );
+      var clock = now;
+      final access = CurriculumAccess(
+        progressRepository: MemoryProgressRepository(),
+        repository: repository,
+        billing: const UnavailableCurriculumBilling(),
+        clock: () => clock,
+      );
+      await access.ensureLoaded();
+      await pumpEventQueue();
 
-    expect(access.lifetimeOwned, isFalse);
-    expect(access.subscriptionActive, isTrue);
-    expect(access.unlocked, isTrue);
-  });
+      expect(access.lifetimeOwned, isFalse);
+      expect(access.unlocked, isTrue);
+      expect(access.storeUnavailable, isTrue);
+      expect(
+        await access.tryRecordStudy('new-one'),
+        isA<StudyRecordResult>().having(
+          (result) => result.allowed,
+          'allowed',
+          isTrue,
+        ),
+      );
+
+      clock = later.add(const Duration(days: 1));
+      await access.refresh();
+
+      expect(access.unlocked, isFalse);
+      expect(access.studiedIds, contains('new-one'));
+      expect(repository.record.studiedIds, containsAll(studied));
+      final blocked = await access.tryRecordStudy('past-the-cap');
+      expect(blocked.allowed, isFalse);
+      expect((await access.tryRecordStudy('done-0')).newlyRecorded, isFalse);
+      expect(repository.record.studiedIds, isNot(contains('past-the-cap')));
+    },
+  );
+
+  test(
+    'monthly purchase, pending, and lifetime together follow the store',
+    () async {
+      final billing = _Billing(
+        lifetime: const CurriculumProduct(
+          id: fullCurriculumUnlock,
+          price: r'CA$79.99',
+          raw: Object(),
+        ),
+        monthly: const CurriculumProduct(
+          id: fullCurriculumMonthly,
+          price: r'CA$8.99',
+          raw: Object(),
+          billingPeriod: 'P1M',
+        ),
+      );
+      final events = _RecordingAnalytics();
+      final access = CurriculumAccess(
+        progressRepository: MemoryProgressRepository(),
+        repository: MemoryCurriculumRepository(
+          record: const CurriculumRecord(backfillCompleted: true),
+        ),
+        billing: billing,
+        analytics: events,
+        clock: () => now,
+      );
+      await access.ensureLoaded();
+      await access.buyMonthly();
+      expect(events.started, [fullCurriculumMonthly]);
+      expect(access.unlocked, isFalse);
+
+      billing.emit(
+        CurriculumPurchaseUpdate(
+          productId: fullCurriculumMonthly,
+          status: CurriculumPurchaseStatus.pending,
+          pendingComplete: false,
+          verificationData: '',
+        ),
+      );
+      await pumpEventQueue();
+      expect(access.unlocked, isFalse);
+      expect(access.purchaseMessage, 'Purchase pending approval.');
+
+      billing.emit(
+        CurriculumPurchaseUpdate(
+          productId: fullCurriculumMonthly,
+          status: CurriculumPurchaseStatus.purchased,
+          verificationData: 'signed-receipt',
+          subscriptionState: MonthlySubscriptionState.active,
+          subscriptionExpiresAt: later,
+        ),
+      );
+      await pumpEventQueue();
+      expect(access.unlocked, isTrue);
+      expect(access.lifetimeOwned, isFalse);
+      expect(events.succeeded, [fullCurriculumMonthly]);
+
+      await access.buy();
+      billing.emit(
+        const CurriculumPurchaseUpdate(
+          productId: fullCurriculumUnlock,
+          status: CurriculumPurchaseStatus.purchased,
+          verificationData: 'signed-receipt',
+        ),
+      );
+      await pumpEventQueue();
+      expect(access.lifetimeOwned, isTrue);
+      expect(access.promptCancelMonthly, isTrue);
+      expect(access.notice, CurriculumNotice.cancelMonthly);
+      expect(
+        access.purchaseMessage,
+        contains('Cancel the monthly subscription'),
+      );
+    },
+  );
+
+  test(
+    'a lifetime refund query does not clear an active subscription',
+    () async {
+      final billing = _Billing()
+        ..snapshot = const StoreEntitlementSnapshot(
+          lifetime: EntitlementQueryResult.notOwned,
+        );
+      final access = CurriculumAccess(
+        progressRepository: MemoryProgressRepository(),
+        repository: MemoryCurriculumRepository(
+          record: CurriculumRecord(
+            backfillCompleted: true,
+            subscription: MonthlySubscriptionState.active,
+            subscriptionExpiresAt: later,
+          ),
+        ),
+        billing: billing,
+        clock: () => now,
+      );
+      await access.ensureLoaded();
+      await pumpEventQueue();
+
+      expect(access.lifetimeOwned, isFalse);
+      expect(access.subscriptionActive, isTrue);
+      expect(access.unlocked, isTrue);
+    },
+  );
 
   test('subscription cache is written and read back', () async {
     SharedPreferences.setMockInitialValues({});
@@ -341,7 +354,8 @@ class _RecordingAnalytics extends CurriculumAnalytics {
   void purchaseStarted(String productId) => started.add(productId);
 
   @override
-  void purchaseSucceeded(String productId) => succeeded.add(productId);
+  void purchaseSucceeded(String productId, {String? transactionKey}) =>
+      succeeded.add(productId);
 }
 
 class _Billing implements CurriculumBilling {

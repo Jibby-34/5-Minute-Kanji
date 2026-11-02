@@ -329,12 +329,16 @@ class AppSettings {
   }
 }
 
-/// Date-only local midnight. Use [StartOfDay.studyDate] for study-day logic.
-DateTime calendarDay(DateTime date) =>
-    DateTime(date.year, date.month, date.day);
+/// Local calendar date of [instant], at midnight.
+///
+/// The clock time is discarded. A UTC instant is read in the current local
+/// zone, so a stored moment follows the device after a timezone change.
+/// Use [StartOfDay.studyDate] for study-day logic.
+DateTime calendarDay(DateTime instant) => addCalendarDays(instant, 0);
 
 String calendarDayKey(DateTime date) {
-  final month = date.month.toString().padLeft(2, '0');
-  final day = date.day.toString().padLeft(2, '0');
-  return '${date.year}-$month-$day';
+  final day = calendarDay(date);
+  final month = day.month.toString().padLeft(2, '0');
+  final dayOfMonth = day.day.toString().padLeft(2, '0');
+  return '${day.year}-$month-$dayOfMonth';
 }

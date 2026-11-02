@@ -6,6 +6,7 @@ import '../../core/models/study_day_type.dart';
 import '../../core/utils/clock.dart';
 import '../../repositories/kanji_repository.dart';
 import '../../repositories/progress_repository.dart';
+import '../../services/analytics/analytics_service.dart';
 import '../../services/daily_workload.dart';
 import '../../services/reinforcement_day.dart';
 import '../../services/reinforcement_day_scenarios.dart';
@@ -48,12 +49,15 @@ class ReinforcementDayDebuggerController extends ChangeNotifier {
     required this.kanjiRepository,
     required this.progressRepository,
     DailyWorkloadService? workload,
+    AnalyticsService? analytics,
     Clock? clock,
-  }) : workload =
+  }) : analytics = analytics ?? AnalyticsService(),
+       workload =
            workload ??
            DailyWorkloadService(
              kanjiRepository: kanjiRepository,
              progressRepository: progressRepository,
+             analytics: analytics,
            ),
        clock = clock ?? DateTime.now;
 
@@ -62,6 +66,7 @@ class ReinforcementDayDebuggerController extends ChangeNotifier {
 
   /// Reads the live queue. Its day policy stays on the production defaults.
   final DailyWorkloadService workload;
+  final AnalyticsService analytics;
   final Clock clock;
 
   ReinforcementDayConfig diagnostic = ReinforcementDayConfig.production;
@@ -192,6 +197,7 @@ class ReinforcementDayDebuggerController extends ChangeNotifier {
       await DailyWorkloadService(
         kanjiRepository: kanjiRepository,
         progressRepository: progressRepository,
+        analytics: analytics,
       ).read(now: clock());
       rebuildNote =
           "Today's saved plan was built again with the production thresholds.";

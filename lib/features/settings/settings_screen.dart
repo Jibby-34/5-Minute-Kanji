@@ -10,6 +10,7 @@ import '../../core/models/start_of_day.dart';
 import '../../core/theme/app_theme.dart';
 import '../../core/utils/time_format.dart';
 import '../../repositories/progress_repository.dart';
+import '../../services/analytics/analytics_scope.dart';
 import '../../services/curriculum/curriculum_access.dart';
 import '../../services/curriculum/curriculum_links.dart';
 import '../../services/placement_service.dart';
@@ -35,6 +36,7 @@ class SettingsScreen extends StatelessWidget {
       create: (context) => SettingsController(
         progressRepository: context.read<ProgressRepository>(),
         reminderScheduler: context.read<ReminderScheduler?>(),
+        analytics: readAnalytics(context),
       )..load(),
       child: const _SettingsView(),
     );

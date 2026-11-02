@@ -76,6 +76,12 @@ enum ReinforcementTriggerReason {
   averageRecall,
   lowRecallFraction;
 
+  /// Analytics value. Probabilities themselves are not logged.
+  String get analyticsName => switch (this) {
+    ReinforcementTriggerReason.averageRecall => 'average_recall',
+    ReinforcementTriggerReason.lowRecallFraction => 'low_recall_fraction',
+  };
+
   String describe(ReinforcementDayConfig config) {
     final average = formatThreshold(config.averageRecallThreshold);
     final low = formatThreshold(config.lowRecallThreshold);

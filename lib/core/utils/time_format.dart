@@ -78,7 +78,7 @@ String formatNextReview(
 
   final today = startOfDay.studyDate(now);
   final dueDay = startOfDay.studyDate(due);
-  final tomorrow = today.add(const Duration(days: 1));
+  final tomorrow = addCalendarDays(today, 1);
 
   if (dueDay == today) return 'later today';
   if (dueDay == tomorrow) return 'tomorrow';

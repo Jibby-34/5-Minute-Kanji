@@ -15,7 +15,9 @@ import 'features/onboarding/widgets/onboarding_hint_text.dart';
 import 'repositories/kanji_repository.dart';
 import 'repositories/progress_repository.dart';
 import 'repositories/stroke_data_repository.dart';
+import 'services/analytics/analytics_service.dart';
 import 'services/curriculum/curriculum_access.dart';
+import 'services/curriculum/curriculum_analytics.dart';
 import 'services/curriculum/curriculum_billing.dart';
 import 'services/curriculum/curriculum_repository.dart';
 import 'services/mark_as_known.dart';
@@ -26,7 +28,7 @@ import 'services/srs_engine.dart';
 import 'services/srs_scheduler.dart';
 
 class FiveMinuteKanjiApp extends StatelessWidget {
-  const FiveMinuteKanjiApp({
+  FiveMinuteKanjiApp({
     super.key,
     required this.kanjiRepository,
     required this.progressRepository,
@@ -34,7 +36,8 @@ class FiveMinuteKanjiApp extends StatelessWidget {
     this.strokeDataRepository,
     this.reminderScheduler,
     this.curriculumAccess,
-  });
+    AnalyticsService? analytics,
+  }) : analytics = analytics ?? AnalyticsService();
 
   final KanjiRepository kanjiRepository;
   final ProgressRepository progressRepository;
@@ -47,10 +50,14 @@ class FiveMinuteKanjiApp extends StatelessWidget {
   /// Store-backed entitlement. Tests omit it and get an offline billing stub.
   final CurriculumAccess? curriculumAccess;
 
+  /// No-op until Firebase is configured. Tests can pass a recording client.
+  final AnalyticsService analytics;
+
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        Provider<AnalyticsService>.value(value: analytics),
         Provider<ReminderScheduler?>.value(value: reminderScheduler),
         Provider<KanjiRepository>.value(value: kanjiRepository),
         Provider<ProgressRepository>.value(value: progressRepository),
@@ -83,6 +90,7 @@ class FiveMinuteKanjiApp extends StatelessWidget {
                   progressRepository: progressRepository,
                   repository: MemoryCurriculumRepository(),
                   billing: const UnavailableCurriculumBilling(),
+                  analytics: CurriculumAnalytics(events: analytics),
                 );
             if (!access.isLoaded) unawaited(access.load());
             return access;
@@ -99,6 +107,7 @@ class FiveMinuteKanjiApp extends StatelessWidget {
             progressRepository: progressRepository,
             reminderScheduler: reminderScheduler,
             curriculumAccess: context.read<CurriculumAccess>(),
+            analytics: analytics,
           )..load(),
         ),
       ],
@@ -119,7 +128,9 @@ class FiveMinuteKanjiApp extends StatelessWidget {
             notifier: context.read<OnboardingHintController>(),
             child: AnnotatedRegion<SystemUiOverlayStyle>(
               value: overlay,
-              child: _EntitlementRefresh(child: child ?? const SizedBox.shrink()),
+              child: _EntitlementRefresh(
+                child: child ?? const SizedBox.shrink(),
+              ),
             ),
           );
         },

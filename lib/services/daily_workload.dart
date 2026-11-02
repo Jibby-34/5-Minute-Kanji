@@ -9,6 +9,7 @@ import '../core/models/study_allocation.dart';
 import '../core/models/study_day_type.dart';
 import '../repositories/kanji_repository.dart';
 import '../repositories/progress_repository.dart';
+import 'analytics/analytics_service.dart';
 import 'card_priority_scorer.dart';
 import 'card_time_estimator.dart';
 import 'curriculum/curriculum_access.dart';
@@ -120,6 +121,7 @@ class DailyWorkloadService {
     this.planner = const SessionPlanner(),
     this.dayPolicy = const ReinforcementDayPolicy(),
     this.curriculumAccess,
+    this.analytics,
   });
 
   final KanjiRepository kanjiRepository;
@@ -134,6 +136,9 @@ class DailyWorkloadService {
 
   /// When set, new kanji are left out once the free trial is used up.
   final CurriculumAccess? curriculumAccess;
+
+  /// Reports a Reinforcement Day when a new plan is saved as one.
+  final AnalyticsService? analytics;
 
   /// Recall probabilities for cards due today.
   ///
@@ -252,6 +257,7 @@ class DailyWorkloadService {
             .toList(),
       );
       await progressRepository.saveDailySessionPlan(next);
+      _reportReinforcementDay(day);
       complete = false;
       session = planned.selected.map((candidate) => candidate.card).toList();
       overflow = const [];
@@ -340,12 +346,24 @@ class DailyWorkloadService {
     );
   }
 
+  void _reportReinforcementDay(
+    ({bool matches, StudyDayType dayType, int maxNewCards, String? trigger})
+    day,
+  ) {
+    if (day.dayType != StudyDayType.reinforcement) return;
+    analytics?.reinforcementDayStarted(
+      dayType: 'reinforcement',
+      triggerCategory: day.trigger,
+    );
+  }
+
   /// The day type already saved for this study day, or a fresh decision.
   ///
   /// A matching plan is not asked again. Reviews finished later in the day
   /// therefore cannot turn new kanji back on. The next study day, or any
   /// other change that makes the plan stop matching, decides again.
-  ({bool matches, StudyDayType dayType, int maxNewCards}) _resolveDay({
+  ({bool matches, StudyDayType dayType, int maxNewCards, String? trigger})
+  _resolveDay({
     required DailySessionPlan stored,
     required DateTime studyDate,
     required AppSettings settings,
@@ -364,20 +382,36 @@ class DailyWorkloadService {
       curriculumMode: settings.curriculumMode,
       allowsNewKanji: allowNew,
     );
-    final dayType = matches
-        ? stored.dayType
-        : dayPolicy.dayTypeForCards(
-            cards: cards,
-            schedules: schedules,
-            now: now,
-            startOfDay: startOfDay,
-            recall: scorer.recall,
-            dueCards: selector,
-          );
+    final String? trigger;
+    final StudyDayType dayType;
+    if (matches) {
+      dayType = stored.dayType;
+      trigger = null;
+    } else {
+      final diagnosis = dayPolicy.diagnose(
+        dayPolicy.recallProbabilities(
+          cards: cards,
+          schedules: schedules,
+          now: now,
+          startOfDay: startOfDay,
+          recall: scorer.recall,
+          dueCards: selector,
+        ),
+      );
+      dayType = diagnosis.dayType;
+      trigger = diagnosis.reasons.isEmpty
+          ? null
+          : diagnosis.reasons.first.analyticsName;
+    }
     final maxNewCards = dayType == StudyDayType.reinforcement
         ? 0
         : remainingNew;
-    return (matches: matches, dayType: dayType, maxNewCards: maxNewCards);
+    return (
+      matches: matches,
+      dayType: dayType,
+      maxNewCards: maxNewCards,
+      trigger: trigger,
+    );
   }
 
   Future<bool> _allowsNewKanji() async {

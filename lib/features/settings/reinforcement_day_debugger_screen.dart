@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../../core/theme/app_theme.dart';
 import '../../repositories/kanji_repository.dart';
+import '../../services/analytics/analytics_scope.dart';
 import '../../repositories/progress_repository.dart';
 import '../../services/reinforcement_day.dart';
 import '../../services/reinforcement_day_scenarios.dart';
@@ -26,6 +27,7 @@ class ReinforcementDayDebuggerScreen extends StatelessWidget {
       create: (context) => ReinforcementDayDebuggerController(
         kanjiRepository: context.read<KanjiRepository>(),
         progressRepository: context.read<ProgressRepository>(),
+        analytics: readAnalytics(context),
       )..reevaluate(),
       child: const _DebuggerView(),
     );

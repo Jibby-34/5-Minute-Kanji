@@ -51,7 +51,7 @@ DateTime reminderInstantForStudyDay({
   final date = DateTime(studyDate.year, studyDate.month, studyDate.day);
   final startMinutes = startOfDay.hour * 60 + startOfDay.minute;
   final fireDate = reminderTime.minutesFromMidnight < startMinutes
-      ? date.add(const Duration(days: 1))
+      ? addCalendarDays(date, 1)
       : date;
   return DateTime(
     fireDate.year,
@@ -94,7 +94,7 @@ DailyReminder? planDailyReminder({
   // Today's work is either finished or its reminder time has passed. Never
   // fire late; hold the next study day's reminder instead.
   final instantNextDay = reminderInstantForStudyDay(
-    studyDate: today.add(const Duration(days: 1)),
+    studyDate: addCalendarDays(today, 1),
     reminderTime: notifications.reminderTime,
     startOfDay: startOfDay,
   );

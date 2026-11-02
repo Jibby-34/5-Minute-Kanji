@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 
 import '../../core/models/kanji_card.dart';
 import '../../core/models/placement.dart';
+import '../../services/analytics/analytics_service.dart';
 import '../../services/placement_service.dart';
 import '../../services/placement_test_engine.dart';
 
@@ -11,10 +12,14 @@ class PlacementController extends ChangeNotifier {
   PlacementController({
     required this.service,
     this.engine = const PlacementTestEngine(),
-  });
+    AnalyticsService? analytics,
+  }) : analytics = analytics ?? AnalyticsService();
 
   final PlacementService service;
   final PlacementTestEngine engine;
+  final AnalyticsService analytics;
+  bool _reportedStart = false;
+  bool _reportedCompletion = false;
 
   PlacementPhase phase = PlacementPhase.loading;
   PlacementSummary? summary;
@@ -136,6 +141,10 @@ class PlacementController extends ChangeNotifier {
 
   void start() {
     if (phase != PlacementPhase.intro) return;
+    if (!_reportedStart && _answers.isEmpty) {
+      _reportedStart = true;
+      analytics.placementTestStarted();
+    }
     phase = PlacementPhase.asking;
     notifyListeners();
   }
@@ -174,7 +183,19 @@ class PlacementController extends ChangeNotifier {
       );
     }
     phase = PlacementPhase.results;
+    _reportCompletion(run?.outcome());
     notifyListeners();
+  }
+
+  void _reportCompletion(PlacementOutcome? outcome) {
+    if (_reportedCompletion || outcome == null) return;
+    if (outcome.answeredCount <= 0) return;
+    _reportedCompletion = true;
+    final level = outcome.estimatedDifficulty.round();
+    analytics.placementTestCompleted(
+      questionsAnswered: outcome.answeredCount,
+      estimatedLevel: level > 0 ? level : null,
+    );
   }
 
   Future<int> _selectionSeed() async {

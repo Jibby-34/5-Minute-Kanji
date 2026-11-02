@@ -16,6 +16,7 @@ import '../../core/theme/app_theme.dart';
 import '../../core/utils/clock.dart';
 import '../../repositories/kanji_repository.dart';
 import '../../repositories/progress_repository.dart';
+import '../../services/analytics/analytics_scope.dart';
 import '../../services/curriculum/curriculum_access.dart';
 import '../../services/daily_workload.dart';
 import '../../services/shake_detector.dart';
@@ -124,6 +125,7 @@ class ReviewScreen extends StatelessWidget {
           clock: clock,
           workloadService: _workloadService(context, progressRepository),
           curriculumAccess: _curriculumAccess(context),
+          analytics: readAnalytics(context),
         );
         controller.hydrate();
         return controller;
@@ -215,9 +217,16 @@ class _ReviewHostState extends State<_ReviewHost> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
-    return _ReviewView(
-      onSessionComplete: widget.onSessionComplete,
-      shakeEvents: widget.shakeEvents,
+    return PopScope(
+      canPop: true,
+      onPopInvokedWithResult: (didPop, _) {
+        if (!didPop) return;
+        _controller?.abandonIfUnfinished();
+      },
+      child: _ReviewView(
+        onSessionComplete: widget.onSessionComplete,
+        shakeEvents: widget.shakeEvents,
+      ),
     );
   }
 }
@@ -274,7 +283,8 @@ class _ReviewView extends StatelessWidget {
     BuildContext context,
     SessionSummary summary,
   ) async {
-    final startOfDay = context.read<ReviewController>().startOfDay;
+    final controller = context.read<ReviewController>();
+    final startOfDay = controller.startOfDay;
     final replacement = onSessionComplete?.call(summary, startOfDay);
     if (summary.canContinue && replacement == null) {
       final keepGoing = await Navigator.of(context).push<bool>(
@@ -283,19 +293,21 @@ class _ReviewView extends StatelessWidget {
           SessionCompleteScreen(summary: summary, startOfDay: startOfDay),
         ),
       );
-      if (!context.mounted) return;
       if (keepGoing == true) {
-        final next = await context
-            .read<ReviewController>()
-            .continuePastAllotment();
+        if (!context.mounted) return;
+        final next = await controller.continuePastAllotment();
         if (!context.mounted || next == null) return;
         await _showSummary(context, next);
         return;
       }
+      controller.completeHeldSession();
+      if (!context.mounted) return;
       Navigator.of(context).pop();
       return;
     }
 
+    controller.completeHeldSession();
+    if (!context.mounted) return;
     await Navigator.of(context).pushReplacement(
       AppRoutes.session(
         context,

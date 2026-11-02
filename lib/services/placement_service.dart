@@ -31,6 +31,10 @@ class PlacementService {
   final DueCardSelector selector;
   final Clock clock;
 
+  /// Rounded placement difficulty from the latest finished test in this
+  /// process. Card ids are not kept. Null when the learner skipped the test.
+  int? lastEstimatedLevel;
+
   Future<PlacementProgress> progress() => progressRepository.getPlacement();
 
   /// Whether the first-launch test still has to run.
@@ -109,6 +113,12 @@ class PlacementService {
         selfAssessment: placement.selfAssessment,
       ),
     );
+    if (outcome.answeredCount > 0) {
+      final level = outcome.estimatedDifficulty.round();
+      if (level >= placementMinDifficulty && level <= placementMaxDifficulty) {
+        lastEstimatedLevel = level;
+      }
+    }
     return PlacementSummary(
       knownCount: marked.length,
       confirmCount: confirmed,
