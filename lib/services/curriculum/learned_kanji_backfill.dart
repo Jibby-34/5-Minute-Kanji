@@ -25,17 +25,10 @@ class LearnedKanjiBackfill {
   static bool countsAsStudied(CardSchedule schedule) {
     if (schedule.cardId.isEmpty) return false;
     if (schedule.state == CardLearningState.newCard) return false;
-    if (_untouchedKnown(schedule)) return false;
+    if (schedule.awaitsFirstKnownReview) return false;
     if (_untouchedPlacementConfirm(schedule)) return false;
     if (_earlyKnownReview(schedule)) return false;
     return true;
-  }
-
-  /// Mark as Known lands in review before any rating is stored.
-  static bool _untouchedKnown(CardSchedule schedule) {
-    return schedule.state == CardLearningState.review &&
-        schedule.reviewCount == 0 &&
-        schedule.lastReviewedAt == null;
   }
 
   /// Placement confirmation puts a still-new kanji into learning with a

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -22,6 +23,7 @@ import '../../services/daily_workload.dart';
 import '../../services/shake_detector.dart';
 import '../../services/srs_scheduler.dart';
 import '../../widgets/bottom_action_inset.dart';
+import '../../widgets/first_review_indicator.dart';
 import '../../widgets/primary_button.dart';
 import '../../widgets/writing_sheet_layout.dart';
 import '../learn/learn_kanji_body.dart';
@@ -422,6 +424,8 @@ class _ReviewView extends StatelessWidget {
                                   controller.answer?.drawing ??
                                   controller.drawing,
                               isOnboarding: _isOnboardingRating(context),
+                              showFirstReviewIndicator:
+                                  controller.awaitsFirstKnownReview,
                             ),
                             StudyPhase.recall => _PromptBody(
                               key: ValueKey(
@@ -430,6 +434,8 @@ class _ReviewView extends StatelessWidget {
                               card: card,
                               drawing: controller.drawing,
                               onDrawingChanged: controller.updateDrawing,
+                              showFirstReviewIndicator:
+                                  controller.awaitsFirstKnownReview,
                             ),
                           },
                         ),
@@ -670,11 +676,13 @@ class _PromptBody extends StatelessWidget {
     required this.card,
     required this.drawing,
     required this.onDrawingChanged,
+    this.showFirstReviewIndicator = false,
   });
 
   final KanjiCard card;
   final HandwritingInput drawing;
   final ValueChanged<HandwritingInput> onDrawingChanged;
+  final bool showFirstReviewIndicator;
 
   /// Original keyword block: 34px line plus the gap before the square.
   static const _originalHeader = 57.0;
@@ -694,18 +702,46 @@ class _PromptBody extends StatelessWidget {
             OnboardingHint.drawFromMemory,
             padding: EdgeInsets.only(bottom: 10),
           ),
-          Text(
-            card.keyword,
-            textAlign: TextAlign.center,
-            style: theme.textTheme.headlineMedium?.copyWith(
-              fontSize: 42,
-              fontWeight: FontWeight.w600,
-              letterSpacing: -0.5,
-              height: 1.15,
-            ),
-          ),
+          _keyword(theme),
         ],
       ),
+    );
+  }
+
+  /// The keyword names the kanji being recalled. The note sits beside it
+  /// and the writing square stays where it was.
+  Widget _keyword(ThemeData theme) {
+    final keyword = Text(
+      card.keyword,
+      textAlign: TextAlign.center,
+      style: theme.textTheme.headlineMedium?.copyWith(
+        fontSize: 42,
+        fontWeight: FontWeight.w600,
+        letterSpacing: -0.5,
+        height: 1.15,
+      ),
+    );
+    if (!showFirstReviewIndicator) return keyword;
+
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final maxWidth = constraints.maxWidth;
+        final textWidth = maxWidth.isFinite
+            ? math.max(0.0, maxWidth - 40)
+            : double.infinity;
+        return Row(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            ConstrainedBox(
+              constraints: BoxConstraints(maxWidth: textWidth),
+              child: keyword,
+            ),
+            const SizedBox(width: 4),
+            const FirstReviewIndicator(),
+          ],
+        );
+      },
     );
   }
 }

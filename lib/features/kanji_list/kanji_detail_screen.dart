@@ -15,6 +15,7 @@ import '../../services/kanji_status_resolver.dart';
 import '../../services/mark_as_known.dart';
 import '../../widgets/bottom_action_inset.dart';
 import '../../widgets/common_words_section.dart';
+import '../../widgets/first_review_indicator.dart';
 import '../../widgets/mnemonic_text.dart';
 import '../../widgets/primary_button.dart';
 import '../stroke_order/kanji_stroke_animation.dart';
@@ -380,6 +381,12 @@ class _KanjiDetailScreenState extends State<KanjiDetailScreen> {
                     showStrokeNumbers: true,
                     showFallbackCharacter: true,
                   ),
+                  if (_schedule?.awaitsFirstKnownReview ?? false)
+                    Positioned(
+                      top: 4,
+                      left: _noteLeft(constraints.maxWidth, kanjiSide),
+                      child: const FirstReviewIndicator(),
+                    ),
                 ],
               ),
             ),
@@ -647,6 +654,16 @@ class _KanjiDetailScreenState extends State<KanjiDetailScreen> {
   double _kanjiSide(double width) {
     if (!width.isFinite || width <= 0) return 216;
     return width >= 280 ? 216 : (width * 0.72).clamp(196.0, 216.0);
+  }
+
+  /// Top-right corner of the hero glyph, kept inside the page.
+  double _noteLeft(double width, double kanjiSide) {
+    final glyphRight = (width + kanjiSide) / 2;
+    var left = glyphRight - 36;
+    final maxLeft = width - 40;
+    if (left > maxLeft) left = maxLeft;
+    if (left < 0) left = 0;
+    return left;
   }
 
   Color _statusColor(ThemeData theme) {

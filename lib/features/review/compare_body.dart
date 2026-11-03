@@ -6,6 +6,7 @@ import '../../core/models/handwriting.dart';
 import '../../core/models/kanji_card.dart';
 import '../../core/theme/app_theme.dart';
 import '../../widgets/common_words_section.dart';
+import '../../widgets/first_review_indicator.dart';
 import '../../widgets/meaning_and_readings.dart';
 import '../../widgets/mnemonic_card.dart';
 import '../../widgets/section_label.dart';
@@ -28,6 +29,7 @@ class CompareBody extends StatefulWidget {
     required this.card,
     required this.drawing,
     this.isOnboarding = false,
+    this.showFirstReviewIndicator = false,
   });
 
   final KanjiCard card;
@@ -35,6 +37,9 @@ class CompareBody extends StatefulWidget {
 
   /// First-time rating screen. Does not change the layout used afterwards.
   final bool isOnboarding;
+
+  /// Known kanji that have not been rated yet.
+  final bool showFirstReviewIndicator;
 
   @override
   State<CompareBody> createState() => _CompareBodyState();
@@ -135,7 +140,11 @@ class _CompareBodyState extends State<CompareBody> {
           child: HandwritingPad(value: widget.drawing, readOnly: true),
         ),
         const SizedBox(width: _panelGap),
-        _onboardingPanel(label: 'Correct', side: side, child: _fittedGlyph()),
+        _onboardingPanel(
+          label: 'Correct',
+          side: side,
+          child: _correctSheet(child: _fittedGlyph()),
+        ),
       ],
     );
   }
@@ -158,26 +167,38 @@ class _CompareBodyState extends State<CompareBody> {
   }
 
   Widget _fittedGlyph() {
-    return _PaperFrame(
-      child: LayoutBuilder(
-        builder: (context, constraints) {
-          final side = math.max(
-            0.0,
-            math.min(constraints.maxWidth, constraints.maxHeight) - 16,
-          );
-          return KanjiStrokeAnimation(
-            key: _strokeOrder,
-            character: card.character,
-            autoPlay: false,
-            startCompleted: true,
-            size: side,
-            showReplay: false,
-            showFrame: false,
-            showStrokeNumbers: false,
-            showFallbackCharacter: true,
-          );
-        },
-      ),
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final side = math.max(
+          0.0,
+          math.min(constraints.maxWidth, constraints.maxHeight) - 16,
+        );
+        return KanjiStrokeAnimation(
+          key: _strokeOrder,
+          character: card.character,
+          autoPlay: false,
+          startCompleted: true,
+          size: side,
+          showReplay: false,
+          showFrame: false,
+          showStrokeNumbers: false,
+          showFallbackCharacter: true,
+        );
+      },
+    );
+  }
+
+  /// The correct character. The first-review note sits on its corner.
+  Widget _correctSheet({required Widget child}) {
+    final sheet = _PaperFrame(child: child);
+    if (!widget.showFirstReviewIndicator) return sheet;
+    return Stack(
+      clipBehavior: Clip.none,
+      fit: StackFit.passthrough,
+      children: [
+        sheet,
+        const Positioned(top: 6, right: 6, child: FirstReviewIndicator()),
+      ],
     );
   }
 
@@ -283,7 +304,7 @@ class _CompareBodyState extends State<CompareBody> {
         _labeledSquare(
           label: 'Correct',
           side: side,
-          child: _PaperFrame(
+          child: _correctSheet(
             child: KanjiStrokeAnimation(
               key: _strokeOrder,
               character: card.character,

@@ -26,6 +26,11 @@ class ReviewSession {
   final Set<String> _againIds = {};
   final Set<String> _droppedIds = {};
   final Set<String> _relearningProtected = {};
+
+  /// Original planned cost of a card answered Again. The follow-up showing
+  /// is budgeted at this amount, so the card costs about twice what the
+  /// sitting planned.
+  final Map<String, Duration> _againBudgets = {};
   int _passedCount = 0;
   int _adjustmentsMade = 0;
 
@@ -54,6 +59,18 @@ class ReviewSession {
   /// Again answers from this sitting. The follow-up review stays in the queue.
   bool isRelearningProtected(String cardId) =>
       _relearningProtected.contains(cardId);
+
+  /// Planned cost of [cardId] before it was answered Again. Null until then.
+  ///
+  /// A review stores one showing. A new kanji stores the introduction plus
+  /// its retrieval. The follow-up is estimated at this same amount.
+  Duration? againBudgetFor(String cardId) => _againBudgets[cardId];
+
+  /// Keeps the first Again's budget. A later miss in the same sitting does
+  /// not replace it with the shorter learning pace.
+  void rememberAgainBudget(String cardId, Duration budget) {
+    _againBudgets.putIfAbsent(cardId, () => budget);
+  }
 
   bool isDropped(String cardId) => _droppedIds.contains(cardId);
 
@@ -175,6 +192,7 @@ class ReviewSession {
       againIds: Set<String>.from(_againIds),
       droppedIds: Set<String>.from(_droppedIds),
       relearningProtectedIds: Set<String>.from(_relearningProtected),
+      againBudgets: Map<String, Duration>.from(_againBudgets),
       passedCount: _passedCount,
       adjustmentsMade: _adjustmentsMade,
     );
@@ -200,6 +218,9 @@ class ReviewSession {
     _relearningProtected
       ..clear()
       ..addAll(checkpoint.relearningProtectedIds);
+    _againBudgets
+      ..clear()
+      ..addAll(checkpoint.againBudgets);
     _passedCount = checkpoint.passedCount;
     _adjustmentsMade = checkpoint.adjustmentsMade;
   }
@@ -228,6 +249,7 @@ class ReviewSessionCheckpoint {
     required this.againIds,
     required this.droppedIds,
     required this.relearningProtectedIds,
+    required this.againBudgets,
     required this.passedCount,
     required this.adjustmentsMade,
   });
@@ -238,6 +260,7 @@ class ReviewSessionCheckpoint {
   final Set<String> againIds;
   final Set<String> droppedIds;
   final Set<String> relearningProtectedIds;
+  final Map<String, Duration> againBudgets;
   final int passedCount;
   final int adjustmentsMade;
 }

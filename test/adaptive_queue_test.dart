@@ -438,6 +438,28 @@ void main() {
       expect(session.isRelearningProtected('review'), isTrue);
     });
 
+    test('the first Again keeps the original budget through undo', () {
+      final session = ReviewSession(
+        config: ReviewSessionConfig.fiveMinute,
+        cards: [testCard('review'), testCard('next')],
+      );
+      final before = session.checkpoint();
+
+      session.recordRating(ReviewResult.again);
+      session.rememberAgainBudget('review', const Duration(seconds: 18));
+      session.rememberAgainBudget('review', const Duration(seconds: 4));
+      expect(session.againBudgetFor('review'), const Duration(seconds: 18));
+
+      final after = session.checkpoint();
+      session.rememberAgainBudget('other', const Duration(seconds: 9));
+      session.restore(after);
+      expect(session.againBudgetFor('review'), const Duration(seconds: 18));
+      expect(session.againBudgetFor('other'), isNull);
+
+      session.restore(before);
+      expect(session.againBudgetFor('review'), isNull);
+    });
+
     test('undo restores a queue from before a drop', () {
       final session = ReviewSession(
         config: ReviewSessionConfig.fiveMinute,
@@ -735,6 +757,101 @@ void main() {
         expect(controller.current?.id, isNot('c00'));
       },
     );
+
+    test('a missed review keeps its original time budget', () async {
+      final schedules = {
+        for (final id in ['missed', 'keep', 'extra']) id: dueReview(id),
+      };
+      final progress = MemoryProgressRepository(
+        settings: const AppSettings(dailyStudyMinutes: 3, newKanjiPerDay: 0),
+        schedules: schedules,
+      );
+      final controller = await open(
+        progress: progress,
+        cards: [testCard('missed'), testCard('keep'), testCard('extra')],
+        schedules: schedules,
+        startTime: now.subtract(const Duration(seconds: 100)),
+        timeEstimator: const CardTimeEstimator(
+          reviewCard: Duration(seconds: 40),
+          learningCard: Duration(seconds: 5),
+        ),
+      );
+
+      controller.submit();
+      expect(await controller.rate(ReviewResult.again), isNull);
+
+      expect(
+        controller.lastQueueAdjustment?.estimatedRemainingBefore,
+        const Duration(seconds: 120),
+      );
+      expect(
+        controller.lastQueueAdjustment?.steps.map((step) => step.removedId),
+        ['extra'],
+      );
+      expect(
+        controller.session.againBudgetFor('missed'),
+        const Duration(seconds: 40),
+      );
+      expect(
+        controller.session.queued.map((card) => card.id),
+        contains('missed'),
+      );
+
+      expect(await controller.undoLastAnswer(), isTrue);
+      expect(controller.session.againBudgetFor('missed'), isNull);
+    });
+
+    test('a missed new kanji keeps both of its original showings', () async {
+      final reviews = ['r1', 'r2', 'r3', 'keep', 'extra'];
+      final schedules = {for (final id in reviews) id: dueReview(id)};
+      final progress = MemoryProgressRepository(
+        settings: const AppSettings(dailyStudyMinutes: 3, newKanjiPerDay: 5),
+        schedules: schedules,
+      );
+      final controller = await open(
+        progress: progress,
+        cards: [testCard('fresh'), ...reviews.map(testCard)],
+        schedules: schedules,
+        startTime: now.subtract(const Duration(seconds: 90)),
+        timeEstimator: const CardTimeEstimator(
+          newCard: Duration(seconds: 50),
+          reviewCard: Duration(seconds: 20),
+          learningCard: Duration(seconds: 5),
+        ),
+      );
+
+      expect(controller.phase, StudyPhase.learn);
+      controller.beginPractice();
+      expect(await controller.completePractice(), isNull);
+      for (final id in ['r1', 'r2', 'r3']) {
+        expect(controller.current?.id, id);
+        controller.submit();
+        expect(await controller.rate(ReviewResult.good), isNull);
+      }
+
+      expect(controller.current?.id, 'fresh');
+      expect(controller.phase, StudyPhase.recall);
+      controller.submit();
+      expect(await controller.rate(ReviewResult.again), isNull);
+
+      expect(
+        controller.session.againBudgetFor('fresh'),
+        const Duration(seconds: 100),
+      );
+      expect(
+        controller.lastQueueAdjustment?.estimatedRemainingBefore,
+        const Duration(seconds: 140),
+      );
+      expect(
+        controller.lastQueueAdjustment?.steps.map((step) => step.removedId),
+        ['extra'],
+      );
+      expect(
+        controller.session.queued.map((card) => card.id),
+        containsAll(['keep', 'fresh']),
+      );
+      expect(controller.session.isDropped('fresh'), isFalse);
+    });
 
     test('a long review can be replaced by a shorter due review', () async {
       final schedules = {

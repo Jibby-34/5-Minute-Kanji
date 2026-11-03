@@ -41,6 +41,17 @@ class CardSchedule {
 
   bool isDueAt(DateTime now) => !dueAt.isAfter(now);
 
+  /// Marked known by hand or the placement test, and not yet rated.
+  ///
+  /// Mark as Known is the only way a card enters review with a zero count.
+  /// The first Again, Hard, or Good stores a review and this stays false
+  /// afterward. Opening a review does not change it.
+  bool get awaitsFirstKnownReview {
+    return state == CardLearningState.review &&
+        reviewCount == 0 &&
+        lastReviewedAt == null;
+  }
+
   CardSchedule copyWith({
     CardLearningState? state,
     int? reviewCount,

@@ -151,6 +151,13 @@ class ReviewController extends ChangeNotifier {
 
   KanjiCard? get current => session.current ?? _visibleCard;
 
+  /// The card on screen was marked known and has not been rated yet.
+  bool get awaitsFirstKnownReview {
+    final card = current;
+    if (card == null) return false;
+    return _schedules[card.id]?.awaitsFirstKnownReview ?? false;
+  }
+
   bool get isComplete => session.isComplete;
 
   StartOfDay get startOfDay => _startOfDay;
@@ -495,6 +502,19 @@ class ReviewController extends ChangeNotifier {
 
       final beforeAnswer = session.checkpoint();
       session.recordRating(result);
+      if (result == ReviewResult.again && !isPractice) {
+        final asNew =
+            selector.isNew(previousSchedule) ||
+            _introducedIds.contains(card.id);
+        session.rememberAgainBudget(
+          card.id,
+          _plannedBudget(
+            timeEstimator.withModel(previousPace),
+            asNew ? null : previousSchedule,
+            asNewCard: asNew,
+          ),
+        );
+      }
       final classification = isPractice
           ? null
           : classifyStudyReview(
@@ -936,7 +956,12 @@ class ReviewController extends ChangeNotifier {
         isNew: isNew,
         level: card.jlptLevel,
       ),
-      estimated: _reservedEstimate(estimator, schedule, isNew: isNew),
+      estimated: _reservedEstimate(
+        estimator,
+        schedule,
+        cardId: card.id,
+        isNew: isNew,
+      ),
       protected: isCurrent || failed || isNew || learning,
       isCurrent: isCurrent,
     );
@@ -972,7 +997,12 @@ class ReviewController extends ChangeNotifier {
             isNew: false,
             level: card.jlptLevel,
           ),
-          estimated: _reservedEstimate(estimator, schedule, isNew: false),
+          estimated: _reservedEstimate(
+            estimator,
+            schedule,
+            cardId: card.id,
+            isNew: false,
+          ),
           protected: false,
         ),
       );
@@ -994,16 +1024,31 @@ class ReviewController extends ChangeNotifier {
   }
 
   /// One showing from the historical estimator, doubled for a kanji that
-  /// still has to be introduced and then retrieved. [SessionPaceTracker]
+  /// still has to be introduced and then retrieved. A card answered Again
+  /// keeps its original planned budget for the follow-up, so that pass costs
+  /// about as much as the card did in the session plan. [SessionPaceTracker]
   /// raises that when this sitting is slower than those estimates.
   Duration _reservedEstimate(
     CardTimeEstimator estimator,
     CardSchedule? schedule, {
+    required String cardId,
     required bool isNew,
   }) {
-    final showing = estimator.estimate(schedule, isNew: isNew);
+    final repeat = session.againBudgetFor(cardId);
+    if (repeat != null) return _pace.scale(repeat);
+    return _pace.scale(_plannedBudget(estimator, schedule, asNewCard: isNew));
+  }
+
+  /// Time the session plan reserved for one card, before this sitting's pace
+  /// is applied. New kanji include the introduction and the retrieval.
+  Duration _plannedBudget(
+    CardTimeEstimator estimator,
+    CardSchedule? schedule, {
+    required bool asNewCard,
+  }) {
+    final showing = estimator.estimate(schedule, isNew: asNewCard);
     final seconds = showing.inSeconds < 1 ? 1 : showing.inSeconds;
-    return _pace.scale(Duration(seconds: isNew ? seconds * 2 : seconds));
+    return Duration(seconds: asNewCard ? seconds * 2 : seconds);
   }
 
   void _logAdaptiveQueue(AdaptiveQueueDecision decision) {
