@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "986459493860",
+    "project_id": "fiveminutekanji",
+    "storage_bucket": "fiveminutekanji.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:986459493860:android:d5c5f674f66ce02b6f23f1",
+        "android_client_info": {
+          "package_name": "com.blinklabsapps.fiveminutekanji"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBFQLGB8_BC3rYV0wZzVa0sjFkOS2ReI-o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

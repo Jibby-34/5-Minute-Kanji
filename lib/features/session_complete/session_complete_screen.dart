@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../core/models/review.dart';
-import '../../core/models/start_of_day.dart';
 import '../../core/theme/app_theme.dart';
-import '../../core/utils/clock.dart';
 import '../../core/utils/time_format.dart';
 import '../../widgets/bottom_action_inset.dart';
 import '../../widgets/primary_button.dart';
@@ -11,26 +9,15 @@ import '../../widgets/soft_card.dart';
 
 /// Quiet summary after a study sitting.
 ///
-/// Counts and the next review are taken from [summary] as the session
-/// recorded them. This screen only arranges them.
+/// Counts are taken from [summary] as the session recorded them. This
+/// screen only arranges them.
 class SessionCompleteScreen extends StatelessWidget {
-  const SessionCompleteScreen({
-    super.key,
-    required this.summary,
-    this.startOfDay = StartOfDay.defaults,
-    this.clock,
-  });
+  const SessionCompleteScreen({super.key, required this.summary});
 
   final SessionSummary summary;
-  final StartOfDay startOfDay;
-
-  /// Instant used to phrase [SessionSummary.nextReviewAt]. Defaults to now.
-  final Clock? clock;
 
   @override
   Widget build(BuildContext context) {
-    final now = clock?.call() ?? DateTime.now();
-
     return Scaffold(
       body: SafeArea(
         bottom: false,
@@ -42,12 +29,7 @@ class SessionCompleteScreen extends StatelessWidget {
                   final textScale = MediaQuery.textScalerOf(context).scale(1);
                   final compact =
                       constraints.maxHeight < 640 || textScale > 1.15;
-                  return _CompletionBody(
-                    summary: summary,
-                    startOfDay: startOfDay,
-                    now: now,
-                    compact: compact,
-                  );
+                  return _CompletionBody(summary: summary, compact: compact);
                 },
               ),
             ),
@@ -80,21 +62,14 @@ class SessionCompleteScreen extends StatelessWidget {
 }
 
 class _CompletionBody extends StatelessWidget {
-  const _CompletionBody({
-    required this.summary,
-    required this.startOfDay,
-    required this.now,
-    required this.compact,
-  });
+  const _CompletionBody({required this.summary, required this.compact});
 
   final SessionSummary summary;
-  final StartOfDay startOfDay;
-  final DateTime now;
   final bool compact;
 
   @override
   Widget build(BuildContext context) {
-    final gap = compact ? 20.0 : 28.0;
+    final gap = compact ? 22.0 : 36.0;
     final top = compact ? 16.0 : 32.0;
     const bottom = 20.0;
 
@@ -137,13 +112,7 @@ class _CompletionBody extends StatelessWidget {
                         compact: compact,
                       ),
                       SizedBox(height: gap),
-                      _ReviewPanel(summary: summary),
-                      SizedBox(height: gap),
-                      _NextReview(
-                        nextReviewAt: summary.nextReviewAt,
-                        now: now,
-                        startOfDay: startOfDay,
-                      ),
+                      _ReviewPanel(summary: summary, compact: compact),
                     ],
                   ),
                 ),
@@ -170,20 +139,25 @@ class _CompletionHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final step = compact ? 8.0 : 12.0;
+    final step = compact ? 8.0 : 14.0;
+    final mark = compact ? 44.0 : 56.0;
 
     return Column(
       children: [
         ExcludeSemantics(
           child: Container(
-            width: 44,
-            height: 44,
+            width: mark,
+            height: mark,
             alignment: Alignment.center,
             decoration: BoxDecoration(
               color: theme.sageWash,
               shape: BoxShape.circle,
             ),
-            child: Icon(Icons.check, size: 20, color: theme.sageInk),
+            child: Icon(
+              Icons.check,
+              size: compact ? 20 : 24,
+              color: theme.sageInk,
+            ),
           ),
         ),
         SizedBox(height: step),
@@ -203,6 +177,7 @@ class _CompletionHeader extends StatelessWidget {
           textAlign: TextAlign.center,
           style: theme.textTheme.titleMedium?.copyWith(
             color: theme.mutedText,
+            fontSize: compact ? 16 : 18,
             fontWeight: FontWeight.w400,
             height: 1.2,
           ),
@@ -213,6 +188,7 @@ class _CompletionHeader extends StatelessWidget {
           textAlign: TextAlign.center,
           style: theme.textTheme.bodyMedium?.copyWith(
             color: theme.mutedText,
+            fontSize: compact ? 14 : 16,
             height: 1.35,
           ),
         ),
@@ -222,9 +198,10 @@ class _CompletionHeader extends StatelessWidget {
 }
 
 class _ReviewPanel extends StatelessWidget {
-  const _ReviewPanel({required this.summary});
+  const _ReviewPanel({required this.summary, required this.compact});
 
   final SessionSummary summary;
+  final bool compact;
 
   @override
   Widget build(BuildContext context) {
@@ -232,38 +209,42 @@ class _ReviewPanel extends StatelessWidget {
     final againNote = _againNote(summary);
 
     return SoftCard(
-      padding: const EdgeInsets.fromLTRB(18, 20, 18, 8),
+      padding: compact
+          ? const EdgeInsets.fromLTRB(18, 22, 18, 10)
+          : const EdgeInsets.fromLTRB(20, 26, 20, 14),
       child: Column(
         children: [
           Text(
             '${summary.reviewedCount}',
             textAlign: TextAlign.center,
             style: theme.textTheme.headlineMedium?.copyWith(
-              fontSize: 32,
+              fontSize: compact ? 36 : 48,
               fontWeight: FontWeight.w600,
-              letterSpacing: -0.8,
+              letterSpacing: compact ? -0.8 : -1.2,
               height: 1,
             ),
           ),
-          const SizedBox(height: 6),
+          SizedBox(height: compact ? 6 : 10),
           Text(
             'kanji reviewed',
             textAlign: TextAlign.center,
             style: theme.textTheme.bodyLarge?.copyWith(
               color: theme.mutedText,
+              fontSize: compact ? 16 : 18,
               fontWeight: FontWeight.w400,
               height: 1.2,
             ),
           ),
-          const SizedBox(height: 16),
+          SizedBox(height: compact ? 16 : 20),
           Divider(height: 1, thickness: 1, color: theme.hairline),
-          const SizedBox(height: 6),
+          SizedBox(height: compact ? 6 : 8),
           _ResultRow(
             icon: Icons.check,
             wash: theme.sageWash,
             ink: theme.sageInk,
             label: 'Successful',
             count: summary.successfulCount,
+            compact: compact,
           ),
           _ResultRow(
             icon: Icons.refresh,
@@ -272,6 +253,7 @@ class _ReviewPanel extends StatelessWidget {
             label: 'Need another look',
             count: summary.againCount,
             detail: againNote,
+            compact: compact,
           ),
         ],
       ),
@@ -286,6 +268,7 @@ class _ResultRow extends StatelessWidget {
     required this.ink,
     required this.label,
     required this.count,
+    required this.compact,
     this.detail,
   });
 
@@ -294,18 +277,20 @@ class _ResultRow extends StatelessWidget {
   final Color ink;
   final String label;
   final int count;
+  final bool compact;
   final String? detail;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final mark = compact ? 32.0 : 36.0;
 
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10),
+      padding: EdgeInsets.symmetric(vertical: compact ? 10 : 14),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          _ToneMark(icon: icon, wash: wash, ink: ink),
+          _ToneMark(icon: icon, wash: wash, ink: ink, size: mark),
           const SizedBox(width: 12),
           Expanded(
             child: Column(
@@ -314,6 +299,7 @@ class _ResultRow extends StatelessWidget {
                 Text(
                   label,
                   style: theme.textTheme.titleMedium?.copyWith(
+                    fontSize: compact ? 16 : 17,
                     fontWeight: FontWeight.w500,
                     height: 1.25,
                   ),
@@ -324,6 +310,7 @@ class _ResultRow extends StatelessWidget {
                     detail!,
                     style: theme.textTheme.bodyMedium?.copyWith(
                       color: theme.mutedText,
+                      fontSize: compact ? 14 : 15,
                       height: 1.25,
                     ),
                   ),
@@ -335,6 +322,7 @@ class _ResultRow extends StatelessWidget {
           Text(
             '$count',
             style: theme.textTheme.titleMedium?.copyWith(
+              fontSize: compact ? 16 : 18,
               fontWeight: FontWeight.w600,
               fontFeatures: const [FontFeature.tabularFigures()],
               height: 1.2,
@@ -347,70 +335,28 @@ class _ResultRow extends StatelessWidget {
 }
 
 class _ToneMark extends StatelessWidget {
-  const _ToneMark({required this.icon, required this.wash, required this.ink});
+  const _ToneMark({
+    required this.icon,
+    required this.wash,
+    required this.ink,
+    required this.size,
+  });
 
   final IconData icon;
   final Color wash;
   final Color ink;
+  final double size;
 
   @override
   Widget build(BuildContext context) {
     return ExcludeSemantics(
       child: Container(
-        width: 32,
-        height: 32,
+        width: size,
+        height: size,
         alignment: Alignment.center,
         decoration: BoxDecoration(color: wash, shape: BoxShape.circle),
-        child: Icon(icon, size: 16, color: ink),
+        child: Icon(icon, size: size / 2, color: ink),
       ),
-    );
-  }
-}
-
-class _NextReview extends StatelessWidget {
-  const _NextReview({
-    required this.nextReviewAt,
-    required this.now,
-    required this.startOfDay,
-  });
-
-  final DateTime? nextReviewAt;
-  final DateTime now;
-  final StartOfDay startOfDay;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final timing = _leadIn(
-      formatNextReview(nextReviewAt, now, startOfDay: startOfDay),
-    );
-
-    return Column(
-      children: [
-        ExcludeSemantics(
-          child: Icon(Icons.schedule_rounded, size: 18, color: theme.mutedText),
-        ),
-        const SizedBox(height: 8),
-        Text(
-          'Next review.',
-          textAlign: TextAlign.center,
-          style: theme.textTheme.bodyMedium?.copyWith(
-            color: theme.mutedText,
-            fontWeight: FontWeight.w500,
-            height: 1.2,
-          ),
-        ),
-        const SizedBox(height: 4),
-        Text(
-          timing,
-          textAlign: TextAlign.center,
-          style: theme.textTheme.titleLarge?.copyWith(
-            fontWeight: FontWeight.w500,
-            letterSpacing: -0.2,
-            height: 1.25,
-          ),
-        ),
-      ],
     );
   }
 }
@@ -424,9 +370,4 @@ String? _againNote(SessionSummary summary) {
   if (summary.againCount > 0) return null;
   if (summary.reviewedCount == 0) return 'No reviews to revisit.';
   return 'All caught up.';
-}
-
-String _leadIn(String value) {
-  if (value.isEmpty) return value;
-  return value[0].toUpperCase() + value.substring(1);
 }

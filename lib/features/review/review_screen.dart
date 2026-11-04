@@ -290,10 +290,7 @@ class _ReviewView extends StatelessWidget {
     final replacement = onSessionComplete?.call(summary, startOfDay);
     if (summary.canContinue && replacement == null) {
       final keepGoing = await Navigator.of(context).push<bool>(
-        AppRoutes.session(
-          context,
-          SessionCompleteScreen(summary: summary, startOfDay: startOfDay),
-        ),
+        AppRoutes.session(context, SessionCompleteScreen(summary: summary)),
       );
       if (keepGoing == true) {
         if (!context.mounted) return;
@@ -313,8 +310,7 @@ class _ReviewView extends StatelessWidget {
     await Navigator.of(context).pushReplacement(
       AppRoutes.session(
         context,
-        replacement ??
-            SessionCompleteScreen(summary: summary, startOfDay: startOfDay),
+        replacement ?? SessionCompleteScreen(summary: summary),
       ),
     );
   }
