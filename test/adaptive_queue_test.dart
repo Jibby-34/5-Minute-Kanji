@@ -446,18 +446,33 @@ void main() {
       final before = session.checkpoint();
 
       session.recordRating(ReviewResult.again);
-      session.rememberAgainBudget('review', const Duration(seconds: 18));
-      session.rememberAgainBudget('review', const Duration(seconds: 4));
+      session.rememberAgainBudget(
+        'review',
+        const Duration(seconds: 18),
+        spent: const Duration(seconds: 3),
+      );
+      session.rememberAgainBudget(
+        'review',
+        const Duration(seconds: 4),
+        spent: const Duration(seconds: 9),
+      );
       expect(session.againBudgetFor('review'), const Duration(seconds: 18));
+      expect(session.againSpentFor('review'), const Duration(seconds: 3));
 
       final after = session.checkpoint();
-      session.rememberAgainBudget('other', const Duration(seconds: 9));
+      session.rememberAgainBudget(
+        'other',
+        const Duration(seconds: 9),
+        spent: const Duration(seconds: 1),
+      );
       session.restore(after);
       expect(session.againBudgetFor('review'), const Duration(seconds: 18));
+      expect(session.againSpentFor('review'), const Duration(seconds: 3));
       expect(session.againBudgetFor('other'), isNull);
 
       session.restore(before);
       expect(session.againBudgetFor('review'), isNull);
+      expect(session.againSpentFor('review'), isNull);
     });
 
     test('undo restores a queue from before a drop', () {
@@ -782,7 +797,7 @@ void main() {
 
       expect(
         controller.lastQueueAdjustment?.estimatedRemainingBefore,
-        const Duration(seconds: 120),
+        const Duration(seconds: 160),
       );
       expect(
         controller.lastQueueAdjustment?.steps.map((step) => step.removedId),
@@ -799,7 +814,50 @@ void main() {
 
       expect(await controller.undoLastAnswer(), isTrue);
       expect(controller.session.againBudgetFor('missed'), isNull);
+      expect(controller.session.againSpentFor('missed'), isNull);
     });
+
+    test(
+      'a quick miss still reserves the rest of the original budget',
+      () async {
+        final names = ['missed', 'keep', 'mid', 'extra'];
+        final schedules = {for (final id in names) id: dueReview(id)};
+        final progress = MemoryProgressRepository(
+          settings: const AppSettings(dailyStudyMinutes: 3, newKanjiPerDay: 0),
+          schedules: schedules,
+        );
+        var current = now;
+        final controller = await open(
+          progress: progress,
+          cards: names.map(testCard).toList(),
+          schedules: schedules,
+          clock: () => current,
+          timeEstimator: const CardTimeEstimator(
+            reviewCard: Duration(seconds: 40),
+            learningCard: Duration(seconds: 5),
+          ),
+        );
+
+        current = now.add(const Duration(seconds: 2));
+        controller.submit();
+        expect(await controller.rate(ReviewResult.again), isNull);
+
+        expect(
+          controller.session.againSpentFor('missed'),
+          const Duration(seconds: 2),
+        );
+        expect(
+          controller.session.againBudgetFor('missed'),
+          const Duration(seconds: 40),
+        );
+        expect(controller.session.isDropped('missed'), isFalse);
+        expect(controller.session.isDropped('extra'), isTrue);
+        expect(
+          controller.session.queued.map((card) => card.id),
+          contains('keep'),
+        );
+      },
+    );
 
     test('a missed new kanji keeps both of its original showings', () async {
       final reviews = ['r1', 'r2', 'r3', 'keep', 'extra'];
@@ -840,7 +898,7 @@ void main() {
       );
       expect(
         controller.lastQueueAdjustment?.estimatedRemainingBefore,
-        const Duration(seconds: 140),
+        const Duration(seconds: 240),
       );
       expect(
         controller.lastQueueAdjustment?.steps.map((step) => step.removedId),

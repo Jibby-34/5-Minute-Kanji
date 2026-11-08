@@ -31,6 +31,10 @@ class ReviewSession {
   /// is budgeted at this amount, so the card costs about twice what the
   /// sitting planned.
   final Map<String, Duration> _againBudgets = {};
+
+  /// Active time on the first Again. A fast miss still reserves the rest of
+  /// [_againBudgets] on top of the clock.
+  final Map<String, Duration> _againSpent = {};
   int _passedCount = 0;
   int _adjustmentsMade = 0;
 
@@ -66,10 +70,18 @@ class ReviewSession {
   /// its retrieval. The follow-up is estimated at this same amount.
   Duration? againBudgetFor(String cardId) => _againBudgets[cardId];
 
+  /// Active seconds on the first Again. Null until [rememberAgainBudget].
+  Duration? againSpentFor(String cardId) => _againSpent[cardId];
+
   /// Keeps the first Again's budget. A later miss in the same sitting does
   /// not replace it with the shorter learning pace.
-  void rememberAgainBudget(String cardId, Duration budget) {
+  void rememberAgainBudget(
+    String cardId,
+    Duration budget, {
+    Duration spent = Duration.zero,
+  }) {
     _againBudgets.putIfAbsent(cardId, () => budget);
+    _againSpent.putIfAbsent(cardId, () => spent);
   }
 
   bool isDropped(String cardId) => _droppedIds.contains(cardId);
@@ -193,6 +205,7 @@ class ReviewSession {
       droppedIds: Set<String>.from(_droppedIds),
       relearningProtectedIds: Set<String>.from(_relearningProtected),
       againBudgets: Map<String, Duration>.from(_againBudgets),
+      againSpent: Map<String, Duration>.from(_againSpent),
       passedCount: _passedCount,
       adjustmentsMade: _adjustmentsMade,
     );
@@ -221,6 +234,9 @@ class ReviewSession {
     _againBudgets
       ..clear()
       ..addAll(checkpoint.againBudgets);
+    _againSpent
+      ..clear()
+      ..addAll(checkpoint.againSpent);
     _passedCount = checkpoint.passedCount;
     _adjustmentsMade = checkpoint.adjustmentsMade;
   }
@@ -250,6 +266,7 @@ class ReviewSessionCheckpoint {
     required this.droppedIds,
     required this.relearningProtectedIds,
     required this.againBudgets,
+    required this.againSpent,
     required this.passedCount,
     required this.adjustmentsMade,
   });
@@ -261,6 +278,7 @@ class ReviewSessionCheckpoint {
   final Set<String> droppedIds;
   final Set<String> relearningProtectedIds;
   final Map<String, Duration> againBudgets;
+  final Map<String, Duration> againSpent;
   final int passedCount;
   final int adjustmentsMade;
 }

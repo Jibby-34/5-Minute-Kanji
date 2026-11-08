@@ -513,6 +513,7 @@ class ReviewController extends ChangeNotifier {
             asNew ? null : previousSchedule,
             asNewCard: asNew,
           ),
+          spent: timeOnCard,
         );
       }
       final classification = isPractice
@@ -1025,9 +1026,10 @@ class ReviewController extends ChangeNotifier {
 
   /// One showing from the historical estimator, doubled for a kanji that
   /// still has to be introduced and then retrieved. A card answered Again
-  /// keeps its original planned budget for the follow-up, so that pass costs
-  /// about as much as the card did in the session plan. [SessionPaceTracker]
-  /// raises that when this sitting is slower than those estimates.
+  /// keeps its original planned budget for the follow-up. If that attempt
+  /// was shorter than the budget, the unpaid remainder is reserved too, so
+  /// the card still costs about twice the plan. [SessionPaceTracker] raises
+  /// that when this sitting is slower than those estimates.
   Duration _reservedEstimate(
     CardTimeEstimator estimator,
     CardSchedule? schedule, {
@@ -1035,7 +1037,12 @@ class ReviewController extends ChangeNotifier {
     required bool isNew,
   }) {
     final repeat = session.againBudgetFor(cardId);
-    if (repeat != null) return _pace.scale(repeat);
+    if (repeat != null) {
+      final scaled = _pace.scale(repeat);
+      final spent = session.againSpentFor(cardId) ?? Duration.zero;
+      if (spent >= scaled) return scaled;
+      return scaled + (scaled - spent);
+    }
     return _pace.scale(_plannedBudget(estimator, schedule, asNewCard: isNew));
   }
 
