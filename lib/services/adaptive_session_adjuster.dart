@@ -7,10 +7,11 @@ import 'card_time_estimator.dart';
 ///
 /// These are not user settings. Change them here while testing. The sitting
 /// still starts from the normal session plan; this only decides when that
-/// plan's remaining queue may shrink.
+/// plan's remaining queue may shrink or gain leftover due reviews.
 class AdaptiveQueueConfig {
   const AdaptiveQueueConfig({
     this.overrunThreshold = const Duration(seconds: 15),
+    this.underrunThreshold = const Duration(seconds: 15),
     this.timeBuffer = const Duration(seconds: 10),
     this.minimumSwapSavings = const Duration(seconds: 5),
     this.priorityTolerance = 0.15,
@@ -22,6 +23,10 @@ class AdaptiveQueueConfig {
   /// A sitting planned at the scheduler's usual 5% slack (a 5-minute goal
   /// landing near 5:15) stays put until it passes this margin.
   final Duration overrunThreshold;
+
+  /// Projected time below the goal required before leftover due reviews
+  /// may be added. The same 15s band that blocks a trim also blocks a fill.
+  final Duration underrunThreshold;
 
   /// How far under the goal the projection should land once cards are removed.
   final Duration timeBuffer;
@@ -38,11 +43,12 @@ class AdaptiveQueueConfig {
   /// priority, so the longer one can leave first.
   final double priorityTolerance;
 
-  /// Remove or swap steps allowed in one sitting.
+  /// Remove, swap, or add steps allowed in one sitting.
   final int maximumAdjustmentsPerSession;
 
   AdaptiveQueueConfig copyWith({
     Duration? overrunThreshold,
+    Duration? underrunThreshold,
     Duration? timeBuffer,
     Duration? minimumSwapSavings,
     double? priorityTolerance,
@@ -50,6 +56,7 @@ class AdaptiveQueueConfig {
   }) {
     return AdaptiveQueueConfig(
       overrunThreshold: overrunThreshold ?? this.overrunThreshold,
+      underrunThreshold: underrunThreshold ?? this.underrunThreshold,
       timeBuffer: timeBuffer ?? this.timeBuffer,
       minimumSwapSavings: minimumSwapSavings ?? this.minimumSwapSavings,
       priorityTolerance: priorityTolerance ?? this.priorityTolerance,
@@ -155,19 +162,22 @@ class AdaptiveQueueCard {
   bool get canRemove => !protected && !isCurrent;
 }
 
-/// One card taken out of the remaining queue, with a shorter stand-in if any.
+/// One card taken out of the remaining queue, swapped, or added from overflow.
 class AdaptiveQueueStep {
   const AdaptiveQueueStep({
-    required this.removedId,
-    required this.estimatedSaved,
+    this.removedId,
+    this.estimatedSaved = Duration.zero,
     this.replacement,
   });
 
-  final String removedId;
+  /// Null when a leftover due review is appended.
+  final String? removedId;
   final Duration estimatedSaved;
   final KanjiCard? replacement;
 
   String? get replacementId => replacement?.id;
+
+  bool get isAddition => removedId == null && replacement != null;
 }
 
 /// Why a sitting's remaining queue changed, in the shape the debug log uses.
@@ -203,10 +213,17 @@ class AdaptiveQueueDecision {
   int get eligibleCount => eligibleIds.length;
 
   String describe() {
-    final removed = steps.map((step) => step.removedId).join(', ');
+    final removed = steps
+        .where((step) => step.removedId != null)
+        .map((step) => step.removedId)
+        .join(', ');
     final swapped = steps
-        .where((step) => step.replacementId != null)
+        .where((step) => step.removedId != null && step.replacementId != null)
         .map((step) => '${step.removedId}->${step.replacementId}')
+        .join(', ');
+    final added = steps
+        .where((step) => step.isAddition)
+        .map((step) => step.replacementId)
         .join(', ');
     return 'elapsed=${elapsed.inSeconds}s '
         'estimatedRemainingBefore=${estimatedRemainingBefore.inSeconds}s '
@@ -216,16 +233,19 @@ class AdaptiveQueueDecision {
         'eligible=${eligibleIds.join(',')}'
         ' removed=$removed'
         ' swappedIn=${swapped.isEmpty ? '-' : swapped}'
+        ' added=${added.isEmpty ? '-' : added}'
         ' saved=${estimatedSaved.inSeconds}s'
         ' projectedAfter=${projectedAfter.inSeconds}s';
   }
 }
 
-/// Decides which future reviews can leave the assigned queue.
+/// Decides which future reviews can leave the assigned queue, and which
+/// leftover due reviews can fill unused time.
 ///
 /// The caller supplies estimates from [CardTimeEstimator] and scores from
 /// the existing priority scorer. This class does not schedule, save, or
-/// choose the original sitting.
+/// choose the original sitting. Additions are due reviews that were not
+/// in that sitting — never new kanji.
 class AdaptiveSessionAdjuster {
   const AdaptiveSessionAdjuster({this.config = const AdaptiveQueueConfig()});
 
@@ -238,9 +258,11 @@ class AdaptiveSessionAdjuster {
     required int adjustmentsUsed,
   }) {
     if (adjustmentsUsed >= config.maximumAdjustmentsPerSession) return false;
-    if (!queue.any((card) => card.canRemove)) return false;
     final projected = elapsed + _remaining(queue);
-    return projected > goal + config.overrunThreshold;
+    if (projected > goal + config.overrunThreshold) {
+      return queue.any((card) => card.canRemove);
+    }
+    return projected < _underrunFloor(goal);
   }
 
   AdaptiveQueueDecision decide({
@@ -255,25 +277,108 @@ class AdaptiveSessionAdjuster {
     final remainingBefore = _remaining(queue);
     final projectedBefore = elapsed + remainingBefore;
     final protectedCount = queue.where((card) => card.protected).length;
-    final eligibleIds = [
+    final removableIds = [
       for (final card in queue)
         if (card.canRemove && !droppedIds.contains(card.id)) card.id,
     ];
-    final limit = goal + config.overrunThreshold;
-    if (projectedBefore <= limit ||
-        adjustmentsUsed >= config.maximumAdjustmentsPerSession ||
-        eligibleIds.isEmpty) {
-      return AdaptiveQueueDecision(
-        changed: false,
+    if (adjustmentsUsed >= config.maximumAdjustmentsPerSession) {
+      return _unchanged(
         elapsed: elapsed,
-        estimatedRemainingBefore: remainingBefore,
+        remainingBefore: remainingBefore,
         projectedBefore: projectedBefore,
         goal: goal,
-        projectedAfter: projectedBefore,
-        estimatedSaved: Duration.zero,
+        protectedCount: protectedCount,
+        eligibleIds: removableIds,
+        adjustmentsUsed: adjustmentsUsed,
+      );
+    }
+
+    if (projectedBefore > goal + config.overrunThreshold) {
+      return _trim(
+        elapsed: elapsed,
+        goal: goal,
+        queue: queue,
+        replacements: replacements,
+        droppedIds: droppedIds,
+        adjustmentsUsed: adjustmentsUsed,
+        maxQueueLength: maxQueueLength,
+        remainingBefore: remainingBefore,
+        projectedBefore: projectedBefore,
+        protectedCount: protectedCount,
+        eligibleIds: removableIds,
+      );
+    }
+
+    if (projectedBefore < _underrunFloor(goal)) {
+      return _fill(
+        elapsed: elapsed,
+        goal: goal,
+        queue: queue,
+        additions: replacements,
+        droppedIds: droppedIds,
+        adjustmentsUsed: adjustmentsUsed,
+        remainingBefore: remainingBefore,
+        projectedBefore: projectedBefore,
+        protectedCount: protectedCount,
+      );
+    }
+
+    return _unchanged(
+      elapsed: elapsed,
+      remainingBefore: remainingBefore,
+      projectedBefore: projectedBefore,
+      goal: goal,
+      protectedCount: protectedCount,
+      eligibleIds: removableIds,
+      adjustmentsUsed: adjustmentsUsed,
+    );
+  }
+
+  AdaptiveQueueDecision _unchanged({
+    required Duration elapsed,
+    required Duration remainingBefore,
+    required Duration projectedBefore,
+    required Duration goal,
+    required int protectedCount,
+    required List<String> eligibleIds,
+    required int adjustmentsUsed,
+  }) {
+    return AdaptiveQueueDecision(
+      changed: false,
+      elapsed: elapsed,
+      estimatedRemainingBefore: remainingBefore,
+      projectedBefore: projectedBefore,
+      goal: goal,
+      projectedAfter: projectedBefore,
+      estimatedSaved: Duration.zero,
+      protectedCount: protectedCount,
+      eligibleIds: eligibleIds,
+      steps: const [],
+      adjustmentsUsed: adjustmentsUsed,
+    );
+  }
+
+  AdaptiveQueueDecision _trim({
+    required Duration elapsed,
+    required Duration goal,
+    required List<AdaptiveQueueCard> queue,
+    required List<AdaptiveQueueCard> replacements,
+    required Set<String> droppedIds,
+    required int adjustmentsUsed,
+    required int maxQueueLength,
+    required Duration remainingBefore,
+    required Duration projectedBefore,
+    required int protectedCount,
+    required List<String> eligibleIds,
+  }) {
+    if (eligibleIds.isEmpty) {
+      return _unchanged(
+        elapsed: elapsed,
+        remainingBefore: remainingBefore,
+        projectedBefore: projectedBefore,
+        goal: goal,
         protectedCount: protectedCount,
         eligibleIds: eligibleIds,
-        steps: const [],
         adjustmentsUsed: adjustmentsUsed,
       );
     }
@@ -334,6 +439,81 @@ class AdaptiveSessionAdjuster {
       projected = elapsed + _remaining(working);
     }
 
+    return _result(
+      elapsed: elapsed,
+      remainingBefore: remainingBefore,
+      projectedBefore: projectedBefore,
+      goal: goal,
+      working: working,
+      protectedCount: protectedCount,
+      eligibleIds: eligibleIds,
+      steps: steps,
+      used: used,
+    );
+  }
+
+  AdaptiveQueueDecision _fill({
+    required Duration elapsed,
+    required Duration goal,
+    required List<AdaptiveQueueCard> queue,
+    required List<AdaptiveQueueCard> additions,
+    required Set<String> droppedIds,
+    required int adjustmentsUsed,
+    required Duration remainingBefore,
+    required Duration projectedBefore,
+    required int protectedCount,
+  }) {
+    final floor = _underrunFloor(goal);
+    final ceiling = goal + config.overrunThreshold;
+    final working = List<AdaptiveQueueCard>.from(queue);
+    final dropped = Set<String>.from(droppedIds);
+    final inQueue = working.map((card) => card.id).toSet();
+    final steps = <AdaptiveQueueStep>[];
+    final considered = <String>[];
+    var used = adjustmentsUsed;
+    var projected = projectedBefore;
+
+    while (projected < floor && used < config.maximumAdjustmentsPerSession) {
+      final added = _chooseAddition(
+        additions: additions,
+        inQueue: inQueue,
+        dropped: dropped,
+        projected: projected,
+        ceiling: ceiling,
+      );
+      if (added == null) break;
+      considered.add(added.id);
+      working.add(added);
+      inQueue.add(added.id);
+      steps.add(AdaptiveQueueStep(replacement: added.card));
+      used++;
+      projected = elapsed + _remaining(working);
+    }
+
+    return _result(
+      elapsed: elapsed,
+      remainingBefore: remainingBefore,
+      projectedBefore: projectedBefore,
+      goal: goal,
+      working: working,
+      protectedCount: protectedCount,
+      eligibleIds: considered,
+      steps: steps,
+      used: used,
+    );
+  }
+
+  AdaptiveQueueDecision _result({
+    required Duration elapsed,
+    required Duration remainingBefore,
+    required Duration projectedBefore,
+    required Duration goal,
+    required List<AdaptiveQueueCard> working,
+    required int protectedCount,
+    required List<String> eligibleIds,
+    required List<AdaptiveQueueStep> steps,
+    required int used,
+  }) {
     final remainingAfter = _remaining(working);
     final saved = remainingBefore - remainingAfter;
     return AdaptiveQueueDecision(
@@ -349,6 +529,41 @@ class AdaptiveSessionAdjuster {
       steps: steps,
       adjustmentsUsed: used,
     );
+  }
+
+  Duration _underrunFloor(Duration goal) {
+    if (goal <= config.underrunThreshold) return Duration.zero;
+    return goal - config.underrunThreshold;
+  }
+
+  AdaptiveQueueCard? _chooseAddition({
+    required List<AdaptiveQueueCard> additions,
+    required Set<String> inQueue,
+    required Set<String> dropped,
+    required Duration projected,
+    required Duration ceiling,
+  }) {
+    final slack = ceiling - projected;
+    if (slack <= Duration.zero) return null;
+    final viable = <AdaptiveQueueCard>[];
+    for (final candidate in additions) {
+      if (candidate.protected || candidate.isCurrent) continue;
+      if (inQueue.contains(candidate.id) || dropped.contains(candidate.id)) {
+        continue;
+      }
+      if (candidate.estimated <= Duration.zero) continue;
+      if (candidate.estimated > slack) continue;
+      viable.add(candidate);
+    }
+    if (viable.isEmpty) return null;
+    viable.sort((a, b) {
+      final byPriority = b.priority.compareTo(a.priority);
+      if (byPriority != 0) return byPriority;
+      final byTime = a.estimated.compareTo(b.estimated);
+      if (byTime != 0) return byTime;
+      return a.id.compareTo(b.id);
+    });
+    return viable.first;
   }
 
   AdaptiveQueueCard _chooseRemoval(List<AdaptiveQueueCard> eligible) {

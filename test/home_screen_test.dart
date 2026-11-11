@@ -176,6 +176,25 @@ void main() {
     expect(find.text('Start Review'), findsOneWidget);
   });
 
+  testWidgets(
+    'home does not scroll when the content already fits',
+    (tester) async {
+      await pumpHome(tester);
+
+      final scrollable = tester.state<ScrollableState>(find.byType(Scrollable));
+      expect(scrollable.position.maxScrollExtent, 0);
+      expect(
+        scrollable.position.physics.shouldAcceptUserOffset(scrollable.position),
+        isFalse,
+      );
+
+      await tester.drag(find.byType(HomeScreen), const Offset(0, -120));
+      await tester.pumpAndSettle();
+      expect(scrollable.position.pixels, 0);
+    },
+    variant: TargetPlatformVariant.only(TargetPlatform.iOS),
+  );
+
   testWidgets('the bar matches review time and new-kanji time', (tester) async {
     final now = DateTime(2026, 10, 26, 9);
     final reviews = [testCard('r1'), testCard('r2'), testCard('r3')];

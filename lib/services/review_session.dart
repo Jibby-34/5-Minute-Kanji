@@ -169,17 +169,34 @@ class ReviewSession {
     return card;
   }
 
-  /// Drops or replaces future cards. The card on screen stays where it is.
+  /// Drops, replaces, or appends future cards. The card on screen stays.
   ///
   /// A dropped card remains in the pool, so a later sitting can still draw
-  /// it, and leaves SRS, due dates, and history untouched. [steps] come from
-  /// the adaptive queue adjuster.
+  /// it, and leaves SRS, due dates, and history untouched. An added card is
+  /// a due review that was not in this sitting. [steps] come from the
+  /// adaptive queue adjuster.
   void applyAdaptiveSteps(List<AdaptiveQueueStep> steps) {
     for (final step in steps) {
-      if (_queue.isEmpty || step.removedId == _queue.first.id) continue;
-      final index = _queue.indexWhere((card) => card.id == step.removedId);
+      if (step.isAddition) {
+        final added = step.replacement;
+        if (added == null) continue;
+        if (_droppedIds.contains(added.id) || _seenIds.contains(added.id)) {
+          continue;
+        }
+        if (_queue.any((card) => card.id == added.id)) continue;
+        if (!_pool.any((card) => card.id == added.id)) {
+          _pool.add(added);
+        }
+        _queue.add(added);
+        _adjustmentsMade++;
+        continue;
+      }
+      final removedId = step.removedId;
+      if (removedId == null) continue;
+      if (_queue.isEmpty || removedId == _queue.first.id) continue;
+      final index = _queue.indexWhere((card) => card.id == removedId);
       if (index <= 0) continue;
-      _droppedIds.add(step.removedId);
+      _droppedIds.add(removedId);
       final replacement = step.replacement;
       if (replacement == null ||
           _droppedIds.contains(replacement.id) ||

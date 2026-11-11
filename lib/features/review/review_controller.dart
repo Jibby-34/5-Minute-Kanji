@@ -887,8 +887,10 @@ class ReviewController extends ChangeNotifier {
     return predicted;
   }
 
-  /// Shortens the remaining assigned queue when this sitting is running past
-  /// its goal. Practice and Study Anyway sittings are left as opened.
+  /// Shortens or fills the remaining assigned queue so this sitting stays
+  /// near its goal. Practice and Study Anyway sittings are left as opened.
+  /// Fills are due reviews that were not in today's sitting — never new
+  /// kanji, and never cards that are not due.
   Future<void> _adaptAssignedQueue(DateTime now) async {
     if (isPractice || isStudyAnyway || _disposed) return;
     try {
@@ -1068,8 +1070,9 @@ class ReviewController extends ChangeNotifier {
         'goal=${decision.goal.inSeconds}s '
         'protected=${decision.protectedCount} '
         'eligible=${decision.eligibleIds.join(',')} '
-        'removed=${step.removedId} '
-        'swappedIn=${step.replacementId ?? '-'} '
+        'removed=${step.removedId ?? '-'} '
+        'swappedIn=${step.isAddition ? '-' : (step.replacementId ?? '-')} '
+        'added=${step.isAddition ? (step.replacementId ?? '-') : '-'} '
         'saved=${step.estimatedSaved.inSeconds}s '
         'projectedAfter=${decision.projectedAfter.inSeconds}s',
         name: 'adaptive_queue',

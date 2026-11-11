@@ -322,8 +322,10 @@ class _KanjiListIconPainter extends CustomPainter {
   bool shouldRepaint(covariant _KanjiListIconPainter oldDelegate) => false;
 }
 
-/// Greeting and today's card, centered in whatever height is left. Short
-/// screens scroll instead of overflowing.
+/// Greeting and today's card, centered in whatever height is left.
+///
+/// The page stays locked when everything fits. Short screens can still
+/// scroll instead of overflowing.
 class _HomeMiddle extends StatelessWidget {
   const _HomeMiddle({required this.home, required this.now});
 
@@ -334,28 +336,34 @@ class _HomeMiddle extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        return SingleChildScrollView(
-          physics: const BouncingScrollPhysics(),
-          child: ConstrainedBox(
-            constraints: BoxConstraints(minHeight: constraints.maxHeight),
-            child: Padding(
-              padding: const EdgeInsets.only(bottom: 24),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    greetingFor(now),
-                    textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                      color: _muted,
-                      fontSize: 21,
-                      fontWeight: FontWeight.w400,
-                      height: 1.2,
+        return ScrollConfiguration(
+          behavior: ScrollConfiguration.of(context).copyWith(
+            overscroll: false,
+            physics: const ClampingScrollPhysics(),
+          ),
+          child: SingleChildScrollView(
+            physics: const ClampingScrollPhysics(),
+            child: ConstrainedBox(
+              constraints: BoxConstraints(minHeight: constraints.maxHeight),
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 24),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      greetingFor(now),
+                      textAlign: TextAlign.center,
+                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                        color: _muted,
+                        fontSize: 21,
+                        fontWeight: FontWeight.w400,
+                        height: 1.2,
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 32),
-                  _DailyStudyCard(home: home, now: now),
-                ],
+                    const SizedBox(height: 32),
+                    _DailyStudyCard(home: home, now: now),
+                  ],
+                ),
               ),
             ),
           ),
