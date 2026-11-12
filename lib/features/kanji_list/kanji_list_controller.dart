@@ -107,6 +107,7 @@ String kanjiSearchKey(KanjiCard card) {
     card.character,
     card.meaning,
     card.keyword,
+    ?card.disambiguationHint,
     card.mnemonic,
     ...card.onyomi,
     ...card.kunyomi,

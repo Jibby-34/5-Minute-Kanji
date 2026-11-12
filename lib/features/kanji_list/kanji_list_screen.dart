@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../core/models/kanji_card.dart';
 import '../../core/models/kanji_status.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_theme.dart';
@@ -9,6 +10,7 @@ import '../../repositories/kanji_repository.dart';
 import '../../repositories/progress_repository.dart';
 import '../../services/mark_as_known.dart';
 import '../../widgets/bottom_action_inset.dart';
+import '../../widgets/disambiguation_hint.dart';
 import '../../widgets/primary_button.dart';
 import 'kanji_detail_screen.dart';
 import 'kanji_list_controller.dart';
@@ -162,7 +164,7 @@ class _KanjiListView extends StatelessWidget {
             final selected = controller.isSelected(item.card.id);
             return _KanjiListCard(
               key: ValueKey(item.card.id),
-              character: item.card.character,
+              card: item.card,
               status: item.status,
               selecting: controller.selecting,
               selectable: selectable,
@@ -633,7 +635,7 @@ class _JlptSectionHeader extends StatelessWidget {
 class _KanjiListCard extends StatelessWidget {
   const _KanjiListCard({
     super.key,
-    required this.character,
+    required this.card,
     required this.status,
     required this.onTap,
     this.selecting = false,
@@ -641,7 +643,7 @@ class _KanjiListCard extends StatelessWidget {
     this.selected = false,
   });
 
-  final String character;
+  final KanjiCard card;
   final KanjiProgressStatus status;
   final VoidCallback onTap;
   final bool selecting;
@@ -654,8 +656,11 @@ class _KanjiListCard extends StatelessWidget {
     final dimmed = selecting && !selectable;
     final borderColor = selected ? theme.colorScheme.primary : theme.hairline;
     final borderWidth = selected ? 2.0 : 1.0;
+    final hint = card.disambiguationHint;
     final label = [
-      character,
+      card.character,
+      if (hint != null) card.keyword,
+      ?hint,
       status.label,
       if (selecting && selected) 'selected',
     ].join(', ');
@@ -681,20 +686,10 @@ class _KanjiListCard extends StatelessWidget {
                 ),
                 child: Stack(
                   children: [
-                    Center(
-                      child: Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: FittedBox(
-                          fit: BoxFit.scaleDown,
-                          child: Text(
-                            character,
-                            style: AppTypography.kanji(
-                              color: theme.colorScheme.onSurface,
-                              size: 40,
-                            ),
-                          ),
-                        ),
-                      ),
+                    Positioned.fill(
+                      child: hint == null
+                          ? _characterOnly(theme)
+                          : _characterWithHint(theme, hint),
                     ),
                     if (selected)
                       Positioned(
@@ -712,6 +707,67 @@ class _KanjiListCard extends StatelessWidget {
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _characterOnly(ThemeData theme) {
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(10),
+        child: FittedBox(
+          fit: BoxFit.scaleDown,
+          child: Text(
+            card.character,
+            style: AppTypography.kanji(
+              color: theme.colorScheme.onSurface,
+              size: 40,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _characterWithHint(ThemeData theme, String hint) {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(8, 6, 8, 6),
+      child: Column(
+        children: [
+          Expanded(
+            child: Center(
+              child: FittedBox(
+                fit: BoxFit.scaleDown,
+                child: Text(
+                  card.character,
+                  style: AppTypography.kanji(
+                    color: theme.colorScheme.onSurface,
+                    size: 36,
+                  ),
+                ),
+              ),
+            ),
+          ),
+          Text(
+            card.keyword,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            textAlign: TextAlign.center,
+            style: theme.textTheme.labelLarge?.copyWith(
+              fontSize: 11,
+              fontWeight: FontWeight.w600,
+              height: 1.1,
+              letterSpacing: -0.1,
+            ),
+          ),
+          ...DisambiguationHint.below(
+            hint,
+            textAlign: TextAlign.center,
+            fontSize: 10,
+            maxLines: 1,
+            gap: 1,
+          ),
+        ],
       ),
     );
   }

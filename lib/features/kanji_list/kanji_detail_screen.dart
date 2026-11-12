@@ -15,6 +15,7 @@ import '../../services/kanji_status_resolver.dart';
 import '../../services/mark_as_known.dart';
 import '../../widgets/bottom_action_inset.dart';
 import '../../widgets/common_words_section.dart';
+import '../../widgets/disambiguation_hint.dart';
 import '../../widgets/first_review_indicator.dart';
 import '../../widgets/mnemonic_text.dart';
 import '../../widgets/primary_button.dart';
@@ -160,6 +161,7 @@ class _KanjiDetailScreenState extends State<KanjiDetailScreen> {
                   height: 1.15,
                 ),
               ),
+              ...DisambiguationHint.below(card.disambiguationHint),
               if (showSecondaryMeaning) ...[
                 const SizedBox(height: 4),
                 Text(

@@ -1,0 +1,191 @@
+﻿Running build hooks...Running build hooks...--- cluster: earth / ground / soil / land (4 cards) ---
+  n5-034 土 keyword=earth
+  n4-036 地 keyword=ground
+  n1-0205 壌 keyword=soil
+  n2-349 陸 keyword=land
+
+--- cluster: origin / root / source (3 cards) ---
+  n4-015 元 keyword=origin
+  n2-153 根 keyword=root
+  n1-0639 源 keyword=source
+
+--- cluster: sea / ocean (2 cards) ---
+  n4-094 海 keyword=sea
+  n4-093 洋 keyword=ocean
+
+--- cluster: river (2 cards) ---
+  n5-043 川 keyword=river
+  n2-173 河 keyword=river
+
+--- cluster: person / people / human (2 cards) ---
+  n5-011 人 keyword=person
+  n3-204 民 keyword=people
+
+--- cluster: study / learn (2 cards) ---
+  n5-040 学 keyword=study
+  n4-123 習 keyword=learn
+
+--- cluster: say / talk / speak / words (2 cards) ---
+  n4-133 言 keyword=say
+  n5-070 話 keyword=talk
+
+--- cluster: road / path / way (2 cards) ---
+  n4-149 道 keyword=road
+  n3-318 路 keyword=path
+
+--- cluster: spirit / spirits / soul (3 cards) ---
+  n5-058 気 keyword=spirit
+  n1-1176 霊 keyword=spirits
+  n1-1212 魂 keyword=soul
+
+--- cluster: beauty / lovely / beautiful (3 cards) ---
+  n3-274 美 keyword=beauty
+  n1-1228 麗 keyword=lovely
+  n1-0479 斐 keyword=beautiful
+
+--- cluster: see / look / watch / inspection / outlook (3 cards) ---
+  n5-069 見 keyword=see
+  n1-0999 視 keyword=inspection
+  n3-296 観 keyword=outlook
+
+--- cluster: shop / store (3 cards) ---
+  n4-052 屋 keyword=shop
+  n4-056 店 keyword=shop
+  n1-0917 舗 keyword=shop
+
+--- cluster: evening / night (3 cards) ---
+  n4-041 夕 keyword=evening
+  n3-179 暮 keyword=evening
+  n4-043 夜 keyword=night
+
+--- cluster: parent / father / mother (3 cards) ---
+  n4-132 親 keyword=parent
+  n5-061 父 keyword=father
+  n5-056 母 keyword=mother
+
+--- cluster: inside / outside (2 cards) ---
+  n3-035 内 keyword=inside
+  n5-035 外 keyword=outside
+
+--- cluster: left / right (2 cards) ---
+  n5-044 左 keyword=left
+  n5-030 右 keyword=right
+
+--- cluster: life / live (2 cards) ---
+  n5-062 生 keyword=life
+  n4-010 住 keyword=live
+
+--- cluster: buy / sell (2 cards) ---
+  n4-136 買 keyword=buy
+  n4-039 売 keyword=sell
+
+--- cluster: new / old / young (3 cards) ---
+  n4-072 新 keyword=new
+  n4-028 古 keyword=old
+  n3-285 若 keyword=young
+
+--- cluster: man / woman (2 cards) ---
+  n5-063 男 keyword=man
+  n5-038 女 keyword=woman
+
+--- cluster: hand / foot (2 cards) ---
+  n4-067 手 keyword=hand
+  n4-142 足 keyword=foot
+
+--- cluster: eye / ear (3 cards) ---
+  n4-109 目 keyword=eye
+  n3-276 耳 keyword=ear
+  n1-0793 穂 keyword=ear
+
+--- cluster: head / face (2 cards) ---
+  n3-361 頭 keyword=head
+  n3-363 顔 keyword=face
+
+--- cluster: good / bad (2 cards) ---
+  n3-284 良 keyword=good
+  n4-065 悪 keyword=bad
+
+--- cluster: love / hate (2 cards) ---
+  n3-145 愛 keyword=love
+  n2-115 憎 keyword=hate
+
+--- cluster: many / few / all / every (5 cards) ---
+  n4-042 多 keyword=many
+  n4-051 少 keyword=few
+  n3-240 皆 keyword=all
+  n1-0376 惣 keyword=all
+  n5-057 毎 keyword=every
+
+--- cluster: same / different / other (2 cards) ---
+  n4-030 同 keyword=same
+  n3-009 他 keyword=other
+
+--- cluster: time / day / hour (2 cards) ---
+  n5-048 時 keyword=time
+  n5-047 日 keyword=day
+
+--- cluster: east / west / north / south (4 cards) ---
+  n5-054 東 keyword=east
+  n5-068 西 keyword=west
+  n5-023 北 keyword=north
+  n5-028 南 keyword=south
+
+--- cluster: up / down (2 cards) ---
+  n5-005 上 keyword=up
+  n5-006 下 keyword=down
+
+--- cluster: write / read (2 cards) ---
+  n5-049 書 keyword=write
+  n5-072 読 keyword=read
+
+--- cluster: tree / woods / forest (4 cards) ---
+  n5-051 木 keyword=tree
+  n2-145 林 keyword=woods
+  n1-0527 杜 keyword=woods
+  n2-156 森 keyword=forest
+
+--- cluster: fire / water (2 cards) ---
+  n5-060 火 keyword=fire
+  n5-059 水 keyword=water
+
+--- cluster: spring (2 cards) ---
+  n4-079 春 keyword=spring
+  n2-177 泉 keyword=spring
+
+--- cluster: world (2 cards) ---
+  n4-002 世 keyword=world
+  n4-105 界 keyword=world
+
+--- cluster: thing / matter / object (2 cards) ---
+  n4-004 事 keyword=thing
+  n4-097 物 keyword=thing
+
+--- cluster: idea / thought (2 cards) ---
+  n4-066 意 keyword=idea
+  n3-144 想 keyword=idea
+
+--- cluster: feelings / emotion (3 cards) ---
+  n3-143 情 keyword=feelings
+  n1-0400 懐 keyword=feelings
+  n3-146 感 keyword=emotion
+
+--- cluster: exist (2 cards) ---
+  n3-080 在 keyword=exist
+  n3-094 存 keyword=exist
+
+--- cluster: place / location (2 cards) ---
+  n4-038 場 keyword=place
+  n3-151 所 keyword=place
+
+--- cluster: medicine / drug (2 cards) ---
+  n4-025 医 keyword=medicine
+  n3-290 薬 keyword=medicine
+
+--- cluster: meeting / meet (2 cards) ---
+  n4-009 会 keyword=meet
+  n1-1086 遇 keyword=meet
+
+--- cluster: return / re- (2 cards) ---
+  n3-150 戻 keyword=return
+  n3-323 返 keyword=return
+

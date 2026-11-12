@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../core/models/kanji_card.dart';
 import '../core/theme/app_theme.dart';
+import 'disambiguation_hint.dart';
 import 'section_label.dart';
 
 /// Meaning and readings, packed as one block on the learn and answer screens.
@@ -35,6 +36,7 @@ class MeaningAndReadings extends StatelessWidget {
             height: 1.15,
           ),
         ),
+        ...DisambiguationHint.below(card.disambiguationHint),
         if (showMeaning) ...[
           const SizedBox(height: 4),
           Text(

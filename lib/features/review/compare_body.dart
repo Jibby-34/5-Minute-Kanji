@@ -6,6 +6,7 @@ import '../../core/models/handwriting.dart';
 import '../../core/models/kanji_card.dart';
 import '../../core/theme/app_theme.dart';
 import '../../widgets/common_words_section.dart';
+import '../../widgets/disambiguation_hint.dart';
 import '../../widgets/first_review_indicator.dart';
 import '../../widgets/meaning_and_readings.dart';
 import '../../widgets/mnemonic_card.dart';
@@ -250,6 +251,7 @@ class _CompareBodyState extends State<CompareBody> {
             height: 1.15,
           ),
         ),
+        ...DisambiguationHint.below(card.disambiguationHint),
         if (showMeaning) ...[
           const SizedBox(height: 4),
           Text(

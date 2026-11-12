@@ -1,0 +1,434 @@
+﻿Running build hooks...Running build hooks...Total cards parsed: 2220
+Exact duplicate keyword groups: 103
+Cards in duplicate groups: 224
+
+[5] keyword=help
+    n3-047 助 meaning=help
+    n1-0006 丞 meaning=help
+    n1-0039 佑 meaning=help
+    n1-0772 祐 meaning=help
+    n1-1069 輔 meaning=help
+
+[5] keyword=clear
+    n1-0022 亮 meaning=clear
+    n1-0089 冴 meaning=be clear
+    n1-0500 晃 meaning=clear
+    n1-0503 晟 meaning=clear
+    n1-0754 瞭 meaning=clear
+
+[4] keyword=strong
+    n4-060 強 meaning=strong
+    n1-0042 侃 meaning=strong
+    n1-0116 勁 meaning=strong
+    n1-0595 毅 meaning=strong
+
+[3] keyword=lotus
+    n1-0924 芙 meaning=lotus
+    n1-0952 蓉 meaning=lotus
+    n1-0953 蓮 meaning=lotus
+
+[3] keyword=shop
+    n4-052 屋 meaning=shop
+    n4-056 店 meaning=shop
+    n1-0917 舗 meaning=shop
+
+[3] keyword=shine
+    n1-0509 暉 meaning=shine
+    n1-0680 燿 meaning=shine
+    n1-0880 耀 meaning=shine
+
+[3] keyword=song
+    n4-087 歌 meaning=song
+    n1-0157 唄 meaning=song
+    n1-1035 謡 meaning=song
+
+[3] keyword=polish
+    n4-113 研 meaning=polish
+    n1-0708 琢 meaning=polish
+    n1-0715 瑳 meaning=polish
+
+[3] keyword=end
+    n4-122 終 meaning=end
+    n3-186 末 meaning=end
+    n1-0803 竣 meaning=end
+
+[3] keyword=blue
+    n4-156 青 meaning=blue
+    n1-0765 碧 meaning=blue
+    n1-0950 蒼 meaning=blue
+
+[3] keyword=happiness
+    n3-119 幸 meaning=happiness
+    n1-0058 倖 meaning=happiness
+    n1-0778 禎 meaning=happiness
+
+[3] keyword=high
+    n1-0168 喬 meaning=high
+    n1-0269 尭 meaning=high
+    n1-0288 峻 meaning=high
+
+[3] keyword=wise
+    n1-0357 怜 meaning=wise
+    n1-0387 慧 meaning=wise
+    n1-0885 聡 meaning=wise
+
+[2] keyword=contain
+    n3-103 容 meaning=contain
+    n2-054 含 meaning=contain
+
+[2] keyword=white
+    n5-064 白 meaning=white
+    n1-0736 皓 meaning=white
+
+[2] keyword=idea
+    n4-066 意 meaning=idea
+    n3-144 想 meaning=idea
+
+[2] keyword=bright
+    n4-077 明 meaning=bright
+    n1-0676 熙 meaning=bright
+
+[2] keyword=go
+    n5-067 行 meaning=go
+    n1-0763 碁 meaning=go
+
+[2] keyword=morning
+    n4-084 朝 meaning=morning
+    n1-0504 晨 meaning=morning
+
+[2] keyword=world
+    n4-002 世 meaning=world
+    n4-105 界 meaning=world
+
+[2] keyword=correct
+    n4-089 正 meaning=correct
+    n1-0124 匡 meaning=correct
+
+[2] keyword=picture
+    n4-104 画 meaning=picture
+    n3-268 絵 meaning=picture
+
+[2] keyword=thing
+    n4-004 事 meaning=thing
+    n4-097 物 meaning=thing
+
+[2] keyword=meet
+    n4-009 会 meaning=meet
+    n1-1086 遇 meaning=meet
+
+[2] keyword=consider
+    n4-124 考 meaning=consider
+    n1-0375 惟 meaning=consider
+
+[2] keyword=run
+    n4-140 走 meaning=run
+    n1-0215 奔 meaning=run
+
+[2] keyword=turn
+    n4-143 転 meaning=turn
+    n3-235 番 meaning=turn
+
+[2] keyword=pass through
+    n4-146 通 meaning=pass through
+    n1-0019 亨 meaning=pass through
+
+[2] keyword=use
+    n4-013 使 meaning=use
+    n4-101 用 meaning=use
+
+[2] keyword=ride
+    n3-003 乗 meaning=ride
+    n1-1068 載 meaning=ride
+
+[2] keyword=medicine
+    n4-025 医 meaning=medicine
+    n3-290 薬 meaning=medicine
+
+[2] keyword=victory
+    n3-051 勝 meaning=victory
+    n1-0437 捷 meaning=victory
+
+[2] keyword=exist
+    n3-080 在 meaning=exist
+    n3-094 存 meaning=exist
+
+[2] keyword=thick
+    n3-086 太 meaning=thick
+    n2-048 厚 meaning=thick
+
+[2] keyword=five
+    n5-010 五 meaning=five
+    n1-0029 伍 meaning=five
+
+[2] keyword=cold
+    n3-107 寒 meaning=cold
+    n1-0093 凜 meaning=cold
+
+[2] keyword=stand
+    n4-029 台 meaning=stand
+    n4-119 立 meaning=stand
+
+[2] keyword=fear
+    n3-139 恐 meaning=fear
+    n1-0969 虞 meaning=fear
+
+[2] keyword=feelings
+    n3-143 情 meaning=feelings
+    n1-0400 懐 meaning=feelings
+
+[2] keyword=return
+    n3-150 戻 meaning=re-
+    n3-323 返 meaning=return
+
+[2] keyword=un-
+    n3-185 未 meaning=un-
+    n3-357 非 meaning=un-
+
+[2] keyword=ball
+    n3-230 球 meaning=ball
+    n1-1182 鞠 meaning=ball
+
+[2] keyword=all
+    n3-240 皆 meaning=all
+    n1-0376 惣 meaning=all
+
+[2] keyword=refined
+    n3-263 精 meaning=refined
+    n1-0339 彬 meaning=refined
+
+[2] keyword=cord
+    n3-271 緒 meaning=cord
+    n1-0833 索 meaning=cord
+
+[2] keyword=ear
+    n3-276 耳 meaning=ear
+    n1-0793 穂 meaning=ear
+
+[2] keyword=back
+    n3-279 背 meaning=back
+    n2-298 裏 meaning=back
+
+[2] keyword=advance
+    n3-331 進 meaning=advance
+    n1-0501 晋 meaning=advance
+
+[2] keyword=distant
+    n3-337 遠 meaning=distant
+    n1-1095 遼 meaning=distant
+
+[2] keyword=distribute
+    n3-342 配 meaning=distribute
+    n1-1189 頒 meaning=distribute
+
+[2] keyword=slope
+    n3-346 阪 meaning=slope
+    n2-063 坂 meaning=slope
+
+[2] keyword=summit
+    n3-360 頂 meaning=summit
+    n1-0287 峰 meaning=summit
+
+[2] keyword=camp
+    n2-058 営 meaning=camp
+    n1-1152 陣 meaning=camp
+
+[2] keyword=level
+    n2-064 均 meaning=level
+    n1-0314 庄 meaning=level
+
+[2] keyword=eaves
+    n2-079 宇 meaning=eaves
+    n2-326 軒 meaning=eaves
+
+[2] keyword=warehouse
+    n2-106 庫 meaning=warehouse
+    n1-0057 倉 meaning=warehouse
+
+[2] keyword=pinch
+    n2-122 挟 meaning=pinch
+    n1-0458 摘 meaning=pinch
+
+[2] keyword=star
+    n2-135 星 meaning=star
+    n1-0212 奎 meaning=star
+
+[2] keyword=village
+    n2-143 村 meaning=village
+    n1-1098 邑 meaning=village
+
+[2] keyword=woods
+    n2-145 林 meaning=woods
+    n1-0527 杜 meaning=woods
+
+[2] keyword=refreshing
+    n2-185 涼 meaning=refreshing
+    n1-0682 爽 meaning=refreshing
+
+[2] keyword=pure
+    n2-187 清 meaning=pure
+    n1-0629 淳 meaning=pure
+
+[2] keyword=burn
+    n2-207 燃 meaning=burn
+    n1-0678 燎 meaning=burn
+
+[2] keyword=jewel
+    n2-212 玉 meaning=jewel
+    n1-0709 琳 meaning=jewel
+
+[2] keyword=rare
+    n2-213 珍 meaning=rare
+    n1-0785 稀 meaning=rare
+
+[2] keyword=sand
+    n2-225 砂 meaning=sand
+    n1-0604 沙 meaning=sand
+
+[2] keyword=emulate
+    n2-237 競 meaning=emulate
+    n1-0059 倣 meaning=emulate
+
+[2] keyword=thread
+    n2-249 糸 meaning=thread
+    n1-0850 綸 meaning=thread
+
+[2] keyword=consult with
+    n1-1013 詢 meaning=consult with
+    n1-1028 諮 meaning=consult with
+
+[2] keyword=angle
+    n2-301 角 meaning=angle
+    n1-0788 稜 meaning=angle
+
+[2] keyword=place
+    n4-038 場 meaning=place
+    n3-151 所 meaning=place
+
+[2] keyword=chief
+    n1-0033 伯 meaning=chief
+    n1-0244 孟 meaning=chief
+
+[2] keyword=excuse
+    n1-0083 免 meaning=excuse
+    n1-0361 恕 meaning=excuse
+
+[2] keyword=endure
+    n1-0092 凌 meaning=endure
+    n1-0353 忍 meaning=endure
+
+[2] keyword=commonplace
+    n1-0095 凡 meaning=commonplace
+    n1-0318 庸 meaning=commonplace
+
+[2] keyword=grant
+    n1-0144 叶 meaning=grant
+    n1-1052 賜 meaning=grant
+
+[2] keyword=give
+    n1-0153 呉 meaning=give
+    n1-0485 施 meaning=give
+
+[2] keyword=evening
+    n4-041 夕 meaning=evening
+    n3-179 暮 meaning=evening
+
+[2] keyword=gentleman
+    n1-0206 士 meaning=gentleman
+    n1-0837 紳 meaning=gentleman
+
+[2] keyword=peak
+    n1-0284 岳 meaning=peak
+    n1-0296 嶺 meaning=peak
+
+[2] keyword=stretch
+    n1-0332 張 meaning=stretch
+    n1-0512 暢 meaning=stretch
+
+[2] keyword=river
+    n5-043 川 meaning=river
+    n2-173 河 meaning=river
+
+[2] keyword=respect
+    n1-0364 恭 meaning=respect
+    n1-0587 欽 meaning=respect
+
+[2] keyword=raise
+    n1-0433 挙 meaning=raise
+    n1-0448 揚 meaning=raise
+
+[2] keyword=daybreak
+    n1-0489 旦 meaning=daybreak
+    n1-0507 暁 meaning=daybreak
+
+[2] keyword=green
+    n2-257 緑 meaning=green
+    n1-0877 翠 meaning=green
+
+[2] keyword=cedar
+    n1-0524 杉 meaning=cedar
+    n1-0583 檀 meaning=cedar
+
+[2] keyword=plum
+    n1-0525 李 meaning=plum
+    n1-0554 梅 meaning=plum
+
+[2] keyword=design
+    n1-0534 柄 meaning=design
+    n1-0852 綾 meaning=design
+
+[2] keyword=willow
+    n1-0539 柳 meaning=willow
+    n1-0569 楊 meaning=willow
+
+[2] keyword=swamp
+    n1-0606 沢 meaning=swamp
+    n1-0735 皐 meaning=swamp
+
+[2] keyword=peaceful
+    n1-0612 泰 meaning=peaceful
+    n1-1181 靖 meaning=peaceful
+
+[2] keyword=boil
+    n1-0638 湧 meaning=boil
+    n1-0674 煮 meaning=boil
+
+[2] keyword=do
+    n1-0670 為 meaning=do
+    n1-0913 致 meaning=do
+
+[2] keyword=congratulations
+    n1-0713 瑞 meaning=congratulations
+    n1-1047 賀 meaning=congratulations
+
+[2] keyword=large
+    n1-0766 碩 meaning=large
+    n1-0828 紘 meaning=large
+
+[2] keyword=harvest
+    n1-0786 稔 meaning=harvest
+    n1-0796 穫 meaning=harvest
+
+[2] keyword=gauze
+    n1-0827 紗 meaning=gauze
+    n1-0872 羅 meaning=gauze
+
+[2] keyword=barbarian
+    n1-0897 胡 meaning=barbarian
+    n1-0975 蛮 meaning=barbarian
+
+[2] keyword=wide
+    n4-055 広 meaning=wide
+    n1-0246 宏 meaning=wide
+
+[2] keyword=jasmine
+    n1-0934 茉 meaning=jasmine
+    n1-0938 莉 meaning=jasmine
+
+[2] keyword=collar
+    n1-0985 衿 meaning=collar
+    n1-0995 襟 meaning=collar
+
+[2] keyword=spring
+    n4-079 春 meaning=spring
+    n2-177 泉 meaning=spring
+

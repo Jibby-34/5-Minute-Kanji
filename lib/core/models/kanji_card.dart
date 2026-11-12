@@ -103,6 +103,7 @@ class KanjiCard {
     required this.character,
     required this.meaning,
     required this.keyword,
+    this.disambiguation,
     required this.mnemonic,
     this.components = const [],
     this.structuredComponents = const [],
@@ -124,6 +125,10 @@ class KanjiCard {
   final String character;
   final String meaning;
   final String keyword;
+
+  /// Short hint when [keyword] overlaps another card (1–4 words).
+  final String? disambiguation;
+
   final String mnemonic;
 
   /// Catalog labels, `character — name`. Empty when [structuredComponents]
@@ -181,4 +186,11 @@ class KanjiCard {
 
   /// Whether [commonWords] has at least one word with visible text.
   bool get hasCommonWords => commonWords.any((word) => !word.isBlank);
+
+  /// Trimmed extra gloss, or null when this card has none.
+  String? get disambiguationHint {
+    final hint = disambiguation?.trim();
+    if (hint == null || hint.isEmpty) return null;
+    return hint;
+  }
 }

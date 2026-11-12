@@ -1,0 +1,1570 @@
+[
+  {
+    "id": "n3-331",
+    "character": "進",
+    "meaning": "advance",
+    "keyword": "advance",
+    "groupKeyword": "advance"
+  },
+  {
+    "id": "n1-0501",
+    "character": "晋",
+    "meaning": "advance",
+    "keyword": "advance",
+    "groupKeyword": "advance"
+  },
+  {
+    "id": "n3-240",
+    "character": "皆",
+    "meaning": "all",
+    "keyword": "all",
+    "groupKeyword": "all"
+  },
+  {
+    "id": "n1-0376",
+    "character": "惣",
+    "meaning": "all",
+    "keyword": "all",
+    "groupKeyword": "all"
+  },
+  {
+    "id": "n2-301",
+    "character": "角",
+    "meaning": "angle",
+    "keyword": "angle",
+    "groupKeyword": "angle"
+  },
+  {
+    "id": "n1-0788",
+    "character": "稜",
+    "meaning": "angle",
+    "keyword": "angle",
+    "groupKeyword": "angle"
+  },
+  {
+    "id": "n3-279",
+    "character": "背",
+    "meaning": "back",
+    "keyword": "back",
+    "groupKeyword": "back"
+  },
+  {
+    "id": "n2-298",
+    "character": "裏",
+    "meaning": "back",
+    "keyword": "back",
+    "groupKeyword": "back"
+  },
+  {
+    "id": "n3-230",
+    "character": "球",
+    "meaning": "ball",
+    "keyword": "ball",
+    "groupKeyword": "ball"
+  },
+  {
+    "id": "n1-1182",
+    "character": "鞠",
+    "meaning": "ball",
+    "keyword": "ball",
+    "groupKeyword": "ball"
+  },
+  {
+    "id": "n1-0897",
+    "character": "胡",
+    "meaning": "barbarian",
+    "keyword": "barbarian",
+    "groupKeyword": "barbarian"
+  },
+  {
+    "id": "n1-0975",
+    "character": "蛮",
+    "meaning": "barbarian",
+    "keyword": "barbarian",
+    "groupKeyword": "barbarian"
+  },
+  {
+    "id": "n4-156",
+    "character": "青",
+    "meaning": "blue",
+    "keyword": "blue",
+    "groupKeyword": "blue"
+  },
+  {
+    "id": "n1-0765",
+    "character": "碧",
+    "meaning": "blue",
+    "keyword": "blue",
+    "groupKeyword": "blue"
+  },
+  {
+    "id": "n1-0950",
+    "character": "蒼",
+    "meaning": "blue",
+    "keyword": "blue",
+    "groupKeyword": "blue"
+  },
+  {
+    "id": "n1-0638",
+    "character": "湧",
+    "meaning": "boil",
+    "keyword": "boil",
+    "groupKeyword": "boil"
+  },
+  {
+    "id": "n1-0674",
+    "character": "煮",
+    "meaning": "boil",
+    "keyword": "boil",
+    "groupKeyword": "boil"
+  },
+  {
+    "id": "n4-077",
+    "character": "明",
+    "meaning": "bright",
+    "keyword": "bright",
+    "groupKeyword": "bright"
+  },
+  {
+    "id": "n1-0676",
+    "character": "熙",
+    "meaning": "bright",
+    "keyword": "bright",
+    "groupKeyword": "bright"
+  },
+  {
+    "id": "n2-207",
+    "character": "燃",
+    "meaning": "burn",
+    "keyword": "burn",
+    "groupKeyword": "burn"
+  },
+  {
+    "id": "n1-0678",
+    "character": "燎",
+    "meaning": "burn",
+    "keyword": "burn",
+    "groupKeyword": "burn"
+  },
+  {
+    "id": "n2-058",
+    "character": "営",
+    "meaning": "camp",
+    "keyword": "camp",
+    "groupKeyword": "camp"
+  },
+  {
+    "id": "n1-1152",
+    "character": "陣",
+    "meaning": "camp",
+    "keyword": "camp",
+    "groupKeyword": "camp"
+  },
+  {
+    "id": "n1-0524",
+    "character": "杉",
+    "meaning": "cedar",
+    "keyword": "cedar",
+    "groupKeyword": "cedar"
+  },
+  {
+    "id": "n1-0583",
+    "character": "檀",
+    "meaning": "cedar",
+    "keyword": "cedar",
+    "groupKeyword": "cedar"
+  },
+  {
+    "id": "n1-0033",
+    "character": "伯",
+    "meaning": "chief",
+    "keyword": "chief",
+    "groupKeyword": "chief"
+  },
+  {
+    "id": "n1-0244",
+    "character": "孟",
+    "meaning": "chief",
+    "keyword": "chief",
+    "groupKeyword": "chief"
+  },
+  {
+    "id": "n1-0022",
+    "character": "亮",
+    "meaning": "clear",
+    "keyword": "clear",
+    "groupKeyword": "clear"
+  },
+  {
+    "id": "n1-0089",
+    "character": "冴",
+    "meaning": "be clear",
+    "keyword": "clear",
+    "groupKeyword": "clear"
+  },
+  {
+    "id": "n1-0500",
+    "character": "晃",
+    "meaning": "clear",
+    "keyword": "clear",
+    "groupKeyword": "clear"
+  },
+  {
+    "id": "n1-0503",
+    "character": "晟",
+    "meaning": "clear",
+    "keyword": "clear",
+    "groupKeyword": "clear"
+  },
+  {
+    "id": "n1-0754",
+    "character": "瞭",
+    "meaning": "clear",
+    "keyword": "clear",
+    "groupKeyword": "clear"
+  },
+  {
+    "id": "n3-107",
+    "character": "寒",
+    "meaning": "cold",
+    "keyword": "cold",
+    "groupKeyword": "cold"
+  },
+  {
+    "id": "n1-0093",
+    "character": "凜",
+    "meaning": "cold",
+    "keyword": "cold",
+    "groupKeyword": "cold"
+  },
+  {
+    "id": "n1-0985",
+    "character": "衿",
+    "meaning": "collar",
+    "keyword": "collar",
+    "groupKeyword": "collar"
+  },
+  {
+    "id": "n1-0995",
+    "character": "襟",
+    "meaning": "collar",
+    "keyword": "collar",
+    "groupKeyword": "collar"
+  },
+  {
+    "id": "n1-0095",
+    "character": "凡",
+    "meaning": "commonplace",
+    "keyword": "commonplace",
+    "groupKeyword": "commonplace"
+  },
+  {
+    "id": "n1-0318",
+    "character": "庸",
+    "meaning": "commonplace",
+    "keyword": "commonplace",
+    "groupKeyword": "commonplace"
+  },
+  {
+    "id": "n1-0713",
+    "character": "瑞",
+    "meaning": "congratulations",
+    "keyword": "congratulations",
+    "groupKeyword": "congratulations"
+  },
+  {
+    "id": "n1-1047",
+    "character": "賀",
+    "meaning": "congratulations",
+    "keyword": "congratulations",
+    "groupKeyword": "congratulations"
+  },
+  {
+    "id": "n4-124",
+    "character": "考",
+    "meaning": "consider",
+    "keyword": "consider",
+    "groupKeyword": "consider"
+  },
+  {
+    "id": "n1-0375",
+    "character": "惟",
+    "meaning": "consider",
+    "keyword": "consider",
+    "groupKeyword": "consider"
+  },
+  {
+    "id": "n1-1013",
+    "character": "詢",
+    "meaning": "consult with",
+    "keyword": "consult with",
+    "groupKeyword": "consult with"
+  },
+  {
+    "id": "n1-1028",
+    "character": "諮",
+    "meaning": "consult with",
+    "keyword": "consult with",
+    "groupKeyword": "consult with"
+  },
+  {
+    "id": "n3-103",
+    "character": "容",
+    "meaning": "contain",
+    "keyword": "contain",
+    "groupKeyword": "contain"
+  },
+  {
+    "id": "n2-054",
+    "character": "含",
+    "meaning": "contain",
+    "keyword": "contain",
+    "groupKeyword": "contain"
+  },
+  {
+    "id": "n3-271",
+    "character": "緒",
+    "meaning": "cord",
+    "keyword": "cord",
+    "groupKeyword": "cord"
+  },
+  {
+    "id": "n1-0833",
+    "character": "索",
+    "meaning": "cord",
+    "keyword": "cord",
+    "groupKeyword": "cord"
+  },
+  {
+    "id": "n4-089",
+    "character": "正",
+    "meaning": "correct",
+    "keyword": "correct",
+    "groupKeyword": "correct"
+  },
+  {
+    "id": "n1-0124",
+    "character": "匡",
+    "meaning": "correct",
+    "keyword": "correct",
+    "groupKeyword": "correct"
+  },
+  {
+    "id": "n1-0489",
+    "character": "旦",
+    "meaning": "daybreak",
+    "keyword": "daybreak",
+    "groupKeyword": "daybreak"
+  },
+  {
+    "id": "n1-0507",
+    "character": "暁",
+    "meaning": "daybreak",
+    "keyword": "daybreak",
+    "groupKeyword": "daybreak"
+  },
+  {
+    "id": "n1-0534",
+    "character": "柄",
+    "meaning": "design",
+    "keyword": "design",
+    "groupKeyword": "design"
+  },
+  {
+    "id": "n1-0852",
+    "character": "綾",
+    "meaning": "design",
+    "keyword": "design",
+    "groupKeyword": "design"
+  },
+  {
+    "id": "n3-337",
+    "character": "遠",
+    "meaning": "distant",
+    "keyword": "distant",
+    "groupKeyword": "distant"
+  },
+  {
+    "id": "n1-1095",
+    "character": "遼",
+    "meaning": "distant",
+    "keyword": "distant",
+    "groupKeyword": "distant"
+  },
+  {
+    "id": "n3-342",
+    "character": "配",
+    "meaning": "distribute",
+    "keyword": "distribute",
+    "groupKeyword": "distribute"
+  },
+  {
+    "id": "n1-1189",
+    "character": "頒",
+    "meaning": "distribute",
+    "keyword": "distribute",
+    "groupKeyword": "distribute"
+  },
+  {
+    "id": "n1-0670",
+    "character": "為",
+    "meaning": "do",
+    "keyword": "do",
+    "groupKeyword": "do"
+  },
+  {
+    "id": "n1-0913",
+    "character": "致",
+    "meaning": "do",
+    "keyword": "do",
+    "groupKeyword": "do"
+  },
+  {
+    "id": "n3-276",
+    "character": "耳",
+    "meaning": "ear",
+    "keyword": "ear",
+    "groupKeyword": "ear"
+  },
+  {
+    "id": "n1-0793",
+    "character": "穂",
+    "meaning": "ear",
+    "keyword": "ear",
+    "groupKeyword": "ear"
+  },
+  {
+    "id": "n2-079",
+    "character": "宇",
+    "meaning": "eaves",
+    "keyword": "eaves",
+    "groupKeyword": "eaves"
+  },
+  {
+    "id": "n2-326",
+    "character": "軒",
+    "meaning": "eaves",
+    "keyword": "eaves",
+    "groupKeyword": "eaves"
+  },
+  {
+    "id": "n2-237",
+    "character": "競",
+    "meaning": "emulate",
+    "keyword": "emulate",
+    "groupKeyword": "emulate"
+  },
+  {
+    "id": "n1-0059",
+    "character": "倣",
+    "meaning": "emulate",
+    "keyword": "emulate",
+    "groupKeyword": "emulate"
+  },
+  {
+    "id": "n4-122",
+    "character": "終",
+    "meaning": "end",
+    "keyword": "end",
+    "groupKeyword": "end"
+  },
+  {
+    "id": "n3-186",
+    "character": "末",
+    "meaning": "end",
+    "keyword": "end",
+    "groupKeyword": "end"
+  },
+  {
+    "id": "n1-0803",
+    "character": "竣",
+    "meaning": "end",
+    "keyword": "end",
+    "groupKeyword": "end"
+  },
+  {
+    "id": "n1-0092",
+    "character": "凌",
+    "meaning": "endure",
+    "keyword": "endure",
+    "groupKeyword": "endure"
+  },
+  {
+    "id": "n1-0353",
+    "character": "忍",
+    "meaning": "endure",
+    "keyword": "endure",
+    "groupKeyword": "endure"
+  },
+  {
+    "id": "n4-041",
+    "character": "夕",
+    "meaning": "evening",
+    "keyword": "evening",
+    "groupKeyword": "evening"
+  },
+  {
+    "id": "n3-179",
+    "character": "暮",
+    "meaning": "evening",
+    "keyword": "evening",
+    "groupKeyword": "evening"
+  },
+  {
+    "id": "n1-0083",
+    "character": "免",
+    "meaning": "excuse",
+    "keyword": "excuse",
+    "groupKeyword": "excuse"
+  },
+  {
+    "id": "n1-0361",
+    "character": "恕",
+    "meaning": "excuse",
+    "keyword": "excuse",
+    "groupKeyword": "excuse"
+  },
+  {
+    "id": "n3-080",
+    "character": "在",
+    "meaning": "exist",
+    "keyword": "exist",
+    "groupKeyword": "exist"
+  },
+  {
+    "id": "n3-094",
+    "character": "存",
+    "meaning": "exist",
+    "keyword": "exist",
+    "groupKeyword": "exist"
+  },
+  {
+    "id": "n3-139",
+    "character": "恐",
+    "meaning": "fear",
+    "keyword": "fear",
+    "groupKeyword": "fear"
+  },
+  {
+    "id": "n1-0969",
+    "character": "虞",
+    "meaning": "fear",
+    "keyword": "fear",
+    "groupKeyword": "fear"
+  },
+  {
+    "id": "n3-143",
+    "character": "情",
+    "meaning": "feelings",
+    "keyword": "feelings",
+    "groupKeyword": "feelings"
+  },
+  {
+    "id": "n1-0400",
+    "character": "懐",
+    "meaning": "feelings",
+    "keyword": "feelings",
+    "groupKeyword": "feelings"
+  },
+  {
+    "id": "n5-010",
+    "character": "五",
+    "meaning": "five",
+    "keyword": "five",
+    "groupKeyword": "five"
+  },
+  {
+    "id": "n1-0029",
+    "character": "伍",
+    "meaning": "five",
+    "keyword": "five",
+    "groupKeyword": "five"
+  },
+  {
+    "id": "n1-0827",
+    "character": "紗",
+    "meaning": "gauze",
+    "keyword": "gauze",
+    "groupKeyword": "gauze"
+  },
+  {
+    "id": "n1-0872",
+    "character": "羅",
+    "meaning": "gauze",
+    "keyword": "gauze",
+    "groupKeyword": "gauze"
+  },
+  {
+    "id": "n1-0206",
+    "character": "士",
+    "meaning": "gentleman",
+    "keyword": "gentleman",
+    "groupKeyword": "gentleman"
+  },
+  {
+    "id": "n1-0837",
+    "character": "紳",
+    "meaning": "gentleman",
+    "keyword": "gentleman",
+    "groupKeyword": "gentleman"
+  },
+  {
+    "id": "n1-0153",
+    "character": "呉",
+    "meaning": "give",
+    "keyword": "give",
+    "groupKeyword": "give"
+  },
+  {
+    "id": "n1-0485",
+    "character": "施",
+    "meaning": "give",
+    "keyword": "give",
+    "groupKeyword": "give"
+  },
+  {
+    "id": "n5-067",
+    "character": "行",
+    "meaning": "go",
+    "keyword": "go",
+    "groupKeyword": "go"
+  },
+  {
+    "id": "n1-0763",
+    "character": "碁",
+    "meaning": "go",
+    "keyword": "go",
+    "groupKeyword": "go"
+  },
+  {
+    "id": "n1-0144",
+    "character": "叶",
+    "meaning": "grant",
+    "keyword": "grant",
+    "groupKeyword": "grant"
+  },
+  {
+    "id": "n1-1052",
+    "character": "賜",
+    "meaning": "grant",
+    "keyword": "grant",
+    "groupKeyword": "grant"
+  },
+  {
+    "id": "n2-257",
+    "character": "緑",
+    "meaning": "green",
+    "keyword": "green",
+    "groupKeyword": "green"
+  },
+  {
+    "id": "n1-0877",
+    "character": "翠",
+    "meaning": "green",
+    "keyword": "green",
+    "groupKeyword": "green"
+  },
+  {
+    "id": "n3-119",
+    "character": "幸",
+    "meaning": "happiness",
+    "keyword": "happiness",
+    "groupKeyword": "happiness"
+  },
+  {
+    "id": "n1-0058",
+    "character": "倖",
+    "meaning": "happiness",
+    "keyword": "happiness",
+    "groupKeyword": "happiness"
+  },
+  {
+    "id": "n1-0778",
+    "character": "禎",
+    "meaning": "happiness",
+    "keyword": "happiness",
+    "groupKeyword": "happiness"
+  },
+  {
+    "id": "n1-0786",
+    "character": "稔",
+    "meaning": "harvest",
+    "keyword": "harvest",
+    "groupKeyword": "harvest"
+  },
+  {
+    "id": "n1-0796",
+    "character": "穫",
+    "meaning": "harvest",
+    "keyword": "harvest",
+    "groupKeyword": "harvest"
+  },
+  {
+    "id": "n3-047",
+    "character": "助",
+    "meaning": "help",
+    "keyword": "help",
+    "groupKeyword": "help"
+  },
+  {
+    "id": "n1-0006",
+    "character": "丞",
+    "meaning": "help",
+    "keyword": "help",
+    "groupKeyword": "help"
+  },
+  {
+    "id": "n1-0039",
+    "character": "佑",
+    "meaning": "help",
+    "keyword": "help",
+    "groupKeyword": "help"
+  },
+  {
+    "id": "n1-0772",
+    "character": "祐",
+    "meaning": "help",
+    "keyword": "help",
+    "groupKeyword": "help"
+  },
+  {
+    "id": "n1-1069",
+    "character": "輔",
+    "meaning": "help",
+    "keyword": "help",
+    "groupKeyword": "help"
+  },
+  {
+    "id": "n1-0168",
+    "character": "喬",
+    "meaning": "high",
+    "keyword": "high",
+    "groupKeyword": "high"
+  },
+  {
+    "id": "n1-0269",
+    "character": "尭",
+    "meaning": "high",
+    "keyword": "high",
+    "groupKeyword": "high"
+  },
+  {
+    "id": "n1-0288",
+    "character": "峻",
+    "meaning": "high",
+    "keyword": "high",
+    "groupKeyword": "high"
+  },
+  {
+    "id": "n4-066",
+    "character": "意",
+    "meaning": "idea",
+    "keyword": "idea",
+    "groupKeyword": "idea"
+  },
+  {
+    "id": "n3-144",
+    "character": "想",
+    "meaning": "idea",
+    "keyword": "idea",
+    "groupKeyword": "idea"
+  },
+  {
+    "id": "n1-0934",
+    "character": "茉",
+    "meaning": "jasmine",
+    "keyword": "jasmine",
+    "groupKeyword": "jasmine"
+  },
+  {
+    "id": "n1-0938",
+    "character": "莉",
+    "meaning": "jasmine",
+    "keyword": "jasmine",
+    "groupKeyword": "jasmine"
+  },
+  {
+    "id": "n2-212",
+    "character": "玉",
+    "meaning": "jewel",
+    "keyword": "jewel",
+    "groupKeyword": "jewel"
+  },
+  {
+    "id": "n1-0709",
+    "character": "琳",
+    "meaning": "jewel",
+    "keyword": "jewel",
+    "groupKeyword": "jewel"
+  },
+  {
+    "id": "n1-0766",
+    "character": "碩",
+    "meaning": "large",
+    "keyword": "large",
+    "groupKeyword": "large"
+  },
+  {
+    "id": "n1-0828",
+    "character": "紘",
+    "meaning": "large",
+    "keyword": "large",
+    "groupKeyword": "large"
+  },
+  {
+    "id": "n2-064",
+    "character": "均",
+    "meaning": "level",
+    "keyword": "level",
+    "groupKeyword": "level"
+  },
+  {
+    "id": "n1-0314",
+    "character": "庄",
+    "meaning": "level",
+    "keyword": "level",
+    "groupKeyword": "level"
+  },
+  {
+    "id": "n1-0924",
+    "character": "芙",
+    "meaning": "lotus",
+    "keyword": "lotus",
+    "groupKeyword": "lotus"
+  },
+  {
+    "id": "n1-0952",
+    "character": "蓉",
+    "meaning": "lotus",
+    "keyword": "lotus",
+    "groupKeyword": "lotus"
+  },
+  {
+    "id": "n1-0953",
+    "character": "蓮",
+    "meaning": "lotus",
+    "keyword": "lotus",
+    "groupKeyword": "lotus"
+  },
+  {
+    "id": "n4-025",
+    "character": "医",
+    "meaning": "medicine",
+    "keyword": "medicine",
+    "groupKeyword": "medicine"
+  },
+  {
+    "id": "n3-290",
+    "character": "薬",
+    "meaning": "medicine",
+    "keyword": "medicine",
+    "groupKeyword": "medicine"
+  },
+  {
+    "id": "n4-009",
+    "character": "会",
+    "meaning": "meet",
+    "keyword": "meet",
+    "groupKeyword": "meet"
+  },
+  {
+    "id": "n1-1086",
+    "character": "遇",
+    "meaning": "meet",
+    "keyword": "meet",
+    "groupKeyword": "meet"
+  },
+  {
+    "id": "n4-084",
+    "character": "朝",
+    "meaning": "morning",
+    "keyword": "morning",
+    "groupKeyword": "morning"
+  },
+  {
+    "id": "n1-0504",
+    "character": "晨",
+    "meaning": "morning",
+    "keyword": "morning",
+    "groupKeyword": "morning"
+  },
+  {
+    "id": "n4-146",
+    "character": "通",
+    "meaning": "pass through",
+    "keyword": "pass through",
+    "groupKeyword": "pass through"
+  },
+  {
+    "id": "n1-0019",
+    "character": "亨",
+    "meaning": "pass through",
+    "keyword": "pass through",
+    "groupKeyword": "pass through"
+  },
+  {
+    "id": "n1-0612",
+    "character": "泰",
+    "meaning": "peaceful",
+    "keyword": "peaceful",
+    "groupKeyword": "peaceful"
+  },
+  {
+    "id": "n1-1181",
+    "character": "靖",
+    "meaning": "peaceful",
+    "keyword": "peaceful",
+    "groupKeyword": "peaceful"
+  },
+  {
+    "id": "n1-0284",
+    "character": "岳",
+    "meaning": "peak",
+    "keyword": "peak",
+    "groupKeyword": "peak"
+  },
+  {
+    "id": "n1-0296",
+    "character": "嶺",
+    "meaning": "peak",
+    "keyword": "peak",
+    "groupKeyword": "peak"
+  },
+  {
+    "id": "n4-104",
+    "character": "画",
+    "meaning": "picture",
+    "keyword": "picture",
+    "groupKeyword": "picture"
+  },
+  {
+    "id": "n3-268",
+    "character": "絵",
+    "meaning": "picture",
+    "keyword": "picture",
+    "groupKeyword": "picture"
+  },
+  {
+    "id": "n2-122",
+    "character": "挟",
+    "meaning": "pinch",
+    "keyword": "pinch",
+    "groupKeyword": "pinch"
+  },
+  {
+    "id": "n1-0458",
+    "character": "摘",
+    "meaning": "pinch",
+    "keyword": "pinch",
+    "groupKeyword": "pinch"
+  },
+  {
+    "id": "n4-038",
+    "character": "場",
+    "meaning": "place",
+    "keyword": "place",
+    "groupKeyword": "place"
+  },
+  {
+    "id": "n3-151",
+    "character": "所",
+    "meaning": "place",
+    "keyword": "place",
+    "groupKeyword": "place"
+  },
+  {
+    "id": "n1-0525",
+    "character": "李",
+    "meaning": "plum",
+    "keyword": "plum",
+    "groupKeyword": "plum"
+  },
+  {
+    "id": "n1-0554",
+    "character": "梅",
+    "meaning": "plum",
+    "keyword": "plum",
+    "groupKeyword": "plum"
+  },
+  {
+    "id": "n4-113",
+    "character": "研",
+    "meaning": "polish",
+    "keyword": "polish",
+    "groupKeyword": "polish"
+  },
+  {
+    "id": "n1-0708",
+    "character": "琢",
+    "meaning": "polish",
+    "keyword": "polish",
+    "groupKeyword": "polish"
+  },
+  {
+    "id": "n1-0715",
+    "character": "瑳",
+    "meaning": "polish",
+    "keyword": "polish",
+    "groupKeyword": "polish"
+  },
+  {
+    "id": "n2-187",
+    "character": "清",
+    "meaning": "pure",
+    "keyword": "pure",
+    "groupKeyword": "pure"
+  },
+  {
+    "id": "n1-0629",
+    "character": "淳",
+    "meaning": "pure",
+    "keyword": "pure",
+    "groupKeyword": "pure"
+  },
+  {
+    "id": "n1-0433",
+    "character": "挙",
+    "meaning": "raise",
+    "keyword": "raise",
+    "groupKeyword": "raise"
+  },
+  {
+    "id": "n1-0448",
+    "character": "揚",
+    "meaning": "raise",
+    "keyword": "raise",
+    "groupKeyword": "raise"
+  },
+  {
+    "id": "n2-213",
+    "character": "珍",
+    "meaning": "rare",
+    "keyword": "rare",
+    "groupKeyword": "rare"
+  },
+  {
+    "id": "n1-0785",
+    "character": "稀",
+    "meaning": "rare",
+    "keyword": "rare",
+    "groupKeyword": "rare"
+  },
+  {
+    "id": "n3-263",
+    "character": "精",
+    "meaning": "refined",
+    "keyword": "refined",
+    "groupKeyword": "refined"
+  },
+  {
+    "id": "n1-0339",
+    "character": "彬",
+    "meaning": "refined",
+    "keyword": "refined",
+    "groupKeyword": "refined"
+  },
+  {
+    "id": "n2-185",
+    "character": "涼",
+    "meaning": "refreshing",
+    "keyword": "refreshing",
+    "groupKeyword": "refreshing"
+  },
+  {
+    "id": "n1-0682",
+    "character": "爽",
+    "meaning": "refreshing",
+    "keyword": "refreshing",
+    "groupKeyword": "refreshing"
+  },
+  {
+    "id": "n1-0364",
+    "character": "恭",
+    "meaning": "respect",
+    "keyword": "respect",
+    "groupKeyword": "respect"
+  },
+  {
+    "id": "n1-0587",
+    "character": "欽",
+    "meaning": "respect",
+    "keyword": "respect",
+    "groupKeyword": "respect"
+  },
+  {
+    "id": "n3-150",
+    "character": "戻",
+    "meaning": "re-",
+    "keyword": "return",
+    "groupKeyword": "return"
+  },
+  {
+    "id": "n3-323",
+    "character": "返",
+    "meaning": "return",
+    "keyword": "return",
+    "groupKeyword": "return"
+  },
+  {
+    "id": "n3-003",
+    "character": "乗",
+    "meaning": "ride",
+    "keyword": "ride",
+    "groupKeyword": "ride"
+  },
+  {
+    "id": "n1-1068",
+    "character": "載",
+    "meaning": "ride",
+    "keyword": "ride",
+    "groupKeyword": "ride"
+  },
+  {
+    "id": "n5-043",
+    "character": "川",
+    "meaning": "river",
+    "keyword": "river",
+    "groupKeyword": "river"
+  },
+  {
+    "id": "n2-173",
+    "character": "河",
+    "meaning": "river",
+    "keyword": "river",
+    "groupKeyword": "river"
+  },
+  {
+    "id": "n4-140",
+    "character": "走",
+    "meaning": "run",
+    "keyword": "run",
+    "groupKeyword": "run"
+  },
+  {
+    "id": "n1-0215",
+    "character": "奔",
+    "meaning": "run",
+    "keyword": "run",
+    "groupKeyword": "run"
+  },
+  {
+    "id": "n2-225",
+    "character": "砂",
+    "meaning": "sand",
+    "keyword": "sand",
+    "groupKeyword": "sand"
+  },
+  {
+    "id": "n1-0604",
+    "character": "沙",
+    "meaning": "sand",
+    "keyword": "sand",
+    "groupKeyword": "sand"
+  },
+  {
+    "id": "n1-0509",
+    "character": "暉",
+    "meaning": "shine",
+    "keyword": "shine",
+    "groupKeyword": "shine"
+  },
+  {
+    "id": "n1-0680",
+    "character": "燿",
+    "meaning": "shine",
+    "keyword": "shine",
+    "groupKeyword": "shine"
+  },
+  {
+    "id": "n1-0880",
+    "character": "耀",
+    "meaning": "shine",
+    "keyword": "shine",
+    "groupKeyword": "shine"
+  },
+  {
+    "id": "n4-052",
+    "character": "屋",
+    "meaning": "shop",
+    "keyword": "shop",
+    "groupKeyword": "shop"
+  },
+  {
+    "id": "n4-056",
+    "character": "店",
+    "meaning": "shop",
+    "keyword": "shop",
+    "groupKeyword": "shop"
+  },
+  {
+    "id": "n1-0917",
+    "character": "舗",
+    "meaning": "shop",
+    "keyword": "shop",
+    "groupKeyword": "shop"
+  },
+  {
+    "id": "n3-346",
+    "character": "阪",
+    "meaning": "slope",
+    "keyword": "slope",
+    "groupKeyword": "slope"
+  },
+  {
+    "id": "n2-063",
+    "character": "坂",
+    "meaning": "slope",
+    "keyword": "slope",
+    "groupKeyword": "slope"
+  },
+  {
+    "id": "n4-087",
+    "character": "歌",
+    "meaning": "song",
+    "keyword": "song",
+    "groupKeyword": "song"
+  },
+  {
+    "id": "n1-0157",
+    "character": "唄",
+    "meaning": "song",
+    "keyword": "song",
+    "groupKeyword": "song"
+  },
+  {
+    "id": "n1-1035",
+    "character": "謡",
+    "meaning": "song",
+    "keyword": "song",
+    "groupKeyword": "song"
+  },
+  {
+    "id": "n4-079",
+    "character": "春",
+    "meaning": "spring",
+    "keyword": "spring",
+    "groupKeyword": "spring"
+  },
+  {
+    "id": "n2-177",
+    "character": "泉",
+    "meaning": "spring",
+    "keyword": "spring",
+    "groupKeyword": "spring"
+  },
+  {
+    "id": "n4-029",
+    "character": "台",
+    "meaning": "stand",
+    "keyword": "stand",
+    "groupKeyword": "stand"
+  },
+  {
+    "id": "n4-119",
+    "character": "立",
+    "meaning": "stand",
+    "keyword": "stand",
+    "groupKeyword": "stand"
+  },
+  {
+    "id": "n2-135",
+    "character": "星",
+    "meaning": "star",
+    "keyword": "star",
+    "groupKeyword": "star"
+  },
+  {
+    "id": "n1-0212",
+    "character": "奎",
+    "meaning": "star",
+    "keyword": "star",
+    "groupKeyword": "star"
+  },
+  {
+    "id": "n1-0332",
+    "character": "張",
+    "meaning": "stretch",
+    "keyword": "stretch",
+    "groupKeyword": "stretch"
+  },
+  {
+    "id": "n1-0512",
+    "character": "暢",
+    "meaning": "stretch",
+    "keyword": "stretch",
+    "groupKeyword": "stretch"
+  },
+  {
+    "id": "n4-060",
+    "character": "強",
+    "meaning": "strong",
+    "keyword": "strong",
+    "groupKeyword": "strong"
+  },
+  {
+    "id": "n1-0042",
+    "character": "侃",
+    "meaning": "strong",
+    "keyword": "strong",
+    "groupKeyword": "strong"
+  },
+  {
+    "id": "n1-0116",
+    "character": "勁",
+    "meaning": "strong",
+    "keyword": "strong",
+    "groupKeyword": "strong"
+  },
+  {
+    "id": "n1-0595",
+    "character": "毅",
+    "meaning": "strong",
+    "keyword": "strong",
+    "groupKeyword": "strong"
+  },
+  {
+    "id": "n3-360",
+    "character": "頂",
+    "meaning": "summit",
+    "keyword": "summit",
+    "groupKeyword": "summit"
+  },
+  {
+    "id": "n1-0287",
+    "character": "峰",
+    "meaning": "summit",
+    "keyword": "summit",
+    "groupKeyword": "summit"
+  },
+  {
+    "id": "n1-0606",
+    "character": "沢",
+    "meaning": "swamp",
+    "keyword": "swamp",
+    "groupKeyword": "swamp"
+  },
+  {
+    "id": "n1-0735",
+    "character": "皐",
+    "meaning": "swamp",
+    "keyword": "swamp",
+    "groupKeyword": "swamp"
+  },
+  {
+    "id": "n3-086",
+    "character": "太",
+    "meaning": "thick",
+    "keyword": "thick",
+    "groupKeyword": "thick"
+  },
+  {
+    "id": "n2-048",
+    "character": "厚",
+    "meaning": "thick",
+    "keyword": "thick",
+    "groupKeyword": "thick"
+  },
+  {
+    "id": "n4-004",
+    "character": "事",
+    "meaning": "thing",
+    "keyword": "thing",
+    "groupKeyword": "thing"
+  },
+  {
+    "id": "n4-097",
+    "character": "物",
+    "meaning": "thing",
+    "keyword": "thing",
+    "groupKeyword": "thing"
+  },
+  {
+    "id": "n2-249",
+    "character": "糸",
+    "meaning": "thread",
+    "keyword": "thread",
+    "groupKeyword": "thread"
+  },
+  {
+    "id": "n1-0850",
+    "character": "綸",
+    "meaning": "thread",
+    "keyword": "thread",
+    "groupKeyword": "thread"
+  },
+  {
+    "id": "n4-143",
+    "character": "転",
+    "meaning": "turn",
+    "keyword": "turn",
+    "groupKeyword": "turn"
+  },
+  {
+    "id": "n3-235",
+    "character": "番",
+    "meaning": "turn",
+    "keyword": "turn",
+    "groupKeyword": "turn"
+  },
+  {
+    "id": "n3-185",
+    "character": "未",
+    "meaning": "un-",
+    "keyword": "un-",
+    "groupKeyword": "un-"
+  },
+  {
+    "id": "n3-357",
+    "character": "非",
+    "meaning": "un-",
+    "keyword": "un-",
+    "groupKeyword": "un-"
+  },
+  {
+    "id": "n4-013",
+    "character": "使",
+    "meaning": "use",
+    "keyword": "use",
+    "groupKeyword": "use"
+  },
+  {
+    "id": "n4-101",
+    "character": "用",
+    "meaning": "use",
+    "keyword": "use",
+    "groupKeyword": "use"
+  },
+  {
+    "id": "n3-051",
+    "character": "勝",
+    "meaning": "victory",
+    "keyword": "victory",
+    "groupKeyword": "victory"
+  },
+  {
+    "id": "n1-0437",
+    "character": "捷",
+    "meaning": "victory",
+    "keyword": "victory",
+    "groupKeyword": "victory"
+  },
+  {
+    "id": "n2-143",
+    "character": "村",
+    "meaning": "village",
+    "keyword": "village",
+    "groupKeyword": "village"
+  },
+  {
+    "id": "n1-1098",
+    "character": "邑",
+    "meaning": "village",
+    "keyword": "village",
+    "groupKeyword": "village"
+  },
+  {
+    "id": "n2-106",
+    "character": "庫",
+    "meaning": "warehouse",
+    "keyword": "warehouse",
+    "groupKeyword": "warehouse"
+  },
+  {
+    "id": "n1-0057",
+    "character": "倉",
+    "meaning": "warehouse",
+    "keyword": "warehouse",
+    "groupKeyword": "warehouse"
+  },
+  {
+    "id": "n5-064",
+    "character": "白",
+    "meaning": "white",
+    "keyword": "white",
+    "groupKeyword": "white"
+  },
+  {
+    "id": "n1-0736",
+    "character": "皓",
+    "meaning": "white",
+    "keyword": "white",
+    "groupKeyword": "white"
+  },
+  {
+    "id": "n4-055",
+    "character": "広",
+    "meaning": "wide",
+    "keyword": "wide",
+    "groupKeyword": "wide"
+  },
+  {
+    "id": "n1-0246",
+    "character": "宏",
+    "meaning": "wide",
+    "keyword": "wide",
+    "groupKeyword": "wide"
+  },
+  {
+    "id": "n1-0539",
+    "character": "柳",
+    "meaning": "willow",
+    "keyword": "willow",
+    "groupKeyword": "willow"
+  },
+  {
+    "id": "n1-0569",
+    "character": "楊",
+    "meaning": "willow",
+    "keyword": "willow",
+    "groupKeyword": "willow"
+  },
+  {
+    "id": "n1-0357",
+    "character": "怜",
+    "meaning": "wise",
+    "keyword": "wise",
+    "groupKeyword": "wise"
+  },
+  {
+    "id": "n1-0387",
+    "character": "慧",
+    "meaning": "wise",
+    "keyword": "wise",
+    "groupKeyword": "wise"
+  },
+  {
+    "id": "n1-0885",
+    "character": "聡",
+    "meaning": "wise",
+    "keyword": "wise",
+    "groupKeyword": "wise"
+  },
+  {
+    "id": "n2-145",
+    "character": "林",
+    "meaning": "woods",
+    "keyword": "woods",
+    "groupKeyword": "woods"
+  },
+  {
+    "id": "n1-0527",
+    "character": "杜",
+    "meaning": "woods",
+    "keyword": "woods",
+    "groupKeyword": "woods"
+  },
+  {
+    "id": "n4-002",
+    "character": "世",
+    "meaning": "world",
+    "keyword": "world",
+    "groupKeyword": "world"
+  },
+  {
+    "id": "n4-105",
+    "character": "界",
+    "meaning": "world",
+    "keyword": "world",
+    "groupKeyword": "world"
+  }
+]

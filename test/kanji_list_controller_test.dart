@@ -482,4 +482,27 @@ void main() {
       ]);
     },
   );
+
+  test('search matches disambiguation hints', () async {
+    final controller = KanjiListController(
+      kanjiRepository: FakeKanjiRepository([
+        testCard('one', keyword: 'one', character: '一'),
+        testCard(
+          'world',
+          keyword: 'world',
+          character: '世',
+          disambiguation: 'generation / era',
+        ),
+      ]),
+      progressRepository: MemoryProgressRepository(),
+    );
+    await controller.load();
+
+    controller.setQuery('generation');
+    expect(controller.visibleItems.single.card.id, 'world');
+    controller.setQuery('ERA');
+    expect(controller.visibleItems.single.card.character, '世');
+    controller.setQuery('one');
+    expect(controller.visibleItems.single.card.id, 'one');
+  });
 }

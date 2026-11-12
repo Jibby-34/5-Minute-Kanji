@@ -13,6 +13,7 @@ KanjiCard testCard(
   String id, {
   String? keyword,
   String? character,
+  String? disambiguation,
   JlptLevel jlptLevel = JlptLevel.none,
   int difficulty = 0,
   int frequency = 0,
@@ -23,6 +24,7 @@ KanjiCard testCard(
     character: character ?? id,
     meaning: keyword ?? id,
     keyword: keyword ?? id,
+    disambiguation: disambiguation,
     mnemonic: 'mnemonic $id',
     components: components,
     strokeCount: 1,

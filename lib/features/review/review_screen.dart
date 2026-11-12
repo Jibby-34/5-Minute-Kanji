@@ -23,6 +23,7 @@ import '../../services/daily_workload.dart';
 import '../../services/shake_detector.dart';
 import '../../services/srs_scheduler.dart';
 import '../../widgets/bottom_action_inset.dart';
+import '../../widgets/disambiguation_hint.dart';
 import '../../widgets/first_review_indicator.dart';
 import '../../widgets/primary_button.dart';
 import '../../widgets/writing_sheet_layout.dart';
@@ -717,27 +718,43 @@ class _PromptBody extends StatelessWidget {
         height: 1.15,
       ),
     );
-    if (!showFirstReviewIndicator) return keyword;
+    final hint = card.disambiguationHint;
+    Widget prompt = keyword;
+    if (showFirstReviewIndicator) {
+      prompt = LayoutBuilder(
+        builder: (context, constraints) {
+          final maxWidth = constraints.maxWidth;
+          final textWidth = maxWidth.isFinite
+              ? math.max(0.0, maxWidth - 40)
+              : double.infinity;
+          return Row(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              ConstrainedBox(
+                constraints: BoxConstraints(maxWidth: textWidth),
+                child: keyword,
+              ),
+              const SizedBox(width: 4),
+              const FirstReviewIndicator(),
+            ],
+          );
+        },
+      );
+    }
+    if (hint == null) return prompt;
 
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        final maxWidth = constraints.maxWidth;
-        final textWidth = maxWidth.isFinite
-            ? math.max(0.0, maxWidth - 40)
-            : double.infinity;
-        return Row(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            ConstrainedBox(
-              constraints: BoxConstraints(maxWidth: textWidth),
-              child: keyword,
-            ),
-            const SizedBox(width: 4),
-            const FirstReviewIndicator(),
-          ],
-        );
-      },
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        prompt,
+        ...DisambiguationHint.below(
+          hint,
+          textAlign: TextAlign.center,
+          fontSize: 15,
+          gap: 6,
+        ),
+      ],
     );
   }
 }
