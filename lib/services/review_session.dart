@@ -36,7 +36,8 @@ class ReviewSession {
   /// [_againBudgets] on top of the clock.
   final Map<String, Duration> _againSpent = {};
   int _passedCount = 0;
-  int _adjustmentsMade = 0;
+  int _trimsMade = 0;
+  int _additionsMade = 0;
 
   /// Cards originally selected for this sitting. Used to re-offer due cards.
   List<KanjiCard> get pool => List<KanjiCard>.unmodifiable(_pool);
@@ -87,7 +88,13 @@ class ReviewSession {
   bool isDropped(String cardId) => _droppedIds.contains(cardId);
 
   /// Remove or swap steps already applied in this sitting.
-  int get adjustmentsMade => _adjustmentsMade;
+  int get trimsMade => _trimsMade;
+
+  /// Leftover due reviews appended because this sitting was short.
+  int get additionsMade => _additionsMade;
+
+  /// Remove, swap, or add steps already applied in this sitting.
+  int get adjustmentsMade => _trimsMade + _additionsMade;
 
   /// 1-based index shown as `n / total`. Requeued cards cap at [initialCount].
   int get displayIndex {
@@ -188,7 +195,7 @@ class ReviewSession {
           _pool.add(added);
         }
         _queue.add(added);
-        _adjustmentsMade++;
+        _additionsMade++;
         continue;
       }
       final removedId = step.removedId;
@@ -208,7 +215,7 @@ class ReviewSession {
           _pool.add(replacement);
         }
       }
-      _adjustmentsMade++;
+      _trimsMade++;
     }
   }
 
@@ -224,7 +231,8 @@ class ReviewSession {
       againBudgets: Map<String, Duration>.from(_againBudgets),
       againSpent: Map<String, Duration>.from(_againSpent),
       passedCount: _passedCount,
-      adjustmentsMade: _adjustmentsMade,
+      trimsMade: _trimsMade,
+      additionsMade: _additionsMade,
     );
   }
 
@@ -255,7 +263,8 @@ class ReviewSession {
       ..clear()
       ..addAll(checkpoint.againSpent);
     _passedCount = checkpoint.passedCount;
-    _adjustmentsMade = checkpoint.adjustmentsMade;
+    _trimsMade = checkpoint.trimsMade;
+    _additionsMade = checkpoint.additionsMade;
   }
 
   SessionSummary toSummary({
@@ -285,7 +294,8 @@ class ReviewSessionCheckpoint {
     required this.againBudgets,
     required this.againSpent,
     required this.passedCount,
-    required this.adjustmentsMade,
+    required this.trimsMade,
+    required this.additionsMade,
   });
 
   final List<KanjiCard> pool;
@@ -297,5 +307,6 @@ class ReviewSessionCheckpoint {
   final Map<String, Duration> againBudgets;
   final Map<String, Duration> againSpent;
   final int passedCount;
-  final int adjustmentsMade;
+  final int trimsMade;
+  final int additionsMade;
 }

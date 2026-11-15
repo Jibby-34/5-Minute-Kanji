@@ -74,56 +74,41 @@ void main() {
     );
   }
 
-  test(
-    'allotted cards under the goal offer Continue, then study the next card',
-    () async {
-      final deck = [testCard('allotted'), testCard('next'), testCard('later')];
-      final progress = progressFor({
-        'allotted': reviewCard('allotted', incorrect: 1),
-        'next': reviewCard('next', incorrect: 4),
-        'later': reviewCard('later', dueAt: now.add(const Duration(days: 3))),
-      });
-      final current = now.add(const Duration(minutes: 3));
-      final before = progress.schedules['next']!.toJson();
-      final controller = await open(
-        progress: progress,
-        deck: deck,
-        sessionCards: [deck.first],
-        clock: () => current,
-      );
+  test('allotted cards under the goal pull in leftover due reviews', () async {
+    final deck = [testCard('allotted'), testCard('next'), testCard('later')];
+    final progress = progressFor({
+      'allotted': reviewCard('allotted', incorrect: 1),
+      'next': reviewCard('next', incorrect: 4),
+      'later': reviewCard('later', dueAt: now.add(const Duration(days: 3))),
+    });
+    final current = now.add(const Duration(minutes: 3));
+    final before = progress.schedules['next']!.toJson();
+    final controller = await open(
+      progress: progress,
+      deck: deck,
+      sessionCards: [deck.first],
+      clock: () => current,
+    );
 
-      final prompt = await pass(controller);
-      expect(prompt, isNotNull);
-      expect(prompt!.canContinue, isTrue);
-      expect(controller.isComplete, isTrue);
-      expect(controller.session.startTime, now);
-      expect(
-        controller.reviewClock.totalAt(current),
-        const Duration(minutes: 3),
-      );
-      expect(progress.schedules['next']!.toJson(), before);
-      expect(progress.history.map((entry) => entry.cardId), ['allotted']);
+    expect(await pass(controller), isNull);
+    expect(controller.isComplete, isFalse);
+    expect(controller.current?.id, 'next');
+    expect(controller.session.startTime, now);
+    expect(controller.reviewClock.totalAt(current), const Duration(minutes: 3));
+    expect(progress.schedules['next']!.toJson(), before);
+    expect(progress.history.map((entry) => entry.cardId), ['allotted']);
 
-      expect(await controller.continuePastAllotment(), isNull);
-      expect(controller.isComplete, isFalse);
-      expect(controller.current?.id, 'next');
-      expect(progress.schedules['next']!.toJson(), before);
-
-      final summary = await pass(controller);
-      expect(summary, isNotNull);
-      expect(summary!.canContinue, isFalse);
-      expect(summary.reviewedCount, 2);
-      expect(summary.duration, const Duration(minutes: 3));
-      expect(progress.history.map((entry) => entry.cardId), [
-        'allotted',
-        'next',
-      ]);
-      expect(
-        progress.schedules['later']!.dueAt,
-        now.add(const Duration(days: 3)),
-      );
-    },
-  );
+    final summary = await pass(controller);
+    expect(summary, isNotNull);
+    expect(summary!.canContinue, isFalse);
+    expect(summary.reviewedCount, 2);
+    expect(summary.duration, const Duration(minutes: 3));
+    expect(progress.history.map((entry) => entry.cardId), ['allotted', 'next']);
+    expect(
+      progress.schedules['later']!.dueAt,
+      now.add(const Duration(days: 3)),
+    );
+  });
 
   test(
     'allotted cards finished with no due cards left complete immediately',
@@ -171,7 +156,7 @@ void main() {
           cardIds: const ['first'],
         ),
       );
-      var current = now.add(const Duration(minutes: 3));
+      final current = now.add(goal);
       final controller = await open(
         progress: progress,
         deck: deck,
@@ -179,29 +164,13 @@ void main() {
         clock: () => current,
       );
 
-      final prompt = await pass(controller);
-      expect(prompt, isNotNull);
-      expect(prompt!.canContinue, isTrue);
-      expect(controller.isComplete, isTrue);
-      expect(progress.schedules['third']!.reviewCount, 3);
-      expect(progress.dailySessionPlan.completed, isTrue);
-
-      expect(await controller.continuePastAllotment(), isNull);
-      expect(controller.current?.id, 'second');
-
-      current = now.add(goal);
       final summary = await pass(controller);
-
       expect(summary, isNotNull);
       expect(summary!.canContinue, isFalse);
       expect(controller.isComplete, isTrue);
-      expect(controller.session.startTime, now);
-      expect(summary!.duration, goal);
-      expect(summary.reviewedCount, 2);
-      expect(progress.history.map((entry) => entry.cardId), [
-        'first',
-        'second',
-      ]);
+      expect(summary.reviewedCount, 1);
+      expect(progress.history.map((entry) => entry.cardId), ['first']);
+      expect(progress.schedules['second']!.reviewCount, 4);
       expect(progress.schedules['third']!.reviewCount, 3);
       expect(progress.dailySessionPlan.completed, isTrue);
 
@@ -210,7 +179,7 @@ void main() {
         progressRepository: progress,
       ).read(now: current);
       expect(workload.studyAnywayAvailable, isTrue);
-      expect(workload.overflowCards.map((card) => card.id), ['third']);
+      expect(workload.overflowCards.map((card) => card.id), contains('third'));
     },
   );
 
@@ -288,18 +257,6 @@ void main() {
         summary = await controller.rate(ReviewResult.good);
       }
 
-      expect(shown, ['mid', 'low']);
-      expect(summary, isNotNull);
-      expect(summary!.canContinue, isTrue);
-      expect(await controller.continuePastAllotment(), isNull);
-      summary = null;
-
-      while (summary == null && shown.length < 8) {
-        shown.add(controller.current!.id);
-        controller.submit();
-        summary = await controller.rate(ReviewResult.good);
-      }
-
       expect(shown, ['mid', 'low', 'top', 'high']);
       expect(shown.toSet(), hasLength(shown.length));
       expect(shown, isNot(contains('future')));
@@ -307,45 +264,30 @@ void main() {
     },
   );
 
-  test(
-    'a card that becomes ineligible during the session is skipped',
-    () async {
-      final deck = [testCard('allotted'), testCard('keep'), testCard('drop')];
-      final progress = progressFor({
-        'allotted': reviewCard('allotted', incorrect: 1),
-        'keep': reviewCard('keep', incorrect: 5),
-        'drop': reviewCard('drop', incorrect: 3),
-      });
-      final controller = await open(
-        progress: progress,
-        deck: deck,
-        sessionCards: [deck.first],
-        clock: () => now.add(const Duration(minutes: 1)),
-      );
+  test('a card that is not due is not pulled into a short sitting', () async {
+    final deck = [testCard('allotted'), testCard('keep'), testCard('drop')];
+    final progress = progressFor({
+      'allotted': reviewCard('allotted', incorrect: 1),
+      'keep': reviewCard('keep', incorrect: 5),
+      'drop': reviewCard('drop', dueAt: now.add(const Duration(days: 3))),
+    });
+    final controller = await open(
+      progress: progress,
+      deck: deck,
+      sessionCards: [deck.first],
+      clock: () => now.add(const Duration(minutes: 1)),
+    );
 
-      final prompt = await pass(controller);
-      expect(prompt, isNotNull);
-      expect(prompt!.canContinue, isTrue);
-      expect(await controller.continuePastAllotment(), isNull);
-      expect(controller.current?.id, 'keep');
-      await progress.saveSchedule(
-        reviewCard('drop', dueAt: now.add(const Duration(days: 3))),
-      );
+    expect(await pass(controller), isNull);
+    expect(controller.current?.id, 'keep');
 
-      final summary = await pass(controller);
-      expect(summary, isNotNull);
-      expect(controller.isComplete, isTrue);
-      expect(progress.history.map((entry) => entry.cardId), [
-        'allotted',
-        'keep',
-      ]);
-      expect(
-        progress.schedules['drop']!.dueAt,
-        now.add(const Duration(days: 3)),
-      );
-      expect(progress.schedules['drop']!.reviewCount, 1);
-    },
-  );
+    final summary = await pass(controller);
+    expect(summary, isNotNull);
+    expect(controller.isComplete, isTrue);
+    expect(progress.history.map((entry) => entry.cardId), ['allotted', 'keep']);
+    expect(progress.schedules['drop']!.dueAt, now.add(const Duration(days: 3)));
+    expect(progress.schedules['drop']!.reviewCount, 1);
+  });
 
   test(
     'Again keeps the existing requeue and does not pull the next card',
@@ -354,7 +296,7 @@ void main() {
       final progress = progressFor({
         'allotted': reviewCard('allotted', incorrect: 1),
         'retry': reviewCard('retry', incorrect: 6),
-        'after': reviewCard('after', incorrect: 3),
+        'after': reviewCard('after', dueAt: now.add(const Duration(days: 2))),
       });
       final current = now.add(const Duration(minutes: 1));
       final controller = await open(
@@ -364,10 +306,7 @@ void main() {
         clock: () => current,
       );
 
-      final prompt = await pass(controller);
-      expect(prompt, isNotNull);
-      expect(prompt!.canContinue, isTrue);
-      expect(await controller.continuePastAllotment(), isNull);
+      expect(await pass(controller), isNull);
       expect(controller.current?.id, 'retry');
       controller.submit();
       expect(await controller.rate(ReviewResult.again), isNull);
@@ -378,21 +317,21 @@ void main() {
       expect(retried.state, CardLearningState.learning);
       expect(retried.dueAt, current.add(SrsEngine.againInterval));
       expect(retried.incorrectCount, 7);
-      expect(progress.schedules['after']!.incorrectCount, 3);
+      expect(
+        progress.schedules['after']!.dueAt,
+        now.add(const Duration(days: 2)),
+      );
       expect(progress.history.map((entry) => entry.rating), [
         ReviewResult.good,
         ReviewResult.again,
       ]);
 
-      expect(await pass(controller), isNull);
-      expect(controller.current?.id, 'after');
       final summary = await pass(controller);
       expect(summary, isNotNull);
       expect(progress.history.map((entry) => entry.cardId), [
         'allotted',
         'retry',
         'retry',
-        'after',
       ]);
     },
   );

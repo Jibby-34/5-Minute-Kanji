@@ -346,6 +346,25 @@ class DailyWorkloadService {
     );
   }
 
+  /// Due reviews that today's sitting did not take, highest priority first.
+  ///
+  /// New kanji and cards that are not due stay out. The stored plan's
+  /// [DailySessionPlan.cardIds] are the day's selected cards; leftovers are
+  /// everything still eligible that is not on that list.
+  Future<List<KanjiCard>> leftoverDueReviews({required DateTime now}) async {
+    final ranked = await eligibleByPriority(now: now);
+    final plan = await progressRepository.getDailySessionPlan();
+    final schedules = await progressRepository.getSchedules();
+    final planned = plan.cardIds.toSet();
+    return [
+      for (final card in ranked)
+        if (!planned.contains(card.id) &&
+            !selector.isNew(schedules[card.id]) &&
+            schedules[card.id]?.state != CardLearningState.learning)
+          card,
+    ];
+  }
+
   void _reportReinforcementDay(
     ({bool matches, StudyDayType dayType, int maxNewCards, String? trigger})
     day,

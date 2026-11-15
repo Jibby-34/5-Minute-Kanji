@@ -93,11 +93,13 @@ class ReviewController extends ChangeNotifier {
   final CardTimeEstimator timeEstimator;
   final CardPriorityScorer priorityScorer;
 
-  /// Drops or swaps future reviews when this sitting is running long.
+  /// Drops, swaps, or appends leftover due reviews so this sitting stays
+  /// near its time goal.
   final AdaptiveSessionAdjuster queueAdjuster;
 
-  /// Due reviews that may replace a longer card. Null loads them from
-  /// [workloadService] the first time the sitting runs long.
+  /// Due reviews that were not in today's sitting. Used as a shorter
+  /// stand-in when the sitting is long, or appended when it is short.
+  /// Null loads them from [workloadService].
   final List<KanjiCard>? extraDueReviews;
 
   /// When set, an unfinished daily time goal can draw the next priority card.
@@ -122,7 +124,7 @@ class ReviewController extends ChangeNotifier {
   bool _cardTimingOpen = false;
   SessionSummary? summary;
 
-  /// The latest time the remaining queue was shortened. Null until then.
+  /// The latest time the remaining queue was shortened or filled. Null until then.
   AdaptiveQueueDecision? lastQueueAdjustment;
   KanjiCard? _visibleCard;
   Map<String, CardSchedule> _schedules = {};
@@ -894,6 +896,8 @@ class ReviewController extends ChangeNotifier {
   Future<void> _adaptAssignedQueue(DateTime now) async {
     if (isPractice || isStudyAnyway || _disposed) return;
     try {
+      if (!_reviewTimeReady) await hydrate();
+      if (_disposed) return;
       final settings = await progressRepository.getSettings();
       final goal = Duration(minutes: settings.dailyStudyMinutes);
       final estimator = timeEstimator.withModel(
@@ -901,11 +905,14 @@ class ReviewController extends ChangeNotifier {
       );
       final queue = _queueSnapshots(estimator, now);
       final elapsed = reviewClock.sittingAt(now);
+      final dayElapsed = reviewClock.totalAt(now);
       if (!queueAdjuster.needsAdjustment(
         elapsed: elapsed,
         goal: goal,
         queue: queue,
-        adjustmentsUsed: session.adjustmentsMade,
+        adjustmentsUsed: session.trimsMade,
+        additionsUsed: session.additionsMade,
+        dayElapsed: dayElapsed,
       )) {
         return;
       }
@@ -917,8 +924,10 @@ class ReviewController extends ChangeNotifier {
         queue: queue,
         replacements: replacements,
         droppedIds: session.droppedIds,
-        adjustmentsUsed: session.adjustmentsMade,
+        adjustmentsUsed: session.trimsMade,
+        additionsUsed: session.additionsMade,
         maxQueueLength: session.initialCount,
+        dayElapsed: dayElapsed,
       );
       if (!decision.changed) return;
       session.applyAdaptiveSteps(decision.steps);
@@ -978,7 +987,7 @@ class ReviewController extends ChangeNotifier {
     if (extraDueReviews != null) {
       source = extraDueReviews!;
     } else if (workloadService != null) {
-      source = await workloadService!.eligibleByPriority(now: now);
+      source = await workloadService!.leftoverDueReviews(now: now);
       final latest = await progressRepository.getSchedules();
       _schedules.addAll(latest);
     } else {

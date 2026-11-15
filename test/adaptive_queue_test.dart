@@ -392,6 +392,76 @@ void main() {
 
       expect(decision.steps.single.replacement, isNull);
     });
+
+    test('a short sitting appends leftover due reviews, highest first', () {
+      final decision = decide(
+        elapsed: const Duration(seconds: 20),
+        queue: [
+          card('now', priority: 3, seconds: 10, current: true),
+          card('next', priority: 2, seconds: 10),
+        ],
+        replacements: [
+          card('low', priority: 1, seconds: 18),
+          card('high', priority: 4, seconds: 18),
+        ],
+      );
+
+      expect(decision.changed, isTrue);
+      expect(decision.steps.map((step) => step.replacementId), ['high', 'low']);
+      expect(decision.steps.every((step) => step.isAddition), isTrue);
+      expect(
+        decision.projectedAfter,
+        lessThan(goal - const Duration(seconds: 15)),
+      );
+      expect(decision.describe(), contains('added=high, low'));
+    });
+
+    test('a short sitting does not add new kanji or dropped cards', () {
+      final decision = decide(
+        elapsed: const Duration(seconds: 20),
+        queue: [card('now', priority: 3, seconds: 10, current: true)],
+        replacements: [
+          card('fresh', priority: 9, seconds: 18, protected: true),
+          card('dropped', priority: 8, seconds: 18),
+          card('due', priority: 2, seconds: 18),
+        ],
+        droppedIds: {'dropped'},
+      );
+
+      expect(decision.steps.map((step) => step.replacementId), ['due']);
+      expect(
+        decision.steps.map((step) => step.replacementId),
+        isNot(contains('fresh')),
+      );
+    });
+
+    test('an addition that would pass the overrun ceiling is skipped', () {
+      final decision = decide(
+        elapsed: const Duration(seconds: 80),
+        queue: [card('now', priority: 3, seconds: 4, current: true)],
+        replacements: [card('long', priority: 2, seconds: 40)],
+      );
+
+      expect(decision.changed, isFalse);
+      expect(decision.projectedBefore, const Duration(seconds: 84));
+    });
+
+    test('additions stop at the configured cap', () {
+      final engine = AdaptiveSessionAdjuster(
+        config: const AdaptiveQueueConfig(maximumAdditionsPerSession: 2),
+      );
+      final decision = decide(
+        engine: engine,
+        elapsed: const Duration(seconds: 10),
+        queue: [card('now', priority: 3, seconds: 10, current: true)],
+        replacements: [
+          for (var i = 0; i < 6; i++) card('x$i', priority: 1, seconds: 10),
+        ],
+      );
+
+      expect(decision.steps, hasLength(2));
+      expect(decision.steps.every((step) => step.isAddition), isTrue);
+    });
   });
 
   group('ReviewSession', () {
@@ -475,6 +545,30 @@ void main() {
       expect(session.againSpentFor('review'), isNull);
     });
 
+    test('added leftover reviews join the end of the queue and undo', () {
+      final session = ReviewSession(
+        config: ReviewSessionConfig.fiveMinute,
+        cards: [testCard('now'), testCard('next')],
+      );
+      final saved = session.checkpoint();
+
+      session.applyAdaptiveSteps([
+        AdaptiveQueueStep(replacement: testCard('leftover')),
+      ]);
+
+      expect(session.queued.map((card) => card.id), [
+        'now',
+        'next',
+        'leftover',
+      ]);
+      expect(session.additionsMade, 1);
+      expect(session.pool.map((card) => card.id), contains('leftover'));
+
+      session.restore(saved);
+      expect(session.queued.map((card) => card.id), ['now', 'next']);
+      expect(session.additionsMade, 0);
+    });
+
     test('undo restores a queue from before a drop', () {
       final session = ReviewSession(
         config: ReviewSessionConfig.fiveMinute,
@@ -549,6 +643,7 @@ void main() {
       List<KanjiCard>? extraDueReviews,
       AdaptiveSessionAdjuster? queueAdjuster,
       CardTimeEstimator? timeEstimator,
+      DailyWorkloadService? workloadService,
     }) async {
       return ReviewController(
         progressRepository: progress,
@@ -560,6 +655,7 @@ void main() {
         clock: clock ?? () => now,
         schedules: schedules,
         extraDueReviews: extraDueReviews,
+        workloadService: workloadService,
         queueAdjuster: queueAdjuster ?? const AdaptiveSessionAdjuster(),
         timeEstimator: timeEstimator ?? const CardTimeEstimator(),
       );
@@ -592,6 +688,145 @@ void main() {
           'c02',
         ]);
         expect(controller.remainingToDraw, 2);
+      },
+    );
+
+    test(
+      'a fast sitting appends leftover due reviews and skips new or later cards',
+      () async {
+        final sessionIds = ['c00', 'c01'];
+        final leftoverIds = ['left-high', 'left-low'];
+        final schedules = {
+          for (final id in [...sessionIds, ...leftoverIds]) id: dueReview(id),
+          'later': CardSchedule(
+            cardId: 'later',
+            state: CardLearningState.review,
+            reviewCount: 2,
+            correctCount: 2,
+            incorrectCount: 0,
+            dueAt: now.add(const Duration(days: 2)),
+            interval: const Duration(days: 2),
+            ease: 2.5,
+            lastReviewedAt: now,
+            consecutiveGoodCount: 2,
+          ),
+        };
+        final progress = MemoryProgressRepository(
+          settings: const AppSettings(dailyStudyMinutes: 3, newKanjiPerDay: 1),
+          schedules: schedules,
+        );
+        var current = now;
+        final controller = await open(
+          progress: progress,
+          cards: sessionIds.map(testCard).toList(),
+          schedules: schedules,
+          clock: () => current,
+          extraDueReviews: [
+            testCard('left-high'),
+            testCard('left-low'),
+            testCard('fresh'),
+            testCard('later'),
+          ],
+        );
+
+        current = now.add(const Duration(seconds: 2));
+        controller.submit();
+        expect(await controller.rate(ReviewResult.good), isNull);
+
+        expect(controller.session.additionsMade, greaterThan(0));
+        expect(
+          controller.session.queued.map((card) => card.id),
+          containsAll(['c01', 'left-high', 'left-low']),
+        );
+        expect(
+          controller.session.queued.map((card) => card.id),
+          isNot(contains('fresh')),
+        );
+        expect(
+          controller.session.queued.map((card) => card.id),
+          isNot(contains('later')),
+        );
+        expect(
+          controller.lastQueueAdjustment?.steps.every(
+            (step) => step.isAddition,
+          ),
+          isTrue,
+        );
+
+        expect(await controller.undoLastAnswer(), isTrue);
+        expect(controller.session.queued.map((card) => card.id), sessionIds);
+        expect(controller.session.additionsMade, 0);
+      },
+    );
+
+    test(
+      'leftover due reviews come from cards the daily plan left out',
+      () async {
+        final sessionCards = [testCard('c00'), testCard('c01')];
+        final leftover = testCard('left-due');
+        final later = testCard('later');
+        final fresh = testCard('fresh');
+        final schedules = {
+          'c00': dueReview('c00'),
+          'c01': dueReview('c01'),
+          'left-due': dueReview('left-due'),
+          'later': CardSchedule(
+            cardId: 'later',
+            state: CardLearningState.review,
+            reviewCount: 2,
+            correctCount: 2,
+            incorrectCount: 0,
+            dueAt: now.add(const Duration(days: 3)),
+            interval: const Duration(days: 3),
+            ease: 2.5,
+            lastReviewedAt: now,
+            consecutiveGoodCount: 2,
+          ),
+        };
+        final progress = MemoryProgressRepository(
+          settings: const AppSettings(dailyStudyMinutes: 5, newKanjiPerDay: 1),
+          schedules: schedules,
+          dailySessionPlan: DailySessionPlan(
+            studyDate: DateTime(2026, 9, 2),
+            budgetMinutes: 5,
+            newKanjiPerDay: 1,
+            cardIds: ['c00', 'c01'],
+          ),
+        );
+        final workload = DailyWorkloadService(
+          kanjiRepository: FakeKanjiRepository([
+            ...sessionCards,
+            leftover,
+            later,
+            fresh,
+          ]),
+          progressRepository: progress,
+        );
+        var current = now;
+        final controller = await open(
+          progress: progress,
+          cards: sessionCards,
+          schedules: schedules,
+          clock: () => current,
+          workloadService: workload,
+        );
+
+        current = now.add(const Duration(seconds: 2));
+        controller.submit();
+        expect(await controller.rate(ReviewResult.good), isNull);
+
+        expect(
+          controller.session.queued.map((card) => card.id),
+          contains('left-due'),
+        );
+        expect(
+          controller.session.queued.map((card) => card.id),
+          isNot(contains('fresh')),
+        );
+        expect(
+          controller.session.queued.map((card) => card.id),
+          isNot(contains('later')),
+        );
       },
     );
 

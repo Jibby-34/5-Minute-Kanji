@@ -16,6 +16,7 @@ class AdaptiveQueueConfig {
     this.minimumSwapSavings = const Duration(seconds: 5),
     this.priorityTolerance = 0.15,
     this.maximumAdjustmentsPerSession = 5,
+    this.maximumAdditionsPerSession = 20,
   });
 
   /// Projected time above the goal required before any card is touched.
@@ -43,8 +44,14 @@ class AdaptiveQueueConfig {
   /// priority, so the longer one can leave first.
   final double priorityTolerance;
 
-  /// Remove, swap, or add steps allowed in one sitting.
+  /// Remove or swap steps allowed in one sitting.
   final int maximumAdjustmentsPerSession;
+
+  /// Leftover due reviews that may be appended when the sitting is short.
+  ///
+  /// Separate from removals so a short sitting can fill toward the goal
+  /// without sharing the trim cap.
+  final int maximumAdditionsPerSession;
 
   AdaptiveQueueConfig copyWith({
     Duration? overrunThreshold,
@@ -53,6 +60,7 @@ class AdaptiveQueueConfig {
     Duration? minimumSwapSavings,
     double? priorityTolerance,
     int? maximumAdjustmentsPerSession,
+    int? maximumAdditionsPerSession,
   }) {
     return AdaptiveQueueConfig(
       overrunThreshold: overrunThreshold ?? this.overrunThreshold,
@@ -62,6 +70,8 @@ class AdaptiveQueueConfig {
       priorityTolerance: priorityTolerance ?? this.priorityTolerance,
       maximumAdjustmentsPerSession:
           maximumAdjustmentsPerSession ?? this.maximumAdjustmentsPerSession,
+      maximumAdditionsPerSession:
+          maximumAdditionsPerSession ?? this.maximumAdditionsPerSession,
     );
   }
 }
@@ -256,13 +266,16 @@ class AdaptiveSessionAdjuster {
     required Duration goal,
     required List<AdaptiveQueueCard> queue,
     required int adjustmentsUsed,
+    int additionsUsed = 0,
+    Duration? dayElapsed,
   }) {
-    if (adjustmentsUsed >= config.maximumAdjustmentsPerSession) return false;
-    final projected = elapsed + _remaining(queue);
-    if (projected > goal + config.overrunThreshold) {
+    final remaining = _remaining(queue);
+    if (elapsed + remaining > goal + config.overrunThreshold) {
+      if (adjustmentsUsed >= config.maximumAdjustmentsPerSession) return false;
       return queue.any((card) => card.canRemove);
     }
-    return projected < _underrunFloor(goal);
+    if (additionsUsed >= config.maximumAdditionsPerSession) return false;
+    return (dayElapsed ?? elapsed) + remaining < _underrunFloor(goal);
   }
 
   AdaptiveQueueDecision decide({
@@ -273,27 +286,20 @@ class AdaptiveSessionAdjuster {
     required Set<String> droppedIds,
     required int adjustmentsUsed,
     required int maxQueueLength,
+    int additionsUsed = 0,
+    Duration? dayElapsed,
   }) {
     final remainingBefore = _remaining(queue);
-    final projectedBefore = elapsed + remainingBefore;
+    final sittingProjected = elapsed + remainingBefore;
+    final fillElapsed = dayElapsed ?? elapsed;
+    final fillProjected = fillElapsed + remainingBefore;
     final protectedCount = queue.where((card) => card.protected).length;
     final removableIds = [
       for (final card in queue)
         if (card.canRemove && !droppedIds.contains(card.id)) card.id,
     ];
-    if (adjustmentsUsed >= config.maximumAdjustmentsPerSession) {
-      return _unchanged(
-        elapsed: elapsed,
-        remainingBefore: remainingBefore,
-        projectedBefore: projectedBefore,
-        goal: goal,
-        protectedCount: protectedCount,
-        eligibleIds: removableIds,
-        adjustmentsUsed: adjustmentsUsed,
-      );
-    }
 
-    if (projectedBefore > goal + config.overrunThreshold) {
+    if (sittingProjected > goal + config.overrunThreshold) {
       return _trim(
         elapsed: elapsed,
         goal: goal,
@@ -303,22 +309,22 @@ class AdaptiveSessionAdjuster {
         adjustmentsUsed: adjustmentsUsed,
         maxQueueLength: maxQueueLength,
         remainingBefore: remainingBefore,
-        projectedBefore: projectedBefore,
+        projectedBefore: sittingProjected,
         protectedCount: protectedCount,
         eligibleIds: removableIds,
       );
     }
 
-    if (projectedBefore < _underrunFloor(goal)) {
+    if (fillProjected < _underrunFloor(goal)) {
       return _fill(
-        elapsed: elapsed,
+        elapsed: fillElapsed,
         goal: goal,
         queue: queue,
         additions: replacements,
         droppedIds: droppedIds,
-        adjustmentsUsed: adjustmentsUsed,
+        additionsUsed: additionsUsed,
         remainingBefore: remainingBefore,
-        projectedBefore: projectedBefore,
+        projectedBefore: fillProjected,
         protectedCount: protectedCount,
       );
     }
@@ -326,7 +332,7 @@ class AdaptiveSessionAdjuster {
     return _unchanged(
       elapsed: elapsed,
       remainingBefore: remainingBefore,
-      projectedBefore: projectedBefore,
+      projectedBefore: sittingProjected,
       goal: goal,
       protectedCount: protectedCount,
       eligibleIds: removableIds,
@@ -458,11 +464,22 @@ class AdaptiveSessionAdjuster {
     required List<AdaptiveQueueCard> queue,
     required List<AdaptiveQueueCard> additions,
     required Set<String> droppedIds,
-    required int adjustmentsUsed,
+    required int additionsUsed,
     required Duration remainingBefore,
     required Duration projectedBefore,
     required int protectedCount,
   }) {
+    if (additionsUsed >= config.maximumAdditionsPerSession) {
+      return _unchanged(
+        elapsed: elapsed,
+        remainingBefore: remainingBefore,
+        projectedBefore: projectedBefore,
+        goal: goal,
+        protectedCount: protectedCount,
+        eligibleIds: const [],
+        adjustmentsUsed: additionsUsed,
+      );
+    }
     final floor = _underrunFloor(goal);
     final ceiling = goal + config.overrunThreshold;
     final working = List<AdaptiveQueueCard>.from(queue);
@@ -470,10 +487,10 @@ class AdaptiveSessionAdjuster {
     final inQueue = working.map((card) => card.id).toSet();
     final steps = <AdaptiveQueueStep>[];
     final considered = <String>[];
-    var used = adjustmentsUsed;
+    var used = additionsUsed;
     var projected = projectedBefore;
 
-    while (projected < floor && used < config.maximumAdjustmentsPerSession) {
+    while (projected < floor && used < config.maximumAdditionsPerSession) {
       final added = _chooseAddition(
         additions: additions,
         inQueue: inQueue,
