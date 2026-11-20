@@ -10,26 +10,28 @@ import 'card_time_estimator.dart';
 /// plan's remaining queue may shrink or gain leftover due reviews.
 class AdaptiveQueueConfig {
   const AdaptiveQueueConfig({
-    this.overrunThreshold = const Duration(seconds: 15),
+    this.overrunThreshold = Duration.zero,
     this.underrunThreshold = const Duration(seconds: 15),
-    this.timeBuffer = const Duration(seconds: 10),
+    this.timeBuffer = Duration.zero,
     this.minimumSwapSavings = const Duration(seconds: 5),
     this.priorityTolerance = 0.15,
     this.maximumAdjustmentsPerSession = 5,
     this.maximumAdditionsPerSession = 20,
   });
 
-  /// Projected time above the goal required before any card is touched.
+  /// Extra time above the goal before a long sitting is trimmed.
   ///
-  /// A sitting planned at the scheduler's usual 5% slack (a 5-minute goal
-  /// landing near 5:15) stays put until it passes this margin.
+  /// Zero is a hard cap: the projection may not plan past the goal.
   final Duration overrunThreshold;
 
-  /// Projected time below the goal required before leftover due reviews
-  /// may be added. The same 15s band that blocks a trim also blocks a fill.
+  /// How far ahead of the goal a sitting must run before leftover due
+  /// reviews may be added. 15s keeps a short sitting from picking up a
+  /// card on a few seconds of slack.
   final Duration underrunThreshold;
 
   /// How far under the goal the projection should land once cards are removed.
+  ///
+  /// Zero stops at the cap instead of trimming further.
   final Duration timeBuffer;
 
   /// A shorter stand-in must beat the removed card by at least this much.
@@ -481,7 +483,7 @@ class AdaptiveSessionAdjuster {
       );
     }
     final floor = _underrunFloor(goal);
-    final ceiling = goal + config.overrunThreshold;
+    final ceiling = goal;
     final working = List<AdaptiveQueueCard>.from(queue);
     final dropped = Set<String>.from(droppedIds);
     final inQueue = working.map((card) => card.id).toSet();

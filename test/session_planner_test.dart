@@ -142,8 +142,7 @@ void main() {
       maxNewCards: 0,
     );
 
-    final upper = (budget.inSeconds * planner.upperTolerance).round();
-    expect(plan.estimated.inSeconds, lessThanOrEqualTo(upper));
+    expect(plan.estimated.inSeconds, lessThanOrEqualTo(budget.inSeconds));
     expect(plan.estimated.inSeconds, greaterThan(budget.inSeconds - 30));
   });
 

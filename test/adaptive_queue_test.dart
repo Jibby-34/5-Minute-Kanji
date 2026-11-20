@@ -116,16 +116,10 @@ void main() {
       );
 
       expect(decision.changed, isTrue);
-      expect(
-        decision.projectedBefore,
-        greaterThan(goal + const Duration(seconds: 15)),
-      );
+      expect(decision.projectedBefore, greaterThan(goal));
       expect(decision.steps.map((step) => step.removedId), ['low']);
       expect(decision.steps.single.replacement, isNull);
-      expect(
-        decision.projectedAfter,
-        lessThanOrEqualTo(goal - const Duration(seconds: 10)),
-      );
+      expect(decision.projectedAfter, lessThanOrEqualTo(goal));
       expect(decision.eligibleIds, containsAll(['low', 'mid', 'high']));
       expect(decision.describe(), contains('removed=low'));
     });
@@ -224,10 +218,7 @@ void main() {
       expect(decision.steps.single.removedId, 'long');
       expect(decision.steps.single.replacementId, 'short');
       expect(decision.steps.single.estimatedSaved, const Duration(seconds: 30));
-      expect(
-        decision.projectedAfter,
-        lessThanOrEqualTo(goal - const Duration(seconds: 10)),
-      );
+      expect(decision.projectedAfter, lessThanOrEqualTo(goal));
     });
 
     test('a few seconds saved does not justify a swap', () {
@@ -393,6 +384,20 @@ void main() {
       expect(decision.steps.single.replacement, isNull);
     });
 
+    test('a sitting a few seconds over the goal is trimmed', () {
+      final decision = decide(
+        elapsed: const Duration(seconds: 50),
+        queue: [
+          card('now', priority: 3, seconds: 20, current: true),
+          card('extra', priority: 1, seconds: 40),
+        ],
+      );
+
+      expect(decision.projectedBefore, const Duration(seconds: 110));
+      expect(decision.steps.map((step) => step.removedId), ['extra']);
+      expect(decision.projectedAfter, lessThanOrEqualTo(goal));
+    });
+
     test('a short sitting appends leftover due reviews, highest first', () {
       final decision = decide(
         elapsed: const Duration(seconds: 20),
@@ -435,7 +440,19 @@ void main() {
       );
     });
 
-    test('an addition that would pass the overrun ceiling is skipped', () {
+    test('a sitting less than 15 seconds ahead does not add a card', () {
+      final decision = decide(
+        elapsed: const Duration(seconds: 50),
+        queue: [card('now', priority: 3, seconds: 40, current: true)],
+        replacements: [card('due', priority: 2, seconds: 10)],
+      );
+
+      expect(decision.projectedBefore, const Duration(seconds: 90));
+      expect(decision.changed, isFalse);
+      expect(decision.steps, isEmpty);
+    });
+
+    test('an addition that would pass the goal is skipped', () {
       final decision = decide(
         elapsed: const Duration(seconds: 80),
         queue: [card('now', priority: 3, seconds: 4, current: true)],
@@ -1105,7 +1122,7 @@ void main() {
         progress: progress,
         cards: [testCard('fresh'), ...reviews.map(testCard)],
         schedules: schedules,
-        startTime: now.subtract(const Duration(seconds: 90)),
+        startTime: now,
         timeEstimator: const CardTimeEstimator(
           newCard: Duration(seconds: 50),
           reviewCard: Duration(seconds: 20),

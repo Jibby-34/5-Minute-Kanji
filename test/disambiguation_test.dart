@@ -314,9 +314,7 @@ void main() {
     expect(find.text('generation / era'), findsOneWidget);
   });
 
-  testWidgets('kanji list shows hints only on cards that have them', (
-    tester,
-  ) async {
+  testWidgets('kanji list tiles stay character-only', (tester) async {
     usePhoneViewport(tester);
     await pumpList(tester, cards: [one, world, realm]);
 
@@ -324,9 +322,10 @@ void main() {
     expect(find.text('世'), findsOneWidget);
     expect(find.text('界'), findsOneWidget);
     expect(find.text('one'), findsNothing);
-    expect(find.text('world'), findsNWidgets(2));
-    expect(find.text('generation / era'), findsOneWidget);
-    expect(find.text('boundary / realm'), findsOneWidget);
+    expect(find.text('world'), findsNothing);
+    expect(find.text('generation / era'), findsNothing);
+    expect(find.text('boundary / realm'), findsNothing);
+    expect(find.byType(DisambiguationHint), findsNothing);
     expect(tester.takeException(), isNull);
   });
 

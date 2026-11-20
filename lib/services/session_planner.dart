@@ -58,15 +58,16 @@ class PlannedSession {
 /// introduction and the retrieval later in the same sitting — and reviews
 /// then fill whatever time is left, highest priority first. Greedy, not
 /// optimal. A review is skipped when it would push the sitting past the
-/// upper tolerance, unless it is the only card and leaving it out would drop
+/// time budget, unless it is the only card and leaving it out would drop
 /// an important review forever. Scoring stays outside this class.
 class SessionPlanner {
   const SessionPlanner({
-    this.upperTolerance = 1.05,
+    this.upperTolerance = 1.0,
     this.arranger = const DueCardSelector(),
   });
 
-  /// A 5-minute budget may run to about 5:15. It is not a hard stopwatch.
+  /// Reviews stop at the budget. 1.0 is a hard cap; new kanji may still
+  /// push the sitting past it because every allowed new card is included.
   final double upperTolerance;
   final DueCardSelector arranger;
 
