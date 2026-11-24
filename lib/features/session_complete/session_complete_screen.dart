@@ -80,40 +80,47 @@ class _CompletionBody extends StatelessWidget {
           double.infinity,
         );
 
-        return SingleChildScrollView(
-          padding: EdgeInsets.fromLTRB(24, top, 24, bottom),
-          child: ConstrainedBox(
-            constraints: BoxConstraints(minHeight: minHeight),
-            // Sit the summary above the midpoint. When it no longer fits,
-            // the extra constraint drops away and the page scrolls.
-            child: Align(
-              alignment: const Alignment(0, -0.28),
-              child: ConstrainedBox(
-                constraints: const BoxConstraints(maxWidth: 420),
-                child: TweenAnimationBuilder<double>(
-                  tween: Tween(begin: 0, end: 1),
-                  duration: const Duration(milliseconds: 420),
-                  curve: Curves.easeOut,
-                  builder: (context, value, child) {
-                    return Opacity(
-                      opacity: value,
-                      child: Transform.translate(
-                        offset: Offset(0, 8 * (1 - value)),
-                        child: child,
-                      ),
-                    );
-                  },
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      _CompletionHeader(
-                        duration: summary.duration,
-                        note: _completionNote(summary),
-                        compact: compact,
-                      ),
-                      SizedBox(height: gap),
-                      _ReviewPanel(summary: summary, compact: compact),
-                    ],
+        return ScrollConfiguration(
+          behavior: ScrollConfiguration.of(context).copyWith(
+            overscroll: false,
+            physics: const ClampingScrollPhysics(),
+          ),
+          child: SingleChildScrollView(
+            physics: const ClampingScrollPhysics(),
+            padding: EdgeInsets.fromLTRB(24, top, 24, bottom),
+            child: ConstrainedBox(
+              constraints: BoxConstraints(minHeight: minHeight),
+              // Sit the summary above the midpoint. When it no longer fits,
+              // the extra constraint drops away and the page scrolls.
+              child: Align(
+                alignment: const Alignment(0, -0.28),
+                child: ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 420),
+                  child: TweenAnimationBuilder<double>(
+                    tween: Tween(begin: 0, end: 1),
+                    duration: const Duration(milliseconds: 420),
+                    curve: Curves.easeOut,
+                    builder: (context, value, child) {
+                      return Opacity(
+                        opacity: value,
+                        child: Transform.translate(
+                          offset: Offset(0, 8 * (1 - value)),
+                          child: child,
+                        ),
+                      );
+                    },
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        _CompletionHeader(
+                          duration: summary.duration,
+                          note: _completionNote(summary),
+                          compact: compact,
+                        ),
+                        SizedBox(height: gap),
+                        _ReviewPanel(summary: summary, compact: compact),
+                      ],
+                    ),
                   ),
                 ),
               ),

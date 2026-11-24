@@ -263,6 +263,47 @@ void main() {
       },
     );
 
+    test(
+      'a drop that overshoots the cap is filled with leftover due reviews',
+      () {
+        final decision = decide(
+          elapsed: const Duration(seconds: 18),
+          sittingGoal: const Duration(seconds: 300),
+          queue: [
+            card('now', priority: 3, seconds: 18, current: true),
+            card('missed', priority: 3, seconds: 18, protected: true),
+            for (var i = 0; i < 14; i++)
+              card('r$i', priority: 2, seconds: 18),
+          ],
+          replacements: [
+            for (var i = 0; i < 8; i++)
+              card('left$i', priority: 0.4, seconds: 10),
+          ],
+        );
+
+        expect(
+          decision.steps.any((step) => step.removedId != null),
+          isTrue,
+        );
+        expect(
+          decision.steps.any((step) => step.isAddition),
+          isTrue,
+        );
+        expect(
+          decision.steps.map((step) => step.replacementId),
+          contains('left0'),
+        );
+        expect(
+          decision.projectedAfter,
+          lessThanOrEqualTo(const Duration(seconds: 300)),
+        );
+        expect(
+          decision.projectedAfter,
+          greaterThan(const Duration(seconds: 285)),
+        );
+      },
+    );
+
     test('with no shorter stand-in the card is only removed', () {
       final decision = decide(
         elapsed: const Duration(seconds: 60),
@@ -352,8 +393,10 @@ void main() {
         maxQueueLength: 2,
       );
 
-      expect(decision.steps, hasLength(1));
-      expect(decision.steps.single.replacementId, isNotNull);
+      final swaps = decision.steps.where((step) => !step.isAddition).toList();
+      expect(swaps, hasLength(1));
+      expect(swaps.single.replacementId, 'b');
+      expect(swaps.single.removedId, 'long');
     });
 
     test('adjustments stop at the configured cap', () {
@@ -409,7 +452,14 @@ void main() {
         replacements: [card('unrelated', priority: 0.1, seconds: 10)],
       );
 
-      expect(decision.steps.single.replacement, isNull);
+      expect(decision.steps.first.removedId, 'long');
+      expect(decision.steps.first.replacement, isNull);
+      expect(
+        decision.steps.any(
+          (step) => step.isAddition && step.replacementId == 'unrelated',
+        ),
+        isTrue,
+      );
     });
 
     test('a sitting a few seconds over the goal is trimmed', () {
@@ -447,6 +497,23 @@ void main() {
         lessThan(goal - const Duration(seconds: 15)),
       );
       expect(decision.describe(), contains('added=high, low'));
+    });
+
+    test('once 15 seconds ahead, leftovers fill up to the goal', () {
+      final decision = decide(
+        elapsed: const Duration(seconds: 20),
+        queue: [card('now', priority: 3, seconds: 10, current: true)],
+        replacements: [
+          for (var i = 0; i < 8; i++) card('left$i', priority: 1, seconds: 10),
+        ],
+      );
+
+      expect(decision.steps.every((step) => step.isAddition), isTrue);
+      expect(decision.projectedAfter, lessThanOrEqualTo(goal));
+      expect(
+        decision.projectedAfter,
+        greaterThan(goal - const Duration(seconds: 15)),
+      );
     });
 
     test('a short sitting does not add new kanji or dropped cards', () {

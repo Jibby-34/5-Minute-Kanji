@@ -307,11 +307,13 @@ class AdaptiveSessionAdjuster {
     if (sittingProjected > goal + config.overrunThreshold) {
       return _trim(
         elapsed: elapsed,
+        fillElapsed: fillElapsed,
         goal: goal,
         queue: queue,
         replacements: replacements,
         droppedIds: droppedIds,
         adjustmentsUsed: adjustmentsUsed,
+        additionsUsed: additionsUsed,
         maxQueueLength: maxQueueLength,
         remainingBefore: remainingBefore,
         projectedBefore: sittingProjected,
@@ -371,11 +373,13 @@ class AdaptiveSessionAdjuster {
 
   AdaptiveQueueDecision _trim({
     required Duration elapsed,
+    required Duration fillElapsed,
     required Duration goal,
     required List<AdaptiveQueueCard> queue,
     required List<AdaptiveQueueCard> replacements,
     required Set<String> droppedIds,
     required int adjustmentsUsed,
+    required int additionsUsed,
     required int maxQueueLength,
     required Duration remainingBefore,
     required Duration projectedBefore,
@@ -461,6 +465,23 @@ class AdaptiveSessionAdjuster {
       projected = elapsed + _remaining(working);
     }
 
+    // A whole-card drop often overshoots the cap. Pack leftover due reviews
+    // into that slack in the same pass; the 15s underrun gate is only to
+    // start a fill when the sitting was already short.
+    final fillProjected = fillElapsed + _remaining(working);
+    if (projected <= goal && fillProjected < goal) {
+      _fillInto(
+        working: working,
+        additions: replacements,
+        inQueue: inQueue,
+        dropped: dropped,
+        steps: steps,
+        elapsed: fillElapsed,
+        ceiling: goal,
+        used: additionsUsed,
+      );
+    }
+
     return _result(
       elapsed: elapsed,
       remainingBefore: remainingBefore,
@@ -496,32 +517,20 @@ class AdaptiveSessionAdjuster {
         adjustmentsUsed: additionsUsed,
       );
     }
-    final floor = _underrunFloor(goal);
-    final ceiling = goal;
     final working = List<AdaptiveQueueCard>.from(queue);
     final dropped = Set<String>.from(droppedIds);
     final inQueue = working.map((card) => card.id).toSet();
     final steps = <AdaptiveQueueStep>[];
-    final considered = <String>[];
-    var used = additionsUsed;
-    var projected = projectedBefore;
-
-    while (projected < floor && used < config.maximumAdditionsPerSession) {
-      final added = _chooseAddition(
-        additions: additions,
-        inQueue: inQueue,
-        dropped: dropped,
-        projected: projected,
-        ceiling: ceiling,
-      );
-      if (added == null) break;
-      considered.add(added.id);
-      working.add(added);
-      inQueue.add(added.id);
-      steps.add(AdaptiveQueueStep(replacement: added.card));
-      used++;
-      projected = elapsed + _remaining(working);
-    }
+    final used = _fillInto(
+      working: working,
+      additions: additions,
+      inQueue: inQueue,
+      dropped: dropped,
+      steps: steps,
+      elapsed: elapsed,
+      ceiling: goal,
+      used: additionsUsed,
+    );
 
     return _result(
       elapsed: elapsed,
@@ -530,10 +539,47 @@ class AdaptiveSessionAdjuster {
       goal: goal,
       working: working,
       protectedCount: protectedCount,
-      eligibleIds: considered,
+      eligibleIds: [
+        for (final step in steps)
+          if (step.isAddition) step.replacementId!,
+      ],
       steps: steps,
       used: used,
     );
+  }
+
+  /// Append leftover due reviews that still fit under [ceiling].
+  ///
+  /// [underrunThreshold] decides whether to start filling. Once filling,
+  /// cards are added until the next one would pass the goal.
+  int _fillInto({
+    required List<AdaptiveQueueCard> working,
+    required List<AdaptiveQueueCard> additions,
+    required Set<String> inQueue,
+    required Set<String> dropped,
+    required List<AdaptiveQueueStep> steps,
+    required Duration elapsed,
+    required Duration ceiling,
+    required int used,
+  }) {
+    var projected = elapsed + _remaining(working);
+    var nextUsed = used;
+    while (nextUsed < config.maximumAdditionsPerSession) {
+      final added = _chooseAddition(
+        additions: additions,
+        inQueue: inQueue,
+        dropped: dropped,
+        projected: projected,
+        ceiling: ceiling,
+      );
+      if (added == null) break;
+      working.add(added);
+      inQueue.add(added.id);
+      steps.add(AdaptiveQueueStep(replacement: added.card));
+      nextUsed++;
+      projected = elapsed + _remaining(working);
+    }
+    return nextUsed;
   }
 
   AdaptiveQueueDecision _result({

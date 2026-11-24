@@ -3,6 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:fiveminutekanji/core/models/review.dart';
+import 'package:fiveminutekanji/core/theme/app_scroll_behavior.dart';
 import 'package:fiveminutekanji/core/theme/app_theme.dart';
 import 'package:fiveminutekanji/features/session_complete/session_complete_screen.dart';
 import 'package:fiveminutekanji/widgets/bottom_action_inset.dart';
@@ -48,6 +49,7 @@ void main() {
     await tester.pumpWidget(
       MaterialApp(
         theme: theme ?? AppTheme.light,
+        scrollBehavior: const AppScrollBehavior(),
         home: SessionCompleteScreen(summary: summary),
       ),
     );
@@ -279,4 +281,34 @@ void main() {
     expect(find.text('All caught up.'), findsNothing);
     expect(tester.takeException(), isNull);
   });
+
+  testWidgets(
+    'session complete does not scroll when the content already fits',
+    (tester) async {
+      await pumpSummary(
+        tester,
+        summary: const SessionSummary(
+          duration: Duration(minutes: 4, seconds: 12),
+          reviewedCount: 12,
+          successfulCount: 9,
+          againCount: 3,
+        ),
+      );
+
+      final scrollable = tester.state<ScrollableState>(find.byType(Scrollable));
+      expect(scrollable.position.maxScrollExtent, 0);
+      expect(
+        scrollable.position.physics.shouldAcceptUserOffset(scrollable.position),
+        isFalse,
+      );
+
+      await tester.drag(
+        find.byType(SessionCompleteScreen),
+        const Offset(0, -120),
+      );
+      await tester.pumpAndSettle();
+      expect(scrollable.position.pixels, 0);
+    },
+    variant: TargetPlatformVariant.only(TargetPlatform.iOS),
+  );
 }
