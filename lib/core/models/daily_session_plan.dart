@@ -5,11 +5,12 @@ import 'study_day_type.dart';
 
 /// The recommended queue for one study day.
 ///
-/// Frozen until the study day, time budget, new-kanji allowance, start of
-/// day, or curriculum mode changes, or Settings clears it. [dayType] is
-/// chosen with the queue and stays with it, so later reviews do not switch
-/// the day. Cards left out of [cardIds] stay eligible; they are not failed,
-/// skipped, or rescheduled.
+/// Frozen until the study day, start of day, or curriculum mode changes, or
+/// Settings clears it. Time budget and new-kanji allowance rebuild an
+/// unfinished sitting so it matches the new goal; once [completed] they wait
+/// for the next study day. [dayType] is chosen with the queue and stays with
+/// it, so later reviews do not switch the day. Cards left out of [cardIds]
+/// stay eligible; they are not failed, skipped, or rescheduled.
 class DailySessionPlan {
   const DailySessionPlan({
     this.studyDate,
@@ -54,15 +55,17 @@ class DailySessionPlan {
     required StartOfDay startOfDay,
     CurriculumMode curriculumMode = CurriculumMode.defaultMode,
     bool allowsNewKanji = true,
+    bool ignoreStudyLoad = false,
   }) {
     final stored = this.studyDate;
     if (stored == null) return false;
-    return calendarDay(stored) == calendarDay(studyDate) &&
-        this.budgetMinutes == budgetMinutes &&
-        this.newKanjiPerDay == newKanjiPerDay &&
-        this.startOfDay == startOfDay &&
-        this.curriculumMode == curriculumMode &&
-        this.allowsNewKanji == allowsNewKanji;
+    if (calendarDay(stored) != calendarDay(studyDate)) return false;
+    if (this.startOfDay != startOfDay) return false;
+    if (this.curriculumMode != curriculumMode) return false;
+    if (this.allowsNewKanji != allowsNewKanji) return false;
+    if (ignoreStudyLoad) return true;
+    return this.budgetMinutes == budgetMinutes &&
+        this.newKanjiPerDay == newKanjiPerDay;
   }
 
   DailySessionPlan copyWith({bool? completed}) {

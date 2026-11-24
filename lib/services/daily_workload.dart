@@ -393,14 +393,28 @@ class DailyWorkloadService {
     required Map<String, CardSchedule> schedules,
     required DateTime now,
   }) {
-    final matches = stored.matches(
+    final identity = stored.matches(
       studyDate: studyDate,
       budgetMinutes: settings.dailyStudyMinutes,
       newKanjiPerDay: settings.newKanjiPerDay,
       startOfDay: startOfDay,
       curriculumMode: settings.curriculumMode,
       allowsNewKanji: allowNew,
+      ignoreStudyLoad: true,
     );
+    // A finished sitting keeps today's cards even if the time budget or
+    // new-kanji allowance changed. An unfinished sitting is rebuilt so the
+    // remaining queue matches the new goal.
+    final matches = stored.completed && identity
+        ? true
+        : stored.matches(
+            studyDate: studyDate,
+            budgetMinutes: settings.dailyStudyMinutes,
+            newKanjiPerDay: settings.newKanjiPerDay,
+            startOfDay: startOfDay,
+            curriculumMode: settings.curriculumMode,
+            allowsNewKanji: allowNew,
+          );
     final String? trigger;
     final StudyDayType dayType;
     if (matches) {

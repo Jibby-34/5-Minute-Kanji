@@ -475,6 +475,159 @@ void main() {
     expect(tuesday.estimatedMinutes, lessThanOrEqualTo(6));
   });
 
+  test('raising new kanji per day before study adds them to today', () async {
+    final cards = [for (var i = 0; i < 6; i++) testCard('n$i')];
+    final progress = MemoryProgressRepository(
+      settings: const AppSettings(dailyStudyMinutes: 30, newKanjiPerDay: 2),
+      schedules: {
+        for (final card in cards) card.id: CardSchedule.fresh(card.id, now),
+      },
+    );
+
+    final first = await service(progress, cards).read(now: now);
+    expect(first.sessionCards.map((card) => card.id), ['n0', 'n1']);
+
+    await progress.saveSettings(
+      const AppSettings(dailyStudyMinutes: 30, newKanjiPerDay: 4),
+    );
+    final raised = await service(progress, cards).read(now: now);
+    expect(raised.sessionCards.map((card) => card.id), [
+      'n0',
+      'n1',
+      'n2',
+      'n3',
+    ]);
+    expect(raised.recommendedComplete, isFalse);
+  });
+
+  test('lowering new kanji per day before study shrinks today', () async {
+    final cards = [for (var i = 0; i < 6; i++) testCard('n$i')];
+    final progress = MemoryProgressRepository(
+      settings: const AppSettings(dailyStudyMinutes: 30, newKanjiPerDay: 4),
+      schedules: {
+        for (final card in cards) card.id: CardSchedule.fresh(card.id, now),
+      },
+    );
+
+    final first = await service(progress, cards).read(now: now);
+    expect(first.sessionCards.map((card) => card.id), [
+      'n0',
+      'n1',
+      'n2',
+      'n3',
+    ]);
+
+    await progress.saveSettings(
+      const AppSettings(dailyStudyMinutes: 30, newKanjiPerDay: 2),
+    );
+    final lowered = await service(progress, cards).read(now: now);
+    expect(lowered.sessionCards.map((card) => card.id), ['n0', 'n1']);
+    expect(lowered.recommendedComplete, isFalse);
+  });
+
+  test(
+    'raising new kanji per day mid-sitting adds the extra new cards',
+    () async {
+      final cards = [for (var i = 0; i < 6; i++) testCard('n$i')];
+      final progress = MemoryProgressRepository(
+        settings: const AppSettings(dailyStudyMinutes: 30, newKanjiPerDay: 2),
+        schedules: {
+          for (final card in cards) card.id: CardSchedule.fresh(card.id, now),
+        },
+      );
+
+      await service(progress, cards).read(now: now);
+      progress.schedules['n0'] = reviewCard(
+        'n0',
+        state: CardLearningState.learning,
+        interval: const Duration(minutes: 1),
+        consecutive: 0,
+        incorrect: 0,
+      );
+      progress.dailyNewKanji = DailyNewKanjiProgress(date: now, count: 1);
+
+      await progress.saveSettings(
+        const AppSettings(dailyStudyMinutes: 30, newKanjiPerDay: 4),
+      );
+      final mid = await service(progress, cards).read(now: now);
+      expect(mid.recommendedComplete, isFalse);
+      expect(mid.sessionCards.map((card) => card.id), contains('n0'));
+      expect(
+        mid.sessionCards.where((card) => card.id != 'n0').map((card) => card.id),
+        ['n1', 'n2', 'n3'],
+      );
+    },
+  );
+
+  test(
+    'raising new kanji per day after finishing waits until tomorrow',
+    () async {
+      final cards = [for (var i = 0; i < 6; i++) testCard('n$i')];
+      final progress = MemoryProgressRepository(
+        settings: const AppSettings(dailyStudyMinutes: 30, newKanjiPerDay: 2),
+        schedules: {
+          for (final card in cards) card.id: CardSchedule.fresh(card.id, now),
+        },
+      );
+
+      final first = await service(progress, cards).read(now: now);
+      expect(first.sessionCards.map((card) => card.id), ['n0', 'n1']);
+      await progress.saveDailySessionPlan(
+        progress.dailySessionPlan.copyWith(completed: true),
+      );
+
+      await progress.saveSettings(
+        const AppSettings(dailyStudyMinutes: 30, newKanjiPerDay: 5),
+      );
+      final sameDay = await service(progress, cards).read(now: now);
+      expect(sameDay.recommendedComplete, isTrue);
+      expect(sameDay.sessionCards, isEmpty);
+      expect(progress.dailySessionPlan.cardIds, ['n0', 'n1']);
+      expect(progress.dailySessionPlan.newKanjiPerDay, 2);
+
+      final tomorrow = await service(
+        progress,
+        cards,
+      ).read(now: now.add(const Duration(days: 1)));
+      expect(tomorrow.recommendedComplete, isFalse);
+      expect(tomorrow.sessionCards.map((card) => card.id), [
+        'n0',
+        'n1',
+        'n2',
+        'n3',
+        'n4',
+      ]);
+    },
+  );
+
+  test('changing daily study time after finishing waits until tomorrow', () async {
+    final cards = deck(40);
+    final progress = MemoryProgressRepository(
+      settings: const AppSettings(dailyStudyMinutes: 5, newKanjiPerDay: 0),
+      schedules: {for (final card in cards) card.id: reviewCard(card.id)},
+    );
+
+    final short = await service(progress, cards).read(now: now);
+    await progress.saveDailySessionPlan(
+      progress.dailySessionPlan.copyWith(completed: true),
+    );
+    await progress.saveSettings(
+      const AppSettings(dailyStudyMinutes: 15, newKanjiPerDay: 0),
+    );
+
+    final sameDay = await service(progress, cards).read(now: now);
+    expect(sameDay.recommendedComplete, isTrue);
+    expect(sameDay.sessionCards, isEmpty);
+    expect(sameDay.sessionCards.length, isNot(greaterThan(short.sessionCards.length)));
+
+    final tomorrow = await service(
+      progress,
+      cards,
+    ).read(now: now.add(const Duration(days: 1)));
+    expect(tomorrow.recommendedComplete, isFalse);
+    expect(tomorrow.sessionCards.length, greaterThan(short.sessionCards.length));
+  });
+
   test('changing daily study time recalculates the next session', () async {
     final cards = deck(40);
     final progress = MemoryProgressRepository(
