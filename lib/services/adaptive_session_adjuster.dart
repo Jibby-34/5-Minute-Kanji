@@ -15,7 +15,7 @@ class AdaptiveQueueConfig {
     this.timeBuffer = Duration.zero,
     this.minimumSwapSavings = const Duration(seconds: 5),
     this.priorityTolerance = 0.15,
-    this.maximumAdjustmentsPerSession = 5,
+    this.maximumAdjustmentsPerSession = 20,
     this.maximumAdditionsPerSession = 20,
   });
 
@@ -47,6 +47,9 @@ class AdaptiveQueueConfig {
   final double priorityTolerance;
 
   /// Remove or swap steps allowed in one sitting.
+  ///
+  /// High enough that an Again follow-up can drop several reviews instead
+  /// of stalling at the cap while the sitting is still over the goal.
   final int maximumAdjustmentsPerSession;
 
   /// Leftover due reviews that may be appended when the sitting is short.
@@ -408,16 +411,27 @@ class AdaptiveSessionAdjuster {
       if (eligible.isEmpty) break;
       final victim = _chooseRemoval(eligible);
       final index = working.indexWhere((card) => card.id == victim.id);
-      if (index <= 0) break;
+      if (index <= 0) {
+        dropped.add(victim.id);
+        continue;
+      }
 
-      final swap = working.length > maxQueueLength
-          ? null
-          : _chooseSwap(
-              victim: victim,
-              replacements: replacements,
-              inQueue: inQueue,
-              dropped: dropped,
-            );
+      // A swap must land at or under the cap. A slightly shorter leftover
+      // after Again only saves a few seconds and used to burn the step
+      // budget without ever dropping the extra follow-up.
+      AdaptiveQueueCard? swap;
+      if (working.length <= maxQueueLength) {
+        final candidate = _chooseSwap(
+          victim: victim,
+          replacements: replacements,
+          inQueue: inQueue,
+          dropped: dropped,
+        );
+        if (candidate != null) {
+          final saved = victim.estimated - candidate.estimated;
+          if (projected - saved <= target) swap = candidate;
+        }
+      }
       if (swap == null) {
         working.removeAt(index);
         inQueue.remove(victim.id);

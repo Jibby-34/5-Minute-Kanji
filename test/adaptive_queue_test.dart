@@ -235,6 +235,34 @@ void main() {
       expect(decision.steps.single.replacement, isNull);
     });
 
+    test(
+      'an Again-sized overrun drops a review instead of swapping leftovers a few seconds shorter',
+      () {
+        final decision = decide(
+          elapsed: const Duration(seconds: 18),
+          sittingGoal: const Duration(seconds: 300),
+          queue: [
+            card('now', priority: 3, seconds: 18, current: true),
+            card('missed', priority: 3, seconds: 18, protected: true),
+            for (var i = 0; i < 14; i++)
+              card('r$i', priority: 2, seconds: 18),
+          ],
+          replacements: [
+            for (var i = 0; i < 8; i++)
+              card('left$i', priority: 2, seconds: 13),
+          ],
+        );
+
+        expect(decision.changed, isTrue);
+        expect(decision.steps.every((step) => step.replacement == null), isTrue);
+        expect(decision.steps.map((step) => step.removedId), isNotEmpty);
+        expect(
+          decision.projectedAfter,
+          lessThanOrEqualTo(const Duration(seconds: 300)),
+        );
+      },
+    );
+
     test('with no shorter stand-in the card is only removed', () {
       final decision = decide(
         elapsed: const Duration(seconds: 60),
@@ -876,18 +904,27 @@ void main() {
         controller.submit();
         expect(await controller.rate(ReviewResult.good), isNull);
 
-        expect(controller.session.adjustmentsMade, 5);
+        expect(
+          controller.lastQueueAdjustment!.projectedAfter,
+          lessThanOrEqualTo(const Duration(minutes: 3)),
+        );
         expect(controller.session.queued.map((card) => card.id), [
           'c01',
+          'c11',
+        ]);
+        expect(controller.remainingToDraw, 2);
+        expect(controller.current?.id, 'c01');
+        for (final id in [
+          'c02',
+          'c03',
+          'c04',
+          'c05',
+          'c06',
           'c07',
           'c08',
           'c09',
           'c10',
-          'c11',
-        ]);
-        expect(controller.remainingToDraw, 6);
-        expect(controller.current?.id, 'c01');
-        for (final id in ['c02', 'c03', 'c04', 'c05', 'c06']) {
+        ]) {
           expect(controller.session.isDropped(id), isTrue);
           expect(progress.schedules[id]!.toJson(), before[id]);
         }
@@ -910,14 +947,11 @@ void main() {
 
         controller.submit();
         expect(await controller.rate(ReviewResult.good), isNull);
-        expect(controller.session.adjustmentsMade, 5);
-        expect(controller.session.queued.map((card) => card.id), [
-          'c07',
-          'c08',
-          'c09',
-          'c10',
-          'c11',
-        ]);
+        expect(
+          controller.lastQueueAdjustment!.projectedAfter,
+          lessThanOrEqualTo(const Duration(minutes: 3)),
+        );
+        expect(controller.session.queued.map((card) => card.id), ['c11']);
       },
     );
 
@@ -1108,6 +1142,64 @@ void main() {
           controller.session.queued.map((card) => card.id),
           contains('keep'),
         );
+      },
+    );
+
+    test(
+      'a miss drops a later review instead of swapping in a slightly shorter leftover',
+      () async {
+        final names = ids(16);
+        CardSchedule leftover(String id) {
+          return CardSchedule(
+            cardId: id,
+            state: CardLearningState.review,
+            reviewCount: 8,
+            correctCount: 8,
+            incorrectCount: 0,
+            dueAt: now,
+            interval: const Duration(days: 40),
+            ease: 2.5,
+            lastReviewedAt: now.subtract(const Duration(days: 40)),
+            consecutiveGoodCount: 8,
+          );
+        }
+
+        final leftoverIds = ['left-a', 'left-b', 'left-c'];
+        final schedules = {
+          for (final id in names) id: dueReview(id),
+          for (final id in leftoverIds) id: leftover(id),
+        };
+        var current = now;
+        final progress = MemoryProgressRepository(
+          settings: const AppSettings(dailyStudyMinutes: 5, newKanjiPerDay: 0),
+          schedules: schedules,
+        );
+        final controller = await open(
+          progress: progress,
+          cards: names.map(testCard).toList(),
+          schedules: schedules,
+          clock: () => current,
+          extraDueReviews: leftoverIds.map(testCard).toList(),
+          queueAdjuster: const AdaptiveSessionAdjuster(
+            config: AdaptiveQueueConfig(priorityTolerance: 2),
+          ),
+        );
+
+        current = now.add(const Duration(seconds: 18));
+        controller.submit();
+        expect(await controller.rate(ReviewResult.again), isNull);
+
+        expect(controller.session.isDropped('c00'), isFalse);
+        expect(
+          controller.session.queued.map((card) => card.id),
+          isNot(contains('left-a')),
+        );
+        expect(
+          controller.session.queued.map((card) => card.id),
+          isNot(contains('left-b')),
+        );
+        expect(controller.remainingToDraw, 15);
+        expect(controller.session.droppedIds, isNotEmpty);
       },
     );
 
