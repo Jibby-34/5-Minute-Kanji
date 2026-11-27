@@ -337,10 +337,9 @@ class _HomeMiddle extends StatelessWidget {
     return LayoutBuilder(
       builder: (context, constraints) {
         return ScrollConfiguration(
-          behavior: ScrollConfiguration.of(context).copyWith(
-            overscroll: false,
-            physics: const ClampingScrollPhysics(),
-          ),
+          behavior: ScrollConfiguration.of(
+            context,
+          ).copyWith(overscroll: false, physics: const ClampingScrollPhysics()),
           child: SingleChildScrollView(
             physics: const ClampingScrollPhysics(),
             child: ConstrainedBox(
@@ -382,11 +381,7 @@ class _DailyStudyCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (home.studyAnywayAvailable) {
-      return _StatusCard(
-        title: "You're done for today!",
-        meta: 'Nice work!',
-        trial: home.trialProgressLabel,
-      );
+      return _CompletedStatus(trial: home.trialProgressLabel);
     }
 
     if (home.recommendedCount <= 0) {
@@ -430,11 +425,66 @@ class _HomeCard extends StatelessWidget {
   }
 }
 
+/// Quiet close to the day. No card: the message sits on the page itself.
+class _CompletedStatus extends StatelessWidget {
+  const _CompletedStatus({this.trial});
+
+  final String? trial;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
+    return Column(
+      children: [
+        ExcludeSemantics(
+          child: Container(
+            width: 36,
+            height: 36,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              color: theme.sageWash,
+              shape: BoxShape.circle,
+            ),
+            child: Icon(Icons.check, size: 18, color: theme.sageInk),
+          ),
+        ),
+        const SizedBox(height: 16),
+        Text(
+          "You're done for today!",
+          textAlign: TextAlign.center,
+          style: theme.textTheme.headlineMedium?.copyWith(
+            color: _ink,
+            fontSize: 30,
+            fontWeight: FontWeight.w600,
+            letterSpacing: -0.5,
+            height: 1.15,
+          ),
+        ),
+        const SizedBox(height: 6),
+        Text(
+          'Nice work!',
+          textAlign: TextAlign.center,
+          style: theme.textTheme.bodyMedium?.copyWith(
+            color: _muted,
+            fontSize: 16,
+            fontWeight: FontWeight.w400,
+            height: 1.3,
+          ),
+        ),
+        if (trial != null) ...[
+          const SizedBox(height: 10),
+          Text(trial!, textAlign: TextAlign.center, style: _trialStyle(theme)),
+        ],
+      ],
+    );
+  }
+}
+
 class _StatusCard extends StatelessWidget {
-  const _StatusCard({required this.title, this.meta, this.trial, this.footer});
+  const _StatusCard({required this.title, this.trial, this.footer});
 
   final String title;
-  final String? meta;
   final String? trial;
   final Widget? footer;
 
@@ -457,19 +507,6 @@ class _StatusCard extends StatelessWidget {
               height: 1.15,
             ),
           ),
-          if (meta != null) ...[
-            const SizedBox(height: 6),
-            Text(
-              meta!,
-              textAlign: TextAlign.center,
-              style: theme.textTheme.bodyMedium?.copyWith(
-                color: _muted,
-                fontSize: 16,
-                fontWeight: FontWeight.w400,
-                height: 1.3,
-              ),
-            ),
-          ],
           if (trial != null) ...[
             const SizedBox(height: 10),
             Text(

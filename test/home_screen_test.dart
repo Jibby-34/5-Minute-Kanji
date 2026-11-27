@@ -325,10 +325,82 @@ void main() {
     expect(find.text('STUDY PLAN'), findsNothing);
     expect(find.text('Start Review'), findsNothing);
     expect(find.textContaining('Next review:'), findsOneWidget);
+    expect(planCards(tester), isNotEmpty);
     expect(find.textContaining('NaN'), findsNothing);
     expect(barSegments(tester, AppColors.indigo), isEmpty);
     expect(barSegments(tester, const Color(0xFF8E96C4)), isEmpty);
     expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('a finished sitting is type, not a card', (tester) async {
+    final controller = HomeController(
+      kanjiRepository: FakeKanjiRepository(const []),
+      progressRepository: MemoryProgressRepository(),
+    );
+    controller.loading = false;
+    controller.studyAnywayAvailable = true;
+    controller.recommendedCount = 0;
+    controller.streak = 4;
+    await pumpController(tester, controller);
+
+    expect(find.text("You're done for today!"), findsOneWidget);
+    expect(find.text('Nice work!'), findsOneWidget);
+    expect(find.text('Optional Practice'), findsOneWidget);
+    expect(find.byIcon(Icons.check), findsOneWidget);
+    expect(greeting(), findsOneWidget);
+    expect(find.byTooltip('Settings'), findsOneWidget);
+    expect(find.byTooltip('Kanji list'), findsOneWidget);
+    expect(find.text('days studied'), findsOneWidget);
+    expect(find.text('STUDY PLAN'), findsNothing);
+    expect(find.text("You're all caught up."), findsNothing);
+    expect(find.text('Start Review'), findsNothing);
+    expect(planCards(tester), isEmpty);
+
+    final check = tester.getCenter(find.byIcon(Icons.check));
+    final title = tester.getCenter(find.text("You're done for today!"));
+    final note = tester.getCenter(find.text('Nice work!'));
+    final hello = tester.getCenter(greeting());
+    final practice = tester.getCenter(find.text('Optional Practice'));
+    expect(hello.dy, lessThan(check.dy));
+    expect(check.dy, lessThan(title.dy));
+    expect(title.dy, lessThan(note.dy));
+    expect(note.dy, lessThan(practice.dy));
+    expect(check.dx, closeTo(title.dx, 1));
+    expect(title.dx, closeTo(note.dx, 1));
+    expect(title.dx, closeTo(195, 8));
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('a finished sitting does not overflow common phone sizes', (
+    tester,
+  ) async {
+    const sizes = <Size>[
+      Size(320, 568),
+      Size(375, 667),
+      Size(390, 844),
+      Size(412, 915),
+      Size(430, 932),
+    ];
+
+    for (final size in sizes) {
+      final controller = HomeController(
+        kanjiRepository: FakeKanjiRepository(const []),
+        progressRepository: MemoryProgressRepository(),
+      );
+      controller.loading = false;
+      controller.studyAnywayAvailable = true;
+      await pumpController(tester, controller, size: size);
+
+      expect(
+        tester.takeException(),
+        isNull,
+        reason: 'overflow on ${size.width}x${size.height}',
+      );
+      expect(find.text("You're done for today!"), findsOneWidget);
+      expect(find.text('Nice work!'), findsOneWidget);
+      expect(find.text('Optional Practice'), findsOneWidget);
+      expect(planCards(tester), isEmpty);
+    }
   });
 
   testWidgets('a tiny share stays visible without changing the times', (
@@ -463,6 +535,20 @@ List<RenderBox> barSegments(WidgetTester tester, Color color) {
         }),
       )
       .where((box) => (box.size.height - 12).abs() < 0.1)
+      .toList();
+}
+
+/// The pale fill used by the study-plan and caught-up cards.
+List<RenderBox> planCards(WidgetTester tester) {
+  return tester
+      .renderObjectList<RenderBox>(
+        find.byWidgetPredicate((widget) {
+          if (widget is! DecoratedBox) return false;
+          final decoration = widget.decoration;
+          return decoration is BoxDecoration &&
+              decoration.color == const Color(0xFFFBF9F5);
+        }),
+      )
       .toList();
 }
 
