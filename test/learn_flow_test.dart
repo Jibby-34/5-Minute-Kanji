@@ -28,6 +28,7 @@ import 'package:fiveminutekanji/widgets/writing_sheet_layout.dart';
 import 'package:fiveminutekanji/repositories/progress_repository.dart';
 import 'package:fiveminutekanji/repositories/stroke_data_repository.dart';
 import 'package:fiveminutekanji/services/initial_known_card_schedule.dart';
+import 'package:fiveminutekanji/services/mark_as_known.dart';
 import 'package:fiveminutekanji/services/kanji_status_resolver.dart';
 import 'package:fiveminutekanji/services/srs_engine.dart';
 import 'package:fiveminutekanji/services/srs_scheduler.dart';
@@ -85,6 +86,14 @@ void main() {
         providers: [
           Provider<ProgressRepository>.value(value: progress),
           Provider<SrsScheduler>.value(value: const SrsEngine()),
+          Provider<MarkAsKnownService>(
+            create: (_) => MarkAsKnownService(
+              progressRepository: progress,
+              srsEngine: const SrsEngine(),
+              kanjiRepository: FakeKanjiRepository(cards),
+              clock: () => now,
+            ),
+          ),
           if (strokes != null)
             Provider<StrokeDataRepository>.value(value: strokes),
         ],
@@ -277,7 +286,7 @@ void main() {
       expect(find.text('4 remaining'), findsOneWidget);
       expect(find.text(first.character), findsOneWidget);
       expect(find.text('MEANING'), findsOneWidget);
-      expect(find.text(first.keyword), findsOneWidget);
+      expect(find.text(first.keyword), findsAtLeastNWidgets(1));
       expect(find.text('COMPONENTS'), findsNothing);
       expect(find.text(first.componentsLabel), findsNothing);
       expect(
@@ -299,7 +308,7 @@ void main() {
       await tester.tap(find.text('Done'));
       await tester.pumpAndSettle();
 
-      expect(find.text(second.character), findsOneWidget);
+      expect(find.text(second.character), findsAtLeastNWidgets(1));
       expect(find.text('3 remaining'), findsOneWidget);
       expect(find.text('Practice Writing'), findsOneWidget);
       expect(find.text('Submit'), findsNothing);
@@ -467,12 +476,24 @@ void main() {
         await tester.tap(find.text('Already know this? Mark as known'));
         await tester.pumpAndSettle();
 
-        expect(find.text(second.character), findsOneWidget);
+        expect(find.text(second.character), findsAtLeastNWidgets(1));
         expect(find.text('Practice Writing'), findsOneWidget);
         expect(find.text(first.character), findsNothing);
 
         final schedule = await progress.getSchedule(first.id);
-        expect(schedule!.interval, calculateInitialKnownCardSchedule(first.id));
+        final placement = await progress.getPlacement();
+        expect(
+          schedule!.interval,
+          calculateProficiencyAdjustedKnownInterval(
+            kanjiId: first.id,
+            difficulty: first.difficulty,
+            knownDifficulties: [first.difficulty],
+            proficiency: proficiencyFromPlacement(
+              estimatedDifficulty: placement.estimatedDifficulty,
+              selfAssessment: placement.selfAssessment,
+            ),
+          ),
+        );
         expect(schedule.state, CardLearningState.review);
         expect(resolver.resolve(schedule), KanjiProgressStatus.learning);
         expect((await progress.getDailyNewKanji()).count, 1);

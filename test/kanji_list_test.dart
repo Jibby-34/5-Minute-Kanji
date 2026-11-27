@@ -223,14 +223,24 @@ void main() {
     expect(find.text('Mark as Known'), findsNothing);
 
     final schedule = await progress.getSchedule(first.id);
+    final placement = await progress.getPlacement();
+    final expected = calculateProficiencyAdjustedKnownInterval(
+      kanjiId: first.id,
+      difficulty: first.difficulty,
+      knownDifficulties: [first.difficulty],
+      proficiency: proficiencyFromPlacement(
+        estimatedDifficulty: placement.estimatedDifficulty,
+        selfAssessment: placement.selfAssessment,
+      ),
+    );
     expect(schedule!.state, CardLearningState.review);
-    expect(schedule.interval, calculateInitialKnownCardSchedule(first.id));
+    expect(schedule.interval, expected);
     expect(schedule.dueAt.isAfter(DateTime.now()), isTrue);
     expect((await progress.getDailyNewKanji()).count, 3);
 
     final restarted = SharedPrefsProgressRepository(prefs);
     final restored = await restarted.getSchedule(first.id);
-    expect(restored!.interval, calculateInitialKnownCardSchedule(first.id));
+    expect(restored!.interval, expected);
     expect(restored.dueAt, schedule.dueAt);
 
     await tester.tap(find.byTooltip('Back'));

@@ -69,6 +69,7 @@ class FiveMinuteKanjiApp extends StatelessWidget {
           create: (_) => MarkAsKnownService(
             progressRepository: progressRepository,
             srsEngine: srsEngine,
+            kanjiRepository: kanjiRepository,
           ),
         ),
         Provider<PlacementService>(

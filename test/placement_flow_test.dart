@@ -240,9 +240,10 @@ void main() {
       if ((positions[card.id] ?? 100) <= 30) {
         expect(schedule.state, CardLearningState.review);
         expect(
-          schedule.interval,
-          calculateInitialKnownCardSchedule(schedule.cardId),
+          schedule.interval.inDays,
+          inInclusiveRange(knownIntervalMinDays, knownIntervalMaxDays),
         );
+        expect(schedule.interval, Duration(days: schedule.interval.inDays));
         expect(schedule.isDueAt(now), isFalse);
         expect(resolver.resolve(schedule), KanjiProgressStatus.learning);
       } else {

@@ -13,6 +13,7 @@ class CardSchedule {
     required this.ease,
     this.lastReviewedAt,
     this.consecutiveGoodCount = 0,
+    this.introducedAsKnown = false,
   });
 
   factory CardSchedule.fresh(String cardId, DateTime now) {
@@ -39,6 +40,12 @@ class CardSchedule {
   final DateTime? lastReviewedAt;
   final int consecutiveGoodCount;
 
+  /// Entered review through Mark as Known or the placement test.
+  ///
+  /// Stays set after the first ratings so the known-kanji difficulty baseline
+  /// can include the card. Again / Good do not read it.
+  final bool introducedAsKnown;
+
   bool isDueAt(DateTime now) => !dueAt.isAfter(now);
 
   /// Marked known by hand or the placement test, and not yet rated.
@@ -62,6 +69,7 @@ class CardSchedule {
     double? ease,
     DateTime? lastReviewedAt,
     int? consecutiveGoodCount,
+    bool? introducedAsKnown,
   }) {
     return CardSchedule(
       cardId: cardId,
@@ -74,6 +82,7 @@ class CardSchedule {
       ease: ease ?? this.ease,
       lastReviewedAt: lastReviewedAt ?? this.lastReviewedAt,
       consecutiveGoodCount: consecutiveGoodCount ?? this.consecutiveGoodCount,
+      introducedAsKnown: introducedAsKnown ?? this.introducedAsKnown,
     );
   }
 
@@ -92,6 +101,7 @@ class CardSchedule {
       ease: ease,
       lastReviewedAt: lastReviewedAt,
       consecutiveGoodCount: consecutiveGoodCount,
+      introducedAsKnown: introducedAsKnown,
     );
   }
 
@@ -107,6 +117,7 @@ class CardSchedule {
       'ease': ease,
       'lastReviewedAt': lastReviewedAt?.toIso8601String(),
       'consecutiveGoodCount': consecutiveGoodCount,
+      'introducedAsKnown': introducedAsKnown,
     };
   }
 
@@ -130,6 +141,7 @@ class CardSchedule {
             : DateTime.parse(json['lastReviewedAt'] as String),
         consecutiveGoodCount:
             (json['consecutiveGoodCount'] as num?)?.toInt() ?? 0,
+        introducedAsKnown: json['introducedAsKnown'] as bool? ?? false,
       );
     } catch (_) {
       return null;

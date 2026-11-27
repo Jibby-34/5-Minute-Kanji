@@ -208,6 +208,7 @@ class KanjiListController extends ChangeNotifier {
            MarkAsKnownService(
              progressRepository: progressRepository,
              srsEngine: srsEngine ?? const SrsEngine(),
+             kanjiRepository: kanjiRepository,
            );
 
   final KanjiRepository kanjiRepository;

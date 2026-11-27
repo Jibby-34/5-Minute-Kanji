@@ -49,6 +49,7 @@ class PlacementProgress {
     this.answers = const [],
     this.selectionSeed = 0,
     this.selfAssessment,
+    this.estimatedDifficulty,
   });
 
   static const empty = PlacementProgress();
@@ -62,6 +63,12 @@ class PlacementProgress {
   /// The learner's own starting guess. Null until they pick one.
   final PlacementSelfAssessment? selfAssessment;
 
+  /// Posterior mean from the last finished test, on the 1–100 path scale.
+  ///
+  /// Null when the learner skipped the test or the saved value is unusable.
+  /// The initial known-kanji interval reads this before [selfAssessment].
+  final double? estimatedDifficulty;
+
   bool get hasStarted => answers.isNotEmpty;
 
   PlacementProgress copyWith({
@@ -70,6 +77,7 @@ class PlacementProgress {
     int? selectionSeed,
     PlacementSelfAssessment? selfAssessment,
     bool clearSelfAssessment = false,
+    double? estimatedDifficulty,
   }) {
     return PlacementProgress(
       completed: completed ?? this.completed,
@@ -78,6 +86,7 @@ class PlacementProgress {
       selfAssessment: clearSelfAssessment
           ? null
           : (selfAssessment ?? this.selfAssessment),
+      estimatedDifficulty: estimatedDifficulty ?? this.estimatedDifficulty,
     );
   }
 
@@ -87,6 +96,8 @@ class PlacementProgress {
       'answers': answers.map((answer) => answer.toJson()).toList(),
       'selectionSeed': selectionSeed,
       if (selfAssessment != null) 'selfAssessment': selfAssessment!.name,
+      if (estimatedDifficulty != null)
+        'estimatedDifficulty': estimatedDifficulty,
     };
   }
 
@@ -111,11 +122,20 @@ class PlacementProgress {
         selfAssessment: PlacementSelfAssessment.fromName(
           json['selfAssessment'] as String?,
         ),
+        estimatedDifficulty: _placementEstimate(json['estimatedDifficulty']),
       );
     } catch (_) {
       return empty;
     }
   }
+}
+
+/// A saved placement mean, or null when it is missing or off the 1–100 scale.
+double? _placementEstimate(Object? raw) {
+  if (raw is! num) return null;
+  final value = raw.toDouble();
+  if (value.isNaN || value < 1 || value > 100) return null;
+  return value;
 }
 
 /// What the test concluded.

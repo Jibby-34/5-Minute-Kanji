@@ -320,6 +320,7 @@ class SharedPrefsProgressRepository implements ProgressRepository {
       placement: PlacementProgress(
         completed: _blob.placement.completed,
         selfAssessment: _blob.placement.selfAssessment,
+        estimatedDifficulty: _blob.placement.estimatedDifficulty,
       ),
       kanjiCatalogVersion: legacyKanjiCatalogVersion,
     );

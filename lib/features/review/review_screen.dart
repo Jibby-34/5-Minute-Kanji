@@ -20,6 +20,7 @@ import '../../repositories/progress_repository.dart';
 import '../../services/analytics/analytics_scope.dart';
 import '../../services/curriculum/curriculum_access.dart';
 import '../../services/daily_workload.dart';
+import '../../services/mark_as_known.dart';
 import '../../services/shake_detector.dart';
 import '../../services/srs_scheduler.dart';
 import '../../widgets/bottom_action_inset.dart';
@@ -121,6 +122,7 @@ class ReviewScreen extends StatelessWidget {
         final controller = ReviewController(
           progressRepository: progressRepository,
           srsEngine: context.read<SrsScheduler>(),
+          markAsKnown: _markAsKnownOrNull(context),
           cards: cards,
           config: config,
           isPractice: isPractice,
@@ -756,5 +758,13 @@ class _PromptBody extends StatelessWidget {
         ),
       ],
     );
+  }
+}
+
+MarkAsKnownService? _markAsKnownOrNull(BuildContext context) {
+  try {
+    return context.read<MarkAsKnownService>();
+  } on ProviderNotFoundException {
+    return null;
   }
 }

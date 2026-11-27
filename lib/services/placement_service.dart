@@ -101,9 +101,11 @@ class PlacementService {
   /// placements for kanji that are still new; it does not reset the library.
   Future<PlacementSummary> complete(PlacementOutcome outcome) async {
     final now = clock();
+    final estimate = _finishedProficiencyEstimate(outcome);
     final marked = await markAsKnown.markKanjiAsKnownAll(
       outcome.knownCardIds,
       now: now,
+      proficiencyEstimate: estimate,
     );
     final confirmed = await _confirmNewCards(outcome.confirmCardIds, now);
     final placement = await progressRepository.getPlacement();
@@ -111,6 +113,7 @@ class PlacementService {
       PlacementProgress(
         completed: true,
         selfAssessment: placement.selfAssessment,
+        estimatedDifficulty: estimate ?? placement.estimatedDifficulty,
       ),
     );
     if (outcome.answeredCount > 0) {
@@ -178,4 +181,14 @@ class PlacementService {
 
   Future<void> _save(PlacementProgress placement) =>
       progressRepository.savePlacement(placement);
+}
+
+/// Posterior mean of a finished test, or null when this run did not produce one.
+double? _finishedProficiencyEstimate(PlacementOutcome outcome) {
+  if (outcome.answeredCount <= 0) return null;
+  final value = outcome.estimatedDifficulty;
+  if (value < placementMinDifficulty || value > placementMaxDifficulty) {
+    return null;
+  }
+  return value;
 }

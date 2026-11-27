@@ -19,9 +19,11 @@ class SrsEngine implements SrsScheduler {
   static const Duration newLearnInterval = Duration(minutes: 10);
   static const Duration graduatingInterval = Duration(days: 1);
 
-  /// Nominal center of the first Mark-as-Known interval (~30 days).
-  /// The actual first due date is scattered by
-  /// [calculateInitialKnownCardSchedule]. Again / Good do not use this.
+  /// Nominal center of the legacy first Mark-as-Known interval (~30 days).
+  ///
+  /// Mark as Known passes a proficiency-adjusted interval instead. This
+  /// default is only used when that interval is omitted. Again / Good do
+  /// not use it.
   static const Duration knownInterval = Duration(days: 30);
 
   @override
@@ -50,6 +52,7 @@ class SrsEngine implements SrsScheduler {
       state: CardLearningState.review,
       interval: initial,
       dueAt: now.add(initial),
+      introducedAsKnown: true,
     );
   }
 

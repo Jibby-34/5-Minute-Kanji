@@ -14,8 +14,9 @@ abstract class SrsScheduler {
   /// Enter a new card into review with a long initial interval.
   ///
   /// Used when the user already knows the kanji. When [interval] is omitted,
-  /// implementations scatter the first due date around ~30 days. Pass
-  /// [interval] to override (confidence level or an imported Anki interval).
+  /// implementations scatter the first due date around ~30 days. Mark as
+  /// Known passes a proficiency-adjusted interval. An imported Anki interval
+  /// can be passed the same way.
   CardSchedule markAsKnown({
     required CardSchedule current,
     required DateTime now,
